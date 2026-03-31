@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Paleta Adeslas ── */
+    --azul-oscuro: 214 54% 24%;    /* #1A3A5C  — dark navy */
+    --azul-medio: 200 100% 50%;    /* #009FE3  — Adeslas cyan-blue  */
+    --azul-claro: 200 100% 50%;    /* #009FE3  — Adeslas cyan-blue primario */
+    --azul-suave: 199 78% 95%;     /* #EBF7FD  — very light teal  */
+    --magenta: 327 96% 46%;        /* #E4097D  — CTA pink          */
+
+    --gris-texto: 217 46% 20%;
+    --gris-medio: 214 17% 42%;
+    --gris-claro: 214 39% 97%;
+    --borde: 199 42% 88%;
+    --blanco: 0 0% 100%;
+
+    --background: 0 0% 100%;
+    --foreground: 217 46% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 217 46% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 217 46% 20%;
+    --primary: 214 54% 24%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 199 78% 95%;
+    --secondary-foreground: 214 54% 24%;
+    --muted: 214 39% 97%;
+    --muted-foreground: 214 17% 42%;
+    --accent: 199 100% 43%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 199 42% 88%;
+    --input: 199 42% 88%;
+    --ring: 199 100% 43%;
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 199 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: clip;
+    max-width: 100%;
+  }
+  h1 {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 32px;
+    }
+  }
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .label-style {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+  }
+  .price-style {
+    font-size: 32px;
+    font-weight: 900;
+    color: hsl(var(--azul-oscuro));
+  }
+  .price-style-lg {
+    font-size: 48px;
+    font-weight: 900;
+    color: hsl(var(--azul-oscuro));
+  }
+  .card-shadow {
+    box-shadow: 0 8px 32px rgba(0, 109, 138, 0.08);
+  }
+  .card-shadow-hover {
+    box-shadow: 0 16px 48px rgba(0, 109, 138, 0.14);
+  }
+  .mega-shadow {
+    box-shadow: 0 24px 64px rgba(0, 109, 138, 0.14);
+  }
+  .section-pad {
+    @apply px-4 py-16 md:px-8 lg:py-24;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .btn-magenta {
+    background-color: hsl(var(--magenta));
+    color: white;
+  }
+  .btn-magenta:hover {
+    background-color: hsl(327 96% 40%);
+  }
+
+  /* ── CTA button hover variants ──────────────────────────────── */
+
+  /* Botón blanco sobre fondo oscuro/hero → hover: tinte azul Adeslas */
+  .btn-cta-white {
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+  .btn-cta-white:hover {
+    background-color: #D4EBFB !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 48, 135, 0.25);
+  }
+  .btn-cta-white:active {
+    transform: translateY(0);
+  }
+
+  /* Botón fantasma/outline sobre fondo oscuro → hover: relleno blanco semitransparente */
+  .btn-cta-ghost {
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.18s ease;
+  }
+  .btn-cta-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.85) !important;
+    transform: translateY(-2px);
+  }
+  .btn-cta-ghost:active {
+    transform: translateY(0);
+  }
+
+  /* Botón magenta (#E4097D) → hover: magenta más oscuro */
+  .btn-cta-magenta {
+    transition: background-color 0.2s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .btn-cta-magenta:hover {
+    background-color: #B8065F !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(228, 9, 125, 0.35);
+  }
+  .btn-cta-magenta:active {
+    transform: translateY(0);
+  }
+
+  /* Botón azul Adeslas (#009FE3) → hover: azul más oscuro */
+  .btn-cta-blue {
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.18s ease;
+  }
+  .btn-cta-blue:hover {
+    background-color: #007DB5 !important;
+    transform: translateY(-2px);
+  }
+  .btn-cta-blue:active {
+    transform: translateY(0);
+  }
+
+  /* Botón azul oscuro (#003087) → hover: navy más profundo */
+  .btn-cta-dark {
+    transition: background-color 0.2s ease, transform 0.18s ease;
+  }
+  .btn-cta-dark:hover {
+    background-color: #002070 !important;
+    transform: translateY(-2px);
+  }
+  .btn-cta-dark:active {
+    transform: translateY(0);
+  }
+
+  /* Botón claro/secundario (bg:#F4F6FA, text:#003087) → hover: azul suave */
+  .btn-cta-light {
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.18s ease;
+  }
+  .btn-cta-light:hover {
+    background-color: #D4EBFB !important;
+    color: #003087 !important;
+    transform: translateY(-2px);
+  }
+  .btn-cta-light:active {
+    transform: translateY(0);
+  }
+
+  /* Botón WhatsApp (#25D366) → hover: verde más profundo */
+  .btn-cta-whatsapp {
+    transition: background-color 0.2s ease, transform 0.18s ease;
+  }
+  .btn-cta-whatsapp:hover {
+    background-color: #1BA44F !important;
+    transform: translateY(-2px);
+  }
+  .btn-cta-whatsapp:active {
+    transform: translateY(0);
+  }
+}

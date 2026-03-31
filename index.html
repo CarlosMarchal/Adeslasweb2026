@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Google Consent Mode v2 - defaults denied before GTM loads -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Check existing consent before setting defaults
+      (function(){
+        var consent = null;
+        try { consent = localStorage.getItem('asisa_cookie_consent'); } catch(e) {}
+        var analytics = consent === 'all' ? 'granted' : 'denied';
+        gtag('consent', 'default', {
+          'analytics_storage': analytics,
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'wait_for_update': 500
+        });
+      })();
+    </script>
+    <!-- End Google Consent Mode v2 -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KQSVL845');</script>
+    <!-- End Google Tag Manager -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seguro Médico ASISA | Calcula tu Precio Online — Desde 13€/mes</title>
+    <meta name="description" content="Contrata tu seguro médico ASISA online. Calcula tu precio en menos de 2 minutos. Más de 50 años de experiencia, 18 hospitales propios y 40.000 especialistas en toda España." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://asisa.altaseguromedico.es/" />
+    <meta property="og:title" content="Seguro Médico ASISA | Calcula tu Precio Online" />
+    <meta property="og:description" content="Contrata tu seguro médico ASISA online. Calcula tu precio en menos de 2 minutos. Más de 50 años de experiencia y 40.000 especialistas." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://asisa.altaseguromedico.es/" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="ASISA — Seguro Médico" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Seguro Médico ASISA | Calcula tu Precio Online" />
+    <meta name="twitter:description" content="Contrata tu seguro médico ASISA online. Calcula tu precio en menos de 2 minutos." />
+    <meta name="robots" content="index, follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Schema.org: Organization (ASISA) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "InsuranceAgency",
+      "name": "ASISA",
+      "alternateName": "ASISA Asistencia Sanitaria Interprovincial",
+      "url": "https://asisa.altaseguromedico.es",
+      "logo": "https://asisa.altaseguromedico.es/favicon.svg",
+      "description": "ASISA es una aseguradora de salud líder en España con más de 50 años de experiencia, 18 hospitales propios y más de 40.000 profesionales médicos. Ofrece seguros médicos para particulares, autónomos y empresas.",
+      "foundingDate": "1972",
+      "telephone": "+34919911999",
+      "areaServed": {
+        "@type": "Country",
+        "name": "España"
+      },
+      "sameAs": [
+        "https://www.asisa.es",
+        "https://es.wikipedia.org/wiki/ASISA"
+      ],
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "value": 40000,
+        "unitText": "profesionales médicos"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Seguros Médicos ASISA",
+        "itemListElement": [
+          {"@type": "OfferCatalog", "name": "Seguros de Salud Particulares"},
+          {"@type": "OfferCatalog", "name": "Seguros Médicos para Autónomos"},
+          {"@type": "OfferCatalog", "name": "Seguros Médicos para Empresas y Pymes"},
+          {"@type": "OfferCatalog", "name": "Seguro Dental"},
+          {"@type": "OfferCatalog", "name": "Seguro de Vida"},
+          {"@type": "OfferCatalog", "name": "Seguro de Mascotas"}
+        ]
+      }
+    }
+    </script>
+    <!-- Schema.org: WebSite (Sitelinks Search Box) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ASISA — Seguro Médico",
+      "url": "https://asisa.altaseguromedico.es",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://asisa.altaseguromedico.es/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQSVL845"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
