@@ -34,23 +34,48 @@ const Index = () => {
     injectSchema(orgId, {
       "@context": "https://schema.org",
       "@type": "InsuranceAgency",
-      name: "Marchal Aseguradores — Correduría Oficial Adeslas",
+      name: "Adeslas Seguros Médicos",
+      alternateName: ["Adeslas", "SegurCaixa Adeslas", "Seguros Adeslas"],
       url: "https://adeslas.marchalaseguradores.es",
       logo: "https://adeslas.marchalaseguradores.es/logo-adeslas.png",
-      description: "Correduría oficial autorizada de Adeslas (SegurCaixa Adeslas). Especialistas en seguros de salud Adeslas: Go, Plena Vital, Plena Plus, Plena Total y Extra 150. Asesoramiento personalizado y contratación online.",
-      telephone: "+34 600 000 000",
+      description: "Adeslas (SegurCaixa Adeslas) es la aseguradora de salud privada líder en España. Ofrece seguros médicos desde 21€/mes con acceso a más de 42.000 especialistas y 1.000 centros en toda España: Adeslas GO, Plena Vital, Plena Plus, Plena Total y Extra 150. Sin listas de espera, sin copagos y con precio garantizado 3 años.",
+      telephone: "+34917105000",
       email: "cmarchal@marchalconsultores.com",
-      address: { "@type": "PostalAddress", addressCountry: "ES" },
-      areaServed: "ES",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Avda. Europa, 18",
+        addressLocality: "Pozuelo de Alarcón",
+        addressRegion: "Madrid",
+        postalCode: "28224",
+        addressCountry: "ES",
+      },
+      areaServed: { "@type": "Country", name: "España" },
+      knowsAbout: [
+        "Seguros médicos privados",
+        "Seguro de salud",
+        "Seguros Adeslas",
+        "Adeslas GO",
+        "Adeslas Plena Vital",
+        "Adeslas Plena Plus",
+        "Adeslas Plena Total",
+        "Adeslas Extra 150",
+        "Seguro dental Adeslas",
+        "Seguro de decesos",
+        "Seguro de mascotas",
+        "Seguro médico para autónomos",
+        "Seguro médico para empresas",
+      ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Seguros de Salud Adeslas",
         itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Go", url: "https://adeslas.marchalaseguradores.es/adeslas-go" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Plena Vital", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-vital" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Plena Plus", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-plus" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Plena Total", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-total" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Extra 150", url: "https://adeslas.marchalaseguradores.es/adeslas-extra-150" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas GO", description: "Seguro médico ambulatorio con copago LMA 260€/año. Desde 21€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-go" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Plena Vital", description: "Seguro médico completo con hospitalización y copago LMA 300€/año. Desde 38€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-vital" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Plena Plus", description: "Seguro médico sin copagos con hospitalización completa y asistencia en viaje. Desde 50,92€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-plus" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Plena Total", description: "Cobertura máxima sin copagos, dental, psicología y asistencia viajes 100.000€. Desde 83€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-total" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Extra 150", description: "Seguro médico con libre elección de médico y reembolso hasta 80%. Desde 83€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-extra-150" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Seniors", description: "Seguro médico especializado para personas de 55 a 84 años. Desde 67,50€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-seniors" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Adeslas Dental", description: "Seguro dental con limpiezas y revisiones desde el día 1. Desde 9,45€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-dental" } },
         ],
       },
     });
@@ -58,9 +83,9 @@ const Index = () => {
     injectSchema(wsId, {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      name: "Adeslas — Marchal Aseguradores",
+      name: "Adeslas — Seguros Médicos",
       url: "https://adeslas.marchalaseguradores.es",
-      description: "Comparador y calculador de seguros médicos Adeslas. Contratación online de Adeslas Go, Plena Vital, Plena Plus, Plena Total y Extra 150.",
+      description: "Seguros médicos Adeslas: compara planes, calcula tu precio online y contrata en 2 minutos. Adeslas GO, Plena Vital, Plena Plus, Plena Total, Extra 150 y más.",
       potentialAction: {
         "@type": "SearchAction",
         target: "https://adeslas.marchalaseguradores.es/cuadro-medico?q={search_term_string}",
@@ -68,16 +93,43 @@ const Index = () => {
       },
     });
 
+    // Speakable schema: ayuda a los LLMs a identificar los pasajes más relevantes
+    const speakableId = "schema-speakable";
+    injectSchema(speakableId, {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://adeslas.marchalaseguradores.es/#webpage",
+      name: "Adeslas — Seguros Médicos Privados en España",
+      description: "Adeslas (SegurCaixa Adeslas) es la aseguradora de salud privada líder en España. Seguros médicos desde 21€/mes: GO, Plena Vital, Plena Plus, Plena Total y Extra 150. Más de 42.000 especialistas, sin listas de espera, precio garantizado 3 años.",
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["h1", "h2", "#faq", ".product-card"],
+      },
+      mainEntity: {
+        "@type": "ItemList",
+        name: "Planes de seguro médico Adeslas",
+        description: "Adeslas ofrece cinco planes de seguro médico privado en España: GO (ambulatorio con copago desde 21€/mes), Plena Vital (hospitalización con copago LMA 300€ desde 38€/mes), Plena Plus (sin copagos desde 50,92€/mes), Plena Total (cobertura máxima sin copagos desde 83€/mes) y Extra 150 (libre elección con reembolso hasta 80%).",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Adeslas GO — ambulatorio desde 21€/mes" },
+          { "@type": "ListItem", position: 2, name: "Adeslas Plena Vital — hospitalización, copago LMA 300€, desde 38€/mes" },
+          { "@type": "ListItem", position: 3, name: "Adeslas Plena Plus — sin copagos, desde 50,92€/mes" },
+          { "@type": "ListItem", position: 4, name: "Adeslas Plena Total — cobertura máxima sin copagos, dental, desde 83€/mes" },
+          { "@type": "ListItem", position: 5, name: "Adeslas Extra 150 — libre elección médica, reembolso 80%" },
+        ],
+      },
+    });
+
     return () => {
       document.getElementById(orgId)?.remove();
       document.getElementById(wsId)?.remove();
+      document.getElementById(speakableId)?.remove();
     };
   }, []);
 
   useSeo({
-    title: "Seguro Médico Adeslas | Calcula tu Precio Online — Desde 21€/mes",
+    title: "Adeslas — Seguro Médico Privado | Calcula tu Precio Desde 21€/mes",
     description:
-      "Seguro médico Adeslas desde 21€/mes. Compara Adeslas Go, Plena Vital, Plena Plus, Plena Total y Extra 150. Sin copagos, 42.000 especialistas, 1.000+ centros en toda España. Contrata online en 2 minutos.",
+      "Adeslas: el seguro médico privado líder en España. GO desde 21€/mes, Plena Vital desde 38€/mes, Plena Total sin copagos desde 83€/mes. Más de 42.000 especialistas, sin listas de espera. Calcula tu precio en 2 minutos.",
     canonical: "https://adeslas.marchalaseguradores.es/",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },

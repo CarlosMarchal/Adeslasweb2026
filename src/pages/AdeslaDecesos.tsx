@@ -5,7 +5,7 @@ import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-decesos-asisa-e1765797117726.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro de Decesos Adeslas | Sepelio, Repatriación y Trámites · Gestionado por Ocaso",
+  seoTitle: "Adeslas Decesos | Sepelio, Repatriación y Trámites desde 9€/mes",
   seoDescription: "Seguro de decesos Adeslas gestionado por Ocaso. Sepelio completo, repatriación internacional, billete acompañante y trámites incluidos. Atención 24h: 900 14 15 16. Límite 70 años (prima única para mayores). Desde 9€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-decesos",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-decesos.jpg",

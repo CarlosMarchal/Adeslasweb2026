@@ -86,7 +86,7 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
           className="relative overflow-hidden bg-cover bg-center"
           style={{ backgroundImage: `url(${data.heroBg || defaultHeroBg})` }}
           role="img"
-          aria-label={`${data.heroTitle} — seguro médico Adeslas con Marchal Aseguradores`}
+          aria-label={`${data.heroTitle} — Adeslas seguros médicos privados`}
         >
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/55" />

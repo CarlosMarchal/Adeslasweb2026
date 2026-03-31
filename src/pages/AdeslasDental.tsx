@@ -5,8 +5,8 @@ import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-dental-asisa-e1765797007662.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro Dental Adeslas | Limpiezas y Revisiones Gratis desde 9,45€/mes · Individual y Familiar",
-  seoDescription: "Seguro dental Adeslas desde 9,45€/mes. Limpiezas, revisiones y radiografías gratis desde el día 1. Franquicias en implantes, endodoncia y ortodoncia. Modalidad individual o familiar (mínimo un adulto). Menores de 8 años gratis. 1.700+ profesionales.",
+  seoTitle: "Adeslas Dental | Seguro Dental desde 9,45€/mes — Limpiezas y Revisiones desde el Día 1",
+  seoDescription: "Adeslas Dental: seguro dental desde 9,45€/mes. Limpiezas, revisiones y radiografías desde el día 1 sin coste. Implantes, endodoncia y ortodoncia con franquicias reducidas. Menores de 8 años gratis. +1.700 profesionales en España.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-dental",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-dental.jpg",
   seoProductSchema: {

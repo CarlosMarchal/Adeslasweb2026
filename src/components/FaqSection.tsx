@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     q: "¿Puedo contratar Adeslas siendo extranjero en España?",
-    a: "Sí. Adeslas dispone de un seguro médico específico para extranjeros en España (Newcomers Protection) que cumple los requisitos de visado de estudiante y residencia. Cubre asistencia médica completa, hospitalización, urgencias y repatriación. También puedes contratar cualquier plan estándar de Adeslas si dispones de NIE o documentación de residencia válida. Desde Marchal Aseguradores te ayudamos a tramitar toda la documentación.",
+    a: "Sí. Adeslas dispone de un seguro médico específico para extranjeros en España (Newcomers Protection) que cumple los requisitos de visado de estudiante y residencia. Cubre asistencia médica completa, hospitalización, urgencias y repatriación. También puedes contratar cualquier plan estándar de Adeslas si dispones de NIE o documentación de residencia válida. Nuestros asesores te ayudan a tramitar toda la documentación necesaria.",
   },
   {
     q: "¿Adeslas tiene periodo de carencia?",

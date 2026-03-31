@@ -4,7 +4,7 @@ import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/asisa_salud_seguro_medico.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Adeslas Asistencia en Viaje | Seguro de Viaje desde 8,50€/día",
+  seoTitle: "Adeslas Viaje | Seguro de Asistencia en Viaje desde 8,50€/día — Cobertura Mundial",
   seoDescription: "Seguro de asistencia en viaje Adeslas con cobertura mundial. Emergencias médicas, repatriación, cancelación de vuelos y equipaje. Contrata por días, semanas o meses. Desde 8,50€/día.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-asistencia-viaje",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-viaje.jpg",

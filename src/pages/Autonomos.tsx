@@ -10,8 +10,8 @@ const MedicalIcon = () => (
 );
 
 const data: ProductPageData = {
-  seoTitle: "Seguro Médico Adeslas Autónomos | Adeslas NEGOCIOS sin Copago",
-  seoDescription: "Seguro médico Adeslas NEGOCIOS para autónomos (NIF). Sin copagos, cobertura completa con más de 48.000 médicos y 1.500 centros. Deducible en IRPF. Contrata con Marchal Aseguradores.",
+  seoTitle: "Adeslas NEGOCIOS — Seguro Médico para Autónomos | Sin Copago desde 55,50€",
+  seoDescription: "Adeslas NEGOCIOS: seguro médico para autónomos con NIF. Sin copagos, +48.000 médicos, 1.500 centros en España. Deducible en IRPF hasta 500€/año por asegurado. Desde 55,50€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/autonomos",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-autonomos.jpg",
   seoProductSchema: {

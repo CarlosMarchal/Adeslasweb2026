@@ -5,8 +5,8 @@ import heroBg from "@/assets/familia.jpg";
 const data: SegmentPageData = {
   heroBg,
   seo: {
-    title: "Seguro Médico Familiar Adeslas | Pediatría y Sin Copagos",
-    description: "Seguro médico familiar Adeslas: pediatría, especialistas y hospitalización para toda la familia. 10% de descuento desde el 4º miembro. Desde 22,55€/mes.",
+    title: "Adeslas Seguro Médico Familiar | Pediatría, Especialistas y Sin Copagos",
+    description: "Adeslas seguro médico familiar: pediatría, especialistas y hospitalización para toda la familia desde 22,55€/mes. Descuento 10% desde el 4º asegurado. Sin listas de espera.",
     canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-familiar",
     ogImage: "https://adeslas.marchalaseguradores.es/og-familiar.jpg",
     breadcrumbs: [

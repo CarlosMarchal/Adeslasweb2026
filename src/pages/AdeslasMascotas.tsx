@@ -4,7 +4,7 @@ import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-mascotas-asisa.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro de Mascotas Adeslas | Perros y Gatos desde 5,85€/mes",
+  seoTitle: "Adeslas Mascotas | Seguro para Perros y Gatos desde 5,85€/mes",
   seoDescription: "Seguro de mascotas Adeslas para perros y gatos. Básico desde 5,85€/mes (RC 200.000€) o Completo desde 24,74€/mes (+300 clínicas veterinarias). Sin restricción de raza ni edad.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-mascotas",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-mascotas.jpg",

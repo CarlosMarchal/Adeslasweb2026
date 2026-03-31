@@ -33,7 +33,7 @@ const contactMethods = [
     title: "Oficina",
     detail: "Avda. Europa, 18, Pozuelo de Alarcón",
     href: "https://maps.google.com/?q=Avenida+Europa+18+Pozuelo+de+Alarcon+Madrid",
-    description: "CP 28224, Pozuelo de Alarcón, Madrid, España. Marchal Mediadores – Agente Exclusivo Adeslas.",
+    description: "Oficina Adeslas en Pozuelo de Alarcón, Madrid. Atención personalizada para seguros médicos. Llama al 91 710 50 00.",
   },
 ];
 
@@ -69,7 +69,7 @@ const ContactForm = () => {
           {/* Form */}
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-gris-texto mb-2">Escríbenos sobre tu seguro Adeslas</h2>
-            <p className="text-gris-medio mb-8">Rellena el formulario y un asesor personal de Marchal Aseguradores te contactará en menos de 24 horas sin compromiso.</p>
+            <p className="text-gris-medio mb-8">Rellena el formulario y un asesor personal Adeslas te contactará en menos de 24 horas sin compromiso.</p>
 
             {submitted ? (
               <div className="bg-blanco border border-borde p-8 text-center" style={{ borderRadius: "16px" }}>
@@ -203,8 +203,8 @@ const Contacto = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   useSeo({
-    title: "Contacto | Adeslas Seguros Médicos - Marchal Mediadores",
-    description: "Contacta con Marchal Mediadores, agente exclusivo Adeslas. Llámanos al 91 710 50 00 o solicita una llamada gratuita.",
+    title: "Contacto Adeslas | Solicita tu Seguro Médico — Atención Personalizada",
+    description: "Contacta con Adeslas Seguros Médicos. Solicita información sobre tu seguro, compara planes o pide una llamada gratuita. Tel. 91 710 50 00.",
     canonical: "https://adeslas.marchalaseguradores.es/contacto",
   });
 
@@ -218,10 +218,10 @@ const Contacto = () => {
         <div className="container mx-auto px-4 py-14 lg:py-20 relative z-10">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
             <h1 className="text-primary-foreground mb-3 text-3xl md:text-[48px] leading-tight md:leading-[1.15]">
-              Contacta con<br /><span className="text-azul-claro">Marchal Aseguradores</span>
+              Contacta con<br /><span className="text-azul-claro">Adeslas Seguros Médicos</span>
             </h1>
             <p className="text-lg max-w-2xl" style={{ color: "rgba(255,255,255,0.82)" }}>
-              Tu correduría oficial Adeslas en Madrid. Solicita información sobre cualquier seguro Adeslas, resuelve tus dudas o pide una llamada gratuita sin compromiso.
+              Solicita información sobre cualquier seguro Adeslas, resuelve tus dudas o pide una llamada gratuita sin compromiso.
             </p>
           </motion.div>
         </div>
@@ -263,12 +263,12 @@ const Contacto = () => {
       <section className="section-pad bg-blanco">
         <div className="container mx-auto max-w-4xl">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
-            <h2 className="text-gris-texto mb-3">Nuestra Oficina — Marchal Aseguradores, Correduría Oficial Adeslas</h2>
-            <p className="text-gris-medio">Avda. Europa 18, Pozuelo de Alarcón (Madrid) — Agente Exclusivo Adeslas</p>
+            <h2 className="text-gris-texto mb-3">Oficina Adeslas Madrid — Pozuelo de Alarcón</h2>
+            <p className="text-gris-medio">Avda. Europa, 18 · Pozuelo de Alarcón, Madrid</p>
           </motion.div>
           <div className="bg-gris-claro border border-borde overflow-hidden" style={{ borderRadius: "16px" }}>
             <iframe
-              title="Ubicación Marchal Mediadores"
+              title="Ubicación Oficina Adeslas Madrid"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.5!2d-3.8144!3d40.4365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMayor+2+Pozuelo+de+Alarcon!5e0!3m2!1ses!2ses!4v1"
               width="100%"
               height="350"

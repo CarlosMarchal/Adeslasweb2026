@@ -5,7 +5,7 @@ import TarificadorExtranjeros from "@/components/TarificadorExtranjeros";
 import heroImg from "@/assets/seguro-salud-asisa-extranjeros-e1765797698492.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro Médico Estudiantes Extranjeros Adeslas | Visado desde 38€",
+  seoTitle: "Adeslas Extranjeros | Seguro Médico para Estudiantes y Residentes en España desde 38€",
   seoDescription:
     "Seguro médico para estudiantes extranjeros en España desde 38€/mes. Válido para visado de estudios y Extranjería. Cubre todos los requisitos exigidos. Alta en 24h.",
   seoCanonical:

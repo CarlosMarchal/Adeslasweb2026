@@ -5,7 +5,7 @@ import heroBg from "@/assets/ginecologia.jpg";
 const data: SegmentPageData = {
   heroBg,
   seo: {
-    title: "Seguro Médico Ginecología Adeslas | Mamografía y Salud Femenina",
+    title: "Adeslas Ginecología | Seguro Médico con Cobertura Ginecológica Completa",
     description: "Seguro médico con ginecología Adeslas: revisiones, mamografía, citología, salud hormonal y reproducción asistida. Especialistas sin esperas. Sin copagos desde 50,92€/mes.",
     canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-ginecologia",
     ogImage: "https://adeslas.marchalaseguradores.es/og-ginecologia.jpg",

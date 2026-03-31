@@ -5,7 +5,7 @@ import heroBg from "@/assets/Infantil.jpg";
 const data: SegmentPageData = {
   heroBg,
   seo: {
-    title: "Seguro Médico Infantil Adeslas | Pediatría desde 0 Años",
+    title: "Adeslas Seguro Médico Infantil | Pediatría desde el Nacimiento",
     description: "Seguro médico infantil Adeslas para niños de 0 a 17 años: pediatría especializada, urgencias pediátricas 24h y especialistas sin esperas. Sin copagos desde 50€/mes (Plena) o cobertura total sin copagos desde 83€/mes (Plena Total).",
     canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-infantil",
     ogImage: "https://adeslas.marchalaseguradores.es/og-infantil.jpg",

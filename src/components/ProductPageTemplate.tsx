@@ -201,7 +201,7 @@ const ProductHero = ({
     className="relative overflow-hidden bg-cover bg-center"
     style={{ backgroundImage: `url(${data.heroImage || heroBg})` }}
     role="img"
-    aria-label={`${data.heroTitle}${data.heroHighlight ? " " + data.heroHighlight : ""} — seguro médico Adeslas contratado a través de Marchal Aseguradores`}
+    aria-label={`${data.heroTitle}${data.heroHighlight ? " " + data.heroHighlight : ""} — Adeslas seguros médicos privados`}
   >
     {/* Dark overlay — same approach as home HeroSection */}
     <div className="absolute inset-0 bg-black/55" />

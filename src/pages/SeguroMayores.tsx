@@ -5,7 +5,7 @@ import heroBg from "@/assets/hero-seguro-mayores.jpg";
 const data: SegmentPageData = {
   heroBg,
   seo: {
-    title: "Seguro Médico Personas Mayores Adeslas | Seniors desde 67,50€/mes",
+    title: "Adeslas Seniors | Seguro Médico para Personas Mayores de 55 años desde 67,50€/mes",
     description: "Seguros médicos Adeslas específicos para personas de 55 a 84 años. Adeslas Seniors desde 67,50€/mes y Adeslas Seniors Total desde 101€/mes. Asesor de salud personal, hospitalización completa y garantía de precio 3 años. Sin listas de espera.",
     canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-mayores",
     ogImage: "https://adeslas.marchalaseguradores.es/og-mayores.jpg",

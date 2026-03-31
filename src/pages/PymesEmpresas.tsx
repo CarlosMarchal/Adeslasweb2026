@@ -4,8 +4,8 @@ import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-medico-asisa-pymes-e1765796817464.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro Médico para Pymes y Empresas | Adeslas EMPRESAS y PYMES TOTAL",
-  seoDescription: "Seguro médico de empresa Adeslas para pymes y empresas. Sin copagos, cobertura completa con +48.000 médicos. Adeslas PYMES TOTAL: chequeo anual, dental y sin incremento de prima 3 años.",
+  seoTitle: "Adeslas Seguros Médicos para Empresas y Pymes | EMPRESAS desde 56€/mes",
+  seoDescription: "Adeslas ofrece seguros médicos para empresas y pymes sin copagos. EMPRESAS desde 56€/mes, PYMES TOTAL desde 60€/mes con chequeo anual, dental y garantía de precio 3 años. +48.000 médicos.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/pymes-empresas",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-pymes-empresas.jpg",
   seoProductSchema: {

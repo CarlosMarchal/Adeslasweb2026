@@ -7,7 +7,7 @@ const Footer = () => (
       <div className="grid md:grid-cols-[2fr_1.2fr_1.2fr_1.2fr_1.2fr] gap-6 lg:gap-8">
         {/* Logo y dirección */}
         <div>
-          <img src={logoBlanco} alt="Logo Adeslas Marchal Aseguradores — Correduría Oficial Adeslas en Madrid" className="h-8 object-contain mb-4" />
+          <img src={logoBlanco} alt="Adeslas Seguros Médicos — Salud Privada en España" className="h-8 object-contain mb-4" />
           <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
             Avda. Europa, 18 · CP 28224<br />
             Pozuelo de Alarcón, Madrid

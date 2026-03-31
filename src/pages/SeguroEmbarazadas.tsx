@@ -5,7 +5,7 @@ import heroBg from "@/assets/Embarazadas.jpg";
 const data: SegmentPageData = {
   heroBg,
   seo: {
-    title: "Seguro Médico Embarazo Adeslas | Parto, Prenatal y Neonatología",
+    title: "Adeslas Embarazo | Seguro Médico para Embarazadas con Parto y Neonatología",
     description: "Seguro médico para embarazadas Adeslas: seguimiento prenatal completo, parto cubierto (vaginal y cesárea), neonatología y postparto. Sin copagos. Desde 50,92€/mes.",
     canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-embarazadas",
     ogImage: "https://adeslas.marchalaseguradores.es/og-embarazadas.jpg",

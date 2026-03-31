@@ -5,8 +5,8 @@ import heroBg from "@/assets/individual.webp";
 const data: SegmentPageData = {
   heroBg,
   seo: {
-    title: "Seguro Médico Individual Adeslas | Desde 21€/mes",
-    description: "Seguro médico individual Adeslas desde 21€/mes. Acceso a 42.000+ especialistas, urgencias 24h y hospitalización. Sin listas de espera. Presupuesto en 2 min.",
+    title: "Adeslas Seguro Médico Individual | Todos los Planes desde 21€/mes",
+    description: "Adeslas seguro médico individual desde 21€/mes. GO, Plena Vital, Plena Plus y Plena Total. Acceso a 42.000+ especialistas, urgencias 24h, hospitalización sin listas de espera. Calcula tu precio en 2 minutos.",
     canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-individual",
     ogImage: "https://adeslas.marchalaseguradores.es/og-individual.jpg",
     breadcrumbs: [
@@ -60,7 +60,7 @@ const data: SegmentPageData = {
   tarificadorSubtitle: "Compara todos los seguros Adeslas y encuentra el mejor para ti",
   faqs: [
     { question: "¿Cuál es el seguro médico individual más barato de Adeslas?", answer: "Adeslas Go es el seguro individual más económico, con precio desde 21€/mes para personas de 0-54 años. Ofrece cobertura ambulatoria con copagos y un límite máximo anual de 260€ en copagos. Importante: es un producto de cobertura ambulatoria exclusivamente y NO incluye hospitalización ni cirugía." },
-    { question: "¿Tienen carencia los seguros individuales de Adeslas?", answer: "Sí. En determinadas coberturas, Adeslas aplica períodos de carencia. Las más habituales son: parto y prestaciones relacionadas con el embarazo, algunas intervenciones quirúrgicas programadas, ortodoncia y determinados tratamientos oncológicos. Las coberturas de urgencias, consultas con médico general y especialistas, pruebas diagnósticas y hospitalización por accidente o enfermedad aguda están disponibles desde el primer día. Consulta con tu mediador las condiciones concretas del plan que elijas. (Si procedes de otra aseguradora médica, pueden eliminarse las carencias. Consúltanos para más información)." },
+    { question: "¿Tienen carencia los seguros individuales de Adeslas?", answer: "Sí. En determinadas coberturas, Adeslas aplica períodos de carencia. Las más habituales son: parto y prestaciones relacionadas con el embarazo, algunas intervenciones quirúrgicas programadas, ortodoncia y determinados tratamientos oncológicos. Las coberturas de urgencias, consultas con médico general y especialistas, pruebas diagnósticas y hospitalización por accidente o enfermedad aguda están disponibles desde el primer día. Consulta las condiciones concretas del plan que elijas. (Si procedes de otra aseguradora médica, pueden eliminarse las carencias. Consúltanos para más información)." },
     { question: "¿Puedo contratar un seguro individual a cualquier edad?", answer: "Sí. Adeslas ofrece seguros individuales desde el nacimiento. La edad máxima varía por plan: Plena Total hasta 62 años, Plena Plus y Plena Vital hasta 70 años, y Adeslas Seniors sin edad máxima establecida. Cuanto antes se contrata, mejor es el precio mensual." },
     { question: "¿Qué cubre un seguro médico individual Adeslas?", answer: "Incluye consultas con médico general y especialistas, pruebas diagnósticas (analíticas, radiografías, resonancias), cirugías, hospitalización en habitación individual, urgencias 24h, fisioterapia y según el plan: parto, dental, psicología y cobertura internacional." },
     { question: "¿Cuál es la diferencia entre Adeslas Plena Vital, Plena Plus y Extra 150?", answer: "Adeslas Plena Vital incluye cobertura médica completa con copagos limitados a 260€/año (LMA). Adeslas Plena Plus ofrece la misma cobertura pero sin ningún copago. Adeslas Extra 150 combina la red Adeslas (sin copago) con reembolso del 80% en cualquier profesional o centro, hasta 150.000€/año." },
