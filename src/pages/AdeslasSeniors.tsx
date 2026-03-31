@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
+import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/hero-seguro-mayores.jpg";
 
 const data: ProductPageData = {
@@ -20,7 +21,7 @@ const data: ProductPageData = {
     { name: "Planes Adeslas", url: "https://adeslas.marchalaseguradores.es/" },
     { name: "Adeslas Seniors", url: "https://adeslas.marchalaseguradores.es/adeslas-seniors" },
   ],
-  productSlug: "/adeslas-seniors",
+  customTarificador: <ContactCtaCard />,
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   badge: "Para personas de 55 a 84 años",
   heroTitle: "Adeslas Seniors",

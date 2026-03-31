@@ -11,6 +11,8 @@ const pageSourceMap: Record<string, HubSpotSource> = {
   "/empresas":              311,
   "/autonomos":             319,
   "/pymes-empresas":        320,
+  "/adeslas-seniors":       314,
+  "/adeslas-seniors-total": 315,
 };
 
 const ContactCtaCard = () => {
