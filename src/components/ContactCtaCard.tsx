@@ -9,6 +9,8 @@ const pageSourceMap: Record<string, HubSpotSource> = {
   "/adeslas-extranjeros":   312,
   "/pymes":                 310,
   "/empresas":              311,
+  "/autonomos":             319,
+  "/pymes-empresas":        320,
 };
 
 const ContactCtaCard = () => {

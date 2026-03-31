@@ -1005,13 +1005,6 @@ const ResultsView = ({
                     </span>
                   )}
                 </div>
-                <Link
-                  to={`/mi-precio${product.slug}?nombre=${encodeURIComponent(nombre)}&precio=${price.toFixed(2)}&edades=${ages.join(",")}&provincia=${encodeURIComponent(provincia)}`}
-                  className="text-[11px] hover:underline font-semibold"
-                  style={{ color: "#009FE3" }}
-                >
-                  Ver mi cotización →
-                </Link>
               </div>
               <div className="text-right flex-shrink-0">
                 {originalPrice !== undefined && (

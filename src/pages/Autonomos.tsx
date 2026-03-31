@@ -1,5 +1,6 @@
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
+import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-medico-asisa-autonomos-e1765796682535.webp";
 
 const MedicalIcon = () => (
@@ -30,6 +31,7 @@ const data: ProductPageData = {
   heroSubtitle: "El seguro diseñado para autónomos. Sin copagos, cobertura completa con más de 48.000 médicos, y deducible en tu IRPF.",
   heroImage: heroImg,
   hideHeroPrice: true,
+  customTarificador: <ContactCtaCard />,
   heroContent: (
     <div className="grid grid-cols-2 gap-3 mb-8 max-w-lg">
       <div

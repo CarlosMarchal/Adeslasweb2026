@@ -28,12 +28,15 @@ const ENDPOINT = `https://api.hsforms.com/submissions/v3/integration/submit/${PO
    315 = Adeslas Seniors Total
    316 = Adeslas Asistencia en Viaje
    317 = Adeslas Accidentes
-   318 = Adeslas Mascotas */
+   318 = Adeslas Mascotas
+   319 = Adeslas Autónomos NEGOCIOS
+   320 = Adeslas EMPRESAS / PYMES TOTAL */
 export type HubSpotSource =
   | 300 | 301 | 302
   | 303 | 304 | 305 | 306 | 307
   | 308 | 309 | 310 | 311 | 312
-  | 313 | 314 | 315 | 316 | 317 | 318;
+  | 313 | 314 | 315 | 316 | 317 | 318
+  | 319 | 320;
 
 export interface HubSpotPayload {
   phone?: string;

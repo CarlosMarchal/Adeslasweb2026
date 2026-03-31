@@ -1,5 +1,6 @@
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
+import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-medico-asisa-pymes-e1765796817464.webp";
 
 const data: ProductPageData = {
@@ -24,6 +25,7 @@ const data: ProductPageData = {
   heroSubtitle: "El seguro médico de empresa sin copagos. Fideliza a tus empleados con la mejor sanidad privada y obtén ventajas fiscales para empresa y trabajadores.",
   heroImage: heroImg,
   hideHeroPrice: true,
+  customTarificador: <ContactCtaCard />,
   heroContent: (
     <div className="grid grid-cols-2 gap-3 mb-8 max-w-lg">
       <div
@@ -43,6 +45,9 @@ const data: ProductPageData = {
             </div>
           ))}
         </div>
+        <div className="mt-2 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.15)" }}>
+          <span className="text-xs font-bold text-white">Desde <span style={{ color: "#009FE3" }}>56€</span>/mes</span>
+        </div>
       </div>
       <div
         style={{
@@ -60,6 +65,9 @@ const data: ProductPageData = {
               <span className="text-azul-claro font-bold">✓</span> {f}
             </div>
           ))}
+        </div>
+        <div className="mt-2 pt-2" style={{ borderTop: "1px solid rgba(0,159,227,0.3)" }}>
+          <span className="text-xs font-bold text-white">Desde <span style={{ color: "#009FE3" }}>60€</span>/mes</span>
         </div>
       </div>
     </div>
