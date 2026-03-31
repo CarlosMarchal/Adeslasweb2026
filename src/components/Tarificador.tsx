@@ -928,7 +928,7 @@ const ResultsView = ({
           Un asesor se pondrá en contacto contigo para formalizar tu seguro.
         </p>
         <a
-          href="tel:917158100"
+          href="tel:917105000"
           className="inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm"
           style={{
             backgroundColor: "#E4097D",
@@ -936,7 +936,7 @@ const ResultsView = ({
             borderRadius: "8px",
           }}
         >
-          Llámanos: 91 715 81 00
+          Llámanos: 91 710 50 00
         </a>
         <button
           onClick={onReset}
@@ -1043,7 +1043,7 @@ const ResultsView = ({
           Un asesor se pondrá en contacto contigo.
         </p>
         <a
-          href="tel:917158100"
+          href="tel:917105000"
           className="inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm"
           style={{
             backgroundColor: "#E4097D",
@@ -1051,7 +1051,7 @@ const ResultsView = ({
             borderRadius: "8px",
           }}
         >
-          Llámanos: 91 715 81 00
+          Llámanos: 91 710 50 00
         </a>
         <button
           onClick={onReset}

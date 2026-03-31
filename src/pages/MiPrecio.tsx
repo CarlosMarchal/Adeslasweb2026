@@ -177,12 +177,12 @@ const CallConfirmPopup = ({ nombre, onClose }: { nombre: string; onClose: () => 
       {/* Phone direct */}
       <p className="text-xs text-gris-medio mb-3">¿Prefieres llamar tú? Estamos en</p>
       <a
-        href="tel:917158100"
+        href="tel:917105000"
         className="inline-flex items-center gap-2 font-bold text-sm px-5 py-2.5 rounded-xl text-white btn-cta-magenta"
         style={{ backgroundColor: "#E4097D" }}
       >
         <Phone className="w-4 h-4" />
-        91 715 81 00
+        91 710 50 00
       </a>
     </motion.div>
   </motion.div>

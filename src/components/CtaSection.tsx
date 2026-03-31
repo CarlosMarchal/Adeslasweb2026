@@ -48,7 +48,7 @@ const CtaSection = ({ onCalcClick }: CtaSectionProps = {}) => {
           </div>
           <div className="flex flex-wrap justify-center gap-8 text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
             <div>
-              <a href="tel:917158100" className="text-primary-foreground font-bold">91 715 81 00</a>
+              <a href="tel:917105000" className="text-primary-foreground font-bold">91 710 50 00</a>
               <div>Nuevas contrataciones</div>
             </div>
             <div>

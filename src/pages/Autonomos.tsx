@@ -29,6 +29,8 @@ const data: ProductPageData = {
   heroTitle: "Seguro Médico para",
   heroHighlight: "Autónomos — Adeslas NEGOCIOS",
   heroSubtitle: "El seguro diseñado para autónomos. Sin copagos, cobertura completa con más de 48.000 médicos, y deducible en tu IRPF.",
+  price: "55,50",
+  pricePeriod: "mes",
   heroImage: heroImg,
   hideHeroPrice: true,
   customTarificador: <ContactCtaCard />,

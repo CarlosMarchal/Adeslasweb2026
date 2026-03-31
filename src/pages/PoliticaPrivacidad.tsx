@@ -84,11 +84,11 @@ const PoliticaPrivacidad = () => {
             <li>
               <strong>Teléfono:</strong>{" "}
               <a
-                href="tel:917158100"
+                href="tel:917105000"
                 className="hover:underline"
                 style={{ color: "#009FE3" }}
               >
-                91 715 81 00
+                91 710 50 00
               </a>
             </li>
           </ul>
@@ -309,11 +309,11 @@ const PoliticaPrivacidad = () => {
             </a>{" "}
             o llamarnos al{" "}
             <a
-              href="tel:917158100"
+              href="tel:917105000"
               className="hover:underline"
               style={{ color: "#009FE3" }}
             >
-              91 715 81 00
+              91 710 50 00
             </a>
             .
           </p>

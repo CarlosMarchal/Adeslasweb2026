@@ -69,12 +69,12 @@ const ContactCtaCard = () => {
           Te llamamos ahora — gratis
         </button>
         <a
-          href="tel:917158100"
+          href="tel:917105000"
           className="w-full py-3 rounded-xl font-bold text-sm text-center border-2 btn-cta-light"
           style={{ borderColor: "#009FE3", color: "#009FE3", backgroundColor: "transparent" }}
         >
           <Phone className="w-4 h-4 inline mr-1.5 mb-0.5" />
-          91 715 81 00
+          91 710 50 00
         </a>
       </div>
 
