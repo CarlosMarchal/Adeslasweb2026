@@ -8,7 +8,7 @@ const HeroSection = () => {
   const { openPhonePopup } = usePhonePopup();
 
   return (
-    <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})` }}>
+    <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})` }} role="img" aria-label="Seguro médico Adeslas — pareja sonriente con cobertura sanitaria privada completa">
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
@@ -26,7 +26,7 @@ const HeroSection = () => {
               Seguro de salud Adeslas
             </div>
             <h1 className="text-white mb-4 text-3xl md:text-[2rem] lg:text-[2.25rem] leading-tight font-bold">
-              Descubre el seguro de salud de Adeslas que mejor se adapta a ti
+              Seguro Médico Adeslas — Encuentra el plan que mejor se adapta a ti
             </h1>
             <p className="text-white/85 mb-4 text-sm md:text-base leading-relaxed max-w-md">
               Cobertura médica completa con +42.000 especialistas, sin listas de espera y sin subidas de prima durante 3 años.

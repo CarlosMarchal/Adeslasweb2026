@@ -19,7 +19,7 @@ const CtaSection = ({ onCalcClick }: CtaSectionProps = {}) => {
           viewport={{ once: true }}
         >
           <h2 className="text-primary-foreground mb-5 text-2xl md:text-4xl">
-            ¿Listo para proteger tu salud y la de los tuyos?
+            Contrata tu Seguro Médico Adeslas hoy — Sin Esperas, Sin Sorpresas
           </h2>
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             {onCalcClick ? (

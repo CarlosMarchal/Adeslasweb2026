@@ -15,7 +15,7 @@ const data: SegmentPageData = {
       { name: "Seguro Personas Mayores", url: "https://adeslas.marchalaseguradores.es/seguro-medico-mayores" },
     ],
   },
-  heroTitle: "Seguro de Salud para Personas Mayores",
+  heroTitle: "Seguro de Salud Adeslas para Personas Mayores",
   heroSubtitle: "Seguros médicos diseñados específicamente para personas de 55 a 84 años: asesor de salud personal, más de 40 especialidades, hospitalización completa y precios garantizados.",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   contentTitle: "Cobertura médica especializada para mayores de 55",

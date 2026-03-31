@@ -68,14 +68,13 @@ const BlogSalud = () => {
               Salud y bienestar
             </div>
             <h1 className="text-primary-foreground mb-3 text-3xl md:text-[48px] leading-tight md:leading-[1.15]">
-              Blog <span className="text-azul-claro">Salud</span>
+              Blog de Salud <span className="text-azul-claro">Adeslas</span>
             </h1>
             <p
               className="text-lg max-w-2xl"
               style={{ color: "rgba(255,255,255,0.82)" }}
             >
-              Consejos de profesionales médicos sobre bienestar, nutrición,
-              prevención y cuidado de la salud para ti y tu familia.
+              Consejos de profesionales médicos sobre bienestar, nutrición, prevención y cuidado de la salud para ti y tu familia. Contenido avalado por la red Adeslas.
             </p>
           </motion.div>
         </div>
@@ -191,7 +190,7 @@ const BlogSalud = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-primary-foreground text-2xl md:text-3xl mb-4">
-              Recibe consejos de salud en tu email
+              Recibe Consejos de Salud Adeslas en tu Email
             </h2>
             <p
               className="text-base mb-8 max-w-lg mx-auto"

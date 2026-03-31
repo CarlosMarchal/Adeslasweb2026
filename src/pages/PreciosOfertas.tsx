@@ -330,11 +330,10 @@ const PreciosOfertasInner = () => {
       <section className="section-pad bg-blanco">
         <div className="container mx-auto">
           <h2 className="text-gris-texto text-2xl md:text-3xl mb-3 text-center">
-            Seguros de salud Adeslas para particulares
+            Precios y Coberturas de los Seguros de Salud Adeslas 2026
           </h2>
           <p className="text-gris-medio text-center mb-10 max-w-2xl mx-auto">
-            Desde la opción más económica hasta la cobertura premium con libre
-            elección de médico.
+            Compara todos los planes: desde Adeslas GO (desde 21€/mes) hasta Adeslas Plena Total sin copagos (desde 83€/mes). Elige la cobertura que necesitas.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">

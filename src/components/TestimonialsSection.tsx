@@ -35,8 +35,8 @@ const TestimonialsSection = () => (
         viewport={{ once: true }}
         className="text-center mb-12"
       >
-        <h2 className="text-gris-texto mb-3">Lo que dicen nuestros asegurados</h2>
-        <p className="text-gris-medio max-w-lg mx-auto">Miles de personas ya confían en Adeslas para cuidar de su salud.</p>
+        <h2 className="text-gris-texto mb-3">Opiniones de clientes asegurados con Adeslas en Marchal</h2>
+        <p className="text-gris-medio max-w-lg mx-auto">Clientes reales que confían en Adeslas a través de Marchal Aseguradores, correduría oficial en Madrid.</p>
       </motion.div>
       <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
         {testimonials.map((t, i) => (

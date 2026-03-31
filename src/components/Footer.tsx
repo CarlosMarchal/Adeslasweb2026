@@ -7,7 +7,7 @@ const Footer = () => (
       <div className="grid md:grid-cols-[2fr_1.2fr_1.2fr_1.2fr_1.2fr] gap-6 lg:gap-8">
         {/* Logo y dirección */}
         <div>
-          <img src={logoBlanco} alt="Adeslas - Marchal Mediadores" className="h-8 object-contain mb-4" />
+          <img src={logoBlanco} alt="Logo Adeslas Marchal Aseguradores — Correduría Oficial Adeslas en Madrid" className="h-8 object-contain mb-4" />
           <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
             Avda. Europa, 18 · CP 28224<br />
             Pozuelo de Alarcón, Madrid
@@ -16,7 +16,7 @@ const Footer = () => (
 
         {/* Seguros de Salud */}
         <div>
-          <h4 className="text-primary-foreground font-bold text-sm mb-3">Seguros de Salud</h4>
+          <h4 className="text-primary-foreground font-bold text-sm mb-3">Seguros de Salud Adeslas</h4>
           <div className="space-y-1.5">
             {[
               { label: "Adeslas Go", to: "/adeslas-go" },
@@ -35,7 +35,7 @@ const Footer = () => (
 
         {/* Otros Seguros */}
         <div>
-          <h4 className="text-primary-foreground font-bold text-sm mb-3">Otros Seguros</h4>
+          <h4 className="text-primary-foreground font-bold text-sm mb-3">Otros Seguros Adeslas</h4>
           <div className="space-y-1.5">
             {[
               { label: "Dental", to: "/adeslas-dental" },
@@ -53,7 +53,7 @@ const Footer = () => (
 
         {/* Por Perfil */}
         <div>
-          <h4 className="text-primary-foreground font-bold text-sm mb-3">Por Perfil</h4>
+          <h4 className="text-primary-foreground font-bold text-sm mb-3">Adeslas por Perfil de Asegurado</h4>
           <div className="space-y-1.5">
             {[
               { label: "Individual", to: "/seguro-medico-individual" },
@@ -71,7 +71,7 @@ const Footer = () => (
 
         {/* Para Empresas y Recursos */}
         <div>
-          <h4 className="text-primary-foreground font-bold text-sm mb-3">Empresas & Recursos</h4>
+          <h4 className="text-primary-foreground font-bold text-sm mb-3">Adeslas para Empresas y Recursos</h4>
           <div className="space-y-1.5">
             {[
               { label: "Autónomos", to: "/autonomos" },

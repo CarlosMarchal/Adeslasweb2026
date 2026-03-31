@@ -141,7 +141,7 @@ const CuadroMedico = () => {
             className="text-center mb-8"
           >
             <h2 className="text-gris-texto mb-3">
-              Descarga el cuadro médico de tu provincia
+              Descarga el Cuadro Médico Adeslas 2026 por Provincia
             </h2>
             <p className="text-gris-medio max-w-xl mx-auto mb-6">
               Selecciona tu provincia para descargar el cuadro médico Adeslas 2026
@@ -217,7 +217,7 @@ const CuadroMedico = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-gris-texto mb-4">
-              Busca médicos y centros online
+              Busca Médicos y Centros Adeslas Online por Especialidad
             </h2>
             <p className="text-gris-medio mb-8 max-w-xl mx-auto">
               También puedes buscar médicos, centros y hospitales por
@@ -246,11 +246,10 @@ const CuadroMedico = () => {
             className="text-center mb-10"
           >
             <h2 className="text-gris-texto mb-3">
-              Especialidades médicas disponibles
+              Especialidades Médicas Cubiertas por Adeslas
             </h2>
             <p className="text-gris-medio">
-              Accede directamente a cualquiera de las especialidades incluidas en
-              tu seguro.
+              Más de 40 especialidades médicas incluidas en tu seguro Adeslas. Acceso directo sin derivaciones ni listas de espera.
             </p>
           </motion.div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">

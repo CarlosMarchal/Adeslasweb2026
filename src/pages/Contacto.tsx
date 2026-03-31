@@ -68,8 +68,8 @@ const ContactForm = () => {
         <div className="grid lg:grid-cols-[1fr_400px] gap-10 items-start">
           {/* Form */}
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-gris-texto mb-2">Escríbenos</h2>
-            <p className="text-gris-medio mb-8">Rellena el formulario y un asesor personal te contactará en menos de 24 horas.</p>
+            <h2 className="text-gris-texto mb-2">Escríbenos sobre tu seguro Adeslas</h2>
+            <p className="text-gris-medio mb-8">Rellena el formulario y un asesor personal de Marchal Aseguradores te contactará en menos de 24 horas sin compromiso.</p>
 
             {submitted ? (
               <div className="bg-blanco border border-borde p-8 text-center" style={{ borderRadius: "16px" }}>
@@ -218,10 +218,10 @@ const Contacto = () => {
         <div className="container mx-auto px-4 py-14 lg:py-20 relative z-10">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
             <h1 className="text-primary-foreground mb-3 text-3xl md:text-[48px] leading-tight md:leading-[1.15]">
-              Contacta<br /><span className="text-azul-claro">con nosotros</span>
+              Contacta con<br /><span className="text-azul-claro">Marchal Aseguradores</span>
             </h1>
             <p className="text-lg max-w-2xl" style={{ color: "rgba(255,255,255,0.82)" }}>
-              Estamos aquí para ayudarte. Solicita información, resuelve tus dudas o pide una llamada gratuita sin compromiso.
+              Tu correduría oficial Adeslas en Madrid. Solicita información sobre cualquier seguro Adeslas, resuelve tus dudas o pide una llamada gratuita sin compromiso.
             </p>
           </motion.div>
         </div>
@@ -263,8 +263,8 @@ const Contacto = () => {
       <section className="section-pad bg-blanco">
         <div className="container mx-auto max-w-4xl">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
-            <h2 className="text-gris-texto mb-3">Nuestra oficina</h2>
-            <p className="text-gris-medio">Marchal Mediadores – Agente Exclusivo Adeslas</p>
+            <h2 className="text-gris-texto mb-3">Nuestra Oficina — Marchal Aseguradores, Correduría Oficial Adeslas</h2>
+            <p className="text-gris-medio">Avda. Europa 18, Pozuelo de Alarcón (Madrid) — Agente Exclusivo Adeslas</p>
           </motion.div>
           <div className="bg-gris-claro border border-borde overflow-hidden" style={{ borderRadius: "16px" }}>
             <iframe

@@ -254,7 +254,7 @@ const MiPrecio = () => {
       <div className="bg-white border-b border-[#E2E8F0]" style={{ height: 64 }}>
         <div className="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
           <Link to="/">
-            <img src={logoAzul} alt="Adeslas" className="h-10 object-contain" />
+            <img src={logoAzul} alt="Seguro médico Adeslas — Marchal Aseguradores" className="h-10 object-contain" />
           </Link>
           <Link
             to="/"

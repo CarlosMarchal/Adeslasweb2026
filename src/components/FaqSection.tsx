@@ -4,43 +4,43 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     q: "¿Cuánto cuesta un seguro médico Adeslas?",
-    a: "El precio de un seguro médico Adeslas varía según edad, cobertura y modalidad elegida. Adeslas Plena Vital comienza desde 13€/mes, mientras que Adeslas Plena Plusofrece cobertura integral sin copagos. Utiliza nuestro calculador online para obtener tu presupuesto personalizado en menos de 2 minutos.",
+    a: "Los precios de los seguros médicos Adeslas dependen de la edad, la cobertura elegida y la provincia. Como referencia orientativa para una persona adulta: Adeslas GO desde 21€/mes (ambulatorio con copago), Adeslas Plena Vital desde 38€/mes (hospitalización con copago LMA 300€/año), Adeslas Plena Plus desde 50,92€/mes (sin copagos), Adeslas Plena Total desde 83€/mes (cobertura máxima sin copagos). Usa nuestro calculador online para obtener tu precio exacto en 2 minutos.",
   },
   {
     q: "¿Qué cubre el seguro Adeslas Plena Total?",
-    a: "Adeslas Plena Plusincluye atención médica integral: consultas con especialistas, pruebas diagnósticas, cirugía, hospitalización y rehabilitación. Es ideal para familias que buscan cobertura completa sin copagos. Las versiones Completa+ y Completa++ amplifican aún más las coberturas con servicios premium.",
+    a: "Adeslas Plena Total es la cobertura más completa de la gama: atención médica integral sin copagos, hospitalización ilimitada en habitación individual, cirugía, todas las especialidades, urgencias 24h, dental (46 actos incluidos), psicología (20 sesiones/año), asistencia en viajes hasta 100.000€ y garantía de precio sin subida durante 3 años. Es el plan ideal para quienes buscan la máxima tranquilidad sin letra pequeña.",
   },
   {
     q: "¿Adeslas tiene copagos?",
-    a: "Adeslas ofrece planes con y sin copagos. Adeslas Plena Vital y YA incluyen copagos reducidos para mantener precios bajos. Adeslas Plena Total, Completa+ y Completa++ pueden contratarse sin copagos, pagando una prima fija mensual. Elige la opción que mejor se adapte a tu presupuesto.",
+    a: "Adeslas ofrece planes con y sin copagos para adaptarse a todos los presupuestos. Adeslas GO tiene copagos con un Límite Máximo Anual (LMA) de 260€/año. Adeslas Plena Vital tiene copagos con LMA de 300€/año. Adeslas Plena Plus y Adeslas Plena Total no tienen copagos en ninguna consulta ni especialista. El copago con LMA garantiza que nunca pagarás más de esa cantidad en un año.",
   },
   {
     q: "¿Adeslas cubre embarazo y parto?",
-    a: "Sí, Adeslas cubre embarazo y parto en los planes de cobertura completa como Adeslas Plena Total, Completa+ y Completa++. La cobertura incluye controles obstétricos, parto y postparto. Consulta los periodos de carencia y cobertura específica de cada plan.",
+    a: "Sí. Adeslas cubre embarazo y parto completo en los planes Adeslas Plena Plus y Adeslas Plena Total. La cobertura incluye seguimiento prenatal sin límite de visitas, parto vaginal y cesárea en habitación individual privada, neonatología y UCI neonatal si fuera necesario, y revisión postparto. Sin periodo de carencia si se contrata antes del embarazo. Si vienes de otra aseguradora médica, puede eliminarse la carencia: consúltanos.",
   },
   {
     q: "¿Puedo contratar Adeslas si soy autónomo?",
-    a: "Sí. Adeslas es ideal para autónomos. Puedes elegir cualquiera de sus planes: Adeslas Plena Vital, Completa o Reembolso. Los autónomos pueden deducir el 100% de la prima del seguro médico en sus impuestos. Accede a nuestro calculador para obtener el presupuesto adaptado a tus necesidades.",
+    a: "Sí, y es una de las mejores decisiones fiscales y sanitarias que puedes tomar. Adeslas NEGOCIOS está diseñado específicamente para autónomos con NIF: sin copagos, cobertura completa con más de 48.000 médicos y 1.500 centros en toda España. Además, los autónomos pueden deducirse hasta 500€ por persona asegurada al año en el IRPF (incluidos cónyuge e hijos). Solicita tu precio personalizado sin compromiso.",
   },
   {
     q: "¿Adeslas tiene seguro dental?",
-    a: "Sí, Adeslas Dental es un seguro especializado disponible de forma individual o familiar. Cubre limpiezas, tratamientos, endodoncias e implantes. Puede contratarse de forma independiente o complementaria a otros seguros Adeslas, mejorando tu cobertura bucodental.",
+    a: "Sí. Adeslas Dental es un seguro odontológico especializado disponible de forma individual o familiar. Desde 9,45€/mes incluye limpiezas, revisiones, radiografías y extracciones simples sin coste desde el primer día. Los implantes, ortodoncia y endodoncia tienen franquicias muy reducidas. Los menores de 8 años se incluyen gratis en la póliza familiar. Más de 1.700 profesionales en toda España.",
   },
   {
     q: "¿Cuáles son las ventajas de Adeslas frente a otras aseguradoras?",
-    a: "Adeslas es una cooperativa médica con +30 años de experiencia, liderada por médicos. Cuenta con 1.200+ centros médicos, 42.000 especialistas en toda España y modelo sanitario centrado en el paciente. Los beneficios se reinvierten en calidad asistencial, no en accionistas.",
+    a: "SegurCaixa Adeslas es la aseguradora de salud líder en España, con más de 42.000 especialistas y más de 1.000 centros médicos en toda la geografía nacional. Las principales ventajas son: acceso directo a especialistas sin derivaciones ni listas de espera, cuadro médico más amplio del sector privado español, telemedicina 24/7, precio garantizado sin subidas durante 3 años en la mayoría de planes, y cobertura completa desde el primer día.",
   },
   {
     q: "¿Adeslas tiene telemedicina?",
-    a: "Sí, Adeslas ofrece servicios de telemedicina 24/7 para consultas virtuales con médicos especialistas. Disponible en todos los planes principales. Accede desde cualquier dispositivo sin desplazamientos, ideal para consultas urgentes o diagnósticos iniciales.",
+    a: "Sí. Todos los planes principales de Adeslas incluyen telemedicina 24 horas los 7 días de la semana. Puedes consultar con médicos y especialistas por videollamada desde cualquier dispositivo, recibir recetas médicas online y obtener diagnósticos iniciales sin necesidad de desplazarte. Es especialmente útil para urgencias menores, seguimiento de tratamientos y consultas de madrugada.",
   },
   {
     q: "¿Puedo contratar Adeslas siendo extranjero en España?",
-    a: "Sí. Adeslas ofrece el producto 'Newcomers Protection' diseñado específicamente para extranjeros en España. Cubre asistencia médica, hospitalización y otros servicios. También puedes contratar cualquier seguro estándar si tienes NIE o documentación válida.",
+    a: "Sí. Adeslas dispone de un seguro médico específico para extranjeros en España (Newcomers Protection) que cumple los requisitos de visado de estudiante y residencia. Cubre asistencia médica completa, hospitalización, urgencias y repatriación. También puedes contratar cualquier plan estándar de Adeslas si dispones de NIE o documentación de residencia válida. Desde Marchal Aseguradores te ayudamos a tramitar toda la documentación.",
   },
   {
     q: "¿Adeslas tiene periodo de carencia?",
-    a: "Algunos servicios pueden estar sujetos a periodos de carencia, especialmente hospitalización y tratamientos complejos. Otros servicios básicos están disponibles desde el primer día. Adeslas ofrece promociones que pueden reducir o eliminar carencias. Consulta las condiciones específicas de cada plan.",
+    a: "Adeslas no aplica períodos de carencia generales: la gran mayoría de coberturas están activas desde el primer día de contratación. Solo la hospitalización programada tiene una carencia de 8 meses. Si vienes de otra aseguradora médica con al menos 6 meses de antigüedad, pueden eliminarse las carencias por traslado. Consulta con nosotros las condiciones exactas de tu caso.",
   },
 ];
 
@@ -56,8 +56,8 @@ const FaqSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-gris-texto mb-3">Preguntas frecuentes</h2>
-          <p className="text-gris-medio">Resolvemos las dudas más habituales sobre los seguros Adeslas.</p>
+          <h2 className="text-gris-texto mb-3">Preguntas frecuentes sobre seguros médicos Adeslas</h2>
+          <p className="text-gris-medio">Resolvemos las dudas más habituales sobre los seguros Adeslas — precios, coberturas y contratación.</p>
         </motion.div>
         <div className="space-y-3">
           {faqs.map((faq, i) => {

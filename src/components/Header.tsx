@@ -329,7 +329,7 @@ const Header = () => {
 
             {/* Logo + claim */}
             <Link to="/" className="flex items-center gap-3 flex-shrink-0">
-              <img src={logoAzul} alt="Adeslas Marchal Aseguradores" className="h-10 lg:h-11 object-contain" />
+              <img src={logoAzul} alt="Adeslas Marchal Aseguradores — Correduría Oficial Adeslas" className="h-10 lg:h-11 object-contain" />
               <span className="hidden xl:block text-[13px] font-medium pl-3" style={{ color: "#6B8296", borderLeft: "1px solid #D5E3F0" }}>
                 Marchal Aseguradores · Agente Exclusivo
               </span>

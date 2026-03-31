@@ -160,8 +160,8 @@ const ProductsSection = () => (
         transition={{ duration: 0.5 }}
         className="text-center mb-12"
       >
-        <h2 className="text-gris-texto mb-3">Nuestros seguros médicos</h2>
-        <p className="text-gris-medio max-w-lg mx-auto">Encuentra el plan que mejor se adapta a tus necesidades y las de tu familia.</p>
+        <h2 className="text-gris-texto mb-3">Seguros Médicos Adeslas — Compara y Elige tu Plan</h2>
+        <p className="text-gris-medio max-w-lg mx-auto">Toda la gama Adeslas desde 21€/mes: ambulatorio, hospitalización completa, sin copagos y libre elección de médico. Encuentra el plan ideal para ti y tu familia.</p>
       </motion.div>
 
       {/* Featured 3 cards */}
@@ -259,8 +259,8 @@ const ProductsSection = () => (
       >
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-gris-texto text-lg font-bold">Todos los seguros Adeslas</h3>
-            <p className="text-gris-medio text-sm mt-1">Descubre toda nuestra gama de productos</p>
+            <h3 className="text-gris-texto text-lg font-bold">Toda la gama de seguros Adeslas</h3>
+            <p className="text-gris-medio text-sm mt-1">Salud, dental, decesos, mascotas, accidentes, viaje y más</p>
           </div>
         </div>
         <ProductCarousel />

@@ -200,6 +200,8 @@ const ProductHero = ({
   <section
     className="relative overflow-hidden bg-cover bg-center"
     style={{ backgroundImage: `url(${data.heroImage || heroBg})` }}
+    role="img"
+    aria-label={`${data.heroTitle}${data.heroHighlight ? " " + data.heroHighlight : ""} — seguro médico Adeslas contratado a través de Marchal Aseguradores`}
   >
     {/* Dark overlay — same approach as home HeroSection */}
     <div className="absolute inset-0 bg-black/55" />
@@ -547,7 +549,7 @@ const ProductFaqSection = ({ faqs, productName }: { faqs: ProductFaq[]; productN
       <div className="container mx-auto max-w-[780px]">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
           <h2 className="text-gris-texto mb-3">Preguntas frecuentes sobre {productName}</h2>
-          <p className="text-gris-medio">Resolvemos las dudas más habituales.</p>
+          <p className="text-gris-medio">Resolvemos las dudas más habituales sobre coberturas, precios y contratación de {productName}.</p>
         </motion.div>
         <div className="space-y-3">
           {faqs.map((faq, i) => {
