@@ -146,7 +146,7 @@ const data: ProductPageData = {
         "Libre elección entre 40.000+ médicos y 1.000+ centros",
         "Medicina preventiva con chequeos anuales adaptados por edad",
         "NO incluye cobertura dental (diferencia con Plena Total)",
-        "NO incluye asistencia viajes (diferencia con Plena Total)",
+        "Asistencia en viaje hasta 12.000€/año (emergencias médicas en España y extranjero)",
         "NO incluye cobertura de accidente (diferencia con Plena Total)"
       ],
     },
@@ -174,7 +174,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Cuál es la diferencia entre Adeslas Plena Plus y Adeslas Plena Total?",
-      a: (<>Ambos NO tienen copagos y tienen cobertura médica IDÉNTICA. La diferencia está en lo que INCLUYE además de medicina: <Link to="/adeslas-plena-total" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas Plena Total</Link> INCLUYE: cobertura dental (46 actos), asistencia viajes 100.000€, cobertura de accidente (fallecimiento, incapacidad). Adeslas Plena Plus NO incluye dental, viajes ni accidente. Por lo tanto, Plena Plus es más económico si no necesitas esas coberturas adicionales.</>)
+      a: (<>Ambos NO tienen copagos y tienen cobertura médica IDÉNTICA. La diferencia está en lo que INCLUYE además de medicina: <Link to="/adeslas-plena-total" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas Plena Total</Link> INCLUYE: cobertura dental (46 actos), asistencia viajes 100.000€, cobertura de accidente (fallecimiento, incapacidad). Adeslas Plena Plus SÍ incluye asistencia en viaje hasta 12.000€, pero NO incluye dental ni cobertura de accidente. Es la opción ideal si buscas cobertura médica completa sin copagos con protección básica en viaje.</>)
     },
     {
       q: "¿Incluye hospitalización Adeslas Plena Plus?",
@@ -218,7 +218,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Por qué elegir Adeslas Plena Plus?",
-      a: "Adeslas Plena Plus ofrece cobertura médica COMPLETA sin copagos, a un precio más bajo que Adeslas Plena Total porque no incluye dental, viajes ni accidente. Es ideal si valoras protección médica total a mejor precio y no necesitas esas coberturas extras."
+      a: "Adeslas Plena Plus ofrece cobertura médica COMPLETA sin copagos, con asistencia en viaje hasta 12.000€/año, a un precio más bajo que Adeslas Plena Total porque no incluye dental ni cobertura de accidente. Es ideal si buscas protección médica total sin copagos con precio ajustado."
     }
   ],
   schemaFaq: true,

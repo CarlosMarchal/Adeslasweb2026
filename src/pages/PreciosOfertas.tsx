@@ -54,7 +54,6 @@ const plans: Plan[] = [
     pillDark: false,
     coverages: [
       "Consultas médicas ilimitadas",
-      "Urgencias 24 h en toda España",
       "Pruebas diagnósticas básicas",
       "Telemedicina Adeslas Live 24 h",
       "Fisioterapia y rehabilitación",
@@ -65,7 +64,7 @@ const plans: Plan[] = [
     name: "Adeslas Plena Vital",
     slug: "/adeslas-plena-vital",
     price: "38",
-    pill: "Ambulatoria · Sin copago",
+    pill: "Hospitalización · Copago LMA 300€",
     pillDark: false,
     promoBadge: "🎁 Promoción puntos",
     coverages: [
@@ -115,7 +114,7 @@ const plans: Plan[] = [
     name: "Adeslas Plena Vital Total",
     slug: "/adeslas-plena-vital-total",
     price: "55",
-    pill: "Copago LMA 260€ · Con extras",
+    pill: "Copago LMA 500€ · Con extras",
     pillDark: false,
     promoBadge: "🎁 Promoción puntos",
     coverages: [
@@ -149,7 +148,7 @@ const plans: Plan[] = [
 const faqs = [
   {
     q: "¿Cuál es el seguro médico Adeslas más barato?",
-    a: "Adeslas Go es el plan más económico, desde 21€/mes para personas de 0-54 años. Ofrece cobertura ambulatoria con copagos limitados a 260€/año e incluye urgencias, especialidades, chequeo médico anual. No incluye hospitalización ni cirugía.",
+    a: "Adeslas Go es el plan más económico, desde 21€/mes para personas de 0-54 años. Ofrece cobertura ambulatoria con copagos limitados a 260€/año e incluye especialidades, chequeo médico anual. No incluye hospitalización ni cirugía.",
   },
   {
     q: "¿Qué seguro Adeslas es mejor para una familia con niños?",
@@ -161,15 +160,15 @@ const faqs = [
   },
   {
     q: "¿Necesito un seguro con hospitalización o me basta uno ambulatorio?",
-    a: "Si tienes menos de 35 años, estás sano y no tienes hijos, un plan ambulatorio como Adeslas Plena Vital o Adeslas Go puede ser suficiente. Si tienes familia, más de 40 años o quieres cobertura total ante cualquier imprevisto, Adeslas Plena Pluses la mejor opción.",
+    a: "Si tienes menos de 35 años, estás sano y no tienes hijos, un plan más básico como Adeslas Go (ambulatorio, LMA 260€/año) o Adeslas Plena Vital (hospitalización incluida, LMA 300€/año) puede ser suficiente. Si tienes familia, más de 40 años o quieres cobertura total ante cualquier imprevisto, Adeslas Plena Pluses la mejor opción.",
   },
   {
     q: "¿Cuánto tarda Adeslas en activar mi seguro?",
-    a: "Las coberturas de urgencias se activan desde el primer día. Las coberturas generales suelen activarse en un plazo de 24-48 horas tras la firma de la póliza. Solo la hospitalización programada tiene un periodo de carencia de 6 meses. (Si procedes de otra aseguradora médica, pueden eliminarse las carencias. Consúltanos para más información).",
+    a: "Las coberturas de urgencias se activan desde el primer día. Las coberturas generales suelen activarse en un plazo de 24-48 horas tras la firma de la póliza. Solo la hospitalización programada tiene un periodo de carencia de 8 meses. (Si procedes de otra aseguradora médica, pueden eliminarse las carencias. Consúltanos para más información).",
   },
   {
     q: "¿Adeslas tiene copago en urgencias?",
-    a: "Depende del plan: Adeslas Plena Plus y Adeslas Plena Total no tienen copago en urgencias. Adeslas Go y Adeslas Plena Vital sí tienen copago por visita de urgencias (14,50€ en Plena Vital). En todos los planes, las urgencias están disponibles 24h en toda España.",
+    a: "Depende del plan: Adeslas Plena Plus y Adeslas Plena Total no tienen copago en urgencias. Adeslas Plena Vital sí tiene copago por visita de urgencias (14,50€). Las urgencias están disponibles 24h en todos los planes que incluyen cobertura completa.",
   },
   {
     q: "¿Puedo cambiar de plan Adeslas si mis necesidades cambian?",

@@ -5,12 +5,12 @@ import heroImg from "@/assets/seguro-medico-asisa-ya.webp";
 
 const data: ProductPageData = {
   seoTitle: "Seguro Adeslas GO | Seguro Ambulatorio desde 21€/mes",
-  seoDescription: "Adeslas GO: seguro médico ambulatorio con copagos limitados a 260€/año. Medicina general, especialidades, urgencias 24h y más. Sin hospitalización ni cirugía. Desde 21€/mes.",
+  seoDescription: "Adeslas GO: seguro médico ambulatorio con copagos limitados a 260€/año. Medicina general, especialidades, chequeo médico anual y más. Sin hospitalización ni cirugía. Desde 21€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-go",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-go.jpg",
   seoProductSchema: {
     name: "Adeslas GO",
-    description: "Seguro médico ambulatorio con copagos limitados a 260€/año. Medicina general, especialidades, urgencias 24h. Desde 21€/mes.",
+    description: "Seguro médico ambulatorio con copagos limitados a 260€/año. Medicina general, especialidades, chequeo médico anual. Desde 21€/mes.",
     category: "Seguro de Salud",
     price: "21",
     pricePeriod: "month",
@@ -59,15 +59,6 @@ const data: ProductPageData = {
     {
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" fill="#1c4a8d"/>
-        </svg>
-      ),
-      title: "Urgencias 24h",
-      description: "Domiciliarias y ambulatorias todo el año"
-    },
-    {
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" fill="#1c4a8d"/>
         </svg>
       ),
@@ -85,11 +76,10 @@ const data: ProductPageData = {
     }
   ],
   cardName: "Adeslas GO",
-  cardDescription: "Asistencia médica ambulatoria con copagos limitados a 260€/año. Medicina general, especialidades, urgencias 24h.",
+  cardDescription: "Asistencia médica ambulatoria con copagos limitados a 260€/año. Medicina general, especialidades, chequeo médico anual.",
   cardCoverages: [
     "Medicina general, pediatría, enfermería",
     "Especialidades médicas variadas",
-    "Urgencias domiciliarias y ambulatorias 24h",
     "Chequeo médico anual (adaptado por edad y sexo)",
     "Pruebas diagnósticas de alta tecnología",
     "Descuento dental: módulo Adeslas DENTAL FAMILIA 15%",
@@ -155,7 +145,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Qué diferencia hay entre Adeslas GO y Adeslas Plena Vital?",
-      a: (<>Ambos son ambulatorios sin hospitalización. La diferencia es el modelo de pago: <Link to="/adeslas-plena-vital" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas Plena Vital</Link> tiene copagos limitados a 300€/año con prima más alta, mientras que Adeslas GO tiene LMA 260€/año con prima más baja. GO es ideal si usas poco el seguro; Plena Vital si necesitas máximo copago garantizado pero pagas prima más alta.</>)
+      a: (<>La principal diferencia es la cobertura: Adeslas GO es ambulatorio (sin hospitalización ni cirugía), mientras que <Link to="/adeslas-plena-vital" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas Plena Vital</Link> incluye hospitalización y cirugía completas, urgencias 24h y todas las especialidades. GO tiene un LMA de copagos de 260€/año desde 21€/mes; Plena Vital tiene un LMA de 300€/año desde 38€/mes. Si necesitas cobertura hospitalaria o urgencias, Plena Vital es la opción correcta.</>)
     },
     {
       q: "¿Incluye hospitalización Adeslas GO?",
@@ -167,7 +157,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Incluye urgencias Adeslas GO?",
-      a: "Sí. Adeslas GO incluye urgencias domiciliarias y ambulatorias las 24 horas, los 365 días del año con copago incluido."
+      a: "No. Adeslas GO es un producto ambulatorio que no incluye urgencias. Para cobertura de urgencias necesitas un plan con asistencia completa como Adeslas Plena Vital, Adeslas Plena Plus o Adeslas Plena Total."
     },
     {
       q: "¿Qué descuentos tiene Adeslas GO?",

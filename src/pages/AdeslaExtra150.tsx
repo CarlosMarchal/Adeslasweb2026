@@ -140,7 +140,7 @@ const data: ProductPageData = {
     },
     {
       title: "Asistencia en viajes",
-      description: "Cobertura internacional hasta 20.000€",
+      description: "Cobertura internacional hasta 12.000€",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <path

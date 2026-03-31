@@ -4,13 +4,13 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import heroImg from "@/assets/seguro-medico-asisa-esencial-e1765795761941.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro Adeslas Plena Vital | Cobertura Completa + Copagos LMA 260€/año",
-  seoDescription: "Adeslas Plena Vital: seguro médico completo con hospitalización, todas las especialidades, urgencias 24h y copagos limitados a 260€/año. Desde 38€/mes.",
+  seoTitle: "Seguro Adeslas Plena Vital | Cobertura Completa + Copagos LMA 300€/año",
+  seoDescription: "Adeslas Plena Vital: seguro médico completo con hospitalización, todas las especialidades, urgencias 24h y copagos limitados a 300€/año. Desde 38€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-plena-vital",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-vital.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Vital",
-    description: "Seguro médico completo con hospitalización, todas las especialidades y copagos limitados a 260€/año. Desde 38€/mes.",
+    description: "Seguro médico completo con hospitalización, todas las especialidades y copagos limitados a 300€/año. Desde 38€/mes.",
     category: "Seguro de Salud",
     price: "38",
     pricePeriod: "month",
@@ -22,10 +22,10 @@ const data: ProductPageData = {
   ],
   productSlug: "/adeslas-plena-vital",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
-  badge: "Cobertura completa · LMA 260€/año",
+  badge: "Cobertura completa · LMA 300€/año",
   heroTitle: "Seguro Médico Adeslas Plena Vital",
   heroImage: heroImg,
-  heroHighlight: "Cobertura Completa · LMA 260€/año",
+  heroHighlight: "Cobertura Completa · LMA 300€/año",
   heroSubtitle: "Hospitalización, cirugía y todas las especialidades incluidas. Copagos limitados a máximo 300€ anuales por asegurado.",
   price: "38",
   pricePeriod: "mes",
@@ -46,7 +46,7 @@ const data: ProductPageData = {
         </svg>
       ),
       title: "Copagos limitados",
-      description: "Máximo 260€/año por asegurado"
+      description: "Máximo 300€/año por asegurado"
     },
     {
       icon: (
@@ -86,7 +86,7 @@ const data: ProductPageData = {
     }
   ],
   cardName: "Adeslas Plena Vital",
-  cardDescription: "Seguro médico completo con hospitalización e ilimitadas especialidades. Copagos limitados a 260€/año.",
+  cardDescription: "Seguro médico completo con hospitalización e ilimitadas especialidades. Copagos limitados a 300€/año.",
   cardCoverages: [
     "Hospitalización médica, quirúrgica, pediátrica y psiquiátrica",
     "Medicina general, pediatría y enfermería",
@@ -96,7 +96,7 @@ const data: ProductPageData = {
     "Cirugía ambulatoria y hospitalaria",
     "Psicología clínica (máx. 20 sesiones/año)",
     "Rehabilitación y fisioterapia",
-    "Copagos limitados a 260€/año"
+    "Copagos limitados a 300€/año"
   ],
   cardPill: "Copagos LMA 300€ · Cobertura total",
   cardPillDark: true,

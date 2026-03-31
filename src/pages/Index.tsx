@@ -93,7 +93,7 @@ const Index = () => {
       },
       {
         q: "¿Adeslas tiene copagos?",
-        a: "Adeslas ofrece planes con y sin copagos. Adeslas Go y Plena Vital incluyen copagos con un Límite Máximo Anual (LMA) de 260€/año, lo que hace el coste muy predecible. Adeslas Plena Plus y Plena Total no tienen copagos en consultas y especialistas. Elige la opción que mejor se adapte a tu presupuesto.",
+        a: "Adeslas ofrece planes con y sin copagos. Adeslas Go incluye copagos con un Límite Máximo Anual (LMA) de 260€/año, y Adeslas Plena Vital de 300€/año, lo que hace el coste muy predecible. Adeslas Plena Plus y Plena Total no tienen copagos en consultas y especialistas. Elige la opción que mejor se adapte a tu presupuesto.",
       },
       {
         q: "¿Adeslas cubre embarazo y parto?",

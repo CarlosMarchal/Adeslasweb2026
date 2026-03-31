@@ -153,7 +153,7 @@ const data: ProductPageData = {
         "Límite máximo anual (LMA) de copagos: 500€/asegurado/año",
         "Reembolso farmacia: 50% hasta 200€/año",
         "Reembolso logopedia: 50% hasta 500€/año",
-        "Dental incluido: 46 actos sin coste adicional (Adeslas DENTAL MAX)",
+        "Dental incluido: 46 actos sin coste adicional (Adeslas Dental Total)",
         "Asistencia viaje en el extranjero hasta 30.000€",
         "Chequeo médico anual incluido",
         "Prima garantizada sin incrementos durante 3 años",
@@ -169,7 +169,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿El dental está incluido en el precio?",
-      a: "Sí, Adeslas Plena Vital Total incluye 46 actos dentales sin coste adicional (cobertura Adeslas DENTAL MAX): limpiezas bucales, consulta y consulta urgente, revisión, educación bucodental, fluorizaciones, ortopantomografías, pruebas diagnósticas, estudios tomográficos, pulpotomía y más. Para el resto de actos se aplican tarifas reducidas según el tipo de clínica concertada."
+      a: "Sí, Adeslas Plena Vital Total incluye 46 actos dentales sin coste adicional (cobertura Adeslas Dental Total): limpiezas bucales, consulta y consulta urgente, revisión, educación bucodental, fluorizaciones, ortopantomografías, pruebas diagnósticas, estudios tomográficos, pulpotomía y más. Para el resto de actos se aplican tarifas reducidas según el tipo de clínica concertada."
     },
     {
       q: "¿Cuánto es el tope de copago anual?",
