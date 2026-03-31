@@ -23,6 +23,8 @@ const data: ProductPageData = {
   heroTitle: "Seguro Médico para",
   heroHighlight: "Pymes y Empresas — Adeslas",
   heroSubtitle: "El seguro médico de empresa sin copagos. Fideliza a tus empleados con la mejor sanidad privada y obtén ventajas fiscales para empresa y trabajadores.",
+  price: "56",
+  pricePeriod: "mes",
   heroImage: heroImg,
   hideHeroPrice: true,
   customTarificador: <ContactCtaCard />,
@@ -46,7 +48,7 @@ const data: ProductPageData = {
           ))}
         </div>
         <div className="mt-2 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.15)" }}>
-          <span className="text-xs font-bold text-white">Desde <span style={{ color: "#009FE3" }}>56€</span>/mes</span>
+          <span className="text-sm font-bold text-white">Desde <span className="text-base font-black" style={{ color: "#009FE3" }}>56€</span>/mes</span>
         </div>
       </div>
       <div
@@ -67,7 +69,7 @@ const data: ProductPageData = {
           ))}
         </div>
         <div className="mt-2 pt-2" style={{ borderTop: "1px solid rgba(0,159,227,0.3)" }}>
-          <span className="text-xs font-bold text-white">Desde <span style={{ color: "#009FE3" }}>60€</span>/mes</span>
+          <span className="text-sm font-bold text-white">Desde <span className="text-base font-black" style={{ color: "#009FE3" }}>60€</span>/mes</span>
         </div>
       </div>
     </div>
@@ -162,6 +164,8 @@ const data: ProductPageData = {
       ],
       cardName: "Adeslas EMPRESAS",
       cardDescription: "Cobertura sanitaria completa sin copagos para empresas de 5 a 99 asegurados. La mejor red médica privada para tus empleados.",
+      cardPrice: "56",
+      cardPricePeriod: "mes",
       cardPill: "5 a 99 asegurados · Sin copago",
       cardPillDark: true,
       cardCoverages: [
@@ -193,6 +197,8 @@ const data: ProductPageData = {
       ],
       cardName: "Adeslas PYMES TOTAL",
       cardDescription: "Cobertura total sin copagos, chequeo médico anual y dental incluidos. 3 años sin incremento de prima para pymes de hasta 15 empleados.",
+      cardPrice: "60",
+      cardPricePeriod: "mes",
       cardPill: "Hasta 15 asegurados · Todo incluido",
       cardPillDark: true,
       cardCoverages: [
