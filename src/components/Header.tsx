@@ -207,7 +207,7 @@ const MegaLink = ({ icon, label, sub, badge, to, onClick }: any) => (
   <Link
     to={to}
     onClick={onClick}
-    className="flex items-start gap-2.5 px-3 py-2 rounded-lg transition-colors duration-150 hover:bg-azul-suave hover:text-azul-medio text-gris-texto text-[14px] group"
+    className="flex items-start gap-2.5 px-3 py-2 rounded-lg transition-colors duration-150 hover:bg-azul-suave hover:text-azul-medio text-[14px] group" style={{ color: "#003087" }}
   >
     <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "#E8F4FC" }}>
       {icon}
@@ -221,7 +221,7 @@ const MegaLink = ({ icon, label, sub, badge, to, onClick }: any) => (
           </span>
         )}
       </div>
-      {sub && <div className="text-xs text-gris-medio mt-0.5">{sub}</div>}
+      {sub && <div className="text-xs mt-0.5" style={{ color: "#1c4a8d" }}>{sub}</div>}
     </div>
   </Link>
 );
