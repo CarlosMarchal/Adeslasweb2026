@@ -10,7 +10,7 @@ const HeroSection = () => {
   return (
     <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})` }} role="img" aria-label="Seguro médico Adeslas — pareja sonriente con cobertura sanitaria privada completa">
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/65" />
+      <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />
 
       <div className="max-w-[1280px] mx-auto px-12 lg:px-20 py-7 lg:py-10 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
