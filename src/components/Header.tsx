@@ -332,16 +332,13 @@ const Header = () => {
             {/* Logo + claim */}
             <Link to="/" className="flex items-center gap-3 flex-shrink-0">
               <img src={logoAzul} alt="Adeslas — Seguros Médicos Privados en España" className="h-10 lg:h-11 object-contain" />
-              <div className="hidden xl:flex flex-col pl-3" style={{ borderLeft: "1px solid #D5E3F0" }}>
-                <span className="text-[13px] font-medium" style={{ color: "#6B8296" }}>
-                  Seguros Médicos · Salud Privada
-                </span>
-                {!scrolled && (
-                  <span className="text-[10px] leading-tight mt-0.5" style={{ color: "#C0D0DC" }}>
+              {!scrolled && (
+                <div className="hidden xl:flex items-center pl-3" style={{ borderLeft: "1px solid #D5E3F0" }}>
+                  <span className="text-[11px] leading-tight" style={{ color: "#C0D0DC" }}>
                     Marchal Aseguradores · Agente exclusivo Adeslas
                   </span>
-                )}
-              </div>
+                </div>
+              )}
             </Link>
 
             {/* Desktop: teléfonos + CTA */}

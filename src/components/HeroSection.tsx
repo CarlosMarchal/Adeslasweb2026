@@ -12,14 +12,13 @@ const HeroSection = () => {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="container mx-auto px-4 py-7 lg:py-10 relative z-10">
+      <div className="max-w-[1280px] mx-auto px-12 lg:px-20 py-7 lg:py-10 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
           {/* Left column: badge, h1, description, CTAs, trust badges */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="lg:pl-14 xl:pl-24"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full mb-6 text-sm text-white border" style={{ borderColor: "rgba(255,255,255,0.4)", background: "transparent" }}>
               <span className="w-2 h-2 rounded-full" style={{ background: "#009DD9" }} />
