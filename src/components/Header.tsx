@@ -8,6 +8,7 @@ import "react-international-phone/style.css";
 import logoAzul from "@/assets/Logo-adeslas-Marchal-color.webp";
 import { useTarificador } from "@/components/TarificadorContext";
 import { usePageCalc } from "@/components/PageCalcContext";
+import { usePhonePopup } from "@/components/PhonePopupContext";
 
 /* ───── data ───── */
 const I = (d: string, extra?: string) => (
@@ -241,6 +242,7 @@ const Header = () => {
   const megaTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const { openTarificador } = useTarificador();
   const { onCalcClick, calcLabel } = usePageCalc();
+  const { openPhonePopup } = usePhonePopup();
   const { pathname } = useLocation();
   const isExtranjeros = pathname === "/adeslas-extranjeros";
 
@@ -552,16 +554,16 @@ const Header = () => {
             WhatsApp
           </a>
         ) : (
-          <button onClick={() => setShowPhonePopup(true)}
+          <button onClick={openPhonePopup}
             className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm border-2 active:scale-[0.98]"
-            style={{ borderColor: "#003087", color: "#003087" }}>
+            style={{ borderColor: "#009FE3", color: "#009FE3" }}>
             <Phone className="w-4 h-4" />
             Te llamamos
           </button>
         )}
         <button onClick={onCalcClick ?? openTarificador}
           className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm text-white active:scale-[0.98]"
-          style={{ backgroundColor: "#003087" }}>
+          style={{ backgroundColor: "#009FE3" }}>
           {calcLabel ?? "Calcular mi precio"}
         </button>
       </div>
