@@ -11,7 +11,6 @@ import Tarificador from "@/components/Tarificador";
 import CtaSection from "@/components/CtaSection";
 import { usePhonePopup } from "@/components/PhonePopupContext";
 import heroBg from "@/assets/asisa_salud_seguro_medico.webp";
-import ofertaPuntos from "@/assets/oferta-puntos-adeslas.svg";
 
 /* ───────── Types ───────── */
 
@@ -207,23 +206,6 @@ const ProductHero = ({
     {/* Dark overlay — same approach as home HeroSection */}
     <div className="absolute inset-0 bg-black/55" />
 
-    {/* Promo puntos regalo — flotante esquina inferior derecha, solo desktop */}
-    {data.heroPromo && (
-      <motion.div
-        initial={{ opacity: 0, y: 16, scale: 0.92 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ delay: 0.7, duration: 0.5, ease: "easeOut" }}
-        className="absolute bottom-5 right-6 z-20 hidden lg:block pointer-events-none"
-        title={data.heroPromo}
-      >
-        <img
-          src={ofertaPuntos}
-          alt="Oferta puntos regalo Adeslas"
-          style={{ width: 170, filter: "drop-shadow(0 4px 18px rgba(0,0,0,0.35))" }}
-        />
-      </motion.div>
-    )}
-
     <div className="container mx-auto px-4 py-10 lg:py-14 relative z-10">
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="lg:pl-14 xl:pl-24">
@@ -334,6 +316,29 @@ const ProductHero = ({
           )}
         </motion.div>
       </div>
+
+      {/* Píldora promo puntos regalo — centrada, fondo del hero */}
+      {data.heroPromo && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.65, duration: 0.45, ease: "easeOut" }}
+          className="flex justify-center mt-8"
+        >
+          <div
+            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full text-sm font-bold"
+            style={{
+              background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
+              color: "#fff",
+              boxShadow: "0 4px 20px rgba(249,115,22,0.45)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            <span style={{ fontSize: 16 }}>🎁</span>
+            <span>Consigue puntos al contratar este seguro y canjéalo por tarjeta monedero o regalos</span>
+          </div>
+        </motion.div>
+      )}
     </div>
   </section>
   );
