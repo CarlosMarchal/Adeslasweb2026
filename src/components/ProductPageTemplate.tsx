@@ -323,18 +323,17 @@ const ProductHero = ({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65, duration: 0.45, ease: "easeOut" }}
-          className="flex justify-center mt-8"
+          className="flex justify-center mt-6"
         >
           <div
-            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full text-sm font-bold"
+            className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold text-center max-w-xs sm:max-w-none"
             style={{
               background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
               color: "#fff",
               boxShadow: "0 4px 20px rgba(249,115,22,0.45)",
-              whiteSpace: "nowrap",
             }}
           >
-            <span style={{ fontSize: 16 }}>🎁</span>
+            <span className="flex-shrink-0" style={{ fontSize: 14 }}>🎁</span>
             <span>Consigue puntos al contratar este seguro y canjéalo por tarjeta monedero o regalos</span>
           </div>
         </motion.div>
@@ -656,6 +655,12 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
       <PageCalcProvider value={{ onCalcClick: mobileCalcAction, calcLabel: mobileCalcLabel }}>
         <Header />
         <ProductHero data={data} onMobileCalc={openCustom} />
+        {/* Tarificador inline — visible only on mobile, matches home layout */}
+        {!data.customTarificador && (
+          <div className="lg:hidden">
+            <Tarificador productSlug={data.productSlug} />
+          </div>
+        )}
         <FeaturesGrid features={data.features} productName={data.cardName} />
         <ProductDetail data={data} />
         <ProductFaqSection faqs={data.faqs} productName={data.cardName} />

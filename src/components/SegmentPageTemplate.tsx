@@ -291,26 +291,7 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
         </section>
 
         {/* ── Tarificador Section ── */}
-        <section className="section-pad bg-blanco">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="text-center mb-10">
-                <h2 className="text-2xl md:text-3xl font-black mb-3" style={{ color: "#003087" }}>
-                  {data.tarificadorTitle}
-                </h2>
-                <p className="text-gris-medio text-base">{data.tarificadorSubtitle}</p>
-              </div>
-              <div className="max-w-2xl mx-auto">
-                <Tarificador />
-              </div>
-            </motion.div>
-          </div>
-        </section>
+        <Tarificador />
 
         {/* ── FAQ Section ── */}
         <section className="section-pad bg-gris-claro">
