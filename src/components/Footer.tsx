@@ -113,7 +113,7 @@ const Footer = () => (
     <div className="border-t" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
       <div className="container mx-auto px-4 py-5">
         <p className="text-xs text-center mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
-          © 2026 Marchal Mediadores S.L. · CIF B-86390861 · Agencia Exclusiva de Adeslas S.A. · DGS C0461B86390861
+          © 2026 Marchal Aseguradores S.L.U. · CIF B-86792017 · Agencia Exclusiva de Adeslas S.A. · DGS 28101259
         </p>
         <div className="flex justify-center gap-4 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
           <Link to="/politica-de-privacidad" onClick={() => window.scrollTo(0, 0)} className="hover:text-primary-foreground transition-colors">Aviso legal</Link>
