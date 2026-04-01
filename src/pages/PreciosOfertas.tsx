@@ -192,9 +192,9 @@ const PreciosOfertasInner = () => {
   }, []);
 
   useSeo({
-    title: "Precios Seguros Médicos Adeslas 2026 | Ofertas desde 21 €/mes",
+    title: "Precios y Ofertas Adeslas 2026 | Seguros Médicos desde 21 €/mes",
     description:
-      "Consulta los precios de todos los seguros médicos Adeslas para particulares. Desde 21€/mes (Adeslas Go). Sin copagos desde 50€/mes (Adeslas Plena). Cobertura total desde 83€/mes (Adeslas Plena Total). Compara y calcula en 2 minutos.",
+      "Precios y ofertas de los seguros médicos Adeslas 2026. Desde 21€/mes (Adeslas Go). Sin copagos desde 50€/mes (Adeslas Plena Plus). Cobertura total desde 83€/mes (Adeslas Plena Total). Compara planes y calcula en 2 minutos.",
     canonical: "https://adeslas.marchalaseguradores.es/precios-ofertas",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
@@ -236,7 +236,7 @@ const PreciosOfertasInner = () => {
               </div>
 
               <h1 className="text-primary-foreground mb-4 text-3xl md:text-[48px] leading-tight md:leading-[1.15]">
-                Precios Seguros Médicos
+                Precios y Ofertas
                 <br />
                 <span className="text-azul-claro">Adeslas 2026</span>
               </h1>
