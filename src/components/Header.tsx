@@ -3,8 +3,6 @@ import { submitToHubSpot } from "@/lib/hubspot";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { PhoneInput } from "react-international-phone";
-import "react-international-phone/style.css";
 import logoAzul from "@/assets/Logo-adeslas-Marchal-color.webp";
 import { useTarificador } from "@/components/TarificadorContext";
 import { usePageCalc } from "@/components/PageCalcContext";
@@ -287,13 +285,14 @@ const Header = () => {
     }
   };
 
-  const handleMobilePhoneChange = (v: string) => {
-    if (v.replace(/\D/g, "").length <= 11) setMobilePhone(v);
+  const handleMobilePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value.replace(/\D/g, "").slice(0, 9);
+    setMobilePhone(val);
   };
   const handleMobilePhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isPhoneValid(mobilePhone)) {
-      submitToHubSpot({ phone: mobilePhone, source: 301 });
+    if (mobilePhone.replace(/\D/g, "").length >= 9) {
+      submitToHubSpot({ phone: "+34" + mobilePhone, source: 301 });
       setMobilePhone("");
       setShowPhonePopup(false);
       setShowThankYouModal(true);
@@ -607,13 +606,20 @@ const Header = () => {
                 <p className="text-sm text-gris-medio">Un asesor Adeslas te contactará en minutos</p>
               </div>
               <form onSubmit={handleMobilePhoneSubmit} className="space-y-3">
-                <PhoneInput
-                  defaultCountry="es" value={mobilePhone} onChange={handleMobilePhoneChange}
-                  placeholder="Deja tu móvil aquí"
-                  inputClassName="!w-full !h-12 !text-base !rounded-xl !border-0 !bg-transparent !outline-none"
-                  countrySelectorStyleProps={{ buttonClassName: "!h-12 !border-0 !bg-transparent !px-2", flagClassName: "!w-6 !h-5" }}
-                  className="!w-full !h-12 !rounded-xl !border !border-borde focus-within:!border-azul-medio focus-within:!ring-2 focus-within:!ring-azul-suave !transition-all"
-                />
+                <div className="flex items-center gap-2 w-full h-12 rounded-xl border border-borde px-3 focus-within:border-azul-medio focus-within:ring-2 focus-within:ring-azul-suave transition-all" style={{ backgroundColor: "#fff" }}>
+                  <span className="text-lg leading-none select-none">🇪🇸</span>
+                  <span className="text-sm font-medium select-none" style={{ color: "#374151" }}>+34</span>
+                  <input
+                    type="tel"
+                    value={mobilePhone}
+                    onChange={handleMobilePhoneChange}
+                    placeholder="600 000 000"
+                    autoComplete="tel"
+                    inputMode="numeric"
+                    className="flex-1 h-full text-base border-0 bg-transparent outline-none cursor-text"
+                    style={{ color: "#1A3A5C" }}
+                  />
+                </div>
                 <button type="submit" className="w-full py-3.5 rounded-xl text-white font-bold text-base" style={{ backgroundColor: "#E4097D" }}>
                   Te llamamos ahora
                 </button>

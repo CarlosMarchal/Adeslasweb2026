@@ -2,8 +2,6 @@ import { createContext, useContext, useState, useRef, type ReactNode } from "rea
 import { submitToHubSpot, type HubSpotSource } from "@/lib/hubspot";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, X } from "lucide-react";
-import { PhoneInput } from "react-international-phone";
-import "react-international-phone/style.css";
 import { TermsCheckbox } from "@/components/TermsModal";
 
 /* ─── Context ─── */
@@ -20,9 +18,9 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
   const [termsError, setTermsError] = useState(false);
   const sourceRef = useRef<HubSpotSource>(201);
 
-  const handlePhoneChange = (value: string) => {
-    const digits = value.replace(/\D/g, "");
-    if (digits.length <= 11) setPhone(value);
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value.replace(/\D/g, "").slice(0, 9);
+    setPhone(val);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -32,9 +30,8 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
     setTermsError(false);
-    const digits = phone.replace(/\D/g, "");
-    if (digits.length >= 9 && digits.length <= 11) {
-      submitToHubSpot({ phone, source: sourceRef.current });
+    if (phone.replace(/\D/g, "").length >= 9) {
+      submitToHubSpot({ phone: "+34" + phone, source: sourceRef.current });
       setSent(true);
       setTimeout(() => { setSent(false); setPhone(""); setTermsAccepted(false); setOpen(false); }, 3000);
     }
@@ -103,18 +100,20 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-3">
-                    <PhoneInput
-                      defaultCountry="es"
-                      value={phone}
-                      onChange={handlePhoneChange}
-                      placeholder="Tu número de teléfono"
-                      inputClassName="!w-full !h-12 !text-base !rounded-xl !border-0 !bg-transparent !outline-none"
-                      countrySelectorStyleProps={{
-                        buttonClassName: "!h-12 !border-0 !bg-transparent !px-2",
-                        flagClassName: "!w-6 !h-5",
-                      }}
-                      className="!w-full !h-12 !rounded-xl !border !border-gray-200 focus-within:!border-blue-500 focus-within:!ring-2 focus-within:!ring-blue-100 !transition-all"
-                    />
+                    <div className="flex items-center gap-2 w-full h-12 rounded-xl border border-gray-200 px-3 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition-all" style={{ backgroundColor: "#fff" }}>
+                      <span className="text-lg leading-none select-none">🇪🇸</span>
+                      <span className="text-sm font-medium select-none" style={{ color: "#374151" }}>+34</span>
+                      <input
+                        type="tel"
+                        value={phone}
+                        onChange={handlePhoneChange}
+                        placeholder="600 000 000"
+                        autoComplete="tel"
+                        inputMode="numeric"
+                        className="flex-1 h-full text-base border-0 bg-transparent outline-none cursor-text"
+                        style={{ color: "#1A3A5C" }}
+                      />
+                    </div>
                     <TermsCheckbox
                       checked={termsAccepted}
                       onChange={(val) => { setTermsAccepted(val); if (val) setTermsError(false); }}
