@@ -210,9 +210,30 @@ const ProductHero = ({
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="lg:pl-14 xl:pl-24">
           {data.badge && (
-            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full mb-5 text-sm text-white border" style={{ borderColor: "rgba(255,255,255,0.4)", background: "transparent" }}>
-              <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "#009FE3" }} />
-              {data.badge}
+            <div className="flex items-center gap-2.5 mb-5 flex-wrap">
+              <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm text-white border" style={{ borderColor: "rgba(255,255,255,0.4)", background: "transparent" }}>
+                <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "#009FE3" }} />
+                {data.badge}
+              </div>
+              {data.heroPromo && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.5, type: "spring", stiffness: 280, damping: 20 }}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[11px] font-bold cursor-default"
+                  style={{
+                    background: "linear-gradient(135deg, #F6A623 0%, #F47B20 100%)",
+                    color: "rgba(255,255,255,0.93)",
+                    boxShadow: "0 2px 8px rgba(244,123,32,0.35)",
+                    whiteSpace: "nowrap",
+                    opacity: 0.88,
+                  }}
+                  title={data.heroPromo}
+                >
+                  <span style={{ fontSize: 12 }}>🎁</span>
+                  <span>Puntos regalo</span>
+                </motion.div>
+              )}
             </div>
           )}
 
@@ -236,24 +257,6 @@ const ProductHero = ({
                 <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.92)" }}>Desde</span>
                 <span className="text-[48px] font-black leading-none" style={{ color: "#fff" }}>{data.price}€</span>
                 <span style={{ color: "rgba(255,255,255,0.85)" }} className="text-lg">/{data.pricePeriod || "mes"}</span>
-                {data.heroPromo && (
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.5, type: "spring", stiffness: 320, damping: 18 }}
-                    className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold self-center mb-1 cursor-default"
-                    style={{
-                      background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
-                      color: "#fff",
-                      boxShadow: "0 2px 10px rgba(249,115,22,0.55)",
-                      whiteSpace: "nowrap",
-                    }}
-                    title={data.heroPromo}
-                  >
-                    <span style={{ fontSize: 11 }}>🎁</span>
-                    <span>Puntos regalo</span>
-                  </motion.div>
-                )}
               </div>
             )}
             {data.useWhatsAppCta && (
