@@ -9,8 +9,8 @@ const Footer = () => (
         <div>
           <img src={logoBlanco} alt="Adeslas Seguros Médicos — Salud Privada en España" className="h-8 object-contain mb-4" />
           <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-            Avda. Europa, 18 · CP 28224<br />
-            Pozuelo de Alarcón, Madrid
+            Avenida de Filipinas, 28 · CP 28003<br />
+            Madrid
           </p>
         </div>
 

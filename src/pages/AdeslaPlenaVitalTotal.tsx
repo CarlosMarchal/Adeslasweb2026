@@ -189,7 +189,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Hasta qué edad puedo contratar?",
-      a: "Los asegurados pueden estar hasta 62 años. Se admiten mayores de 62 años si el grupo tiene mínimo 3 asegurados menores de 60 años. El tomador debe ser ≥18 años."
+      a: "Los asegurados pueden contratar hasta los 70 años. Se admiten mayores de 70 años si el grupo tiene mínimo 3 asegurados menores de 60 años. El tomador debe ser ≥18 años."
     },
     {
       q: "¿Incluye asistencia en viajes?",

@@ -666,7 +666,7 @@ const MegaSegurosContent = ({ onNavigate }: { onNavigate: () => void }) => {
           <div className="text-[13px] leading-[1.55]" style={{ color: "rgba(255,255,255,0.70)" }}>Cobertura total sin copagos. Hospitalización, cirugía y +42.000 especialistas incluidos.</div>
         </div>
         <div className="mt-4">
-          <div className="font-black text-[28px]">desde 33€ <span className="text-[13px] font-normal" style={{ color: "rgba(255,255,255,0.60)" }}>/mes</span></div>
+          <div className="font-black text-[28px]">desde 83€ <span className="text-[13px] font-normal" style={{ color: "rgba(255,255,255,0.60)" }}>/mes</span></div>
           <button onClick={() => openTarificador("/adeslas-plena-total")}
             className="block w-full text-center py-2.5 rounded-[7px] font-bold text-sm mt-3 btn-cta-magenta cursor-pointer"
             style={{ backgroundColor: "#E4097D", color: "#fff" }}>

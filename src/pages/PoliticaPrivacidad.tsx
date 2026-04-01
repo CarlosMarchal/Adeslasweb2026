@@ -7,7 +7,7 @@ const PoliticaPrivacidad = () => {
   useSeo({
     title: "Aviso Legal y Política de Privacidad | Adeslas Seguros Médicos",
     description:
-      "Aviso legal, política de privacidad y política de cookies de Marchal Mediadores S.L., Agencia Exclusiva de Adeslas.",
+      "Aviso legal, política de privacidad y política de cookies de Marchal Aseguradores S.L.U., Agencia Exclusiva de Adeslas.",
     canonical:
       "https://adeslas.marchalaseguradores.es/politica-de-privacidad",
   });
@@ -58,27 +58,26 @@ const PoliticaPrivacidad = () => {
           </p>
           <ul className="text-sm text-gris-texto mb-4 list-disc pl-5 space-y-1">
             <li>
-              <strong>Razón social:</strong> Marchal Mediadores S.L.
+              <strong>Razón social:</strong> Marchal Aseguradores S.L.U.
             </li>
             <li>
-              <strong>CIF:</strong> B-86390861
+              <strong>CIF:</strong> B-86792017
             </li>
             <li>
-              <strong>Domicilio social:</strong> Avda. Europa, 18 · CP 28224 ·
-              Pozuelo de Alarcón, Madrid
+              <strong>Domicilio social:</strong> Avenida de Filipinas, 28 · CP 28003 ·
+              Madrid
             </li>
             <li>
-              <strong>Inscripción DGSFP:</strong> Agencia Exclusiva de Adeslas
-              S.A. · Código DGS C0461B86390861
+              <strong>Inscripción DGSFP:</strong> Agencia Exclusiva de Adeslas S.A. · Clave DGS 28101259
             </li>
             <li>
               <strong>Email de contacto:</strong>{" "}
               <a
-                href="mailto:info@contrataseguromedico.com"
+                href="mailto:adeslas@marchalaseguradores.com"
                 className="hover:underline"
                 style={{ color: "#009FE3" }}
               >
-                info@contrataseguromedico.com
+                adeslas@marchalaseguradores.com
               </a>
             </li>
             <li>
@@ -110,7 +109,7 @@ const PoliticaPrivacidad = () => {
             Todos los contenidos de este sitio web (textos, fotografías,
             gráficos, imágenes, iconos, tecnología, software, así como su
             diseño gráfico y códigos fuente) constituyen una obra cuya
-            propiedad pertenece a Marchal Mediadores S.L. y/o a Adeslas S.A., sin
+            propiedad pertenece a Marchal Aseguradores S.L.U. y/o a Adeslas S.A., sin
             que puedan entenderse cedidos al usuario ninguno de los derechos de
             explotación sobre los mismos más allá de lo estrictamente necesario
             para el correcto uso del sitio web.
@@ -120,7 +119,7 @@ const PoliticaPrivacidad = () => {
             1.4 Exclusión de responsabilidad
           </h3>
           <p className={p}>
-            Marchal Mediadores S.L. no se hace responsable de los posibles
+            Marchal Aseguradores S.L.U. no se hace responsable de los posibles
             errores de seguridad que se puedan producir ni de los posibles daños
             que puedan causarse al sistema informático del usuario (hardware y
             software), a los ficheros o documentos almacenados en el mismo, como
@@ -139,9 +138,9 @@ const PoliticaPrivacidad = () => {
           </h3>
           <p className={p}>
             El responsable del tratamiento de los datos personales recabados a
-            través de este sitio web es Marchal Mediadores S.L., con CIF
-            B-86390861 y domicilio en Avda. Europa, 18, 28224 Pozuelo de Alarcón
-            (Madrid).
+            través de este sitio web es Marchal Aseguradores S.L.U., con CIF
+            B-86792017 y domicilio en Avenida de Filipinas, 28, CP 28003
+            Madrid.
           </p>
 
           <h3 className={h3} style={{ color: "#009FE3" }}>
@@ -177,7 +176,7 @@ const PoliticaPrivacidad = () => {
             precontractuales o contractuales cuando solicitas un presupuesto o
             contratas un seguro; (b) tu consentimiento expreso para
             comunicaciones comerciales; y (c) el interés legítimo de Marchal
-            Mediadores S.L. para la mejora de sus servicios.
+            Aseguradores S.L.U. para la mejora de sus servicios.
           </p>
 
           <h3 className={h3} style={{ color: "#009FE3" }}>
@@ -208,11 +207,11 @@ const PoliticaPrivacidad = () => {
             oposición, limitación del tratamiento y portabilidad enviando un
             correo electrónico a{" "}
             <a
-              href="mailto:info@contrataseguromedico.com"
+              href="mailto:adeslas@marchalaseguradores.com"
               className="hover:underline"
               style={{ color: "#009FE3" }}
             >
-              info@contrataseguromedico.com
+              adeslas@marchalaseguradores.com
             </a>{" "}
             acompañado de una copia de tu DNI o documento identificativo
             equivalente. Asimismo, tienes derecho a presentar una reclamación
@@ -301,11 +300,11 @@ const PoliticaPrivacidad = () => {
             Para cualquier consulta relativa a este aviso legal o a la política
             de privacidad, puedes escribirnos a{" "}
             <a
-              href="mailto:info@contrataseguromedico.com"
+              href="mailto:adeslas@marchalaseguradores.com"
               className="hover:underline"
               style={{ color: "#009FE3" }}
             >
-              info@contrataseguromedico.com
+              adeslas@marchalaseguradores.com
             </a>{" "}
             o llamarnos al{" "}
             <a

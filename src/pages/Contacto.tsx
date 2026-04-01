@@ -31,9 +31,9 @@ const contactMethods = [
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#1c4a8d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="10" r="3" stroke="#1c4a8d" strokeWidth="2"/></svg>
     ),
     title: "Oficina",
-    detail: "Avda. Europa, 18, Pozuelo de Alarcón",
-    href: "https://maps.google.com/?q=Avenida+Europa+18+Pozuelo+de+Alarcon+Madrid",
-    description: "Oficina Adeslas en Pozuelo de Alarcón, Madrid. Atención personalizada para seguros médicos. Llama al 91 710 50 00.",
+    detail: "Avenida de Filipinas, 28, Madrid",
+    href: "https://maps.google.com/?q=Avenida+de+Filipinas+28+28003+Madrid",
+    description: "Oficina Adeslas en Madrid (Avenida de Filipinas, 28). Atención personalizada para seguros médicos. Llama al 91 710 50 00.",
   },
 ];
 
@@ -263,13 +263,13 @@ const Contacto = () => {
       <section className="section-pad bg-blanco">
         <div className="container mx-auto max-w-4xl">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
-            <h2 className="text-gris-texto mb-3">Oficina Adeslas Madrid — Pozuelo de Alarcón</h2>
-            <p className="text-gris-medio">Avda. Europa, 18 · Pozuelo de Alarcón, Madrid</p>
+            <h2 className="text-gris-texto mb-3">Oficina Adeslas Madrid — Avenida de Filipinas</h2>
+            <p className="text-gris-medio">Avenida de Filipinas, 28 · CP 28003, Madrid</p>
           </motion.div>
           <div className="bg-gris-claro border border-borde overflow-hidden" style={{ borderRadius: "16px" }}>
             <iframe
               title="Ubicación Oficina Adeslas Madrid"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.5!2d-3.8144!3d40.4365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMayor+2+Pozuelo+de+Alarcon!5e0!3m2!1ses!2ses!4v1"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.5!2d-3.7026!3d40.4369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sAvenida+de+Filipinas+28+Madrid!5e0!3m2!1ses!2ses!4v1"
               width="100%"
               height="350"
               style={{ border: 0 }}
@@ -279,8 +279,8 @@ const Contacto = () => {
             />
           </div>
           <div className="text-center mt-6">
-            <p className="text-gris-texto font-bold">Avda. Europa, 18 · CP 28224</p>
-            <p className="text-gris-medio">Pozuelo de Alarcón, Madrid, España</p>
+            <p className="text-gris-texto font-bold">Avenida de Filipinas, 28 · CP 28003</p>
+            <p className="text-gris-medio">Madrid, España</p>
           </div>
         </div>
       </section>

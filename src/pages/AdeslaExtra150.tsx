@@ -237,7 +237,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Hasta qué edad puedo contratar?",
-      a: "Los asegurados pueden estar hasta 64 años. Se admiten mayores de 64 años si el grupo tiene mínimo 3 asegurados menores de 60 años. El tomador debe ser ≥18 años. IMPORTANTE: Edad límite es 64, NO 70 como otros seguros."
+      a: "Los asegurados pueden contratar hasta los 70 años. Se admiten mayores de 70 años si el grupo tiene mínimo 3 asegurados menores de 60 años. El tomador debe ser ≥18 años. IMPORTANTE: Edad límite es 64, NO 70 como otros seguros."
     },
     {
       q: "¿Cuánto tiempo tarda el reembolso?",

@@ -43,10 +43,10 @@ const Index = () => {
       email: "cmarchal@marchalconsultores.com",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Avda. Europa, 18",
-        addressLocality: "Pozuelo de Alarcón",
+        streetAddress: "Avenida de Filipinas, 28",
+        addressLocality: "Madrid",
         addressRegion: "Madrid",
-        postalCode: "28224",
+        postalCode: "28003",
         addressCountry: "ES",
       },
       areaServed: { "@type": "Country", name: "España" },

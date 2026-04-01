@@ -45,7 +45,7 @@ const data: ProductPageData = {
     "Diagnóstico de alta tecnología (Resonancia, TAC, PET)",
     "Psicología clínica y psiquiatría (máx. 20 sesiones/año)",
     "Rehabilitación y fisioterapia sin límite de sesiones",
-    "Medicina preventiva: chequeos anuales adaptados",
+    "Medicina preventiva incluida",
     "Libre elección: 40.000+ médicos y 1.000+ centros"
   ],
   features: [
@@ -144,7 +144,7 @@ const data: ProductPageData = {
         "SIN COPAGOS en todos los servicios",
         "Cobertura médica IDÉNTICA a Adeslas Plena Total",
         "Libre elección entre 40.000+ médicos y 1.000+ centros",
-        "Medicina preventiva con chequeos anuales adaptados por edad",
+        "Medicina preventiva incluida",
         "NO incluye cobertura dental (diferencia con Plena Total)",
         "Asistencia en viaje hasta 12.000€/año (emergencias médicas en España y extranjero)",
         "NO incluye cobertura de accidente (diferencia con Plena Total)"
@@ -202,11 +202,11 @@ const data: ProductPageData = {
     },
     {
       q: "¿Incluye medicina preventiva?",
-      a: "Sí. Chequeos médicos anuales adaptados por edad y sexo, incluyendo historia clínica, exploración, analítica, ECG, radiografía de tórax, y según edad: ecografía mamaria, ECG de esfuerzo, etc."
+      a: "Sí. Adeslas Plena Plus incluye medicina preventiva: historia clínica, exploración general, analítica básica, ECG y pruebas diagnósticas según indicación médica."
     },
     {
       q: "¿Hasta qué edad puedo contratar?",
-      a: "Los asegurados pueden estar hasta 70 años. Se admiten mayores de 70 años si el grupo tiene mínimo 3 asegurados menores de 60 años. El tomador debe ser ≥18 años."
+      a: "Los asegurados pueden contratar hasta los 70 años. Se admiten mayores de 70 años si el grupo tiene mínimo 3 asegurados menores de 60 años. El tomador debe ser ≥18 años."
     },
     {
       q: "¿Qué descuentos tiene Adeslas Plena Plus?",
