@@ -281,8 +281,8 @@ const ProductHero = ({
               {[
                 { emoji: "⭐", label: "+30 años de experiencia" },
                 { emoji: "🏥", label: "Sin listas de espera" },
-                { emoji: "👨‍⚕️", label: "+42.000 especialistas" },
-                { emoji: "🏨", label: "+1.000 centros" },
+                { emoji: "👨‍⚕️", label: "+51.000 médicos" },
+                { emoji: "🏨", label: "+1.400 centros" },
               ].map(({ emoji, label }) => (
                 <div key={label} className="flex items-center gap-1.5 text-white text-xs sm:text-sm">
                   <span className="w-8 h-8 rounded-full flex items-center justify-center text-sm flex-shrink-0" style={{ background: "rgba(255,255,255,0.15)" }}>{emoji}</span>

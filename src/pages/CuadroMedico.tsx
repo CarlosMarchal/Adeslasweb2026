@@ -42,7 +42,7 @@ const CuadroMedico = () => {
   useSeo({
     title: "Cuadro Médico Adeslas 2026 | Descarga por provincia",
     description:
-      "Descarga el cuadro médico Adeslas 2026 de tu provincia. Más de 40.000 profesionales, 1.000 centros y 1.200+ centros médicos en toda España.",
+      "Descarga el cuadro médico Adeslas 2026 de tu provincia. Más de 51.000 médicos y 1.400 centros y 1.200+ centros médicos en toda España.",
     canonical: "https://adeslas.marchalaseguradores.es/cuadro-medico",
   });
 
@@ -96,8 +96,8 @@ const CuadroMedico = () => {
               className="text-lg max-w-2xl"
               style={{ color: "rgba(255,255,255,0.82)" }}
             >
-              Accede a la red médica más amplia: más de 40.000 profesionales,
-              1.000 centros y 1.200+ centros médicos en toda España. Descarga el
+              Accede a la red médica más amplia: más de 51.000 médicos,
+              1.400 centros y 1.200+ centros médicos en toda España. Descarga el
               cuadro médico de tu provincia.
             </p>
           </motion.div>

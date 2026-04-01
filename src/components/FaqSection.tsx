@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: "¿Cuáles son las ventajas de Adeslas frente a otras aseguradoras?",
-    a: "SegurCaixa Adeslas es la aseguradora de salud líder en España, con más de 42.000 especialistas y más de 1.000 centros médicos en toda la geografía nacional. Las principales ventajas son: acceso directo a especialistas sin derivaciones ni listas de espera, cuadro médico más amplio del sector privado español, telemedicina 24/7, precio garantizado sin subidas durante 3 años en la mayoría de planes, y cobertura completa desde el primer día.",
+    a: "SegurCaixa Adeslas es la aseguradora de salud líder en España, con más de 51.000 médicos y más de 1.400 centros médicos en toda la geografía nacional. Las principales ventajas son: acceso directo a especialistas sin derivaciones ni listas de espera, cuadro médico más amplio del sector privado español, telemedicina 24/7, precio garantizado sin subidas durante 3 años en la mayoría de planes, y cobertura completa desde el primer día.",
   },
   {
     q: "¿Adeslas tiene telemedicina?",

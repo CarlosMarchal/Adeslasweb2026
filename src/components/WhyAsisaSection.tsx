@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const items = [
   { num: "01", title: "Asesor personal incluido", desc: "Un profesional dedicado te acompaña en cada paso, desde la contratación hasta la gestión de tus consultas." },
-  { num: "02", title: "Libre elección de médico", desc: "Accede a más de 42.000 especialistas y elige el profesional que prefieras en cualquier momento." },
+  { num: "02", title: "Libre elección de médico", desc: "Accede a más de 51.000 médicos y elige el profesional que prefieras en cualquier momento." },
   { num: "03", title: "Telemedicina 24h incluida", desc: "Consulta médica online las 24 horas a través de Adeslas Live, sin coste adicional." },
 ];
 

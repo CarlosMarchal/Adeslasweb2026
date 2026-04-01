@@ -5,12 +5,12 @@ import heroImg from "@/assets/seguro-medico-asisa-completa.webp";
 
 const data: ProductPageData = {
   seoTitle: "Seguro Médico Adeslas Plena Plus| Sin Copagos + Hospitalización",
-  seoDescription: "Adeslas Plena Total: seguro médico privado con hospitalización ilimitada, sin copagos y acceso a 40.000+ especialistas en España. Urgencias 24h. Desde 50,92€/mes.",
+  seoDescription: "Adeslas Plena Total: seguro médico privado con hospitalización ilimitada, sin copagos y acceso a +51.000 médicos en España. Urgencias 24h. Desde 50,92€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/asisa-completa",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-completa.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Total",
-    description: "Seguro médico privado con hospitalización ilimitada, sin copagos y acceso a más de 42.000 especialistas en España.",
+    description: "Seguro médico privado con hospitalización ilimitada, sin copagos y acceso a más de 51.000 médicos en España.",
     category: "Seguro de Salud",
     price: "50.92",
     pricePeriod: "month",
@@ -25,7 +25,7 @@ const data: ProductPageData = {
   heroTitle: "Seguro Médico Adeslas Plena Total",
   heroImage: heroImg,
   heroHighlight: "Sin Copagos · Hospitalización Ilimitada",
-  heroSubtitle: "Cobertura total con hospitalización y sin copagos. Acceso al cuadro médico nacional de Adeslas con más de 40.000 profesionales.",
+  heroSubtitle: "Cobertura total con hospitalización y sin copagos. Acceso al cuadro médico nacional de Adeslas con más de 51.000 médicos.",
   price: "50,92",
   pricePeriod: "mes",
   features: [
@@ -158,7 +158,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Puedo elegir médico o centro con Adeslas Plena Total?",
-      a: "Sí. Tienes libre elección entre más de 40.000 médicos y especialistas y más de 1.000 centros concertados en toda España, incluyendo los 18 hospitales y 36 centros médicos propios de Adeslas."
+      a: "Sí. Tienes libre elección entre más de 51.000 médicos y especialistas y más de 1.400 centros concertados en toda España, incluyendo los 18 hospitales y 36 centros médicos propios de Adeslas."
     },
     {
       q: "¿Cubre asistencia médica fuera de España?",

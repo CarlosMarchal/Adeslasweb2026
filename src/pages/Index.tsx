@@ -38,7 +38,7 @@ const Index = () => {
       alternateName: ["Adeslas", "SegurCaixa Adeslas", "Seguros Adeslas"],
       url: "https://adeslas.marchalaseguradores.es",
       logo: "https://adeslas.marchalaseguradores.es/logo-adeslas.png",
-      description: "Adeslas (SegurCaixa Adeslas) es la aseguradora de salud privada líder en España. Ofrece seguros médicos desde 21€/mes con acceso a más de 42.000 especialistas y 1.000 centros en toda España: Adeslas GO, Plena Vital, Plena Plus, Plena Total y Extra 150. Sin listas de espera, sin copagos y con precio garantizado 3 años.",
+      description: "Adeslas (SegurCaixa Adeslas) es la aseguradora de salud privada líder en España. Ofrece seguros médicos desde 21€/mes con acceso a más de 51.000 médicos y 1.400 centros en toda España: Adeslas GO, Plena Vital, Plena Plus, Plena Total y Extra 150. Sin listas de espera, sin copagos y con precio garantizado 3 años.",
       telephone: "+34917105000",
       email: "cmarchal@marchalconsultores.com",
       address: {
@@ -100,7 +100,7 @@ const Index = () => {
       "@type": "WebPage",
       "@id": "https://adeslas.marchalaseguradores.es/#webpage",
       name: "Adeslas — Seguros Médicos Privados en España",
-      description: "Adeslas (SegurCaixa Adeslas) es la aseguradora de salud privada líder en España. Seguros médicos desde 21€/mes: GO, Plena Vital, Plena Plus, Plena Total y Extra 150. Más de 42.000 especialistas, sin listas de espera, precio garantizado 3 años.",
+      description: "Adeslas (SegurCaixa Adeslas) es la aseguradora de salud privada líder en España. Seguros médicos desde 21€/mes: GO, Plena Vital, Plena Plus, Plena Total y Extra 150. Más de 51.000 médicos, sin listas de espera, precio garantizado 3 años.",
       speakable: {
         "@type": "SpeakableSpecification",
         cssSelector: ["h1", "h2", "#faq", ".product-card"],
@@ -129,7 +129,7 @@ const Index = () => {
   useSeo({
     title: "Adeslas — Seguro Médico Privado | Calcula tu Precio Desde 21€/mes",
     description:
-      "Adeslas: el seguro médico privado líder en España. GO desde 21€/mes, Plena Vital desde 38€/mes, Plena Total sin copagos desde 83€/mes. Más de 42.000 especialistas, sin listas de espera. Calcula tu precio en 2 minutos.",
+      "Adeslas: el seguro médico privado líder en España. GO desde 21€/mes, Plena Vital desde 38€/mes, Plena Total sin copagos desde 83€/mes. Más de 51.000 médicos, sin listas de espera. Calcula tu precio en 2 minutos.",
     canonical: "https://adeslas.marchalaseguradores.es/",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
@@ -161,7 +161,7 @@ const Index = () => {
       },
       {
         q: "¿Cuáles son las ventajas de Adeslas frente a otras aseguradoras?",
-        a: "SegurCaixa Adeslas es la aseguradora de salud líder en España, con más de 42.000 especialistas y más de 1.000 centros médicos en toda la geografía nacional. Acceso sin listas de espera, sin necesidad de derivación previa, y con la red de cuadro médico más amplia del sector.",
+        a: "SegurCaixa Adeslas es la aseguradora de salud líder en España, con más de 51.000 médicos y más de 1.400 centros médicos en toda la geografía nacional. Acceso sin listas de espera, sin necesidad de derivación previa, y con la red de cuadro médico más amplia del sector.",
       },
       {
         q: "¿Adeslas tiene telemedicina?",

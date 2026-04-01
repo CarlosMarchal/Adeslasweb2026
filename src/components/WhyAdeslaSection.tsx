@@ -5,7 +5,7 @@ const items = [
   { icon: "diagnostic", title: "Pruebas diagnósticas", desc: "Pruebas de imagen y análisis sin coste adicional" },
   { icon: "urgency", title: "Urgencias 24h", desc: "Atención inmediata ante situaciones de emergencia" },
   { icon: "teleconsult", title: "Videoconsultas y telemedicina 24H", desc: "Consultas online con receta médica incluida" },
-  { icon: "specialties", title: "Especialidades médicas", desc: "Acceso a más de 42.000 especialistas" },
+  { icon: "specialties", title: "Especialidades médicas", desc: "Acceso a más de 51.000 médicos" },
   { icon: "pregnancy", title: "Seguimiento del embarazo", desc: "Preparación al parto y seguimiento completo" },
   { icon: "rehab", title: "Rehabilitación y fisioterapia", desc: "Tratamientos de rehabilitación incluidos" },
   { icon: "abroad", title: "Asistencia en el extranjero", desc: "Cobertura cuando viajas fuera de España" },
@@ -92,7 +92,7 @@ const WhyAdeslaSection = () => (
         className="text-center mb-16"
       >
         <h2 className="text-[#1A3A5C] mb-3">¿Por qué elegir Adeslas como tu seguro médico privado?</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto text-lg">SegurCaixa Adeslas, la aseguradora de salud privada líder en España: más de 42.000 especialistas, 1.000+ centros y precios garantizados sin subidas durante 3 años</p>
+        <p className="text-gray-600 max-w-2xl mx-auto text-lg">SegurCaixa Adeslas, la aseguradora de salud privada líder en España: más de 51.000 médicos, +1.400 centros y precios garantizados sin subidas durante 3 años</p>
       </motion.div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {items.map((item, i) => (

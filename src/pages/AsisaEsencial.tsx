@@ -5,12 +5,12 @@ import heroImg from "@/assets/seguro-medico-asisa-esencial-e1765795761941.webp";
 
 const data: ProductPageData = {
   seoTitle: "Seguro Adeslas Plena Vital | Ambulatorio Sin Copagos desde 32,97€/mes",
-  seoDescription: "Adeslas Plena Vital: seguro médico ambulatorio sin copagos con acceso directo a 40.000+ especialistas, urgencias 24h y telemedicina incluida. Sin hospitalización. Desde 32,97€/mes.",
+  seoDescription: "Adeslas Plena Vital: seguro médico ambulatorio sin copagos con acceso directo a +51.000 médicos, urgencias 24h y telemedicina incluida. Sin hospitalización. Desde 32,97€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/asisa-esencial",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-esencial.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Vital",
-    description: "Seguro médico ambulatorio sin copagos con acceso directo a 40.000+ especialistas, urgencias 24h y telemedicina incluida.",
+    description: "Seguro médico ambulatorio sin copagos con acceso directo a +51.000 médicos, urgencias 24h y telemedicina incluida.",
     category: "Seguro de Salud",
     price: "38",
     pricePeriod: "month",
@@ -105,7 +105,7 @@ const data: ProductPageData = {
       items: [
         "Medicina general y especialidades",
         "Urgencias 24h domiciliarias",
-        "Libre elección médico 40.000+",
+        "Libre elección: +51.000 médicos",
         "Pediatría libre elección",
         "Enfermería",
         "Podología 12 sesiones",
@@ -150,7 +150,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Puedo elegir médico con Adeslas Plena Vital?",
-      a: "Sí. Tienes libre elección entre más de 40.000 médicos y especialistas del cuadro médico de Adeslas, sin necesidad de derivación previa. Puedes ir directamente al especialista que necesites."
+      a: "Sí. Tienes libre elección entre más de 51.000 médicos y especialistas del cuadro médico de Adeslas, sin necesidad de derivación previa. Puedes ir directamente al especialista que necesites."
     },
     {
       q: "¿Qué diferencia hay entre Adeslas Plena Vital y Adeslas Plena Total?",

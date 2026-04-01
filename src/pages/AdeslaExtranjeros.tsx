@@ -107,7 +107,7 @@ const data: ProductPageData = {
           />
         </svg>
       ),
-      title: "40.000+ profesionales",
+      title: "+51.000 médicos",
       description:
         "Acceso al cuadro médico nacional de Adeslas en toda España, sin listas de espera",
     },
@@ -126,7 +126,7 @@ const data: ProductPageData = {
     "Psicoterapia",
     "Telemedicina y videoconsultas",
     "Certificado oficial para visado de estudios",
-    "Red nacional de más de 40.000 profesionales",
+    "Red nacional de más de 51.000 médicos",
   ],
   tabs: [
     {
@@ -159,7 +159,7 @@ const data: ProductPageData = {
         "Psicoterapia",
         "Telemedicina y videoconsultas",
         "Certificado oficial para visado de estudios",
-        "Red nacional de más de 40.000 profesionales",
+        "Red nacional de más de 51.000 médicos",
       ],
     },
     {
@@ -239,7 +239,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Qué cobertura médica incluye Adeslas Health Students?",
-      a: (<>Adeslas Health Students incluye: medicina general y todas las especialidades médicas, urgencias 24 horas en toda España, hospitalización y cirugía, pruebas diagnósticas (analíticas, radiografías, ecografías, TAC), rehabilitación y fisioterapia, psicoterapia, y acceso a la red de más de 40.000 profesionales de Adeslas en todo el territorio nacional. Si después necesitas una cobertura más completa, puedes consultar <Link to="/adeslas-plena-total" style={{color: "#009FE3", textDecoration: "underline"}}>nuestros seguros de salud</Link>.</>)
+      a: (<>Adeslas Health Students incluye: medicina general y todas las especialidades médicas, urgencias 24 horas en toda España, hospitalización y cirugía, pruebas diagnósticas (analíticas, radiografías, ecografías, TAC), rehabilitación y fisioterapia, psicoterapia, y acceso a la red de más de 51.000 médicos de Adeslas en todo el territorio nacional. Si después necesitas una cobertura más completa, puedes consultar <Link to="/adeslas-plena-total" style={{color: "#009FE3", textDecoration: "underline"}}>nuestros seguros de salud</Link>.</>)
     },
     {
       q: "¿Qué diferencia hay entre Adeslas Health Students y Adeslas Health Residents?",

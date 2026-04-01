@@ -210,7 +210,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Puedo ir a cualquier médico o solo al cuadro médico?",
-      a: "Tienes total libertad. Puedes acudir a los 40.000+ médicos y especialistas del cuadro médico Adeslas sin trámites ni facturas, o elegir cualquier médico fuera del cuadro en España o el extranjero y solicitar el reembolso posterior.",
+      a: "Tienes total libertad. Puedes acudir a los +51.000 médicos y especialistas del cuadro médico Adeslas sin trámites ni facturas, o elegir cualquier médico fuera del cuadro en España o el extranjero y solicitar el reembolso posterior.",
     },
     {
       q: "¿Tiene copagos Adeslas Extra 150?",

@@ -278,7 +278,7 @@ const PreciosOfertasInner = () => {
                 {[
                   { icon: "⭐", text: "+30 años de experiencia" },
                   { icon: "🏥", text: "1.200+ centros médicos" },
-                  { icon: "👨‍⚕️", text: "+42.000 especialistas" },
+                  { icon: "👨‍⚕️", text: "+51.000 médicos" },
                 ].map((b) => (
                   <div
                     key={b.text}

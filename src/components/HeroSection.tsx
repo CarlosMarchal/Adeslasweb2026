@@ -29,7 +29,7 @@ const HeroSection = () => {
               Seguro Médico Adeslas — Encuentra el plan que mejor se adapta a ti
             </h1>
             <p className="text-white/85 mb-4 text-sm md:text-base leading-relaxed max-w-md">
-              Cobertura médica completa con +42.000 especialistas, sin listas de espera y sin subidas de prima durante 3 años.
+              Cobertura médica completa con +51.000 médicos, sin listas de espera y sin subidas de prima durante 3 años.
             </p>
             <div className="flex flex-wrap gap-3 mb-6">
               <button
@@ -53,8 +53,8 @@ const HeroSection = () => {
               {[
                 { emoji: "⭐", label: "+30 años de experiencia" },
                 { emoji: "🏥", label: "Sin listas de espera" },
-                { emoji: "👨‍⚕️", label: "+42.000 especialistas" },
-                { emoji: "🏨", label: "+1.000 centros" },
+                { emoji: "👨‍⚕️", label: "+51.000 médicos" },
+                { emoji: "🏨", label: "+1.400 centros" },
               ].map(({ emoji, label }) => (
                 <div key={label} className="flex items-center gap-1.5 text-white text-xs sm:text-sm">
                   <span className="w-8 h-8 rounded-full flex items-center justify-center text-sm flex-shrink-0" style={{ background: "rgba(255,255,255,0.15)" }}>{emoji}</span>

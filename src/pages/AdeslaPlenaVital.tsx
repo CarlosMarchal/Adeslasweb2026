@@ -142,7 +142,7 @@ const data: ProductPageData = {
       items: [
         "Limite máximo anual (LMA) de copagos: 300€/asegurado/año",
         "Medicina preventiva: chequeos anuales adaptados por edad",
-        "Libre elección entre 40.000+ médicos y 1.000+ centros",
+        "Libre elección entre +51.000 médicos y +1.400 centros",
         "Cuestionario de Salud obligatorio (evaluación médica previa)",
         "Carencias: 3-8 meses según cobertura",
         "Descuentos: 10% a partir de 4 asegurados",

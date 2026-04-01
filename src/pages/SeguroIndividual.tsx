@@ -6,7 +6,7 @@ const data: SegmentPageData = {
   heroBg,
   seo: {
     title: "Adeslas Seguro Médico Individual | Todos los Planes desde 21€/mes",
-    description: "Adeslas seguro médico individual desde 21€/mes. GO, Plena Vital, Plena Plus y Plena Total. Acceso a 42.000+ especialistas, urgencias 24h, hospitalización sin listas de espera. Calcula tu precio en 2 minutos.",
+    description: "Adeslas seguro médico individual desde 21€/mes. GO, Plena Vital, Plena Plus y Plena Total. Acceso a +51.000 médicos, urgencias 24h, hospitalización sin listas de espera. Calcula tu precio en 2 minutos.",
     canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-individual",
     ogImage: "https://adeslas.marchalaseguradores.es/og-individual.jpg",
     breadcrumbs: [
@@ -19,12 +19,12 @@ const data: SegmentPageData = {
   heroSubtitle: "Flexible, adaptado a tus necesidades y con acceso inmediato a especialistas. Protege tu salud con un seguro privado diseñado para ti.",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   contentTitle: "Un seguro médico pensado para ti",
-  contentDescription: "Si buscas un seguro médico privado individual en España, Adeslas ofrece la gama más completa del mercado: desde el plan más económico (Adeslas Go desde 21€/mes) hasta cobertura total sin copagos con Adeslas Plena Total. Sin listas de espera y con acceso inmediato a más de 42.000 especialistas en toda España.",
+  contentDescription: "Si buscas un seguro médico privado individual en España, Adeslas ofrece la gama más completa del mercado: desde el plan más económico (Adeslas Go desde 21€/mes) hasta cobertura total sin copagos con Adeslas Plena Total. Sin listas de espera y con acceso inmediato a más de 51.000 médicos en toda España.",
   contentFeatures: [
     { title: "Acceso inmediato a especialistas", description: "Sin listas de espera ni derivaciones. Consulta con cualquier especialista de la red Adeslas desde el primer día para urgencias, consultas y diagnósticos." },
     { title: "Flexibilidad total de plan", description: "Elige el plan que mejor se ajuste a tu presupuesto y necesidades: Adeslas Go, Plena Vital, Plena Plus, Plena Total o Extra 150." },
     { title: "Precios competitivos garantizados", description: "Desde 21€/mes (Adeslas Go) para adultos jóvenes. Precio fijo sin sorpresas ni revisiones anuales abusivas." },
-    { title: "Amplia red médica en toda España", description: "Más de 42.000 especialistas y 1.000 centros concertados. Sin derivaciones ni burocracia." },
+    { title: "Amplia red médica en toda España", description: "Más de 51.000 médicos y 1.400 centros concertados. Sin derivaciones ni burocracia." },
   ],
   productsTitle: "Planes individuales recomendados",
   productsSubtitle: "Elige el plan que mejor se adapte a tus necesidades y presupuesto",
@@ -34,7 +34,7 @@ const data: SegmentPageData = {
       slug: "/adeslas-plena-vital",
       price: "38",
       badge: "Económico",
-      features: ["Atención ambulatoria completa", "Acceso a +42.000 especialistas", "Urgencias 24h sin lista de espera", "Diagnóstico avanzado incluido", "Sin hospitalización programada"],
+      features: ["Atención ambulatoria completa", "Acceso a +51.000 médicos", "Urgencias 24h sin lista de espera", "Diagnóstico avanzado incluido", "Sin hospitalización programada"],
       highlighted: false,
       promoBadge: "🎁 Promoción puntos",
     },

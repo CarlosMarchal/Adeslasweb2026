@@ -6,7 +6,7 @@ import heroImg from "@/assets/seguro-medico-asisa-completa-plus-plus-e1765796355
 const data: ProductPageData = {
   seoTitle: "Seguro Adeslas Plena Total++ | Cobertura Total, Copago Máx. 300€/año",
   seoDescription:
-    "Adeslas Plena Total++: cobertura médica completa con hospitalización y copago limitado a 300€/año por asegurado. Urgencias, cirugía y 40.000+ especialistas. Desde 22,55€/mes.",
+    "Adeslas Plena Total++: cobertura médica completa con hospitalización y copago limitado a 300€/año por asegurado. Urgencias, cirugía y +51.000 médicos. Desde 22,55€/mes.",
   seoCanonical:
     "https://adeslas.marchalaseguradores.es/asisa-completa-plus-plus",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-completa-plusplus.jpg",
@@ -28,7 +28,7 @@ const data: ProductPageData = {
   heroImage: heroImg,
   heroHighlight: "Cobertura Total · Copago Máx. 300€/año",
   heroSubtitle:
-    "Cobertura médica integral con copagos medios y un límite máximo anual de 300€. Más de 40.000 profesionales y 1.000 centros.",
+    "Cobertura médica integral con copagos medios y un límite máximo anual de 300€. Más de 51.000 médicos y 1.400 centros.",
   price: "62",
   cardName: "Adeslas Plena Plus++",
   cardDescription:
@@ -97,8 +97,8 @@ const data: ProductPageData = {
       ),
     },
     {
-      title: "40.000+ especialistas",
-      description: "Médicos y 1.000+ centros en España",
+      title: "+51.000 médicos",
+      description: "Médicos y +1.400 centros en España",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="9" r="4" stroke="#1c4a8d" strokeWidth="1.5" />
@@ -230,7 +230,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Puedo elegir médico y centro con Adeslas Plena Total++?",
-      a: "Sí. Libre elección entre más de 40.000 médicos y especialistas y más de 1.000 centros concertados de Adeslas en toda España.",
+      a: "Sí. Libre elección entre más de 51.000 médicos y especialistas y más de 1.400 centros concertados de Adeslas en toda España.",
     },
     {
       q: "¿Tiene carencias Adeslas Plena Total++?",

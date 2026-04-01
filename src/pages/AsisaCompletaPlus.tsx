@@ -11,7 +11,7 @@ const data: ProductPageData = {
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-completa-plus.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Total+",
-    description: "Seguro médico con hospitalización y copago reducido. Acceso al cuadro médico nacional de Adeslas con más de 40.000 profesionales.",
+    description: "Seguro médico con hospitalización y copago reducido. Acceso al cuadro médico nacional de Adeslas con más de 51.000 médicos.",
     category: "Seguro de Salud",
     price: "48.50",
     pricePeriod: "month",
@@ -99,8 +99,8 @@ const data: ProductPageData = {
       ),
     },
     {
-      title: "40.000+ especialistas",
-      description: "Libre elección de médicos y 1.000 centros",
+      title: "+51.000 médicos",
+      description: "Libre elección de médicos y 1.400 centros",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="9" r="4" stroke="#1c4a8d" strokeWidth="1.5" />
@@ -162,7 +162,7 @@ const data: ProductPageData = {
       items: [
         "Medicina general y todas las especialidades",
         "Urgencias 24h y hospitalización completa",
-        "Libre elección: 40.000+ médicos y 1.000+ centros",
+        "Libre elección: +51.000 médicos y +1.400 centros",
         "Pediatría hasta 14 años",
         "Enfermería domiciliaria",
         "Podología: 12 sesiones/año",
@@ -219,7 +219,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Puedo elegir médico o centro con Adeslas Plena Total+?",
-      a: "Sí. Tienes libre elección entre más de 40.000 médicos y especialistas y más de 1.000 centros concertados de Adeslas en toda España.",
+      a: "Sí. Tienes libre elección entre más de 51.000 médicos y especialistas y más de 1.400 centros concertados de Adeslas en toda España.",
     },
     {
       q: "¿Cubre trasplantes e implantes Adeslas Plena Total+?",

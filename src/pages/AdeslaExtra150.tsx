@@ -29,7 +29,7 @@ const data: ProductPageData = {
   heroImage: heroImg,
   heroHighlight: "Cuadro Médico + Reembolso 80% (Máx. 150.000€/año)",
   heroSubtitle:
-    "Sin copagos. Elige entre la red Adeslas (40.000+ profesionales) o cualquier médico en España/extranjero. Reembolsamos 80% de costos. Máximo garantizado 150.000€/año.",
+    "Sin copagos. Elige entre la red Adeslas (+51.000 médicos) o cualquier médico en España/extranjero. Reembolsamos 80% de costos. Máximo garantizado 150.000€/año.",
   price: "90",
   cardName: "Adeslas Plena Extra 150",
   cardDescription:
@@ -101,8 +101,8 @@ const data: ProductPageData = {
       ),
     },
     {
-      title: "40.000+ especialistas",
-      description: "Libre elección de médicos y 1.000 centros",
+      title: "+51.000 médicos",
+      description: "Libre elección de médicos y 1.400 centros",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="9" r="4" stroke="#1c4a8d" strokeWidth="1.5" />
@@ -205,7 +205,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Cómo funciona el reembolso 80% fuera de red?",
-      a: "Adeslas Plena Extra 150 tiene DOS modalidades: 1) CUADRO MÉDICO: usas red Adeslas (40.000+ profesionales) SIN copagos. 2) REEMBOLSO: eliges cualquier médico/centro en España o extranjero, pagas en el momento y Adeslas reembolsa 80% del coste dentro de 15 días hábiles. Puedes combinar ambas modalidades."
+      a: "Adeslas Plena Extra 150 tiene DOS modalidades: 1) CUADRO MÉDICO: usas red Adeslas (+51.000 médicos) SIN copagos. 2) REEMBOLSO: eliges cualquier médico/centro en España o extranjero, pagas en el momento y Adeslas reembolsa 80% del coste dentro de 15 días hábiles. Puedes combinar ambas modalidades."
     },
     {
       q: "¿Cuál es el límite máximo anual (150.000€)?",
@@ -213,7 +213,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Tiene copagos Adeslas Plena Extra 150?",
-      a: "NO. Adeslas Plena Extra 150 tiene CERO copagos cuando utilizas la red Adeslas (40.000+ médicos). Si eliges profesional fuera de red, tú pagas 100% en el momento y Adeslas reembolsa 80%, lo que significa tu copago efectivo es 20%."
+      a: "NO. Adeslas Plena Extra 150 tiene CERO copagos cuando utilizas la red Adeslas (+51.000 médicos). Si eliges profesional fuera de red, tú pagas 100% en el momento y Adeslas reembolsa 80%, lo que significa tu copago efectivo es 20%."
     },
     {
       q: "¿Cubre trasplantes?",

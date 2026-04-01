@@ -23,7 +23,7 @@ const productData: Record<string, {
     highlight: "Cobertura ambulatoria completa desde el primer día",
     features: [
       "Medicina general y urgencias 24h",
-      "+42.000 especialistas médicos en España",
+      "+51.000 médicos médicos en España",
       "Diagnósticos y pruebas médicas básicas",
       "Pediatría y ginecología incluidas",
       "Doctor Virtual disponible 24h",
@@ -58,7 +58,7 @@ const productData: Record<string, {
     features: [
       "Sin copago en consultas y urgencias",
       "Hospitalización y cirugía completas",
-      "+42.000 especialistas en toda España",
+      "+51.000 médicos en toda España",
       "Diagnósticos de alta tecnología (TAC, resonancias…)",
       "Rehabilitación y fisioterapia incluidas",
       "Cobertura internacional hasta 14.000€",
@@ -384,7 +384,7 @@ const MiPrecio = () => {
               </div>
               <div className="flex items-center gap-2.5 text-sm text-gris-texto">
                 <Star className="w-4 h-4 flex-shrink-0 text-[#003087]" />
-                <span>+42.000 especialistas en toda España</span>
+                <span>+51.000 médicos en toda España</span>
               </div>
               <div className="flex items-center gap-2.5 text-sm text-gris-texto">
                 <Award className="w-4 h-4 flex-shrink-0 text-[#003087]" />

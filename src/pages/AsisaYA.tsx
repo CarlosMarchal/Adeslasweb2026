@@ -172,7 +172,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Puedo elegir médico con Adeslas Go?",
-      a: "Sí. Adeslas Go ofrece libre elección entre los médicos y especialistas del cuadro médico de Adeslas, con acceso a más de 40.000 profesionales y 1.000 centros en toda España."
+      a: "Sí. Adeslas Go ofrece libre elección entre los médicos y especialistas del cuadro médico de Adeslas, con acceso a más de 51.000 médicos y 1.400 centros en toda España."
     },
     {
       q: "¿Hasta qué edad puedo contratar Adeslas Go?",

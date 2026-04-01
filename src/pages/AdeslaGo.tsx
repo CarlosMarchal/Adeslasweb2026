@@ -107,7 +107,7 @@ const data: ProductPageData = {
         "Descuento dental: módulo Adeslas DENTAL FAMILIA con 15% descuento",
         "Descuento 10% a partir de 2 asegurados",
         "Bonificaciones por forma de pago: trimestral 2%, semestral 4%, anual 6%",
-        "Libre elección entre 40.000+ médicos y 1.000+ centros"
+        "Libre elección entre +51.000 médicos y +1.400 centros"
       ]
     },
     {

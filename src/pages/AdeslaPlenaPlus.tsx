@@ -6,13 +6,13 @@ import heroImg from "@/assets/seguro-medico-asisa-completa-plus-plus-e1765796355
 const data: ProductPageData = {
   seoTitle: "Seguro Adeslas Plena Plus | Sin Copagos + Red Adeslas Completa",
   seoDescription:
-    "Adeslas Plena Plus: seguro médico sin copagos con cobertura completa (hospitalización, todas las especialidades, cirugía). Acceso 40.000+ profesionales. Desde 62,55€/mes.",
+    "Adeslas Plena Plus: seguro médico sin copagos con cobertura completa (hospitalización, todas las especialidades, cirugía). Acceso +51.000 médicos. Desde 62,55€/mes.",
   seoCanonical:
     "https://adeslas.marchalaseguradores.es/adeslas-plena-plus",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-plena-plus.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Plus",
-    description: "Seguro médico sin copagos con cobertura completa: hospitalización, especialidades y cirugía. Red Adeslas 40.000+ profesionales.",
+    description: "Seguro médico sin copagos con cobertura completa: hospitalización, especialidades y cirugía. Red Adeslas +51.000 médicos.",
     category: "Seguro de Salud",
     price: "62",
     pricePeriod: "month",
@@ -29,7 +29,7 @@ const data: ProductPageData = {
   heroImage: heroImg,
   heroHighlight: "Sin Copagos · Cobertura Médica Completa",
   heroSubtitle:
-    "Seguro sin copagos con cobertura médica completa (hospitalización ilimitada, todas las especialidades, cirugía). Acceso red Adeslas con 40.000+ profesionales.",
+    "Seguro sin copagos con cobertura médica completa (hospitalización ilimitada, todas las especialidades, cirugía). Acceso red Adeslas con +51.000 médicos.",
   price: "62",
   cardName: "Adeslas Plena Plus",
   cardDescription:
@@ -46,7 +46,7 @@ const data: ProductPageData = {
     "Psicología clínica y psiquiatría (máx. 20 sesiones/año)",
     "Rehabilitación y fisioterapia sin límite de sesiones",
     "Medicina preventiva incluida",
-    "Libre elección: 40.000+ médicos y 1.000+ centros"
+    "Libre elección: +51.000 médicos y +1.400 centros"
   ],
   features: [
     {
@@ -85,8 +85,8 @@ const data: ProductPageData = {
       ),
     },
     {
-      title: "40.000+ especialistas",
-      description: "Médicos y 1.000+ centros en España",
+      title: "+51.000 médicos",
+      description: "Médicos y +1.400 centros en España",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="9" r="4" stroke="#1c4a8d" strokeWidth="1.5" />
@@ -143,7 +143,7 @@ const data: ProductPageData = {
       items: [
         "SIN COPAGOS en todos los servicios",
         "Cobertura médica IDÉNTICA a Adeslas Plena Total",
-        "Libre elección entre 40.000+ médicos y 1.000+ centros",
+        "Libre elección entre +51.000 médicos y +1.400 centros",
         "Medicina preventiva incluida",
         "NO incluye cobertura dental (diferencia con Plena Total)",
         "Asistencia en viaje hasta 12.000€/año (emergencias médicas en España y extranjero)",
