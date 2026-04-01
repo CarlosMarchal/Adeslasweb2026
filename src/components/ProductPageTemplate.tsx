@@ -11,6 +11,7 @@ import Tarificador from "@/components/Tarificador";
 import CtaSection from "@/components/CtaSection";
 import { usePhonePopup } from "@/components/PhonePopupContext";
 import heroBg from "@/assets/asisa_salud_seguro_medico.webp";
+import ofertaPuntos from "@/assets/oferta-puntos-adeslas.svg";
 
 /* ───────── Types ───────── */
 
@@ -206,34 +207,30 @@ const ProductHero = ({
     {/* Dark overlay — same approach as home HeroSection */}
     <div className="absolute inset-0 bg-black/55" />
 
+    {/* Promo puntos regalo — flotante esquina inferior derecha, solo desktop */}
+    {data.heroPromo && (
+      <motion.div
+        initial={{ opacity: 0, y: 16, scale: 0.92 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 0.7, duration: 0.5, ease: "easeOut" }}
+        className="absolute bottom-5 right-6 z-20 hidden lg:block pointer-events-none"
+        title={data.heroPromo}
+      >
+        <img
+          src={ofertaPuntos}
+          alt="Oferta puntos regalo Adeslas"
+          style={{ width: 170, filter: "drop-shadow(0 4px 18px rgba(0,0,0,0.35))" }}
+        />
+      </motion.div>
+    )}
+
     <div className="container mx-auto px-4 py-10 lg:py-14 relative z-10">
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="lg:pl-14 xl:pl-24">
           {data.badge && (
-            <div className="flex items-center gap-2.5 mb-5 flex-wrap">
-              <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm text-white border" style={{ borderColor: "rgba(255,255,255,0.4)", background: "transparent" }}>
-                <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "#009FE3" }} />
-                {data.badge}
-              </div>
-              {data.heroPromo && (
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.5, type: "spring", stiffness: 280, damping: 20 }}
-                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[11px] font-bold cursor-default"
-                  style={{
-                    background: "linear-gradient(135deg, #F6A623 0%, #F47B20 100%)",
-                    color: "rgba(255,255,255,0.93)",
-                    boxShadow: "0 2px 8px rgba(244,123,32,0.35)",
-                    whiteSpace: "nowrap",
-                    opacity: 0.88,
-                  }}
-                  title={data.heroPromo}
-                >
-                  <span style={{ fontSize: 12 }}>🎁</span>
-                  <span>Puntos regalo</span>
-                </motion.div>
-              )}
+            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full mb-5 text-sm text-white border" style={{ borderColor: "rgba(255,255,255,0.4)", background: "transparent" }}>
+              <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "#009FE3" }} />
+              {data.badge}
             </div>
           )}
 
