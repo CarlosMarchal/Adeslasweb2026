@@ -554,14 +554,14 @@ const Header = () => {
         ) : (
           <button onClick={() => setShowPhonePopup(true)}
             className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm border-2 active:scale-[0.98]"
-            style={{ borderColor: "#E4097D", color: "#E4097D" }}>
+            style={{ borderColor: "#003087", color: "#003087" }}>
             <Phone className="w-4 h-4" />
             Te llamamos
           </button>
         )}
         <button onClick={onCalcClick ?? openTarificador}
           className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm text-white active:scale-[0.98]"
-          style={{ backgroundColor: "#E4097D" }}>
+          style={{ backgroundColor: "#003087" }}>
           {calcLabel ?? "Calcular mi precio"}
         </button>
       </div>

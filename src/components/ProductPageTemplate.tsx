@@ -626,11 +626,12 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
   const openCustom = data.customTarificador ? () => setCustomTarificadorOpen(true) : undefined;
   const { openPhonePopup } = usePhonePopup();
 
-  // Pages with customTarificador (ContactCtaCard) have no calculator:
-  // mobile CTA goes directly to the phone popup instead of a modal.
+  // Mobile sticky CTA routing:
+  // - customTarificador pages → phone popup (no calculator)
+  // - regular product pages  → scroll to the inline tarificador below the hero
   const mobileCalcAction = data.customTarificador
     ? () => openPhonePopup()
-    : openCustom;
+    : () => document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth" });
   const mobileCalcLabel = data.customTarificador ? "Solicitar llamada" : undefined;
 
   useEffect(() => {
