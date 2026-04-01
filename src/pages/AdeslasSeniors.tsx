@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
-import heroImg from "@/assets/hero-seguro-mayores.jpg";
+import heroImg from "@/assets/seguro-medico-adeslas-seniors.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Seniors | Seguro Médico para Mayores de 55 años desde 67,50€",

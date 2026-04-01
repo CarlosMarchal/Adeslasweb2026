@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import TarificadorExtranjeros from "@/components/TarificadorExtranjeros";
-import heroImg from "@/assets/seguro-salud-asisa-extranjeros-e1765797698492.webp";
+import heroImg from "@/assets/seguro-salud-adeslas-extranjeros.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Extranjeros | Seguro Médico para Estudiantes y Residentes en España desde 38€",

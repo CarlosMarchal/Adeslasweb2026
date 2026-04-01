@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
-import heroImg from "@/assets/seguro-medico-asisa-completa-plus-plus-e1765796355480.webp";
+import heroImg from "@/assets/seguro-medico-adeslas-plena-plus.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Plena Plus | Seguro Médico Sin Copagos · Cobertura Completa",

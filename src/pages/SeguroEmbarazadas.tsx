@@ -1,6 +1,6 @@
 import SegmentPageTemplate from "@/components/SegmentPageTemplate";
 import type { SegmentPageData } from "@/components/SegmentPageTemplate";
-import heroBg from "@/assets/Embarazadas.jpg";
+import heroBg from "@/assets/seguro-salud-adeslas-embarazo.webp";
 
 const data: SegmentPageData = {
   heroBg,

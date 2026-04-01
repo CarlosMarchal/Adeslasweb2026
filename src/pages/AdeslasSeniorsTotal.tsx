@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
-import heroImg from "@/assets/hero-seguro-mayores.jpg";
+import heroImg from "@/assets/seguro-medico-adeslas-seniors-total.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Seniors Total | Cobertura Completa para Mayores de 63 años desde 101€",

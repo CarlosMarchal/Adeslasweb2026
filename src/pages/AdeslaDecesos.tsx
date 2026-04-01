@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
-import heroImg from "@/assets/seguro-decesos-asisa-e1765797117726.webp";
+import heroImg from "@/assets/seguro-decesos-adeslas.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Decesos | Sepelio, Repatriación y Trámites desde 9€/mes",

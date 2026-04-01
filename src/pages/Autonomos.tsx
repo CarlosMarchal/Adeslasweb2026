@@ -1,7 +1,7 @@
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
-import heroImg from "@/assets/seguro-medico-asisa-autonomos-e1765796682535.webp";
+import heroImg from "@/assets/seguro-medico-adeslas-autonomos.webp";
 
 const MedicalIcon = () => (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none">

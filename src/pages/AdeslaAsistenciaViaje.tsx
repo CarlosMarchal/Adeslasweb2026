@@ -1,7 +1,7 @@
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
-import heroImg from "@/assets/asisa_salud_seguro_medico.webp";
+import heroImg from "@/assets/seguro-viaje-adeslas.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Viaje | Seguro de Asistencia en Viaje desde 8,50€/día — Cobertura Mundial",

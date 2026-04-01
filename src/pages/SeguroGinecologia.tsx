@@ -1,6 +1,6 @@
 import SegmentPageTemplate from "@/components/SegmentPageTemplate";
 import type { SegmentPageData } from "@/components/SegmentPageTemplate";
-import heroBg from "@/assets/ginecologia.jpg";
+import heroBg from "@/assets/seguro-salud-adeslas-ginecologia.webp";
 
 const data: SegmentPageData = {
   heroBg,
@@ -8,7 +8,7 @@ const data: SegmentPageData = {
     title: "Adeslas Ginecología | Seguro Médico con Cobertura Ginecológica Completa",
     description: "Seguro médico con ginecología Adeslas: revisiones, mamografía, citología, salud hormonal y reproducción asistida. Especialistas sin esperas. Sin copagos desde 50,92€/mes.",
     canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-ginecologia",
-    ogImage: "https://adeslas.marchalaseguradores.es/og-ginecologia.jpg",
+    ogImage: "https://adeslas.marchalaseguradores.es/og-seguro-salud-adeslas-ginecologia.webp",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
       { name: "Seguros Médicos", url: "https://adeslas.marchalaseguradores.es/" },

@@ -1,7 +1,7 @@
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
-import heroImg from "@/assets/seguro-medico-asisa-pymes-e1765796817464.webp";
+import heroImg from "@/assets/seguro-medico-adeslas-empresas.webp";
 
 const data: ProductPageData = {
   seoTitle: "Seguro Médico Adeslas para Empresas y Pymes | Beneficio Social · Sin Copago",

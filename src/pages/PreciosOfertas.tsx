@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 import CalcButton from "@/components/CalcButton";
 import CtaSection from "@/components/CtaSection";
 import Tarificador from "@/components/Tarificador";
-import heroBg from "@/assets/asisa_salud_seguro_medico.webp";
+import heroBg from "@/assets/adeslas-seguro-medico-ofertas.webp";
 
 /* ─────────── Product data ─────────── */
 

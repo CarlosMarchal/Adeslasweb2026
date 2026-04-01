@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
-import heroImg from "@/assets/seguro-medico-asisa-completa-plus.webp";
+import heroImg from "@/assets/seguro-medico-adeslas-extra-150.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Extra 150 | Seguro Médico Libre Elección · Reembolso 80%",

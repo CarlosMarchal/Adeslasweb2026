@@ -1,7 +1,7 @@
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
-import heroImg from "@/assets/seguro-mascotas-asisa.webp";
+import heroImg from "@/assets/seguro-mascotas-adeslas.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Mascotas | Seguro para Perros y Gatos desde 5,85€/mes",

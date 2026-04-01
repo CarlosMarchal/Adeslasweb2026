@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
-import heroImg from "@/assets/seguro-medico-asisa-ya.webp";
+import heroImg from "@/assets/seguro-medico-adeslas-go.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas GO | Seguro Médico Ambulatorio con Copago — Desde 21€/mes",

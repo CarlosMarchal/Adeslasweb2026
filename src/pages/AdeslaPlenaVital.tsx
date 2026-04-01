@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
-import heroImg from "@/assets/seguro-medico-asisa-esencial-e1765795761941.webp";
+import heroImg from "@/assets/seguro-medico-adeslas-plena-vital.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Plena Vital | Seguro Médico Completo con Tope de Copago — Desde 38€",

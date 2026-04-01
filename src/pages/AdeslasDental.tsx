@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
-import heroImg from "@/assets/seguro-dental-asisa-e1765797007662.webp";
+import heroImg from "@/assets/seguro-dental-adeslas.webp";
 
 const data: ProductPageData = {
   seoTitle: "Seguro Dental Adeslas | Sin Carencias desde Día 1 · Desde 9,45€/mes",
