@@ -26,7 +26,7 @@ const HeroSection = () => {
               Seguro de salud Adeslas
             </div>
             <h1 className="text-white mb-3 text-xl md:text-2xl lg:text-[1.5rem] leading-snug font-bold">
-              Seguro Médico Adeslas —<br /><span>Encuentra el plan que mejor se adapta a ti</span>
+              Seguro Médico Adeslas<br /><span>Encuentra el plan que mejor se adapta a ti</span>
             </h1>
             <p className="text-white/85 mb-4 text-sm md:text-base leading-relaxed max-w-md">
               Cobertura médica completa con +51.000 médicos, sin listas de espera y sin subidas de prima durante 3 años.
