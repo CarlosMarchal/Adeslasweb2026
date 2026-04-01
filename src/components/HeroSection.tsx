@@ -23,7 +23,7 @@ const HeroSection = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full mb-6 text-sm text-white border" style={{ borderColor: "rgba(255,255,255,0.4)", background: "transparent" }}>
               <span className="w-2 h-2 rounded-full" style={{ background: "#009DD9" }} />
-              Agencia exclusiva Adeslas — Marchal Aseguradores
+              Seguros Médicos Adeslas
             </div>
             <h1 className="text-white mb-3 text-xl md:text-2xl lg:text-[1.5rem] leading-snug font-bold">
               Seguros Médicos Adeslas<br /><span style={{ color: "#009FE3" }}>Compara planes y calcula tu precio ahora</span>

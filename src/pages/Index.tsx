@@ -152,9 +152,9 @@ const Index = () => {
   }, []);
 
   useSeo({
-    title: "Seguros Médicos Adeslas | +51.000 Médicos · Sin Listas de Espera · Desde 21€/mes",
+    title: "Adeslas Seguros Médicos | Salud Privada · +51.000 Médicos · Sin Listas de Espera",
     description:
-      "Contrata tu seguro médico Adeslas: GO desde 21€, Plena Vital desde 38€, Plena Vital Total desde 48,50€ (3 años sin subidas), Plena Total sin copagos desde 83€. +51.000 médicos. Calcula tu precio en 2 minutos.",
+      "Adeslas: seguro médico privado líder en España. GO desde 21€, Plena Vital desde 38€, Plena Vital Total desde 48,50€ (3 años sin subidas de prima), Plena Total sin copagos desde 83€. Más de 51.000 médicos y 1.400 centros. Calcula tu precio en 2 minutos.",
     canonical: "https://adeslas.marchalaseguradores.es/",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
