@@ -4,8 +4,8 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import heroImg from "@/assets/seguro-medico-asisa-esencial-e1765795761941.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Adeslas Plena Vital Total | Cobertura Completa con Copagos desde 48,50€",
-  seoDescription: "Adeslas Plena Vital Total: cobertura médica completa con hospitalización. Copago máximo 500€/año. Dental incluido. Sin subidas de prima 3 años. Desde 48,50€/mes.",
+  seoTitle: "Adeslas Plena Vital Total | Cobertura Total · 3 Años Sin Subida de Prima",
+  seoDescription: "Adeslas Plena Vital Total: cobertura hospitalaria completa con copago reducido y prima garantizada 3 años sin subidas. +51.000 médicos, dental y urgencias 24h. Desde 48,50€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-plena-vital-total",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-vital-total.jpg",
   seoProductSchema: {
@@ -24,10 +24,10 @@ const data: ProductPageData = {
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   cardPromoBadge: "🎁 Promoción puntos",
   badge: "3 años sin subidas de prima",
-  heroTitle: "Adeslas Plena Vital Total",
+  heroTitle: "Seguro Médico Adeslas Plena Vital Total",
   heroImage: heroImg,
-  heroHighlight: "Cobertura Completa con Tope de Copago",
-  heroSubtitle: "Seguro médico con hospitalización completa, dental incluido y un máximo de 500€ anuales en copagos. Sin subidas garantizadas durante 3 años.",
+  heroHighlight: "Cobertura Total · 3 Años Sin Subida de Prima",
+  heroSubtitle: "El único seguro Adeslas con hospitalización completa, copago reducido y precio garantizado durante 3 años. Más de 51.000 médicos y 1.400 centros sin listas de espera.",
   price: "48,50",
   pricePeriod: "mes",
   features: [

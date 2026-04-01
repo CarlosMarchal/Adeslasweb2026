@@ -19,9 +19,9 @@ const BlogSalud = () => {
   }, []);
 
   useSeo({
-    title: "Blog Salud Adeslas | Consejos de bienestar y prevención",
+    title: "Blog Salud Adeslas | Bienestar, Nutrición, Prevención y Seguros Médicos",
     description:
-      "Lee los mejores artículos sobre salud, nutrición, prevención y bienestar. Blog de salud de Adeslas con consejos de profesionales médicos.",
+      "Blog de salud Adeslas: artículos sobre bienestar, nutrición, prevención, salud mental, dental y seguros médicos privados. Consejos de asesores de salud para cuidarte mejor.",
     canonical: "https://adeslas.marchalaseguradores.es/blog",
   });
 
@@ -74,7 +74,7 @@ const BlogSalud = () => {
               className="text-lg max-w-2xl"
               style={{ color: "rgba(255,255,255,0.82)" }}
             >
-              Consejos de profesionales médicos sobre bienestar, nutrición, prevención y cuidado de la salud para ti y tu familia. Contenido avalado por la red Adeslas.
+              Consejos de asesores de salud sobre bienestar, nutrición, prevención y cuidado de la salud para ti y tu familia.
             </p>
           </motion.div>
         </div>

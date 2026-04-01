@@ -4,8 +4,8 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import heroImg from "@/assets/seguro-medico-asisa-ya.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro Adeslas GO | Seguro Ambulatorio desde 21€/mes",
-  seoDescription: "Adeslas GO: seguro médico ambulatorio con copagos limitados a 260€/año. Medicina general, especialidades, chequeo médico anual y más. Sin hospitalización ni cirugía. Desde 21€/mes.",
+  seoTitle: "Adeslas GO | Seguro Médico Ambulatorio con Copago — Desde 21€/mes",
+  seoDescription: "Adeslas GO: seguro médico con copago y cobertura ambulatoria completa. +51.000 médicos, sin listas de espera, urgencias 24h. Copagos máx. 260€/año. Desde 21€/mes. Calcula tu precio ahora.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-go",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-go.jpg",
   seoProductSchema: {
@@ -21,11 +21,11 @@ const data: ProductPageData = {
     { name: "Adeslas GO", url: "https://adeslas.marchalaseguradores.es/adeslas-go" },
   ],
   productSlug: "/adeslas-go",
-  badge: "Ambulatorio · LMA 260€/año",
+  badge: "Ambulatorio · Copago máx. 260€/año",
   heroTitle: "Seguro Médico Adeslas GO",
   heroImage: heroImg,
-  heroHighlight: "Ambulatorio · LMA 260€/año",
-  heroSubtitle: "Asistencia médica ambulatoria con copagos limitados. Medicina general, especialidades, chequeo anual adaptado a tu edad.",
+  heroHighlight: "Cobertura ambulatoria · Copago máximo 260€/año",
+  heroSubtitle: "Accede a +51.000 médicos y especialistas sin listas de espera. Medicina general, diagnóstico y urgencias 24h. Tu copago nunca supera 260€ al año.",
   price: "21",
   pricePeriod: "mes",
   features: [

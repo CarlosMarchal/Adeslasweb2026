@@ -4,7 +4,7 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import heroImg from "@/assets/seguro-medico-asisa-completa-plus-plus-e1765796355480.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro Adeslas Plena Plus | Sin Copagos + Red Adeslas Completa",
+  seoTitle: "Adeslas Plena Plus | Seguro Médico Sin Copagos · Cobertura Completa",
   seoDescription:
     "Adeslas Plena Plus: seguro médico sin copagos con cobertura completa (hospitalización, todas las especialidades, cirugía). Acceso +51.000 médicos. Desde 62,55€/mes.",
   seoCanonical:
@@ -24,10 +24,10 @@ const data: ProductPageData = {
   ],
   productSlug: "/adeslas-plena-plus",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
-  badge: "Sin copagos · Cobertura completa",
+  badge: "Sin copagos · Hospitalización incluida",
   heroTitle: "Seguro Médico Adeslas Plena Plus",
   heroImage: heroImg,
-  heroHighlight: "Sin Copagos · Cobertura Médica Completa",
+  heroHighlight: "Sin Copagos · Hospitalización y Especialidades",
   heroSubtitle:
     "Seguro sin copagos con cobertura médica completa (hospitalización ilimitada, todas las especialidades, cirugía). Acceso red Adeslas con +51.000 médicos.",
   price: "62",

@@ -4,7 +4,7 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import heroImg from "@/assets/seguro-medico-asisa-completa-plus.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro Adeslas Plena Extra 150 | Libre Elección + Red Adeslas (80% reembolso)",
+  seoTitle: "Adeslas Extra 150 | Seguro Médico Libre Elección · Reembolso 80%",
   seoDescription:
     "Adeslas Plena Extra 150: seguro médico sin copagos que combina red Adeslas (libre elección) con reembolso 80% fuera de red. Máximo 150.000€/año. Desde 90€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-extra-150",
@@ -24,10 +24,10 @@ const data: ProductPageData = {
   productSlug: "/adeslas-extra-150",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   cardPromoBadge: "🎁 Promoción puntos",
-  badge: "Libre elección + Reembolso 80%",
-  heroTitle: "Seguro Médico Adeslas Plena Extra 150",
+  badge: "Libre elección · Reembolso 80% · Máx. 150.000€/año",
+  heroTitle: "Seguro Médico Adeslas Extra 150",
   heroImage: heroImg,
-  heroHighlight: "Cuadro Médico + Reembolso 80% (Máx. 150.000€/año)",
+  heroHighlight: "Libre Elección de Médico · Reembolso 80%",
   heroSubtitle:
     "Sin copagos. Elige entre la red Adeslas (+51.000 médicos) o cualquier médico en España/extranjero. Reembolsamos 80% de costos. Máximo garantizado 150.000€/año.",
   price: "90",

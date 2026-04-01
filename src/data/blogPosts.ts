@@ -783,7 +783,7 @@ export const blogPosts: BlogPostFull[] = [
       },
       {
         type: "callout",
-        text: "La garantía de 3 años sin subida de prima es especialmente relevante si estás planificando un presupuesto familiar a medio plazo. Es el plan con mejor puntuación entre nuestros asegurados en términos de satisfacción.",
+        text: "La garantía de 3 años sin subida de prima es especialmente relevante si estás planificando un presupuesto familiar a medio plazo. Es uno de los planes con mayor valoración en satisfacción entre los asegurados que lo contratan.",
       },
       {
         type: "quote",
@@ -863,7 +863,7 @@ export const blogPosts: BlogPostFull[] = [
       },
       {
         type: "callout",
-        text: "Lo más acertado es calcular tu precio personalizado según tu edad, provincia y número de personas en el seguro. Usa nuestro comparador para ver tu precio exacto en segundos.",
+        text: "Lo más acertado es calcular tu precio personalizado según tu edad, provincia y número de personas en el seguro. Puedes usar el comparador de Marchal Aseguradores para ver tu precio exacto en segundos.",
       },
       {
         type: "paragraph",

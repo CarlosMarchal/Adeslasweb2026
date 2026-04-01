@@ -4,8 +4,8 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import heroImg from "@/assets/seguro-medico-asisa-completa.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro Médico Adeslas Plena Total | Sin Copagos + Dental + Viajes",
-  seoDescription: "Adeslas Plena Total: seguro médico completo sin copagos, hospitalización ilimitada, cobertura dental (46 actos), asistencia viajes 100.000€ y accidente. Desde 83€/mes.",
+  seoTitle: "Adeslas Plena Total | Seguro Médico Sin Copagos · Dental y Viajes Incluidos",
+  seoDescription: "Adeslas Plena Total: el seguro más completo sin copagos. Hospitalización ilimitada, dental (46 actos), asistencia en viajes 100.000€ y accidente. +51.000 médicos. Desde 83€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-plena-total",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-total.jpg",
   seoProductSchema: {
@@ -25,8 +25,8 @@ const data: ProductPageData = {
   badge: "3 años sin subidas de prima",
   heroTitle: "Seguro Médico Adeslas Plena Total",
   heroImage: heroImg,
-  heroHighlight: "Sin Copagos · Dental + Viajes + Accidente",
-  heroSubtitle: "Cobertura médica completa sin copagos, hospitalización ilimitada, dental (46 actos), asistencia viajes 100.000€ y protección por accidente.",
+  heroHighlight: "Sin Copagos · Dental · Viajes · El Más Completo",
+  heroSubtitle: "La cobertura más amplia de Adeslas: sin copagos en ningún servicio, hospitalización ilimitada, dental incluido, asistencia en viajes hasta 100.000€ y accidente. El más contratado.",
   price: "83",
   pricePeriod: "mes",
   features: [

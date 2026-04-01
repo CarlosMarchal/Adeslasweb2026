@@ -10,8 +10,8 @@ const MedicalIcon = () => (
 );
 
 const data: ProductPageData = {
-  seoTitle: "Adeslas NEGOCIOS — Seguro Médico para Autónomos | Sin Copago desde 55,50€",
-  seoDescription: "Adeslas NEGOCIOS: seguro médico para autónomos con NIF. Sin copagos, +51.000 médicos, 1.400 centros en España. Deducible en IRPF hasta 500€/año por asegurado. Desde 55,50€/mes.",
+  seoTitle: "Seguro Médico Adeslas para Autónomos | Deducible IRPF · Sin Copago",
+  seoDescription: "Seguro médico Adeslas para autónomos: sin copagos, deducible en IRPF hasta 500€/asegurado/año, +51.000 médicos y 1.400 centros. El seguro que cuida tu salud y te ahorra en impuestos.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/autonomos",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-autonomos.jpg",
   seoProductSchema: {
@@ -26,9 +26,9 @@ const data: ProductPageData = {
     { name: "Seguro Médico Autónomos Adeslas NEGOCIOS", url: "https://adeslas.marchalaseguradores.es/autonomos" },
   ],
   badge: "Autónomos · Sin Copago · Deducible IRPF",
-  heroTitle: "Seguro Médico para",
-  heroHighlight: "Autónomos — Adeslas NEGOCIOS",
-  heroSubtitle: "El seguro diseñado para autónomos. Sin copagos, cobertura completa con más de +51.000 médicos, y deducible en tu IRPF.",
+  heroTitle: "Seguro Médico Adeslas para",
+  heroHighlight: "Autónomos · Deducible IRPF · Sin Copago",
+  heroSubtitle: "El seguro médico Adeslas diseñado para autónomos: sin copagos, cobertura completa, +51.000 médicos sin listas de espera y hasta 500€/año deducibles en tu IRPF.",
   price: "55,50",
   pricePeriod: "mes",
   heroImage: heroImg,

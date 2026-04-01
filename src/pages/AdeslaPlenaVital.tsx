@@ -4,8 +4,8 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import heroImg from "@/assets/seguro-medico-asisa-esencial-e1765795761941.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Seguro Adeslas Plena Vital | Cobertura Completa + Copagos LMA 300€/año",
-  seoDescription: "Adeslas Plena Vital: seguro médico completo con hospitalización, todas las especialidades, urgencias 24h y copagos limitados a 300€/año. Desde 38€/mes.",
+  seoTitle: "Adeslas Plena Vital | Seguro Médico Completo con Tope de Copago — Desde 38€",
+  seoDescription: "Adeslas Plena Vital: hospitalización, todas las especialidades y urgencias 24h con copago máximo 300€/año. Red de +51.000 médicos y 1.400 centros. Sin listas de espera. Desde 38€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-plena-vital",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-vital.jpg",
   seoProductSchema: {
@@ -22,11 +22,11 @@ const data: ProductPageData = {
   ],
   productSlug: "/adeslas-plena-vital",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
-  badge: "Cobertura completa · LMA 300€/año",
+  badge: "Cobertura completa · Copago máx. 300€/año",
   heroTitle: "Seguro Médico Adeslas Plena Vital",
   heroImage: heroImg,
-  heroHighlight: "Cobertura Completa · LMA 300€/año",
-  heroSubtitle: "Hospitalización, cirugía y todas las especialidades incluidas. Copagos limitados a máximo 300€ anuales por asegurado.",
+  heroHighlight: "Hospitalización completa · Copago máximo 300€/año",
+  heroSubtitle: "Hospitalización, cirugía y todas las especialidades con acceso a +51.000 médicos. Nunca pagarás más de 300€ al año en copagos, aunque uses mucho el seguro.",
   price: "38",
   pricePeriod: "mes",
   features: [

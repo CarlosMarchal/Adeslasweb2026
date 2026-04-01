@@ -4,8 +4,8 @@ import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-medico-asisa-pymes-e1765796817464.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Adeslas Seguros Médicos para Empresas y Pymes | EMPRESAS desde 56€/mes",
-  seoDescription: "Adeslas ofrece seguros médicos para empresas y pymes sin copagos. EMPRESAS desde 56€/mes, PYMES TOTAL desde 60€/mes con chequeo anual, dental y garantía de precio 3 años. +51.000 médicos.",
+  seoTitle: "Seguro Médico Adeslas para Empresas y Pymes | Beneficio Social · Sin Copago",
+  seoDescription: "Seguro médico Adeslas para empresas y pymes: sin copagos, chequeo anual, dental y precio garantizado 3 años. Deducible al 100% para la empresa. +51.000 médicos. Desde 56€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/pymes-empresas",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-pymes-empresas.jpg",
   seoProductSchema: {
@@ -20,9 +20,9 @@ const data: ProductPageData = {
     { name: "Seguro Médico Pymes y Empresas Adeslas", url: "https://adeslas.marchalaseguradores.es/pymes-empresas" },
   ],
   badge: "Empresas · Sin Copago · Beneficio Social",
-  heroTitle: "Seguro Médico para",
-  heroHighlight: "Pymes y Empresas — Adeslas",
-  heroSubtitle: "El seguro médico de empresa sin copagos. Fideliza a tus empleados con la mejor sanidad privada y obtén ventajas fiscales para empresa y trabajadores.",
+  heroTitle: "Seguro Médico Adeslas para",
+  heroHighlight: "Pymes y Empresas · Beneficio Social · Deducible 100%",
+  heroSubtitle: "Ofrece a tus empleados el seguro médico Adeslas sin copagos, con chequeo anual incluido y precio garantizado 3 años. Deducible al 100% y sin listas de espera.",
   price: "56",
   pricePeriod: "mes",
   heroImage: heroImg,

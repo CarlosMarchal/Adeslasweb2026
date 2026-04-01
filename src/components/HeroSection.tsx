@@ -23,13 +23,13 @@ const HeroSection = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full mb-6 text-sm text-white border" style={{ borderColor: "rgba(255,255,255,0.4)", background: "transparent" }}>
               <span className="w-2 h-2 rounded-full" style={{ background: "#009DD9" }} />
-              Seguro de salud Adeslas
+              Agencia exclusiva Adeslas — Marchal Aseguradores
             </div>
             <h1 className="text-white mb-3 text-xl md:text-2xl lg:text-[1.5rem] leading-snug font-bold">
-              Seguro Médico Adeslas<br /><span>Encuentra el plan que mejor se adapta a ti</span>
+              Seguros Médicos Adeslas<br /><span style={{ color: "#009FE3" }}>Compara planes y calcula tu precio ahora</span>
             </h1>
             <p className="text-white/85 mb-4 text-sm md:text-base leading-relaxed max-w-md">
-              Cobertura médica completa con +51.000 médicos, sin listas de espera y sin subidas de prima durante 3 años.
+              GO desde 21€ · Plena Vital desde 38€ · Plena Total sin copagos desde 83€. Más de 51.000 médicos, sin listas de espera en toda España.
             </p>
             <div className="flex flex-wrap gap-3 mb-6">
               <button
