@@ -183,7 +183,6 @@ const faqs = [
 /* ─────────── Component ─────────── */
 
 const PreciosOfertasInner = () => {
-  const { openPhonePopup } = usePhonePopup();
   const { openTarificador } = useTarificador();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -212,10 +211,10 @@ const PreciosOfertasInner = () => {
         className="relative overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        {/* Dark overlay — igual que el resto de páginas */}
-        <div className="absolute inset-0 bg-black/58" />
+        {/* Dark overlay */}
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />
 
-        <div className="container mx-auto px-4 py-12 lg:py-16 relative z-10">
+        <div className="container mx-auto px-4 py-8 lg:py-10 relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
             {/* Left */}
             <motion.div
@@ -248,30 +247,6 @@ const PreciosOfertasInner = () => {
                 Compara todos los planes de salud Adeslas para particulares.
                 Calcula tu precio personalizado en menos de 2 minutos.
               </p>
-
-              <div className="flex flex-wrap gap-3 mb-8">
-                <CalcButton
-                  className="px-6 py-3 rounded-lg font-bold text-sm cursor-pointer btn-cta-white"
-                  style={{
-                    backgroundColor: "#fff",
-                    color: "#003087",
-                    borderRadius: "7px",
-                  }}
-                >
-                  Calcular mi precio →
-                </CalcButton>
-                <button
-                  onClick={openPhonePopup}
-                  className="px-6 py-3 rounded-lg font-bold text-sm border cursor-pointer btn-cta-ghost"
-                  style={{
-                    borderColor: "rgba(255,255,255,0.4)",
-                    color: "#fff",
-                    borderRadius: "7px",
-                  }}
-                >
-                  Te llamamos gratis
-                </button>
-              </div>
 
               {/* Trust badges */}
               <div className="flex flex-wrap gap-4">

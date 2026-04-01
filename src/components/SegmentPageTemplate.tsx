@@ -1,14 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2, ArrowRight, Phone } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import { TarificadorProvider } from "@/components/TarificadorContext";
-import { usePhonePopup } from "@/components/PhonePopupContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Tarificador from "@/components/Tarificador";
-import CalcButton from "@/components/CalcButton";
 import CtaSection from "@/components/CtaSection";
 import defaultHeroBg from "@/assets/asisa_salud_seguro_medico.webp";
 
@@ -63,7 +61,6 @@ export interface SegmentPageData {
 /* ───── Template ───── */
 
 const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
-  const { openPhonePopup } = usePhonePopup();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useSeo({
@@ -91,7 +88,7 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/65" />
 
-          <div className="container mx-auto px-4 py-7 lg:py-10 relative z-10">
+          <div className="container mx-auto px-4 py-5 lg:py-7 relative z-10">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
               {/* Left: text */}
               <motion.div
@@ -103,30 +100,12 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
                 <h1 className="text-white mb-3 text-[1.15rem] sm:text-xl md:text-2xl lg:text-[1.65rem] leading-snug font-bold">
                   {data.heroTitle}
                 </h1>
-                <p className="text-base mb-4 max-w-xl" style={{ color: "rgba(255,255,255,0.88)" }}>
+                <p className="text-base mb-6 max-w-xl" style={{ color: "rgba(255,255,255,0.88)" }}>
                   {data.heroSubtitle}
                 </p>
 
-                {/* CTA buttons */}
-                <div className="flex flex-wrap gap-3 mb-8 lg:mb-0">
-                  <CalcButton
-                    className="px-6 py-3 rounded-lg font-bold text-sm cursor-pointer btn-cta-white"
-                    style={{ backgroundColor: "#fff", color: "#003087", borderRadius: "7px" }}
-                  >
-                    Calcular mi precio →
-                  </CalcButton>
-                  <button
-                    onClick={openPhonePopup}
-                    className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm border cursor-pointer btn-cta-ghost"
-                    style={{ borderColor: "rgba(255,255,255,0.4)", color: "#fff", borderRadius: "7px" }}
-                  >
-                    <Phone className="w-4 h-4" />
-                    Te llamamos ahora
-                  </button>
-                </div>
-
                 {/* Trust badges */}
-                <div className="flex flex-wrap gap-3 mt-6">
+                <div className="flex flex-wrap gap-3">
                   {[
                     { emoji: "⭐", label: "+30 años de experiencia" },
                     { emoji: "🏥", label: "Sin listas de espera" },

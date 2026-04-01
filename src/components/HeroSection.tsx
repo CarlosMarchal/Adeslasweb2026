@@ -1,20 +1,16 @@
 import { motion } from "framer-motion";
 import Tarificador from "@/components/Tarificador";
 import heroBg from "@/assets/asisa_salud_seguro_medico.webp";
-import CalcButton from "@/components/CalcButton";
-import { usePhonePopup } from "@/components/PhonePopupContext";
 
 const HeroSection = () => {
-  const { openPhonePopup } = usePhonePopup();
-
   return (
     <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})` }} role="img" aria-label="Seguro médico Adeslas — pareja sonriente con cobertura sanitaria privada completa">
       {/* Dark overlay */}
       <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />
 
-      <div className="max-w-[1280px] mx-auto px-12 lg:px-20 py-7 lg:py-10 relative z-10">
+      <div className="max-w-[1280px] mx-auto px-12 lg:px-20 py-5 lg:py-7 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
-          {/* Left column: badge, h1, description, CTAs, trust badges */}
+          {/* Left column: badge, h1, description, trust badges */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -27,26 +23,9 @@ const HeroSection = () => {
             <h1 className="text-white mb-3 text-xl md:text-2xl lg:text-[1.5rem] leading-snug font-bold">
               Seguros Médicos Adeslas<br /><span style={{ color: "#009FE3" }}>Compara planes y calcula tu precio ahora</span>
             </h1>
-            <p className="text-white/85 mb-4 text-sm md:text-base leading-relaxed max-w-md">
+            <p className="text-white/85 mb-6 text-sm md:text-base leading-relaxed max-w-md">
               GO desde 21€ · Plena Vital desde 38€ · Plena Total sin copagos desde 83€. Más de 51.000 médicos, sin listas de espera en toda España.
             </p>
-            <div className="flex flex-wrap gap-3 mb-6">
-              <button
-                onClick={() => document.getElementById('tarificador-mobile')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-6 py-3 rounded-lg font-bold text-sm cursor-pointer btn-cta-white"
-                style={{ backgroundColor: "#fff", color: "#003087", borderRadius: "7px" }}
-              >
-                Calcular mi precio →
-              </button>
-              <button
-                onClick={openPhonePopup}
-                className="px-6 py-3 rounded-lg font-bold text-sm border cursor-pointer flex items-center gap-2 btn-cta-ghost"
-                style={{ borderColor: "rgba(255,255,255,0.5)", color: "#fff", borderRadius: "7px", background: "rgba(255,255,255,0.1)" }}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                Te llamamos ahora
-              </button>
-            </div>
             {/* Trust badges */}
             <div className="flex flex-wrap gap-3">
               {[
