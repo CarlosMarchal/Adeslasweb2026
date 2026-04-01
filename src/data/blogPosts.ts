@@ -881,3 +881,6 @@ export const blogPosts: BlogPostFull[] = [
 
 export const getPostBySlug = (slug: string) =>
   blogPosts.find((p) => p.slug === slug);
+
+export const getRelatedPosts = (slugs: string[]) =>
+  slugs.map((s) => blogPosts.find((p) => p.slug === s)).filter(Boolean) as BlogPostFull[];
