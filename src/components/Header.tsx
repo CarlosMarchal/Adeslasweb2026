@@ -409,7 +409,7 @@ const Header = () => {
                     onMouseLeave={closeMega}
                   >
                     <button
-                      className="flex items-center gap-1 px-3 py-1.5 text-sm font-bold rounded-md transition-colors duration-150 hover:bg-white hover:text-[#009FE3]"
+                      className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-150 hover:bg-white hover:text-[#009FE3]"
                       style={{ color: megaOpen === item.key ? "#009FE3" : "#374151" }}
                     >
                       {item.label}
@@ -423,7 +423,7 @@ const Header = () => {
                   <Link
                     key={item.key}
                     to={item.to!}
-                    className="px-3 py-1.5 text-sm font-bold rounded-md transition-colors duration-150 hover:bg-white hover:text-[#009FE3]"
+                    className="px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-150 hover:bg-white hover:text-[#009FE3]"
                     style={{ color: "#374151" }}
                   >
                     {item.label}
