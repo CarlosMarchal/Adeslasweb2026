@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: "¿Puedo contratar Adeslas si soy autónomo?",
-    a: "Sí, y es una de las mejores decisiones fiscales y sanitarias que puedes tomar. Adeslas NEGOCIOS está diseñado específicamente para autónomos con NIF: sin copagos, cobertura completa con más de 48.000 médicos y 1.500 centros en toda España. Además, los autónomos pueden deducirse hasta 500€ por persona asegurada al año en el IRPF (incluidos cónyuge e hijos). Solicita tu precio personalizado sin compromiso.",
+    a: "Sí, y es una de las mejores decisiones fiscales y sanitarias que puedes tomar. Adeslas NEGOCIOS está diseñado específicamente para autónomos con NIF: sin copagos, cobertura completa con más de +51.000 médicos y 1.400 centros en toda España. Además, los autónomos pueden deducirse hasta 500€ por persona asegurada al año en el IRPF (incluidos cónyuge e hijos). Solicita tu precio personalizado sin compromiso.",
   },
   {
     q: "¿Adeslas tiene seguro dental?",

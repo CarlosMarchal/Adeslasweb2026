@@ -11,12 +11,12 @@ const MedicalIcon = () => (
 
 const data: ProductPageData = {
   seoTitle: "Adeslas NEGOCIOS — Seguro Médico para Autónomos | Sin Copago desde 55,50€",
-  seoDescription: "Adeslas NEGOCIOS: seguro médico para autónomos con NIF. Sin copagos, +48.000 médicos, 1.500 centros en España. Deducible en IRPF hasta 500€/año por asegurado. Desde 55,50€/mes.",
+  seoDescription: "Adeslas NEGOCIOS: seguro médico para autónomos con NIF. Sin copagos, +51.000 médicos, 1.400 centros en España. Deducible en IRPF hasta 500€/año por asegurado. Desde 55,50€/mes.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/autonomos",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-autonomos.jpg",
   seoProductSchema: {
     name: "Adeslas NEGOCIOS — Seguro Médico Autónomos",
-    description: "Seguro médico Adeslas NEGOCIOS para autónomos (persona física NIF). Sin copagos, cobertura sanitaria completa, más de 48.000 médicos y 1.500 centros. Deducible en IRPF hasta 500€/persona/año.",
+    description: "Seguro médico Adeslas NEGOCIOS para autónomos (persona física NIF). Sin copagos, cobertura sanitaria completa, más de +51.000 médicos y 1.400 centros. Deducible en IRPF hasta 500€/persona/año.",
     category: "Seguro de salud para autónomos",
     price: "0",
     pricePeriod: "month",
@@ -28,7 +28,7 @@ const data: ProductPageData = {
   badge: "Autónomos · Sin Copago · Deducible IRPF",
   heroTitle: "Seguro Médico para",
   heroHighlight: "Autónomos — Adeslas NEGOCIOS",
-  heroSubtitle: "El seguro diseñado para autónomos. Sin copagos, cobertura completa con más de 48.000 médicos, y deducible en tu IRPF.",
+  heroSubtitle: "El seguro diseñado para autónomos. Sin copagos, cobertura completa con más de +51.000 médicos, y deducible en tu IRPF.",
   price: "55,50",
   pricePeriod: "mes",
   heroImage: heroImg,
@@ -73,7 +73,7 @@ const data: ProductPageData = {
     </div>
   ),
   cardName: "Adeslas NEGOCIOS — Autónomos",
-  cardDescription: "Cobertura sanitaria completa sin copagos para autónomos. Acceso a más de 48.000 médicos y 1.500 centros. Deducible en IRPF.",
+  cardDescription: "Cobertura sanitaria completa sin copagos para autónomos. Acceso a más de +51.000 médicos y 1.400 centros. Deducible en IRPF.",
   cardPill: "Sin copago · Persona física NIF",
   cardPillDark: true,
   cardPromoBadge: "🎁 Promoción puntos",
@@ -86,7 +86,7 @@ const data: ProductPageData = {
     "Diagnóstico: analíticas, ecografías, radiología",
     "Sin copago en todas las consultas",
     "Deducible en IRPF hasta 500€/persona/año",
-    "+48.000 médicos y 1.500 centros Adeslas",
+    "+51.000 médicos y 1.400 centros Adeslas",
   ],
   features: [
     {
@@ -105,7 +105,7 @@ const data: ProductPageData = {
     },
     {
       title: "Red médica Adeslas",
-      description: "Acceso a más de 48.000 profesionales médicos y 1.500 centros de atención médicoasistencial en toda España. La red privada más amplia del mercado, con todas las especialidades cubiertas.",
+      description: "Acceso a más de 48.000 profesionales médicos y 1.400 centros de atención médicoasistencial en toda España. La red privada más amplia del mercado, con todas las especialidades cubiertas.",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#1c4a8d" />
@@ -190,7 +190,7 @@ const data: ProductPageData = {
         "Carencias (persona física): 3 meses consultas generales, 6 meses ginecología/maternidad, 8 meses hospitalización y cirugía programada",
         "Se pueden eliminar carencias si el asegurado acredita coberturas iguales con una antigüedad superior a 8 meses en la competencia",
         "Descuentos por forma de pago: trimestral 2%, semestral 4%, anual 6%",
-        "Red médica: +48.000 profesionales y 1.500 centros Adeslas",
+        "Red médica: +48.000 profesionales y 1.400 centros Adeslas",
         "Gestión de autorizaciones online · renovación anual automática",
       ],
     },
@@ -198,7 +198,7 @@ const data: ProductPageData = {
   faqs: [
     {
       q: "¿Qué es Adeslas NEGOCIOS para autónomos?",
-      a: "Adeslas NEGOCIOS es el seguro médico de Adeslas diseñado específicamente para autónomos (tomador persona física con NIF). Ofrece cobertura sanitaria completa sin copagos, con acceso a más de 48.000 médicos y 1.500 centros en toda España. Es deducible en el IRPF del autónomo.",
+      a: "Adeslas NEGOCIOS es el seguro médico de Adeslas diseñado específicamente para autónomos (tomador persona física con NIF). Ofrece cobertura sanitaria completa sin copagos, con acceso a más de +51.000 médicos y 1.400 centros en toda España. Es deducible en el IRPF del autónomo.",
     },
     {
       q: "¿Tiene copago Adeslas NEGOCIOS?",

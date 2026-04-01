@@ -5,7 +5,7 @@ import heroImg from "@/assets/seguro-medico-asisa-pymes-e1765796817464.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Seguros Médicos para Empresas y Pymes | EMPRESAS desde 56€/mes",
-  seoDescription: "Adeslas ofrece seguros médicos para empresas y pymes sin copagos. EMPRESAS desde 56€/mes, PYMES TOTAL desde 60€/mes con chequeo anual, dental y garantía de precio 3 años. +48.000 médicos.",
+  seoDescription: "Adeslas ofrece seguros médicos para empresas y pymes sin copagos. EMPRESAS desde 56€/mes, PYMES TOTAL desde 60€/mes con chequeo anual, dental y garantía de precio 3 años. +51.000 médicos.",
   seoCanonical: "https://adeslas.marchalaseguradores.es/pymes-empresas",
   seoOgImage: "https://adeslas.marchalaseguradores.es/og-pymes-empresas.jpg",
   seoProductSchema: {
@@ -41,7 +41,7 @@ const data: ProductPageData = {
         <div className="text-sm font-bold text-white mb-1 leading-tight">Adeslas EMPRESAS</div>
         <div className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.60)" }}>5 a 99 asegurados</div>
         <div className="space-y-1.5">
-          {["Sin copagos", "Cobertura completa", "+48.000 médicos"].map(f => (
+          {["Sin copagos", "Cobertura completa", "+51.000 médicos"].map(f => (
             <div key={f} className="flex items-center gap-1.5 text-xs" style={{ color: "rgba(255,255,255,0.82)" }}>
               <span className="text-azul-claro font-bold">✓</span> {f}
             </div>
@@ -175,7 +175,7 @@ const data: ProductPageData = {
         "Embarazo y parto cubiertos",
         "Diagnóstico completo incluido",
         "Sin copago en todas las consultas",
-        "+48.000 médicos y 1.500 centros",
+        "+51.000 médicos y 1.400 centros",
         "Módulos complementarios disponibles",
       ],
     },
