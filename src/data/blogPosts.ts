@@ -695,179 +695,183 @@ export const blogPosts: BlogPostFull[] = [
     category: "Seguros",
     title: "Comparativa de seguros médicos Adeslas 2026: cuál elegir según tu perfil",
     excerpt:
-      "Adeslas Go, Plena Vital, Plena Vital Total, Plena Total, Plena Plus, Extra 150... Te ayudamos a entender las diferencias y elegir el que más te conviene.",
+      "Adeslas Go, Plena Vital, Plena Vital Total, Plena Total, Plena Plus, Extra 150... Descubre las diferencias reales entre cada plan y cuál se adapta mejor a tu situación.",
     date: "1 Abr 2026",
     readTime: "10 min",
     image:
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop",
     seoTitle: "Comparativa Seguros Médicos Adeslas 2026 | Cuál Elegir",
     seoDescription:
-      "Comparativa completa de todos los seguros médicos Adeslas 2026: precios, coberturas, copagos y qué plan elegir según tu edad, familia y presupuesto.",
+      "Comparativa completa de los seguros médicos Adeslas 2026: coberturas, copagos, hospitalización y qué plan elegir según tu edad, familia y necesidades.",
     body: [
       {
         type: "paragraph",
-        text: "Elegir un seguro médico privado es una decisión que afecta a tu bolsillo y a tu tranquilidad durante años. Con tantos planes disponibles —con copago, sin copago, con hospitalización, ambulatorios— puede resultar difícil saber cuál se adapta mejor a tu situación. En esta guía comparamos los seguros médicos Adeslas disponibles en 2026 para que puedas decidir con información clara.",
+        text: "Elegir un seguro médico privado es una decisión que afecta a tu tranquilidad durante años. Con varios planes disponibles —con copago, sin copago, solo ambulatorio o con hospitalización— puede resultar difícil saber cuál se adapta mejor a tu situación. En esta guía comparamos los seguros médicos Adeslas disponibles en 2026 para que puedas decidir con información clara y contrastada.",
       },
       {
         type: "paragraph",
-        text: "La clave está en entender dos conceptos básicos antes de comparar planes: el copago (la parte que pagas tú por cada servicio) y la prima mensual (lo que pagas a la aseguradora). En general, a mayor copago, menor prima. La elección ideal depende de con qué frecuencia usas los servicios médicos.",
+        text: "Antes de comparar, conviene entender dos conceptos clave: el copago (la parte que paga el asegurado por cada servicio utilizado) y el Límite Máximo Anual o LMA (el tope de copago que se paga en un año; superado ese límite, el resto del año es sin coste). En general, a mayor copago individual, menor prima mensual.",
       },
 
-      { type: "heading", text: "Resumen de planes Adeslas 2026" },
+      { type: "heading", text: "Resumen de los planes Adeslas 2026" },
       {
         type: "list",
         items: [
-          "Adeslas Go — desde 13,39 €/mes: ambulatorio con copago por consulta",
-          "Adeslas Plena Vital — desde 32,97 €/mes: ambulatorio sin copago",
-          "Adeslas Plena Vital Total — desde 48,50 €/mes: cobertura completa con copago reducido y 3 años sin subida de prima",
-          "Adeslas Plena Total — desde 50,92 €/mes: cobertura completa sin copago, el más contratado",
-          "Adeslas Plena Plus — desde 22,55 €/mes: hospitalización + ambulatoria con copago máximo 300 €/año",
-          "Adeslas Extra 150 — desde 59,71 €/mes: libre elección de médico con reembolso hasta 150 €/consulta",
+          "Adeslas Go: solo asistencia ambulatoria con copago y LMA anual",
+          "Adeslas Plena Vital: ambulatoria + hospitalización completa con copago y LMA 300 €/año",
+          "Adeslas Plena Vital Total: como Plena Vital, con cobertura dental, chequeo anual y 3 años sin subida de prima",
+          "Adeslas Plena Plus: ambulatoria + hospitalización con copago y cobertura reforzada",
+          "Adeslas Plena Total: cobertura completa sin copago en ningún servicio",
+          "Adeslas Plena Extra 150: libre elección de médico con reembolso de gastos",
         ],
       },
 
-      { type: "heading", text: "Adeslas Go: lo esencial al mejor precio" },
+      { type: "heading", text: "Adeslas Go: cobertura ambulatoria con copago" },
       {
         type: "paragraph",
-        text: "Es el plan más económico de la gama. Cubre consultas de medicina general y especialidades, pruebas diagnósticas y farmacia, con un copago por cada servicio utilizado. Es ideal para personas jóvenes y sanas que quieren cobertura ante imprevistos sin pagar una prima alta.",
+        text: "Es el plan de entrada de la gama Adeslas. Proporciona acceso a medicina general, todas las especialidades médicas, medios de diagnóstico de alta tecnología y podología (hasta 12 sesiones al año), con un copago por cada servicio utilizado. Incorpora un chequeo médico anual adaptado a la edad y al sexo de cada asegurado.",
       },
       {
         type: "list",
         items: [
-          "Cobertura ambulatoria completa (con copago)",
-          "Acceso a más de 51.000 médicos Adeslas",
-          "Sin hospitalización ni cirugías programadas",
-          "Prima accesible para presupuestos ajustados",
-          "Válido hasta los 85 años",
-        ],
-      },
-      {
-        type: "quote",
-        text: "Ideal para: jóvenes de 18-35 años sin patologías crónicas que buscan protección básica a coste mínimo.",
-      },
-
-      { type: "heading", text: "Adeslas Plena Vital: ambulatorio sin sorpresas" },
-      {
-        type: "paragraph",
-        text: "Acceso a todas las especialidades ambulatorias sin pagar nada por consulta. Sin copago significa que cuando pides cita con el cardiólogo, el dermatólogo o el pediatra, no hay gasto adicional. El plan no incluye hospitalización ni cirugías de ingreso.",
-      },
-      {
-        type: "list",
-        items: [
-          "Consultas de medicina general y especialidades sin copago",
-          "Pruebas diagnósticas sin copago (radiología, analíticas, ecografía)",
-          "Urgencias incluidas",
-          "Sin hospitalización ni cirugías programadas",
-          "Adecuado para personas que usan frecuentemente la consulta médica",
+          "Asistencia ambulatoria completa: medicina general, especialidades y diagnóstico",
+          "Copago por servicio con Límite Máximo Anual (LMA) de 260 € para asegurados de 0 a 54 años",
+          "Tres copagos gratuitos al año por asegurado; desde la primera renovación, todos los copagos se reducen un 25 %",
+          "Chequeo médico anual incluido",
+          "No incluye hospitalización ni cirugías programadas",
+          "Contratación hasta los 70 años",
         ],
       },
       {
         type: "quote",
-        text: "Ideal para: personas que van a menudo al médico pero no tienen riesgo significativo de hospitalización. También muy usado por autónomos.",
+        text: "Ideal para: personas jóvenes y sin patologías crónicas que buscan una cobertura ambulatoria ante imprevistos con la prima más ajustada de la gama.",
       },
 
-      { type: "heading", text: "Adeslas Plena Vital Total: la opción equilibrada con garantía de precio" },
+      { type: "heading", text: "Adeslas Plena Vital: ambulatoria y hospitalización con copago limitado" },
       {
         type: "paragraph",
-        text: "Este plan es el más recomendado por los asesores de salud para quienes buscan cobertura completa con buena relación calidad-precio. Incluye hospitalización, cirugías y ambulatorio con un copago reducido, y su principal diferencial es la garantía de 3 años sin subida de prima —una tranquilidad muy valorada en un entorno de inflación.",
+        text: "Adeslas Plena Vital ofrece acceso a la asistencia sanitaria más completa —medicina general, todas las especialidades y los medios de diagnóstico más avanzados— con hospitalización en habitación individual con cama para acompañante. La participación del asegurado se realiza mediante copago, con un Límite Máximo Anual de 300 € por asegurado: una vez superado ese importe en el año, el asegurado no paga más copagos hasta la siguiente anualidad.",
+      },
+      {
+        type: "list",
+        items: [
+          "Cobertura ambulatoria e hospitalización completa en habitación individual",
+          "Copago por servicio con LMA de 300 €/año por asegurado",
+          "Mismas especialidades y medios diagnósticos que Adeslas Plena",
+          "Urgencias 24 horas incluidas",
+          "Acceso a más de 51.000 médicos y 1.400 centros en España",
+          "Requiere cuestionario de salud",
+        ],
+      },
+      {
+        type: "quote",
+        text: "Ideal para: quienes quieren cobertura sanitaria completa —ambulatoria y hospitalización— con una prima más contenida gracias al copago limitado anualmente.",
+      },
+
+      { type: "heading", text: "Adeslas Plena Vital Total: cobertura completa con 3 años de prima garantizada" },
+      {
+        type: "paragraph",
+        text: "Adeslas Plena Vital Total es el seguro de asistencia sanitaria completa con copago, cobertura dental incluida y una prima garantizada durante 3 años sin incremento. Está especialmente diseñado para familias y para quienes buscan un plan de valor sin renunciar a previsibilidad económica.",
+      },
+      {
+        type: "list",
+        items: [
+          "Mismas coberturas ambulatorias y hospitalarias que Adeslas Plena Vital",
+          "Cobertura dental incluida",
+          "Chequeo médico anual adaptado a la edad de cada asegurado",
+          "Asistencia en viaje en el extranjero hasta 30.000 €",
+          "Reembolso de gastos en farmacia: 50 % hasta 200 €/año por asegurado",
+          "Garantía de prima estable durante 3 años desde la contratación",
+        ],
+      },
+      {
+        type: "callout",
+        text: "La garantía de 3 años sin subida de prima es especialmente relevante para familias que planifican su presupuesto a medio plazo. Es uno de los planes con mayor valoración en satisfacción entre los asegurados que lo contratan.",
+      },
+      {
+        type: "quote",
+        text: "Ideal para: familias con hijos, adultos de 30-55 años y quienes valoran cobertura completa con previsibilidad de gasto y extras como dental y farmacia.",
+      },
+
+      { type: "heading", text: "Adeslas Plena Plus: cobertura ampliada con copago" },
+      {
+        type: "paragraph",
+        text: "Adeslas Plena Plus es un plan de cobertura ambulatoria e hospitalización completa con copago, posicionado un escalón por encima de Plena Vital en prestaciones. Ofrece acceso a la misma red de médicos y centros con una prima intermedia entre Plena Vital Total y Plena Total.",
       },
       {
         type: "list",
         items: [
           "Cobertura ambulatoria e hospitalización completa",
-          "Copago reducido por consulta (inferior al de Plena Plus)",
-          "Garantía de prima estable durante 3 años",
-          "Urgencias 24h incluidas",
-          "Acceso a más de 51.000 médicos y 1.400 centros",
+          "Copago por servicio (sin LMA anual)",
+          "Acceso a toda la red de especialidades y diagnóstico de alta tecnología",
+          "Urgencias 24 horas incluidas",
+          "Prima inferior a Plena Total (sin copago)",
         ],
       },
       {
-        type: "callout",
-        text: "La garantía de 3 años sin subida de prima es especialmente relevante si estás planificando un presupuesto familiar a medio plazo. Es uno de los planes con mayor valoración en satisfacción entre los asegurados que lo contratan.",
-      },
-      {
         type: "quote",
-        text: "Ideal para: adultos de 30-55 años, familias con hijos o personas que quieren cobertura total con previsibilidad económica.",
+        text: "Ideal para: personas que quieren una cobertura sanitaria amplia con acceso a hospitalización y asumen un copago por cada servicio a cambio de una prima más ajustada que el plan sin copago.",
       },
 
-      { type: "heading", text: "Adeslas Plena Total: el más completo sin copago" },
+      { type: "heading", text: "Adeslas Plena Total: sin copago en ningún servicio" },
       {
         type: "paragraph",
-        text: "El plan más vendido de la gama Adeslas. Incluye cobertura ambulatoria e hospitalización sin copago en ningún servicio. Cada consulta, prueba, operación o ingreso tiene coste cero para el asegurado dentro de la red médica.",
+        text: "Adeslas Plena Total es el plan de cobertura sanitaria completa sin ningún copago. Cada consulta, prueba diagnóstica, intervención quirúrgica o ingreso hospitalario tiene coste cero para el asegurado dentro de la red médica. Es la opción más tranquilizadora para quienes no quieren imprevistos económicos relacionados con la salud.",
       },
       {
         type: "list",
         items: [
-          "Sin copago en ningún servicio ambulatorio ni hospitalario",
-          "Incluye cirugías programadas, ingresos y partos",
-          "Urgencias 24h sin copago",
-          "Cobertura dental básica en muchas modalidades",
-          "La prima más alta de la gama ambulatoria-hospitalaria estándar",
+          "Sin copago en ningún servicio: consultas, especialidades, diagnóstico y hospitalización",
+          "Hospitalización en habitación individual con cama para acompañante",
+          "Cirugías programadas, ingresos y partos incluidos sin coste",
+          "Urgencias 24 horas sin copago",
+          "Acceso a más de 51.000 médicos y 1.400 centros en toda España",
         ],
       },
       {
         type: "quote",
-        text: "Ideal para: familias, personas con historial médico o quienes valoran no tener ningún gasto adicional en sanidad privada.",
+        text: "Ideal para: familias, personas con historial médico activo o quienes valoran no tener ningún desembolso adicional al pagar la prima mensual.",
       },
 
-      { type: "heading", text: "Adeslas Plena Plus: hospitalización económica" },
+      { type: "heading", text: "Adeslas Plena Extra 150: libre elección de médico" },
       {
         type: "paragraph",
-        text: "Cubre tanto la parte ambulatoria como la hospitalización, con copago en consultas, pero con un tope máximo de 300 €/año. Es decir, aunque uses mucho el seguro, nunca pagarás más de 300 € en copagos al año. Permite acceder a hospitalización a una prima más baja que el Plena Total.",
+        text: "Adeslas Plena Extra 150 es el plan de libre elección: permite acudir a cualquier médico, también fuera de la red Adeslas, y recibir un reembolso de los gastos sanitarios. Es el plan con mayor libertad de la gama, diseñado para quienes ya tienen médicos de confianza o quieren máxima flexibilidad en la elección de especialista.",
       },
       {
         type: "list",
         items: [
-          "Copago por consulta, con límite máximo anual de 300 €",
-          "Hospitalización y cirugías cubiertas",
-          "Prima más competitiva que el Plena Total sin copago",
-          "Válido hasta los 70 años",
+          "Libre elección de médico dentro y fuera de la red Adeslas",
+          "Reembolso de gastos por asistencia fuera de la red (hasta los límites de la póliza)",
+          "Cobertura ambulatoria e hospitalización completa en la red Adeslas",
+          "Sin copago en la red médica concertada",
+          "Acceso a toda la red de especialidades y diagnóstico de alta tecnología",
         ],
       },
       {
         type: "quote",
-        text: "Ideal para: personas de hasta 70 años que quieren cobertura completa con una prima más ajustada y no les importa un pequeño copago.",
-      },
-
-      { type: "heading", text: "Adeslas Extra 150: la libertad de elección" },
-      {
-        type: "paragraph",
-        text: "El plan de libre elección permite ir a cualquier médico —también fuera de la red Adeslas— y recibir un reembolso de hasta 150 € por consulta. Es el plan más caro pero el que da mayor libertad al asegurado para elegir especialista sin restricciones.",
-      },
-      {
-        type: "list",
-        items: [
-          "Libre elección de médico dentro y fuera de la red",
-          "Reembolso de hasta 150 €/consulta",
-          "Cobertura hospitalaria completa",
-          "Sin copago en la red Adeslas",
-          "Prima más alta de toda la gama",
-        ],
-      },
-      {
-        type: "quote",
-        text: "Ideal para: personas que ya tienen médico de confianza fuera de la red Adeslas, o profesionales que quieren máxima flexibilidad.",
+        text: "Ideal para: personas con médico de confianza fuera de la red o profesionales que necesitan máxima flexibilidad para elegir especialista sin restricciones.",
       },
 
       { type: "heading", text: "¿Cuál te conviene según tu perfil?" },
       {
         type: "list",
         items: [
-          "Joven sano con presupuesto ajustado → Adeslas Go",
-          "Usuario frecuente de consultas sin riesgo de hospitalización → Plena Vital",
-          "Familia o adulto que quiere cobertura total sin copagos → Plena Total",
-          "Quien busca total + garantía de precio 3 años → Plena Vital Total",
-          "Cobertura total con prima más baja y copago acotado → Plena Plus (hasta 70 años)",
-          "Quien ya tiene médico de confianza fuera de la red → Extra 150",
+          "Presupuesto ajustado y uso ocasional del médico → Adeslas Go",
+          "Cobertura completa con copago controlado anualmente → Adeslas Plena Vital",
+          "Familia que busca cobertura total + dental + precio garantizado 3 años → Adeslas Plena Vital Total",
+          "Cobertura amplia con copago por servicio, prima intermedia → Adeslas Plena Plus",
+          "Sin ningún copago en ningún momento → Adeslas Plena Total",
+          "Médico de confianza fuera de la red o máxima libertad de elección → Adeslas Plena Extra 150",
         ],
       },
       {
         type: "callout",
-        text: "Lo más acertado es calcular tu precio personalizado según tu edad, provincia y número de personas en el seguro. Puedes usar el comparador de Marchal Aseguradores para ver tu precio exacto en segundos.",
+        text: "El precio de cada plan varía según la edad, la provincia y el número de asegurados. Puedes calcular tu precio exacto con el comparador de Marchal Aseguradores en segundos, sin compromiso.",
       },
       {
         type: "paragraph",
-        text: "Recuerda que todos los planes Adeslas incluyen acceso a más de 51.000 médicos y 1.400 centros médicos en España sin listas de espera. La diferencia entre planes está en la extensión de la cobertura y el copago, no en la calidad de la red médica.",
+        text: "Todos los planes Adeslas dan acceso a más de 51.000 médicos y 1.400 centros médicos en España sin listas de espera. La diferencia entre planes está en la extensión de la cobertura, la existencia o no de copago y las prestaciones adicionales, no en la calidad de la red médica.",
       },
     ],
     relatedSlugs: [
