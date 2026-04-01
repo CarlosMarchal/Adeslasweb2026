@@ -52,7 +52,7 @@ const CtaSection = ({ onCalcClick }: CtaSectionProps = {}) => {
               <div>Nuevas contrataciones</div>
             </div>
             <div>
-              <a href="tel:919911999" className="text-primary-foreground font-bold">91 991 19 99</a>
+              <a href="tel:919191898" className="text-primary-foreground font-bold">91 919 18 98</a>
               <div>Atención al cliente</div>
             </div>
           </div>

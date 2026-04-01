@@ -100,7 +100,7 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
                 transition={{ duration: 0.6 }}
                 className="lg:pl-14 xl:pl-24"
               >
-                <h1 className="text-white mb-3 text-[1.15rem] sm:text-xl md:text-2xl lg:text-[1.5rem] leading-snug font-bold">
+                <h1 className="text-white mb-3 text-[1.15rem] sm:text-xl md:text-2xl lg:text-[1.65rem] leading-snug font-bold">
                   {data.heroTitle}
                 </h1>
                 <p className="text-base mb-4 max-w-xl" style={{ color: "rgba(255,255,255,0.88)" }}>

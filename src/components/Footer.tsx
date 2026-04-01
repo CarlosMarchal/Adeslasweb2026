@@ -100,8 +100,8 @@ const Footer = () => (
         </div>
         <div>
           <div className="text-[10px] uppercase tracking-wide text-primary-foreground font-bold mb-1">Atención al cliente</div>
-          <a href="tel:919911999" className="block text-sm hover:text-primary-foreground transition-colors" style={{ color: "rgba(255,255,255,0.7)" }}>
-            91 991 19 99
+          <a href="tel:919191898" className="block text-sm hover:text-primary-foreground transition-colors" style={{ color: "rgba(255,255,255,0.7)" }}>
+            91 919 18 98
           </a>
         </div>
         <div>

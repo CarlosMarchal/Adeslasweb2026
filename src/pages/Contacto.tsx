@@ -22,8 +22,8 @@ const contactMethods = [
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="#1c4a8d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
     ),
     title: "Atención al cliente",
-    detail: "91 991 19 99",
-    href: "tel:919911999",
+    detail: "91 919 18 98",
+    href: "tel:919191898",
     description: "Si ya eres cliente Adeslas, te ayudamos con cualquier gestión de tu póliza.",
   },
   {
@@ -184,11 +184,11 @@ const ContactForm = () => {
                   </span>
                   <span><span className="font-bold">91 710 50 00</span> · Nuevas altas</span>
                 </a>
-                <a href="tel:919911999" className="flex items-center gap-3 text-gris-texto hover:text-azul-medio transition-colors">
+                <a href="tel:919191898" className="flex items-center gap-3 text-gris-texto hover:text-azul-medio transition-colors">
                   <span className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#E8F4FC" }}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="#009FE3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </span>
-                  <span><span className="font-bold">91 991 19 99</span> · Clientes</span>
+                  <span><span className="font-bold">91 919 18 98</span> · Clientes</span>
                 </a>
               </div>
             </div>
