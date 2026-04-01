@@ -274,13 +274,14 @@ const Header = () => {
     return digits.length >= 9 && digits.length <= 11;
   };
 
-  const handleNavPhoneChange = (v: string) => {
-    if (v.replace(/\D/g, "").length <= 11) setNavPhone(v);
+  const handleNavPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value.replace(/\D/g, "").slice(0, 9);
+    setNavPhone(val);
   };
   const handleNavPhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isPhoneValid(navPhone)) {
-      submitToHubSpot({ phone: navPhone, source: 300 });
+    if (navPhone.replace(/\D/g, "").length >= 9) {
+      submitToHubSpot({ phone: "+34" + navPhone, source: 300 });
       setNavPhone("");
       setShowThankYouModal(true);
     }
@@ -428,20 +429,20 @@ const Header = () => {
             {/* Input teléfono + "Te llamamos" */}
             <form onSubmit={handleNavPhoneSubmit} className="flex items-center gap-0">
               <div
-                className="flex items-center rounded-l-lg border border-r-0 overflow-hidden"
+                className="flex items-center rounded-l-lg border border-r-0 overflow-hidden gap-1.5 px-2"
                 style={{ borderColor: "#D5E3F0", backgroundColor: "#fff", height: 36 }}
               >
-                <PhoneInput
-                  defaultCountry="es"
+                <span className="text-base leading-none select-none">🇪🇸</span>
+                <span className="text-sm font-medium select-none" style={{ color: "#374151" }}>+34</span>
+                <input
+                  type="tel"
                   value={navPhone}
                   onChange={handleNavPhoneChange}
-                  inputClassName="!h-8 !text-sm !border-0 !bg-transparent !outline-none !w-[172px] !px-2 !cursor-text"
-                  countrySelectorStyleProps={{
-                    buttonClassName: "!h-8 !border-0 !bg-transparent !px-2",
-                    flagClassName: "!w-5 !h-4",
-                  }}
-                  className="!border-0 !rounded-none !h-8"
-                  inputProps={{ autoComplete: "tel", inputMode: "tel", placeholder: "600 000 000" }}
+                  placeholder="600 000 000"
+                  autoComplete="tel"
+                  inputMode="numeric"
+                  className="h-8 text-sm border-0 bg-transparent outline-none w-[130px] px-1 cursor-text"
+                  style={{ color: "#1A3A5C" }}
                 />
               </div>
               <button
