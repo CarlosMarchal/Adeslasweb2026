@@ -36,9 +36,9 @@ const applyFamilyDiscount = (price: number, numPeople: number): number =>
 
 const productLabels: Record<string, { tag: string; color: string }> = {
   ya: { tag: "Más económico", color: "#10B981" },
-  esencial: { tag: "Ambulatorio", color: "#009FE3" },
-  completaPlusPlus: { tag: "Copago limitado", color: "#6366F1" },
-  completaPlus: { tag: "Copago reducido", color: "#8B5CF6" },
+  esencial: { tag: "Con copagos", color: "#009FE3" },
+  completaPlusPlus: { tag: "Con copago y 3 años sin subidas", color: "#6366F1" },
+  completaPlus: { tag: "Sin copagos", color: "#8B5CF6" },
   completa: { tag: "Más vendido", color: "#003087" },
   reembolso: { tag: "Libre elección", color: "#D97706" },
 };
