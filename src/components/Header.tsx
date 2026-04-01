@@ -55,7 +55,6 @@ const icoMayores = (
     <path d="M10 6.5v5l-2.5 5.5 2.5 5"/><path d="M10 11.5H7l2 5"/><path d="M14 19l2.5 3.5"/>
   </svg>
 );
-);
 // Autónomos — briefcase
 const icoAutonomos = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#003087" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
