@@ -31,31 +31,31 @@ const HeroSection = () => {
             <p className="text-white/85 mb-4 text-sm md:text-base leading-relaxed max-w-md">
               Cobertura médica completa con +42.000 especialistas, sin listas de espera y sin subidas de prima durante 3 años.
             </p>
-            <motion.div
-              initial={{ scale: 0.85, opacity: 0, y: -6 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, type: "spring", stiffness: 220, damping: 18 }}
-              className="inline-flex items-center gap-2.5 mb-5 text-xs font-bold"
-              style={{
-                background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
-                color: "#fff",
-                borderRadius: "999px",
-                padding: "7px 16px 7px 12px",
-                boxShadow: "0 4px 18px rgba(249,115,22,0.45), 0 1px 0 rgba(255,255,255,0.18) inset",
-                letterSpacing: "0.01em",
-              }}
-            >
-              <span style={{ fontSize: 15 }}>🎁</span>
-              <span>Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos</span>
-            </motion.div>
             <div className="flex flex-wrap gap-3 mb-6">
-              <button
-                onClick={() => document.getElementById('tarificador-mobile')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-6 py-3 rounded-lg font-bold text-sm cursor-pointer btn-cta-white"
-                style={{ backgroundColor: "#fff", color: "#003087", borderRadius: "7px" }}
-              >
-                Calcular mi precio →
-              </button>
+              <div className="relative inline-block">
+                <button
+                  onClick={() => document.getElementById('tarificador-mobile')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-6 py-3 rounded-lg font-bold text-sm cursor-pointer btn-cta-white"
+                  style={{ backgroundColor: "#fff", color: "#003087", borderRadius: "7px" }}
+                >
+                  Calcular mi precio →
+                </button>
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.6, type: "spring", stiffness: 320, damping: 18 }}
+                  className="absolute -top-2.5 -right-2.5 flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold pointer-events-none"
+                  style={{
+                    background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
+                    color: "#fff",
+                    boxShadow: "0 2px 8px rgba(249,115,22,0.6)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <span>🎁</span>
+                  <span>Puntos regalo</span>
+                </motion.div>
+              </div>
               <button
                 onClick={openPhonePopup}
                 className="px-6 py-3 rounded-lg font-bold text-sm border cursor-pointer flex items-center gap-2 btn-cta-ghost"

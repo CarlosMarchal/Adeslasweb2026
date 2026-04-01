@@ -227,35 +227,33 @@ const ProductHero = ({
             {data.heroSubtitle}
           </p>
 
-          {data.heroPromo && (
-            <motion.div
-              initial={{ scale: 0.85, opacity: 0, y: -6 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, type: "spring", stiffness: 220, damping: 18 }}
-              className="inline-flex items-center gap-2.5 mb-6 text-xs font-bold"
-              style={{
-                background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
-                color: "#fff",
-                borderRadius: "999px",
-                padding: "7px 16px 7px 12px",
-                boxShadow: "0 4px 18px rgba(249,115,22,0.45), 0 1px 0 rgba(255,255,255,0.18) inset",
-                letterSpacing: "0.01em",
-              }}
-            >
-              <span style={{ fontSize: 15 }}>🎁</span>
-              <span>{data.heroPromo}</span>
-            </motion.div>
-          )}
-
           {data.heroContent && data.heroContent}
 
-          {/* Price + optional inline WhatsApp CTA (desktop) */}
+          {/* Price + promo bubble + optional inline WhatsApp CTA (desktop) */}
           <div className={`flex items-center gap-4 mb-8 flex-wrap`}>
             {!data.hideHeroPrice && (
-              <div className="flex items-end gap-2">
+              <div className="flex items-end gap-2.5 flex-wrap">
                 <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.92)" }}>Desde</span>
                 <span className="text-[48px] font-black leading-none" style={{ color: "#fff" }}>{data.price}€</span>
                 <span style={{ color: "rgba(255,255,255,0.85)" }} className="text-lg">/{data.pricePeriod || "mes"}</span>
+                {data.heroPromo && (
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.5, type: "spring", stiffness: 320, damping: 18 }}
+                    className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold self-center mb-1 cursor-default"
+                    style={{
+                      background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
+                      color: "#fff",
+                      boxShadow: "0 2px 10px rgba(249,115,22,0.55)",
+                      whiteSpace: "nowrap",
+                    }}
+                    title={data.heroPromo}
+                  >
+                    <span style={{ fontSize: 11 }}>🎁</span>
+                    <span>Puntos regalo</span>
+                  </motion.div>
+                )}
               </div>
             )}
             {data.useWhatsAppCta && (
