@@ -213,7 +213,7 @@ const PreciosOfertasInner = () => {
         style={{ backgroundImage: `url(${heroBg})` }}
       >
         {/* Dark overlay — igual que el resto de páginas */}
-        <div className="absolute inset-0 bg-black/45" />
+        <div className="absolute inset-0 bg-black/58" />
 
         <div className="container mx-auto px-4 py-12 lg:py-16 relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">

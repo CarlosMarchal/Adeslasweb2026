@@ -89,7 +89,7 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
           aria-label={`${data.heroTitle} — Adeslas seguros médicos privados`}
         >
           {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/55" />
+          <div className="absolute inset-0 bg-black/65" />
 
           <div className="container mx-auto px-4 py-7 lg:py-10 relative z-10">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
