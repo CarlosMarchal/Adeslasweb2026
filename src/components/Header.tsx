@@ -661,13 +661,13 @@ const MegaSegurosContent = ({ onNavigate }: { onNavigate: () => void }) => {
       </div>
       <div className="w-[240px] flex-shrink-0 ml-auto p-6 rounded-[14px] text-white flex flex-col justify-between" style={{ background: "linear-gradient(145deg, #003087 0%, #009FE3 100%)" }}>
         <div>
-          <div className="text-[10px] font-black uppercase tracking-[1.4px]" style={{ color: "#7DD4F8" }}>El más vendido</div>
-          <div className="text-lg font-black mt-1 mb-1">Adeslas Plena Total</div>
-          <div className="text-[13px] leading-[1.55]" style={{ color: "rgba(255,255,255,0.70)" }}>Cobertura total sin copagos. Hospitalización, cirugía y +42.000 especialistas incluidos.</div>
+          <div className="text-[10px] font-black uppercase tracking-[1.4px]" style={{ color: "#7DD4F8" }}>Recomendado</div>
+          <div className="text-lg font-black mt-1 mb-1">Adeslas Plena Vital Total</div>
+          <div className="text-[13px] leading-[1.55]" style={{ color: "rgba(255,255,255,0.70)" }}>Hospitalización completa con copago reducido. <span className="font-bold" style={{ color: "#7DD4F8" }}>3 años sin subidas de prima.</span></div>
         </div>
         <div className="mt-4">
-          <div className="font-black text-[28px]">desde 83€ <span className="text-[13px] font-normal" style={{ color: "rgba(255,255,255,0.60)" }}>/mes</span></div>
-          <button onClick={() => openTarificador("/adeslas-plena-total")}
+          <div className="font-black text-[28px]">desde 48,50€ <span className="text-[13px] font-normal" style={{ color: "rgba(255,255,255,0.60)" }}>/mes</span></div>
+          <button onClick={() => openTarificador("/adeslas-plena-vital-total")}
             className="block w-full text-center py-2.5 rounded-[7px] font-bold text-sm mt-3 btn-cta-magenta cursor-pointer"
             style={{ backgroundColor: "#E4097D", color: "#fff" }}>
             Calcular mi precio →
