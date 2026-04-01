@@ -208,21 +208,21 @@ const MegaLink = ({ icon, label, sub, badge, to, onClick }: any) => (
   <Link
     to={to}
     onClick={onClick}
-    className="flex items-start gap-2.5 px-3 py-2 rounded-lg transition-colors duration-150 hover:bg-azul-suave hover:text-azul-medio text-[14px] group" style={{ color: "#003087" }}
+    className="flex items-start gap-2.5 px-3 py-2 rounded-lg transition-colors duration-150 hover:bg-azul-suave hover:text-azul-medio text-[14px] group" style={{ color: "#374151" }}
   >
     <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "#E8F4FC" }}>
       {icon}
     </div>
     <div className="flex-1 min-w-0">
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="font-medium">{label}</span>
+        <span className="font-bold">{label}</span>
         {badge && (
-          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full text-white whitespace-nowrap" style={{ backgroundColor: "#003087" }}>
+          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full text-white whitespace-nowrap" style={{ backgroundColor: "#374151" }}>
             {badge}
           </span>
         )}
       </div>
-      {sub && <div className="text-xs mt-0.5" style={{ color: "#1c4a8d" }}>{sub}</div>}
+      {sub && <div className="text-xs mt-0.5" style={{ color: "#6B7280" }}>{sub}</div>}
     </div>
   </Link>
 );
@@ -648,17 +648,17 @@ const MegaSegurosContent = ({ onNavigate }: { onNavigate: () => void }) => {
   return (
     <>
       <div className="w-[30%] pr-6 border-r border-borde">
-        <div className="label-style text-gris-medio mb-2">Particulares</div>
+        <div className="label-style mb-2" style={{ color: "#374151" }}>Particulares</div>
         {megaSeguros.particulares.map((item) => <MegaLink key={item.label} {...item} onClick={onNavigate} />)}
       </div>
       <div className="w-[22%] px-6 border-r border-borde">
-        <div className="label-style text-gris-medio mb-2">Autónomos y negocios</div>
+        <div className="label-style mb-2" style={{ color: "#374151" }}>Autónomos y negocios</div>
         {megaSeguros.empresas.map((item) => <MegaLink key={item.label} {...item} onClick={onNavigate} />)}
       </div>
       <div className="w-[22%] px-6 border-r border-borde">
-        <div className="label-style text-gris-medio mb-2">Dental</div>
+        <div className="label-style mb-2" style={{ color: "#374151" }}>Dental</div>
         {megaSeguros.dental.map((item) => <MegaLink key={item.label} {...item} onClick={onNavigate} />)}
-        <div className="label-style text-gris-medio mb-2 mt-4">Otros seguros</div>
+        <div className="label-style mb-2 mt-4" style={{ color: "#374151" }}>Otros seguros</div>
         {megaSeguros.otros.map((item) => <MegaLink key={item.label} {...item} onClick={onNavigate} />)}
       </div>
       <div className="w-[240px] flex-shrink-0 ml-auto p-6 rounded-[14px] text-white flex flex-col justify-between" style={{ background: "linear-gradient(145deg, #003087 0%, #009FE3 100%)" }}>
@@ -684,11 +684,11 @@ const MegaSegurosContent = ({ onNavigate }: { onNavigate: () => void }) => {
 const MegaPlanesContent = ({ onNavigate }: { onNavigate: () => void }) => (
   <>
     <div className="w-[30%] pr-6 border-r border-borde">
-      <div className="label-style text-gris-medio mb-2">Sin copago</div>
+      <div className="label-style mb-2" style={{ color: "#374151" }}>Sin copago</div>
       {megaPlanes.sinCopago.map((item) => <MegaLink key={item.label} {...item} onClick={onNavigate} />)}
     </div>
     <div className="w-[30%] px-6 border-r border-borde">
-      <div className="label-style text-gris-medio mb-2">Con copago</div>
+      <div className="label-style mb-2" style={{ color: "#374151" }}>Con copago</div>
       {megaPlanes.conCopago.map((item) => <MegaLink key={item.label} {...item} onClick={onNavigate} />)}
     </div>
     <div className="w-[240px] flex-shrink-0 ml-auto p-6 rounded-[14px] text-white flex flex-col justify-between" style={{ background: "linear-gradient(145deg, #003087 0%, #009FE3 100%)" }}>
