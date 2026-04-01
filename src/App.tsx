@@ -24,7 +24,6 @@ import PymesEmpresas from "./pages/PymesEmpresas";
 
 /* ── Otros seguros ── */
 import AdeslasDental from "./pages/AdeslasDental";
-import AdeslaExtranjeros from "./pages/AdeslaExtranjeros";
 import AdeslaDecesos from "./pages/AdeslaDecesos";
 import AdeslasMascotas from "./pages/AdeslasMascotas";
 import AdeslaAsistenciaViaje from "./pages/AdeslaAsistenciaViaje";
@@ -85,9 +84,8 @@ const App = () => (
             <Route path="/autonomos" element={<Autonomos />} />
             <Route path="/pymes-empresas" element={<PymesEmpresas />} />
 
-            {/* Dental, Extranjeros & Decesos */}
+            {/* Dental & Decesos */}
             <Route path="/adeslas-dental" element={<AdeslasDental />} />
-            <Route path="/adeslas-extranjeros" element={<AdeslaExtranjeros />} />
             <Route path="/adeslas-decesos" element={<AdeslaDecesos />} />
             <Route path="/adeslas-mascotas" element={<AdeslasMascotas />} />
             <Route path="/adeslas-asistencia-viaje" element={<AdeslaAsistenciaViaje />} />

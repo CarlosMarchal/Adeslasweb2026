@@ -56,7 +56,6 @@ const allProducts = [
   { icon: "💎", name: "Adeslas Extra 150", href: "/adeslas-extra-150", tag: "Cobertura ampliada", desc: "Sin copagos con coberturas ampliadas. Para quienes quieren más." },
   { icon: "🏆", name: "Adeslas Plena Plus", href: "/adeslas-plena-plus", tag: "Máxima cobertura", desc: "Lo mejor de Adeslas. Cobertura premium sin límites." },
   { icon: "🦷", name: "Adeslas Dental", href: "/adeslas-dental", tag: "Dental", desc: "Limpieza, empastes y ortodoncia para toda la familia sin esperas." },
-  { icon: "🌍", name: "Adeslas Extranjeros", href: "/adeslas-extranjeros", tag: "Residentes / NIE", desc: "Seguro médico para residentes y estudiantes extranjeros en España." },
   { icon: "🕊️", name: "Adeslas Decesos", href: "/adeslas-decesos", tag: "Decesos", desc: "Gestión completa del sepelio en España y el extranjero, 24h." },
 ];
 

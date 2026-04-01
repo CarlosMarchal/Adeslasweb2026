@@ -42,7 +42,6 @@ const Footer = () => (
               { label: "Vida", to: "/adeslas-dental" },
               { label: "Decesos", to: "/adeslas-decesos" },
               { label: "Mascotas", to: "/adeslas-dental" },
-              { label: "Extranjeros", to: "/adeslas-extranjeros" },
             ].map((l) => (
               <Link key={l.to} to={l.to} className="block text-sm transition-colors hover:text-primary-foreground" style={{ color: "rgba(255,255,255,0.5)" }}>
                 {l.label}

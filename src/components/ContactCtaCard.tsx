@@ -6,7 +6,6 @@ import type { HubSpotSource } from "@/lib/hubspot";
 const pageSourceMap: Record<string, HubSpotSource> = {
   "/adeslas-dental":        308,
   "/adeslas-decesos":       309,
-  "/adeslas-extranjeros":   312,
   "/pymes":                 310,
   "/empresas":              311,
   "/autonomos":             319,

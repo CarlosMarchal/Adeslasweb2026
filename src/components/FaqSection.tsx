@@ -35,10 +35,6 @@ const faqs = [
     a: "Sí. Todos los planes principales de Adeslas incluyen telemedicina 24 horas los 7 días de la semana. Puedes consultar con médicos y especialistas por videollamada desde cualquier dispositivo, recibir recetas médicas online y obtener diagnósticos iniciales sin necesidad de desplazarte. Es especialmente útil para urgencias menores, seguimiento de tratamientos y consultas de madrugada.",
   },
   {
-    q: "¿Puedo contratar Adeslas siendo extranjero en España?",
-    a: "Sí. Adeslas dispone de un seguro médico específico para extranjeros en España (Newcomers Protection) que cumple los requisitos de visado de estudiante y residencia. Cubre asistencia médica completa, hospitalización, urgencias y repatriación. También puedes contratar cualquier plan estándar de Adeslas si dispones de NIE o documentación de residencia válida. Nuestros asesores te ayudan a tramitar toda la documentación necesaria.",
-  },
-  {
     q: "¿Adeslas tiene periodo de carencia?",
     a: "Adeslas no aplica períodos de carencia generales: la gran mayoría de coberturas están activas desde el primer día de contratación. Solo la hospitalización programada tiene una carencia de 8 meses. Si vienes de otra aseguradora médica con al menos 6 meses de antigüedad, pueden eliminarse las carencias por traslado. Consulta con nosotros las condiciones exactas de tu caso.",
   },
