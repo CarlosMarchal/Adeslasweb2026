@@ -435,14 +435,13 @@ const Header = () => {
                   defaultCountry="es"
                   value={navPhone}
                   onChange={handleNavPhoneChange}
-                  placeholder="600 000 000"
                   inputClassName="!h-8 !text-sm !border-0 !bg-transparent !outline-none !w-[172px] !px-2 !cursor-text"
                   countrySelectorStyleProps={{
                     buttonClassName: "!h-8 !border-0 !bg-transparent !px-2",
                     flagClassName: "!w-5 !h-4",
                   }}
                   className="!border-0 !rounded-none !h-8"
-                  inputProps={{ autoComplete: "tel", inputMode: "tel" }}
+                  inputProps={{ autoComplete: "tel", inputMode: "tel", placeholder: "600 000 000" }}
                 />
               </div>
               <button
