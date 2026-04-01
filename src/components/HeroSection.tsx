@@ -12,7 +12,7 @@ const HeroSection = () => {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="container mx-auto px-4 py-10 lg:py-14 relative z-10">
+      <div className="container mx-auto px-4 py-7 lg:py-10 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
           {/* Left column: badge, h1, description, CTAs, trust badges */}
           <motion.div
@@ -25,7 +25,7 @@ const HeroSection = () => {
               <span className="w-2 h-2 rounded-full" style={{ background: "#009DD9" }} />
               Seguro de salud Adeslas
             </div>
-            <h1 className="text-white mb-4 text-3xl md:text-[2rem] lg:text-[2.25rem] leading-tight font-bold">
+            <h1 className="text-white mb-3 text-xl md:text-2xl lg:text-[1.5rem] leading-snug font-bold">
               Seguro Médico Adeslas — Encuentra el plan que mejor se adapta a ti
             </h1>
             <p className="text-white/85 mb-4 text-sm md:text-base leading-relaxed max-w-md">

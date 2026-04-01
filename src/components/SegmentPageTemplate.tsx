@@ -91,7 +91,7 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/55" />
 
-          <div className="container mx-auto px-4 py-10 lg:py-14 relative z-10">
+          <div className="container mx-auto px-4 py-7 lg:py-10 relative z-10">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
               {/* Left: text */}
               <motion.div
@@ -100,10 +100,10 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
                 transition={{ duration: 0.6 }}
                 className="lg:pl-14 xl:pl-24"
               >
-                <h1 className="text-white mb-4 text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.15rem] leading-tight font-bold">
+                <h1 className="text-white mb-3 text-[1.15rem] sm:text-xl md:text-2xl lg:text-[1.35rem] leading-snug font-bold">
                   {data.heroTitle}
                 </h1>
-                <p className="text-lg mb-5 max-w-xl" style={{ color: "rgba(255,255,255,0.88)" }}>
+                <p className="text-base mb-4 max-w-xl" style={{ color: "rgba(255,255,255,0.88)" }}>
                   {data.heroSubtitle}
                 </p>
 
