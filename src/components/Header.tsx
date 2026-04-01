@@ -272,27 +272,32 @@ const Header = () => {
     return digits.length >= 9 && digits.length <= 11;
   };
 
+  const formatPhoneDisplay = (raw: string) => {
+    const d = raw.replace(/\D/g, "").slice(0, 9);
+    if (d.length <= 3) return d;
+    if (d.length <= 6) return `${d.slice(0, 3)} ${d.slice(3)}`;
+    return `${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}`;
+  };
+
   const handleNavPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value.replace(/\D/g, "").slice(0, 9);
-    setNavPhone(val);
+    setNavPhone(formatPhoneDisplay(e.target.value));
   };
   const handleNavPhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (navPhone.replace(/\D/g, "").length >= 9) {
-      submitToHubSpot({ phone: "+34" + navPhone, source: 300 });
+      submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 300 });
       setNavPhone("");
       setShowThankYouModal(true);
     }
   };
 
   const handleMobilePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value.replace(/\D/g, "").slice(0, 9);
-    setMobilePhone(val);
+    setMobilePhone(formatPhoneDisplay(e.target.value));
   };
   const handleMobilePhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (mobilePhone.replace(/\D/g, "").length >= 9) {
-      submitToHubSpot({ phone: "+34" + mobilePhone, source: 301 });
+      submitToHubSpot({ phone: "+34" + mobilePhone.replace(/\s/g, ""), source: 301 });
       setMobilePhone("");
       setShowPhonePopup(false);
       setShowThankYouModal(true);

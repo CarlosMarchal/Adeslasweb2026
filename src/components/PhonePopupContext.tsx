@@ -18,9 +18,15 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
   const [termsError, setTermsError] = useState(false);
   const sourceRef = useRef<HubSpotSource>(201);
 
+  const formatPhoneDisplay = (raw: string) => {
+    const d = raw.replace(/\D/g, "").slice(0, 9);
+    if (d.length <= 3) return d;
+    if (d.length <= 6) return `${d.slice(0, 3)} ${d.slice(3)}`;
+    return `${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}`;
+  };
+
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value.replace(/\D/g, "").slice(0, 9);
-    setPhone(val);
+    setPhone(formatPhoneDisplay(e.target.value));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -31,7 +37,7 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
     }
     setTermsError(false);
     if (phone.replace(/\D/g, "").length >= 9) {
-      submitToHubSpot({ phone: "+34" + phone, source: sourceRef.current });
+      submitToHubSpot({ phone: "+34" + phone.replace(/\s/g, ""), source: sourceRef.current });
       setSent(true);
       setTimeout(() => { setSent(false); setPhone(""); setTermsAccepted(false); setOpen(false); }, 3000);
     }
