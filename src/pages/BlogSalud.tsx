@@ -68,7 +68,7 @@ const BlogSalud = () => {
               <span className="w-2 h-2 rounded-full bg-azul-claro" />
               Salud y bienestar
             </div>
-            <h1 className="text-primary-foreground mb-3 text-3xl md:text-[48px] leading-tight md:leading-[1.15]">
+            <h1 className="text-primary-foreground mb-3 text-3xl md:text-[40px] leading-tight md:leading-[1.15]">
               Blog de Salud <span className="text-azul-claro">Adeslas</span>
             </h1>
             <p

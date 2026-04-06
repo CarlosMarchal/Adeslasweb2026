@@ -234,7 +234,7 @@ const PreciosOfertasInner = () => {
                 Las mejores ofertas y precios de Adeslas
               </div>
 
-              <h1 className="text-primary-foreground mb-4 text-3xl md:text-[48px] leading-tight md:leading-[1.15]">
+              <h1 className="text-primary-foreground mb-4 text-3xl md:text-[40px] leading-tight md:leading-[1.15]">
                 Precios y Ofertas
                 <br />
                 <span className="text-azul-claro">Adeslas 2026</span>

@@ -20,7 +20,7 @@ const HeroSection = () => {
               <span className="w-2 h-2 rounded-full" style={{ background: "#009DD9" }} />
               Seguros Médicos Adeslas
             </div>
-            <h1 className="text-white mb-3 text-3xl md:text-[48px] leading-tight md:leading-[1.15] font-bold">
+            <h1 className="text-white mb-3 text-3xl md:text-[40px] leading-tight md:leading-[1.15] font-bold">
               Seguros Médicos Adeslas<br /><span style={{ color: "#009FE3" }}>Compara planes y calcula tu precio ahora</span>
             </h1>
             <p className="text-white/85 mb-6 text-sm md:text-base leading-relaxed max-w-md">

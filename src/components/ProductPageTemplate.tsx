@@ -216,7 +216,7 @@ const ProductHero = ({
             </div>
           )}
 
-          <h1 className="text-white mb-3 text-3xl md:text-[48px] leading-tight md:leading-[1.15] font-bold">
+          <h1 className="text-white mb-3 text-3xl md:text-[40px] leading-tight md:leading-[1.15] font-bold">
             {data.heroTitle}
             {data.heroHighlight && (
               <><br /><span style={{ color: "#009FE3" }}>{data.heroHighlight}</span></>
