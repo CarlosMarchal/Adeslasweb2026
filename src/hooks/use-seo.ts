@@ -95,7 +95,7 @@ export function useSeo({
     setMeta('meta[property="og:type"]', "property=og:type", ogType);
     setMeta('meta[property="og:url"]', "property=og:url", canonical);
     setMeta('meta[property="og:locale"]', "property=og:locale", "es_ES");
-    setMeta('meta[property="og:site_name"]', "property=og:site_name", "Marchal Mediadores · Adeslas");
+    setMeta('meta[property="og:site_name"]', "property=og:site_name", "Adeslas | Marchal Aseguradores");
     if (ogImage) {
       setMeta('meta[property="og:image"]', "property=og:image", ogImage);
       setMeta('meta[property="og:image:width"]', "property=og:image:width", "1200");

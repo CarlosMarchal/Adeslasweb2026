@@ -10,10 +10,11 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# LLM / AI bots — permitidos para GEO (Generative Engine Optimization)
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: Claude-Web
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: GPTBot
@@ -22,7 +23,28 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: YouBot
 Allow: /
 
 User-agent: *

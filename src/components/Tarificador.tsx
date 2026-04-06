@@ -137,14 +137,7 @@ const countryCodes = [
 ];
 
 /* ── Product slug → HubSpot source number ── */
-const slugToSource: Record<string, import("@/lib/hubspot").HubSpotSource> = {
-  "asisa-ya":               203,
-  "asisa-esencial":         204,
-  "asisa-completa":         205,
-  "asisa-completa-plus":    206,
-  "asisa-completa-plus-plus": 207,
-  "asisa-reembolso":        208,
-};
+const slugToSource: Record<string, import("@/lib/hubspot").HubSpotSource> = {};
 
 /* ───────── Component ───────── */
 

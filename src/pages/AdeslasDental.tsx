@@ -154,7 +154,7 @@ const data: ProductPageData = {
       q: "¿Qué servicios están incluidos sin coste en el seguro dental Adeslas?",
       a: (
         <>
-          El seguro dental Adeslas incluye sin ningún coste: revisiones y diagnósticos completos, examen periodontal, consulta profesional, todas las radiografías básicas (intraoral, oclusal, panorámica, telerradiografía), limpieza de boca (tartrectomía) con o sin flúor, extracciones simples, frenectomía, quistectomía, fluorizaciones, selladores oclusales y el estudio previo de implantología. Para el detalle completo de costes por tratamiento, <a href="/franquicias-asisa-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>consulta la tabla de franquicias 2026</a>.
+          El seguro dental Adeslas incluye sin ningún coste: revisiones y diagnósticos completos, examen periodontal, consulta profesional, todas las radiografías básicas (intraoral, oclusal, panorámica, telerradiografía), limpieza de boca (tartrectomía) con o sin flúor, extracciones simples, frenectomía, quistectomía, fluorizaciones, selladores oclusales y el estudio previo de implantología. Para el detalle completo de costes por tratamiento, <a href="/franquicias-adeslas-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>consulta la tabla de franquicias 2026</a>.
         </>
       ),
     },
@@ -162,7 +162,7 @@ const data: ProductPageData = {
       q: "¿Qué son las franquicias en el seguro dental Adeslas?",
       a: (
         <>
-          Las franquicias son los importes fijos que el asegurado abona directamente en clínica por ciertos tratamientos (implantes, endodoncia, ortodoncia, prótesis…). Son precios cerrados, muy inferiores a los del mercado privado. Puedes consultar todos los importes en la <a href="/franquicias-asisa-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>tabla oficial de franquicias Adeslas Dental 2026</a>.
+          Las franquicias son los importes fijos que el asegurado abona directamente en clínica por ciertos tratamientos (implantes, endodoncia, ortodoncia, prótesis…). Son precios cerrados, muy inferiores a los del mercado privado. Puedes consultar todos los importes en la <a href="/franquicias-adeslas-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>tabla oficial de franquicias Adeslas Dental 2026</a>.
         </>
       ),
     },
@@ -182,7 +182,7 @@ const data: ProductPageData = {
       q: "¿Cubre implantes dentales el seguro dental Adeslas?",
       a: (
         <>
-          Sí. El seguro dental Adeslas cubre los implantes con una franquicia reducida muy por debajo del precio de mercado, tanto en la fase quirúrgica como en el aditamento protésico y la corona final. También cubre el mantenimiento de implantología y la elevación de seno cuando es necesaria. Consulta los importes exactos en la <a href="/franquicias-asisa-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>tabla de franquicias 2026</a>.
+          Sí. El seguro dental Adeslas cubre los implantes con una franquicia reducida muy por debajo del precio de mercado, tanto en la fase quirúrgica como en el aditamento protésico y la corona final. También cubre el mantenimiento de implantología y la elevación de seno cuando es necesaria. Consulta los importes exactos en la <a href="/franquicias-adeslas-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>tabla de franquicias 2026</a>.
         </>
       ),
     },
@@ -190,7 +190,7 @@ const data: ProductPageData = {
       q: "¿Cubre endodoncia el seguro dental Adeslas?",
       a: (
         <>
-          Sí. La endodoncia está cubierta con una franquicia fija según el tipo de diente (unirradicular, birradicular o multirradicular), siempre muy inferior al precio de mercado. También cubre la reendodoncia y la apicoformación. Si lo prefieres, el tratamiento puede realizarse con tecnología ENDOLASSIK. Ver importes en la <a href="/franquicias-asisa-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>tabla de franquicias</a>.
+          Sí. La endodoncia está cubierta con una franquicia fija según el tipo de diente (unirradicular, birradicular o multirradicular), siempre muy inferior al precio de mercado. También cubre la reendodoncia y la apicoformación. Si lo prefieres, el tratamiento puede realizarse con tecnología ENDOLASSIK. Ver importes en la <a href="/franquicias-adeslas-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>tabla de franquicias</a>.
         </>
       ),
     },
@@ -198,7 +198,7 @@ const data: ProductPageData = {
       q: "¿Cubre ortodoncia e Invisalign el seguro dental Adeslas?",
       a: (
         <>
-          Sí. La ortodoncia se cubre con franquicias fijas para todas las modalidades: brackets metálicos, brackets estéticos, brackets autoligados metálicos y estéticos, y tratamientos interceptivos para niños. Todos los precios incluyen los retenedores finales. Consulta los importes en la <a href="/franquicias-asisa-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>tabla completa de franquicias</a>.
+          Sí. La ortodoncia se cubre con franquicias fijas para todas las modalidades: brackets metálicos, brackets estéticos, brackets autoligados metálicos y estéticos, y tratamientos interceptivos para niños. Todos los precios incluyen los retenedores finales. Consulta los importes en la <a href="/franquicias-adeslas-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>tabla completa de franquicias</a>.
         </>
       ),
     },
@@ -226,7 +226,7 @@ const data: ProductPageData = {
       q: "¿Cubre periodoncia (encías) el seguro dental Adeslas?",
       a: (
         <>
-          Sí. El periodontograma y el diagnóstico periodontal son gratuitos. Los tratamientos de periodoncia (curetaje, cirugía periodontal a colgajo, gingivectomía, regeneración con membrana) se cubren con franquicias reducidas. Consulta todos los importes en la <a href="/franquicias-asisa-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>tabla de franquicias 2026</a>.
+          Sí. El periodontograma y el diagnóstico periodontal son gratuitos. Los tratamientos de periodoncia (curetaje, cirugía periodontal a colgajo, gingivectomía, regeneración con membrana) se cubren con franquicias reducidas. Consulta todos los importes en la <a href="/franquicias-adeslas-dental-2026.pdf" target="_blank" rel="noopener noreferrer" style={{color:"#009FE3",textDecoration:"underline"}}>tabla de franquicias 2026</a>.
         </>
       ),
     },
