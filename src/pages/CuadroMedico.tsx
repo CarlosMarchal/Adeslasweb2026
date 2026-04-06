@@ -163,7 +163,7 @@ const CuadroMedico = () => {
             {filtered.map((p, i) => (
               <motion.a
                 key={p}
-                href={`/cuadros-medicos/${encodeURIComponent(p)}.pdf`}
+                href={`/cuadros-medicos/Adeslas%20Cuadro%20Medico%20${encodeURIComponent(p)}%202026.pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 12 }}
