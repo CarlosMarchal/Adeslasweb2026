@@ -32,7 +32,7 @@ const provincias = [
   "Islas Baleares", "Jaén", "La Coruña", "La Rioja", "Las Palmas",
   "León", "Lérida", "Lugo", "Madrid", "Málaga", "Melilla", "Murcia",
   "Navarra", "Orense", "Palencia", "Pontevedra", "Salamanca", "Segovia",
-  "Soria", "Tarragona", "Tenerife", "Teruel", "Toledo", "Valencia",
+  "Sevilla", "Soria", "Tarragona", "Tenerife", "Teruel", "Toledo", "Valencia",
   "Valladolid", "Vizcaya", "Zamora", "Zaragoza",
 ];
 
