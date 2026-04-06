@@ -199,14 +199,14 @@ const ProductHero = ({
   return (
   <section
     className="relative overflow-hidden bg-cover bg-center"
-    style={{ backgroundImage: `url(${data.heroImage || heroBg})` }}
+    style={{ backgroundImage: `url(${data.heroImage || heroBg})`, minHeight: "460px" }}
     role="img"
     aria-label={`${data.heroTitle}${data.heroHighlight ? " " + data.heroHighlight : ""} — Adeslas seguros médicos privados`}
   >
     {/* Dark overlay — same approach as home HeroSection */}
     <div className="absolute inset-0 bg-black/65" />
 
-    <div className="container mx-auto px-4 py-5 lg:py-7 relative z-10">
+    <div className="container mx-auto px-4 py-8 lg:py-10 relative z-10">
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="lg:pl-14 xl:pl-24">
           {data.badge && (
@@ -216,7 +216,7 @@ const ProductHero = ({
             </div>
           )}
 
-          <h1 className="text-white mb-3 text-[1.15rem] sm:text-xl md:text-2xl lg:text-[1.65rem] leading-snug font-bold">
+          <h1 className="text-white mb-3 text-3xl md:text-[48px] leading-tight md:leading-[1.15] font-bold">
             {data.heroTitle}
             {data.heroHighlight && (
               <><br /><span style={{ color: "#009FE3" }}>{data.heroHighlight}</span></>

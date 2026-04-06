@@ -209,7 +209,7 @@ const PreciosOfertasInner = () => {
       {/* ────── Hero ────── */}
       <section
         className="relative overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        style={{ backgroundImage: `url(${heroBg})`, minHeight: "460px" }}
       >
         {/* Dark overlay */}
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />

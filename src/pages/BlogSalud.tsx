@@ -36,10 +36,11 @@ const BlogSalud = () => {
 
       {/* Hero */}
       <section
-        className="relative overflow-hidden"
+        className="relative overflow-hidden flex items-center"
         style={{
           background:
             "linear-gradient(135deg, #003087 0%, #009FE3 65%, #009FE3 100%)",
+          minHeight: "460px",
         }}
       >
         <div
@@ -50,7 +51,7 @@ const BlogSalud = () => {
             mixBlendMode: "luminosity",
           }}
         />
-        <div className="container mx-auto px-4 py-14 lg:py-20 relative z-10">
+        <div className="container mx-auto px-4 py-10 lg:py-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}

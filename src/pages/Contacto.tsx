@@ -51,9 +51,9 @@ const Contacto = () => {
       <Header />
 
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #003087 0%, #009FE3 65%, #009FE3 100%)" }}>
+      <section className="relative overflow-hidden flex items-center" style={{ background: "linear-gradient(135deg, #003087 0%, #009FE3 65%, #009FE3 100%)", minHeight: "460px" }}>
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})`, opacity: 0.12, mixBlendMode: "luminosity" }} />
-        <div className="container mx-auto px-4 py-14 lg:py-20 relative z-10">
+        <div className="container mx-auto px-4 py-10 lg:py-12 relative z-10">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
             <h1 className="text-primary-foreground mb-3 text-3xl md:text-[48px] leading-tight md:leading-[1.15]">
               Contacta con<br /><span className="text-azul-claro">Adeslas Seguros Médicos</span>

@@ -81,14 +81,14 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
         {/* ── Hero with 2 columns — full photo + dark overlay, same as home ── */}
         <section
           className="relative overflow-hidden bg-cover bg-center"
-          style={{ backgroundImage: `url(${data.heroBg || defaultHeroBg})` }}
+          style={{ backgroundImage: `url(${data.heroBg || defaultHeroBg})`, minHeight: "460px" }}
           role="img"
           aria-label={`${data.heroTitle} — Adeslas seguros médicos privados`}
         >
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/65" />
 
-          <div className="container mx-auto px-4 py-5 lg:py-7 relative z-10">
+          <div className="container mx-auto px-4 py-8 lg:py-10 relative z-10">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
               {/* Left: text */}
               <motion.div
@@ -97,7 +97,7 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
                 transition={{ duration: 0.6 }}
                 className="lg:pl-14 xl:pl-24"
               >
-                <h1 className="text-white mb-3 text-[1.15rem] sm:text-xl md:text-2xl lg:text-[1.65rem] leading-snug font-bold">
+                <h1 className="text-white mb-3 text-3xl md:text-[48px] leading-tight md:leading-[1.15] font-bold">
                   {data.heroTitle}
                 </h1>
                 <p className="text-base mb-6 max-w-xl" style={{ color: "rgba(255,255,255,0.88)" }}>

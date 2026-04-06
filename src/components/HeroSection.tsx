@@ -4,11 +4,11 @@ import heroBg from "@/assets/asisa_salud_seguro_medico.webp";
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})` }} role="img" aria-label="Seguro médico Adeslas — pareja sonriente con cobertura sanitaria privada completa">
+    <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})`, minHeight: "460px" }} role="img" aria-label="Seguro médico Adeslas — pareja sonriente con cobertura sanitaria privada completa">
       {/* Dark overlay */}
       <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />
 
-      <div className="max-w-[1280px] mx-auto px-12 lg:px-20 py-5 lg:py-7 relative z-10">
+      <div className="max-w-[1280px] mx-auto px-12 lg:px-20 py-8 lg:py-10 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
           {/* Left column: badge, h1, description, trust badges */}
           <motion.div
@@ -20,7 +20,7 @@ const HeroSection = () => {
               <span className="w-2 h-2 rounded-full" style={{ background: "#009DD9" }} />
               Seguros Médicos Adeslas
             </div>
-            <h1 className="text-white mb-3 text-xl md:text-2xl lg:text-[1.5rem] leading-snug font-bold">
+            <h1 className="text-white mb-3 text-3xl md:text-[48px] leading-tight md:leading-[1.15] font-bold">
               Seguros Médicos Adeslas<br /><span style={{ color: "#009FE3" }}>Compara planes y calcula tu precio ahora</span>
             </h1>
             <p className="text-white/85 mb-6 text-sm md:text-base leading-relaxed max-w-md">
