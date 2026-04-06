@@ -45,7 +45,6 @@ import BlogArticle from "./pages/BlogArticle";
 import PoliticaPrivacidad from "./pages/PoliticaPrivacidad";
 import MiPrecio from "./pages/MiPrecio";
 import PreciosOfertas from "./pages/PreciosOfertas";
-import CookieBanner from "./components/CookieBanner";
 import { PhonePopupProvider } from "./components/PhonePopupContext";
 
 const queryClient = new QueryClient();
@@ -110,7 +109,6 @@ const App = () => (
 
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <CookieBanner />
         </BrowserRouter>
       </PhonePopupProvider>
     </TooltipProvider>
