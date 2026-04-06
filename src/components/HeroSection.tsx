@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import Tarificador from "@/components/Tarificador";
-import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
+import heroBg from "@/assets/adeslas-seguro-medico-ofertas.webp";
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})`, minHeight: "460px" }} role="img" aria-label="Seguro médico Adeslas — pareja sonriente con cobertura sanitaria privada completa">
+    <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})`, minHeight: "460px" }} role="img" aria-label="Seguros médicos Adeslas 2026 — compara todos los planes Adeslas y calcula tu precio online desde 21€/mes">
       {/* Dark overlay */}
       <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />
 

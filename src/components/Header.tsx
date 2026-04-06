@@ -365,9 +365,9 @@ const Header = () => {
                   <div className="text-sm font-bold" style={{ color: "#003087" }}>91 91 91 898</div>
                 </div>
               </a>
-              {/* CTA principal */}
+              {/* CTA principal — desktop always opens tarificador modal */}
               <button
-                onClick={onCalcClick ?? openTarificador}
+                onClick={openTarificador}
                 className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm text-white btn-cta-magenta active:scale-[0.98] cursor-pointer ml-1"
                 style={{ backgroundColor: "#E4097D" }}
               >
