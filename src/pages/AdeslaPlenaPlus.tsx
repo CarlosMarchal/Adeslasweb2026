@@ -101,7 +101,7 @@ const data: ProductPageData = {
     },
     {
       title: "Servicios digitales",
-      description: "Videoconsultas, chat y app Adeslas LIVE",
+      description: "Videoconsultas, chat y app Adeslas Videoconsultas 24h",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <rect

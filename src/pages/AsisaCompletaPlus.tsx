@@ -179,7 +179,7 @@ const data: ProductPageData = {
         "Segunda opinión médica",
         "Orientación médica 24h",
         "App Adeslas con gestión de citas",
-        "Programa Adeslas LIVE",
+        "Programa Adeslas Videoconsultas 24h",
       ],
     },
     {
@@ -227,7 +227,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Incluye servicios digitales Adeslas Plena Total+?",
-      a: "Sí. Incluye videoconsultas a través de Adeslas LIVE, chat médico, orientación médica telefónica 24h y App Adeslas para gestión de citas, resultados y recetas.",
+      a: "Sí. Incluye videoconsultas a través de Adeslas Videoconsultas 24h, chat médico, orientación médica telefónica 24h y App Adeslas para gestión de citas, resultados y recetas.",
     },
     {
       q: "¿Cubre asistencia médica en el extranjero?",

@@ -155,7 +155,7 @@ const faqs = [
     a: "Adeslas Plena Total es el más recomendado para familias: sin copagos, hospitalización y cirugía ilimitadas, dental (46 actos), asistencia viajes 100.000€ y 3 años sin subida de precio. A partir de 3 asegurados se aplica un 5% de descuento (10% con 4, 15% con 5+).",
   },
   {
-    q: "¿Qué diferencia hay entre Adeslas Plena Plusy Adeslas Plena Plus++?",
+    q: "¿Qué diferencia hay entre Adeslas Plena Vital y Adeslas Plena Plus?",
     a: "Adeslas Plena Plus no tiene copagos en ningún acto médico. Adeslas Plena Vital tiene copagos por consulta, pero están topados a un máximo de 300€/año por asegurado, por lo que sabes de antemano cuánto gastarás como máximo. Plena Vital tiene una prima mensual más baja.",
   },
   {

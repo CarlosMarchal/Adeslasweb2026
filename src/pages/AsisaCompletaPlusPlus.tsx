@@ -43,7 +43,7 @@ const data: ProductPageData = {
     "Cirugía y prótesis incluidas",
     "Trasplantes cubiertos",
     "Asistencia en viaje (20.000€)",
-    "Videoconsultas Adeslas LIVE",
+    "Videoconsultas Adeslas Videoconsultas 24h",
     "Libre elección de centros",
   ],
   features: [
@@ -132,7 +132,7 @@ const data: ProductPageData = {
     },
     {
       title: "Servicios digitales",
-      description: "Videoconsultas, chat y app Adeslas LIVE",
+      description: "Videoconsultas, chat y app Adeslas Videoconsultas 24h",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <rect
@@ -177,7 +177,7 @@ const data: ProductPageData = {
         "Segunda opinión médica",
         "Orientación médica 24h",
         "App Adeslas con citas y consultas",
-        "Adeslas LIVE: videoconsultas",
+        "Adeslas Videoconsultas 24h: videoconsultas",
         "Programas de bienestar",
       ],
     },

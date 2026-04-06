@@ -122,7 +122,7 @@ const data: ProductPageData = {
         "Asistencia viajes 20.000€",
         "Segunda opinión médica",
         "RAD Adeslas 24h",
-        "Adeslas LIVE videoconsultas",
+        "Adeslas Videoconsultas 24h videoconsultas",
         "App Adeslas gestión móvil"
       ]
     },
@@ -174,7 +174,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Qué ventajas digitales incluye Adeslas Plena Total?",
-      a: "Incluye videoconsultas con médicos a través de Adeslas LIVE, orientación médica telefónica 24h (900 900 118), App Adeslas para gestión de citas y resultados, chat médico y acceso a Doctor Virtual."
+      a: "Incluye videoconsultas con médicos a través de Adeslas Videoconsultas 24h, orientación médica telefónica 24h (900 900 118), App Adeslas para gestión de citas y resultados, chat médico y acceso a Doctor Virtual."
     },
     {
       q: "¿Puedo contratar Adeslas Plena Pluspara toda mi familia?",
