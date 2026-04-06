@@ -55,7 +55,7 @@ const Contacto = () => {
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})`, opacity: 0.12, mixBlendMode: "luminosity" }} />
         <div className="container mx-auto px-4 py-10 lg:py-12 relative z-10">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
-            <h1 className="text-primary-foreground mb-3 text-3xl md:text-[40px] leading-tight md:leading-[1.15]">
+            <h1 className="text-primary-foreground mb-3 text-[26px] md:text-[36px] leading-tight md:leading-[1.15]">
               Contacta con<br /><span className="text-azul-claro">Adeslas Seguros Médicos</span>
             </h1>
             <p className="text-lg max-w-2xl" style={{ color: "rgba(255,255,255,0.82)" }}>

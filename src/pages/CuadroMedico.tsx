@@ -88,7 +88,7 @@ const CuadroMedico = () => {
               <span className="w-2 h-2 rounded-full bg-azul-claro" />
               Red médica nacional
             </div>
-            <h1 className="text-primary-foreground mb-3 text-3xl md:text-[40px] leading-tight md:leading-[1.15]">
+            <h1 className="text-primary-foreground mb-3 text-[26px] md:text-[36px] leading-tight md:leading-[1.15]">
               Cuadro Médico
               <br />
               <span className="text-azul-claro">Adeslas 2026</span>
