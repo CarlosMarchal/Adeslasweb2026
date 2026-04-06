@@ -259,7 +259,7 @@ const PoliticaPrivacidad = () => {
               </thead>
               <tbody className="text-gris-texto">
                 <tr>
-                  <td className="p-2.5 border" style={{ borderColor: "#D5E3F0" }}>asisa_cookie_consent</td>
+                  <td className="p-2.5 border" style={{ borderColor: "#D5E3F0" }}>adeslas_cookie_consent</td>
                   <td className="p-2.5 border" style={{ borderColor: "#D5E3F0" }}>Técnica</td>
                   <td className="p-2.5 border" style={{ borderColor: "#D5E3F0" }}>Almacena tu elección sobre cookies</td>
                   <td className="p-2.5 border" style={{ borderColor: "#D5E3F0" }}>1 año</td>

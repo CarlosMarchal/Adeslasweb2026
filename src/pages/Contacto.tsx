@@ -4,7 +4,7 @@ import { useSeo } from "@/hooks/use-seo";
 import { TarificadorProvider } from "@/components/TarificadorContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import heroBg from "@/assets/asisa_salud_seguro_medico.webp";
+import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
 
 const contactMethods = [
   {

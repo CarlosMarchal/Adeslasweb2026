@@ -8,7 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Tarificador from "@/components/Tarificador";
 import CtaSection from "@/components/CtaSection";
-import defaultHeroBg from "@/assets/asisa_salud_seguro_medico.webp";
+import defaultHeroBg from "@/assets/seguro-salud-adeslas-familias.webp";
 
 /* ───── Types ───── */
 

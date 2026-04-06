@@ -6,7 +6,7 @@ import { TarificadorProvider } from "@/components/TarificadorContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaSection from "@/components/CtaSection";
-import heroBg from "@/assets/asisa_salud_seguro_medico.webp";
+import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
 import { blogPosts, categories } from "@/data/blogPosts";
 
 /* ───────── Component ───────── */

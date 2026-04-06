@@ -10,7 +10,7 @@ import CalcButton from "@/components/CalcButton";
 import Tarificador from "@/components/Tarificador";
 import CtaSection from "@/components/CtaSection";
 import { usePhonePopup } from "@/components/PhonePopupContext";
-import heroBg from "@/assets/asisa_salud_seguro_medico.webp";
+import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
 
 /* ───────── Types ───────── */
 

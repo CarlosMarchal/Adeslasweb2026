@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Tarificador from "@/components/Tarificador";
-import heroBg from "@/assets/asisa_salud_seguro_medico.webp";
+import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
 
 const HeroSection = () => {
   return (

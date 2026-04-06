@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-const COOKIE_KEY = "asisa_cookie_consent";
+const COOKIE_KEY = "adeslas_cookie_consent";
 
 /** Read consent from storage (try localStorage, fall back to sessionStorage) */
 const getConsent = (): string | null => {
