@@ -32,6 +32,8 @@
     <meta name="description" content="Adeslas Seguros Médicos: contrata tu seguro de salud privada online. Adeslas Go desde 21€/mes · Plena Total sin copagos · +51.000 médicos · 1.400 centros en toda España. Calcula tu precio en 2 minutos." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href="https://adeslas.marchalaseguradores.es/" />
+    <!-- LCP hero image preload: tells browser to fetch before JS executes -->
+    <link rel="preload" as="image" href="/images/hero-adeslas-seguros-medicos.webp" fetchpriority="high" type="image/webp" />
     <!-- Open Graph -->
     <meta property="og:title" content="Adeslas Seguros Médicos | Seguros de Salud Privada" />
     <meta property="og:description" content="Seguros médicos Adeslas: desde 21€/mes, sin listas de espera, +51.000 médicos en toda España. Compara todos los planes Adeslas 2026 y calcula tu precio." />
@@ -48,10 +50,11 @@
     <meta name="twitter:description" content="Todos los planes Adeslas 2026. Calcula tu precio online en 2 minutos. Sin listas de espera · +51.000 médicos." />
     <meta name="twitter:image" content="https://adeslas.marchalaseguradores.es/og-adeslas-seguros.jpg" />
     <meta name="robots" content="index, follow" />
-    <!-- Fonts -->
+    <!-- Fonts: non-render-blocking (saves ~750ms on mobile) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet"></noscript>
 
     <!-- Schema.org: InsuranceAgency — Adeslas -->
     <script type="application/ld+json">

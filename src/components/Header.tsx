@@ -234,9 +234,12 @@ const Header = () => {
   const { openPhonePopup } = usePhonePopup();
   const { pathname } = useLocation();
   const measureHeader = useCallback(() => {
-    if (headerRef.current) {
-      setHeaderBottom(headerRef.current.getBoundingClientRect().bottom);
-    }
+    // Wrap in rAF to avoid forced reflow during scroll handler (PageSpeed fix)
+    requestAnimationFrame(() => {
+      if (headerRef.current) {
+        setHeaderBottom(headerRef.current.getBoundingClientRect().bottom);
+      }
+    });
   }, []);
 
   useEffect(() => {
