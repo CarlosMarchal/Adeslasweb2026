@@ -11,7 +11,7 @@ const MAX_COMMERCIAL_DISCOUNT = 10; // % máximo del slider global
  *  Plena Vital: hasta 10% (no acumula puntos Segurísimos).
  */
 const MAX_COMMERCIAL_BY_PRODUCT: Record<string, number> = {
-  "esencial": 10,  // Adeslas Plena Vital
+  "pymes-total": 10,  // Adeslas Pymes Total
 };
 function getMaxCommercial(productId: string): number {
   return MAX_COMMERCIAL_BY_PRODUCT[productId] ?? 5;
@@ -65,7 +65,7 @@ type CampaignCat = "go" | "salud_sin" | "salud_con" | "seniors_sin" | "seniors_c
 
 const CAMPAIGN_CAT: Record<string, CampaignCat> = {
   "ya":               "go",          // Adeslas GO (sin dental)
-  "esencial":         "sin_puntos",  // Plena Vital → no acumula puntos, dto comercial hasta 10%
+  "esencial":         "salud_sin",   // Plena Vital
   "completaPlus":     "salud_con",   // Plena Vital Total ← con dental
   "completaPlusPlus": "salud_sin",   // Plena Plus
   "completa":         "salud_con",   // Plena Total ← con dental
@@ -698,16 +698,9 @@ export default function TarificadorInterno() {
           {/* ── Notas productos especiales ── */}
           <div className="space-y-3">
             <div className="bg-blue-50 border border-blue-200 rounded-2xl px-6 py-4 text-sm text-blue-800">
-              <p className="font-bold mb-1">ℹ️ Adeslas Plena Vital</p>
-              <p className="text-xs text-blue-700">
-                No acumula puntos en la campaña Segurísimos. Descuento comercial máximo: <strong>10%</strong> · Va contra tu comisión.
-              </p>
-            </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-2xl px-6 py-4 text-sm text-blue-800">
               <p className="font-bold mb-1">ℹ️ Adeslas PYMES Total</p>
               <p className="text-xs text-blue-700">
-                No acumula puntos en la campaña Segurísimos. Descuento máximo: <strong>10%</strong> (5% agente + 5% compañía).
-                El descuento comercial se gestiona directamente al emitir la póliza.
+                No acumula puntos en la campaña Segurísimos. Descuento máximo: <strong>10%</strong> (5% agente + 5% compañía) · Va contra tu comisión.
               </p>
             </div>
           </div>
