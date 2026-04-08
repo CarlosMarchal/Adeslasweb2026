@@ -1,247 +1,273 @@
-import React, { useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { TARIFAS_ADESLAS, PROVINCIAS_LISTA, obtenerTarifa } from '@/data/tarifasAdeslas';
-import { Trash2, Plus } from 'lucide-react';
+import { useState, useMemo } from "react";
+import { Helmet } from "react-helmet-async";
+import { Trash2, Plus, ChevronDown, ChevronUp } from "lucide-react";
+import { products, provinces, getPrice, getZoneFromProvince } from "@/data/pricing";
 
-const TarificadorInterno: React.FC = () => {
-  const [productoSeleccionado, setProductoSeleccionado] = useState<string>(
-    Object.keys(TARIFAS_ADESLAS)[0]
-  );
-  const [provinciaSeleccionada, setProvinciaSeleccionada] = useState<string>(
-    PROVINCIAS_LISTA[0]
-  );
-  const [edades, setEdades] = useState<number[]>([30]);
+const FAMILY_DISCOUNT_THRESHOLD = 4;
+const FAMILY_DISCOUNT_RATE = 0.1;
 
-  // Calcular tarifas totales
-  const { tarifas, total, descuento, totalConDescuento } = useMemo(() => {
-    const tarifasIndividuales = edades.map((edad) =>
-      obtenerTarifa(productoSeleccionado, provinciaSeleccionada, edad) || 0
-    );
+function getBandLabel(age: number): string {
+  if (age <= 24) return "0-24";
+  if (age <= 44) return "25-44";
+  if (age <= 54) return "45-54";
+  if (age <= 59) return "55-59";
+  if (age <= 62) return "60-62";
+  if (age <= 64) return "60-64";
+  if (age <= 69) return "65-69";
+  return "≥70";
+}
 
-    const subtotal = tarifasIndividuales.reduce((a, b) => a + b, 0);
-    const tieneDescuento = edades.length >= 4;
-    const descuentoAplicado = tieneDescuento ? subtotal * 0.1 : 0;
-    const totalFinal = subtotal - descuentoAplicado;
+export default function TarificadorInterno() {
+  const [provincia, setProvincia] = useState<string>("Madrid");
+  const [asegurados, setAsegurados] = useState<number[]>([35]);
+  const [expandido, setExpandido] = useState<string | null>(null);
 
-    return {
-      tarifas: tarifasIndividuales,
-      total: subtotal,
-      descuento: descuentoAplicado,
-      totalConDescuento: totalFinal,
-    };
-  }, [productoSeleccionado, provinciaSeleccionada, edades]);
+  const zona = getZoneFromProvince(provincia);
+  const conDescuento = asegurados.length >= FAMILY_DISCOUNT_THRESHOLD;
 
-  const agregarAsegurado = () => {
-    setEdades([...edades, 30]);
-  };
+  const resultados = useMemo(() => {
+    return products.map((product) => {
+      const subtotal = asegurados.reduce((sum, edad) => {
+        const precio = getPrice(product, edad, zona);
+        return sum + (precio ?? 0);
+      }, 0);
+      const descuento = conDescuento ? subtotal * FAMILY_DISCOUNT_RATE : 0;
+      const total = subtotal - descuento;
+      const preciosPorPersona = asegurados.map((edad) => ({
+        edad,
+        precio: getPrice(product, edad, zona) ?? 0,
+        banda: getBandLabel(edad),
+      }));
+      return { product, subtotal, descuento, total, preciosPorPersona };
+    });
+  }, [asegurados, zona, conDescuento]);
 
-  const eliminarAsegurado = (index: number) => {
-    if (edades.length > 1) {
-      setEdades(edades.filter((_, i) => i !== index));
+  const addAsegurado = () => setAsegurados((prev) => [...prev, 30]);
+  const removeAsegurado = (i: number) =>
+    setAsegurados((prev) => prev.filter((_, idx) => idx !== i));
+  const setEdad = (i: number, val: string) => {
+    const n = parseInt(val, 10);
+    if (!isNaN(n) && n >= 0 && n <= 99) {
+      setAsegurados((prev) => prev.map((v, idx) => (idx === i ? n : v)));
     }
   };
-
-  const cambiarEdad = (index: number, newValue: string) => {
-    const newEdades = [...edades];
-    const edad = parseInt(newValue, 10);
-    if (!isNaN(edad) && edad >= 0 && edad <= 120) {
-      newEdades[index] = edad;
-      setEdades(newEdades);
-    }
-  };
-
-  const descuentoAplicado = edades.length >= 4;
 
   return (
     <>
-    <Helmet>
-      <title>Tarificador Interno Adeslas — Marchal Aseguradores</title>
-      <meta name="robots" content="noindex, nofollow" />
-    </Helmet>
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6">
-      <div className="max-w-4xl mx-auto">
+      <Helmet>
+        <title>Tarificador Interno · Adeslas 2026 — Marchal Aseguradores</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+
+      <div className="min-h-screen bg-[#f4f7fb]">
         {/* Header */}
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-white mb-2">
-            Tarificador Adeslas
-          </h1>
-          <p className="text-slate-300">Herramienta interna para comerciales</p>
+        <div className="bg-gradient-to-r from-[#009DD9] to-[#0077aa] py-8 px-4 shadow-md">
+          <div className="max-w-5xl mx-auto flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                Tarificador Interno · Adeslas 2026
+              </h1>
+              <p className="text-blue-100 mt-1 text-sm">
+                Herramienta para comerciales · No indexada en Google
+              </p>
+            </div>
+            <div className="hidden md:block text-right text-white text-sm opacity-80">
+              <p>Marchal Aseguradores</p>
+              <p className="font-semibold">91 710 50 00</p>
+            </div>
+          </div>
         </div>
 
-        {/* Main Card */}
-        <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-6">
-            <h2 className="text-2xl font-bold text-white">
-              Cálculo de Tarifas
-            </h2>
-          </div>
+        <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
 
-          <div className="p-8">
-            {/* Selección de Producto */}
-            <div className="mb-8">
-              <label className="block text-sm font-semibold text-slate-700 mb-3">
-                Producto
-              </label>
-              <select
-                value={productoSeleccionado}
-                onChange={(e) => setProductoSeleccionado(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition"
-              >
-                {Object.entries(TARIFAS_ADESLAS).map(([id, producto]) => (
-                  <option key={id} value={id}>
-                    {producto.nombre}
-                  </option>
-                ))}
-              </select>
-            </div>
+          {/* Controles */}
+          <div className="bg-white rounded-2xl shadow-sm p-6">
+            <div className="grid md:grid-cols-2 gap-6">
 
-            {/* Selección de Provincia */}
-            <div className="mb-8">
-              <label className="block text-sm font-semibold text-slate-700 mb-3">
-                Provincia
-              </label>
-              <select
-                value={provinciaSeleccionada}
-                onChange={(e) => setProvinciaSeleccionada(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition"
-              >
-                {PROVINCIAS_LISTA.map((provincia) => (
-                  <option key={provincia} value={provincia}>
-                    {provincia}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Asegurados */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <label className="block text-sm font-semibold text-slate-700">
-                  Asegurados ({edades.length})
+              {/* Provincia */}
+              <div>
+                <label className="block text-sm font-semibold text-slate-600 mb-2">
+                  Provincia
                 </label>
-                {descuentoAplicado && (
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-green-100 text-green-800">
-                    ✓ Descuento 10% aplicado
-                  </span>
-                )}
-              </div>
-
-              {/* Lista de edades */}
-              <div className="space-y-3 mb-4 max-h-64 overflow-y-auto">
-                {edades.map((edad, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 bg-slate-50 rounded-lg p-3 border border-slate-200">
-                        <span className="text-sm font-medium text-slate-500 min-w-max">
-                          Persona {index + 1}:
-                        </span>
-                        <input
-                          type="number"
-                          value={edad}
-                          onChange={(e) => cambiarEdad(index, e.target.value)}
-                          min="0"
-                          max="120"
-                          className="flex-1 px-3 py-2 border border-slate-300 rounded font-semibold text-slate-700 focus:border-blue-500 focus:outline-none bg-white"
-                        />
-                        <span className="text-sm font-medium text-slate-600">
-                          años
-                        </span>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-lg font-bold text-blue-600 min-w-[80px]">
-                        {tarifas[index]?.toFixed(2) || '0.00'}€
-                      </div>
-                    </div>
-                    {edades.length > 1 && (
-                      <button
-                        onClick={() => eliminarAsegurado(index)}
-                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition"
-                        title="Eliminar asegurado"
-                      >
-                        <Trash2 size={20} />
-                      </button>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {/* Botón agregar */}
-              <button
-                onClick={agregarAsegurado}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-50 hover:bg-blue-100 border-2 border-blue-200 rounded-lg font-semibold text-blue-600 transition"
-              >
-                <Plus size={20} />
-                Agregar asegurado
-              </button>
-            </div>
-
-            {/* Resumen */}
-            <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg p-6 border border-slate-200">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center text-slate-700">
-                  <span className="font-medium">Subtotal ({edades.length} personas):</span>
-                  <span className="text-xl font-bold text-slate-900">
-                    {total.toFixed(2)}€
-                  </span>
-                </div>
-
-                {descuentoAplicado && (
-                  <>
-                    <div className="border-t border-slate-300"></div>
-                    <div className="flex justify-between items-center text-red-600">
-                      <span className="font-medium">Descuento 10%:</span>
-                      <span className="text-xl font-bold">
-                        -{descuento.toFixed(2)}€
-                      </span>
-                    </div>
-                  </>
-                )}
-
-                <div
-                  className={`border-t-2 pt-4 flex justify-between items-center ${
-                    descuentoAplicado ? 'border-green-300' : 'border-slate-300'
-                  }`}
+                <select
+                  value={provincia}
+                  onChange={(e) => setProvincia(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#009DD9] text-slate-800 font-medium"
                 >
-                  <span
-                    className={`font-bold text-lg ${
-                      descuentoAplicado ? 'text-green-700' : 'text-slate-900'
-                    }`}
-                  >
-                    Total Mensual:
-                  </span>
-                  <span
-                    className={`text-3xl font-bold ${
-                      descuentoAplicado ? 'text-green-600' : 'text-slate-900'
-                    }`}
-                  >
-                    {totalConDescuento.toFixed(2)}€
-                  </span>
-                </div>
+                  {provinces.map((p) => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+                <p className="text-xs text-slate-400 mt-1">Zona {zona} · {provincia}</p>
+              </div>
 
-                <p className="text-xs text-slate-600 mt-2">
-                  Tarifa por mes. Con 4 o más asegurados se aplica descuento del
-                  10% sobre el total.
-                </p>
+              {/* Asegurados */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-sm font-semibold text-slate-600">
+                    Asegurados ({asegurados.length})
+                  </label>
+                  {conDescuento && (
+                    <span className="text-xs font-bold px-2 py-1 bg-green-100 text-green-700 rounded-full">
+                      ✓ Descuento 10%
+                    </span>
+                  )}
+                </div>
+                <div className="space-y-2 max-h-44 overflow-y-auto pr-1">
+                  {asegurados.map((edad, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <span className="text-xs text-slate-400 w-16 shrink-0">
+                        Persona {i + 1}
+                      </span>
+                      <input
+                        type="number"
+                        value={edad}
+                        onChange={(e) => setEdad(i, e.target.value)}
+                        min={0}
+                        max={99}
+                        className="w-20 px-3 py-2 border border-slate-200 rounded-lg text-center font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#009DD9]"
+                      />
+                      <span className="text-xs text-slate-400">años</span>
+                      {asegurados.length > 1 && (
+                        <button
+                          onClick={() => removeAsegurado(i)}
+                          className="ml-auto text-red-400 hover:text-red-600 transition"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <button
+                  onClick={addAsegurado}
+                  className="mt-3 flex items-center gap-1 text-sm font-semibold text-[#009DD9] hover:text-[#0077aa] transition"
+                >
+                  <Plus size={16} /> Agregar asegurado
+                </button>
               </div>
             </div>
 
-            {/* Info de acceso */}
-            <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800">
-              <p className="font-semibold mb-1">📋 Información para comerciales:</p>
-              <ul className="list-disc list-inside space-y-1 text-blue-700">
-                <li>Esta herramienta es solo para uso interno</li>
-                <li>Las tarifas son por persona y mes</li>
-                <li>El descuento del 10% se aplica automáticamente con 4+ asegurados</li>
-                <li>Todas las provincias están mapeadas a sus zonas</li>
-              </ul>
-            </div>
+            {!conDescuento && asegurados.length < FAMILY_DISCOUNT_THRESHOLD && (
+              <p className="mt-4 text-xs text-slate-400 border-t pt-3">
+                💡 Con {FAMILY_DISCOUNT_THRESHOLD - asegurados.length} asegurado{FAMILY_DISCOUNT_THRESHOLD - asegurados.length > 1 ? "s" : ""} más se aplica el 10% de descuento familiar
+              </p>
+            )}
           </div>
+
+          {/* Tabla comparativa */}
+          <div className="space-y-3">
+            <h2 className="text-lg font-bold text-slate-700 px-1">
+              Comparativa de productos
+            </h2>
+
+            {resultados
+              .sort((a, b) => a.total - b.total)
+              .map(({ product, subtotal, descuento, total, preciosPorPersona }) => (
+                <div
+                  key={product.id}
+                  className="bg-white rounded-2xl shadow-sm overflow-hidden"
+                >
+                  {/* Fila principal */}
+                  <div
+                    className="flex items-center justify-between px-6 py-4 cursor-pointer hover:bg-slate-50 transition"
+                    onClick={() =>
+                      setExpandido(expandido === product.id ? null : product.id)
+                    }
+                  >
+                    <div className="flex-1">
+                      <p className="font-bold text-slate-800">{product.name}</p>
+                      {conDescuento && (
+                        <p className="text-xs text-slate-400 mt-0.5">
+                          Subtotal {subtotal.toFixed(2)}€ · Descuento {descuento.toFixed(2)}€
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                      <div className="text-right">
+                        {conDescuento && (
+                          <p className="text-xs line-through text-slate-400">
+                            {subtotal.toFixed(2)}€
+                          </p>
+                        )}
+                        <p className={`text-2xl font-bold ${conDescuento ? "text-green-600" : "text-[#009DD9]"}`}>
+                          {total.toFixed(2)}€
+                        </p>
+                        <p className="text-xs text-slate-400">/ mes</p>
+                      </div>
+                      {expandido === product.id
+                        ? <ChevronUp size={18} className="text-slate-400" />
+                        : <ChevronDown size={18} className="text-slate-400" />
+                      }
+                    </div>
+                  </div>
+
+                  {/* Desglose expandido */}
+                  {expandido === product.id && (
+                    <div className="border-t border-slate-100 px-6 py-4 bg-slate-50">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="text-slate-400 text-xs uppercase">
+                            <th className="text-left font-semibold pb-2">Persona</th>
+                            <th className="text-left font-semibold pb-2">Edad</th>
+                            <th className="text-left font-semibold pb-2">Tramo</th>
+                            <th className="text-right font-semibold pb-2">Prima</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                          {preciosPorPersona.map((p, i) => (
+                            <tr key={i}>
+                              <td className="py-2 text-slate-500">Persona {i + 1}</td>
+                              <td className="py-2 font-semibold text-slate-700">{p.edad} años</td>
+                              <td className="py-2 text-slate-500">{p.banda}</td>
+                              <td className="py-2 text-right font-bold text-slate-800">
+                                {p.precio.toFixed(2)}€
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                        <tfoot>
+                          <tr className="border-t border-slate-200">
+                            <td colSpan={3} className="pt-3 text-sm font-semibold text-slate-600">
+                              Subtotal
+                            </td>
+                            <td className="pt-3 text-right font-bold text-slate-800">
+                              {subtotal.toFixed(2)}€
+                            </td>
+                          </tr>
+                          {conDescuento && (
+                            <tr>
+                              <td colSpan={3} className="py-1 text-sm text-green-600 font-semibold">
+                                Descuento 10% (grupo familiar)
+                              </td>
+                              <td className="py-1 text-right text-green-600 font-bold">
+                                -{descuento.toFixed(2)}€
+                              </td>
+                            </tr>
+                          )}
+                          <tr className="border-t-2 border-slate-300">
+                            <td colSpan={3} className="pt-2 text-base font-bold text-slate-800">
+                              Total mensual
+                            </td>
+                            <td className={`pt-2 text-right text-xl font-bold ${conDescuento ? "text-green-600" : "text-[#009DD9]"}`}>
+                              {total.toFixed(2)}€
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                  )}
+                </div>
+              ))}
+          </div>
+
+          {/* Footer */}
+          <p className="text-center text-xs text-slate-400 pb-4">
+            Tarifas 2026 · Solo para uso interno · No compartir públicamente
+          </p>
         </div>
       </div>
-    </div>
     </>
   );
-};
-
-export default TarificadorInterno;
+}
