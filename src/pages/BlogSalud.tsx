@@ -23,6 +23,12 @@ const BlogSalud = () => {
     description:
       "Blog de salud Adeslas: artículos sobre bienestar, nutrición, prevención, salud mental, dental y seguros médicos privados. Consejos de asesores de salud para cuidarte mejor.",
     canonical: "https://adeslas.numero1salud.es/adeslas-blog/",
+    ogImage: "https://adeslas.numero1salud.es/og-blog.jpg",
+    ogType: "website",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Blog Salud", url: "https://adeslas.numero1salud.es/adeslas-blog/" },
+    ],
   });
 
   const filtered =

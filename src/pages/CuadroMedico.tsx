@@ -44,6 +44,29 @@ const CuadroMedico = () => {
     description:
       "Consulta y descarga el cuadro médico Adeslas 2026 por provincia. Más de 51.000 profesionales y 1.400 centros médicos en toda España. Sin listas de espera.",
     canonical: "https://adeslas.numero1salud.es/cuadro-medico/",
+    ogImage: "https://adeslas.numero1salud.es/og-cuadro-medico.jpg",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Cuadro Médico", url: "https://adeslas.numero1salud.es/cuadro-medico/" },
+    ],
+    faqSchema: [
+      {
+        q: "¿Cuántos médicos tiene Adeslas en su cuadro médico?",
+        a: "El cuadro médico de Adeslas 2026 cuenta con más de 51.000 profesionales médicos y más de 1.400 centros concertados en toda España, distribuidos en 52 provincias.",
+      },
+      {
+        q: "¿Cómo puedo consultar el cuadro médico Adeslas por provincia?",
+        a: "Puedes consultar el cuadro médico Adeslas por provincia directamente en esta página. Selecciona tu provincia para acceder al listado actualizado de médicos y centros disponibles para tu seguro.",
+      },
+      {
+        q: "¿Qué especialidades médicas incluye el cuadro Adeslas?",
+        a: "El cuadro médico Adeslas incluye más de 40 especialidades médicas: medicina general, cardiología, dermatología, ginecología, pediatría, traumatología, oncología, neurología, psiquiatría, rehabilitación, oftalmología, otorrinolaringología y muchas más.",
+      },
+      {
+        q: "¿El cuadro médico Adeslas incluye hospitales?",
+        a: "Sí. Adeslas dispone de 18 hospitales propios y más de 1.400 centros concertados en España, incluyendo clínicas, centros de diagnóstico y hospitales de referencia en todas las provincias.",
+      },
+    ],
   });
 
   const filtered = provincias.filter((p) =>

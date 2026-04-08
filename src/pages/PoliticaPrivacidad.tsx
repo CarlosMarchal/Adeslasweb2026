@@ -7,9 +7,13 @@ const PoliticaPrivacidad = () => {
   const _seo = useSeo({
     title: "Aviso Legal y Política de Privacidad | Adeslas Seguros Médicos",
     description:
-      "Aviso legal, política de privacidad y política de cookies de Marchal Aseguradores S.L.U., Agencia Exclusiva de Adeslas.",
-    canonical:
-      "https://adeslas.numero1salud.es/politica-de-privacidad",
+      "Aviso legal, política de privacidad y política de cookies de Marchal Mediadores S.L.U., Agencia Exclusiva de Adeslas.",
+    canonical: "https://adeslas.numero1salud.es/politica-de-privacidad",
+    ogImage: "https://adeslas.numero1salud.es/og-default.jpg",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Política de Privacidad", url: "https://adeslas.numero1salud.es/politica-de-privacidad" },
+    ],
   });
 
   const h2 =

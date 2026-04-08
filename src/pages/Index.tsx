@@ -159,6 +159,8 @@ const Index = () => {
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
     ],
+    addOrganizationSchema: true,
+    addWebsiteSchema: true,
     faqSchema: [
       {
         q: "¿Cuánto cuesta un seguro médico Adeslas?",

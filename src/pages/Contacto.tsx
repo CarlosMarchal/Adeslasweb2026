@@ -44,6 +44,34 @@ const Contacto = () => {
     title: "Contacto Adeslas | Solicita tu Seguro Médico — Atención Personalizada",
     description: "Contacta con Adeslas Seguros Médicos. Solicita información sobre tu seguro, compara planes o pide una llamada gratuita. Tel. 91 710 50 00.",
     canonical: "https://adeslas.numero1salud.es/contacto/",
+    ogImage: "https://adeslas.numero1salud.es/og-contacto.jpg",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Contacto", url: "https://adeslas.numero1salud.es/contacto/" },
+    ],
+    addLocalBusinessSchema: true,
+    faqSchema: [
+      {
+        q: "¿Cómo puedo contactar con Adeslas para contratar un seguro?",
+        a: "Puedes llamarnos al 91 710 50 00 (lunes a viernes de 9h a 19h), solicitar que te llamemos gratis a través del formulario de nuestra web, o visitar nuestra oficina en Avenida de Filipinas, 28, Madrid.",
+      },
+      {
+        q: "¿Cuánto tarda en activarse el seguro médico Adeslas?",
+        a: "El alta se tramita en el momento de la contratación. Recibirás tu tarjeta digital en menos de 24 horas y podrás empezar a usar el seguro desde el día siguiente a tu alta.",
+      },
+      {
+        q: "¿Puedo pedir presupuesto sin compromiso?",
+        a: "Sí. Puedes solicitar un presupuesto personalizado sin compromiso llamando al 91 710 50 00 o rellenando el formulario de nuestra web. Un asesor te contactará en menos de 2 horas en horario de oficina.",
+      },
+      {
+        q: "¿Tienen oficina física en Madrid?",
+        a: "Sí. Nuestra oficina está en Avenida de Filipinas, 28, Madrid (28003). Atención personalizada de lunes a viernes de 9h a 19h. También puedes gestionar todo por teléfono o email.",
+      },
+      {
+        q: "¿Puedo contratar Adeslas para toda mi familia?",
+        a: "Sí. Puedes asegurar a tu cónyuge e hijos en la misma póliza familiar. Llámanos al 91 710 50 00 y te daremos un presupuesto personalizado para toda la unidad familiar.",
+      },
+    ],
   });
 
   return (
