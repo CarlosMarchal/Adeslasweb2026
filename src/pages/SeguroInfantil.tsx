@@ -7,12 +7,12 @@ const data: SegmentPageData = {
   seo: {
     title: "Adeslas Seguro Médico Infantil | Pediatría desde el Nacimiento",
     description: "Seguro médico infantil Adeslas para niños de 0 a 17 años: pediatría especializada, urgencias pediátricas 24h y especialistas sin esperas. Sin copagos desde 50€/mes (Plena) o cobertura total sin copagos desde 83€/mes (Plena Total).",
-    canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-infantil",
-    ogImage: "https://adeslas.marchalaseguradores.es/og-infantil.jpg",
+    canonical: "https://adeslas.numero1salud.es/seguro-medico-infantil",
+    ogImage: "https://adeslas.numero1salud.es/og-infantil.jpg",
     breadcrumbs: [
-      { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguros Médicos", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguro Infantil", url: "https://adeslas.marchalaseguradores.es/seguro-medico-infantil" },
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguro Infantil", url: "https://adeslas.numero1salud.es/seguro-medico-infantil" },
     ],
   },
   heroTitle: "Seguro Médico Adeslas para Niños",
@@ -31,7 +31,7 @@ const data: SegmentPageData = {
   recommendedProducts: [
     {
       name: "Adeslas Plena Vital",
-      slug: "/adeslas-plena-vital",
+      slug: "/seguro-salud/adeslas-plena-vital/",
       price: "38",
       badge: "Económico",
       features: ["Pediatría ambulatoria completa", "Urgencias pediátricas 24h", "Especialistas infantiles sin espera", "Diagnóstico avanzado incluido", "Sin hospitalización programada"],
@@ -40,7 +40,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Plena Total",
-      slug: "/adeslas-plena-total",
+      slug: "/seguro-salud/adeslas-plena-total/",
       price: "83",
       badge: "Recomendado",
       features: ["Sin copagos en todas las consultas", "Hospitalización infantil ilimitada", "Dental: 46 actos incluidos", "Psicología (20 sesiones/año)", "3 años sin subida de precio"],
@@ -49,7 +49,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Extra 150",
-      slug: "/adeslas-extra-150",
+      slug: "/seguro-salud/adeslas-extra-150/",
       price: "90",
       badge: "Máxima Cobertura",
       features: ["Libre elección de pediatra y hospital", "Reembolso hasta 90% del gasto", "Válido en centros públicos y privados", "Cobertura en toda España y extranjero", "Sin restricciones de red médica"],

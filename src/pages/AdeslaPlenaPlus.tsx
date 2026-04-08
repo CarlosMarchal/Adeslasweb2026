@@ -8,8 +8,8 @@ const data: ProductPageData = {
   seoDescription:
     "Adeslas Plena Plus: seguro médico sin copagos con cobertura completa (hospitalización, todas las especialidades, cirugía). Acceso +51.000 médicos. Desde 62,55€/mes.",
   seoCanonical:
-    "https://adeslas.marchalaseguradores.es/adeslas-plena-plus",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-plena-plus.jpg",
+    "https://adeslas.numero1salud.es/adeslas-plena-plus",
+  seoOgImage: "https://adeslas.numero1salud.es/og-plena-plus.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Plus",
     description: "Seguro médico sin copagos con cobertura completa: hospitalización, especialidades y cirugía. Red Adeslas +51.000 médicos.",
@@ -18,11 +18,11 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguros de Salud", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Adeslas Plena Plus", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-plus" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguros de Salud", url: "https://adeslas.numero1salud.es/" },
+    { name: "Adeslas Plena Plus", url: "https://adeslas.numero1salud.es/adeslas-plena-plus" },
   ],
-  productSlug: "/adeslas-plena-plus",
+  productSlug: "/seguro-salud/adeslas-plena-plus/",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   badge: "Sin copagos · Hospitalización incluida",
   heroTitle: "Seguro Médico Adeslas Plena Plus",
@@ -174,7 +174,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Cuál es la diferencia entre Adeslas Plena Plus y Adeslas Plena Total?",
-      a: (<>Ambos NO tienen copagos y tienen cobertura médica IDÉNTICA. La diferencia está en lo que INCLUYE además de medicina: <Link to="/adeslas-plena-total" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas Plena Total</Link> INCLUYE: cobertura dental (46 actos), asistencia viajes 100.000€, cobertura de accidente (fallecimiento, incapacidad). Adeslas Plena Plus SÍ incluye asistencia en viaje hasta 12.000€, pero NO incluye dental ni cobertura de accidente. Es la opción ideal si buscas cobertura médica completa sin copagos con protección básica en viaje.</>)
+      a: (<>Ambos NO tienen copagos y tienen cobertura médica IDÉNTICA. La diferencia está en lo que INCLUYE además de medicina: <Link to="/seguro-salud/adeslas-plena-total/" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas Plena Total</Link> INCLUYE: cobertura dental (46 actos), asistencia viajes 100.000€, cobertura de accidente (fallecimiento, incapacidad). Adeslas Plena Plus SÍ incluye asistencia en viaje hasta 12.000€, pero NO incluye dental ni cobertura de accidente. Es la opción ideal si buscas cobertura médica completa sin copagos con protección básica en viaje.</>)
     },
     {
       q: "¿Incluye hospitalización Adeslas Plena Plus?",

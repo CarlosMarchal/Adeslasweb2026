@@ -19,12 +19,12 @@ const Footer = () => (
           <h4 className="text-primary-foreground font-bold text-sm mb-3">Seguros de Salud Adeslas</h4>
           <div className="space-y-1.5">
             {[
-              { label: "Adeslas Go", to: "/adeslas-go" },
-              { label: "Adeslas Plena Vital", to: "/adeslas-plena-vital" },
-              { label: "Adeslas Plena Total", to: "/adeslas-plena-total" },
-              { label: "Adeslas Plena Total+", to: "/adeslas-extra-150" },
-              { label: "Adeslas Plena Total++", to: "/adeslas-plena-plus" },
-              { label: "Adeslas Extra 150", to: "/adeslas-extra-150" },
+              { label: "Adeslas Go", to: "/seguro-salud/adeslas-go/" },
+              { label: "Adeslas Plena Vital", to: "/seguro-salud/adeslas-plena-vital/" },
+              { label: "Adeslas Plena Total", to: "/seguro-salud/adeslas-plena-total/" },
+              { label: "Adeslas Plena Total+", to: "/seguro-salud/adeslas-extra-150/" },
+              { label: "Adeslas Plena Total++", to: "/seguro-salud/adeslas-plena-plus/" },
+              { label: "Adeslas Extra 150", to: "/seguro-salud/adeslas-extra-150/" },
             ].map((l) => (
               <Link key={l.to} to={l.to} className="block text-sm transition-colors hover:text-primary-foreground" style={{ color: "rgba(255,255,255,0.5)" }}>
                 {l.label}
@@ -38,10 +38,10 @@ const Footer = () => (
           <h4 className="text-primary-foreground font-bold text-sm mb-3">Otros Seguros Adeslas</h4>
           <div className="space-y-1.5">
             {[
-              { label: "Dental", to: "/adeslas-dental" },
-              { label: "Vida", to: "/adeslas-dental" },
-              { label: "Decesos", to: "/adeslas-decesos" },
-              { label: "Mascotas", to: "/adeslas-dental" },
+              { label: "Dental", to: "/seguro-dental/" },
+              { label: "Vida", to: "/seguro-dental/" },
+              { label: "Decesos", to: "/seguro-decesos/" },
+              { label: "Mascotas", to: "/seguro-dental/" },
             ].map((l) => (
               <Link key={l.to} to={l.to} className="block text-sm transition-colors hover:text-primary-foreground" style={{ color: "rgba(255,255,255,0.5)" }}>
                 {l.label}
@@ -55,11 +55,11 @@ const Footer = () => (
           <h4 className="text-primary-foreground font-bold text-sm mb-3">Adeslas por Perfil de Asegurado</h4>
           <div className="space-y-1.5">
             {[
-              { label: "Individual", to: "/seguro-medico-individual" },
-              { label: "Familiar", to: "/seguro-medico-familiar" },
-              { label: "Infantil", to: "/seguro-medico-infantil" },
-              { label: "Ginecología", to: "/seguro-medico-ginecologia" },
-              { label: "Embarazadas", to: "/seguro-medico-embarazadas" },
+              { label: "Individual", to: "/seguro-salud/adeslas-individual/" },
+              { label: "Familiar", to: "/seguro-salud/seguro-familia/" },
+              { label: "Infantil", to: "/seguro-salud/adeslas-infantil/" },
+              { label: "Ginecología", to: "/seguro-salud/adeslas-ginecologia/" },
+              { label: "Embarazadas", to: "/seguro-salud/embarazo/" },
             ].map((l) => (
               <Link key={l.to} to={l.to} className="block text-sm transition-colors hover:text-primary-foreground" style={{ color: "rgba(255,255,255,0.5)" }}>
                 {l.label}
@@ -73,13 +73,13 @@ const Footer = () => (
           <h4 className="text-primary-foreground font-bold text-sm mb-3">Adeslas para Empresas y Recursos</h4>
           <div className="space-y-1.5">
             {[
-              { label: "Autónomos", to: "/autonomos" },
+              { label: "Autónomos", to: "/seguro-salud/autonomos/" },
               { label: "Pymes", to: "/pymes" },
               { label: "Empresas", to: "/empresas" },
-              { label: "Precios y Ofertas", to: "/precios-ofertas" },
-              { label: "Cuadro Médico", to: "/cuadro-medico" },
-              { label: "Blog", to: "/blog" },
-              { label: "Contacto", to: "/contacto" },
+              { label: "Precios y Ofertas", to: "/seguro-salud/ofertas-adeslas-precios/" },
+              { label: "Cuadro Médico", to: "/cuadro-medico/" },
+              { label: "Blog", to: "/adeslas-blog/" },
+              { label: "Contacto", to: "/contacto/" },
             ].map((l) => (
               <Link key={l.to} to={l.to} className="block text-sm transition-colors hover:text-primary-foreground" style={{ color: "rgba(255,255,255,0.5)" }}>
                 {l.label}

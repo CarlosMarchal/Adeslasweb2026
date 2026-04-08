@@ -7,12 +7,12 @@ const data: SegmentPageData = {
   seo: {
     title: "Adeslas Embarazo | Seguro Médico para Embarazadas con Parto y Neonatología",
     description: "Seguro médico para embarazadas Adeslas: seguimiento prenatal completo, parto cubierto (vaginal y cesárea), neonatología y postparto. Sin copagos. Desde 50,92€/mes.",
-    canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-embarazadas",
-    ogImage: "https://adeslas.marchalaseguradores.es/og-embarazadas.jpg",
+    canonical: "https://adeslas.numero1salud.es/seguro-medico-embarazadas",
+    ogImage: "https://adeslas.numero1salud.es/og-embarazadas.jpg",
     breadcrumbs: [
-      { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguros Médicos", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguro Embarazadas", url: "https://adeslas.marchalaseguradores.es/seguro-medico-embarazadas" },
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguro Embarazadas", url: "https://adeslas.numero1salud.es/seguro-medico-embarazadas" },
     ],
   },
   heroTitle: "Seguro Médico Adeslas para el Embarazo y el Parto",
@@ -31,7 +31,7 @@ const data: SegmentPageData = {
   recommendedProducts: [
     {
       name: "Adeslas Plena Vital",
-      slug: "/adeslas-plena-vital",
+      slug: "/seguro-salud/adeslas-plena-vital/",
       price: "38",
       badge: "Económico",
       features: ["Seguimiento prenatal ambulatorio", "Ginecólogo sin lista de espera", "Ecografías y analíticas incluidas", "Urgencias obstétricas 24h", "Sin hospitalización programada"],
@@ -40,7 +40,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Plena Total",
-      slug: "/adeslas-plena-total",
+      slug: "/seguro-salud/adeslas-plena-total/",
       price: "83",
       badge: "Recomendado",
       features: ["Parto vaginal y cesárea cubiertos", "Hospitalización ilimitada sin copago", "Neonatología para el recién nacido", "Sin copagos durante todo el embarazo", "3 años sin subida de precio"],
@@ -49,7 +49,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Extra 150",
-      slug: "/adeslas-extra-150",
+      slug: "/seguro-salud/adeslas-extra-150/",
       price: "90",
       badge: "Máxima Cobertura",
       features: ["Libre elección de ginecólogo y hospital", "Reembolso hasta 90% del gasto", "Válido en centros públicos y privados", "Cobertura psicológica perinatal", "Cobertura internacional ilimitada"],

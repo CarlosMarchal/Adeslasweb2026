@@ -6,8 +6,8 @@ import heroImg from "@/assets/seguro-medico-adeslas-plena-total.webp";
 const data: ProductPageData = {
   seoTitle: "Adeslas Plena Total | Seguro Médico Sin Copagos · Dental y Viajes Incluidos",
   seoDescription: "Adeslas Plena Total: el seguro más completo sin copagos. Hospitalización ilimitada, dental (46 actos), asistencia en viajes 100.000€ y accidente. +51.000 médicos. Desde 83€/mes.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-plena-total",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-total.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/adeslas-plena-total",
+  seoOgImage: "https://adeslas.numero1salud.es/og-total.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Total",
     description: "Seguro médico completo sin copagos, hospitalización, dental (46 actos), asistencia viajes 100.000€ y cobertura de accidente.",
@@ -16,11 +16,11 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguros de Salud", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Adeslas Plena Total", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-total" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguros de Salud", url: "https://adeslas.numero1salud.es/" },
+    { name: "Adeslas Plena Total", url: "https://adeslas.numero1salud.es/adeslas-plena-total" },
   ],
-  productSlug: "/adeslas-plena-total",
+  productSlug: "/seguro-salud/adeslas-plena-total/",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   badge: "3 años sin subidas de prima",
   heroTitle: "Seguro Médico Adeslas Plena Total",

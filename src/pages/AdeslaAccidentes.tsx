@@ -6,8 +6,8 @@ import heroImg from "@/assets/seguro-viaje-adeslas.webp";
 const data: ProductPageData = {
   seoTitle: "Adeslas Accidentes | Seguro de Accidentes con Cobertura 24h desde 5,89€/mes",
   seoDescription: "Seguro de accidentes Adeslas con cobertura 24h en todo el mundo. Fallecimiento, invalidez, asistencia médica y hospitalización por accidente. Desde 5,89€/mes.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-accidentes",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-accidentes.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/adeslas-accidentes",
+  seoOgImage: "https://adeslas.numero1salud.es/og-accidentes.jpg",
   seoProductSchema: {
     name: "Adeslas Accidentes",
     description: "Seguro de accidentes Adeslas con cobertura 24h en todo el mundo. Capital garantizado de 100% en fallecimiento o invalidez permanente total por accidente. En accidentes de tráfico, la indemnización se dobla a 200% del capital. Incluye asistencia médica, farmacia, hospitalización, cirugía, repatriación, atención dental por accidente y cancelación de tarjetas de crédito (hasta 3.000€). Sin períodos de carencia. Desde 5,89€/mes.",
@@ -16,9 +16,9 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Otros Seguros", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguro de Accidentes", url: "https://adeslas.marchalaseguradores.es/adeslas-accidentes" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Otros Seguros", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguro de Accidentes", url: "https://adeslas.numero1salud.es/adeslas-accidentes" },
   ],
   badge: "Cobertura 24h · En todo el mundo",
   heroTitle: "Seguro de Accidentes Adeslas",

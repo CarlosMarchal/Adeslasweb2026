@@ -48,7 +48,7 @@ const plans: Plan[] = [
   {
     icon: "💊",
     name: "Adeslas Go",
-    slug: "/adeslas-go",
+    slug: "/seguro-salud/adeslas-go/",
     price: "21",
     pill: "Ambulatoria · Copago medio",
     pillDark: false,
@@ -62,7 +62,7 @@ const plans: Plan[] = [
   {
     icon: "📋",
     name: "Adeslas Plena Vital",
-    slug: "/adeslas-plena-vital",
+    slug: "/seguro-salud/adeslas-plena-vital/",
     price: "38",
     pill: "Hospitalización · Copago LMA 300€",
     pillDark: false,
@@ -78,7 +78,7 @@ const plans: Plan[] = [
   {
     icon: "🛡",
     name: "Adeslas Plena Total",
-    slug: "/adeslas-plena-total",
+    slug: "/seguro-salud/adeslas-plena-total/",
     price: "83",
     pill: "Sin copago · Cobertura total",
     pillDark: true,
@@ -96,7 +96,7 @@ const plans: Plan[] = [
   {
     icon: "✨",
     name: "Adeslas Plena Plus",
-    slug: "/adeslas-plena-plus",
+    slug: "/seguro-salud/adeslas-plena-plus/",
     price: "50,92",
     pill: "Sin copago · Cobertura completa",
     pillDark: false,
@@ -112,7 +112,7 @@ const plans: Plan[] = [
   {
     icon: "🏆",
     name: "Adeslas Plena Vital Total",
-    slug: "/adeslas-plena-vital-total",
+    slug: "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/",
     price: "55",
     pill: "Copago LMA 500€ · Con extras",
     pillDark: false,
@@ -128,7 +128,7 @@ const plans: Plan[] = [
   {
     icon: "💎",
     name: "Adeslas Extra 150",
-    slug: "/adeslas-extra-150",
+    slug: "/seguro-salud/adeslas-extra-150/",
     price: "90",
     pill: "Libre elección · Reembolso 80 %",
     pillDark: false,
@@ -190,20 +190,21 @@ const PreciosOfertasInner = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  useSeo({
+  const _seo = useSeo({
     title: "Precios y Ofertas Adeslas 2026 | Seguros Médicos desde 21 €/mes",
     description:
       "Precios y ofertas de los seguros médicos Adeslas 2026. Desde 21€/mes (Adeslas Go). Sin copagos desde 50€/mes (Adeslas Plena Plus). Cobertura total desde 83€/mes (Adeslas Plena Total). Compara planes y calcula en 2 minutos.",
-    canonical: "https://adeslas.marchalaseguradores.es/precios-ofertas",
+    canonical: "https://adeslas.numero1salud.es/precios-ofertas",
     breadcrumbs: [
-      { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Precios y Ofertas", url: "https://adeslas.marchalaseguradores.es/precios-ofertas" },
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Precios y Ofertas", url: "https://adeslas.numero1salud.es/precios-ofertas" },
     ],
     faqSchema: faqs.map((f) => ({ q: f.q, a: f.a })),
   });
 
   return (
     <>
+      {_seo}
       <Header />
 
       {/* ────── Hero ────── */}

@@ -1,11 +1,13 @@
 import { lazy, Suspense, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, MemoryRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { captureGclid } from "@/lib/hubspot";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PhonePopupProvider } from "./components/PhonePopupContext";
+// true only in Node.js (vite-react-ssg SSR build), never in the browser
+const isSSR = typeof window === "undefined";
 
 /* ── Home page: eager (crítico para LCP en la ruta /) ── */
 import Index from "./pages/Index";
@@ -24,8 +26,24 @@ const AdeslasSeniors       = lazy(() => import("./pages/AdeslasSeniors"));
 const AdeslasSeniorsTotal  = lazy(() => import("./pages/AdeslasSeniorsTotal"));
 
 /* Autónomos, Pymes & Empresas */
-const Autonomos    = lazy(() => import("./pages/Autonomos"));
-const PymesEmpresas= lazy(() => import("./pages/PymesEmpresas"));
+const Autonomos      = lazy(() => import("./pages/Autonomos"));
+const PymesEmpresas  = lazy(() => import("./pages/PymesEmpresas"));
+
+/* Extranjeros */
+const AdeslaExtranjeros = lazy(() => import("./pages/AdeslaExtranjeros"));
+
+/* Colectivos */
+const AdeslaBodyFactory = lazy(() => import("./pages/AdeslaBodyFactory"));
+const AdeslaAdifRenfe   = lazy(() => import("./pages/AdeslaAdifRenfe"));
+
+/* Decesos Prima Única */
+const AdeslaDeceosPrimaUnica = lazy(() => import("./pages/AdeslaDeceosPrimaUnica"));
+
+/* Formulario de Alta */
+const FormularioDeAlta = lazy(() => import("./pages/FormularioDeAlta"));
+
+/* Landings de campaña (noindex) */
+const LandingPlenaVitalOferta = lazy(() => import("./pages/LandingPlenaVitalOferta"));
 
 /* Otros seguros */
 const AdeslasDental        = lazy(() => import("./pages/AdeslasDental"));
@@ -76,60 +94,106 @@ const ScrollToTop = () => {
   return null;
 };
 
-const App = () => (
+/* Routes content — same for both SSR (MemoryRouter) and client (BrowserRouter) */
+const AppRoutes = () => (
+  <Suspense fallback={isSSR ? null : <PageLoader />}>
+    {!isSSR && <ScrollToTop />}
+    <Routes>
+              <Route path="/" element={<Index />} />
+
+              {/* Planes Adeslas */}
+              <Route path="/seguro-salud/adeslas-go/"               element={<AdeslaGo />} />
+              <Route path="/seguro-salud/adeslas-plena-vital/"      element={<AdeslaPlenaVital />} />
+              <Route path="/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/"element={<AdeslaPlenaVitalTotal />} />
+              <Route path="/seguro-salud/adeslas-plena-total/"      element={<AdeslaPlenaTotal />} />
+              <Route path="/seguro-salud/adeslas-extra-150/"        element={<AdeslaExtra150 />} />
+              <Route path="/seguro-salud/adeslas-plena-plus/"       element={<AdeslaPlenaPlus />} />
+              <Route path="/seguro-salud/adeslas-seniors/"          element={<AdeslasSeniors />} />
+              <Route path="/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/"    element={<AdeslasSeniorsTotal />} />
+
+              {/* Autónomos, Pymes & Empresas */}
+              <Route path="/seguro-salud/autonomos/"  element={<Autonomos />} />
+              <Route path="/seguro-salud/pymes/"      element={<PymesEmpresas />} />
+              <Route path="/seguro-salud/empresas/"   element={<PymesEmpresas />} />
+
+              {/* Extranjeros */}
+              <Route path="/seguro-salud/adeslas-extranjeros/" element={<AdeslaExtranjeros />} />
+
+              {/* Dental & otros */}
+              <Route path="/seguro-dental/"         element={<AdeslasDental />} />
+              <Route path="/seguro-decesos/"        element={<AdeslaDecesos />} />
+              <Route path="/seguro-mascotas/"       element={<AdeslasMascotas />} />
+              <Route path="/adeslas-asistencia-en-viaje/"element={<AdeslaAsistenciaViaje />} />
+              <Route path="/seguro-accidentes/"     element={<AdeslaAccidentes />} />
+
+              {/* Páginas por segmento */}
+              <Route path="/seguro-salud/adeslas-individual/" element={<SeguroIndividual />} />
+              <Route path="/seguro-salud/seguro-familia/"   element={<SeguroFamiliar />} />
+              <Route path="/seguro-salud/adeslas-infantil/"   element={<SeguroInfantil />} />
+              <Route path="/seguro-salud/adeslas-ginecologia/"element={<SeguroGinecologia />} />
+              <Route path="/seguro-salud/embarazo/"element={<SeguroEmbarazadas />} />
+              <Route path="/seguro-salud/seguro-para-personas-mayores/"    element={<SeguroMayores />} />
+
+              {/* Institucionales */}
+              <Route path="/cuadro-medico/"         element={<CuadroMedico />} />
+              <Route path="/contacto/"              element={<Contacto />} />
+              <Route path="/adeslas-blog/"          element={<BlogSalud />} />
+              <Route path="/blog/:slug"             element={<BlogArticle />} />
+              <Route path="/politica-de-privacidad" element={<PoliticaPrivacidad />} />
+              <Route path="/mi-precio/:slug"        element={<MiPrecio />} />
+              <Route path="/seguro-salud/ofertas-adeslas-precios/" element={<PreciosOfertas />} />
+              {/* Alias — misma página de precios con URL alternativa del WordPress */}
+              <Route path="/precios-y-ofertas/"     element={<PreciosOfertas />} />
+              {/* Redirect 301: /calcula-tu-seguro/ → /contacto/ */}
+              <Route path="/calcula-tu-seguro/"     element={<Navigate to="/contacto/" replace />} />
+
+              {/* Colectivos */}
+              <Route path="/adeslas-body-factory/"  element={<AdeslaBodyFactory />} />
+              <Route path="/adeslas-adif-renfe/"    element={<AdeslaAdifRenfe />} />
+
+              {/* Decesos Prima Única */}
+              <Route path="/seguro-adeslas-decesos-prima-unica/" element={<AdeslaDeceosPrimaUnica />} />
+
+              {/* Formulario de Alta */}
+              <Route path="/seguro-salud/adeslas-formulario-de-alta/" element={<FormularioDeAlta />} />
+
+              {/* Landings de campaña Google Ads (noindex) */}
+              <Route path="/adeslasplenavitaloferta/" element={<LandingPlenaVitalOferta />} />
+
+              <Route path="*" element={<NotFound />} />
+    </Routes>
+  </Suspense>
+);
+
+/**
+ * App shell.
+ * • During SSG (isSSR=true): MemoryRouter initialised with the current route
+ *   path so React Router renders the correct page component → Helmet captures
+ *   the right meta tags → vite-react-ssg injects them into the static HTML.
+ * • In the browser: normal BrowserRouter SPA behaviour.
+ * NOTE: <HelmetProvider> is NOT included here — vite-react-ssg wraps the app
+ * in <HelmetProvider> automatically on both server and client.
+ */
+interface AppProps {
+  /** Used during SSG: initialises MemoryRouter at this path so each page renders correctly. */
+  initialPath?: string;
+}
+
+const App = ({ initialPath = "/" }: AppProps) => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <PhonePopupProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-
-              {/* Planes Adeslas */}
-              <Route path="/adeslas-go"               element={<AdeslaGo />} />
-              <Route path="/adeslas-plena-vital"      element={<AdeslaPlenaVital />} />
-              <Route path="/adeslas-plena-vital-total"element={<AdeslaPlenaVitalTotal />} />
-              <Route path="/adeslas-plena-total"      element={<AdeslaPlenaTotal />} />
-              <Route path="/adeslas-extra-150"        element={<AdeslaExtra150 />} />
-              <Route path="/adeslas-plena-plus"       element={<AdeslaPlenaPlus />} />
-              <Route path="/adeslas-seniors"          element={<AdeslasSeniors />} />
-              <Route path="/adeslas-seniors-total"    element={<AdeslasSeniorsTotal />} />
-
-              {/* Autónomos, Pymes & Empresas */}
-              <Route path="/autonomos"     element={<Autonomos />} />
-              <Route path="/pymes-empresas"element={<PymesEmpresas />} />
-
-              {/* Dental & otros */}
-              <Route path="/adeslas-dental"         element={<AdeslasDental />} />
-              <Route path="/adeslas-decesos"        element={<AdeslaDecesos />} />
-              <Route path="/adeslas-mascotas"       element={<AdeslasMascotas />} />
-              <Route path="/adeslas-asistencia-viaje"element={<AdeslaAsistenciaViaje />} />
-              <Route path="/adeslas-accidentes"     element={<AdeslaAccidentes />} />
-
-              {/* Páginas por segmento */}
-              <Route path="/seguro-medico-individual" element={<SeguroIndividual />} />
-              <Route path="/seguro-medico-familiar"   element={<SeguroFamiliar />} />
-              <Route path="/seguro-medico-infantil"   element={<SeguroInfantil />} />
-              <Route path="/seguro-medico-ginecologia"element={<SeguroGinecologia />} />
-              <Route path="/seguro-medico-embarazadas"element={<SeguroEmbarazadas />} />
-              <Route path="/seguro-medico-mayores"    element={<SeguroMayores />} />
-
-              {/* Institucionales */}
-              <Route path="/cuadro-medico"         element={<CuadroMedico />} />
-              <Route path="/contacto"              element={<Contacto />} />
-              <Route path="/blog"                  element={<BlogSalud />} />
-              <Route path="/blog/:slug"            element={<BlogArticle />} />
-              <Route path="/politica-de-privacidad"element={<PoliticaPrivacidad />} />
-              <Route path="/mi-precio/:slug"       element={<MiPrecio />} />
-              <Route path="/precios-ofertas"       element={<PreciosOfertas />} />
-
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
+        {isSSR ? (
+          <MemoryRouter initialEntries={[initialPath]}>
+            <AppRoutes />
+          </MemoryRouter>
+        ) : (
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        )}
       </PhonePopupProvider>
     </TooltipProvider>
   </QueryClientProvider>

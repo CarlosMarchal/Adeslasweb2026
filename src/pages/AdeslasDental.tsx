@@ -7,8 +7,8 @@ import heroImg from "@/assets/seguro-dental-adeslas.webp";
 const data: ProductPageData = {
   seoTitle: "Seguro Dental Adeslas | Sin Carencias desde Día 1 · Desde 9,45€/mes",
   seoDescription: "Seguro dental Adeslas desde 9,45€/mes: limpiezas y revisiones desde el día 1 sin coste. Implantes, endodoncia y ortodoncia con franquicias reducidas. Niños hasta 8 años gratis. +1.700 dentistas.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-dental",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-dental.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/adeslas-dental",
+  seoOgImage: "https://adeslas.numero1salud.es/og-dental.jpg",
   seoProductSchema: {
     name: "Adeslas Dental",
     description: "Seguro dental para particulares y familias desde 9,45€/mes. Incluye sin coste: revisiones, diagnósticos, limpiezas, radiografías y extracciones simples. Franquicias reducidas en implantes, endodoncia, ortodoncia y prótesis. Modalidad familiar disponible: mínimo un adulto asegurado; menores de 8 años con prima gratuita hasta el 31 de diciembre del año en que cumplan esa edad. Red de más de 1.700 profesionales y clínicas propias Adeslas Dental certificadas ISO 9001 en toda España.",
@@ -17,9 +17,9 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguros Adeslas", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Adeslas Dental", url: "https://adeslas.marchalaseguradores.es/adeslas-dental" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguros Adeslas", url: "https://adeslas.numero1salud.es/" },
+    { name: "Adeslas Dental", url: "https://adeslas.numero1salud.es/adeslas-dental" },
   ],
   badge: "Sin carencias desde el día 1",
   heroTitle: "Seguro Dental Adeslas",
@@ -214,7 +214,7 @@ const data: ProductPageData = {
       q: "¿Puedo asegurar a toda la familia con Adeslas Dental?",
       a: (
         <>
-          Sí. La modalidad familiar cubre a 2 o más asegurados. Es necesario que al menos un adulto figure como asegurado en la póliza. Los menores de 8 años no pagan prima. Puedes combinarlo con un <Link to="/adeslas-plena-total" style={{color: "#009FE3", textDecoration: "underline"}}>seguro de salud Adeslas</Link> para obtener el precio preferente del dental.
+          Sí. La modalidad familiar cubre a 2 o más asegurados. Es necesario que al menos un adulto figure como asegurado en la póliza. Los menores de 8 años no pagan prima. Puedes combinarlo con un <Link to="/seguro-salud/adeslas-plena-total/" style={{color: "#009FE3", textDecoration: "underline"}}>seguro de salud Adeslas</Link> para obtener el precio preferente del dental.
         </>
       ),
     },

@@ -131,15 +131,15 @@ const BlogArticle = () => {
   // If post not found, redirect to blog listing
   useEffect(() => {
     if (!post && slug) {
-      navigate("/blog", { replace: true });
+      navigate("/adeslas-blog/", { replace: true });
     }
   }, [post, slug, navigate]);
 
   // SEO (call hook unconditionally to avoid rules-of-hooks violation)
-  useSeo({
+  const _seo = useSeo({
     title: post?.seoTitle ?? "Blog Salud Adeslas",
     description: post?.seoDescription ?? "",
-    canonical: `https://adeslas.marchalaseguradores.es/blog/${slug ?? ""}`,
+    canonical: `https://adeslas.numero1salud.es/blog/${slug ?? ""}`,
   });
 
   if (!post) return null;
@@ -148,6 +148,7 @@ const BlogArticle = () => {
 
   return (
     <TarificadorProvider>
+      {_seo}
       <Header />
 
       {/* Hero image */}
@@ -171,7 +172,7 @@ const BlogArticle = () => {
             transition={{ duration: 0.5 }}
           >
             <Link
-              to="/blog"
+              to="/adeslas-blog/"
               className="inline-flex items-center gap-2 text-sm mb-4 hover:underline"
               style={{ color: "rgba(255,255,255,0.8)" }}
             >
@@ -226,7 +227,7 @@ const BlogArticle = () => {
                 Blog de Salud Adeslas
               </p>
               <Link
-                to="/blog"
+                to="/adeslas-blog/"
                 className="text-sm font-bold hover:underline"
                 style={{ color: "#009FE3" }}
               >

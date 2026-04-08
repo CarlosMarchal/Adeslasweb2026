@@ -4,14 +4,14 @@ import { usePhonePopup } from "@/components/PhonePopupContext";
 import type { HubSpotSource } from "@/lib/hubspot";
 
 const pageSourceMap: Record<string, HubSpotSource> = {
-  "/adeslas-dental":        308,
-  "/adeslas-decesos":       309,
+  "/seguro-dental/":        308,
+  "/seguro-decesos/":       309,
   "/pymes":                 310,
   "/empresas":              311,
-  "/autonomos":             319,
-  "/pymes-empresas":        320,
-  "/adeslas-seniors":       314,
-  "/adeslas-seniors-total": 315,
+  "/seguro-salud/autonomos/":             319,
+  "/seguro-salud/pymes/":        320,
+  "/seguro-salud/adeslas-seniors/":       314,
+  "/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/": 315,
 };
 
 const ContactCtaCard = () => {

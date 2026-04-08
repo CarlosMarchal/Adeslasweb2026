@@ -6,8 +6,8 @@ import heroImg from "@/assets/seguro-medico-adeslas-go.webp";
 const data: ProductPageData = {
   seoTitle: "Adeslas GO | Seguro Médico Ambulatorio con Copago — Desde 21€/mes",
   seoDescription: "Adeslas GO: seguro médico con copago y cobertura ambulatoria completa. +51.000 médicos, sin listas de espera, urgencias 24h. Copagos máx. 260€/año. Desde 21€/mes. Calcula tu precio ahora.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-go",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-go.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/adeslas-go",
+  seoOgImage: "https://adeslas.numero1salud.es/og-go.jpg",
   seoProductSchema: {
     name: "Adeslas GO",
     description: "Seguro médico ambulatorio con copagos limitados a 260€/año. Medicina general, especialidades, chequeo médico anual. Desde 21€/mes.",
@@ -16,11 +16,11 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguros de Salud", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Adeslas GO", url: "https://adeslas.marchalaseguradores.es/adeslas-go" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguros de Salud", url: "https://adeslas.numero1salud.es/" },
+    { name: "Adeslas GO", url: "https://adeslas.numero1salud.es/adeslas-go" },
   ],
-  productSlug: "/adeslas-go",
+  productSlug: "/seguro-salud/adeslas-go/",
   badge: "Ambulatorio · Copago máx. 260€/año",
   heroTitle: "Seguro Médico Adeslas GO",
   heroImage: heroImg,
@@ -145,7 +145,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Qué diferencia hay entre Adeslas GO y Adeslas Plena Vital?",
-      a: (<>La principal diferencia es la cobertura: Adeslas GO es ambulatorio (sin hospitalización ni cirugía), mientras que <Link to="/adeslas-plena-vital" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas Plena Vital</Link> incluye hospitalización y cirugía completas, urgencias 24h y todas las especialidades. GO tiene un LMA de copagos de 260€/año desde 21€/mes; Plena Vital tiene un LMA de 300€/año desde 38€/mes. Si necesitas cobertura hospitalaria o urgencias, Plena Vital es la opción correcta.</>)
+      a: (<>La principal diferencia es la cobertura: Adeslas GO es ambulatorio (sin hospitalización ni cirugía), mientras que <Link to="/seguro-salud/adeslas-plena-vital/" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas Plena Vital</Link> incluye hospitalización y cirugía completas, urgencias 24h y todas las especialidades. GO tiene un LMA de copagos de 260€/año desde 21€/mes; Plena Vital tiene un LMA de 300€/año desde 38€/mes. Si necesitas cobertura hospitalaria o urgencias, Plena Vital es la opción correcta.</>)
     },
     {
       q: "¿Incluye hospitalización Adeslas GO?",

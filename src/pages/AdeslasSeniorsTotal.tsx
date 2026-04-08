@@ -7,8 +7,8 @@ import heroImg from "@/assets/seguro-medico-adeslas-seniors-total.webp";
 const data: ProductPageData = {
   seoTitle: "Adeslas Seniors Total | Cobertura Completa para Mayores de 63 años desde 101€",
   seoDescription: "Adeslas Seniors Total: seguro médico para personas de 63 a 84 años sin subida de prima garantizada 3 años. Hospitalización, oncología, asistencia viajes 100.000€ y asesor personal. Desde 101€/mes.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-seniors-total",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-seniors-total.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/adeslas-seniors-total",
+  seoOgImage: "https://adeslas.numero1salud.es/og-seniors-total.jpg",
   seoProductSchema: {
     name: "Adeslas Seniors Total",
     description: "Cobertura médica completa para mayores de 63 años sin subida de prima 3 años, asistencia viajes 100.000€, dental incluida y topes de copago reducidos. Desde 101€/mes.",
@@ -17,9 +17,9 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Planes Adeslas", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Adeslas Seniors Total", url: "https://adeslas.marchalaseguradores.es/adeslas-seniors-total" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Planes Adeslas", url: "https://adeslas.numero1salud.es/" },
+    { name: "Adeslas Seniors Total", url: "https://adeslas.numero1salud.es/adeslas-seniors-total" },
   ],
   customTarificador: <ContactCtaCard />,
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",

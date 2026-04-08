@@ -15,7 +15,7 @@ const productData: Record<string, {
   features: string[];
   ideal: string;
 }> = {
-  "asisa-ya": {
+  "adeslas-go": {
     name: "Adeslas GO",
     tagline: "El seguro médico más accesible de Adeslas",
     badge: "Más económico",
@@ -32,7 +32,7 @@ const productData: Record<string, {
     ],
     ideal: "Ideal si buscas cobertura esencial al menor precio.",
   },
-  "asisa-esencial": {
+  "adeslas-plena-vital": {
     name: "Adeslas Plena Vital",
     tagline: "Ambulatoria completa con hospitalización por accidente",
     badge: "Cobertura ambulatoria",
@@ -49,7 +49,7 @@ const productData: Record<string, {
     ],
     ideal: "Ideal si quieres más cobertura que el básico con un precio muy competitivo.",
   },
-  "asisa-completa": {
+  "adeslas-plena-total": {
     name: "Adeslas Plena Total",
     tagline: "El seguro más vendido. Sin copagos. Sin sorpresas.",
     badge: "Más vendido",
@@ -67,8 +67,8 @@ const productData: Record<string, {
     ],
     ideal: "La opción más equilibrada: cobertura total sin pagar por cada consulta.",
   },
-  "asisa-completa-plus": {
-    name: "Adeslas Plena Plus+",
+  "adeslas-plena-vital-total": {
+    name: "Adeslas Plena Vital Total",
     tagline: "Todo lo de Completa, con ampliaciones en hospitalización",
     badge: "Copago reducido",
     badgeColor: "#8B5CF6",
@@ -84,8 +84,8 @@ const productData: Record<string, {
     ],
     ideal: "Ideal si quieres un plus de cobertura y mayor confort sin llegar al tope.",
   },
-  "asisa-completa-plus-plus": {
-    name: "Adeslas Plena Plus++",
+  "adeslas-plena-plus": {
+    name: "Adeslas Plena Plus",
     tagline: "La cobertura máxima con tope de gasto garantizado",
     badge: "Copago máx. 300€/año",
     badgeColor: "#6366F1",
@@ -101,8 +101,8 @@ const productData: Record<string, {
     ],
     ideal: "La tranquilidad de saber exactamente cuánto gastarás al año, como máximo.",
   },
-  "asisa-reembolso": {
-    name: "Adeslas Integral",
+  "adeslas-extra-150": {
+    name: "Adeslas Plena Extra",
     tagline: "Libertad total. Cualquier médico. En cualquier parte del mundo.",
     badge: "Libre elección",
     badgeColor: "#D97706",
@@ -221,7 +221,7 @@ const MiPrecio = () => {
     return () => { if (meta) meta.content = "index, follow"; };
   }, []);
 
-  useSeo({
+  const _seo = useSeo({
     title: producto
       ? `Tu cotización ${producto.name}${nombre ? ` · ${nombre}` : ""} | Adeslas`
       : "Tu cotización Adeslas",
@@ -232,6 +232,7 @@ const MiPrecio = () => {
   if (!producto) {
     return (
       <div className="min-h-screen flex items-center justify-center">
+        {_seo}
         <div className="text-center">
           <p className="text-gris-medio mb-4">Producto no encontrado</p>
           <Link to="/" className="text-azul-medio hover:underline">← Volver al inicio</Link>
@@ -242,6 +243,7 @@ const MiPrecio = () => {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
+      {_seo}
 
       {/* ── Call confirmation popup ── */}
       <AnimatePresence>

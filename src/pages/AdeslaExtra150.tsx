@@ -7,8 +7,8 @@ const data: ProductPageData = {
   seoTitle: "Adeslas Extra 150 | Seguro Médico Libre Elección · Reembolso 80%",
   seoDescription:
     "Adeslas Plena Extra 150: seguro médico sin copagos que combina red Adeslas (libre elección) con reembolso 80% fuera de red. Máximo 150.000€/año. Desde 90€/mes.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-extra-150",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-extra-150.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/adeslas-extra-150",
+  seoOgImage: "https://adeslas.numero1salud.es/og-extra-150.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Extra 150",
     description: "Seguro médico sin copagos con libre elección total (red Adeslas + reembolso 80% fuera de red). Máximo 150.000€/año.",
@@ -17,11 +17,11 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguros de Salud", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Adeslas Plena Extra 150", url: "https://adeslas.marchalaseguradores.es/adeslas-extra-150" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguros de Salud", url: "https://adeslas.numero1salud.es/" },
+    { name: "Adeslas Plena Extra 150", url: "https://adeslas.numero1salud.es/adeslas-extra-150" },
   ],
-  productSlug: "/adeslas-extra-150",
+  productSlug: "/seguro-salud/adeslas-extra-150/",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   cardPromoBadge: "🎁 Promoción puntos",
   badge: "Libre elección · Reembolso 80% · Máx. 150.000€/año",
@@ -221,7 +221,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Cuál es la diferencia entre Adeslas Plena Extra 150 y Adeslas Plena Total?",
-      a: (<>La cobertura médica es similar. <Link to="/adeslas-plena-total" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas Plena Total</Link> es SIN copagos pero limitado a red Adeslas, incluye dental (46 actos), asistencia viajes 100.000€ y cobertura de accidente. Adeslas Plena Extra 150 ofrece LIBERTAD TOTAL: usas red Adeslas sin copagos, o cualquier médico reembolso 80%. Ideal si viajas habitualmente o necesitas especialistas específicos fuera de red.</>)
+      a: (<>La cobertura médica es similar. <Link to="/seguro-salud/adeslas-plena-total/" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas Plena Total</Link> es SIN copagos pero limitado a red Adeslas, incluye dental (46 actos), asistencia viajes 100.000€ y cobertura de accidente. Adeslas Plena Extra 150 ofrece LIBERTAD TOTAL: usas red Adeslas sin copagos, o cualquier médico reembolso 80%. Ideal si viajas habitualmente o necesitas especialistas específicos fuera de red.</>)
     },
     {
       q: "¿Puedo usar Adeslas Plena Extra 150 en el extranjero?",

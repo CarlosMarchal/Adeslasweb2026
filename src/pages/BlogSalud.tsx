@@ -18,11 +18,11 @@ const BlogSalud = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  useSeo({
+  const _seo = useSeo({
     title: "Blog Salud Adeslas | Bienestar, Nutrición, Prevención y Seguros Médicos",
     description:
       "Blog de salud Adeslas: artículos sobre bienestar, nutrición, prevención, salud mental, dental y seguros médicos privados. Consejos de asesores de salud para cuidarte mejor.",
-    canonical: "https://adeslas.marchalaseguradores.es/blog",
+    canonical: "https://adeslas.numero1salud.es/blog",
   });
 
   const filtered =
@@ -32,6 +32,7 @@ const BlogSalud = () => {
 
   return (
     <TarificadorProvider>
+      {_seo}
       <Header />
 
       {/* Hero */}

@@ -6,8 +6,8 @@ import heroImg from "@/assets/seguro-medico-adeslas-plena-vital.webp";
 const data: ProductPageData = {
   seoTitle: "Adeslas Plena Vital | Seguro Médico Completo con Tope de Copago — Desde 38€",
   seoDescription: "Adeslas Plena Vital: hospitalización, todas las especialidades y urgencias 24h con copago máximo 300€/año. Red de +51.000 médicos y 1.400 centros. Sin listas de espera. Desde 38€/mes.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-plena-vital",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-vital.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/adeslas-plena-vital",
+  seoOgImage: "https://adeslas.numero1salud.es/og-vital.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Vital",
     description: "Seguro médico completo con hospitalización, todas las especialidades y copagos limitados a 300€/año. Desde 38€/mes.",
@@ -16,11 +16,11 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguros de Salud", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Adeslas Plena Vital", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-vital" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguros de Salud", url: "https://adeslas.numero1salud.es/" },
+    { name: "Adeslas Plena Vital", url: "https://adeslas.numero1salud.es/adeslas-plena-vital" },
   ],
-  productSlug: "/adeslas-plena-vital",
+  productSlug: "/seguro-salud/adeslas-plena-vital/",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   badge: "Cobertura completa · Copago máx. 300€/año",
   heroTitle: "Seguro Médico Adeslas Plena Vital",
@@ -180,7 +180,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Qué diferencia hay entre Adeslas Plena Vital y Adeslas GO?",
-      a: (<>Ambos tienen copagos limitados, pero Adeslas Plena Vital es MUCHO más completo: <Link to="/adeslas-go" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas GO</Link> es solo ambulatorio (LMA 260€, sin hospitalización) mientras que Adeslas Plena Vital incluye HOSPITALIZACIÓN, CIRUGÍA y TODAS LAS ESPECIALIDADES (LMA 300€). Plena Vital es la opción más equilibrada en protección y precio.</>)
+      a: (<>Ambos tienen copagos limitados, pero Adeslas Plena Vital es MUCHO más completo: <Link to="/seguro-salud/adeslas-go/" style={{color: "#009FE3", textDecoration: "underline"}}>Adeslas GO</Link> es solo ambulatorio (LMA 260€, sin hospitalización) mientras que Adeslas Plena Vital incluye HOSPITALIZACIÓN, CIRUGÍA y TODAS LAS ESPECIALIDADES (LMA 300€). Plena Vital es la opción más equilibrada en protección y precio.</>)
     },
     {
       q: "¿Cubre cirugía Adeslas Plena Vital?",

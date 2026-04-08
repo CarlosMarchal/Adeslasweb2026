@@ -14,8 +14,8 @@ const featuredProducts = [
   {
     icon: "💊",
     name: "Adeslas Go",
-    slug: "/adeslas-go",
-    href: "/adeslas-go",
+    slug: "/seguro-salud/adeslas-go/",
+    href: "/seguro-salud/adeslas-go/",
     price: "21,00",
     pill: "Cobertura ambulatoria · Con copago",
     pillDark: false,
@@ -25,8 +25,8 @@ const featuredProducts = [
   {
     icon: "🛡",
     name: "Adeslas Plena Total",
-    slug: "/adeslas-plena-total",
-    href: "/adeslas-plena-total",
+    slug: "/seguro-salud/adeslas-plena-total/",
+    href: "/seguro-salud/adeslas-plena-total/",
     price: "83,00",
     pill: "Sin copago · Cobertura total",
     pillDark: true,
@@ -38,8 +38,8 @@ const featuredProducts = [
   {
     icon: "🏆",
     name: "Adeslas Plena Vital",
-    slug: "/adeslas-plena-vital",
-    href: "/adeslas-plena-vital",
+    slug: "/seguro-salud/adeslas-plena-vital/",
+    href: "/seguro-salud/adeslas-plena-vital/",
     price: "48,00",
     pill: "Cobertura total · Copago reducido",
     pillDark: false,
@@ -50,13 +50,13 @@ const featuredProducts = [
 
 /* ── All products for the carousel ───────────────────────────── */
 const allProducts = [
-  { icon: "💊", name: "Adeslas Go", href: "/adeslas-go", tag: "Más económico", desc: "Cobertura ambulatoria con copago. Ideal para quienes buscan lo esencial." },
-  { icon: "📋", name: "Adeslas Plena Vital", href: "/adeslas-plena-vital", tag: "Copago reducido", desc: "Cobertura total con copagos reducidos. La mejor relación calidad-precio." },
-  { icon: "🛡", name: "Adeslas Plena Total", href: "/adeslas-plena-total", tag: "El más vendido", desc: "Cobertura total sin copago: hospitalización, cirugía y especialistas." },
-  { icon: "💎", name: "Adeslas Extra 150", href: "/adeslas-extra-150", tag: "Cobertura ampliada", desc: "Sin copagos con coberturas ampliadas. Para quienes quieren más." },
-  { icon: "🏆", name: "Adeslas Plena Plus", href: "/adeslas-plena-plus", tag: "Máxima cobertura", desc: "Lo mejor de Adeslas. Cobertura premium sin límites." },
-  { icon: "🦷", name: "Adeslas Dental", href: "/adeslas-dental", tag: "Dental", desc: "Limpieza, empastes y ortodoncia para toda la familia sin esperas." },
-  { icon: "🕊️", name: "Adeslas Decesos", href: "/adeslas-decesos", tag: "Decesos", desc: "Gestión completa del sepelio en España y el extranjero, 24h." },
+  { icon: "💊", name: "Adeslas Go", href: "/seguro-salud/adeslas-go/", tag: "Más económico", desc: "Cobertura ambulatoria con copago. Ideal para quienes buscan lo esencial." },
+  { icon: "📋", name: "Adeslas Plena Vital", href: "/seguro-salud/adeslas-plena-vital/", tag: "Copago reducido", desc: "Cobertura total con copagos reducidos. La mejor relación calidad-precio." },
+  { icon: "🛡", name: "Adeslas Plena Total", href: "/seguro-salud/adeslas-plena-total/", tag: "El más vendido", desc: "Cobertura total sin copago: hospitalización, cirugía y especialistas." },
+  { icon: "💎", name: "Adeslas Extra 150", href: "/seguro-salud/adeslas-extra-150/", tag: "Cobertura ampliada", desc: "Sin copagos con coberturas ampliadas. Para quienes quieren más." },
+  { icon: "🏆", name: "Adeslas Plena Plus", href: "/seguro-salud/adeslas-plena-plus/", tag: "Máxima cobertura", desc: "Lo mejor de Adeslas. Cobertura premium sin límites." },
+  { icon: "🦷", name: "Adeslas Dental", href: "/seguro-dental/", tag: "Dental", desc: "Limpieza, empastes y ortodoncia para toda la familia sin esperas." },
+  { icon: "🕊️", name: "Adeslas Decesos", href: "/seguro-decesos/", tag: "Decesos", desc: "Gestión completa del sepelio en España y el extranjero, 24h." },
 ];
 
 /* ── Carousel component ──────────────────────────────────────── */

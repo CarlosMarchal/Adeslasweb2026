@@ -6,8 +6,8 @@ import heroImg from "@/assets/seguro-mascotas-adeslas.webp";
 const data: ProductPageData = {
   seoTitle: "Adeslas Mascotas | Seguro para Perros y Gatos desde 5,85€/mes",
   seoDescription: "Seguro de mascotas Adeslas para perros y gatos. Básico desde 5,85€/mes (RC 200.000€) o Completo desde 24,74€/mes (+300 clínicas veterinarias). Sin restricción de raza ni edad.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-mascotas",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-mascotas.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/adeslas-mascotas",
+  seoOgImage: "https://adeslas.numero1salud.es/og-mascotas.jpg",
   seoProductSchema: {
     name: "Adeslas Mascotas",
     description: "Seguro de mascotas Adeslas para perros y gatos. Modalidad Básica desde 5,85€/mes con responsabilidad civil hasta 200.000€, asistencia veterinaria 24h, muerte accidental hasta 1.000€ y robo hasta 800€. Modalidad Completa desde 24,74€/mes con +300 clínicas veterinarias concertadas, hasta 1.000€/año en gastos de clínica, vacunas y desparasitación incluidas. Sin restricción de raza ni edad. Microchip obligatorio.",
@@ -16,9 +16,9 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Otros Seguros", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguro Mascotas", url: "https://adeslas.marchalaseguradores.es/adeslas-mascotas" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Otros Seguros", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguro Mascotas", url: "https://adeslas.numero1salud.es/adeslas-mascotas" },
   ],
   badge: "Perros y gatos · Sin restricción de raza ni edad",
   heroTitle: "Seguro de Mascotas Adeslas",

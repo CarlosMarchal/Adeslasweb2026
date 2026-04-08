@@ -7,12 +7,12 @@ const data: SegmentPageData = {
   seo: {
     title: "Adeslas Ginecología | Seguro Médico con Cobertura Ginecológica Completa",
     description: "Seguro médico con ginecología Adeslas: revisiones, mamografía, citología, salud hormonal y reproducción asistida. Especialistas sin esperas. Sin copagos desde 50,92€/mes.",
-    canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-ginecologia",
-    ogImage: "https://adeslas.marchalaseguradores.es/og-seguro-salud-adeslas-ginecologia.webp",
+    canonical: "https://adeslas.numero1salud.es/seguro-medico-ginecologia",
+    ogImage: "https://adeslas.numero1salud.es/og-seguro-salud-adeslas-ginecologia.webp",
     breadcrumbs: [
-      { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguros Médicos", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguro Ginecología", url: "https://adeslas.marchalaseguradores.es/seguro-medico-ginecologia" },
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguro Ginecología", url: "https://adeslas.numero1salud.es/seguro-medico-ginecologia" },
     ],
   },
   heroTitle: "Seguro Médico Adeslas con Ginecología Completa",
@@ -31,7 +31,7 @@ const data: SegmentPageData = {
   recommendedProducts: [
     {
       name: "Adeslas Plena Vital",
-      slug: "/adeslas-plena-vital",
+      slug: "/seguro-salud/adeslas-plena-vital/",
       price: "38",
       badge: "Económico",
       features: ["Ginecología ambulatoria completa", "Citología y ecografía incluidas", "Mamografía según prescripción", "Urgencias ginecológicas 24h", "Sin hospitalización programada"],
@@ -40,7 +40,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Plena Total",
-      slug: "/adeslas-plena-total",
+      slug: "/seguro-salud/adeslas-plena-total/",
       price: "83",
       badge: "Recomendado",
       features: ["Sin copagos en ginecología", "Hospitalización y cirugía incluidas", "Mamografía y pruebas diagnósticas sin límite", "Parto y cesárea cubiertos", "3 años sin subida de precio"],
@@ -49,7 +49,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Extra 150",
-      slug: "/adeslas-extra-150",
+      slug: "/seguro-salud/adeslas-extra-150/",
       price: "90",
       badge: "Máxima Cobertura",
       features: ["Libre elección de ginecólogo y hospital", "Reembolso hasta 90% del gasto", "Válido en centros públicos y privados", "Técnicas de reproducción asistida", "Cobertura internacional ilimitada"],

@@ -9,8 +9,8 @@ const data: ProductPageData = {
   seoDescription:
     "Seguro médico para estudiantes extranjeros en España desde 38€/mes. Válido para visado de estudios y Extranjería. Cubre todos los requisitos exigidos. Alta en 24h.",
   seoCanonical:
-    "https://adeslas.marchalaseguradores.es/adeslas-extranjeros",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-extranjeros.jpg",
+    "https://adeslas.numero1salud.es/adeslas-extranjeros",
+  seoOgImage: "https://adeslas.numero1salud.es/og-extranjeros.jpg",
   seoProductSchema: {
     name: "Adeslas Health Students / Newcomers Protection",
     description: "Seguro médico para extranjeros en España válido para visado. Cobertura médica completa homologada por el Gobierno de España.",
@@ -19,9 +19,9 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguros Adeslas", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguro Extranjeros", url: "https://adeslas.marchalaseguradores.es/adeslas-extranjeros" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguros Adeslas", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguro Extranjeros", url: "https://adeslas.numero1salud.es/adeslas-extranjeros" },
   ],
   productSlug: "/adeslas-extranjeros",
   badge: "Válido para visado de estudios y residencia",
@@ -239,7 +239,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Qué cobertura médica incluye Adeslas Health Students?",
-      a: (<>Adeslas Health Students incluye: medicina general y todas las especialidades médicas, urgencias 24 horas en toda España, hospitalización y cirugía, pruebas diagnósticas (analíticas, radiografías, ecografías, TAC), rehabilitación y fisioterapia, psicoterapia, y acceso a la red de más de 51.000 médicos de Adeslas en todo el territorio nacional. Si después necesitas una cobertura más completa, puedes consultar <Link to="/adeslas-plena-total" style={{color: "#009FE3", textDecoration: "underline"}}>nuestros seguros de salud</Link>.</>)
+      a: (<>Adeslas Health Students incluye: medicina general y todas las especialidades médicas, urgencias 24 horas en toda España, hospitalización y cirugía, pruebas diagnósticas (analíticas, radiografías, ecografías, TAC), rehabilitación y fisioterapia, psicoterapia, y acceso a la red de más de 51.000 médicos de Adeslas en todo el territorio nacional. Si después necesitas una cobertura más completa, puedes consultar <Link to="/seguro-salud/adeslas-plena-total/" style={{color: "#009FE3", textDecoration: "underline"}}>nuestros seguros de salud</Link>.</>)
     },
     {
       q: "¿Qué diferencia hay entre Adeslas Health Students y Adeslas Health Residents?",

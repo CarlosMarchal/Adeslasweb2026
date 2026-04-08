@@ -87,7 +87,7 @@ export interface ProductPageData {
   /* Schema.org structured data */
   schemaFaq?: boolean;
 
-  /* Product slug for tarificador (e.g. "/adeslas-plena-total") */
+  /* Product slug for tarificador (e.g. "/seguro-salud/adeslas-plena-total/") */
   productSlug?: string;
 
   /* Optional custom tarificador component to replace the default one */
@@ -601,7 +601,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
     window.scrollTo(0, 0);
   }, []);
 
-  useSeo({
+  const _seo = useSeo({
     title: data.seoTitle,
     description: data.seoDescription,
     canonical: data.seoCanonical,
@@ -616,6 +616,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
 
   return (
     <TarificadorProvider>
+      {_seo}
       <PageCalcProvider value={{ onCalcClick: mobileCalcAction, calcLabel: mobileCalcLabel }}>
         <Header />
         <ProductHero data={data} onMobileCalc={openCustom} />

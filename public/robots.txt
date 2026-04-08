@@ -50,5 +50,5 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://adeslas.marchalaseguradores.es/sitemap.xml
-LLMs: https://adeslas.marchalaseguradores.es/llms.txt
+Sitemap: https://adeslas.numero1salud.es/sitemap.xml
+LLMs: https://adeslas.numero1salud.es/llms.txt

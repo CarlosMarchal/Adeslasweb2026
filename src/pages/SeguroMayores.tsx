@@ -7,12 +7,12 @@ const data: SegmentPageData = {
   seo: {
     title: "Adeslas Seniors | Seguro Médico para Personas Mayores de 55 años desde 67,50€/mes",
     description: "Seguros médicos Adeslas específicos para personas de 55 a 84 años. Adeslas Seniors desde 67,50€/mes y Adeslas Seniors Total desde 101€/mes. Asesor de salud personal, hospitalización completa y garantía de precio 3 años. Sin listas de espera.",
-    canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-mayores",
-    ogImage: "https://adeslas.marchalaseguradores.es/og-mayores.jpg",
+    canonical: "https://adeslas.numero1salud.es/seguro-medico-mayores",
+    ogImage: "https://adeslas.numero1salud.es/og-mayores.jpg",
     breadcrumbs: [
-      { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguros Médicos", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguro Personas Mayores", url: "https://adeslas.marchalaseguradores.es/seguro-medico-mayores" },
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguro Personas Mayores", url: "https://adeslas.numero1salud.es/seguro-medico-mayores" },
     ],
   },
   heroTitle: "Seguro de Salud Adeslas para Personas Mayores",
@@ -31,7 +31,7 @@ const data: SegmentPageData = {
   recommendedProducts: [
     {
       name: "Adeslas Seniors",
-      slug: "/adeslas-seniors",
+      slug: "/seguro-salud/adeslas-seniors/",
       price: "67,50",
       badge: "Para 55-84 años",
       features: ["Acceso a +40 especialidades médicas", "Hospitalización en habitación individual", "Asesor Médico de Salud personal", "Copago ambulatorio máx. 250€/año (vía asesor)", "Asistencia internacional 12.000€/año"],
@@ -40,7 +40,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Seniors Total",
-      slug: "/adeslas-seniors-total",
+      slug: "/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/",
       price: "101",
       badge: "Recomendado · 63-84 años",
       features: ["Todo lo de Seniors más:", "Dental: 46 actos incluidos + 50% primer implante", "Chequeo médico anual preventivo", "Asistencia viajes hasta 100.000€", "3 años sin subida de prima garantizados"],

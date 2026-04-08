@@ -40,14 +40,15 @@ const contactMethods = [
 const Contacto = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  useSeo({
+  const _seo = useSeo({
     title: "Contacto Adeslas | Solicita tu Seguro Médico — Atención Personalizada",
     description: "Contacta con Adeslas Seguros Médicos. Solicita información sobre tu seguro, compara planes o pide una llamada gratuita. Tel. 91 710 50 00.",
-    canonical: "https://adeslas.marchalaseguradores.es/contacto",
+    canonical: "https://adeslas.numero1salud.es/contacto",
   });
 
   return (
     <TarificadorProvider>
+      {_seo}
       <Header />
 
       {/* Hero */}

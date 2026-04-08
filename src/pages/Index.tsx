@@ -34,13 +34,13 @@ const Index = () => {
     injectSchema(orgId, {
       "@context": "https://schema.org",
       "@type": "InsuranceAgency",
-      "@id": "https://adeslas.marchalaseguradores.es/#organization",
+      "@id": "https://adeslas.numero1salud.es/#organization",
       name: "Adeslas Seguros Médicos — Marchal Aseguradores",
       alternateName: ["Adeslas", "SegurCaixa Adeslas", "Seguros Adeslas", "Seguro Médico Adeslas"],
-      url: "https://adeslas.marchalaseguradores.es",
+      url: "https://adeslas.numero1salud.es",
       logo: {
         "@type": "ImageObject",
-        url: "https://adeslas.marchalaseguradores.es/logo-adeslas.png",
+        url: "https://adeslas.numero1salud.es/logo-adeslas.png",
         width: 300,
         height: 80,
       },
@@ -88,14 +88,14 @@ const Index = () => {
         "@type": "OfferCatalog",
         name: "Seguros Médicos Adeslas 2026",
         itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.marchalaseguradores.es/adeslas-go#service", name: "Adeslas GO", description: "Seguro médico ambulatorio con copago máximo 260€/año (LMA). Cobertura: medicina general, especialidades, urgencias 24h, pruebas diagnósticas. Sin hospitalización. Desde 21€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-go" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.marchalaseguradores.es/adeslas-plena-vital#service", name: "Adeslas Plena Vital", description: "Seguro médico completo con hospitalización y copago máximo 300€/año. Todas las especialidades, cirugía y urgencias 24h. Desde 38€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-vital" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.marchalaseguradores.es/adeslas-plena-vital-total#service", name: "Adeslas Plena Vital Total", description: "Seguro médico con cobertura hospitalaria completa, copago reducido y prima garantizada 3 años sin subidas. El más recomendado. Desde 48,50€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-vital-total" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.marchalaseguradores.es/adeslas-plena-plus#service", name: "Adeslas Plena Plus", description: "Seguro médico sin copagos con hospitalización completa y acceso a toda la red Adeslas. Desde 62€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-plus" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.marchalaseguradores.es/adeslas-plena-total#service", name: "Adeslas Plena Total", description: "Cobertura máxima sin copagos: hospitalización ilimitada, dental (46 actos), psicología y asistencia viajes 100.000€. El más completo. Desde 83€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-plena-total" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.marchalaseguradores.es/adeslas-extra-150#service", name: "Adeslas Extra 150", description: "Seguro médico de libre elección: cualquier médico dentro y fuera de la red Adeslas. Reembolso hasta 80%, máx. 150.000€/año. Desde 90€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-extra-150" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.marchalaseguradores.es/adeslas-seniors#service", name: "Adeslas Seniors", description: "Seguro médico especializado para personas de 55 a 84 años con asesor personal de salud. Desde 67,50€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-seniors" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.marchalaseguradores.es/adeslas-dental#service", name: "Seguro Dental Adeslas", description: "Seguro dental con limpiezas, revisiones y radiografías desde el día 1 sin coste. +1.700 dentistas. Desde 9,45€/mes.", url: "https://adeslas.marchalaseguradores.es/adeslas-dental" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.numero1salud.es/adeslas-go#service", name: "Adeslas GO", description: "Seguro médico ambulatorio con copago máximo 260€/año (LMA). Cobertura: medicina general, especialidades, urgencias 24h, pruebas diagnósticas. Sin hospitalización. Desde 21€/mes.", url: "https://adeslas.numero1salud.es/adeslas-go" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.numero1salud.es/adeslas-plena-vital#service", name: "Adeslas Plena Vital", description: "Seguro médico completo con hospitalización y copago máximo 300€/año. Todas las especialidades, cirugía y urgencias 24h. Desde 38€/mes.", url: "https://adeslas.numero1salud.es/adeslas-plena-vital" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.numero1salud.es/adeslas-plena-vital-total#service", name: "Adeslas Plena Vital Total", description: "Seguro médico con cobertura hospitalaria completa, copago reducido y prima garantizada 3 años sin subidas. El más recomendado. Desde 48,50€/mes.", url: "https://adeslas.numero1salud.es/adeslas-plena-vital-total" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.numero1salud.es/adeslas-plena-plus#service", name: "Adeslas Plena Plus", description: "Seguro médico sin copagos con hospitalización completa y acceso a toda la red Adeslas. Desde 62€/mes.", url: "https://adeslas.numero1salud.es/adeslas-plena-plus" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.numero1salud.es/adeslas-plena-total#service", name: "Adeslas Plena Total", description: "Cobertura máxima sin copagos: hospitalización ilimitada, dental (46 actos), psicología y asistencia viajes 100.000€. El más completo. Desde 83€/mes.", url: "https://adeslas.numero1salud.es/adeslas-plena-total" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.numero1salud.es/adeslas-extra-150#service", name: "Adeslas Extra 150", description: "Seguro médico de libre elección: cualquier médico dentro y fuera de la red Adeslas. Reembolso hasta 80%, máx. 150.000€/año. Desde 90€/mes.", url: "https://adeslas.numero1salud.es/adeslas-extra-150" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.numero1salud.es/adeslas-seniors#service", name: "Adeslas Seniors", description: "Seguro médico especializado para personas de 55 a 84 años con asesor personal de salud. Desde 67,50€/mes.", url: "https://adeslas.numero1salud.es/adeslas-seniors" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", "@id": "https://adeslas.numero1salud.es/adeslas-dental#service", name: "Seguro Dental Adeslas", description: "Seguro dental con limpiezas, revisiones y radiografías desde el día 1 sin coste. +1.700 dentistas. Desde 9,45€/mes.", url: "https://adeslas.numero1salud.es/adeslas-dental" } },
         ],
       },
     });
@@ -103,14 +103,14 @@ const Index = () => {
     injectSchema(wsId, {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "@id": "https://adeslas.marchalaseguradores.es/#website",
+      "@id": "https://adeslas.numero1salud.es/#website",
       name: "Seguros Médicos Adeslas | Marchal Aseguradores",
-      url: "https://adeslas.marchalaseguradores.es",
+      url: "https://adeslas.numero1salud.es",
       description: "Compara y contrata seguros médicos Adeslas online: GO, Plena Vital, Plena Vital Total, Plena Plus, Plena Total y Extra 150. Calcula tu precio en 2 minutos. +51.000 médicos, sin listas de espera.",
-      publisher: { "@id": "https://adeslas.marchalaseguradores.es/#organization" },
+      publisher: { "@id": "https://adeslas.numero1salud.es/#organization" },
       potentialAction: {
         "@type": "SearchAction",
-        target: "https://adeslas.marchalaseguradores.es/cuadro-medico?q={search_term_string}",
+        target: "https://adeslas.numero1salud.es/cuadro-medico?q={search_term_string}",
         "query-input": "required name=search_term_string",
       },
     });
@@ -120,10 +120,10 @@ const Index = () => {
     injectSchema(speakableId, {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "@id": "https://adeslas.marchalaseguradores.es/#webpage",
+      "@id": "https://adeslas.numero1salud.es/#webpage",
       name: "Seguros Médicos Adeslas 2026 — Comparativa y Precios",
-      isPartOf: { "@id": "https://adeslas.marchalaseguradores.es/#website" },
-      about: { "@id": "https://adeslas.marchalaseguradores.es/#organization" },
+      isPartOf: { "@id": "https://adeslas.numero1salud.es/#website" },
+      about: { "@id": "https://adeslas.numero1salud.es/#organization" },
       description: "Adeslas es la aseguradora médica privada líder en España, comercializada por Marchal Aseguradores como agencia exclusiva. Dispone de 6 planes de seguro médico para particulares (GO, Plena Vital, Plena Vital Total, Plena Plus, Plena Total, Extra 150), seguros dentales, pólizas para autónomos y empresas. Red de más de 51.000 médicos y 1.400 centros en toda España, sin listas de espera. Precios desde 21€/mes para particulares.",
       speakable: {
         "@type": "SpeakableSpecification",
@@ -151,13 +151,13 @@ const Index = () => {
     };
   }, []);
 
-  useSeo({
+  const _seo = useSeo({
     title: "Adeslas Seguros Médicos | Salud Privada · +51.000 Médicos · Sin Listas de Espera",
     description:
       "Adeslas: seguro médico privado líder en España. GO desde 21€, Plena Vital desde 38€, Plena Vital Total desde 48,50€ (3 años sin subidas de prima), Plena Total sin copagos desde 83€. Más de 51.000 médicos y 1.400 centros. Calcula tu precio en 2 minutos.",
-    canonical: "https://adeslas.marchalaseguradores.es/",
+    canonical: "https://adeslas.numero1salud.es/",
     breadcrumbs: [
-      { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
     ],
     faqSchema: [
       {
@@ -213,6 +213,7 @@ const Index = () => {
 
   return (
     <TarificadorProvider>
+      {_seo}
       <Header />
       <HeroSection />
       <ProductsSection />

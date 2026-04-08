@@ -6,8 +6,8 @@ import heroImg from "@/assets/seguro-viaje-adeslas.webp";
 const data: ProductPageData = {
   seoTitle: "Adeslas Viaje | Seguro de Asistencia en Viaje desde 8,50€/día — Cobertura Mundial",
   seoDescription: "Seguro de asistencia en viaje Adeslas con cobertura mundial. Emergencias médicas, repatriación, cancelación de vuelos y equipaje. Contrata por días, semanas o meses. Desde 8,50€/día.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-asistencia-viaje",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-viaje.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/adeslas-asistencia-viaje",
+  seoOgImage: "https://adeslas.numero1salud.es/og-viaje.jpg",
   seoProductSchema: {
     name: "Adeslas Asistencia en Viaje",
     description: "Seguro de asistencia en viaje Adeslas con cobertura mundial. Cubre emergencias médicas, hospitalización, farmacia, repatriación médica urgente y de restos mortales, vuelta anticipada por fallecimiento de familiar, cancelación de vuelo, retraso de transporte, pérdida y robo de equipaje, COVID-19 con test y gastos de cuarentena, y asistencia 24h en todo el mundo. Sin permanencia mínima. Contrata por días, semanas o meses según tu viaje. Desde 8,50€/día.",
@@ -16,9 +16,9 @@ const data: ProductPageData = {
     pricePeriod: "day",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Otros Seguros", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Asistencia en Viaje", url: "https://adeslas.marchalaseguradores.es/adeslas-asistencia-viaje" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Otros Seguros", url: "https://adeslas.numero1salud.es/" },
+    { name: "Asistencia en Viaje", url: "https://adeslas.numero1salud.es/adeslas-asistencia-viaje" },
   ],
   badge: "Cobertura mundial · Sin permanencia",
   heroTitle: "Adeslas Asistencia en Viaje",

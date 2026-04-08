@@ -63,7 +63,7 @@ export interface SegmentPageData {
 const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  useSeo({
+  const _seo = useSeo({
     title: data.seo.title,
     description: data.seo.description,
     canonical: data.seo.canonical,
@@ -76,6 +76,7 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
 
   return (
     <TarificadorProvider>
+      {_seo}
       <Header />
       <main>
         {/* ── Hero with 2 columns — full photo + dark overlay, same as home ── */}

@@ -4,12 +4,12 @@ import Footer from "@/components/Footer";
 import { TarificadorProvider } from "@/components/TarificadorContext";
 
 const PoliticaPrivacidad = () => {
-  useSeo({
+  const _seo = useSeo({
     title: "Aviso Legal y Política de Privacidad | Adeslas Seguros Médicos",
     description:
       "Aviso legal, política de privacidad y política de cookies de Marchal Aseguradores S.L.U., Agencia Exclusiva de Adeslas.",
     canonical:
-      "https://adeslas.marchalaseguradores.es/politica-de-privacidad",
+      "https://adeslas.numero1salud.es/politica-de-privacidad",
   });
 
   const h2 =
@@ -20,6 +20,7 @@ const PoliticaPrivacidad = () => {
 
   return (
     <TarificadorProvider>
+      {_seo}
       <Header />
       <main className="bg-blanco">
         {/* Hero strip */}

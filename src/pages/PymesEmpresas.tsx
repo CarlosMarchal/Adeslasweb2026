@@ -6,8 +6,8 @@ import heroImg from "@/assets/seguro-medico-adeslas-empresas.webp";
 const data: ProductPageData = {
   seoTitle: "Seguro Médico Adeslas para Empresas y Pymes | Beneficio Social · Sin Copago",
   seoDescription: "Seguro médico Adeslas para empresas y pymes: sin copagos, chequeo anual, dental y precio garantizado 3 años. Deducible al 100% para la empresa. +51.000 médicos. Desde 56€/mes.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/pymes-empresas",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-pymes-empresas.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/pymes-empresas",
+  seoOgImage: "https://adeslas.numero1salud.es/og-pymes-empresas.jpg",
   seoProductSchema: {
     name: "Adeslas EMPRESAS — Seguro Médico para Pymes y Empresas",
     description: "Seguro médico Adeslas para empresas (CIF). Sin copagos, cobertura sanitaria completa para empleados. Adeslas EMPRESAS (5 a 99 asegurados) y Adeslas PYMES TOTAL (hasta 15 asegurados, chequeo médico incluido y dental).",
@@ -16,8 +16,8 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguro Médico Pymes y Empresas Adeslas", url: "https://adeslas.marchalaseguradores.es/pymes-empresas" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguro Médico Pymes y Empresas Adeslas", url: "https://adeslas.numero1salud.es/pymes-empresas" },
   ],
   badge: "Empresas · Sin Copago · Beneficio Social",
   heroTitle: "Seguro Médico Adeslas para",

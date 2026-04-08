@@ -7,12 +7,12 @@ const data: SegmentPageData = {
   seo: {
     title: "Adeslas Seguro Médico Individual | Todos los Planes desde 21€/mes",
     description: "Adeslas seguro médico individual desde 21€/mes. GO, Plena Vital, Plena Plus y Plena Total. Acceso a +51.000 médicos, urgencias 24h, hospitalización sin listas de espera. Calcula tu precio en 2 minutos.",
-    canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-individual",
-    ogImage: "https://adeslas.marchalaseguradores.es/og-individual.jpg",
+    canonical: "https://adeslas.numero1salud.es/seguro-medico-individual",
+    ogImage: "https://adeslas.numero1salud.es/og-individual.jpg",
     breadcrumbs: [
-      { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguros Médicos", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguro Individual", url: "https://adeslas.marchalaseguradores.es/seguro-medico-individual" },
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguro Individual", url: "https://adeslas.numero1salud.es/seguro-medico-individual" },
     ],
   },
   heroTitle: "Seguro Médico Privado Adeslas Individual",
@@ -31,7 +31,7 @@ const data: SegmentPageData = {
   recommendedProducts: [
     {
       name: "Adeslas Plena Vital",
-      slug: "/adeslas-plena-vital",
+      slug: "/seguro-salud/adeslas-plena-vital/",
       price: "38",
       badge: "Económico",
       features: ["Atención ambulatoria completa", "Acceso a +51.000 médicos", "Urgencias 24h sin lista de espera", "Diagnóstico avanzado incluido", "Sin hospitalización programada"],
@@ -40,7 +40,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Plena Total",
-      slug: "/adeslas-plena-total",
+      slug: "/seguro-salud/adeslas-plena-total/",
       price: "83",
       badge: "Recomendado",
       features: ["Sin copagos en todos los servicios", "Hospitalización ilimitada incluida", "Dental: 46 actos incluidos", "3 años sin subida de precio", "Asistencia viajes 100.000€"],
@@ -49,7 +49,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Extra 150",
-      slug: "/adeslas-extra-150",
+      slug: "/seguro-salud/adeslas-extra-150/",
       price: "90",
       badge: "Máxima Cobertura",
       features: ["Libre elección de médico y hospital", "Reembolso 80% cualquier profesional", "Válido en España y en el extranjero", "Red Adeslas sin copago + reembolso combinados", "Máximo garantizado 150.000€/año"],

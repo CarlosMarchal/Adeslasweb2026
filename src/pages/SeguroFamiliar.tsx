@@ -7,12 +7,12 @@ const data: SegmentPageData = {
   seo: {
     title: "Adeslas Seguro Médico Familiar | Pediatría, Especialistas y Sin Copagos",
     description: "Adeslas seguro médico familiar: pediatría, especialistas y hospitalización para toda la familia desde 22,55€/mes. Descuento 10% desde el 4º asegurado. Sin listas de espera.",
-    canonical: "https://adeslas.marchalaseguradores.es/seguro-medico-familiar",
-    ogImage: "https://adeslas.marchalaseguradores.es/og-familiar.jpg",
+    canonical: "https://adeslas.numero1salud.es/seguro-medico-familiar",
+    ogImage: "https://adeslas.numero1salud.es/og-familiar.jpg",
     breadcrumbs: [
-      { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguros Médicos", url: "https://adeslas.marchalaseguradores.es/" },
-      { name: "Seguro Familiar", url: "https://adeslas.marchalaseguradores.es/seguro-medico-familiar" },
+      { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
+      { name: "Seguro Familiar", url: "https://adeslas.numero1salud.es/seguro-medico-familiar" },
     ],
   },
   heroTitle: "Seguro Médico Adeslas para Familias",
@@ -32,7 +32,7 @@ const data: SegmentPageData = {
   recommendedProducts: [
     {
       name: "Adeslas Plena Vital",
-      slug: "/adeslas-plena-vital",
+      slug: "/seguro-salud/adeslas-plena-vital/",
       price: "38",
       badge: "Económico",
       features: ["Atención ambulatoria para toda la familia", "Pediatría sin lista de espera", "Urgencias 24h en toda España", "Diagnóstico completo incluido", "Precio por miembro desde 38€/mes"],
@@ -41,7 +41,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Plena Total",
-      slug: "/adeslas-plena-total",
+      slug: "/seguro-salud/adeslas-plena-total/",
       price: "83",
       badge: "Recomendado",
       features: ["Sin copagos para toda la familia", "Hospitalización ilimitada y parto cubierto", "Dental: 46 actos incluidos", "3 años sin subida de precio", "Descuento familiar desde el 4º asegurado"],
@@ -50,7 +50,7 @@ const data: SegmentPageData = {
     },
     {
       name: "Adeslas Extra 150",
-      slug: "/adeslas-extra-150",
+      slug: "/seguro-salud/adeslas-extra-150/",
       price: "90",
       badge: "Máxima Cobertura",
       features: ["Libre elección de médico y hospital", "Reembolso hasta 90% del gasto", "Válido en centros públicos y privados", "Cobertura internacional ilimitada", "Ideal para familias con necesidades especiales"],

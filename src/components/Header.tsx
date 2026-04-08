@@ -156,40 +156,40 @@ const icoSeniorsTotal = (
 
 const megaSeguros = {
   particulares: [
-    { icon: icoIndividual,   label: "Individual",        sub: "Seguro médico para ti",                         to: "/seguro-medico-individual" },
-    { icon: icoFamilia,      label: "Familia",           sub: "Protege a toda la familia",                     to: "/seguro-medico-familiar" },
-    { icon: icoInfantil,     label: "Infantil",          sub: "Seguro para los más pequeños",                  to: "/seguro-medico-infantil" },
-    { icon: icoGinecologia,  label: "Ginecología",       sub: "Cobertura ginecológica completa",               to: "/seguro-medico-ginecologia" },
-    { icon: icoEmbarazadas,  label: "Embarazadas",       sub: "Seguimiento del embarazo y parto",              to: "/seguro-medico-embarazadas" },
-    { icon: icoMayores,      label: "Personas mayores",  sub: "Cobertura especializada para seniors",          to: "/seguro-medico-mayores" },
+    { icon: icoIndividual,   label: "Individual",        sub: "Seguro médico para ti",                         to: "/seguro-salud/adeslas-individual/" },
+    { icon: icoFamilia,      label: "Familia",           sub: "Protege a toda la familia",                     to: "/seguro-salud/seguro-familia/" },
+    { icon: icoInfantil,     label: "Infantil",          sub: "Seguro para los más pequeños",                  to: "/seguro-salud/adeslas-infantil/" },
+    { icon: icoGinecologia,  label: "Ginecología",       sub: "Cobertura ginecológica completa",               to: "/seguro-salud/adeslas-ginecologia/" },
+    { icon: icoEmbarazadas,  label: "Embarazadas",       sub: "Seguimiento del embarazo y parto",              to: "/seguro-salud/embarazo/" },
+    { icon: icoMayores,      label: "Personas mayores",  sub: "Cobertura especializada para seniors",          to: "/seguro-salud/seguro-para-personas-mayores/" },
   ],
   empresas: [
-    { icon: icoAutonomos, label: "Autónomos",       sub: "Adeslas NEGOCIOS — sin copago, deducible IRPF",          to: "/autonomos" },
-    { icon: icoPymes,     label: "Pymes y Empresas", sub: "Adeslas EMPRESAS y PYMES TOTAL — sin copago para empleados", to: "/pymes-empresas" },
+    { icon: icoAutonomos, label: "Autónomos",       sub: "Adeslas NEGOCIOS — sin copago, deducible IRPF",          to: "/seguro-salud/autonomos/" },
+    { icon: icoPymes,     label: "Pymes y Empresas", sub: "Adeslas EMPRESAS y PYMES TOTAL — sin copago para empleados", to: "/seguro-salud/pymes/" },
   ],
   dental: [
-    { icon: icoDental, label: "Adeslas Dental Max", sub: "Revisiones, ortodoncia, implantes", to: "/adeslas-dental" },
+    { icon: icoDental, label: "Adeslas Dental Max", sub: "Revisiones, ortodoncia, implantes", to: "/seguro-dental/" },
   ],
   otros: [
-    { icon: icoDecesos,    label: "Adeslas Decesos",     sub: "Gestión completa del sepelio",      to: "/adeslas-decesos" },
-    { icon: icoMascotas,   label: "Adeslas Mascotas",    sub: "Perros y gatos desde 5,85€/mes",    to: "/adeslas-mascotas" },
-    { icon: icoViaje,      label: "Asistencia en Viaje", sub: "Cobertura mundial sin permanencia", to: "/adeslas-asistencia-viaje" },
-    { icon: icoAccidentes, label: "Seguro de Accidentes",sub: "Protección 24h en todo el mundo",   to: "/adeslas-accidentes" },
+    { icon: icoDecesos,    label: "Adeslas Decesos",     sub: "Gestión completa del sepelio",      to: "/seguro-decesos/" },
+    { icon: icoMascotas,   label: "Adeslas Mascotas",    sub: "Perros y gatos desde 5,85€/mes",    to: "/seguro-mascotas/" },
+    { icon: icoViaje,      label: "Asistencia en Viaje", sub: "Cobertura mundial sin permanencia", to: "/adeslas-asistencia-en-viaje/" },
+    { icon: icoAccidentes, label: "Seguro de Accidentes",sub: "Protección 24h en todo el mundo",   to: "/seguro-accidentes/" },
   ],
 };
 
 const megaPlanes = {
   sinCopago: [
-    { icon: icoPlenaTotal, label: "Adeslas Plena Total",  sub: "La opción más vendida. Sin copagos.",         badge: "Sin subidas 3 años", to: "/adeslas-plena-total" },
-    { icon: icoPlenaPlus,  label: "Adeslas Plena Plus",   sub: "Cobertura total premium. Lo mejor de Adeslas.", to: "/adeslas-plena-plus" },
-    { icon: icoExtra150,   label: "Adeslas Extra 150",    sub: "Libre elección + reembolso 80%.",              to: "/adeslas-extra-150" },
+    { icon: icoPlenaTotal, label: "Adeslas Plena Total",  sub: "La opción más vendida. Sin copagos.",         badge: "Sin subidas 3 años", to: "/seguro-salud/adeslas-plena-total/" },
+    { icon: icoPlenaPlus,  label: "Adeslas Plena Plus",   sub: "Cobertura total premium. Lo mejor de Adeslas.", to: "/seguro-salud/adeslas-plena-plus/" },
+    { icon: icoExtra150,   label: "Adeslas Extra 150",    sub: "Libre elección + reembolso 80%.",              to: "/seguro-salud/adeslas-extra-150/" },
   ],
   conCopago: [
-    { icon: icoGo,              label: "Adeslas Go",              sub: "La más económica. Cobertura ambulatoria.",      to: "/adeslas-go" },
-    { icon: icoPlenaVital,      label: "Adeslas Plena Vital",     sub: "Cobertura completa con copagos reducidos.",     to: "/adeslas-plena-vital" },
-    { icon: icoPlenaVitalTotal, label: "Adeslas Plena Vital Total",sub: "Cobertura total. Copago máx. 500€/año.",  badge: "Sin subidas 3 años", to: "/adeslas-plena-vital-total" },
-    { icon: icoSeniors,         label: "Adeslas Seniors",         sub: "Para mayores de 55. Asesor personal.",          to: "/adeslas-seniors" },
-    { icon: icoSeniorsTotal,    label: "Adeslas Seniors Total",   sub: "Mayores 63-84. Dental incluida.",         badge: "Sin subidas 3 años", to: "/adeslas-seniors-total" },
+    { icon: icoGo,              label: "Adeslas Go",              sub: "La más económica. Cobertura ambulatoria.",      to: "/seguro-salud/adeslas-go/" },
+    { icon: icoPlenaVital,      label: "Adeslas Plena Vital",     sub: "Cobertura completa con copagos reducidos.",     to: "/seguro-salud/adeslas-plena-vital/" },
+    { icon: icoPlenaVitalTotal, label: "Adeslas Plena Vital Total",sub: "Cobertura total. Copago máx. 500€/año.",  badge: "Sin subidas 3 años", to: "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/" },
+    { icon: icoSeniors,         label: "Adeslas Seniors",         sub: "Para mayores de 55. Asesor personal.",          to: "/seguro-salud/adeslas-seniors/" },
+    { icon: icoSeniorsTotal,    label: "Adeslas Seniors Total",   sub: "Mayores 63-84. Dental incluida.",         badge: "Sin subidas 3 años", to: "/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/" },
   ],
 };
 
@@ -310,10 +310,10 @@ const Header = () => {
   const navItems = [
     { key: "seguros", label: "Seguros", hasMega: true },
     { key: "planes", label: "Planes", hasMega: true },
-    { key: "precios", label: "Precios y ofertas", to: "/precios-ofertas" },
-    { key: "blog", label: "Blog Salud", to: "/blog" },
-    { key: "cuadro", label: "Cuadro médico", to: "/cuadro-medico" },
-    { key: "contacto", label: "Contacto", to: "/contacto" },
+    { key: "precios", label: "Precios y ofertas", to: "/seguro-salud/ofertas-adeslas-precios/" },
+    { key: "blog", label: "Blog Salud", to: "/adeslas-blog/" },
+    { key: "cuadro", label: "Cuadro médico", to: "/cuadro-medico/" },
+    { key: "contacto", label: "Contacto", to: "/contacto/" },
   ];
 
   return (
@@ -522,10 +522,10 @@ const Header = () => {
                   <MobileGroup title="SIN COPAGO" items={megaPlanes.sinCopago} onClose={() => setMobileOpen(false)} />
                   <MobileGroup title="CON COPAGO" items={megaPlanes.conCopago} onClose={() => setMobileOpen(false)} />
                 </MobileAccordionItem>
-                <Link to="/precios-ofertas" onClick={() => setMobileOpen(false)} className="flex items-center justify-between px-5 py-4 text-[15px] font-semibold text-gris-texto border-b border-borde/50 hover:bg-gris-claro transition-colors">Precios y ofertas<ArrowRight className="w-4 h-4 text-gris-medio" /></Link>
-                <Link to="/blog" onClick={() => setMobileOpen(false)} className="flex items-center justify-between px-5 py-4 text-[15px] font-semibold text-gris-texto border-b border-borde/50 hover:bg-gris-claro transition-colors">Blog Salud<ArrowRight className="w-4 h-4 text-gris-medio" /></Link>
-                <Link to="/cuadro-medico" onClick={() => setMobileOpen(false)} className="flex items-center justify-between px-5 py-4 text-[15px] font-semibold text-gris-texto border-b border-borde/50 hover:bg-gris-claro transition-colors">Cuadro médico<ArrowRight className="w-4 h-4 text-gris-medio" /></Link>
-                <Link to="/contacto" onClick={() => setMobileOpen(false)} className="flex items-center justify-between px-5 py-4 text-[15px] font-semibold text-gris-texto hover:bg-gris-claro transition-colors">Contacto<ArrowRight className="w-4 h-4 text-gris-medio" /></Link>
+                <Link to="/seguro-salud/ofertas-adeslas-precios/" onClick={() => setMobileOpen(false)} className="flex items-center justify-between px-5 py-4 text-[15px] font-semibold text-gris-texto border-b border-borde/50 hover:bg-gris-claro transition-colors">Precios y ofertas<ArrowRight className="w-4 h-4 text-gris-medio" /></Link>
+                <Link to="/adeslas-blog/" onClick={() => setMobileOpen(false)} className="flex items-center justify-between px-5 py-4 text-[15px] font-semibold text-gris-texto border-b border-borde/50 hover:bg-gris-claro transition-colors">Blog Salud<ArrowRight className="w-4 h-4 text-gris-medio" /></Link>
+                <Link to="/cuadro-medico/" onClick={() => setMobileOpen(false)} className="flex items-center justify-between px-5 py-4 text-[15px] font-semibold text-gris-texto border-b border-borde/50 hover:bg-gris-claro transition-colors">Cuadro médico<ArrowRight className="w-4 h-4 text-gris-medio" /></Link>
+                <Link to="/contacto/" onClick={() => setMobileOpen(false)} className="flex items-center justify-between px-5 py-4 text-[15px] font-semibold text-gris-texto hover:bg-gris-claro transition-colors">Contacto<ArrowRight className="w-4 h-4 text-gris-medio" /></Link>
               </div>
               <div className="px-5 py-4 flex flex-col gap-3 border-t border-borde/50" style={{ backgroundColor: "#F8FAFC" }}>
                 <a href="tel:917105000" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-borde text-sm" style={{ color: "#003087" }}>
@@ -668,7 +668,7 @@ const MegaSegurosContent = ({ onNavigate }: { onNavigate: () => void }) => {
         </div>
         <div className="mt-4">
           <div className="font-black text-[28px]">desde 48,50€ <span className="text-[13px] font-normal" style={{ color: "rgba(255,255,255,0.60)" }}>/mes</span></div>
-          <button onClick={() => openTarificador("/adeslas-plena-vital-total")}
+          <button onClick={() => openTarificador("/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/")}
             className="block w-full text-center py-2.5 rounded-[7px] font-bold text-sm mt-3 btn-cta-magenta cursor-pointer"
             style={{ backgroundColor: "#E4097D", color: "#fff" }}>
             Calcular mi precio →
@@ -696,7 +696,7 @@ const MegaPlanesContent = ({ onNavigate }: { onNavigate: () => void }) => (
         <div className="text-lg font-black mt-1 mb-1">Te lo explicamos</div>
         <div className="text-[13px] leading-[1.55]" style={{ color: "rgba(255,255,255,0.70)" }}>Un asesor personal te explica las diferencias en 2 minutos. Sin compromiso.</div>
       </div>
-      <Link to="/contacto" className="block text-center py-2.5 rounded-[7px] font-bold text-sm mt-4 btn-cta-magenta" style={{ backgroundColor: "#E4097D", color: "#fff" }}>
+      <Link to="/contacto/" className="block text-center py-2.5 rounded-[7px] font-bold text-sm mt-4 btn-cta-magenta" style={{ backgroundColor: "#E4097D", color: "#fff" }}>
         Hablar con un asesor →
       </Link>
     </div>

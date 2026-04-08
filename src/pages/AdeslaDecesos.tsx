@@ -7,8 +7,8 @@ import heroImg from "@/assets/seguro-decesos-adeslas.webp";
 const data: ProductPageData = {
   seoTitle: "Adeslas Decesos | Sepelio, Repatriación y Trámites desde 9€/mes",
   seoDescription: "Seguro de decesos Adeslas gestionado por Ocaso. Sepelio completo, repatriación internacional, billete acompañante y trámites incluidos. Atención 24h: 900 14 15 16. Límite 70 años (prima única para mayores). Desde 9€/mes.",
-  seoCanonical: "https://adeslas.marchalaseguradores.es/adeslas-decesos",
-  seoOgImage: "https://adeslas.marchalaseguradores.es/og-decesos.jpg",
+  seoCanonical: "https://adeslas.numero1salud.es/adeslas-decesos",
+  seoOgImage: "https://adeslas.numero1salud.es/og-decesos.jpg",
   seoProductSchema: {
     name: "Adeslas Decesos",
     description: "Seguro de decesos Adeslas gestionado por Ocaso. Cubre: sepelio completo, féretro o urna, tanatorio, trámites administrativos, traslado nacional e internacional y repatriación desde el extranjero. Repatriación: el asegurado debe ser residente en España y no haber permanecido más de 90 días consecutivos en el extranjero antes del fallecimiento. Si el fallecimiento ocurre en el extranjero incluye billete ida y vuelta para acompañante (clase turista), gastos de estancia entre 175€ y 200€ diarios con máximo 10 días, y servicio de intérprete. Atención 24h/365 días: teléfono 900 14 15 16 (desde el extranjero +34 91 542 02 03). Límite de edad: 70 años en modalidad prima periódica; mayores de 70 años disponible en modalidad prima única. Prima desde 9€/mes.",
@@ -17,9 +17,9 @@ const data: ProductPageData = {
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
-    { name: "Inicio", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Seguros Adeslas", url: "https://adeslas.marchalaseguradores.es/" },
-    { name: "Adeslas Decesos", url: "https://adeslas.marchalaseguradores.es/adeslas-decesos" },
+    { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
+    { name: "Seguros Adeslas", url: "https://adeslas.numero1salud.es/" },
+    { name: "Adeslas Decesos", url: "https://adeslas.numero1salud.es/adeslas-decesos" },
   ],
   badge: "Cobertura inmediata · Gestión por Ocaso",
   heroTitle: "Seguro de Decesos Adeslas",
@@ -185,7 +185,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Qué diferencia hay entre seguro de decesos y seguro de vida?",
-      a: (<>El seguro de decesos cubre los gastos del sepelio y gestiona todos los trámites del funeral. El <Link to="/adeslas-dental" style={{color: "#009FE3", textDecoration: "underline"}}>seguro de vida</Link> paga un capital económico a los beneficiarios designados. Son productos complementarios: el de decesos protege de los gastos inmediatos del fallecimiento, el de vida protege el futuro económico de la familia.</>)
+      a: (<>El seguro de decesos cubre los gastos del sepelio y gestiona todos los trámites del funeral. El <Link to="/seguro-dental/" style={{color: "#009FE3", textDecoration: "underline"}}>seguro de vida</Link> paga un capital económico a los beneficiarios designados. Son productos complementarios: el de decesos protege de los gastos inmediatos del fallecimiento, el de vida protege el futuro económico de la familia.</>)
     },
   ],
   schemaFaq: true,
