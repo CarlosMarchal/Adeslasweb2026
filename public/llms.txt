@@ -122,10 +122,6 @@ El alta Adeslas es inmediata. La cobertura comienza el mismo día o al siguiente
 ### Seguro Adeslas para Mayores
 - URL: https://adeslas.numero1salud.es/seguro-salud/seguro-para-personas-mayores/
 
-### Seguro Adeslas para Extranjeros
-- Seguro de salud para residentes extranjeros en España. Sin esperas, en toda la red Adeslas.
-- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-extranjeros/
-
 ---
 
 ## Adeslas para Autónomos y Empresas
@@ -251,7 +247,6 @@ Sí, desde Plena Plus hacia arriba. Plena GO y Plena Vital no incluyen parto.
 - https://adeslas.numero1salud.es/seguro-salud/embarazo/ — Seguro Embarazadas Adeslas
 - https://adeslas.numero1salud.es/seguro-salud/adeslas-ginecologia/ — Seguro Ginecología Adeslas
 - https://adeslas.numero1salud.es/seguro-salud/seguro-para-personas-mayores/ — Seguro Mayores Adeslas
-- https://adeslas.numero1salud.es/seguro-salud/adeslas-extranjeros/ — Seguro Extranjeros Adeslas
 - https://adeslas.numero1salud.es/seguro-salud/autonomos/ — Adeslas Autónomos
 - https://adeslas.numero1salud.es/seguro-salud/pymes/ — Adeslas Pymes
 - https://adeslas.numero1salud.es/seguro-salud/empresas/ — Adeslas Empresas

@@ -10,6 +10,7 @@ const data: ProductPageData = {
     "Seguro médico para estudiantes extranjeros en España desde 38€/mes. Válido para visado de estudios y Extranjería. Cubre todos los requisitos exigidos. Alta en 24h.",
   seoCanonical:
     "https://adeslas.numero1salud.es/seguro-salud/adeslas-extranjeros/",
+  seoNoindex: true,
   seoOgImage: "https://adeslas.numero1salud.es/og-extranjeros.jpg",
   seoProductSchema: {
     name: "Adeslas Health Students / Newcomers Protection",

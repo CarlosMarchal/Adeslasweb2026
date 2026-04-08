@@ -53,6 +53,7 @@ export interface ProductPageData {
     pricePeriod?: string;
   };
   seoBreadcrumbs?: Array<{ name: string; url: string }>;
+  seoNoindex?: boolean;
 
   /* Hero */
   badge?: string;
@@ -633,6 +634,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
       ? { ...data.seoProductSchema, url: data.seoCanonical }
       : undefined,
     breadcrumbs: data.seoBreadcrumbs,
+    noindex: data.seoNoindex,
   });
 
   return (
