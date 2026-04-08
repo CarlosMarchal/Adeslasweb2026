@@ -34,11 +34,13 @@ const data: ProductPageData = {
   heroHighlight: "Un solo pago · Tranquilidad para siempre",
   heroSubtitle:
     "Deja cubiertos todos los gastos funerarios con un único pago y evita preocupaciones futuras a tu familia. Cobertura vitalicia sin cuotas mensuales ni renovaciones.",
-  price: "desde 2",
-  pricePeriod: "/mes equivalente",
+  price: "",
+  pricePeriod: "",
   customTarificador: <ContactCtaCard />,
   usePhoneCallCta: true,
   hideHeroBadges: true,
+  hideHeroPrice: true,
+  hideCardPrice: true,
   cardName: "Adeslas Decesos Prima Única",
   cardDescription:
     "Un único pago inicial garantiza el servicio funerario completo de por vida. Sin cuotas ni renovaciones anuales.",

@@ -113,6 +113,9 @@ export interface ProductPageData {
 
   /* Hide the price display in the hero (use when two products with different prices) */
   hideHeroPrice?: boolean;
+
+  /* Hide the price row in the product card (use for prima única or price-on-request products) */
+  hideCardPrice?: boolean;
 }
 
 /* ───────── Sub-components ───────── */
@@ -406,9 +409,11 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
             )}
             <h3 className="text-gris-texto mb-1">{cardName}</h3>
             <p className="text-sm text-gris-medio mb-3">{cardDescription}</p>
-            <div className="price-style mb-3">
-              <span className="text-sm font-normal text-gris-medio">desde </span>{cardPrice}€<span className="text-base font-normal text-gris-medio">/{cardPricePeriod.replace(/^\//, "")}</span>
-            </div>
+            {!data.hideCardPrice && (
+              <div className="price-style mb-3">
+                <span className="text-sm font-normal text-gris-medio">desde </span>{cardPrice}€<span className="text-base font-normal text-gris-medio">/{cardPricePeriod.replace(/^\//, "")}</span>
+              </div>
+            )}
             <div
               className="px-3 py-1.5 rounded-xl text-xs font-bold mb-5 w-max max-w-full"
               style={{
