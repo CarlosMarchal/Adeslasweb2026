@@ -201,7 +201,7 @@ export default function TarificadorInterno() {
       })
       .filter((r) => r.subtotal > 0)
       .sort((a, b) => a.total - b.total);
-  }, [asegurados, zona, ratioComercial]);
+  }, [asegurados, zona, pctGeneral, pctPymes]);
 
   /* ── Resumen de incentivos (para el cartel de premios) ── */
   const maxPuntos = Math.max(0, ...resultados.map((r) => r.totalPuntos));

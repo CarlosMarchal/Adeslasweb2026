@@ -64,6 +64,8 @@ const staticRoutes = [
   "/seguro-salud/adeslas-formulario-de-alta/",
   /* Landing campaña (noindex pero pre-renderizable) */
   "/adeslasplenavitaloferta/",
+  /* Herramientas internas (noindex) */
+  "/tarificador-interno/",
 ];
 
 // https://vitejs.dev/config/
