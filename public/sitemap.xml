@@ -3,236 +3,272 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Precios y Ofertas — alta prioridad por keyword "precio Adeslas" -->
+  <!-- Precios y Ofertas -->
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/precios-ofertas</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/precios-y-ofertas/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
 
-  <!-- Planes Adeslas Salud -->
+  <!-- Seguros médicos — productos principales -->
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-plena-total</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-go/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-plena-plus</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital/</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-plena-vital-total</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-plus/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-plena-vital</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-total/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-go</loc>
-    <lastmod>2026-04-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-extra-150</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-extra-150/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-seniors-total</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.88</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-seniors</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- Seguros por segmento / perfil -->
+  <!-- Seguros por perfil / segmento -->
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/seguro-medico-individual</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-individual/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/seguro-medico-familiar</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/seguro-familia/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/seguro-medico-infantil</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-infantil/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/seguro-medico-embarazadas</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/embarazo/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/seguro-medico-ginecologia</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-ginecologia/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/seguro-medico-mayores</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/seguro-para-personas-mayores/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/adeslas-extranjeros/</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
   </url>
 
   <!-- Autónomos y Empresas -->
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/autonomos</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/autonomos/</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/pymes/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/pymes-empresas</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-salud/empresas/</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+  </url>
+
+  <!-- Otros seguros -->
+  <url>
+    <loc>https://adeslas.numero1salud.es/seguro-dental/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-
-  <!-- Otros seguros Adeslas -->
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-dental</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-decesos/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.82</priority>
+    <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-decesos</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-adeslas-decesos-prima-unica/</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://adeslas.numero1salud.es/seguro-mascotas/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.78</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-mascotas</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/adeslas-asistencia-en-viaje/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.78</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-asistencia-viaje</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/seguro-accidentes/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.78</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/adeslas-accidentes</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/adeslas-body-factory/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.72</priority>
+  </url>
+  <url>
+    <loc>https://adeslas.numero1salud.es/adeslas-adif-renfe/</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
   </url>
 
-  <!-- Herramientas y soporte -->
+  <!-- Herramientas -->
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/cuadro-medico</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/cuadro-medico/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/contacto</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/contacto/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
 
   <!-- Blog de salud -->
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/blog</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/adeslas-blog/</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/blog/habitos-saludables-primavera</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/blog/habitos-saludables-primavera</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/blog/alimentacion-equilibrada-familia</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/blog/alimentacion-equilibrada-familia</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/blog/revision-medica-anual</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/blog/revision-medica-anual</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/blog/salud-dental-ninos</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/blog/salud-dental-ninos</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/blog/gestionar-estres-trabajo</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/blog/gestionar-estres-trabajo</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/blog/embarazo-saludable-trimestre</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/blog/embarazo-saludable-trimestre</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/blog/beneficios-ejercicio-cardiovascular</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/blog/beneficios-ejercicio-cardiovascular</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/blog/alimentos-reforzar-defensas</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/blog/alimentos-reforzar-defensas</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/blog/dormir-mejor-higiene-sueno</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/blog/dormir-mejor-higiene-sueno</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://adeslas.numero1salud.es/blog/comparativa-seguros-medicos-adeslas-2026</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
 
   <!-- Páginas legales -->
   <url>
-    <loc>https://adeslas.marchalaseguradores.es/politica-de-privacidad</loc>
-    <lastmod>2026-04-06</lastmod>
+    <loc>https://adeslas.numero1salud.es/politica-de-privacidad</loc>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.35</priority>
+    <priority>0.30</priority>
   </url>
 
 </urlset>
