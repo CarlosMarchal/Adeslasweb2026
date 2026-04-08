@@ -157,23 +157,14 @@ export default function TarificadorInterno() {
   const pctGeneral  = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
   const pctPymes    = Math.min(Math.max(descuentoPymes, 0), MAX_COMMERCIAL_DISCOUNT_PYMES);
 
-  /* ── Reglas de elegibilidad por edad ──────────────────────────
-     · Productos generales (maxAge 70): excluidos si CUALQUIER
-       asegurado supera esa edad.
-     · Seniors / Seniors Total: si hay alguien > 70 años se exigen
-       al menos 2 asegurados < 65 para poder contratar.
+  /* ── Regla de edad por producto ───────────────────────────────
+     Cada producto tiene un maxAge de nueva contratación.
+     Un asegurado que supere ese límite obtiene precio null (N/D).
+     El producto se muestra si AL MENOS UNO tiene precio válido;
+     se oculta solo cuando NADIE puede contratarlo (subtotal = 0).
   ─────────────────────────────────────────────────────────────── */
   const hayMayoresDe70  = asegurados.some(e => e > 70);
   const contMenoresDe65 = asegurados.filter(e => e < 65).length;
-
-  function esElegible(product: typeof products[number]): boolean {
-    // Exclusión por edad máxima del producto
-    if (asegurados.some(e => e > product.maxAge)) return false;
-    // Condición especial Seniors: >70 años requiere ≥2 asegurados <65
-    const isSeniorsProduct = product.id === "seniors" || product.id === "seniors-total";
-    if (isSeniorsProduct && hayMayoresDe70 && contMenoresDe65 < 2) return false;
-    return true;
-  }
 
   /* ── Cálculo de resultados ── */
   const resultados = useMemo(() => {
@@ -184,7 +175,8 @@ export default function TarificadorInterno() {
 
         const preciosPorPersona = asegurados.map((edad) => ({
           edad,
-          precio: getPrice(product, edad, zona),
+          // Si la edad supera el maxAge del producto → N/D (no contratables)
+          precio: edad > product.maxAge ? null : getPrice(product, edad, zona),
           banda: getBandLabel(edad),
         }));
 
@@ -217,7 +209,7 @@ export default function TarificadorInterno() {
           pctComercialEfectivo,
         };
       })
-      .filter((r) => r.subtotal > 0 && esElegible(r.product))
+      .filter((r) => r.subtotal > 0)
       .sort((a, b) => a.total - b.total);
   }, [asegurados, zona, pctGeneral, pctPymes, hayMayoresDe70, contMenoresDe65]);
 
@@ -420,20 +412,13 @@ export default function TarificadorInterno() {
 
           {/* ── Aviso cuando hay asegurados > 70 años ── */}
           {hayMayoresDe70 && (
-            <div className={`rounded-2xl px-6 py-4 text-sm border ${
-              contMenoresDe65 >= 2
-                ? "bg-blue-50 border-blue-200 text-blue-800"
-                : "bg-amber-50 border-amber-300 text-amber-800"
-            }`}>
-              <p className="font-bold mb-1">
-                {contMenoresDe65 >= 2
-                  ? "ℹ️ Asegurado mayor de 70 años — Seniors disponible"
-                  : "⚠️ Asegurado mayor de 70 años — condición no cumplida"}
-              </p>
+            <div className="rounded-2xl px-6 py-4 text-sm border bg-blue-50 border-blue-200 text-blue-800">
+              <p className="font-bold mb-1">ℹ️ Asegurado mayor de 70 años</p>
               <p className="text-xs">
+                Los asegurados mayores de 70 años solo pueden contratar <strong>Seniors</strong> o <strong>Seniors Total</strong>.
                 {contMenoresDe65 >= 2
-                  ? `Se cumplen las condiciones: ${contMenoresDe65} asegurado${contMenoresDe65 > 1 ? "s" : ""} menor${contMenoresDe65 > 1 ? "es" : ""} de 65 años. Solo se muestran productos Seniors.`
-                  : `Para asegurados mayores de 70 años se requieren al menos 2 asegurados menores de 65 años en la misma póliza. Actualmente hay ${contMenoresDe65}. Añade más asegurados jóvenes para ver precios Seniors.`}
+                  ? " Los demás productos se muestran para el resto de asegurados del grupo (los mayores de 70 aparecen como N/D en esos productos)."
+                  : " Si están solos, solo verán los productos Seniors disponibles."}
               </p>
             </div>
           )}
