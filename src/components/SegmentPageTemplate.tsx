@@ -81,15 +81,15 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
       <main>
         {/* ── Hero with 2 columns — full photo + dark overlay, same as home ── */}
         <section
-          className="relative overflow-hidden bg-cover bg-center"
-          style={{ backgroundImage: `url(${data.heroBg || defaultHeroBg})`, minHeight: "460px" }}
+          className="relative overflow-hidden bg-cover bg-center flex items-center"
+          style={{ backgroundImage: `url(${data.heroBg || defaultHeroBg})`, minHeight: "520px" }}
           role="img"
           aria-label={`${data.heroTitle} — Adeslas seguros médicos privados`}
         >
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/65" />
 
-          <div className="container mx-auto px-4 py-8 lg:py-10 relative z-10">
+          <div className="container mx-auto px-4 py-12 lg:py-10 relative z-10 w-full">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
               {/* Left: text */}
               <motion.div
