@@ -405,14 +405,24 @@ export default function TarificadorInterno() {
 
                     {/* Incentivo campaña */}
                     <div className="mt-1.5 flex flex-wrap gap-2">
-                      {!isSeniors && totalPuntos > 0 && (
-                        <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full">
-                          ⭐ {totalPuntos.toLocaleString()} puntos
-                          <span className="font-normal text-amber-500">
-                            ({puntosXAseg.toLocaleString()} × {asegurados.length} aseg.)
-                          </span>
-                        </span>
-                      )}
+                      {!isSeniors && totalPuntos > 0 && (() => {
+                        const tarjeta = Math.floor(totalPuntos / 500) * 50;
+                        return (
+                          <>
+                            <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full">
+                              ⭐ {totalPuntos.toLocaleString()} puntos
+                              <span className="font-normal text-amber-500">
+                                ({puntosXAseg.toLocaleString()} × {asegurados.length} aseg.)
+                              </span>
+                            </span>
+                            {tarjeta > 0 && (
+                              <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-slate-800 text-white rounded-full">
+                                🎴 Tarjeta prepago {tarjeta} €
+                              </span>
+                            )}
+                          </>
+                        );
+                      })()}
                       {isSeniors && totalAbono > 0 && (
                         <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-green-50 text-green-700 border border-green-200 rounded-full">
                           💶 Abono en cuenta: {totalAbono} €
@@ -536,6 +546,17 @@ export default function TarificadorInterno() {
                                     {totalPuntos.toLocaleString()} puntos
                                   </span>
                                 </p>
+                                {Math.floor(totalPuntos / 500) * 50 > 0 && (
+                                  <p className="text-xs font-bold text-slate-800 mt-1.5 bg-white border border-slate-300 rounded-lg px-3 py-1.5 inline-block">
+                                    🎴 Tarjeta prepago disponible:{" "}
+                                    <span className="text-base text-slate-900">
+                                      {Math.floor(totalPuntos / 500) * 50} €
+                                    </span>
+                                    <span className="font-normal text-slate-400 ml-1">
+                                      (o canjea por otros premios)
+                                    </span>
+                                  </p>
+                                )}
                                 <p className="text-xs text-amber-600 mt-1">
                                   {labelDental(cat)} ·{" "}
                                   {asegurados.length >= 3 ? "Tarifa 3+ asegurados" : "Tarifa 1-2 asegurados"}
