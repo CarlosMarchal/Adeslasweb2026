@@ -132,7 +132,10 @@ function getBandLabel(age: number): string {
   if (age <= 62) return "60-62";
   if (age <= 64) return "60-64";
   if (age <= 69) return "65-69";
-  return "≥70";
+  if (age <= 74) return "70-74";
+  if (age <= 79) return "75-79";
+  if (age <= 84) return "80-84";
+  return "≥85";
 }
 
 /* ─── Etiqueta "con dental" ─────────────────────────────────── */
