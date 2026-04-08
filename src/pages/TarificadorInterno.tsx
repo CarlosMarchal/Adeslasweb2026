@@ -381,10 +381,10 @@ export default function TarificadorInterno() {
             </div>
 
             {/* Fila 2: Descuentos comerciales separados */}
-            <div className={`border-t border-slate-100 pt-5 grid gap-6 ${grupo === "pymes" ? "md:grid-cols-1 max-w-md" : grupo === "seniors" ? "hidden" : "md:grid-cols-2"}`}>
+            <div className={`border-t border-slate-100 pt-5 grid gap-6 ${grupo === "pymes" || grupo === "seniors" ? "md:grid-cols-1 max-w-md" : "md:grid-cols-2"}`}>
 
               {/* Descuento general (todos excepto Pymes Total) */}
-              <div className={grupo === "pymes" ? "hidden" : ""}>
+              <div className={grupo === "pymes" ? "hidden" : "block"}>
                 <label className="block text-sm font-semibold text-slate-600 mb-1">
                   Descuento comercial — resto de productos
                 </label>
