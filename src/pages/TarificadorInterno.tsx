@@ -157,6 +157,24 @@ export default function TarificadorInterno() {
   const pctGeneral  = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
   const pctPymes    = Math.min(Math.max(descuentoPymes, 0), MAX_COMMERCIAL_DISCOUNT_PYMES);
 
+  /* ── Reglas de elegibilidad por edad ──────────────────────────
+     · Productos generales (maxAge 70): excluidos si CUALQUIER
+       asegurado supera esa edad.
+     · Seniors / Seniors Total: si hay alguien > 70 años se exigen
+       al menos 2 asegurados < 65 para poder contratar.
+  ─────────────────────────────────────────────────────────────── */
+  const hayMayoresDe70  = asegurados.some(e => e > 70);
+  const contMenoresDe65 = asegurados.filter(e => e < 65).length;
+
+  function esElegible(product: typeof products[number]): boolean {
+    // Exclusión por edad máxima del producto
+    if (asegurados.some(e => e > product.maxAge)) return false;
+    // Condición especial Seniors: >70 años requiere ≥2 asegurados <65
+    const isSeniorsProduct = product.id === "seniors" || product.id === "seniors-total";
+    if (isSeniorsProduct && hayMayoresDe70 && contMenoresDe65 < 2) return false;
+    return true;
+  }
+
   /* ── Cálculo de resultados ── */
   const resultados = useMemo(() => {
     return products
@@ -199,9 +217,9 @@ export default function TarificadorInterno() {
           pctComercialEfectivo,
         };
       })
-      .filter((r) => r.subtotal > 0)
+      .filter((r) => r.subtotal > 0 && esElegible(r.product))
       .sort((a, b) => a.total - b.total);
-  }, [asegurados, zona, pctGeneral, pctPymes]);
+  }, [asegurados, zona, pctGeneral, pctPymes, hayMayoresDe70, contMenoresDe65]);
 
   /* ── Resumen de incentivos (para el cartel de premios) ── */
   const maxPuntos = Math.max(0, ...resultados.map((r) => r.totalPuntos));
@@ -400,6 +418,26 @@ export default function TarificadorInterno() {
             </div>
           </div>
 
+          {/* ── Aviso cuando hay asegurados > 70 años ── */}
+          {hayMayoresDe70 && (
+            <div className={`rounded-2xl px-6 py-4 text-sm border ${
+              contMenoresDe65 >= 2
+                ? "bg-blue-50 border-blue-200 text-blue-800"
+                : "bg-amber-50 border-amber-300 text-amber-800"
+            }`}>
+              <p className="font-bold mb-1">
+                {contMenoresDe65 >= 2
+                  ? "ℹ️ Asegurado mayor de 70 años — Seniors disponible"
+                  : "⚠️ Asegurado mayor de 70 años — condición no cumplida"}
+              </p>
+              <p className="text-xs">
+                {contMenoresDe65 >= 2
+                  ? `Se cumplen las condiciones: ${contMenoresDe65} asegurado${contMenoresDe65 > 1 ? "s" : ""} menor${contMenoresDe65 > 1 ? "es" : ""} de 65 años. Solo se muestran productos Seniors.`
+                  : `Para asegurados mayores de 70 años se requieren al menos 2 asegurados menores de 65 años en la misma póliza. Actualmente hay ${contMenoresDe65}. Añade más asegurados jóvenes para ver precios Seniors.`}
+              </p>
+            </div>
+          )}
+
           {/* ── Tabla comparativa ── */}
           <div className="space-y-3">
             <div className="flex items-center justify-between px-1">
@@ -416,6 +454,17 @@ export default function TarificadorInterno() {
                 </button>
               )}
             </div>
+
+            {resultados.length === 0 && (
+              <div className="bg-white rounded-2xl shadow-sm px-6 py-8 text-center text-slate-500">
+                <p className="text-3xl mb-3">🔍</p>
+                <p className="font-semibold text-slate-700">Sin productos disponibles</p>
+                <p className="text-sm mt-1">
+                  Ningún producto de Adeslas está disponible para la combinación de edades seleccionada.
+                  {hayMayoresDe70 && contMenoresDe65 < 2 && " Añade al menos 2 asegurados menores de 65 años para ver opciones Seniors."}
+                </p>
+              </div>
+            )}
 
             {resultados.map(({
               product, cat, isSeniors,
