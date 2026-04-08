@@ -68,6 +68,8 @@ const BlogArticle       = lazy(() => import("./pages/BlogArticle"));
 const PoliticaPrivacidad= lazy(() => import("./pages/PoliticaPrivacidad"));
 const MiPrecio          = lazy(() => import("./pages/MiPrecio"));
 const PreciosOfertas    = lazy(() => import("./pages/PreciosOfertas"));
+/* Herramienta interna (noindex) */
+const TarificadorInterno = lazy(() => import("./pages/TarificadorInterno"));
 
 /* ── Fallback mientras carga la página ── */
 const PageLoader = () => (
@@ -141,6 +143,7 @@ const AppRoutes = () => (
               <Route path="/blog/:slug"             element={<BlogArticle />} />
               <Route path="/politica-de-privacidad" element={<PoliticaPrivacidad />} />
               <Route path="/mi-precio/:slug"        element={<MiPrecio />} />
+              <Route path="/tarificador-interno/"   element={<TarificadorInterno />} />
               <Route path="/seguro-salud/ofertas-adeslas-precios/" element={<PreciosOfertas />} />
               {/* Alias — misma página de precios con URL alternativa del WordPress */}
               <Route path="/precios-y-ofertas/"     element={<PreciosOfertas />} />
