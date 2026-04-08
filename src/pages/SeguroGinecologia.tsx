@@ -8,7 +8,7 @@ const data: SegmentPageData = {
     title: "Adeslas Ginecología | Seguro Médico con Cobertura Ginecológica Completa",
     description: "Seguro médico con ginecología Adeslas: revisiones, mamografía, citología, salud hormonal y reproducción asistida. Especialistas sin esperas. Sin copagos desde 50,92€/mes.",
     canonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-ginecologia/",
-    ogImage: "https://adeslas.numero1salud.es/og-seguro-salud-adeslas-ginecologia.webp",
+    ogImage: "https://adeslas.numero1salud.es/og-ginecologia.jpg",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
       { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
