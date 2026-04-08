@@ -241,6 +241,75 @@ export const products: ProductPricing[] = [
       "≥70":   [304,   309,   319,   329,   330,    340],
     },
   },
+
+  /* ── ADESLAS PLENA (Plena básico) ── */
+  {
+    id: "plena",
+    name: "Adeslas Plena",
+    slug: "/seguro-salud/adeslas-plena-vital/",
+    maxAge: 70,
+    ageType: "range",
+    prices: {
+      "0-24":  [50,    51,    52,    53,    54,    55],
+      "25-44": [60,    62,    63,    64,    65,    66],
+      "45-54": [72,    73,    74,    75,    78,    79],
+      "55-59": [119,   125,   127,   129,   132,   134],
+      "60-64": [147,   152,   155,   158,   164,   167],
+      "65-69": [198,   207,   210,   215,   228,   231],
+      "≥70":   [215,   225,   228,   234,   247,   250],
+    },
+  },
+
+  /* ── ADESLAS NEGOCIOS NIF (Autónomos) ── */
+  {
+    id: "negocios-nif",
+    name: "Adeslas Negocios NIF",
+    slug: "/seguro-salud/autonomos/",
+    maxAge: 70,
+    ageType: "range",
+    prices: {
+      "0-24":  [55.50, 56.50, 57,    59,    61,    61.50],
+      "25-44": [61,    63.50, 64.50, 65.50, 66.50, 68],
+      "45-54": [79,    83,    84,    86.50, 88.50, 89.50],
+      "55-59": [123,   127,   129,   134,   139,   139.50],
+      "60-64": [153,   159,   160,   170,   175,   176],
+      "65-69": [235,   238,   240,   249,   259,   264],
+      "≥70":   [239,   246,   249,   261,   265,   275],
+    },
+  },
+
+  /* ── ADESLAS SENIORS ── */
+  {
+    id: "seniors",
+    name: "Adeslas Seniors",
+    slug: "/seguro-salud/adeslas-seniors/",
+    maxAge: 84,
+    ageType: "range",
+    prices: {
+      "55-59": [67.50, 70,    71,    72,    73,    74],
+      "60-64": [86,    88,    89.50, 92,    93,    94],
+      "65-69": [103,   105,   106,   111,   113,   115],
+      "70-74": [127,   130,   133,   140,   145,   150],
+      "75-79": [157,   163,   168,   178,   188,   196],
+      "≥80":   [192,   201,   208,   221,   234,   246],
+    },
+  },
+
+  /* ── ADESLAS SENIORS TOTAL (Plena Total Seniors) ── */
+  {
+    id: "seniors-total",
+    name: "Adeslas Seniors Total",
+    slug: "/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/",
+    maxAge: 84,
+    ageType: "range",
+    prices: {
+      "63-64": [101,   104,   105,   110,   113,   116],
+      "65-69": [138,   142,   144,   145,   151.50, 155],
+      "70-74": [172,   176,   180,   184,   190,   195],
+      "75-79": [213,   220,   225,   232,   240,   246],
+      "≥80":   [259,   269,   275,   285,   296,   305],
+    },
+  },
 ];
 
 export const dentalPricing = {

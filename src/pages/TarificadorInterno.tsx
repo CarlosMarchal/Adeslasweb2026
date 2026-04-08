@@ -26,20 +26,20 @@ export default function TarificadorInterno() {
   const conDescuento = asegurados.length >= FAMILY_DISCOUNT_THRESHOLD;
 
   const resultados = useMemo(() => {
-    return products.map((product) => {
-      const subtotal = asegurados.reduce((sum, edad) => {
-        const precio = getPrice(product, edad, zona);
-        return sum + (precio ?? 0);
-      }, 0);
-      const descuento = conDescuento ? subtotal * FAMILY_DISCOUNT_RATE : 0;
-      const total = subtotal - descuento;
-      const preciosPorPersona = asegurados.map((edad) => ({
-        edad,
-        precio: getPrice(product, edad, zona) ?? 0,
-        banda: getBandLabel(edad),
-      }));
-      return { product, subtotal, descuento, total, preciosPorPersona };
-    });
+    return products
+      .map((product) => {
+        const preciosPorPersona = asegurados.map((edad) => ({
+          edad,
+          precio: getPrice(product, edad, zona), // null if age out of range
+          banda: getBandLabel(edad),
+        }));
+        const hayNulos = preciosPorPersona.some((p) => p.precio === null);
+        const subtotal = preciosPorPersona.reduce((sum, p) => sum + (p.precio ?? 0), 0);
+        const descuento = conDescuento ? subtotal * FAMILY_DISCOUNT_RATE : 0;
+        const total = subtotal - descuento;
+        return { product, subtotal, descuento, total, preciosPorPersona, hayNulos };
+      })
+      .filter((r) => r.subtotal > 0); // ocultar productos sin ningún precio válido
   }, [asegurados, zona, conDescuento]);
 
   const addAsegurado = () => setAsegurados((prev) => [...prev, 30]);
@@ -177,7 +177,12 @@ export default function TarificadorInterno() {
                   >
                     <div className="flex-1">
                       <p className="font-bold text-slate-800">{product.name}</p>
-                      {conDescuento && (
+                      {hayNulos && (
+                        <p className="text-xs text-amber-500 mt-0.5">
+                          ⚠ Algunas personas fuera del rango de edad
+                        </p>
+                      )}
+                      {!hayNulos && conDescuento && (
                         <p className="text-xs text-slate-400 mt-0.5">
                           Subtotal {subtotal.toFixed(2)}€ · Descuento {descuento.toFixed(2)}€
                         </p>
@@ -222,7 +227,7 @@ export default function TarificadorInterno() {
                               <td className="py-2 font-semibold text-slate-700">{p.edad} años</td>
                               <td className="py-2 text-slate-500">{p.banda}</td>
                               <td className="py-2 text-right font-bold text-slate-800">
-                                {p.precio.toFixed(2)}€
+                                {p.precio !== null ? `${p.precio.toFixed(2)}€` : <span className="text-amber-400 text-xs font-semibold">N/D</span>}
                               </td>
                             </tr>
                           ))}
