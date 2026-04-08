@@ -5,7 +5,7 @@ import heroImg from "@/assets/seguro-medico-adeslas-plena-vital.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Plena Vital | Seguro Médico Completo con Tope de Copago — Desde 38€",
-  seoDescription: "Adeslas Plena Vital: hospitalización, todas las especialidades y urgencias 24h con copago máximo 300€/año. Red de +51.000 médicos y 1.400 centros. Sin listas de espera. Desde 38€/mes.",
+  seoDescription: "Adeslas Plena Vital — Agente Exclusivo Adeslas: hospitalización, todas las especialidades y urgencias 24h con copago máximo 300€/año. +51.000 médicos y 1.400 centros. Sin listas de espera. Desde 38€/mes.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital/",
   seoOgImage: "https://adeslas.numero1salud.es/og-vital.jpg",
   seoProductSchema: {

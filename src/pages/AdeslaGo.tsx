@@ -5,7 +5,7 @@ import heroImg from "@/assets/seguro-medico-adeslas-go.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas GO | Seguro Médico Ambulatorio con Copago — Desde 21€/mes",
-  seoDescription: "Adeslas GO: seguro médico con copago y cobertura ambulatoria completa. +51.000 médicos, sin listas de espera, urgencias 24h. Copagos máx. 260€/año. Desde 21€/mes. Calcula tu precio ahora.",
+  seoDescription: "Adeslas GO: seguro médico económico, sin cuestionario de salud y con cobertura ambulatoria completa. +51.000 médicos, urgencias 24h, copagos máx. 260€/año. Desde 21€/mes.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-go/",
   seoOgImage: "https://adeslas.numero1salud.es/og-go.jpg",
   seoProductSchema: {
