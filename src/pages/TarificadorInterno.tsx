@@ -132,7 +132,10 @@ function getBandLabel(age: number): string {
   if (age <= 62) return "60-62";
   if (age <= 64) return "60-64";
   if (age <= 69) return "65-69";
-  return "≥70";
+  if (age <= 74) return "70-74";
+  if (age <= 79) return "75-79";
+  if (age <= 84) return "80-84";
+  return "≥85";
 }
 
 /* ─── Etiqueta "con dental" ─────────────────────────────────── */
@@ -147,15 +150,43 @@ function labelDental(cat: CampaignCat): string {
 ═══════════════════════════════════════════════════════════════ */
 export default function TarificadorInterno() {
   const [provincia, setProvincia] = useState<string>("Madrid");
-  const [asegurados, setAsegurados] = useState<number[]>([35]);
+  const [rawEdades, setRawEdades] = useState<string[]>(["0"]);
+  /* edades numéricas derivadas; campo vacío cuenta como 0 */
+  const asegurados = rawEdades.map((v) => {
+    const n = parseInt(v, 10);
+    return isNaN(n) ? 0 : Math.min(Math.max(n, 0), 99);
+  });
   const [expandido, setExpandido] = useState<string | null>(null);
   const [descuentoComercial, setDescuentoComercial] = useState<number>(0);
   const [descuentoPymes, setDescuentoPymes]         = useState<number>(0);
   const [mostrarPremios, setMostrarPremios] = useState(false);
+  const [grupo, setGrupo] = useState<"general" | "seniors" | "pymes">("general");
 
   const zona        = getZoneFromProvince(provincia);
   const pctGeneral  = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
   const pctPymes    = Math.min(Math.max(descuentoPymes, 0), MAX_COMMERCIAL_DISCOUNT_PYMES);
+
+  /* ── Reglas de elegibilidad por edad ──────────────────────────
+     · Productos NO Seniors (maxAge 70):
+         – Si hay algún asegurado >70, solo se muestran si hay
+           al menos 2 asegurados <65. Si no, se ocultan.
+         – Los asegurados >70 aparecen como N/D en esos productos.
+     · Seniors / Seniors Total:
+         – Sin restricción de grupo; se muestran siempre que
+           algún asegurado esté en el rango de edad válido.
+  ─────────────────────────────────────────────────────────────── */
+  const hayMayoresDe70  = asegurados.some(e => e > 70);
+  const contMenoresDe65 = asegurados.filter(e => e < 65).length;
+
+  function esElegible(productId: string): boolean {
+    const isSeniorsProduct = productId === "seniors" || productId === "seniors-total";
+    // Seniors / Seniors Total: siempre elegibles si hay precio en rango
+    // (la persona puede contratar sola o en grupo, sin condición de edad)
+    if (isSeniorsProduct) return true;
+    // Productos NO Seniors: si hay alguien >70, se necesitan ≥2 asegurados <65
+    if (hayMayoresDe70) return contMenoresDe65 >= 2;
+    return true;
+  }
 
   /* ── Cálculo de resultados ── */
   const resultados = useMemo(() => {
@@ -199,21 +230,30 @@ export default function TarificadorInterno() {
           pctComercialEfectivo,
         };
       })
-      .filter((r) => r.subtotal > 0)
+      .filter((r) => r.subtotal > 0 && esElegible(r.product.id))
       .sort((a, b) => a.total - b.total);
-  }, [asegurados, zona, ratioComercial]);
+  }, [asegurados, zona, pctGeneral, pctPymes, hayMayoresDe70, contMenoresDe65]);
+
+  /* ── Filtrado por grupo seleccionado ── */
+  const SENIORS_IDS = new Set(["seniors", "seniors-total"]);
+  const PYMES_IDS   = new Set(["pymes-total"]);
+  const resultadosFiltrados = resultados.filter((r) => {
+    if (grupo === "seniors") return SENIORS_IDS.has(r.product.id);
+    if (grupo === "pymes")   return PYMES_IDS.has(r.product.id);
+    return !SENIORS_IDS.has(r.product.id) && !PYMES_IDS.has(r.product.id);
+  });
 
   /* ── Resumen de incentivos (para el cartel de premios) ── */
   const maxPuntos = Math.max(0, ...resultados.map((r) => r.totalPuntos));
 
   /* ── Handlers de asegurados ── */
-  const addAsegurado = () => setAsegurados((p) => [...p, 30]);
+  const addAsegurado = () => setRawEdades((p) => [...p, "0"]);
   const removeAsegurado = (i: number) =>
-    setAsegurados((p) => p.filter((_, idx) => idx !== i));
+    setRawEdades((p) => p.filter((_, idx) => idx !== i));
   const setEdad = (i: number, val: string) => {
-    const n = parseInt(val, 10);
-    if (!isNaN(n) && n >= 0 && n <= 99)
-      setAsegurados((p) => p.map((v, idx) => (idx === i ? n : v)));
+    // Permite campo vacío (borrar) y valores válidos 0-99
+    if (val === "" || (parseInt(val, 10) >= 0 && parseInt(val, 10) <= 99))
+      setRawEdades((p) => p.map((v, idx) => (idx === i ? val : v)));
   };
 
   /* ── Premios alcanzables con los puntos máximos ── */
@@ -249,6 +289,27 @@ export default function TarificadorInterno() {
 
         <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
 
+          {/* ── Selector de grupo de productos ── */}
+          <div className="flex gap-2 flex-wrap">
+            {([
+              { id: "general", label: "Seguros de salud",   emoji: "🏥" },
+              { id: "seniors", label: "Adeslas Seniors",    emoji: "👴" },
+              { id: "pymes",   label: "Pymes Total",        emoji: "🏢" },
+            ] as const).map(({ id, label, emoji }) => (
+              <button
+                key={id}
+                onClick={() => setGrupo(id)}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition border ${
+                  grupo === id
+                    ? "bg-[#009DD9] text-white border-[#009DD9] shadow-md"
+                    : "bg-white text-slate-600 border-slate-200 hover:border-[#009DD9] hover:text-[#009DD9]"
+                }`}
+              >
+                <span>{emoji}</span> {label}
+              </button>
+            ))}
+          </div>
+
           {/* ── Panel de controles ── */}
           <div className="bg-white rounded-2xl shadow-sm p-6 space-y-6">
 
@@ -280,17 +341,20 @@ export default function TarificadorInterno() {
                   </label>
                 </div>
                 <div className="space-y-2 max-h-44 overflow-y-auto pr-1">
-                  {asegurados.map((edad, i) => (
+                  {rawEdades.map((rawEdad, i) => (
                     <div key={i} className="flex items-center gap-2">
                       <span className="text-xs text-slate-400 w-16 shrink-0">
                         Persona {i + 1}
                       </span>
                       <input
                         type="number"
-                        value={edad}
+                        inputMode="numeric"
+                        value={rawEdad}
                         onChange={(e) => setEdad(i, e.target.value)}
+                        onFocus={(e) => e.target.select()}
                         min={0}
                         max={99}
+                        placeholder="0"
                         className="w-20 px-3 py-2 border border-slate-200 rounded-lg text-center font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#009DD9]"
                       />
                       <span className="text-xs text-slate-400">años</span>
@@ -311,17 +375,19 @@ export default function TarificadorInterno() {
                 >
                   <Plus size={16} /> Agregar asegurado
                 </button>
-                <p className="mt-2 text-xs text-slate-400">
-                  💡 Descuentos automáticos: GO ≥2 · Plena/Plus ≥4 · Totales 3/4/5+ aseg.
-                </p>
+                {grupo === "general" && (
+                  <p className="mt-2 text-xs text-slate-400">
+                    💡 Descuentos automáticos: GO ≥2 · Plena/Plus ≥4 · Totales 3/4/5+ aseg.
+                  </p>
+                )}
               </div>
             </div>
 
             {/* Fila 2: Descuentos comerciales separados */}
-            <div className="border-t border-slate-100 pt-5 grid md:grid-cols-2 gap-6">
+            <div className={`border-t border-slate-100 pt-5 grid gap-6 ${grupo === "pymes" || grupo === "seniors" ? "md:grid-cols-1 max-w-md" : "md:grid-cols-2"}`}>
 
               {/* Descuento general (todos excepto Pymes Total) */}
-              <div>
+              <div className={grupo === "pymes" ? "hidden" : "block"}>
                 <label className="block text-sm font-semibold text-slate-600 mb-1">
                   Descuento comercial — resto de productos
                 </label>
@@ -360,7 +426,7 @@ export default function TarificadorInterno() {
               </div>
 
               {/* Descuento exclusivo Pymes Total */}
-              <div className="bg-pink-50 border border-pink-200 rounded-xl p-4">
+              <div className={`bg-pink-50 border border-pink-200 rounded-xl p-4 ${grupo !== "pymes" ? "hidden" : ""}`}>
                 <label className="block text-sm font-semibold text-pink-700 mb-1">
                   Descuento comercial — Pymes Total
                 </label>
@@ -400,6 +466,26 @@ export default function TarificadorInterno() {
             </div>
           </div>
 
+          {/* ── Aviso cuando hay asegurados > 70 años ── */}
+          {hayMayoresDe70 && (
+            <div className={`rounded-2xl px-6 py-4 text-sm border ${
+              contMenoresDe65 >= 2
+                ? "bg-blue-50 border-blue-200 text-blue-800"
+                : "bg-amber-50 border-amber-300 text-amber-800"
+            }`}>
+              <p className="font-bold mb-1">
+                {contMenoresDe65 >= 2
+                  ? "ℹ️ Asegurado mayor de 70 años — condición cumplida"
+                  : "⚠️ No se puede contratar — condición no cumplida"}
+              </p>
+              <p className="text-xs">
+                {contMenoresDe65 >= 2
+                  ? `Hay ${contMenoresDe65} asegurados menores de 65 años. Se pueden contratar todos los productos.`
+                  : `Los productos Seniors y Seniors Total sí son contratables. Para el resto de productos se necesitan al menos 2 asegurados menores de 65 en la misma póliza (actualmente hay ${contMenoresDe65}).`}
+              </p>
+            </div>
+          )}
+
           {/* ── Tabla comparativa ── */}
           <div className="space-y-3">
             <div className="flex items-center justify-between px-1">
@@ -417,7 +503,19 @@ export default function TarificadorInterno() {
               )}
             </div>
 
-            {resultados.map(({
+            {resultadosFiltrados.length === 0 && (
+              <div className="bg-white rounded-2xl shadow-sm px-6 py-8 text-center text-slate-500">
+                <p className="text-3xl mb-3">🔍</p>
+                <p className="font-semibold text-slate-700">Sin productos disponibles</p>
+                <p className="text-sm mt-1">
+                  {hayMayoresDe70 && contMenoresDe65 < 2
+                    ? "Con un asegurado mayor de 70 años y menos de 2 menores de 65, no se puede contratar ningún producto. Añade al menos 2 asegurados menores de 65 años para ver opciones."
+                    : "Ningún producto de Adeslas está disponible para la combinación de edades seleccionada."}
+                </p>
+              </div>
+            )}
+
+            {resultadosFiltrados.map(({
               product, cat, isSeniors,
               subtotal, descAuto, ratioAuto, descComercial, total,
               preciosPorPersona, hayNulos,
