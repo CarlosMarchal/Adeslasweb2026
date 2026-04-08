@@ -4,9 +4,50 @@ import { Trash2, Plus, ChevronDown, ChevronUp, Gift } from "lucide-react";
 import { products, provinces, getPrice, getZoneFromProvince } from "@/data/pricing";
 
 /* ─── Constantes ────────────────────────────────────────────── */
-const FAMILY_DISCOUNT_THRESHOLD = 4;
-const FAMILY_DISCOUNT_RATE = 0.10; // 10% para 4+ asegurados
 const MAX_COMMERCIAL_DISCOUNT = 5; // % máximo descuento comercial
+
+/**
+ * Descuento automático por volumen según producto y nº de asegurados.
+ * Reglas:
+ *   · Adeslas GO                          → 2+ aseg: 10%
+ *   · Adeslas Plena Vital / Plena Plus    → 4+ aseg: 10%
+ *   · Plena Vital Total / Plena Total
+ *     / Seniors Total                     → 3 aseg: 5% | 4 aseg: 10% | 5+: 15%
+ *   · Resto de productos                  → sin descuento automático
+ */
+function getAutoDiscount(productId: string, n: number): number {
+  switch (productId) {
+    case "ya":                // Adeslas GO
+      return n >= 2 ? 0.10 : 0;
+    case "esencial":          // Adeslas Plena Vital
+    case "completaPlusPlus":  // Adeslas Plena Plus
+      return n >= 4 ? 0.10 : 0;
+    case "completaPlus":      // Adeslas Plena Vital Total
+    case "completa":          // Adeslas Plena Total
+    case "seniors-total":     // Adeslas Seniors Total
+      if (n >= 5) return 0.15;
+      if (n >= 4) return 0.10;
+      if (n >= 3) return 0.05;
+      return 0;
+    default:
+      return 0;
+  }
+}
+
+/** Etiqueta legible para el descuento automático */
+function labelAutoDiscount(productId: string, n: number): string {
+  const pct = getAutoDiscount(productId, n) * 100;
+  if (pct === 0) return "";
+  const trigger: Record<string, string> = {
+    "ya":               "≥2 asegurados",
+    "esencial":         "≥4 asegurados",
+    "completaPlusPlus": "≥4 asegurados",
+    "completaPlus":     n >= 5 ? "≥5 asegurados" : n >= 4 ? "≥4 asegurados" : "≥3 asegurados",
+    "completa":         n >= 5 ? "≥5 asegurados" : n >= 4 ? "≥4 asegurados" : "≥3 asegurados",
+    "seniors-total":    n >= 5 ? "≥5 asegurados" : n >= 4 ? "≥4 asegurados" : "≥3 asegurados",
+  };
+  return `Dto. ${pct}% (${trigger[productId] ?? ""})`;
+}
 
 /* ─── Clasificación de campaña "Segurísimos" por producto ───── */
 type CampaignCat = "go" | "salud_sin" | "salud_con" | "seniors_sin" | "seniors_con";
@@ -109,7 +150,6 @@ export default function TarificadorInterno() {
   const [mostrarPremios, setMostrarPremios] = useState(false);
 
   const zona = getZoneFromProvince(provincia);
-  const conDescuentoFamiliar = asegurados.length >= FAMILY_DISCOUNT_THRESHOLD;
   const pctComercial = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
   const ratioComercial = pctComercial / 100;
 
@@ -130,11 +170,12 @@ export default function TarificadorInterno() {
         const validCount = preciosPorPersona.filter((p) => p.precio !== null).length;
         const subtotal = preciosPorPersona.reduce((s, p) => s + (p.precio ?? 0), 0);
 
-        // 1) Descuento familiar (4+ asegurados) sobre subtotal
-        const descFamiliar = conDescuentoFamiliar ? subtotal * FAMILY_DISCOUNT_RATE : 0;
-        const baseTrasFamiliar = subtotal - descFamiliar;
+        // 1) Descuento automático por volumen (reglas específicas por producto)
+        const ratioAuto = getAutoDiscount(product.id, asegurados.length);
+        const descAuto = subtotal * ratioAuto;
+        const baseTrasFamiliar = subtotal - descAuto;
 
-        // 2) Descuento comercial (0-5%) sobre base ya con descuento familiar
+        // 2) Descuento comercial (0-5%) sobre base ya descontada
         const descComercial = baseTrasFamiliar * ratioComercial;
         const total = baseTrasFamiliar - descComercial;
 
@@ -146,7 +187,7 @@ export default function TarificadorInterno() {
 
         return {
           product, cat, isSeniors,
-          subtotal, descFamiliar, descComercial, total,
+          subtotal, descAuto, ratioAuto, descComercial, total,
           preciosPorPersona, hayNulos,
           totalPuntos, totalAbono,
           puntosXAseg, abonoXAseg,
@@ -154,7 +195,7 @@ export default function TarificadorInterno() {
       })
       .filter((r) => r.subtotal > 0)
       .sort((a, b) => a.total - b.total);
-  }, [asegurados, zona, conDescuentoFamiliar, ratioComercial]);
+  }, [asegurados, zona, ratioComercial]);
 
   /* ── Resumen de incentivos (para el cartel de premios) ── */
   const maxPuntos = Math.max(0, ...resultados.map((r) => r.totalPuntos));
@@ -229,11 +270,6 @@ export default function TarificadorInterno() {
                   <label className="text-sm font-semibold text-slate-600">
                     Asegurados ({asegurados.length})
                   </label>
-                  {conDescuentoFamiliar && (
-                    <span className="text-xs font-bold px-2 py-1 bg-green-100 text-green-700 rounded-full">
-                      ✓ Dto. familiar 10%
-                    </span>
-                  )}
                 </div>
                 <div className="space-y-2 max-h-44 overflow-y-auto pr-1">
                   {asegurados.map((edad, i) => (
@@ -267,11 +303,9 @@ export default function TarificadorInterno() {
                 >
                   <Plus size={16} /> Agregar asegurado
                 </button>
-                {!conDescuentoFamiliar && (
-                  <p className="mt-2 text-xs text-slate-400">
-                    💡 Con {FAMILY_DISCOUNT_THRESHOLD - asegurados.length} asegurado{FAMILY_DISCOUNT_THRESHOLD - asegurados.length > 1 ? "s" : ""} más → descuento familiar 10%
-                  </p>
-                )}
+                <p className="mt-2 text-xs text-slate-400">
+                  💡 Descuentos automáticos: GO ≥2 · Plena/Plus ≥4 · Totales 3/4/5+ aseg.
+                </p>
               </div>
 
               {/* Descuento comercial */}
@@ -336,7 +370,7 @@ export default function TarificadorInterno() {
 
             {resultados.map(({
               product, cat, isSeniors,
-              subtotal, descFamiliar, descComercial, total,
+              subtotal, descAuto, ratioAuto, descComercial, total,
               preciosPorPersona, hayNulos,
               totalPuntos, totalAbono,
               puntosXAseg, abonoXAseg,
@@ -390,10 +424,10 @@ export default function TarificadorInterno() {
                     </div>
 
                     {/* Resumen descuentos aplicados en la fila */}
-                    {(conDescuentoFamiliar || descuentoComercial > 0) && (
+                    {(ratioAuto > 0 || descuentoComercial > 0) && (
                       <p className="text-xs text-slate-400 mt-0.5">
                         Bruto {subtotal.toFixed(2)} €
-                        {conDescuentoFamiliar && ` · Familiar -${descFamiliar.toFixed(2)} €`}
+                        {ratioAuto > 0 && ` · ${labelAutoDiscount(product.id, asegurados.length)} -${descAuto.toFixed(2)} €`}
                         {descuentoComercial > 0 && ` · Comercial -${descComercial.toFixed(2)} €`}
                       </p>
                     )}
@@ -401,13 +435,18 @@ export default function TarificadorInterno() {
 
                   <div className="flex items-center gap-4 shrink-0">
                     <div className="text-right">
-                      {(conDescuentoFamiliar || descuentoComercial > 0) && (
+                      {(ratioAuto > 0 || descuentoComercial > 0) && (
                         <p className="text-xs line-through text-slate-400">
                           {subtotal.toFixed(2)} €
                         </p>
                       )}
+                      {ratioAuto > 0 && (
+                        <p className="text-xs font-bold text-green-600">
+                          -{(ratioAuto * 100).toFixed(0)}% auto
+                        </p>
+                      )}
                       <p className={`text-2xl font-bold ${
-                        conDescuentoFamiliar || descuentoComercial > 0
+                        ratioAuto > 0 || descuentoComercial > 0
                           ? "text-green-600"
                           : "text-[#009DD9]"
                       }`}>
@@ -454,13 +493,13 @@ export default function TarificadorInterno() {
                           <td colSpan={3} className="pt-3 font-semibold text-slate-600">Subtotal bruto</td>
                           <td className="pt-3 text-right font-bold text-slate-800">{subtotal.toFixed(2)} €</td>
                         </tr>
-                        {conDescuentoFamiliar && (
+                        {ratioAuto > 0 && (
                           <tr>
                             <td colSpan={3} className="py-1 text-green-600 font-semibold">
-                              Descuento familiar 10% (≥4 asegurados)
+                              {labelAutoDiscount(product.id, asegurados.length)}
                             </td>
                             <td className="py-1 text-right text-green-600 font-bold">
-                              -{descFamiliar.toFixed(2)} €
+                              -{descAuto.toFixed(2)} €
                             </td>
                           </tr>
                         )}
@@ -477,7 +516,7 @@ export default function TarificadorInterno() {
                         <tr className="border-t-2 border-slate-300">
                           <td colSpan={3} className="pt-2 text-base font-bold text-slate-800">Total mensual</td>
                           <td className={`pt-2 text-right text-xl font-bold ${
-                            conDescuentoFamiliar || descuentoComercial > 0 ? "text-green-600" : "text-[#009DD9]"
+                            ratioAuto > 0 || descuentoComercial > 0 ? "text-green-600" : "text-[#009DD9]"
                           }`}>
                             {total.toFixed(2)} €
                           </td>
