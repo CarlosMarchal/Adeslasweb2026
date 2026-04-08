@@ -374,9 +374,11 @@ export default function TarificadorInterno() {
                 >
                   <Plus size={16} /> Agregar asegurado
                 </button>
-                <p className="mt-2 text-xs text-slate-400">
-                  💡 Descuentos automáticos: GO ≥2 · Plena/Plus ≥4 · Totales 3/4/5+ aseg.
-                </p>
+                {grupo === "general" && (
+                  <p className="mt-2 text-xs text-slate-400">
+                    💡 Descuentos automáticos: GO ≥2 · Plena/Plus ≥4 · Totales 3/4/5+ aseg.
+                  </p>
+                )}
               </div>
             </div>
 
