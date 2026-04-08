@@ -169,11 +169,10 @@ export default function TarificadorInterno() {
   const hayMayoresDe70  = asegurados.some(e => e > 70);
   const contMenoresDe65 = asegurados.filter(e => e < 65).length;
 
-  function esElegible(productId: string): boolean {
-    const isSeniorsProduct = productId === "seniors" || productId === "seniors-total";
-    if (hayMayoresDe70 && !isSeniorsProduct) {
-      return contMenoresDe65 >= 2;
-    }
+  function esElegible(_productId: string): boolean {
+    // Si hay algún asegurado >70, se necesitan ≥2 asegurados <65
+    // para poder contratar CUALQUIER producto (incluidos Seniors)
+    if (hayMayoresDe70) return contMenoresDe65 >= 2;
     return true;
   }
 
@@ -430,12 +429,12 @@ export default function TarificadorInterno() {
               <p className="font-bold mb-1">
                 {contMenoresDe65 >= 2
                   ? "ℹ️ Asegurado mayor de 70 años — condición cumplida"
-                  : "⚠️ Asegurado mayor de 70 años — resto de productos no contratables"}
+                  : "⚠️ No se puede contratar — condición no cumplida"}
               </p>
               <p className="text-xs">
                 {contMenoresDe65 >= 2
-                  ? `Hay ${contMenoresDe65} asegurados menores de 65 años. Se muestran todos los productos: el asegurado mayor de 70 aparece como N/D en los no-Seniors y solo puede contratar Seniors o Seniors Total.`
-                  : `Para poder contratar productos que no sean Seniors con un asegurado mayor de 70 años se necesitan al menos 2 asegurados menores de 65 en la misma póliza. Actualmente hay ${contMenoresDe65}. Solo se muestran Seniors y Seniors Total.`}
+                  ? `Hay ${contMenoresDe65} asegurados menores de 65 años. Se pueden contratar todos los productos.`
+                  : `Para contratar cualquier producto con un asegurado mayor de 70 años se necesitan al menos 2 asegurados menores de 65 en la misma póliza. Actualmente hay ${contMenoresDe65}. Añade más asegurados menores de 65 años.`}
               </p>
             </div>
           )}
