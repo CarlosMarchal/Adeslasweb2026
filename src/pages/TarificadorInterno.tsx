@@ -4,7 +4,18 @@ import { Trash2, Plus, ChevronDown, ChevronUp, Gift } from "lucide-react";
 import { products, provinces, getPrice, getZoneFromProvince } from "@/data/pricing";
 
 /* ─── Constantes ────────────────────────────────────────────── */
-const MAX_COMMERCIAL_DISCOUNT = 5; // % máximo descuento comercial
+const MAX_COMMERCIAL_DISCOUNT = 10; // % máximo del slider global
+
+/** Máximo descuento comercial permitido por producto.
+ *  Si no está definido, se aplica el tope general de 5%.
+ *  Plena Vital: hasta 10% (no acumula puntos Segurísimos).
+ */
+const MAX_COMMERCIAL_BY_PRODUCT: Record<string, number> = {
+  "esencial": 10,  // Adeslas Plena Vital
+};
+function getMaxCommercial(productId: string): number {
+  return MAX_COMMERCIAL_BY_PRODUCT[productId] ?? 5;
+}
 
 /**
  * Descuento automático por volumen según producto y nº de asegurados.
@@ -50,11 +61,11 @@ function labelAutoDiscount(productId: string, n: number): string {
 }
 
 /* ─── Clasificación de campaña "Segurísimos" por producto ───── */
-type CampaignCat = "go" | "salud_sin" | "salud_con" | "seniors_sin" | "seniors_con";
+type CampaignCat = "go" | "salud_sin" | "salud_con" | "seniors_sin" | "seniors_con" | "sin_puntos";
 
 const CAMPAIGN_CAT: Record<string, CampaignCat> = {
   "ya":               "go",          // Adeslas GO (sin dental)
-  "esencial":         "salud_sin",   // Plena Vital
+  "esencial":         "sin_puntos",  // Plena Vital → no acumula puntos, dto comercial hasta 10%
   "completaPlus":     "salud_con",   // Plena Vital Total ← con dental
   "completaPlusPlus": "salud_sin",   // Plena Plus
   "completa":         "salud_con",   // Plena Total ← con dental
@@ -71,6 +82,7 @@ function puntosXAsegurado(cat: CampaignCat, totalAsegurados: number): number {
   if (cat === "go")        return es3plus ? 500  : 250;
   if (cat === "salud_sin") return es3plus ? 1000 : 500;
   if (cat === "salud_con") return es3plus ? 1500 : 750;
+  // "sin_puntos" y "seniors_*" → 0
   return 0;
 }
 
@@ -175,8 +187,11 @@ export default function TarificadorInterno() {
         const descAuto = subtotal * ratioAuto;
         const baseTrasFamiliar = subtotal - descAuto;
 
-        // 2) Descuento comercial (0-5%) sobre base ya descontada
-        const descComercial = baseTrasFamiliar * ratioComercial;
+        // 2) Descuento comercial: respetando el tope por producto
+        const maxComercialProducto = getMaxCommercial(product.id);
+        const pctComercialEfectivo = Math.min(pctComercial, maxComercialProducto);
+        const ratioComercialEfectivo = pctComercialEfectivo / 100;
+        const descComercial = baseTrasFamiliar * ratioComercialEfectivo;
         const total = baseTrasFamiliar - descComercial;
 
         // Puntos o abono
@@ -191,6 +206,7 @@ export default function TarificadorInterno() {
           preciosPorPersona, hayNulos,
           totalPuntos, totalAbono,
           puntosXAseg, abonoXAseg,
+          pctComercialEfectivo, maxComercialProducto,
         };
       })
       .filter((r) => r.subtotal > 0)
@@ -317,7 +333,7 @@ export default function TarificadorInterno() {
                   <input
                     type="range"
                     min={0}
-                    max={5}
+                    max={10}
                     step={0.5}
                     value={descuentoComercial}
                     onChange={(e) => setDescuentoComercial(parseFloat(e.target.value))}
@@ -327,12 +343,12 @@ export default function TarificadorInterno() {
                     <input
                       type="number"
                       min={0}
-                      max={5}
+                      max={10}
                       step={0.5}
                       value={descuentoComercial}
                       onChange={(e) => {
                         const v = parseFloat(e.target.value);
-                        if (!isNaN(v)) setDescuentoComercial(Math.min(5, Math.max(0, v)));
+                        if (!isNaN(v)) setDescuentoComercial(Math.min(10, Math.max(0, v)));
                       }}
                       className="w-14 px-2 py-2 border border-slate-200 rounded-lg text-center font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#009DD9]"
                     />
@@ -340,7 +356,7 @@ export default function TarificadorInterno() {
                   </div>
                 </div>
                 <p className="text-xs text-slate-400 mt-1">
-                  Máx. 5% · Va contra tu comisión
+                  Máx. 10% (solo Plena Vital) · Resto máx. 5% · Va contra tu comisión
                 </p>
                 {descuentoComercial > 0 && (
                   <p className="text-xs font-semibold text-[#009DD9] mt-1">
@@ -374,6 +390,7 @@ export default function TarificadorInterno() {
               preciosPorPersona, hayNulos,
               totalPuntos, totalAbono,
               puntosXAseg, abonoXAseg,
+              pctComercialEfectivo, maxComercialProducto,
             }) => (
               <div
                 key={product.id}
@@ -434,18 +451,21 @@ export default function TarificadorInterno() {
                     </div>
 
                     {/* Resumen descuentos aplicados en la fila */}
-                    {(ratioAuto > 0 || descuentoComercial > 0) && (
+                    {(ratioAuto > 0 || pctComercialEfectivo > 0) && (
                       <p className="text-xs text-slate-400 mt-0.5">
                         Bruto {subtotal.toFixed(2)} €
                         {ratioAuto > 0 && ` · ${labelAutoDiscount(product.id, asegurados.length)} -${descAuto.toFixed(2)} €`}
-                        {descuentoComercial > 0 && ` · Comercial -${descComercial.toFixed(2)} €`}
+                        {pctComercialEfectivo > 0 && ` · Comercial -${descComercial.toFixed(2)} €`}
+                        {pctComercial > maxComercialProducto && (
+                          <span className="text-amber-500 ml-1">(tope {maxComercialProducto}%)</span>
+                        )}
                       </p>
                     )}
                   </div>
 
                   <div className="flex items-center gap-4 shrink-0">
                     <div className="text-right">
-                      {(ratioAuto > 0 || descuentoComercial > 0) && (
+                      {(ratioAuto > 0 || pctComercialEfectivo > 0) && (
                         <p className="text-xs line-through text-slate-400">
                           {subtotal.toFixed(2)} €
                         </p>
@@ -456,7 +476,7 @@ export default function TarificadorInterno() {
                         </p>
                       )}
                       <p className={`text-2xl font-bold ${
-                        ratioAuto > 0 || descuentoComercial > 0
+                        ratioAuto > 0 || pctComercialEfectivo > 0
                           ? "text-green-600"
                           : "text-[#009DD9]"
                       }`}>
@@ -513,10 +533,15 @@ export default function TarificadorInterno() {
                             </td>
                           </tr>
                         )}
-                        {descuentoComercial > 0 && (
+                        {pctComercialEfectivo > 0 && (
                           <tr>
                             <td colSpan={3} className="py-1 text-[#009DD9] font-semibold">
-                              Descuento comercial {descuentoComercial}%
+                              Descuento comercial {pctComercialEfectivo}%
+                              {pctComercial > maxComercialProducto && (
+                                <span className="text-amber-500 text-xs font-normal ml-1">
+                                  (tope {maxComercialProducto}% para este producto)
+                                </span>
+                              )}
                             </td>
                             <td className="py-1 text-right text-[#009DD9] font-bold">
                               -{descComercial.toFixed(2)} €
@@ -526,7 +551,7 @@ export default function TarificadorInterno() {
                         <tr className="border-t-2 border-slate-300">
                           <td colSpan={3} className="pt-2 text-base font-bold text-slate-800">Total mensual</td>
                           <td className={`pt-2 text-right text-xl font-bold ${
-                            ratioAuto > 0 || descuentoComercial > 0 ? "text-green-600" : "text-[#009DD9]"
+                            ratioAuto > 0 || pctComercialEfectivo > 0 ? "text-green-600" : "text-[#009DD9]"
                           }`}>
                             {total.toFixed(2)} €
                           </td>
@@ -670,13 +695,21 @@ export default function TarificadorInterno() {
             </div>
           )}
 
-          {/* ── Nota PYMES ── */}
-          <div className="bg-blue-50 border border-blue-200 rounded-2xl px-6 py-4 text-sm text-blue-800">
-            <p className="font-bold mb-1">ℹ️ Adeslas PYMES Total</p>
-            <p className="text-xs text-blue-700">
-              No acumula puntos en la campaña Segurísimos. Descuento máximo: <strong>10%</strong> (5% agente + 5% compañía).
-              El descuento comercial se gestiona directamente al emitir la póliza.
-            </p>
+          {/* ── Notas productos especiales ── */}
+          <div className="space-y-3">
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl px-6 py-4 text-sm text-blue-800">
+              <p className="font-bold mb-1">ℹ️ Adeslas Plena Vital</p>
+              <p className="text-xs text-blue-700">
+                No acumula puntos en la campaña Segurísimos. Descuento comercial máximo: <strong>10%</strong> · Va contra tu comisión.
+              </p>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl px-6 py-4 text-sm text-blue-800">
+              <p className="font-bold mb-1">ℹ️ Adeslas PYMES Total</p>
+              <p className="text-xs text-blue-700">
+                No acumula puntos en la campaña Segurísimos. Descuento máximo: <strong>10%</strong> (5% agente + 5% compañía).
+                El descuento comercial se gestiona directamente al emitir la póliza.
+              </p>
+            </div>
           </div>
 
           {/* ── Footer ── */}
