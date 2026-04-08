@@ -194,10 +194,10 @@ const PreciosOfertasInner = () => {
     title: "Precios y Ofertas Adeslas 2026 | Seguros Médicos desde 21 €/mes",
     description:
       "Precios y ofertas de los seguros médicos Adeslas 2026. Desde 21€/mes (Adeslas Go). Sin copagos desde 50€/mes (Adeslas Plena Plus). Cobertura total desde 83€/mes (Adeslas Plena Total). Compara planes y calcula en 2 minutos.",
-    canonical: "https://adeslas.numero1salud.es/precios-ofertas",
+    canonical: "https://adeslas.numero1salud.es/precios-y-ofertas/",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
-      { name: "Precios y Ofertas", url: "https://adeslas.numero1salud.es/precios-ofertas" },
+      { name: "Precios y Ofertas", url: "https://adeslas.numero1salud.es/precios-y-ofertas/" },
     ],
     faqSchema: faqs.map((f) => ({ q: f.q, a: f.a })),
   });

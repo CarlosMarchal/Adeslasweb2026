@@ -1,15 +1,26 @@
+import { useLocation } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-medico-adeslas-empresas.webp";
 
-const data: ProductPageData = {
-  seoTitle: "Seguro Médico Adeslas para Empresas y Pymes | Beneficio Social · Sin Copago",
-  seoDescription: "Seguro médico Adeslas para empresas y pymes: sin copagos, chequeo anual, dental y precio garantizado 3 años. Deducible al 100% para la empresa. +51.000 médicos. Desde 56€/mes.",
-  seoCanonical: "https://adeslas.numero1salud.es/pymes-empresas",
+const seoPymes = {
+  seoTitle: "Adeslas PYMES TOTAL | Seguro Médico para Pymes · Chequeo · Dental · 3 Años Sin Subida",
+  seoDescription: "Adeslas PYMES TOTAL: seguro médico para pymes hasta 15 empleados. Sin copagos, chequeo médico anual, dental incluido y 3 años sin incremento de prima. Deducible al 100% en IS. +51.000 médicos.",
+  seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/pymes/",
   seoOgImage: "https://adeslas.numero1salud.es/og-pymes-empresas.jpg",
+};
+
+const seoEmpresas = {
+  seoTitle: "Adeslas Empresas | Seguro Médico Colectivo · Sin Copagos · Beneficio Social para Empleados",
+  seoDescription: "Adeslas EMPRESAS: seguro médico colectivo para empresas de 5 a 99 empleados. Sin copagos, cobertura completa, hospitalización 24h. Ventajas fiscales: deducible al 100% en IS. +51.000 médicos.",
+  seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/empresas/",
+  seoOgImage: "https://adeslas.numero1salud.es/og-pymes-empresas.jpg",
+};
+
+const dataBase: Omit<ProductPageData, "seoTitle" | "seoDescription" | "seoCanonical" | "seoOgImage"> & Partial<ProductPageData> = {
   seoProductSchema: {
-    name: "Adeslas EMPRESAS — Seguro Médico para Pymes y Empresas",
+    name: "Adeslas EMPRESAS y PYMES TOTAL — Seguro Médico Colectivo",
     description: "Seguro médico Adeslas para empresas (CIF). Sin copagos, cobertura sanitaria completa para empleados. Adeslas EMPRESAS (5 a 99 asegurados) y Adeslas PYMES TOTAL (hasta 15 asegurados, chequeo médico incluido y dental).",
     category: "Seguro de salud para empresas",
     price: "0",
@@ -17,7 +28,7 @@ const data: ProductPageData = {
   },
   seoBreadcrumbs: [
     { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
-    { name: "Seguro Médico Pymes y Empresas Adeslas", url: "https://adeslas.numero1salud.es/pymes-empresas" },
+    { name: "Seguro Médico para Empresas y Pymes", url: "https://adeslas.numero1salud.es/seguro-salud/empresas/" },
   ],
   badge: "Empresas · Sin Copago · Beneficio Social",
   heroTitle: "Seguro Médico Adeslas para",
@@ -284,6 +295,11 @@ const data: ProductPageData = {
   showPromo: true,
 };
 
-const PymesEmpresas = () => <ProductPageTemplate data={data} />;
+const PymesEmpresas = () => {
+  const { pathname } = useLocation();
+  const seoOverride = pathname.startsWith("/seguro-salud/pymes") ? seoPymes : seoEmpresas;
+  const data: ProductPageData = { ...dataBase, ...seoOverride } as ProductPageData;
+  return <ProductPageTemplate data={data} />;
+};
 
 export default PymesEmpresas;

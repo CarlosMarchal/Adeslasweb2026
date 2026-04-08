@@ -5,8 +5,8 @@ import heroImg from "@/assets/seguro-medico-adeslas-plena-vital-total.webp";
 
 const data: ProductPageData = {
   seoTitle: "Adeslas Plena Vital Total | Cobertura Total · 3 Años Sin Subida de Prima",
-  seoDescription: "Adeslas Plena Vital Total: cobertura hospitalaria completa con copago reducido y prima garantizada 3 años sin subidas. +51.000 médicos, dental y urgencias 24h. Desde 48,50€/mes.",
-  seoCanonical: "https://adeslas.numero1salud.es/adeslas-plena-vital-total",
+  seoDescription: "Adeslas Plena Vital Total: cobertura completa con dental, 3 meses gratis, sin carencias y prima garantizada 3 años sin subidas. Copago reducido, +51.000 médicos y urgencias 24h. Desde 48,50€/mes.",
+  seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/",
   seoOgImage: "https://adeslas.numero1salud.es/og-vital-total.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Vital Total",
@@ -18,7 +18,7 @@ const data: ProductPageData = {
   seoBreadcrumbs: [
     { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
     { name: "Planes Adeslas", url: "https://adeslas.numero1salud.es/" },
-    { name: "Adeslas Plena Vital Total", url: "https://adeslas.numero1salud.es/adeslas-plena-vital-total" },
+    { name: "Adeslas Plena Vital Total", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/" },
   ],
   productSlug: "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",

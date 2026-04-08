@@ -5,14 +5,14 @@ import heroBg from "@/assets/seguro-salud-adeslas-infantil.webp";
 const data: SegmentPageData = {
   heroBg,
   seo: {
-    title: "Adeslas Seguro Médico Infantil | Pediatría desde el Nacimiento",
+    title: "Adeslas Seguro Médico Infantil | Pediatría Sin Esperas para Niños desde 21€/mes",
     description: "Seguro médico infantil Adeslas para niños de 0 a 17 años: pediatría especializada, urgencias pediátricas 24h y especialistas sin esperas. Sin copagos desde 50€/mes (Plena) o cobertura total sin copagos desde 83€/mes (Plena Total).",
-    canonical: "https://adeslas.numero1salud.es/seguro-medico-infantil",
+    canonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-infantil/",
     ogImage: "https://adeslas.numero1salud.es/og-infantil.jpg",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
       { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
-      { name: "Seguro Infantil", url: "https://adeslas.numero1salud.es/seguro-medico-infantil" },
+      { name: "Seguro Infantil", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-infantil/" },
     ],
   },
   heroTitle: "Seguro Médico Adeslas para Niños",

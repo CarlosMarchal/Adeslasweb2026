@@ -7,12 +7,12 @@ const data: SegmentPageData = {
   seo: {
     title: "Adeslas Seniors | Seguro Médico para Personas Mayores de 55 años desde 67,50€/mes",
     description: "Seguros médicos Adeslas específicos para personas de 55 a 84 años. Adeslas Seniors desde 67,50€/mes y Adeslas Seniors Total desde 101€/mes. Asesor de salud personal, hospitalización completa y garantía de precio 3 años. Sin listas de espera.",
-    canonical: "https://adeslas.numero1salud.es/seguro-medico-mayores",
+    canonical: "https://adeslas.numero1salud.es/seguro-salud/seguro-para-personas-mayores/",
     ogImage: "https://adeslas.numero1salud.es/og-mayores.jpg",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
       { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
-      { name: "Seguro Personas Mayores", url: "https://adeslas.numero1salud.es/seguro-medico-mayores" },
+      { name: "Seguro Personas Mayores", url: "https://adeslas.numero1salud.es/seguro-salud/seguro-para-personas-mayores/" },
     ],
   },
   heroTitle: "Seguro de Salud Adeslas para Personas Mayores",

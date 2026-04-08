@@ -7,7 +7,7 @@ import heroImg from "@/assets/seguro-dental-adeslas.webp";
 const data: ProductPageData = {
   seoTitle: "Seguro Dental Adeslas | Sin Carencias desde Día 1 · Desde 9,45€/mes",
   seoDescription: "Seguro dental Adeslas desde 9,45€/mes: limpiezas y revisiones desde el día 1 sin coste. Implantes, endodoncia y ortodoncia con franquicias reducidas. Niños hasta 8 años gratis. +1.700 dentistas.",
-  seoCanonical: "https://adeslas.numero1salud.es/adeslas-dental",
+  seoCanonical: "https://adeslas.numero1salud.es/seguro-dental/",
   seoOgImage: "https://adeslas.numero1salud.es/og-dental.jpg",
   seoProductSchema: {
     name: "Adeslas Dental",
@@ -19,7 +19,7 @@ const data: ProductPageData = {
   seoBreadcrumbs: [
     { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
     { name: "Seguros Adeslas", url: "https://adeslas.numero1salud.es/" },
-    { name: "Adeslas Dental", url: "https://adeslas.numero1salud.es/adeslas-dental" },
+    { name: "Adeslas Dental", url: "https://adeslas.numero1salud.es/seguro-dental/" },
   ],
   badge: "Sin carencias desde el día 1",
   heroTitle: "Seguro Dental Adeslas",

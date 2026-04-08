@@ -43,7 +43,7 @@ const CuadroMedico = () => {
     title: "Cuadro Médico Adeslas 2026 | +51.000 Médicos y 1.400 Centros en España",
     description:
       "Consulta y descarga el cuadro médico Adeslas 2026 por provincia. Más de 51.000 profesionales y 1.400 centros médicos en toda España. Sin listas de espera.",
-    canonical: "https://adeslas.numero1salud.es/cuadro-medico",
+    canonical: "https://adeslas.numero1salud.es/cuadro-medico/",
   });
 
   const filtered = provincias.filter((p) =>

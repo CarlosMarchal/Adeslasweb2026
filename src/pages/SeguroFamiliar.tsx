@@ -7,12 +7,12 @@ const data: SegmentPageData = {
   seo: {
     title: "Adeslas Seguro Médico Familiar | Pediatría, Especialistas y Sin Copagos",
     description: "Adeslas seguro médico familiar: pediatría, especialistas y hospitalización para toda la familia desde 22,55€/mes. Descuento 10% desde el 4º asegurado. Sin listas de espera.",
-    canonical: "https://adeslas.numero1salud.es/seguro-medico-familiar",
+    canonical: "https://adeslas.numero1salud.es/seguro-salud/seguro-familia/",
     ogImage: "https://adeslas.numero1salud.es/og-familiar.jpg",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
       { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
-      { name: "Seguro Familiar", url: "https://adeslas.numero1salud.es/seguro-medico-familiar" },
+      { name: "Seguro Familiar", url: "https://adeslas.numero1salud.es/seguro-salud/seguro-familia/" },
     ],
   },
   heroTitle: "Seguro Médico Adeslas para Familias",

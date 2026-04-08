@@ -7,7 +7,7 @@ const data: ProductPageData = {
   seoTitle: "Adeslas Extra 150 | Seguro Médico Libre Elección · Reembolso 80%",
   seoDescription:
     "Adeslas Plena Extra 150: seguro médico sin copagos que combina red Adeslas (libre elección) con reembolso 80% fuera de red. Máximo 150.000€/año. Desde 90€/mes.",
-  seoCanonical: "https://adeslas.numero1salud.es/adeslas-extra-150",
+  seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-extra-150/",
   seoOgImage: "https://adeslas.numero1salud.es/og-extra-150.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Extra 150",
@@ -19,7 +19,7 @@ const data: ProductPageData = {
   seoBreadcrumbs: [
     { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
     { name: "Seguros de Salud", url: "https://adeslas.numero1salud.es/" },
-    { name: "Adeslas Plena Extra 150", url: "https://adeslas.numero1salud.es/adeslas-extra-150" },
+    { name: "Adeslas Plena Extra 150", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-extra-150/" },
   ],
   productSlug: "/seguro-salud/adeslas-extra-150/",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",

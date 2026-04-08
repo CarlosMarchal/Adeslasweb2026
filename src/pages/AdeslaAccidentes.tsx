@@ -6,7 +6,7 @@ import heroImg from "@/assets/seguro-viaje-adeslas.webp";
 const data: ProductPageData = {
   seoTitle: "Adeslas Accidentes | Seguro de Accidentes con Cobertura 24h desde 5,89€/mes",
   seoDescription: "Seguro de accidentes Adeslas con cobertura 24h en todo el mundo. Fallecimiento, invalidez, asistencia médica y hospitalización por accidente. Desde 5,89€/mes.",
-  seoCanonical: "https://adeslas.numero1salud.es/adeslas-accidentes",
+  seoCanonical: "https://adeslas.numero1salud.es/seguro-accidentes/",
   seoOgImage: "https://adeslas.numero1salud.es/og-accidentes.jpg",
   seoProductSchema: {
     name: "Adeslas Accidentes",
@@ -18,7 +18,7 @@ const data: ProductPageData = {
   seoBreadcrumbs: [
     { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
     { name: "Otros Seguros", url: "https://adeslas.numero1salud.es/" },
-    { name: "Seguro de Accidentes", url: "https://adeslas.numero1salud.es/adeslas-accidentes" },
+    { name: "Seguro de Accidentes", url: "https://adeslas.numero1salud.es/seguro-accidentes/" },
   ],
   badge: "Cobertura 24h · En todo el mundo",
   heroTitle: "Seguro de Accidentes Adeslas",

@@ -7,12 +7,12 @@ const data: SegmentPageData = {
   seo: {
     title: "Adeslas Embarazo | Seguro Médico para Embarazadas con Parto y Neonatología",
     description: "Seguro médico para embarazadas Adeslas: seguimiento prenatal completo, parto cubierto (vaginal y cesárea), neonatología y postparto. Sin copagos. Desde 50,92€/mes.",
-    canonical: "https://adeslas.numero1salud.es/seguro-medico-embarazadas",
+    canonical: "https://adeslas.numero1salud.es/seguro-salud/embarazo/",
     ogImage: "https://adeslas.numero1salud.es/og-embarazadas.jpg",
     breadcrumbs: [
       { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
       { name: "Seguros Médicos", url: "https://adeslas.numero1salud.es/" },
-      { name: "Seguro Embarazadas", url: "https://adeslas.numero1salud.es/seguro-medico-embarazadas" },
+      { name: "Seguro Embarazadas", url: "https://adeslas.numero1salud.es/seguro-salud/embarazo/" },
     ],
   },
   heroTitle: "Seguro Médico Adeslas para el Embarazo y el Parto",

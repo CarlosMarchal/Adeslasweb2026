@@ -8,7 +8,7 @@ const data: ProductPageData = {
   seoDescription:
     "Adeslas Plena Plus: seguro médico sin copagos con cobertura completa (hospitalización, todas las especialidades, cirugía). Acceso +51.000 médicos. Desde 62,55€/mes.",
   seoCanonical:
-    "https://adeslas.numero1salud.es/adeslas-plena-plus",
+    "https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-plus/",
   seoOgImage: "https://adeslas.numero1salud.es/og-plena-plus.jpg",
   seoProductSchema: {
     name: "Adeslas Plena Plus",
@@ -20,7 +20,7 @@ const data: ProductPageData = {
   seoBreadcrumbs: [
     { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
     { name: "Seguros de Salud", url: "https://adeslas.numero1salud.es/" },
-    { name: "Adeslas Plena Plus", url: "https://adeslas.numero1salud.es/adeslas-plena-plus" },
+    { name: "Adeslas Plena Plus", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-plus/" },
   ],
   productSlug: "/seguro-salud/adeslas-plena-plus/",
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",

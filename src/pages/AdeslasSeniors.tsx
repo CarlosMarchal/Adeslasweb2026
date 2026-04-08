@@ -5,9 +5,9 @@ import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-medico-adeslas-seniors.webp";
 
 const data: ProductPageData = {
-  seoTitle: "Adeslas Seniors | Seguro Médico para Mayores de 55 años desde 67,50€",
-  seoDescription: "Seguro médico Adeslas Seniors para personas de 55 a 84 años. Asesor médico personal, oncología, cardiología, rehabilitación. Copago reducido. Desde 67,50€/mes.",
-  seoCanonical: "https://adeslas.numero1salud.es/adeslas-seniors",
+  seoTitle: "Adeslas Seniors | Seguro Médico para Mayores desde 67,50€ · 3 Meses Gratis",
+  seoDescription: "Seguro médico Adeslas Seniors para mayores de 55 a 84 años. 3 meses gratis. Asesor médico personal, oncología, cardiología, rehabilitación y cobertura completa. Copago reducido. Desde 67,50€/mes.",
+  seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors/",
   seoOgImage: "https://adeslas.numero1salud.es/og-seniors.jpg",
   seoProductSchema: {
     name: "Adeslas Seniors",
@@ -19,7 +19,7 @@ const data: ProductPageData = {
   seoBreadcrumbs: [
     { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
     { name: "Planes Adeslas", url: "https://adeslas.numero1salud.es/" },
-    { name: "Adeslas Seniors", url: "https://adeslas.numero1salud.es/adeslas-seniors" },
+    { name: "Adeslas Seniors", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors/" },
   ],
   customTarificador: <ContactCtaCard />,
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
