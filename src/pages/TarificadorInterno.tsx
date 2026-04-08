@@ -150,7 +150,12 @@ function labelDental(cat: CampaignCat): string {
 ═══════════════════════════════════════════════════════════════ */
 export default function TarificadorInterno() {
   const [provincia, setProvincia] = useState<string>("Madrid");
-  const [asegurados, setAsegurados] = useState<number[]>([35]);
+  const [rawEdades, setRawEdades] = useState<string[]>(["0"]);
+  /* edades numéricas derivadas; campo vacío cuenta como 0 */
+  const asegurados = rawEdades.map((v) => {
+    const n = parseInt(v, 10);
+    return isNaN(n) ? 0 : Math.min(Math.max(n, 0), 99);
+  });
   const [expandido, setExpandido] = useState<string | null>(null);
   const [descuentoComercial, setDescuentoComercial] = useState<number>(0);
   const [descuentoPymes, setDescuentoPymes]         = useState<number>(0);
@@ -232,13 +237,13 @@ export default function TarificadorInterno() {
   const maxPuntos = Math.max(0, ...resultados.map((r) => r.totalPuntos));
 
   /* ── Handlers de asegurados ── */
-  const addAsegurado = () => setAsegurados((p) => [...p, 30]);
+  const addAsegurado = () => setRawEdades((p) => [...p, "0"]);
   const removeAsegurado = (i: number) =>
-    setAsegurados((p) => p.filter((_, idx) => idx !== i));
+    setRawEdades((p) => p.filter((_, idx) => idx !== i));
   const setEdad = (i: number, val: string) => {
-    const n = parseInt(val, 10);
-    if (!isNaN(n) && n >= 0 && n <= 99)
-      setAsegurados((p) => p.map((v, idx) => (idx === i ? n : v)));
+    // Permite campo vacío (borrar) y valores válidos 0-99
+    if (val === "" || (parseInt(val, 10) >= 0 && parseInt(val, 10) <= 99))
+      setRawEdades((p) => p.map((v, idx) => (idx === i ? val : v)));
   };
 
   /* ── Premios alcanzables con los puntos máximos ── */
@@ -305,17 +310,19 @@ export default function TarificadorInterno() {
                   </label>
                 </div>
                 <div className="space-y-2 max-h-44 overflow-y-auto pr-1">
-                  {asegurados.map((edad, i) => (
+                  {rawEdades.map((rawEdad, i) => (
                     <div key={i} className="flex items-center gap-2">
                       <span className="text-xs text-slate-400 w-16 shrink-0">
                         Persona {i + 1}
                       </span>
                       <input
                         type="number"
-                        value={edad}
+                        value={rawEdad}
                         onChange={(e) => setEdad(i, e.target.value)}
+                        onFocus={(e) => e.target.select()}
                         min={0}
                         max={99}
+                        placeholder="0"
                         className="w-20 px-3 py-2 border border-slate-200 rounded-lg text-center font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#009DD9]"
                       />
                       <span className="text-xs text-slate-400">años</span>
