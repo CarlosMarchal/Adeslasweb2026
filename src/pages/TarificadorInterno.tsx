@@ -4,18 +4,8 @@ import { Trash2, Plus, ChevronDown, ChevronUp, Gift } from "lucide-react";
 import { products, provinces, getPrice, getZoneFromProvince } from "@/data/pricing";
 
 /* ─── Constantes ────────────────────────────────────────────── */
-const MAX_COMMERCIAL_DISCOUNT = 10; // % máximo del slider global
-
-/** Máximo descuento comercial permitido por producto.
- *  Si no está definido, se aplica el tope general de 5%.
- *  Plena Vital: hasta 10% (no acumula puntos Segurísimos).
- */
-const MAX_COMMERCIAL_BY_PRODUCT: Record<string, number> = {
-  "pymes-total": 10,  // Adeslas Pymes Total
-};
-function getMaxCommercial(productId: string): number {
-  return MAX_COMMERCIAL_BY_PRODUCT[productId] ?? 5;
-}
+const MAX_COMMERCIAL_DISCOUNT       = 5;  // % máximo para productos generales
+const MAX_COMMERCIAL_DISCOUNT_PYMES = 10; // % máximo exclusivo Pymes Total
 
 /**
  * Descuento automático por volumen según producto y nº de asegurados.
@@ -160,11 +150,12 @@ export default function TarificadorInterno() {
   const [asegurados, setAsegurados] = useState<number[]>([35]);
   const [expandido, setExpandido] = useState<string | null>(null);
   const [descuentoComercial, setDescuentoComercial] = useState<number>(0);
+  const [descuentoPymes, setDescuentoPymes]         = useState<number>(0);
   const [mostrarPremios, setMostrarPremios] = useState(false);
 
-  const zona = getZoneFromProvince(provincia);
-  const pctComercial = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
-  const ratioComercial = pctComercial / 100;
+  const zona        = getZoneFromProvince(provincia);
+  const pctGeneral  = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
+  const pctPymes    = Math.min(Math.max(descuentoPymes, 0), MAX_COMMERCIAL_DISCOUNT_PYMES);
 
   /* ── Cálculo de resultados ── */
   const resultados = useMemo(() => {
@@ -188,11 +179,9 @@ export default function TarificadorInterno() {
         const descAuto = subtotal * ratioAuto;
         const baseTrasFamiliar = subtotal - descAuto;
 
-        // 2) Descuento comercial: respetando el tope por producto
-        const maxComercialProducto = getMaxCommercial(product.id);
-        const pctComercialEfectivo = Math.min(pctComercial, maxComercialProducto);
-        const ratioComercialEfectivo = pctComercialEfectivo / 100;
-        const descComercial = baseTrasFamiliar * ratioComercialEfectivo;
+        // 2) Descuento comercial: slider independiente según producto
+        const pctComercialEfectivo = product.id === "pymes-total" ? pctPymes : pctGeneral;
+        const descComercial = baseTrasFamiliar * (pctComercialEfectivo / 100);
         const total = baseTrasFamiliar - descComercial;
 
         // Puntos o abono
@@ -207,7 +196,7 @@ export default function TarificadorInterno() {
           preciosPorPersona, hayNulos,
           totalPuntos, totalAbono,
           puntosXAseg, abonoXAseg,
-          pctComercialEfectivo, maxComercialProducto,
+          pctComercialEfectivo,
         };
       })
       .filter((r) => r.subtotal > 0)
@@ -261,8 +250,10 @@ export default function TarificadorInterno() {
         <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
 
           {/* ── Panel de controles ── */}
-          <div className="bg-white rounded-2xl shadow-sm p-6">
-            <div className="grid md:grid-cols-3 gap-6">
+          <div className="bg-white rounded-2xl shadow-sm p-6 space-y-6">
+
+            {/* Fila 1: Provincia + Asegurados */}
+            <div className="grid md:grid-cols-2 gap-6">
 
               {/* Provincia */}
               <div>
@@ -324,44 +315,85 @@ export default function TarificadorInterno() {
                   💡 Descuentos automáticos: GO ≥2 · Plena/Plus ≥4 · Totales 3/4/5+ aseg.
                 </p>
               </div>
+            </div>
 
-              {/* Descuento comercial */}
+            {/* Fila 2: Descuentos comerciales separados */}
+            <div className="border-t border-slate-100 pt-5 grid md:grid-cols-2 gap-6">
+
+              {/* Descuento general (todos excepto Pymes Total) */}
               <div>
-                <label className="block text-sm font-semibold text-slate-600 mb-2">
-                  Descuento comercial
+                <label className="block text-sm font-semibold text-slate-600 mb-1">
+                  Descuento comercial — resto de productos
                 </label>
+                <p className="text-xs text-slate-400 mb-3">Máx. 5% · Va contra tu comisión</p>
                 <div className="flex items-center gap-3">
                   <input
                     type="range"
                     min={0}
-                    max={10}
+                    max={5}
                     step={0.5}
                     value={descuentoComercial}
                     onChange={(e) => setDescuentoComercial(parseFloat(e.target.value))}
                     className="flex-1 accent-[#009DD9]"
                   />
-                  <div className="flex items-center gap-1 w-20">
+                  <div className="flex items-center gap-1">
                     <input
                       type="number"
                       min={0}
-                      max={10}
+                      max={5}
                       step={0.5}
                       value={descuentoComercial}
                       onChange={(e) => {
                         const v = parseFloat(e.target.value);
-                        if (!isNaN(v)) setDescuentoComercial(Math.min(10, Math.max(0, v)));
+                        if (!isNaN(v)) setDescuentoComercial(Math.min(5, Math.max(0, v)));
                       }}
                       className="w-14 px-2 py-2 border border-slate-200 rounded-lg text-center font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#009DD9]"
                     />
                     <span className="font-bold text-slate-600">%</span>
                   </div>
                 </div>
-                <p className="text-xs text-slate-400 mt-1">
-                  Máx. 10% (solo Plena Vital) · Resto máx. 5% · Va contra tu comisión
-                </p>
                 {descuentoComercial > 0 && (
-                  <p className="text-xs font-semibold text-[#009DD9] mt-1">
-                    ✓ Aplicando {descuentoComercial}% de descuento
+                  <p className="text-xs font-semibold text-[#009DD9] mt-1.5">
+                    ✓ Aplicando {descuentoComercial}% a todos los productos (excepto Pymes Total)
+                  </p>
+                )}
+              </div>
+
+              {/* Descuento exclusivo Pymes Total */}
+              <div className="bg-pink-50 border border-pink-200 rounded-xl p-4">
+                <label className="block text-sm font-semibold text-pink-700 mb-1">
+                  Descuento comercial — Pymes Total
+                </label>
+                <p className="text-xs text-pink-500 mb-3">Máx. 10% (5% agente + 5% compañía) · Va contra tu comisión</p>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="range"
+                    min={0}
+                    max={10}
+                    step={0.5}
+                    value={descuentoPymes}
+                    onChange={(e) => setDescuentoPymes(parseFloat(e.target.value))}
+                    className="flex-1 accent-pink-500"
+                  />
+                  <div className="flex items-center gap-1">
+                    <input
+                      type="number"
+                      min={0}
+                      max={10}
+                      step={0.5}
+                      value={descuentoPymes}
+                      onChange={(e) => {
+                        const v = parseFloat(e.target.value);
+                        if (!isNaN(v)) setDescuentoPymes(Math.min(10, Math.max(0, v)));
+                      }}
+                      className="w-14 px-2 py-2 border border-pink-200 rounded-lg text-center font-bold text-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white"
+                    />
+                    <span className="font-bold text-pink-600">%</span>
+                  </div>
+                </div>
+                {descuentoPymes > 0 && (
+                  <p className="text-xs font-semibold text-pink-600 mt-1.5">
+                    ✓ Aplicando {descuentoPymes}% a Pymes Total
                   </p>
                 )}
               </div>
@@ -391,7 +423,7 @@ export default function TarificadorInterno() {
               preciosPorPersona, hayNulos,
               totalPuntos, totalAbono,
               puntosXAseg, abonoXAseg,
-              pctComercialEfectivo, maxComercialProducto,
+              pctComercialEfectivo,
             }) => (
               <div
                 key={product.id}
@@ -462,9 +494,6 @@ export default function TarificadorInterno() {
                         Bruto {subtotal.toFixed(2)} €
                         {ratioAuto > 0 && ` · ${labelAutoDiscount(product.id, asegurados.length)} -${descAuto.toFixed(2)} €`}
                         {pctComercialEfectivo > 0 && ` · Comercial -${descComercial.toFixed(2)} €`}
-                        {pctComercial > maxComercialProducto && (
-                          <span className="text-amber-500 ml-1">(tope {maxComercialProducto}%)</span>
-                        )}
                       </p>
                     )}
                   </div>
@@ -543,11 +572,6 @@ export default function TarificadorInterno() {
                           <tr>
                             <td colSpan={3} className="py-1 text-[#009DD9] font-semibold">
                               Descuento comercial {pctComercialEfectivo}%
-                              {pctComercial > maxComercialProducto && (
-                                <span className="text-amber-500 text-xs font-normal ml-1">
-                                  (tope {maxComercialProducto}% para este producto)
-                                </span>
-                              )}
                             </td>
                             <td className="py-1 text-right text-[#009DD9] font-bold">
                               -{descComercial.toFixed(2)} €
