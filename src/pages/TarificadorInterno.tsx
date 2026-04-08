@@ -1,11 +1,85 @@
 import { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
-import { Trash2, Plus, ChevronDown, ChevronUp } from "lucide-react";
+import { Trash2, Plus, ChevronDown, ChevronUp, Gift } from "lucide-react";
 import { products, provinces, getPrice, getZoneFromProvince } from "@/data/pricing";
 
+/* ─── Constantes ────────────────────────────────────────────── */
 const FAMILY_DISCOUNT_THRESHOLD = 4;
-const FAMILY_DISCOUNT_RATE = 0.1;
+const FAMILY_DISCOUNT_RATE = 0.10; // 10% para 4+ asegurados
+const MAX_COMMERCIAL_DISCOUNT = 5; // % máximo descuento comercial
 
+/* ─── Clasificación de campaña "Segurísimos" por producto ───── */
+type CampaignCat = "go" | "salud_sin" | "salud_con" | "seniors_sin" | "seniors_con";
+
+const CAMPAIGN_CAT: Record<string, CampaignCat> = {
+  "ya":               "go",          // Adeslas GO (sin dental)
+  "esencial":         "salud_sin",   // Plena Vital
+  "completaPlus":     "salud_con",   // Plena Vital Total ← con dental
+  "completaPlusPlus": "salud_sin",   // Plena Plus
+  "completa":         "salud_con",   // Plena Total ← con dental
+  "reembolso":        "salud_sin",   // Plena Extra
+  "plena":            "salud_sin",   // Plena
+  "negocios-nif":     "salud_sin",   // Negocios NIF
+  "seniors":          "seniors_sin", // Seniors → abono en cuenta
+  "seniors-total":    "seniors_con", // Seniors Total (con dental) → abono en cuenta
+};
+
+/* ─── Cálculo de puntos por asegurado ──────────────────────── */
+function puntosXAsegurado(cat: CampaignCat, totalAsegurados: number): number {
+  const es3plus = totalAsegurados >= 3;
+  if (cat === "go")        return es3plus ? 500  : 250;
+  if (cat === "salud_sin") return es3plus ? 1000 : 500;
+  if (cat === "salud_con") return es3plus ? 1500 : 750;
+  return 0;
+}
+
+/* ─── Cálculo de abono en cuenta por asegurado (Seniors) ────── */
+function abonoXAsegurado(cat: CampaignCat, totalAsegurados: number): number {
+  const es3plus = totalAsegurados >= 3;
+  if (cat === "seniors_sin") return es3plus ? 100 : 50;
+  if (cat === "seniors_con") return es3plus ? 150 : 75;
+  return 0;
+}
+
+/* ─── Catálogo de premios ───────────────────────────────────── */
+const PREMIOS = [
+  {
+    pts: 500,
+    items: [
+      "🎴 Tarjeta prepago 50 €",
+      "📺 Netflix 50 € de saldo",
+      "🎬 Disney+ 3 meses",
+      "📡 Movistar+ 3 meses",
+      "⚽ DAZN Fútbol 2 meses",
+      "🏎️ DAZN Motor 2 meses",
+      "🚨 Baliza emergencia V16",
+    ],
+  },
+  {
+    pts: 1000,
+    items: [
+      "📺 Netflix 100 € de saldo",
+      "🏀 DAZN Baloncesto 12 meses",
+      "🏆 DAZN Premium 3 meses",
+    ],
+  },
+  {
+    pts: 1500,
+    items: [
+      "📺 Netflix 150 € de saldo",
+      "🎬 Disney+ 12 meses",
+      "🏀 DAZN Baloncesto 12 meses",
+      "🎧 Galaxy Buds3",
+    ],
+  },
+  { pts: 2000,  items: ["🎧 AirPods 4"] },
+  { pts: 3000,  items: ["⌚ Apple Watch SE 3 GPS 44 mm", "📱 Tablet Samsung Galaxy A11 WiFi 128 GB"] },
+  { pts: 5000,  items: ["💻 iPad WiFi 256 GB"] },
+  { pts: 7000,  items: ["⌚ Galaxy Watch Ultra LTE 47 mm"] },
+  { pts: 10000, items: ["📱 iPhone 17 256 GB", "📱 Samsung Galaxy Z Flip7 256 GB"] },
+];
+
+/* ─── Helper: etiqueta tramo de edad ───────────────────────── */
 function getBandLabel(age: number): string {
   if (age <= 24) return "0-24";
   if (age <= 44) return "25-44";
@@ -17,41 +91,88 @@ function getBandLabel(age: number): string {
   return "≥70";
 }
 
+/* ─── Etiqueta "con dental" ─────────────────────────────────── */
+function labelDental(cat: CampaignCat): string {
+  if (cat === "salud_con" || cat === "seniors_con") return "🦷 Con dental";
+  if (cat === "go") return "Sin dental";
+  return "Sin dental";
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPONENTE PRINCIPAL
+═══════════════════════════════════════════════════════════════ */
 export default function TarificadorInterno() {
   const [provincia, setProvincia] = useState<string>("Madrid");
   const [asegurados, setAsegurados] = useState<number[]>([35]);
   const [expandido, setExpandido] = useState<string | null>(null);
+  const [descuentoComercial, setDescuentoComercial] = useState<number>(0);
+  const [mostrarPremios, setMostrarPremios] = useState(false);
 
   const zona = getZoneFromProvince(provincia);
-  const conDescuento = asegurados.length >= FAMILY_DISCOUNT_THRESHOLD;
+  const conDescuentoFamiliar = asegurados.length >= FAMILY_DISCOUNT_THRESHOLD;
+  const pctComercial = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
+  const ratioComercial = pctComercial / 100;
 
+  /* ── Cálculo de resultados ── */
   const resultados = useMemo(() => {
     return products
       .map((product) => {
+        const cat: CampaignCat = CAMPAIGN_CAT[product.id] ?? "salud_sin";
+        const isSeniors = cat === "seniors_sin" || cat === "seniors_con";
+
         const preciosPorPersona = asegurados.map((edad) => ({
           edad,
-          precio: getPrice(product, edad, zona), // null if age out of range
+          precio: getPrice(product, edad, zona),
           banda: getBandLabel(edad),
         }));
-        const hayNulos = preciosPorPersona.some((p) => p.precio === null);
-        const subtotal = preciosPorPersona.reduce((sum, p) => sum + (p.precio ?? 0), 0);
-        const descuento = conDescuento ? subtotal * FAMILY_DISCOUNT_RATE : 0;
-        const total = subtotal - descuento;
-        return { product, subtotal, descuento, total, preciosPorPersona, hayNulos };
-      })
-      .filter((r) => r.subtotal > 0); // ocultar productos sin ningún precio válido
-  }, [asegurados, zona, conDescuento]);
 
-  const addAsegurado = () => setAsegurados((prev) => [...prev, 30]);
+        const hayNulos = preciosPorPersona.some((p) => p.precio === null);
+        const validCount = preciosPorPersona.filter((p) => p.precio !== null).length;
+        const subtotal = preciosPorPersona.reduce((s, p) => s + (p.precio ?? 0), 0);
+
+        // 1) Descuento familiar (4+ asegurados) sobre subtotal
+        const descFamiliar = conDescuentoFamiliar ? subtotal * FAMILY_DISCOUNT_RATE : 0;
+        const baseTrasFamiliar = subtotal - descFamiliar;
+
+        // 2) Descuento comercial (0-5%) sobre base ya con descuento familiar
+        const descComercial = baseTrasFamiliar * ratioComercial;
+        const total = baseTrasFamiliar - descComercial;
+
+        // Puntos o abono
+        const puntosXAseg = isSeniors ? 0 : puntosXAsegurado(cat, asegurados.length);
+        const totalPuntos = puntosXAseg * validCount;
+        const abonoXAseg  = isSeniors ? abonoXAsegurado(cat, asegurados.length) : 0;
+        const totalAbono  = abonoXAseg * validCount;
+
+        return {
+          product, cat, isSeniors,
+          subtotal, descFamiliar, descComercial, total,
+          preciosPorPersona, hayNulos,
+          totalPuntos, totalAbono,
+          puntosXAseg, abonoXAseg,
+        };
+      })
+      .filter((r) => r.subtotal > 0)
+      .sort((a, b) => a.total - b.total);
+  }, [asegurados, zona, conDescuentoFamiliar, ratioComercial]);
+
+  /* ── Resumen de incentivos (para el cartel de premios) ── */
+  const maxPuntos = Math.max(0, ...resultados.map((r) => r.totalPuntos));
+
+  /* ── Handlers de asegurados ── */
+  const addAsegurado = () => setAsegurados((p) => [...p, 30]);
   const removeAsegurado = (i: number) =>
-    setAsegurados((prev) => prev.filter((_, idx) => idx !== i));
+    setAsegurados((p) => p.filter((_, idx) => idx !== i));
   const setEdad = (i: number, val: string) => {
     const n = parseInt(val, 10);
-    if (!isNaN(n) && n >= 0 && n <= 99) {
-      setAsegurados((prev) => prev.map((v, idx) => (idx === i ? n : v)));
-    }
+    if (!isNaN(n) && n >= 0 && n <= 99)
+      setAsegurados((p) => p.map((v, idx) => (idx === i ? n : v)));
   };
 
+  /* ── Premios alcanzables con los puntos máximos ── */
+  const premiosAlcanzables = PREMIOS.filter((p) => p.pts <= maxPuntos);
+
+  /* ══════════════ RENDER ══════════════ */
   return (
     <>
       <Helmet>
@@ -60,7 +181,8 @@ export default function TarificadorInterno() {
       </Helmet>
 
       <div className="min-h-screen bg-[#f4f7fb]">
-        {/* Header */}
+
+        {/* ── Header ── */}
         <div className="bg-gradient-to-r from-[#009DD9] to-[#0077aa] py-8 px-4 shadow-md">
           <div className="max-w-5xl mx-auto flex items-center justify-between">
             <div>
@@ -68,7 +190,7 @@ export default function TarificadorInterno() {
                 Tarificador Interno · Adeslas 2026
               </h1>
               <p className="text-blue-100 mt-1 text-sm">
-                Herramienta para comerciales · No indexada en Google
+                Campaña Segurísimos · Solo para comerciales
               </p>
             </div>
             <div className="hidden md:block text-right text-white text-sm opacity-80">
@@ -80,9 +202,9 @@ export default function TarificadorInterno() {
 
         <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
 
-          {/* Controles */}
+          {/* ── Panel de controles ── */}
           <div className="bg-white rounded-2xl shadow-sm p-6">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
 
               {/* Provincia */}
               <div>
@@ -107,9 +229,9 @@ export default function TarificadorInterno() {
                   <label className="text-sm font-semibold text-slate-600">
                     Asegurados ({asegurados.length})
                   </label>
-                  {conDescuento && (
+                  {conDescuentoFamiliar && (
                     <span className="text-xs font-bold px-2 py-1 bg-green-100 text-green-700 rounded-full">
-                      ✓ Descuento 10%
+                      ✓ Dto. familiar 10%
                     </span>
                   )}
                 </div>
@@ -145,129 +267,359 @@ export default function TarificadorInterno() {
                 >
                   <Plus size={16} /> Agregar asegurado
                 </button>
+                {!conDescuentoFamiliar && (
+                  <p className="mt-2 text-xs text-slate-400">
+                    💡 Con {FAMILY_DISCOUNT_THRESHOLD - asegurados.length} asegurado{FAMILY_DISCOUNT_THRESHOLD - asegurados.length > 1 ? "s" : ""} más → descuento familiar 10%
+                  </p>
+                )}
+              </div>
+
+              {/* Descuento comercial */}
+              <div>
+                <label className="block text-sm font-semibold text-slate-600 mb-2">
+                  Descuento comercial
+                </label>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="range"
+                    min={0}
+                    max={5}
+                    step={0.5}
+                    value={descuentoComercial}
+                    onChange={(e) => setDescuentoComercial(parseFloat(e.target.value))}
+                    className="flex-1 accent-[#009DD9]"
+                  />
+                  <div className="flex items-center gap-1 w-20">
+                    <input
+                      type="number"
+                      min={0}
+                      max={5}
+                      step={0.5}
+                      value={descuentoComercial}
+                      onChange={(e) => {
+                        const v = parseFloat(e.target.value);
+                        if (!isNaN(v)) setDescuentoComercial(Math.min(5, Math.max(0, v)));
+                      }}
+                      className="w-14 px-2 py-2 border border-slate-200 rounded-lg text-center font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#009DD9]"
+                    />
+                    <span className="font-bold text-slate-600">%</span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-400 mt-1">
+                  Máx. 5% · Va contra tu comisión
+                </p>
+                {descuentoComercial > 0 && (
+                  <p className="text-xs font-semibold text-[#009DD9] mt-1">
+                    ✓ Aplicando {descuentoComercial}% de descuento
+                  </p>
+                )}
               </div>
             </div>
-
-            {!conDescuento && asegurados.length < FAMILY_DISCOUNT_THRESHOLD && (
-              <p className="mt-4 text-xs text-slate-400 border-t pt-3">
-                💡 Con {FAMILY_DISCOUNT_THRESHOLD - asegurados.length} asegurado{FAMILY_DISCOUNT_THRESHOLD - asegurados.length > 1 ? "s" : ""} más se aplica el 10% de descuento familiar
-              </p>
-            )}
           </div>
 
-          {/* Tabla comparativa */}
+          {/* ── Tabla comparativa ── */}
           <div className="space-y-3">
-            <h2 className="text-lg font-bold text-slate-700 px-1">
-              Comparativa de productos
-            </h2>
-
-            {resultados
-              .sort((a, b) => a.total - b.total)
-              .map(({ product, subtotal, descuento, total, preciosPorPersona }) => (
-                <div
-                  key={product.id}
-                  className="bg-white rounded-2xl shadow-sm overflow-hidden"
+            <div className="flex items-center justify-between px-1">
+              <h2 className="text-lg font-bold text-slate-700">
+                Comparativa de productos
+              </h2>
+              {maxPuntos > 0 && (
+                <button
+                  onClick={() => setMostrarPremios((v) => !v)}
+                  className="flex items-center gap-1.5 text-sm font-semibold text-amber-600 hover:text-amber-700 bg-amber-50 hover:bg-amber-100 px-3 py-1.5 rounded-full transition"
                 >
-                  {/* Fila principal */}
-                  <div
-                    className="flex items-center justify-between px-6 py-4 cursor-pointer hover:bg-slate-50 transition"
-                    onClick={() =>
-                      setExpandido(expandido === product.id ? null : product.id)
-                    }
-                  >
-                    <div className="flex-1">
+                  <Gift size={15} />
+                  Ver premios Segurísimos
+                </button>
+              )}
+            </div>
+
+            {resultados.map(({
+              product, cat, isSeniors,
+              subtotal, descFamiliar, descComercial, total,
+              preciosPorPersona, hayNulos,
+              totalPuntos, totalAbono,
+              puntosXAseg, abonoXAseg,
+            }) => (
+              <div
+                key={product.id}
+                className="bg-white rounded-2xl shadow-sm overflow-hidden"
+              >
+                {/* Fila principal */}
+                <div
+                  className="flex items-center justify-between px-6 py-4 cursor-pointer hover:bg-slate-50 transition"
+                  onClick={() =>
+                    setExpandido(expandido === product.id ? null : product.id)
+                  }
+                >
+                  <div className="flex-1 min-w-0 pr-4">
+                    <div className="flex flex-wrap items-center gap-2">
                       <p className="font-bold text-slate-800">{product.name}</p>
-                      {hayNulos && (
-                        <p className="text-xs text-amber-500 mt-0.5">
-                          ⚠ Algunas personas fuera del rango de edad
-                        </p>
-                      )}
-                      {!hayNulos && conDescuento && (
-                        <p className="text-xs text-slate-400 mt-0.5">
-                          Subtotal {subtotal.toFixed(2)}€ · Descuento {descuento.toFixed(2)}€
-                        </p>
+                      {/* Badge dental */}
+                      {(cat === "salud_con" || cat === "seniors_con") && (
+                        <span className="text-xs px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full font-semibold">
+                          🦷 Con dental
+                        </span>
                       )}
                     </div>
 
-                    <div className="flex items-center gap-4">
-                      <div className="text-right">
-                        {conDescuento && (
-                          <p className="text-xs line-through text-slate-400">
-                            {subtotal.toFixed(2)}€
-                          </p>
-                        )}
-                        <p className={`text-2xl font-bold ${conDescuento ? "text-green-600" : "text-[#009DD9]"}`}>
-                          {total.toFixed(2)}€
-                        </p>
-                        <p className="text-xs text-slate-400">/ mes</p>
-                      </div>
-                      {expandido === product.id
-                        ? <ChevronUp size={18} className="text-slate-400" />
-                        : <ChevronDown size={18} className="text-slate-400" />
-                      }
+                    {hayNulos && (
+                      <p className="text-xs text-amber-500 mt-0.5">
+                        ⚠ Algunas personas fuera del rango de edad
+                      </p>
+                    )}
+
+                    {/* Incentivo campaña */}
+                    <div className="mt-1.5 flex flex-wrap gap-2">
+                      {!isSeniors && totalPuntos > 0 && (
+                        <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full">
+                          ⭐ {totalPuntos.toLocaleString()} puntos
+                          <span className="font-normal text-amber-500">
+                            ({puntosXAseg.toLocaleString()} × {asegurados.length} aseg.)
+                          </span>
+                        </span>
+                      )}
+                      {isSeniors && totalAbono > 0 && (
+                        <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-green-50 text-green-700 border border-green-200 rounded-full">
+                          💶 Abono en cuenta: {totalAbono} €
+                          <span className="font-normal text-green-500">
+                            ({abonoXAseg} € × {asegurados.length} aseg.)
+                          </span>
+                        </span>
+                      )}
                     </div>
+
+                    {/* Resumen descuentos aplicados en la fila */}
+                    {(conDescuentoFamiliar || descuentoComercial > 0) && (
+                      <p className="text-xs text-slate-400 mt-0.5">
+                        Bruto {subtotal.toFixed(2)} €
+                        {conDescuentoFamiliar && ` · Familiar -${descFamiliar.toFixed(2)} €`}
+                        {descuentoComercial > 0 && ` · Comercial -${descComercial.toFixed(2)} €`}
+                      </p>
+                    )}
                   </div>
 
-                  {/* Desglose expandido */}
-                  {expandido === product.id && (
-                    <div className="border-t border-slate-100 px-6 py-4 bg-slate-50">
-                      <table className="w-full text-sm">
-                        <thead>
-                          <tr className="text-slate-400 text-xs uppercase">
-                            <th className="text-left font-semibold pb-2">Persona</th>
-                            <th className="text-left font-semibold pb-2">Edad</th>
-                            <th className="text-left font-semibold pb-2">Tramo</th>
-                            <th className="text-right font-semibold pb-2">Prima</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-100">
-                          {preciosPorPersona.map((p, i) => (
-                            <tr key={i}>
-                              <td className="py-2 text-slate-500">Persona {i + 1}</td>
-                              <td className="py-2 font-semibold text-slate-700">{p.edad} años</td>
-                              <td className="py-2 text-slate-500">{p.banda}</td>
-                              <td className="py-2 text-right font-bold text-slate-800">
-                                {p.precio !== null ? `${p.precio.toFixed(2)}€` : <span className="text-amber-400 text-xs font-semibold">N/D</span>}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                        <tfoot>
-                          <tr className="border-t border-slate-200">
-                            <td colSpan={3} className="pt-3 text-sm font-semibold text-slate-600">
-                              Subtotal
-                            </td>
-                            <td className="pt-3 text-right font-bold text-slate-800">
-                              {subtotal.toFixed(2)}€
-                            </td>
-                          </tr>
-                          {conDescuento && (
-                            <tr>
-                              <td colSpan={3} className="py-1 text-sm text-green-600 font-semibold">
-                                Descuento 10% (grupo familiar)
-                              </td>
-                              <td className="py-1 text-right text-green-600 font-bold">
-                                -{descuento.toFixed(2)}€
-                              </td>
-                            </tr>
-                          )}
-                          <tr className="border-t-2 border-slate-300">
-                            <td colSpan={3} className="pt-2 text-base font-bold text-slate-800">
-                              Total mensual
-                            </td>
-                            <td className={`pt-2 text-right text-xl font-bold ${conDescuento ? "text-green-600" : "text-[#009DD9]"}`}>
-                              {total.toFixed(2)}€
-                            </td>
-                          </tr>
-                        </tfoot>
-                      </table>
+                  <div className="flex items-center gap-4 shrink-0">
+                    <div className="text-right">
+                      {(conDescuentoFamiliar || descuentoComercial > 0) && (
+                        <p className="text-xs line-through text-slate-400">
+                          {subtotal.toFixed(2)} €
+                        </p>
+                      )}
+                      <p className={`text-2xl font-bold ${
+                        conDescuentoFamiliar || descuentoComercial > 0
+                          ? "text-green-600"
+                          : "text-[#009DD9]"
+                      }`}>
+                        {total.toFixed(2)} €
+                      </p>
+                      <p className="text-xs text-slate-400">/ mes</p>
                     </div>
-                  )}
+                    {expandido === product.id
+                      ? <ChevronUp size={18} className="text-slate-400" />
+                      : <ChevronDown size={18} className="text-slate-400" />
+                    }
+                  </div>
                 </div>
-              ))}
+
+                {/* Desglose expandido */}
+                {expandido === product.id && (
+                  <div className="border-t border-slate-100 px-6 py-4 bg-slate-50">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-slate-400 text-xs uppercase">
+                          <th className="text-left font-semibold pb-2">Persona</th>
+                          <th className="text-left font-semibold pb-2">Edad</th>
+                          <th className="text-left font-semibold pb-2">Tramo</th>
+                          <th className="text-right font-semibold pb-2">Prima</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {preciosPorPersona.map((p, i) => (
+                          <tr key={i}>
+                            <td className="py-2 text-slate-500">Persona {i + 1}</td>
+                            <td className="py-2 font-semibold text-slate-700">{p.edad} años</td>
+                            <td className="py-2 text-slate-500">{p.banda}</td>
+                            <td className="py-2 text-right font-bold text-slate-800">
+                              {p.precio !== null
+                                ? `${p.precio.toFixed(2)} €`
+                                : <span className="text-amber-400 text-xs font-semibold">N/D</span>
+                              }
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                      <tfoot className="text-sm">
+                        <tr className="border-t border-slate-200">
+                          <td colSpan={3} className="pt-3 font-semibold text-slate-600">Subtotal bruto</td>
+                          <td className="pt-3 text-right font-bold text-slate-800">{subtotal.toFixed(2)} €</td>
+                        </tr>
+                        {conDescuentoFamiliar && (
+                          <tr>
+                            <td colSpan={3} className="py-1 text-green-600 font-semibold">
+                              Descuento familiar 10% (≥4 asegurados)
+                            </td>
+                            <td className="py-1 text-right text-green-600 font-bold">
+                              -{descFamiliar.toFixed(2)} €
+                            </td>
+                          </tr>
+                        )}
+                        {descuentoComercial > 0 && (
+                          <tr>
+                            <td colSpan={3} className="py-1 text-[#009DD9] font-semibold">
+                              Descuento comercial {descuentoComercial}%
+                            </td>
+                            <td className="py-1 text-right text-[#009DD9] font-bold">
+                              -{descComercial.toFixed(2)} €
+                            </td>
+                          </tr>
+                        )}
+                        <tr className="border-t-2 border-slate-300">
+                          <td colSpan={3} className="pt-2 text-base font-bold text-slate-800">Total mensual</td>
+                          <td className={`pt-2 text-right text-xl font-bold ${
+                            conDescuentoFamiliar || descuentoComercial > 0 ? "text-green-600" : "text-[#009DD9]"
+                          }`}>
+                            {total.toFixed(2)} €
+                          </td>
+                        </tr>
+                        {/* Incentivo */}
+                        {!isSeniors && totalPuntos > 0 && (
+                          <tr>
+                            <td colSpan={4} className="pt-3">
+                              <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
+                                <p className="text-sm font-bold text-amber-800">
+                                  ⭐ Campaña Segurísimos · Puntos
+                                </p>
+                                <p className="text-xs text-amber-700 mt-0.5">
+                                  {puntosXAseg.toLocaleString()} puntos × {asegurados.length} asegurado{asegurados.length > 1 ? "s" : ""}
+                                  {" = "}
+                                  <span className="font-bold text-lg text-amber-800">
+                                    {totalPuntos.toLocaleString()} puntos
+                                  </span>
+                                </p>
+                                <p className="text-xs text-amber-600 mt-1">
+                                  {labelDental(cat)} ·{" "}
+                                  {asegurados.length >= 3 ? "Tarifa 3+ asegurados" : "Tarifa 1-2 asegurados"}
+                                </p>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                        {isSeniors && totalAbono > 0 && (
+                          <tr>
+                            <td colSpan={4} className="pt-3">
+                              <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-3">
+                                <p className="text-sm font-bold text-green-800">
+                                  💶 Campaña Segurísimos · Abono en cuenta
+                                </p>
+                                <p className="text-xs text-green-700 mt-0.5">
+                                  {abonoXAseg} € × {asegurados.length} asegurado{asegurados.length > 1 ? "s" : ""}
+                                  {" = "}
+                                  <span className="font-bold text-lg text-green-800">
+                                    {totalAbono} €
+                                  </span>
+                                </p>
+                                <p className="text-xs text-green-600 mt-1">
+                                  {cat === "seniors_con" ? "Con dental (Seniors Total)" : "Sin dental"} ·{" "}
+                                  {asegurados.length >= 3 ? "Tarifa 3+ asegurados" : "Tarifa 1-2 asegurados"} ·{" "}
+                                  Abono directo en cuenta bancaria
+                                </p>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </tfoot>
+                    </table>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
 
-          {/* Footer */}
+          {/* ── Catálogo de premios Segurísimos ── */}
+          {maxPuntos > 0 && (
+            <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+              <button
+                onClick={() => setMostrarPremios((v) => !v)}
+                className="w-full flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition"
+              >
+                <div className="flex items-center gap-3">
+                  <Gift size={20} className="text-amber-500" />
+                  <div className="text-left">
+                    <p className="font-bold text-slate-800">Catálogo de premios · Segurísimos</p>
+                    <p className="text-xs text-slate-500">
+                      Con {maxPuntos.toLocaleString()} puntos máx. ·{" "}
+                      {premiosAlcanzables.length > 0
+                        ? `Hasta ${premiosAlcanzables.at(-1)?.items.join(", ")}`
+                        : "Aún no se alcanzan premios"}
+                    </p>
+                  </div>
+                </div>
+                {mostrarPremios
+                  ? <ChevronUp size={18} className="text-slate-400" />
+                  : <ChevronDown size={18} className="text-slate-400" />
+                }
+              </button>
+
+              {mostrarPremios && (
+                <div className="border-t border-slate-100 px-6 py-5">
+                  {/* Tarjeta prepago – siempre visible */}
+                  <div className="mb-4 p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-600">
+                    🎴 <strong>Tarjeta prepago MoneyToPay</strong> · Cada 500 puntos = 50 € de saldo
+                    {maxPuntos >= 500 && (
+                      <span className="ml-2 font-bold text-green-600">
+                        → {Math.floor(maxPuntos / 500) * 50} € disponibles
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {PREMIOS.map((nivel) => {
+                      const alcanzado = maxPuntos >= nivel.pts;
+                      return (
+                        <div
+                          key={nivel.pts}
+                          className={`rounded-xl border p-4 ${
+                            alcanzado
+                              ? "border-amber-300 bg-amber-50"
+                              : "border-slate-200 bg-slate-50 opacity-50"
+                          }`}
+                        >
+                          <p className={`text-xs font-bold mb-2 ${
+                            alcanzado ? "text-amber-700" : "text-slate-500"
+                          }`}>
+                            {alcanzado ? "✓" : "🔒"} {nivel.pts.toLocaleString()} puntos
+                          </p>
+                          <ul className="space-y-1">
+                            {nivel.items.map((item, i) => (
+                              <li key={i} className={`text-xs ${alcanzado ? "text-amber-800" : "text-slate-500"}`}>
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <p className="text-xs text-slate-400 mt-4 text-center">
+                    Campaña válida hasta el 30/06/2026 · Catálogo sujeto a disponibilidad
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ── Nota PYMES ── */}
+          <div className="bg-blue-50 border border-blue-200 rounded-2xl px-6 py-4 text-sm text-blue-800">
+            <p className="font-bold mb-1">ℹ️ Adeslas PYMES Total</p>
+            <p className="text-xs text-blue-700">
+              No acumula puntos en la campaña Segurísimos. Descuento máximo: <strong>10%</strong> (5% agente + 5% compañía).
+              El descuento comercial se gestiona directamente al emitir la póliza.
+            </p>
+          </div>
+
+          {/* ── Footer ── */}
           <p className="text-center text-xs text-slate-400 pb-4">
             Tarifas 2026 · Solo para uso interno · No compartir públicamente
           </p>
