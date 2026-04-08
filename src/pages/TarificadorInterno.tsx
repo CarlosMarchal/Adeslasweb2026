@@ -348,6 +348,7 @@ export default function TarificadorInterno() {
                       </span>
                       <input
                         type="number"
+                        inputMode="numeric"
                         value={rawEdad}
                         onChange={(e) => setEdad(i, e.target.value)}
                         onFocus={(e) => e.target.select()}
