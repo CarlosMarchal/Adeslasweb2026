@@ -227,6 +227,7 @@ const Header = () => {
   const [navPhone, setNavPhone] = useState("");
   const [mobilePhone, setMobilePhone] = useState("");
   const [showThankYouModal, setShowThankYouModal] = useState(false);
+  const [stickyBottom, setStickyBottom] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
   const megaTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const { openTarificador } = useTarificador();
@@ -255,6 +256,24 @@ const Header = () => {
       window.removeEventListener("resize", measureHeader);
     };
   }, [measureHeader]);
+
+  /* ── Mantiene el sticky bar visible aunque la barra del browser (iOS Safari)
+        aparezca al hacer scroll hacia arriba. VisualViewport da la altura real
+        del viewport visible, excluyendo la chrome dinámica del navegador.    ── */
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const update = () => {
+      setStickyBottom(Math.max(0, window.innerHeight - vv.offsetTop - vv.height));
+    };
+    vv.addEventListener("resize", update);
+    vv.addEventListener("scroll", update);
+    update();
+    return () => {
+      vv.removeEventListener("resize", update);
+      vv.removeEventListener("scroll", update);
+    };
+  }, []);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -544,8 +563,12 @@ const Header = () => {
 
       {/* ── Mobile sticky bottom bar ── */}
       <div
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-[500] bg-white border-t border-borde flex gap-2.5 px-4 pt-2.5"
-        style={{ boxShadow: "0 -4px 20px rgba(0,48,135,0.10)", paddingBottom: "max(0.625rem, env(safe-area-inset-bottom))" }}
+        className="lg:hidden fixed left-0 right-0 z-[500] bg-white border-t border-borde flex gap-2.5 px-4 pt-2.5"
+        style={{
+          bottom: stickyBottom,
+          boxShadow: "0 -4px 20px rgba(0,48,135,0.10)",
+          paddingBottom: "max(0.625rem, env(safe-area-inset-bottom))",
+        }}
       >
         <button onClick={openPhonePopup}
             className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm border-2 active:scale-[0.98]"
