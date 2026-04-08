@@ -1,13 +1,16 @@
 import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
-import ContactCtaCard from "@/components/ContactCtaCard";
+import ContactCtaCardWhatsApp from "@/components/ContactCtaCardWhatsApp";
 import heroImg from "@/assets/seguro-medico-adeslas-empresas.webp";
+
+const WA_NUMBER  = "34615568486";
+const WA_MESSAGE = "Hola, estoy interesado en el seguro de Adeslas para el colectivo de empleados y familiares de Adif-Renfe.";
 
 const data: ProductPageData = {
   seoTitle:
     "Adeslas ADIF Renfe | Seguro Médico para Empleados · Precios 2026",
   seoDescription:
-    "Seguro médico Adeslas para empleados y familiares de Renfe y ADIF. Cobertura completa, videoconsultas, rehabilitación sin límite y asistencia en el extranjero. Desde 49,59€/mes. Llama al 91 710 50 00.",
+    "Seguro médico Adeslas para empleados y familiares de Renfe y ADIF. Cobertura completa, videoconsultas, rehabilitación sin límite y asistencia en el extranjero. Desde 49,59€/mes. Llama al 615 56 84 86.",
   seoCanonical:
     "https://adeslas.numero1salud.es/adeslas-adif-renfe/",
   seoOgImage: "https://adeslas.numero1salud.es/og-adif-renfe.jpg",
@@ -36,8 +39,17 @@ const data: ProductPageData = {
     "Seguro médico Adeslas con cobertura completa para empleados y familiares de Renfe y ADIF. Accede a más de 42.000 especialistas en toda España con precios exclusivos de colectivo.",
   price: "desde 49",
   pricePeriod: "/mes",
-  customTarificador: <ContactCtaCard />,
-  usePhoneCallCta: true,
+  customTarificador: (
+    <ContactCtaCardWhatsApp
+      waNumber={WA_NUMBER}
+      waMessage={WA_MESSAGE}
+      phoneDisplay="615568486"
+      phoneLabel="615 56 84 86"
+    />
+  ),
+  useWhatsAppCta: true,
+  whatsAppPhone: WA_NUMBER,
+  whatsAppMessage: WA_MESSAGE,
   hubspotSource: 322,
   hideHeroBadges: true,
   cardName: "Adeslas Renfe y ADIF",
@@ -162,7 +174,7 @@ const data: ProductPageData = {
         "Exclusivo para empleados y familiares de Renfe y ADIF",
         "Cuestionario de salud obligatorio",
         "La antigüedad se mantiene si el cambio se realiza el mismo día",
-        "Para información y contratación: 91 710 50 00",
+        "Para información y contratación: 615 56 84 86",
       ],
     },
   ],
@@ -185,7 +197,7 @@ const data: ProductPageData = {
     },
     {
       q: "¿Cómo puedo contratar?",
-      a: "Llama al 91 710 50 00 o solicita que te llamemos. Un asesor especializado gestionará tu alta con precios de colectivo.",
+      a: "Llama al 615 56 84 86 o solicita que te llamemos. Un asesor especializado gestionará tu alta con precios de colectivo.",
     },
   ],
   schemaFaq: true,

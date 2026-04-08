@@ -102,6 +102,9 @@ export interface ProductPageData {
   /* Predefined WhatsApp message (used when useWhatsAppCta is true) */
   whatsAppMessage?: string;
 
+  /* WhatsApp phone number with country code, no + (e.g. "34615568486"). Defaults to the main office number. */
+  whatsAppPhone?: string;
+
   /* Optional promo banner shown in hero below subtitle */
   heroPromo?: string;
 
@@ -438,7 +441,7 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
             </div>
             {data.useWhatsAppCta ? (
               <a
-                href={`https://wa.me/34611394319${data.whatsAppMessage ? `?text=${encodeURIComponent(data.whatsAppMessage)}` : ""}`}
+                href={`https://wa.me/${data.whatsAppPhone ?? "34611394319"}${data.whatsAppMessage ? `?text=${encodeURIComponent(data.whatsAppMessage)}` : ""}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full text-center py-3 rounded-lg font-bold text-sm cursor-pointer btn-cta-whatsapp"
@@ -598,12 +601,22 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
   const { openPhonePopup } = usePhonePopup();
 
   // Mobile sticky CTA routing:
+  // - WhatsApp pages         → open WhatsApp in new tab
   // - customTarificador pages → phone popup (no calculator)
   // - regular product pages  → scroll to the inline tarificador below the hero
-  const mobileCalcAction = data.customTarificador
-    ? () => openPhonePopup(data.hubspotSource ?? 301)
-    : () => document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth" });
-  const mobileCalcLabel = data.customTarificador ? "Solicitar llamada" : undefined;
+  const waPhone = data.whatsAppPhone ?? "34611394319";
+  const waMsg   = data.whatsAppMessage ?? "";
+  const waUrl   = `https://wa.me/${waPhone}${waMsg ? `?text=${encodeURIComponent(waMsg)}` : ""}`;
+  const mobileCalcAction = data.useWhatsAppCta
+    ? () => window.open(waUrl, "_blank", "noopener,noreferrer")
+    : data.customTarificador
+      ? () => openPhonePopup(data.hubspotSource ?? 301)
+      : () => document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth" });
+  const mobileCalcLabel = data.useWhatsAppCta
+    ? "WhatsApp"
+    : data.customTarificador
+      ? "Solicitar llamada"
+      : undefined;
 
   useEffect(() => {
     window.scrollTo(0, 0);
