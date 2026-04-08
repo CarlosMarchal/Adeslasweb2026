@@ -160,6 +160,7 @@ export default function TarificadorInterno() {
   const [descuentoComercial, setDescuentoComercial] = useState<number>(0);
   const [descuentoPymes, setDescuentoPymes]         = useState<number>(0);
   const [mostrarPremios, setMostrarPremios] = useState(false);
+  const [grupo, setGrupo] = useState<"general" | "seniors" | "pymes">("general");
 
   const zona        = getZoneFromProvince(provincia);
   const pctGeneral  = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
@@ -233,6 +234,15 @@ export default function TarificadorInterno() {
       .sort((a, b) => a.total - b.total);
   }, [asegurados, zona, pctGeneral, pctPymes, hayMayoresDe70, contMenoresDe65]);
 
+  /* ── Filtrado por grupo seleccionado ── */
+  const SENIORS_IDS = new Set(["seniors", "seniors-total"]);
+  const PYMES_IDS   = new Set(["pymes-total"]);
+  const resultadosFiltrados = resultados.filter((r) => {
+    if (grupo === "seniors") return SENIORS_IDS.has(r.product.id);
+    if (grupo === "pymes")   return PYMES_IDS.has(r.product.id);
+    return !SENIORS_IDS.has(r.product.id) && !PYMES_IDS.has(r.product.id);
+  });
+
   /* ── Resumen de incentivos (para el cartel de premios) ── */
   const maxPuntos = Math.max(0, ...resultados.map((r) => r.totalPuntos));
 
@@ -278,6 +288,27 @@ export default function TarificadorInterno() {
         </div>
 
         <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+
+          {/* ── Selector de grupo de productos ── */}
+          <div className="flex gap-2 flex-wrap">
+            {([
+              { id: "general", label: "Seguros de salud",   emoji: "🏥" },
+              { id: "seniors", label: "Adeslas Seniors",    emoji: "👴" },
+              { id: "pymes",   label: "Pymes Total",        emoji: "🏢" },
+            ] as const).map(({ id, label, emoji }) => (
+              <button
+                key={id}
+                onClick={() => setGrupo(id)}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition border ${
+                  grupo === id
+                    ? "bg-[#009DD9] text-white border-[#009DD9] shadow-md"
+                    : "bg-white text-slate-600 border-slate-200 hover:border-[#009DD9] hover:text-[#009DD9]"
+                }`}
+              >
+                <span>{emoji}</span> {label}
+              </button>
+            ))}
+          </div>
 
           {/* ── Panel de controles ── */}
           <div className="bg-white rounded-2xl shadow-sm p-6 space-y-6">
@@ -469,7 +500,7 @@ export default function TarificadorInterno() {
               )}
             </div>
 
-            {resultados.length === 0 && (
+            {resultadosFiltrados.length === 0 && (
               <div className="bg-white rounded-2xl shadow-sm px-6 py-8 text-center text-slate-500">
                 <p className="text-3xl mb-3">🔍</p>
                 <p className="font-semibold text-slate-700">Sin productos disponibles</p>
@@ -481,7 +512,7 @@ export default function TarificadorInterno() {
               </div>
             )}
 
-            {resultados.map(({
+            {resultadosFiltrados.map(({
               product, cat, isSeniors,
               subtotal, descAuto, ratioAuto, descComercial, total,
               preciosPorPersona, hayNulos,
