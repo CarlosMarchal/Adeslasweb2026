@@ -278,6 +278,22 @@ export const products: ProductPricing[] = [
     },
   },
 
+  /* ── ADESLAS PYMES TOTAL ── */
+  {
+    id: "pymes-total",
+    name: "Adeslas Pymes Total",
+    slug: "/seguro-salud/pymes/",
+    maxAge: 99,
+    ageType: "range",
+    prices: {
+      "0-44":  [60,  62,  63,  65,  66,  67],
+      "45-54": [72,  73,  75,  76,  79,  80],
+      "55-59": [89,  95,  98,  99, 105, 110],
+      "60-67": [125, 129, 135, 139, 139, 145],
+      "≥68":   [189, 199, 205, 209, 219, 225],
+    },
+  },
+
   /* ── ADESLAS SENIORS ── */
   {
     id: "seniors",

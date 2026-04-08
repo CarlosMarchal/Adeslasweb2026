@@ -71,6 +71,7 @@ const CAMPAIGN_CAT: Record<string, CampaignCat> = {
   "completa":         "salud_con",   // Plena Total ← con dental
   "reembolso":        "salud_sin",   // Plena Extra
   "plena":            "salud_sin",   // Plena
+  "pymes-total":      "sin_puntos",  // Pymes Total → no acumula puntos, dto comercial hasta 10%
   "negocios-nif":     "salud_sin",   // Negocios NIF
   "seniors":          "seniors_sin", // Seniors → abono en cuenta
   "seniors-total":    "seniors_con", // Seniors Total (con dental) → abono en cuenta
@@ -419,6 +420,11 @@ export default function TarificadorInterno() {
                         ⚠ Algunas personas fuera del rango de edad
                       </p>
                     )}
+                    {product.id === "pymes-total" && asegurados.some(e => e >= 68) && (
+                      <p className="text-xs text-amber-500 mt-0.5">
+                        ⚠ Condición especial para asegurados ≥68 años (ver desglose)
+                      </p>
+                    )}
 
                     {/* Incentivo campaña */}
                     <div className="mt-1.5 flex flex-wrap gap-2">
@@ -608,6 +614,19 @@ export default function TarificadorInterno() {
                                   {cat === "seniors_con" ? "Con dental (Seniors Total)" : "Sin dental"} ·{" "}
                                   {asegurados.length >= 3 ? "Tarifa 3+ asegurados" : "Tarifa 1-2 asegurados"} ·{" "}
                                   Abono directo en cuenta bancaria
+                                </p>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                        {/* Aviso condición Pymes Total ≥68 años */}
+                        {product.id === "pymes-total" && asegurados.some(e => e >= 68) && (
+                          <tr>
+                            <td colSpan={4} className="pt-3">
+                              <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
+                                <p className="text-xs font-bold text-amber-800">⚠️ Condición para asegurados ≥68 años</p>
+                                <p className="text-xs text-amber-700 mt-0.5">
+                                  Por cada asegurado de 68 o más años son necesarios 3 asegurados menores de 60 años en la póliza.
                                 </p>
                               </div>
                             </td>
