@@ -2,12 +2,12 @@
    Source: TARIFAS PARTICULARES Y PYMES 2026
    Prices are monthly (primas netas mensuales).
    Zones: [Zona1, Zona2, Zona3, Zona4, Zona5, Zona6]
-      Zona 1: Extremadura, Murcia y Galicia
-      Zona 2: Canarias, Ceuta y Melilla
-      Zona 3: Andalucía, Cantabria, Comunidad Valenciana y La Rioja
-      Zona 4: Castilla-La Mancha, Madrid y Aragón
-      Zona 5: Cataluña (excepto Barcelona) y Baleares
-      Zona 6: Barcelona y Castilla y León
+      Zona 1: Extremadura, Murcia, Galicia, Canarias, Ceuta y Melilla
+      Zona 2: Andalucía, Cantabria, Comunidad Valenciana y La Rioja
+      Zona 3: Castilla y León
+      Zona 4: Cataluña (excepto Barcelona), Castilla-La Mancha, Madrid y Aragón
+      Zona 5: Barcelona
+      Zona 6: Baleares
 */
 
 export type ZonePrices = [number, number, number, number, number, number];
@@ -25,37 +25,49 @@ export interface ProductPricing {
 
 /* ── Province → Zone mapping ── */
 export const provinceToZone: Record<string, number> = {
-  // ZONA 1: Extremadura, Murcia, Galicia
-  "Badajoz":               1,
-  "Cáceres":               1,
-  "Murcia":                1,
-  "A Coruña":              1,
-  "Lugo":                  1,
-  "Ourense":               1,
-  "Pontevedra":            1,
+  // ZONA 1: Extremadura, Murcia, Galicia, Canarias, Ceuta, Melilla
+  "Badajoz":                1,
+  "Cáceres":                1,
+  "Murcia":                 1,
+  "A Coruña":               1,
+  "Lugo":                   1,
+  "Ourense":                1,
+  "Pontevedra":             1,
+  "Las Palmas":             1,
+  "Santa Cruz de Tenerife": 1,
+  "Ceuta":                  1,
+  "Melilla":                1,
 
-  // ZONA 2: Canarias, Ceuta, Melilla
-  "Las Palmas":            2,
-  "Santa Cruz de Tenerife": 2,
-  "Ceuta":                 2,
-  "Melilla":               2,
+  // ZONA 2: Andalucía, Cantabria, C. Valenciana, La Rioja
+  "Almería":               2,
+  "Cádiz":                 2,
+  "Córdoba":               2,
+  "Granada":               2,
+  "Huelva":                2,
+  "Jaén":                  2,
+  "Málaga":                2,
+  "Sevilla":               2,
+  "Cantabria":             2,
+  "Alicante":              2,
+  "Castellón":             2,
+  "Valencia":              2,
+  "La Rioja":              2,
 
-  // ZONA 3: Andalucía, Cantabria, C. Valenciana, La Rioja
-  "Almería":               3,
-  "Cádiz":                 3,
-  "Córdoba":               3,
-  "Granada":               3,
-  "Huelva":                3,
-  "Jaén":                  3,
-  "Málaga":                3,
-  "Sevilla":               3,
-  "Cantabria":             3,
-  "Alicante":              3,
-  "Castellón":             3,
-  "Valencia":              3,
-  "La Rioja":              3,
+  // ZONA 3: Castilla y León
+  "Ávila":                 3,
+  "Burgos":                3,
+  "León":                  3,
+  "Palencia":              3,
+  "Salamanca":             3,
+  "Segovia":               3,
+  "Soria":                 3,
+  "Valladolid":            3,
+  "Zamora":                3,
 
-  // ZONA 4: Castilla-La Mancha, Madrid, Aragón
+  // ZONA 4: Cataluña (excl. Barcelona), Castilla-La Mancha, Madrid, Aragón
+  "Girona":                4,
+  "Lleida":                4,
+  "Tarragona":             4,
   "Albacete":              4,
   "Ciudad Real":           4,
   "Cuenca":                4,
@@ -66,25 +78,13 @@ export const provinceToZone: Record<string, number> = {
   "Teruel":                4,
   "Zaragoza":              4,
 
-  // ZONA 5: Cataluña (excl. Barcelona), Baleares
-  "Girona":                5,
-  "Lleida":                5,
-  "Tarragona":             5,
-  "Ibiza":                 5,
-  "Mallorca":              5,
-  "Menorca":               5,
+  // ZONA 5: Barcelona
+  "Barcelona":             5,
 
-  // ZONA 6: Barcelona, Castilla y León
-  "Barcelona":             6,
-  "Ávila":                 6,
-  "Burgos":                6,
-  "León":                  6,
-  "Palencia":              6,
-  "Salamanca":             6,
-  "Segovia":               6,
-  "Soria":                 6,
-  "Valladolid":            6,
-  "Zamora":                6,
+  // ZONA 6: Baleares
+  "Ibiza":                 6,
+  "Mallorca":              6,
+  "Menorca":               6,
 };
 
 export const provinces: string[] = [
@@ -400,7 +400,7 @@ export function getPrice(product: ProductPricing, age: number, zone: number): nu
 
 /** Get zone number from province name */
 export function getZoneFromProvince(province: string): number {
-  return provinceToZone[province] ?? 3; // Default zona 3 (Andalucía/Valencia/Cantabria)
+  return provinceToZone[province] ?? 2; // Default zona 2 (Andalucía/Valencia/Cantabria/La Rioja)
 }
 
 /** Get dental monthly price */
