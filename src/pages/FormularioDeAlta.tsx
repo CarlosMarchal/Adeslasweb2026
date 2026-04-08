@@ -16,6 +16,7 @@ const FormularioDeAlta = () => {
       "Gestiona tu alta en Adeslas de forma rápida. Completa el formulario o llama al 91 710 50 00. Marchal Aseguradores, Agente Exclusivo Adeslas.",
     canonical:
       "https://adeslas.numero1salud.es/seguro-salud/adeslas-formulario-de-alta/",
+    noindex: true,
   });
 
   return (

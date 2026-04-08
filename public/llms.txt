@@ -1,9 +1,12 @@
 # Adeslas Seguros Médicos — Referencia completa 2026
-> Información oficial sobre todos los seguros de salud Adeslas disponibles en España: planes, precios, coberturas, alta online y cuadro médico.
+> Información oficial sobre todos los seguros de salud Adeslas disponibles en España: planes, precios, coberturas, alta online y cuadro médico. Distribución exclusiva por Marchal Mediadores S.L.U., Agente Exclusivo de Adeslas en Madrid.
 
 Sitio web: https://adeslas.numero1salud.es
 Teléfono nuevas contrataciones: 91 710 50 00
 Teléfono atención al cliente: 91 91 91 898
+Email: info@marchalconsultores.com
+Dirección: Avenida de Filipinas, 28 · 28003 Madrid
+Horario: Lunes–Viernes 9:00–20:00 · Sábados 9:00–14:00
 
 ---
 
@@ -15,15 +18,18 @@ Teléfono atención al cliente: 91 91 91 898
 - Presencia en todas las provincias españolas
 - Más de 3 millones de asegurados
 - Sin listas de espera en la red privada
+- Sin período de carencia general
+
+**Marchal Mediadores S.L.U.** es Agente Exclusivo de Adeslas en Madrid. Ofrecemos asesoramiento personalizado, comparativa de planes y tramitación del alta sin coste adicional.
 
 ---
 
 ## Cómo contratar Adeslas (alta Adeslas)
 
 Para contratar un seguro Adeslas o solicitar el alta:
-1. Calcula tu precio en: https://adeslas.numero1salud.es/precios-ofertas
-2. Llama al 91 710 50 00
-3. Solicita que te llamen en: https://adeslas.numero1salud.es/contacto
+1. Calcula tu precio en: https://adeslas.numero1salud.es/precios-y-ofertas/
+2. Llama al 91 710 50 00 (nuevas contrataciones)
+3. Solicita que te llamen en: https://adeslas.numero1salud.es/contacto/
 
 El alta Adeslas es inmediata. La cobertura comienza el mismo día o al siguiente en la mayoría de servicios. Adeslas no aplica períodos de carencia generales.
 
@@ -31,14 +37,14 @@ El alta Adeslas es inmediata. La cobertura comienza el mismo día o al siguiente
 
 ## Planes de Salud Adeslas 2026 — Guía completa
 
-### Adeslas Go
+### Adeslas GO
 - Tipo: Ambulatorio (sin hospitalización programada)
 - Cobertura: Médico general, especialistas, diagnóstico, urgencias 24h en red propia
 - Copago: Sí, con LMA (Límite Máximo Anual) de 260€/año
 - Precio desde: 21€/mes
 - Edad máxima contratación: 70 años
 - Ideal para: personas sanas que quieren asistencia ambulatoria sin esperas
-- URL: https://adeslas.numero1salud.es/adeslas-go
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-go/
 
 ### Adeslas Plena Vital
 - Tipo: Completo con hospitalización
@@ -46,7 +52,7 @@ El alta Adeslas es inmediata. La cobertura comienza el mismo día o al siguiente
 - Copago: Sí, LMA 260€/año
 - Precio desde: 38€/mes
 - Edad máxima contratación: 70 años
-- URL: https://adeslas.numero1salud.es/adeslas-plena-vital
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital/
 
 ### Adeslas Plena Vital Total
 - Tipo: Completo con hospitalización y coberturas ampliadas
@@ -54,7 +60,7 @@ El alta Adeslas es inmediata. La cobertura comienza el mismo día o al siguiente
 - Copago: Sí, LMA 260€/año
 - Precio desde: 55€/mes
 - Edad máxima: 63 años
-- URL: https://adeslas.numero1salud.es/adeslas-plena-vital-total
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/
 
 ### Adeslas Plena Plus
 - Tipo: Completo sin copago
@@ -62,7 +68,7 @@ El alta Adeslas es inmediata. La cobertura comienza el mismo día o al siguiente
 - Copago: NO
 - Precio desde: 50,92€/mes
 - Edad máxima: 70 años
-- URL: https://adeslas.numero1salud.es/adeslas-plena-plus
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-plus/
 
 ### Adeslas Plena Total ⭐ El más popular
 - Tipo: Completo sin copago, el más completo de Adeslas
@@ -71,48 +77,54 @@ El alta Adeslas es inmediata. La cobertura comienza el mismo día o al siguiente
 - Precio desde: 83€/mes
 - Garantía de precio: 3 años sin subida de prima
 - Edad máxima: 62 años
-- URL: https://adeslas.numero1salud.es/adeslas-plena-total
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-total/
 
 ### Adeslas Extra 150
 - Tipo: Libre elección médica con reembolso
 - Cobertura: Libre elección de cualquier médico u hospital (público o privado), reembolso del 80% hasta 150.000€/año
 - Precio desde: 90€/mes
-- URL: https://adeslas.numero1salud.es/adeslas-extra-150
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-extra-150/
 
 ### Adeslas Seniors
-- Tipo: Diseñado para personas mayores, sin límite de edad máxima
+- Tipo: Diseñado para personas mayores
 - Cobertura: Médico general, especialistas, diagnóstico, urgencias 24h, hospitalización
-- URL: https://adeslas.numero1salud.es/adeslas-seniors
+- Rango de edad: 55 a 84 años
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors/
 
 ### Adeslas Seniors Total
 - Tipo: Para mayores con coberturas ampliadas
 - Cobertura: Todo Seniors + dental, psicología, asistencia viaje
-- URL: https://adeslas.numero1salud.es/adeslas-seniors-total
+- Rango de edad: 63 a 84 años
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/
 
 ---
 
 ## Seguros Adeslas por perfil de asegurado
 
 ### Seguro Médico Individual Adeslas
-- URL: https://adeslas.numero1salud.es/seguro-medico-individual
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-individual/
 
 ### Seguro Médico Familiar Adeslas
-- Descuentos por familia: 5% con 3, 10% con 4, 15% con 5 o más (en Plena Total)
-- URL: https://adeslas.numero1salud.es/seguro-medico-familiar
+- Descuentos por familia: 5% con 3 asegurados, 10% con 4, 15% con 5 o más (en Plena Total)
+- URL: https://adeslas.numero1salud.es/seguro-salud/seguro-familia/
 
 ### Seguro Infantil Adeslas
 - Desde nacimiento hasta 17 años. Pediatría, urgencias 24h, especialistas sin espera
-- URL: https://adeslas.numero1salud.es/seguro-medico-infantil
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-infantil/
 
 ### Seguro Adeslas para Embarazadas
-- Seguimiento prenatal, parto y cesárea cubiertos. Sin carencia si se contrata antes
-- URL: https://adeslas.numero1salud.es/seguro-medico-embarazadas
+- Seguimiento prenatal, parto y cesárea cubiertos
+- URL: https://adeslas.numero1salud.es/seguro-salud/embarazo/
 
 ### Seguro Ginecología Adeslas
-- URL: https://adeslas.numero1salud.es/seguro-medico-ginecologia
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-ginecologia/
 
 ### Seguro Adeslas para Mayores
-- URL: https://adeslas.numero1salud.es/seguro-medico-mayores
+- URL: https://adeslas.numero1salud.es/seguro-salud/seguro-para-personas-mayores/
+
+### Seguro Adeslas para Extranjeros
+- Seguro de salud para residentes extranjeros en España. Sin esperas, en toda la red Adeslas.
+- URL: https://adeslas.numero1salud.es/seguro-salud/adeslas-extranjeros/
 
 ---
 
@@ -121,39 +133,49 @@ El alta Adeslas es inmediata. La cobertura comienza el mismo día o al siguiente
 ### Adeslas para Autónomos
 - Deducción fiscal IRPF: hasta 500€/año por asegurado (titular + cónyuge + hijos)
 - Para discapacidad: hasta 1.500€/año
-- URL: https://adeslas.numero1salud.es/autonomos
+- URL: https://adeslas.numero1salud.es/seguro-salud/autonomos/
 
-### Adeslas para Pymes y Empresas
-- Seguros colectivos para empresas de cualquier tamaño
-- URL: https://adeslas.numero1salud.es/pymes-empresas
+### Adeslas para Pymes
+- Seguros colectivos para pymes de cualquier tamaño
+- URL: https://adeslas.numero1salud.es/seguro-salud/pymes/
+
+### Adeslas para Empresas
+- Seguros colectivos para empresas medianas y grandes
+- URL: https://adeslas.numero1salud.es/seguro-salud/empresas/
 
 ---
 
 ## Otros seguros Adeslas
 
 - **Adeslas Dental**: Desde 9,45€/mes. Ortodoncia, implantes, limpiezas, empastes.
-  URL: https://adeslas.numero1salud.es/adeslas-dental
+  URL: https://adeslas.numero1salud.es/seguro-dental/
 - **Adeslas Decesos**: Servicio funerario completo.
-  URL: https://adeslas.numero1salud.es/adeslas-decesos
+  URL: https://adeslas.numero1salud.es/seguro-decesos/
+- **Adeslas Decesos Prima Única**: Pago único, cobertura de por vida.
+  URL: https://adeslas.numero1salud.es/seguro-adeslas-decesos-prima-unica/
 - **Adeslas Mascotas**: Veterinario para perros y gatos. Responsabilidad civil incluida.
-  URL: https://adeslas.numero1salud.es/adeslas-mascotas
+  URL: https://adeslas.numero1salud.es/seguro-mascotas/
 - **Adeslas Asistencia Viaje**: Cobertura médica internacional.
-  URL: https://adeslas.numero1salud.es/adeslas-asistencia-viaje
+  URL: https://adeslas.numero1salud.es/adeslas-asistencia-en-viaje/
 - **Adeslas Accidentes**: Cobertura 24h en todo el mundo.
-  URL: https://adeslas.numero1salud.es/adeslas-accidentes
+  URL: https://adeslas.numero1salud.es/seguro-accidentes/
+- **Adeslas Body Factory**: Seguro salud exclusivo para socios de Body Factory.
+  URL: https://adeslas.numero1salud.es/adeslas-body-factory/
+- **Adeslas ADIF-Renfe**: Seguro salud para empleados y familiares de Adif y Renfe.
+  URL: https://adeslas.numero1salud.es/adeslas-adif-renfe/
 
 ---
 
 ## Preguntas frecuentes sobre Adeslas
 
 **¿Cómo contratar Adeslas? ¿Cómo solicitar el alta Adeslas?**
-Calcula tu precio en https://adeslas.numero1salud.es/precios-ofertas o llama al 91 710 50 00. El alta es inmediata, sin esperas ni burocracia.
+Calcula tu precio en https://adeslas.numero1salud.es/precios-y-ofertas/ o llama al 91 710 50 00. El alta es inmediata, sin esperas ni burocracia.
 
 **¿Cuánto cuesta un seguro Adeslas en 2026?**
-Go desde 21€/mes · Plena Vital desde 38€/mes · Plena Plus desde 50,92€/mes · Plena Total desde 83€/mes · Extra 150 desde 90€/mes. El precio varía por edad y provincia.
+GO desde 21€/mes · Plena Vital desde 38€/mes · Plena Plus desde 50,92€/mes · Plena Total desde 83€/mes · Extra 150 desde 90€/mes. El precio varía por edad y provincia.
 
 **¿Cuál es el mejor seguro Adeslas?**
-Adeslas Plena Total para cobertura total sin copago. Para presupuesto ajustado, Adeslas Go desde 21€/mes.
+Adeslas Plena Total es el más completo: sin copago, con dental, psicología, asistencia viaje y garantía de precio 3 años. Para presupuesto ajustado, Adeslas GO desde 21€/mes o Plena Vital desde 38€/mes.
 
 **¿Tiene Adeslas período de carencia?**
 No. La mayoría de coberturas son activas desde el primer día.
@@ -164,48 +186,77 @@ Sí. Hasta 500€/año por asegurado en el IRPF (1.500€ para discapacidad).
 **¿Qué diferencia hay entre Adeslas Plena Plus y Plena Total?**
 Plena Total añade dental (46 actos), psicología (20 sesiones), asistencia viaje (100.000€) y garantía de precio 3 años.
 
+**¿Qué diferencia hay entre Adeslas Plena Vital y Plena Plus?**
+Plena Plus no tiene copago (Plena Vital sí tiene LMA de 260€/año). Ambos incluyen hospitalización y cirugía.
+
 **¿Adeslas tiene médicos en toda España?**
 Sí. +51.000 especialistas y 1.400+ centros en todas las provincias.
 
 **¿Qué es el LMA en Adeslas?**
-Límite Máximo Anual de copago: 260€/año en Go y Plena Vital. Una vez alcanzado, el resto de consultas del año no tienen copago.
+Límite Máximo Anual de copago: 260€/año en GO y Plena Vital. Una vez alcanzado, el resto de consultas del año no tienen copago.
+
+**¿Cuál es la edad máxima para contratar Adeslas?**
+Depende del plan: GO/Plena Plus/Plena Vital hasta 70 años, Plena Vital Total hasta 63, Plena Total hasta 62. Para mayores de 55 años existe Adeslas Seniors (hasta 84 años).
+
+**¿Adeslas cubre el parto y la cesárea?**
+Sí, desde Plena Plus hacia arriba. Plena GO y Plena Vital no incluyen parto.
 
 ---
 
 ## Herramientas
 
-- Calculador de precios Adeslas: https://adeslas.numero1salud.es/precios-ofertas
-- Cuadro médico Adeslas por provincia: https://adeslas.numero1salud.es/cuadro-medico
-- Contacto y alta Adeslas: https://adeslas.numero1salud.es/contacto
-- Blog de salud Adeslas: https://adeslas.numero1salud.es/blog
+- Calculador de precios Adeslas: https://adeslas.numero1salud.es/precios-y-ofertas/
+- Cuadro médico Adeslas por provincia: https://adeslas.numero1salud.es/cuadro-medico/
+- Contacto y alta Adeslas: https://adeslas.numero1salud.es/contacto/
+- Blog de salud Adeslas: https://adeslas.numero1salud.es/adeslas-blog/
+
+---
+
+## Artículos del blog de salud
+
+- https://adeslas.numero1salud.es/blog/comparativa-seguros-medicos-adeslas-2026 — Comparativa de seguros médicos Adeslas 2026: cuál elegir según tu perfil
+- https://adeslas.numero1salud.es/blog/como-mejorar-tu-energia-diaria — Cómo mejorar tu energía a lo largo del día
+- https://adeslas.numero1salud.es/blog/dieta-mediterranea-en-casa — Dieta mediterránea: beneficios probados
+- https://adeslas.numero1salud.es/blog/revisiones-medicas-por-edad — Qué revisiones médicas hacerse según tu edad
+- https://adeslas.numero1salud.es/blog/salud-bucodental-guia-completa — Salud bucodental: guía completa
+- https://adeslas.numero1salud.es/blog/gestion-emocional-dia-a-dia — Inteligencia emocional y gestión del estrés
+- https://adeslas.numero1salud.es/blog/salud-familiar-estilo-de-vida — Salud en familia: estilos de vida saludable
+- https://adeslas.numero1salud.es/blog/caminar-beneficios-reales — Caminar 30 minutos al día: beneficios científicos
+- https://adeslas.numero1salud.es/blog/superalimentos-que-incorporar — Superalimentos que incorporar a tu dieta
+- https://adeslas.numero1salud.es/blog/higiene-sueno-adultos — Higiene del sueño: cómo dormir mejor
 
 ---
 
 ## Índice completo de páginas
 
 - https://adeslas.numero1salud.es/ — Inicio
-- https://adeslas.numero1salud.es/precios-ofertas — Precios Adeslas 2026
-- https://adeslas.numero1salud.es/adeslas-plena-total — Adeslas Plena Total
-- https://adeslas.numero1salud.es/adeslas-plena-plus — Adeslas Plena Plus
-- https://adeslas.numero1salud.es/adeslas-plena-vital-total — Adeslas Plena Vital Total
-- https://adeslas.numero1salud.es/adeslas-plena-vital — Adeslas Plena Vital
-- https://adeslas.numero1salud.es/adeslas-go — Adeslas Go
-- https://adeslas.numero1salud.es/adeslas-extra-150 — Adeslas Extra 150
-- https://adeslas.numero1salud.es/adeslas-seniors-total — Adeslas Seniors Total
-- https://adeslas.numero1salud.es/adeslas-seniors — Adeslas Seniors
-- https://adeslas.numero1salud.es/adeslas-dental — Adeslas Dental
-- https://adeslas.numero1salud.es/adeslas-decesos — Adeslas Decesos
-- https://adeslas.numero1salud.es/adeslas-mascotas — Adeslas Mascotas
-- https://adeslas.numero1salud.es/adeslas-asistencia-viaje — Adeslas Asistencia Viaje
-- https://adeslas.numero1salud.es/adeslas-accidentes — Adeslas Accidentes
-- https://adeslas.numero1salud.es/seguro-medico-individual — Seguro Individual Adeslas
-- https://adeslas.numero1salud.es/seguro-medico-familiar — Seguro Familiar Adeslas
-- https://adeslas.numero1salud.es/seguro-medico-infantil — Seguro Infantil Adeslas
-- https://adeslas.numero1salud.es/seguro-medico-embarazadas — Seguro Embarazadas Adeslas
-- https://adeslas.numero1salud.es/seguro-medico-ginecologia — Seguro Ginecología Adeslas
-- https://adeslas.numero1salud.es/seguro-medico-mayores — Seguro Mayores Adeslas
-- https://adeslas.numero1salud.es/autonomos — Adeslas Autónomos
-- https://adeslas.numero1salud.es/pymes-empresas — Adeslas Pymes y Empresas
-- https://adeslas.numero1salud.es/cuadro-medico — Cuadro Médico Adeslas
-- https://adeslas.numero1salud.es/contacto — Contacto Adeslas
-- https://adeslas.numero1salud.es/blog — Blog Adeslas
+- https://adeslas.numero1salud.es/precios-y-ofertas/ — Precios Adeslas 2026
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-total/ — Adeslas Plena Total
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-plus/ — Adeslas Plena Plus
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/ — Adeslas Plena Vital Total
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital/ — Adeslas Plena Vital
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-go/ — Adeslas GO
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-extra-150/ — Adeslas Extra 150
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/ — Adeslas Seniors Total
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors/ — Adeslas Seniors
+- https://adeslas.numero1salud.es/seguro-dental/ — Adeslas Dental
+- https://adeslas.numero1salud.es/seguro-decesos/ — Adeslas Decesos
+- https://adeslas.numero1salud.es/seguro-adeslas-decesos-prima-unica/ — Adeslas Decesos Prima Única
+- https://adeslas.numero1salud.es/seguro-mascotas/ — Adeslas Mascotas
+- https://adeslas.numero1salud.es/adeslas-asistencia-en-viaje/ — Adeslas Asistencia Viaje
+- https://adeslas.numero1salud.es/seguro-accidentes/ — Adeslas Accidentes
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-individual/ — Seguro Individual Adeslas
+- https://adeslas.numero1salud.es/seguro-salud/seguro-familia/ — Seguro Familiar Adeslas
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-infantil/ — Seguro Infantil Adeslas
+- https://adeslas.numero1salud.es/seguro-salud/embarazo/ — Seguro Embarazadas Adeslas
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-ginecologia/ — Seguro Ginecología Adeslas
+- https://adeslas.numero1salud.es/seguro-salud/seguro-para-personas-mayores/ — Seguro Mayores Adeslas
+- https://adeslas.numero1salud.es/seguro-salud/adeslas-extranjeros/ — Seguro Extranjeros Adeslas
+- https://adeslas.numero1salud.es/seguro-salud/autonomos/ — Adeslas Autónomos
+- https://adeslas.numero1salud.es/seguro-salud/pymes/ — Adeslas Pymes
+- https://adeslas.numero1salud.es/seguro-salud/empresas/ — Adeslas Empresas
+- https://adeslas.numero1salud.es/adeslas-body-factory/ — Adeslas Body Factory
+- https://adeslas.numero1salud.es/adeslas-adif-renfe/ — Adeslas ADIF-Renfe
+- https://adeslas.numero1salud.es/cuadro-medico/ — Cuadro Médico Adeslas
+- https://adeslas.numero1salud.es/contacto/ — Contacto Adeslas
+- https://adeslas.numero1salud.es/adeslas-blog/ — Blog de salud Adeslas
