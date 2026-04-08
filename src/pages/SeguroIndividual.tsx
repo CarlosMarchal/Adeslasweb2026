@@ -5,8 +5,8 @@ import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
 const data: SegmentPageData = {
   heroBg,
   seo: {
-    title: "Adeslas Individual | Seguro Médico desde 21€/mes · 3 Meses Gratis · Sin Esperas",
-    description: "Seguro médico Adeslas individual desde 21€/mes. 3 meses gratis y prima fija 3 años sin subidas. Elige entre GO, Plena Vital, Plena Plus o Plena Total. +51.000 médicos, sin listas de espera. Calcula tu precio en 2 minutos.",
+    title: "Adeslas Individual | Seguro Médico desde 21€/mes · Sin Esperas · Prima Fija 3 Años",
+    description: "Seguro médico Adeslas individual desde 21€/mes. Prima fija 3 años sin subidas. Elige entre GO, Plena Vital, Plena Plus o Plena Total. +51.000 médicos, sin listas de espera. Calcula tu precio en 2 minutos.",
     canonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-individual/",
     ogImage: "https://adeslas.numero1salud.es/og-individual.jpg",
     breadcrumbs: [
