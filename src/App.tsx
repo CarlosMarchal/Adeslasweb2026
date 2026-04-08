@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, MemoryRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { captureGclid } from "@/lib/hubspot";
+import { trackPageView } from "@/lib/tracking";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -92,6 +93,7 @@ const ScrollToTop = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     captureGclid();
+    trackPageView(pathname);
   }, [pathname]);
   return null;
 };

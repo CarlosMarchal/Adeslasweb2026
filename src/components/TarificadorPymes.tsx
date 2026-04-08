@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { provinces, getZoneFromProvince } from "@/data/pricing";
 import { submitToHubSpot } from "@/lib/hubspot";
+import { trackTarificadorSubmit } from "@/lib/tracking";
 import { TermsCheckbox } from "@/components/TermsModal";
 
 /* ─────────────────────────────────────────────────────
@@ -226,6 +227,7 @@ const TarificadorPymes = ({ context = "pymes" }: TarificadorPymesProps) => {
       edad1: parsedAges.filter(a => !isNaN(a)).join(","),
       source: 320,
     });
+    trackTarificadorSubmit(`${countryCode}${telefono}`, "tarificador_pymes_320");
 
     setStep(2);
   };

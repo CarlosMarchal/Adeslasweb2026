@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { submitToHubSpot } from "@/lib/hubspot";
+import { trackTarificadorSubmit } from "@/lib/tracking";
 import { TermsCheckbox } from "@/components/TermsModal";
 import {
   products,
@@ -264,16 +265,18 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     setTermsError(false);
 
     // Send lead to HubSpot
+    const source = singleProduct
+      ? (slugToSource[productSlug ?? ""] ?? 203)
+      : 202;
     submitToHubSpot({
       firstname: nombre.trim(),
       email,
       phone: `${countryCode}${telefono}`,
       city: provincia,
       edad1: edades.filter(Boolean).join(","),
-      source: singleProduct
-        ? (slugToSource[productSlug ?? ""] ?? 203)
-        : 202,
+      source,
     });
+    trackTarificadorSubmit(`${countryCode}${telefono}`, `tarificador_${source}`);
 
     // Single product → redirect to personalized landing
     if (singleProduct) {

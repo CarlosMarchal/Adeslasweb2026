@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /mnt/c/DEV/Adeslasweb2026 -type f \\\\\\( -name \"*.ts\" -o -name \"*.tsx\" -o -name \"*.js\" -o -name \"*.html\" \\\\\\) -exec grep -l \"event:\" {} \\\\;)",
+      "Bash(xargs ls:*)",
+      "Bash(grep -l \"onClick\\\\|handleSubmit\\\\|onSubmit\" /mnt/c/DEV/Adeslasweb2026/src/components/*.tsx)",
+      "Bash(grep -r \"push\\\\|event\\\\|tracking\" /mnt/c/DEV/web-asisa-2026/src/components/Tarificador* --include=\"*.tsx\" -n)",
+      "Bash(find /mnt/c/DEV/web-asisa-2026/src -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" \\\\\\) -exec grep -l \"submitToHubSpot\\\\|onClick\\\\|form\\\\|submit\" {} \\\\;)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(gh pr:*)",
+      "Bash(pip install:*)",
+      "Bash(conda install:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(npx tsc:*)",
+      "Bash(npx --no-install tsc --noEmit)",
+      "Bash(npx vite:*)",
+      "Bash(npm install:*)",
+      "Bash(git status:*)"
+    ]
+  }
+}

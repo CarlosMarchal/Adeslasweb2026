@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { submitToHubSpot } from "@/lib/hubspot";
+import { trackGenerateLead, trackClickToCallContratacion, trackClickToCallAsistencia } from "@/lib/tracking";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -289,6 +290,7 @@ const Header = () => {
     e.preventDefault();
     if (navPhone.replace(/\D/g, "").length >= 9) {
       submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 300 });
+      trackGenerateLead(navPhone, "header_desktop_te_llamamos");
       setNavPhone("");
       setShowThankYouModal(true);
     }
@@ -301,6 +303,7 @@ const Header = () => {
     e.preventDefault();
     if (mobilePhone.replace(/\D/g, "").length >= 9) {
       submitToHubSpot({ phone: "+34" + mobilePhone.replace(/\s/g, ""), source: 301 });
+      trackGenerateLead(mobilePhone, "header_mobile_te_llamamos");
       setMobilePhone("");
       setShowPhonePopup(false);
       setShowThankYouModal(true);
@@ -343,6 +346,7 @@ const Header = () => {
               {/* Teléfono 1 */}
               <a
                 href="tel:917105000"
+                onClick={() => trackClickToCallContratacion("header_desktop")}
                 className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-colors hover:border-[#009FE3] group"
                 style={{ borderColor: "#D5E3F0" }}
               >
@@ -357,6 +361,7 @@ const Header = () => {
               {/* Teléfono 2 */}
               <a
                 href="tel:919191898"
+                onClick={() => trackClickToCallAsistencia("header_desktop")}
                 className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-colors hover:border-[#009FE3] group"
                 style={{ borderColor: "#D5E3F0" }}
               >
@@ -528,11 +533,11 @@ const Header = () => {
                 <Link to="/contacto/" onClick={() => setMobileOpen(false)} className="flex items-center justify-between px-5 py-4 text-[15px] font-semibold text-gris-texto hover:bg-gris-claro transition-colors">Contacto<ArrowRight className="w-4 h-4 text-gris-medio" /></Link>
               </div>
               <div className="px-5 py-4 flex flex-col gap-3 border-t border-borde/50" style={{ backgroundColor: "#F8FAFC" }}>
-                <a href="tel:917105000" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-borde text-sm" style={{ color: "#003087" }}>
+                <a href="tel:917105000" onClick={() => trackClickToCallContratacion("header_mobile")} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-borde text-sm" style={{ color: "#003087" }}>
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#E4097D" }}><Phone className="w-4 h-4 text-white" /></div>
                   <div><div className="text-[10px] text-gris-medio font-normal leading-none mb-0.5">Nuevas contrataciones</div><div className="font-bold">91 710 50 00</div></div>
                 </a>
-                <a href="tel:919191898" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-borde text-sm" style={{ color: "#003087" }}>
+                <a href="tel:919191898" onClick={() => trackClickToCallAsistencia("header_mobile")} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-borde text-sm" style={{ color: "#003087" }}>
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#009FE3" }}><Phone className="w-4 h-4 text-white" /></div>
                   <div><div className="text-[10px] text-gris-medio font-normal leading-none mb-0.5">Atención al cliente</div><div className="font-bold">91 91 91 898</div></div>
                 </a>
@@ -586,7 +591,7 @@ const Header = () => {
                   <div className="flex items-center justify-between text-sm"><span className="text-gris-texto font-medium">Sábados</span><span className="font-bold" style={{ color: "#003087" }}>9:00 – 14:00</span></div>
                 </div>
               </div>
-              <a href="tel:917105000" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm border-2" style={{ borderColor: "#E4097D", color: "#E4097D" }} onClick={() => setShowThankYouModal(false)}>
+              <a href="tel:917105000" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm border-2" style={{ borderColor: "#E4097D", color: "#E4097D" }} onClick={() => { trackClickToCallContratacion("thank_you_modal"); setShowThankYouModal(false); }}>
                 <Phone className="w-4 h-4" />O llámanos: 91 710 50 00
               </a>
               <p className="text-[10px] text-gris-medio mt-3">Sin compromiso · Datos protegidos · Respuesta en minutos</p>

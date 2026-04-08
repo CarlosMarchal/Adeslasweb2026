@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useRef, type ReactNode } from "react";
 import { submitToHubSpot, type HubSpotSource } from "@/lib/hubspot";
+import { trackGenerateLead } from "@/lib/tracking";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, X } from "lucide-react";
 import { TermsCheckbox } from "@/components/TermsModal";
@@ -38,6 +39,7 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
     setTermsError(false);
     if (phone.replace(/\D/g, "").length >= 9) {
       submitToHubSpot({ phone: "+34" + phone.replace(/\s/g, ""), source: sourceRef.current });
+      trackGenerateLead(phone, "popup_te_llamamos");
       setSent(true);
       setTimeout(() => { setSent(false); setPhone(""); setTermsAccepted(false); setOpen(false); }, 3000);
     }

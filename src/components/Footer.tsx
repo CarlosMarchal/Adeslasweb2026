@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { trackClickToCallContratacion, trackClickToCallAsistencia } from "@/lib/tracking";
 import logoBlanco from "@/assets/Logo-adeslas-Marchal-blanco.png";
 
 const Footer = () => (
@@ -93,13 +94,13 @@ const Footer = () => (
       <div className="grid md:grid-cols-3 gap-6 mt-10 pt-8 border-t" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
         <div>
           <div className="text-[10px] uppercase tracking-wide text-primary-foreground font-bold mb-1">Nuevas contrataciones</div>
-          <a href="tel:917105000" className="block text-sm hover:text-primary-foreground transition-colors" style={{ color: "rgba(255,255,255,0.7)" }}>
+          <a href="tel:917105000" onClick={() => trackClickToCallContratacion("footer")} className="block text-sm hover:text-primary-foreground transition-colors" style={{ color: "rgba(255,255,255,0.7)" }}>
             91 710 50 00
           </a>
         </div>
         <div>
           <div className="text-[10px] uppercase tracking-wide text-primary-foreground font-bold mb-1">Atención al cliente</div>
-          <a href="tel:919191898" className="block text-sm hover:text-primary-foreground transition-colors" style={{ color: "rgba(255,255,255,0.7)" }}>
+          <a href="tel:919191898" onClick={() => trackClickToCallAsistencia("footer")} className="block text-sm hover:text-primary-foreground transition-colors" style={{ color: "rgba(255,255,255,0.7)" }}>
             91 919 18 98
           </a>
         </div>

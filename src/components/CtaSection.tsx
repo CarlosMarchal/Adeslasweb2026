@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import CalcButton from "@/components/CalcButton";
 import { usePhonePopup } from "@/components/PhonePopupContext";
+import { trackClickToCallContratacion, trackClickToCallAsistencia } from "@/lib/tracking";
 
 interface CtaSectionProps {
   /** When set, overrides the default CalcButton to open a specific tarificador (e.g. TarificadorPymes modal) */
@@ -48,11 +49,11 @@ const CtaSection = ({ onCalcClick }: CtaSectionProps = {}) => {
           </div>
           <div className="flex flex-wrap justify-center gap-8 text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
             <div>
-              <a href="tel:917105000" className="text-primary-foreground font-bold">91 710 50 00</a>
+              <a href="tel:917105000" onClick={() => trackClickToCallContratacion("cta_section")} className="text-primary-foreground font-bold">91 710 50 00</a>
               <div>Nuevas contrataciones</div>
             </div>
             <div>
-              <a href="tel:919191898" className="text-primary-foreground font-bold">91 919 18 98</a>
+              <a href="tel:919191898" onClick={() => trackClickToCallAsistencia("cta_section")} className="text-primary-foreground font-bold">91 919 18 98</a>
               <div>Atención al cliente</div>
             </div>
           </div>

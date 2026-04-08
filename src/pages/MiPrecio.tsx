@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, CheckCircle2, ArrowLeft, Shield, Star, Award, X, Clock } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import logoAzul from "@/assets/Logo-adeslas-Marchal-color.webp";
+import { trackClickToCallContratacion } from "@/lib/tracking";
 
 /* ─── Product data ─── */
 const productData: Record<string, {
@@ -178,6 +179,7 @@ const CallConfirmPopup = ({ nombre, onClose }: { nombre: string; onClose: () => 
       <p className="text-xs text-gris-medio mb-3">¿Prefieres llamar tú? Estamos en</p>
       <a
         href="tel:917105000"
+        onClick={() => trackClickToCallContratacion("mi_precio")}
         className="inline-flex items-center gap-2 font-bold text-sm px-5 py-2.5 rounded-xl text-white btn-cta-magenta"
         style={{ backgroundColor: "#E4097D" }}
       >

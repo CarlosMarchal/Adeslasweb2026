@@ -2,6 +2,7 @@ import { Phone } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { usePhonePopup } from "@/components/PhonePopupContext";
 import type { HubSpotSource } from "@/lib/hubspot";
+import { trackClickToCallContratacion } from "@/lib/tracking";
 
 const pageSourceMap: Record<string, HubSpotSource> = {
   "/seguro-dental/":        308,
@@ -74,6 +75,7 @@ const ContactCtaCard = () => {
         </button>
         <a
           href="tel:917105000"
+          onClick={() => trackClickToCallContratacion("contact_cta_card")}
           className="w-full py-3 rounded-xl font-bold text-sm text-center border-2 btn-cta-light"
           style={{ borderColor: "#009FE3", color: "#009FE3", backgroundColor: "transparent" }}
         >

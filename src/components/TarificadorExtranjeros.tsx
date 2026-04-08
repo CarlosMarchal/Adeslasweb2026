@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackClickToCallContratacion } from "@/lib/tracking";
 import { TermsCheckbox } from "@/components/TermsModal";
 import {
   provinces,
@@ -424,6 +425,7 @@ const TarificadorExtranjeros = ({ compact = false }: Props) => {
                 </p>
                 <a
                   href="tel:917105000"
+                  onClick={() => trackClickToCallContratacion("tarificador_extranjeros")}
                   className="inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm"
                   style={{
                     backgroundColor: "#E4097D",
