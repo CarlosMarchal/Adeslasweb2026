@@ -186,8 +186,7 @@ export default function TarificadorInterno() {
 
         const preciosPorPersona = asegurados.map((edad) => ({
           edad,
-          // Si la edad supera el maxAge del producto → N/D (no contratables)
-          precio: edad > product.maxAge ? null : getPrice(product, edad, zona),
+          precio: getPrice(product, edad, zona),
           banda: getBandLabel(edad),
         }));
 
