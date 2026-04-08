@@ -169,9 +169,12 @@ export default function TarificadorInterno() {
   const hayMayoresDe70  = asegurados.some(e => e > 70);
   const contMenoresDe65 = asegurados.filter(e => e < 65).length;
 
-  function esElegible(_productId: string): boolean {
-    // Si hay algún asegurado >70, se necesitan ≥2 asegurados <65
-    // para poder contratar CUALQUIER producto (incluidos Seniors)
+  function esElegible(productId: string): boolean {
+    const isSeniorsProduct = productId === "seniors" || productId === "seniors-total";
+    // Seniors / Seniors Total: siempre elegibles si hay precio en rango
+    // (la persona puede contratar sola o en grupo, sin condición de edad)
+    if (isSeniorsProduct) return true;
+    // Productos NO Seniors: si hay alguien >70, se necesitan ≥2 asegurados <65
     if (hayMayoresDe70) return contMenoresDe65 >= 2;
     return true;
   }
@@ -434,7 +437,7 @@ export default function TarificadorInterno() {
               <p className="text-xs">
                 {contMenoresDe65 >= 2
                   ? `Hay ${contMenoresDe65} asegurados menores de 65 años. Se pueden contratar todos los productos.`
-                  : `Para contratar cualquier producto con un asegurado mayor de 70 años se necesitan al menos 2 asegurados menores de 65 en la misma póliza. Actualmente hay ${contMenoresDe65}. Añade más asegurados menores de 65 años.`}
+                  : `Los productos Seniors y Seniors Total sí son contratables. Para el resto de productos se necesitan al menos 2 asegurados menores de 65 en la misma póliza (actualmente hay ${contMenoresDe65}).`}
               </p>
             </div>
           )}
