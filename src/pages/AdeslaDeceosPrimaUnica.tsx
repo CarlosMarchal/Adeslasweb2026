@@ -38,6 +38,7 @@ const data: ProductPageData = {
   pricePeriod: "",
   customTarificador: <ContactCtaCard />,
   usePhoneCallCta: true,
+  hubspotSource: 323,
   hideHeroBadges: true,
   hideHeroPrice: true,
   hideCardPrice: true,

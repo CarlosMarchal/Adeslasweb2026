@@ -37,6 +37,7 @@ const data: ProductPageData = {
   pricePeriod: "/mes",
   customTarificador: <ContactCtaCard />,
   usePhoneCallCta: true,
+  hubspotSource: 321,
   hideHeroBadges: true,
   cardName: "Adeslas Body Factory",
   cardDescription:

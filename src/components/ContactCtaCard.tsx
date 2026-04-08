@@ -12,12 +12,15 @@ const pageSourceMap: Record<string, HubSpotSource> = {
   "/seguro-salud/pymes/":        320,
   "/seguro-salud/adeslas-seniors/":       314,
   "/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/": 315,
+  "/adeslas-body-factory/":               321,
+  "/adeslas-adif-renfe/":                 322,
+  "/seguro-adeslas-decesos-prima-unica/": 323,
 };
 
 const ContactCtaCard = () => {
   const { pathname } = useLocation();
   const { openPhonePopup } = usePhonePopup();
-  const source = pageSourceMap[pathname] ?? 201;
+  const source = pageSourceMap[pathname] ?? 301;
 
   return (
     <div className="p-5 flex flex-col gap-4">

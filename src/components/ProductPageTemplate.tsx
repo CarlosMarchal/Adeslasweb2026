@@ -116,6 +116,9 @@ export interface ProductPageData {
 
   /* Hide the price row in the product card (use for prima única or price-on-request products) */
   hideCardPrice?: boolean;
+
+  /* HubSpot source code for phone popup submissions (used when usePhoneCallCta: true) */
+  hubspotSource?: import("@/lib/hubspot").HubSpotSource;
 }
 
 /* ───────── Sub-components ───────── */
@@ -446,7 +449,7 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
               </a>
             ) : data.usePhoneCallCta ? (
               <button
-                onClick={openPhonePopup}
+                onClick={() => openPhonePopup(data.hubspotSource ?? 301)}
                 className="block w-full text-center py-3 rounded-lg text-primary-foreground font-bold text-sm cursor-pointer btn-cta-magenta"
                 style={{ backgroundColor: "#E4097D", borderRadius: "7px" }}
               >
@@ -454,7 +457,7 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
               </button>
             ) : (
               <button
-                onClick={() => openPhonePopup()}
+                onClick={() => openPhonePopup(data.hubspotSource ?? 301)}
                 className="block w-full text-center py-3 rounded-lg text-primary-foreground font-bold text-sm cursor-pointer btn-cta-magenta"
                 style={{ backgroundColor: "#E4097D", borderRadius: "7px" }}
               >
@@ -598,7 +601,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
   // - customTarificador pages → phone popup (no calculator)
   // - regular product pages  → scroll to the inline tarificador below the hero
   const mobileCalcAction = data.customTarificador
-    ? () => openPhonePopup()
+    ? () => openPhonePopup(data.hubspotSource ?? 301)
     : () => document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth" });
   const mobileCalcLabel = data.customTarificador ? "Solicitar llamada" : undefined;
 

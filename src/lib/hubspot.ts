@@ -11,7 +11,7 @@ const ENDPOINT = `https://api.hsforms.com/submissions/v3/integration/submit/${PO
 
 /* Source identifier — ADESLAS range 300-399
    300 = Menu Te Llamamos (nav desktop)
-   301 = Popup Te Llamamos (móvil / header)
+   301 = Popup Te Llamamos (genérico / fallback)
    302 = Tarificador Comparativo
    303 = Adeslas Go
    304 = Adeslas Plena Vital
@@ -30,13 +30,16 @@ const ENDPOINT = `https://api.hsforms.com/submissions/v3/integration/submit/${PO
    317 = Adeslas Accidentes
    318 = Adeslas Mascotas
    319 = Adeslas Autónomos NEGOCIOS
-   320 = Adeslas EMPRESAS / PYMES TOTAL */
+   320 = Adeslas EMPRESAS / PYMES TOTAL
+   321 = Adeslas Body Factory
+   322 = Adeslas ADIF Renfe
+   323 = Adeslas Decesos Prima Única */
 export type HubSpotSource =
   | 300 | 301 | 302
   | 303 | 304 | 305 | 306 | 307
   | 308 | 309 | 310 | 311 | 312
   | 313 | 314 | 315 | 316 | 317 | 318
-  | 319 | 320;
+  | 319 | 320 | 321 | 322 | 323;
 
 export interface HubSpotPayload {
   phone?: string;

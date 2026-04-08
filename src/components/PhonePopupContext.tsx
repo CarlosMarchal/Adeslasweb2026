@@ -16,7 +16,7 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
   const [sent, setSent] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [termsError, setTermsError] = useState(false);
-  const sourceRef = useRef<HubSpotSource>(201);
+  const sourceRef = useRef<HubSpotSource>(301);
 
   const formatPhoneDisplay = (raw: string) => {
     const d = raw.replace(/\D/g, "").slice(0, 9);
@@ -44,7 +44,7 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <Ctx.Provider value={{ openPhonePopup: (source = 201) => { sourceRef.current = source; setOpen(true); } }}>
+    <Ctx.Provider value={{ openPhonePopup: (source = 301) => { sourceRef.current = source; setOpen(true); } }}>
       {children}
 
       <AnimatePresence>
