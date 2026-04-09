@@ -138,7 +138,39 @@ const countryCodes = [
 ];
 
 /* ── Product slug → HubSpot source number ── */
-const slugToSource: Record<string, import("@/lib/hubspot").HubSpotSource> = {};
+const slugToSource: Record<string, import("@/lib/hubspot").HubSpotSource> = {
+  // Slugs tal como vienen de la prop productSlug de cada página
+  "/seguro-salud/adeslas-go/":                                                          303,
+  "/seguro-salud/adeslas-plena-vital/":                                                 304,
+  "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/": 313,
+  "/seguro-salud/adeslas-plena-total/":                                                 305,
+  "/seguro-salud/adeslas-extra-150/":                                                   306,
+  "/seguro-salud/adeslas-plena-plus/":                                                  307,
+  "/seguro-salud/adeslas-seniors/":                                                     314,
+  "/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/":            315,
+  "/seguro-salud/autonomos/":                                                            319,
+  "/seguro-salud/pymes/":                                                               320,
+  "/seguro-salud/empresas/":                                                            320,
+  "/seguro-dental/":                                                                    308,
+  "/seguro-decesos/":                                                                   309,
+  "/seguro-adeslas-decesos-prima-unica/":                                               323,
+  "/seguro-mascotas/":                                                                  318,
+  "/adeslas-asistencia-en-viaje/":                                                      316,
+  "/seguro-accidentes/":                                                                317,
+  "/adeslas-body-factory/":                                                             321,
+  "/adeslas-adif-renfe/":                                                               322,
+  "/adeslas-extranjeros":                                                               312,
+  // Slugs cortos del catálogo de pricing (fallback por si se pasa sin barra inicial)
+  "/adeslas-go":                                                                        303,
+  "/adeslas-plena-vital":                                                               304,
+  "/adeslas-plena-vital-total":                                                         313,
+  "/adeslas-plena-plus":                                                                307,
+  "/adeslas-plena-total":                                                               305,
+  "/adeslas-extra-150":                                                                 306,
+  "seniors":                                                                            314,
+  "seniors-total":                                                                      315,
+  "pymes-total":                                                                        320,
+};
 
 /* ───────── Component ───────── */
 
@@ -266,8 +298,8 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
 
     // Send lead to HubSpot
     const source = singleProduct
-      ? (slugToSource[productSlug ?? ""] ?? 203)
-      : 202;
+      ? (slugToSource[productSlug ?? ""] ?? 302)
+      : 302;
     submitToHubSpot({
       firstname: nombre.trim(),
       email,
