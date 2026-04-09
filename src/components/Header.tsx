@@ -308,7 +308,7 @@ const Header = () => {
   const handleNavPhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (navPhone.replace(/\D/g, "").length >= 9) {
-      submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 300 });
+      submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 301 });
       trackGenerateLead(navPhone, "header_desktop_te_llamamos");
       setNavPhone("");
       setShowThankYouModal(true);

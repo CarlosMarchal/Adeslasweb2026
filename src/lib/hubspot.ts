@@ -10,8 +10,7 @@ const FORM_GUID = "cd3fb712-acc6-42f7-8843-e42f1360c3c4";
 const ENDPOINT = `https://api.hsforms.com/submissions/v3/integration/submit/${PORTAL_ID}/${FORM_GUID}`;
 
 /* Source identifier — ADESLAS range 300-399
-   300 = Menu Te Llamamos (nav desktop)
-   301 = Popup Te Llamamos (genérico / fallback)
+   301 = Te Llamamos (nav desktop + popup genérico / fallback)
    302 = Tarificador Comparativo
    303 = Adeslas Go
    304 = Adeslas Plena Vital
@@ -35,7 +34,7 @@ const ENDPOINT = `https://api.hsforms.com/submissions/v3/integration/submit/${PO
    322 = Adeslas ADIF Renfe
    323 = Adeslas Decesos Prima Única */
 export type HubSpotSource =
-  | 300 | 301 | 302
+  | 301 | 302
   | 303 | 304 | 305 | 306 | 307
   | 308 | 309 | 310 | 311 | 312
   | 313 | 314 | 315 | 316 | 317 | 318
