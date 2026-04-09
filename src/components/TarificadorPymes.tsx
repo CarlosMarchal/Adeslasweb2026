@@ -133,7 +133,7 @@ const TarificadorPymes = ({ context = "pymes" }: TarificadorPymesProps) => {
   const [countryCode,   setCountryCode]   = useState("+34");
   const [telefono,      setTelefono]      = useState("");
   const [provincia,     setProvincia]     = useState("");
-  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(true);
   const [termsError,    setTermsError]    = useState(false);
   const [emailError,    setEmailError]    = useState("");
   const [phoneError,    setPhoneError]    = useState("");

@@ -163,7 +163,7 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
   const [ageError, setAgeError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
-  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(true);
   const [termsError, setTermsError] = useState(false);
 
   const singleProduct = productSlug

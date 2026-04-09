@@ -15,7 +15,7 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(false);
   const [phone, setPhone] = useState("");
   const [sent, setSent] = useState(false);
-  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(true);
   const [termsError, setTermsError] = useState(false);
   const sourceRef = useRef<HubSpotSource>(301);
 

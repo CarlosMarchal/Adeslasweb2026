@@ -95,7 +95,7 @@ const TarificadorExtranjeros = ({ compact = false }: Props) => {
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
-  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(true);
   const [termsError, setTermsError] = useState(false);
   const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
   const [pendingModalidad, setPendingModalidad] = useState<"residentes" | "estudiantes" | "">("");
