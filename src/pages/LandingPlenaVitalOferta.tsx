@@ -124,7 +124,7 @@ const LandingPlenaVitalOferta = () => {
               </div>
 
               <button
-                onClick={() => openPhonePopup(201)}
+                onClick={() => openPhonePopup(313)}
                 className="inline-block px-8 py-4 rounded-lg font-bold text-lg text-white transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
                 style={{ backgroundColor: "#E4097D" }}
               >
@@ -219,7 +219,7 @@ const LandingPlenaVitalOferta = () => {
               </div>
 
               <button
-                onClick={() => openPhonePopup(201)}
+                onClick={() => openPhonePopup(313)}
                 className="inline-block px-8 py-4 rounded-lg font-bold text-lg text-white transition-all duration-200 hover:shadow-lg hover:-translate-y-1 w-full sm:w-auto"
                 style={{ backgroundColor: "#E4097D" }}
               >
@@ -317,7 +317,7 @@ const LandingPlenaVitalOferta = () => {
                 para explicarte todos los detalles sin compromiso.
               </p>
               <button
-                onClick={() => openPhonePopup(201)}
+                onClick={() => openPhonePopup(313)}
                 className="inline-block px-8 py-4 rounded-lg font-bold text-lg text-white transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
                 style={{ backgroundColor: "#E4097D" }}
               >
