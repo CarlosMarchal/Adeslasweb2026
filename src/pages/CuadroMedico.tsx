@@ -8,9 +8,8 @@ import CtaSection from "@/components/CtaSection";
 import heroBg from "@/assets/adeslas-cuadro-medico.webp";
 
 const stats = [
-  { value: "+40.000", label: "Profesionales médicos" },
-  { value: "+1.000", label: "Centros concertados" },
-  { value: "18", label: "Hospitales propios" },
+  { value: "+51.000", label: "Profesionales médicos" },
+  { value: "+1.200", label: "Centros concertados" },
   { value: "52", label: "Provincias con cobertura" },
 ];
 
@@ -64,7 +63,7 @@ const CuadroMedico = () => {
       },
       {
         q: "¿El cuadro médico Adeslas incluye hospitales?",
-        a: "Sí. Adeslas dispone de 18 hospitales propios y más de 1.400 centros concertados en España, incluyendo clínicas, centros de diagnóstico y hospitales de referencia en todas las provincias.",
+        a: "Sí. Adeslas dispone de más de 1.200 centros concertados en España, incluyendo clínicas, centros de diagnóstico y hospitales de referencia en todas las provincias.",
       },
     ],
   });
