@@ -404,54 +404,78 @@ export function useSeo({
   /* ── OG image final ── */
   const finalOgImage = ogImage ?? SITE.ogDefault;
 
+  /*
+   * ── IMPORTANTE ── Los scripts JSON-LD se inyectan FUERA de <Helmet> como
+   * elementos JSX normales para evitar el bug de acumulación de contexto de
+   * react-helmet-async v3 + vite-react-ssg SSG (jsdomGlobal fuerza canUseDOM=true
+   * y todos los Helmet instances se acumulan en el array module-level).
+   * Los scripts tipo "application/ld+json" son válidos tanto en <head> como en
+   * <body> (Google los lee en ambas posiciones).
+   */
   return (
-    <Helmet>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="robots" content={robotsContent} />
-      <link rel="canonical" href={canonical} />
+    <>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="robots" content={robotsContent} />
+        <link rel="canonical" href={canonical} />
 
-      {/* Open Graph */}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:type" content={ogType} />
-      <meta property="og:url" content={canonical} />
-      <meta property="og:locale" content="es_ES" />
-      <meta property="og:site_name" content={SITE.name} />
-      <meta property="og:image" content={finalOgImage} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+        {/* Open Graph */}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content={ogType} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:site_name" content={SITE.name} />
+        <meta property="og:image" content={finalOgImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
 
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={finalOgImage} />
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={finalOgImage} />
+      </Helmet>
 
-      {/* Structured data: FAQ */}
+      {/* ── Structured data JSON-LD — renderizados como JSX normal (fuera de Helmet)
+           para garantizar aislamiento por ruta en el build SSG. ── */}
       {faqJsonLd && (
-        <script type="application/ld+json">{faqJsonLd}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: faqJsonLd }}
+        />
       )}
-      {/* Structured data: Producto */}
       {productJsonLd && (
-        <script type="application/ld+json">{productJsonLd}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: productJsonLd }}
+        />
       )}
-      {/* Structured data: Breadcrumbs */}
       {breadcrumbJsonLd && (
-        <script type="application/ld+json">{breadcrumbJsonLd}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: breadcrumbJsonLd }}
+        />
       )}
-      {/* GEO: Organization + InsuranceAgency */}
       {addOrganizationSchema && (
-        <script type="application/ld+json">{organizationJsonLd}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: organizationJsonLd }}
+        />
       )}
-      {/* GEO: WebSite con SearchAction */}
       {addWebsiteSchema && (
-        <script type="application/ld+json">{websiteJsonLd}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: websiteJsonLd }}
+        />
       )}
-      {/* GEO: LocalBusiness (Contacto) */}
       {addLocalBusinessSchema && (
-        <script type="application/ld+json">{localBusinessJsonLd}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: localBusinessJsonLd }}
+        />
       )}
-    </Helmet>
+    </>
   );
 }
