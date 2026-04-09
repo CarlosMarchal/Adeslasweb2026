@@ -40,6 +40,7 @@ interface ProductSchemaData {
   description: string;
   category: string;
   url: string;
+  image?: string;
   price?: string;
   pricePeriod?: string; // "year" | "month"
 }
@@ -344,6 +345,7 @@ export function useSeo({
         name: productSchema.name,
         description: productSchema.description,
         category: productSchema.category,
+        image: productSchema.image ?? SITE.ogDefault,
         brand: { "@type": "Brand", name: "Adeslas" },
         offers: productSchema.price
           ? {

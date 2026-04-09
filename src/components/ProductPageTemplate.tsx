@@ -631,7 +631,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
     ogImage: data.seoOgImage,
     ogType: "product",
     productSchema: data.seoProductSchema
-      ? { ...data.seoProductSchema, url: data.seoCanonical }
+      ? { ...data.seoProductSchema, url: data.seoCanonical, image: data.seoOgImage }
       : undefined,
     breadcrumbs: data.seoBreadcrumbs,
     noindex: data.seoNoindex,
