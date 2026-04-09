@@ -27,10 +27,11 @@ function pushEvent(event: string, params: Record<string, unknown> = {}) {
 }
 
 /* ── generate_lead: usuario deja su teléfono ── */
-export async function trackGenerateLead(phone: string, source: string) {
+export async function trackGenerateLead(phone: string, source: string, hubspotSource?: number) {
   const hashedPhone = await sha256(phone);
   pushEvent("generate_lead", {
     lead_source: source,
+    ...(hubspotSource !== undefined && { hubspot_source: hubspotSource }),
     user_data: {
       sha256_phone_number: hashedPhone,
     },
@@ -63,10 +64,11 @@ export function trackPageView(pathname: string) {
 }
 
 /* ── tarificador_submit: envío del calculador de precios ── */
-export async function trackTarificadorSubmit(phone: string, source: string) {
+export async function trackTarificadorSubmit(phone: string, source: string, hubspotSource?: number) {
   const hashedPhone = await sha256(phone);
   pushEvent("generate_lead", {
     lead_source: source,
+    ...(hubspotSource !== undefined && { hubspot_source: hubspotSource }),
     user_data: {
       sha256_phone_number: hashedPhone,
     },

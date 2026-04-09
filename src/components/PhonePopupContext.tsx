@@ -32,14 +32,14 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
     if (phoneError) setPhoneError(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!termsAccepted) { setTermsError(true); return; }
     setTermsError(false);
     if (!/^[67]\d{8}$/.test(phone.replace(/\s/g, ""))) { setPhoneError(true); return; }
     setPhoneError(false);
-    submitToHubSpot({ phone: "+34" + phone.replace(/\s/g, ""), source: sourceRef.current });
-    trackGenerateLead(phone, "popup_te_llamamos");
+    await submitToHubSpot({ phone: "+34" + phone.replace(/\s/g, ""), source: sourceRef.current });
+    trackGenerateLead(phone, "popup_te_llamamos", sourceRef.current);
     setSent(true);
     setTimeout(() => { setSent(false); setPhone(""); setTermsAccepted(false); setOpen(false); }, 3000);
   };

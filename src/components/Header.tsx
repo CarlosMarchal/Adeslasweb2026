@@ -308,12 +308,12 @@ const Header = () => {
     setNavPhone(formatPhoneDisplay(e.target.value));
     if (navPhoneError) setNavPhoneError(false);
   };
-  const handleNavPhoneSubmit = (e: React.FormEvent) => {
+  const handleNavPhoneSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isPhoneValid(navPhone)) { setNavPhoneError(true); return; }
     setNavPhoneError(false);
-    submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 301 });
-    trackGenerateLead(navPhone, "header_desktop_te_llamamos");
+    await submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 301 });
+    trackGenerateLead(navPhone, "header_desktop_te_llamamos", 301);
     setNavPhone("");
     setShowThankYouModal(true);
   };
@@ -322,12 +322,12 @@ const Header = () => {
     setMobilePhone(formatPhoneDisplay(e.target.value));
     if (mobilePhoneError) setMobilePhoneError(false);
   };
-  const handleMobilePhoneSubmit = (e: React.FormEvent) => {
+  const handleMobilePhoneSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isPhoneValid(mobilePhone)) { setMobilePhoneError(true); return; }
     setMobilePhoneError(false);
-    submitToHubSpot({ phone: "+34" + mobilePhone.replace(/\s/g, ""), source: 301 });
-    trackGenerateLead(mobilePhone, "header_mobile_te_llamamos");
+    await submitToHubSpot({ phone: "+34" + mobilePhone.replace(/\s/g, ""), source: 301 });
+    trackGenerateLead(mobilePhone, "header_mobile_te_llamamos", 301);
     setMobilePhone("");
     setShowPhonePopup(false);
     setShowThankYouModal(true);

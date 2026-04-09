@@ -52,7 +52,14 @@ export interface HubSpotPayload {
 function getGclid(): string {
   try {
     const params = new URLSearchParams(window.location.search);
-    return params.get("gclid") || sessionStorage.getItem("hs_gclid") || "";
+    // gclid: clicks normales | gbraid: iOS/Safari App Campaigns | wbraid: iOS/Safari web
+    return (
+      params.get("gclid") ||
+      params.get("gbraid") ||
+      params.get("wbraid") ||
+      sessionStorage.getItem("hs_gclid") ||
+      ""
+    );
   } catch {
     return "";
   }
@@ -61,8 +68,8 @@ function getGclid(): string {
 export function captureGclid() {
   try {
     const params = new URLSearchParams(window.location.search);
-    const gclid = params.get("gclid");
-    if (gclid) sessionStorage.setItem("hs_gclid", gclid);
+    const id = params.get("gclid") || params.get("gbraid") || params.get("wbraid");
+    if (id) sessionStorage.setItem("hs_gclid", id);
   } catch {
     // ignore
   }
@@ -72,35 +79,48 @@ function field(name: string, value: string) {
   return { objectTypeId: "0-1", name, value };
 }
 
-export async function submitToHubSpot(payload: HubSpotPayload): Promise<void> {
-  try {
-    const fields = [
-      field("tarificador", String(payload.source)),
-      field("url_campana_ai", window.location.href),
-    ];
-
-    if (payload.phone)     fields.push(field("phone",     payload.phone));
-    if (payload.firstname) fields.push(field("firstname", payload.firstname));
-    if (payload.email)     fields.push(field("email",     payload.email));
-    if (payload.city)      fields.push(field("city",      payload.city));
-    if (payload.edad1)     fields.push(field("edad1",     payload.edad1));
-
+function buildFields(payload: HubSpotPayload, includeGclid: boolean) {
+  const fields = [
+    field("tarificador",    String(payload.source)),
+    field("url_campana_ai", window.location.href),
+  ];
+  if (payload.phone)     fields.push(field("phone",     payload.phone));
+  if (payload.firstname) fields.push(field("firstname", payload.firstname));
+  if (payload.email)     fields.push(field("email",     payload.email));
+  if (payload.city)      fields.push(field("city",      payload.city));
+  if (payload.edad1)     fields.push(field("edad1",     payload.edad1));
+  if (includeGclid) {
     const gclid = getGclid();
     if (gclid) fields.push(field("hs_google_click_id", gclid));
+  }
+  return fields;
+}
 
-    const body = {
-      fields,
-      context: { pageName: document.title },
-    };
-
+export async function submitToHubSpot(payload: HubSpotPayload): Promise<void> {
+  const context = { pageName: document.title };
+  try {
+    // Primer intento: con gclid/gbraid
     const res = await fetch(ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ fields: buildFields(payload, true), context }),
     });
-    if (!res.ok) {
-      const err = await res.text();
-      console.error("[HubSpot] Submission failed:", res.status, err);
+
+    if (res.ok) return;
+
+    const err = await res.text();
+    console.warn("[HubSpot] Submission failed (attempt 1):", res.status, err);
+
+    // Reintento sin gclid (hs_google_click_id puede ser read-only vía Forms API)
+    const retry = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fields: buildFields(payload, false), context }),
+    });
+
+    if (!retry.ok) {
+      const retryErr = await retry.text();
+      console.error("[HubSpot] Submission failed (attempt 2):", retry.status, retryErr);
     }
   } catch (e) {
     console.error("[HubSpot] Network error:", e);

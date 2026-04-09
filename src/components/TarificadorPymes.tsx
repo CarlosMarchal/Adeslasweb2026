@@ -208,7 +208,7 @@ const TarificadorPymes = ({ context = "pymes" }: TarificadorPymesProps) => {
   );
 
   /* ── Submit contact form → results ── */
-  const handleShowResults = () => {
+  const handleShowResults = async () => {
     if (!nombre.trim()) { setFormError("Introduce tu nombre"); return; }
     setFormError("");
     if (!isValidEmail(email)) { setEmailError("Introduce un email válido"); return; }
@@ -220,7 +220,7 @@ const TarificadorPymes = ({ context = "pymes" }: TarificadorPymesProps) => {
     if (!termsAccepted) { setTermsError(true); return; }
     setTermsError(false);
 
-    submitToHubSpot({
+    await submitToHubSpot({
       firstname: nombre.trim(),
       email,
       phone: `${countryCode}${telefono}`,
@@ -228,7 +228,7 @@ const TarificadorPymes = ({ context = "pymes" }: TarificadorPymesProps) => {
       edad1: parsedAges.filter(a => !isNaN(a)).join(","),
       source: 320,
     });
-    trackTarificadorSubmit(`${countryCode}${telefono}`, "tarificador_pymes_320");
+    trackTarificadorSubmit(`${countryCode}${telefono}`, "tarificador_pymes_320", 320);
 
     setStep(2);
   };

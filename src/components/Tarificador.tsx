@@ -270,7 +270,7 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     return true;
   };
 
-  const handleShowResults = () => {
+  const handleShowResults = async () => {
     // Validate contact
     if (!nombre.trim()) {
       setAgeError("Introduce tu nombre");
@@ -301,7 +301,7 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     const source = singleProduct
       ? (slugToSource[productSlug ?? ""] ?? 302)
       : 302;
-    submitToHubSpot({
+    await submitToHubSpot({
       firstname: nombre.trim(),
       email,
       phone: `${countryCode}${telefono}`,
@@ -309,7 +309,7 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
       edad1: edades.filter(Boolean).join(","),
       source,
     });
-    trackTarificadorSubmit(`${countryCode}${telefono}`, `tarificador_${source}`);
+    trackTarificadorSubmit(`${countryCode}${telefono}`, `tarificador_${source}`, source);
 
     // Single product → redirect to personalized landing
     if (singleProduct) {
