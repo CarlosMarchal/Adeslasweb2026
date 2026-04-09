@@ -87,7 +87,7 @@ export async function submitToHubSpot(payload: HubSpotPayload): Promise<void> {
     if (payload.edad1)     fields.push(field("edad1",     payload.edad1));
 
     const gclid = getGclid();
-    if (gclid) fields.push(field("gclid", gclid));
+    if (gclid) fields.push(field("hs_google_click_id", gclid));
 
     const body = {
       fields,
