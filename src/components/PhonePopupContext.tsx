@@ -17,6 +17,7 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
   const [sent, setSent] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(true);
   const [termsError, setTermsError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
   const sourceRef = useRef<HubSpotSource>(301);
 
   const formatPhoneDisplay = (raw: string) => {
@@ -28,21 +29,19 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(formatPhoneDisplay(e.target.value));
+    if (phoneError) setPhoneError(false);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!termsAccepted) {
-      setTermsError(true);
-      return;
-    }
+    if (!termsAccepted) { setTermsError(true); return; }
     setTermsError(false);
-    if (/^[67]\d{8}$/.test(phone.replace(/\s/g, ""))) {
-      submitToHubSpot({ phone: "+34" + phone.replace(/\s/g, ""), source: sourceRef.current });
-      trackGenerateLead(phone, "popup_te_llamamos");
-      setSent(true);
-      setTimeout(() => { setSent(false); setPhone(""); setTermsAccepted(false); setOpen(false); }, 3000);
-    }
+    if (!/^[67]\d{8}$/.test(phone.replace(/\s/g, ""))) { setPhoneError(true); return; }
+    setPhoneError(false);
+    submitToHubSpot({ phone: "+34" + phone.replace(/\s/g, ""), source: sourceRef.current });
+    trackGenerateLead(phone, "popup_te_llamamos");
+    setSent(true);
+    setTimeout(() => { setSent(false); setPhone(""); setTermsAccepted(false); setOpen(false); }, 3000);
   };
 
   return (
@@ -108,7 +107,13 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-3">
-                    <div className="flex items-center gap-2 w-full h-12 rounded-xl border border-gray-200 px-3 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition-all" style={{ backgroundColor: "#fff" }}>
+                    {phoneError && (
+                      <p className="text-xs font-medium text-center" style={{ color: "#E4097D" }}>
+                        Por favor, introduce un teléfono válido
+                      </p>
+                    )}
+                    <div className="flex items-center gap-2 w-full h-12 rounded-xl border px-3 focus-within:ring-2 focus-within:ring-blue-100 transition-all"
+                      style={{ backgroundColor: "#fff", borderColor: phoneError ? "#E4097D" : "#E5E7EB" }}>
                       <span className="text-lg leading-none select-none">🇪🇸</span>
                       <span className="text-sm font-medium select-none" style={{ color: "#374151" }}>+34</span>
                       <input

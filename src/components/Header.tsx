@@ -226,7 +226,9 @@ const Header = () => {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [showPhonePopup, setShowPhonePopup] = useState(false);
   const [navPhone, setNavPhone] = useState("");
+  const [navPhoneError, setNavPhoneError] = useState(false);
   const [mobilePhone, setMobilePhone] = useState("");
+  const [mobilePhoneError, setMobilePhoneError] = useState(false);
   const [showThankYouModal, setShowThankYouModal] = useState(false);
   const [stickyBottom, setStickyBottom] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
@@ -304,29 +306,31 @@ const Header = () => {
 
   const handleNavPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNavPhone(formatPhoneDisplay(e.target.value));
+    if (navPhoneError) setNavPhoneError(false);
   };
   const handleNavPhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isPhoneValid(navPhone)) {
-      submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 301 });
-      trackGenerateLead(navPhone, "header_desktop_te_llamamos");
-      setNavPhone("");
-      setShowThankYouModal(true);
-    }
+    if (!isPhoneValid(navPhone)) { setNavPhoneError(true); return; }
+    setNavPhoneError(false);
+    submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 301 });
+    trackGenerateLead(navPhone, "header_desktop_te_llamamos");
+    setNavPhone("");
+    setShowThankYouModal(true);
   };
 
   const handleMobilePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMobilePhone(formatPhoneDisplay(e.target.value));
+    if (mobilePhoneError) setMobilePhoneError(false);
   };
   const handleMobilePhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isPhoneValid(mobilePhone)) {
-      submitToHubSpot({ phone: "+34" + mobilePhone.replace(/\s/g, ""), source: 301 });
-      trackGenerateLead(mobilePhone, "header_mobile_te_llamamos");
-      setMobilePhone("");
-      setShowPhonePopup(false);
-      setShowThankYouModal(true);
-    }
+    if (!isPhoneValid(mobilePhone)) { setMobilePhoneError(true); return; }
+    setMobilePhoneError(false);
+    submitToHubSpot({ phone: "+34" + mobilePhone.replace(/\s/g, ""), source: 301 });
+    trackGenerateLead(mobilePhone, "header_mobile_te_llamamos");
+    setMobilePhone("");
+    setShowPhonePopup(false);
+    setShowThankYouModal(true);
   };
 
   const navItems = [
@@ -458,10 +462,16 @@ const Header = () => {
             </nav>
 
             {/* Input teléfono + "Te llamamos" */}
-            <form onSubmit={handleNavPhoneSubmit} className="flex items-center gap-0">
+            <form onSubmit={handleNavPhoneSubmit} className="flex flex-col items-end gap-1">
+              {navPhoneError && (
+                <span className="text-xs font-medium" style={{ color: "#E4097D" }}>
+                  Por favor, introduce un teléfono válido
+                </span>
+              )}
+              <div className="flex items-center gap-0">
               <div
                 className="flex items-center rounded-l-lg border border-r-0 overflow-hidden gap-1.5 px-2"
-                style={{ borderColor: "#D5E3F0", backgroundColor: "#fff", height: 36 }}
+                style={{ borderColor: navPhoneError ? "#E4097D" : "#D5E3F0", backgroundColor: "#fff", height: 36 }}
               >
                 <span className="text-base leading-none select-none">🇪🇸</span>
                 <span className="text-sm font-medium select-none" style={{ color: "#374151" }}>+34</span>
@@ -484,6 +494,7 @@ const Header = () => {
                 <Phone className="w-3.5 h-3.5" />
                 Te llamamos
               </button>
+              </div>
             </form>
           </div>
         </div>
@@ -642,7 +653,13 @@ const Header = () => {
                 <p className="text-sm text-gris-medio">Un asesor Adeslas te contactará en minutos</p>
               </div>
               <form onSubmit={handleMobilePhoneSubmit} className="space-y-3">
-                <div className="flex items-center gap-2 w-full h-12 rounded-xl border border-borde px-3 focus-within:border-azul-medio focus-within:ring-2 focus-within:ring-azul-suave transition-all" style={{ backgroundColor: "#fff" }}>
+                {mobilePhoneError && (
+                  <p className="text-xs font-medium text-center" style={{ color: "#E4097D" }}>
+                    Por favor, introduce un teléfono válido
+                  </p>
+                )}
+                <div className="flex items-center gap-2 w-full h-12 rounded-xl border px-3 focus-within:ring-2 focus-within:ring-azul-suave transition-all"
+                  style={{ backgroundColor: "#fff", borderColor: mobilePhoneError ? "#E4097D" : "#D5E3F0" }}>
                   <span className="text-lg leading-none select-none">🇪🇸</span>
                   <span className="text-sm font-medium select-none" style={{ color: "#374151" }}>+34</span>
                   <input
