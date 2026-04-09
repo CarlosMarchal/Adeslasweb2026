@@ -292,7 +292,7 @@ const Header = () => {
 
   const isPhoneValid = (phone: string) => {
     const digits = phone.replace(/\D/g, "");
-    return digits.length >= 9 && digits.length <= 11;
+    return digits.length === 9 && /^[67]/.test(digits);
   };
 
   const formatPhoneDisplay = (raw: string) => {
@@ -307,7 +307,7 @@ const Header = () => {
   };
   const handleNavPhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (navPhone.replace(/\D/g, "").length >= 9) {
+    if (isPhoneValid(navPhone)) {
       submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 301 });
       trackGenerateLead(navPhone, "header_desktop_te_llamamos");
       setNavPhone("");
@@ -320,7 +320,7 @@ const Header = () => {
   };
   const handleMobilePhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (mobilePhone.replace(/\D/g, "").length >= 9) {
+    if (isPhoneValid(mobilePhone)) {
       submitToHubSpot({ phone: "+34" + mobilePhone.replace(/\s/g, ""), source: 301 });
       trackGenerateLead(mobilePhone, "header_mobile_te_llamamos");
       setMobilePhone("");

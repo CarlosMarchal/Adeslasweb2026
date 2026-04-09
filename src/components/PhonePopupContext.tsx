@@ -37,7 +37,7 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
     setTermsError(false);
-    if (phone.replace(/\D/g, "").length >= 9) {
+    if (/^[67]\d{8}$/.test(phone.replace(/\s/g, ""))) {
       submitToHubSpot({ phone: "+34" + phone.replace(/\s/g, ""), source: sourceRef.current });
       trackGenerateLead(phone, "popup_te_llamamos");
       setSent(true);

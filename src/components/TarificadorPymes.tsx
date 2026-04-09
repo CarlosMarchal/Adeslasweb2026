@@ -56,6 +56,7 @@ const isValidEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim(
 const getMaxPhoneDigits = (code: string) => ["+34", "+33", "+351", "+56"].includes(code) ? 9 : 10;
 const isValidPhone = (p: string, code = "+34") => {
   const d = p.replace(/\D/g, "");
+  if (code === "+34") return d.length === 9 && /^[67]/.test(d);
   return d.length >= 7 && d.length <= getMaxPhoneDigits(code);
 };
 

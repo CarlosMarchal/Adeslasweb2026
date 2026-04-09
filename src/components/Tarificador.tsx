@@ -119,6 +119,7 @@ const getMaxPhoneDigits = (code: string) => {
 
 const isValidPhone = (phone: string, code = "+34") => {
   const digits = phone.replace(/\D/g, "");
+  if (code === "+34") return digits.length === 9 && /^[67]/.test(digits);
   return digits.length >= 7 && digits.length <= getMaxPhoneDigits(code);
 };
 
