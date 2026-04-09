@@ -7,6 +7,7 @@ const data: ProductPageData = {
   seoTitle: "Adeslas Mascotas | Seguro para Perros y Gatos desde 5,85€/mes",
   seoDescription: "Seguro de mascotas Adeslas para perros y gatos. Básico desde 5,85€/mes (RC 200.000€) o Completo desde 24,74€/mes (+300 clínicas veterinarias). Sin restricción de raza ni edad.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-mascotas/",
+  hubspotSource: 318,
   seoOgImage: "https://adeslas.numero1salud.es/og-mascotas.jpg",
   seoProductSchema: {
     name: "Adeslas Mascotas",

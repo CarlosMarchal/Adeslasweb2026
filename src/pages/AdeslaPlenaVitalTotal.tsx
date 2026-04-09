@@ -21,6 +21,7 @@ const data: ProductPageData = {
     { name: "Adeslas Plena Vital Total", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/" },
   ],
   productSlug: "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/",
+  hubspotSource: 313,
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   cardPromoBadge: "🎁 Promoción puntos",
   badge: "3 años sin subidas de prima",

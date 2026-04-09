@@ -8,6 +8,7 @@ const data: ProductPageData = {
   seoTitle: "Adeslas Seniors Total | Cobertura Completa para Mayores de 63 años desde 101€",
   seoDescription: "Adeslas Seniors Total: seguro médico para personas de 63 a 84 años sin subida de prima garantizada 3 años. Hospitalización, oncología, asistencia viajes 100.000€ y asesor personal. Desde 101€/mes.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/",
+  hubspotSource: 315,
   seoOgImage: "https://adeslas.numero1salud.es/og-seniors-total.jpg",
   seoProductSchema: {
     name: "Adeslas Seniors Total",

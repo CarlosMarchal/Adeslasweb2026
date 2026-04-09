@@ -21,6 +21,7 @@ const data: ProductPageData = {
     { name: "Adeslas GO", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-go/" },
   ],
   productSlug: "/seguro-salud/adeslas-go/",
+  hubspotSource: 303,
   badge: "Ambulatorio · Copago máx. 260€/año",
   heroTitle: "Seguro Médico Adeslas GO",
   heroImage: heroImg,

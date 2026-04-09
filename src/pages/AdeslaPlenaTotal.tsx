@@ -21,6 +21,7 @@ const data: ProductPageData = {
     { name: "Adeslas Plena Total", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-total/" },
   ],
   productSlug: "/seguro-salud/adeslas-plena-total/",
+  hubspotSource: 305,
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   badge: "3 años sin subidas de prima",
   heroTitle: "Seguro Médico Adeslas Plena Total",

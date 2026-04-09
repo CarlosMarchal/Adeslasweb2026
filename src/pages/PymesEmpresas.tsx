@@ -19,6 +19,7 @@ const seoEmpresas = {
 };
 
 const dataBase: Omit<ProductPageData, "seoTitle" | "seoDescription" | "seoCanonical" | "seoOgImage"> & Partial<ProductPageData> = {
+  hubspotSource: 320 as const,
   seoProductSchema: {
     name: "Adeslas EMPRESAS y PYMES TOTAL — Seguro Médico Colectivo",
     description: "Seguro médico Adeslas para empresas (CIF). Sin copagos, cobertura sanitaria completa para empleados. Adeslas EMPRESAS (5 a 99 asegurados) y Adeslas PYMES TOTAL (hasta 15 asegurados, chequeo médico incluido y dental).",

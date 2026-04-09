@@ -21,6 +21,7 @@ const data: ProductPageData = {
     { name: "Adeslas Plena Vital", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital/" },
   ],
   productSlug: "/seguro-salud/adeslas-plena-vital/",
+  hubspotSource: 304,
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   badge: "Cobertura completa · Copago máx. 300€/año",
   heroTitle: "Seguro Médico Adeslas Plena Vital",

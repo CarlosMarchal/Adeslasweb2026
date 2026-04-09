@@ -22,6 +22,7 @@ const data: ProductPageData = {
     { name: "Adeslas Plena Extra 150", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-extra-150/" },
   ],
   productSlug: "/seguro-salud/adeslas-extra-150/",
+  hubspotSource: 306,
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   cardPromoBadge: "🎁 Promoción puntos",
   badge: "Libre elección · Reembolso 80% · Máx. 150.000€/año",

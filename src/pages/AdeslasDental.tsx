@@ -8,6 +8,7 @@ const data: ProductPageData = {
   seoTitle: "Seguro Dental Adeslas | Sin Carencias desde Día 1 · Desde 9,45€/mes",
   seoDescription: "Seguro dental Adeslas desde 9,45€/mes: limpiezas y revisiones desde el día 1 sin coste. Implantes, endodoncia y ortodoncia con franquicias reducidas. Niños hasta 8 años gratis. +1.700 dentistas.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-dental/",
+  hubspotSource: 308 as const,
   seoOgImage: "https://adeslas.numero1salud.es/og-dental.jpg",
   seoProductSchema: {
     name: "Adeslas Dental",

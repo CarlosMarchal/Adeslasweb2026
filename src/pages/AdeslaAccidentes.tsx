@@ -7,6 +7,7 @@ const data: ProductPageData = {
   seoTitle: "Adeslas Accidentes | Seguro de Accidentes con Cobertura 24h desde 5,89€/mes",
   seoDescription: "Seguro de accidentes Adeslas con cobertura 24h en todo el mundo. Fallecimiento, invalidez, asistencia médica y hospitalización por accidente. Desde 5,89€/mes.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-accidentes/",
+  hubspotSource: 317,
   seoOgImage: "https://adeslas.numero1salud.es/og-accidentes.jpg",
   seoProductSchema: {
     name: "Adeslas Accidentes",

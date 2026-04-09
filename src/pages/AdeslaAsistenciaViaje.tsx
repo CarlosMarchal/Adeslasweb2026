@@ -7,6 +7,7 @@ const data: ProductPageData = {
   seoTitle: "Adeslas Viaje | Seguro de Asistencia en Viaje desde 8,50€/día — Cobertura Mundial",
   seoDescription: "Seguro de asistencia en viaje Adeslas con cobertura mundial. Emergencias médicas, repatriación, cancelación de vuelos y equipaje. Contrata por días, semanas o meses. Desde 8,50€/día.",
   seoCanonical: "https://adeslas.numero1salud.es/adeslas-asistencia-en-viaje/",
+  hubspotSource: 316,
   seoOgImage: "https://adeslas.numero1salud.es/og-viaje.jpg",
   seoProductSchema: {
     name: "Adeslas Asistencia en Viaje",

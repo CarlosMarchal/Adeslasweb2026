@@ -23,6 +23,7 @@ const data: ProductPageData = {
     { name: "Adeslas Plena Plus", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-plus/" },
   ],
   productSlug: "/seguro-salud/adeslas-plena-plus/",
+  hubspotSource: 307,
   heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
   badge: "Sin copagos · Hospitalización incluida",
   heroTitle: "Seguro Médico Adeslas Plena Plus",

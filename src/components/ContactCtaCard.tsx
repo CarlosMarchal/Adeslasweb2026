@@ -5,17 +5,30 @@ import type { HubSpotSource } from "@/lib/hubspot";
 import { trackClickToCallContratacion } from "@/lib/tracking";
 
 const pageSourceMap: Record<string, HubSpotSource> = {
-  "/seguro-dental/":        308,
-  "/seguro-decesos/":       309,
-  "/pymes":                 310,
-  "/empresas":              311,
-  "/seguro-salud/autonomos/":             319,
-  "/seguro-salud/pymes/":        320,
+  // Seguros de salud individuales
+  "/seguro-salud/adeslas-go/":            303,
+  "/seguro-salud/adeslas-plena-vital/":   304,
+  "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/": 313,
+  "/seguro-salud/adeslas-plena-total/":   305,
+  "/seguro-salud/adeslas-extra-150/":     306,
+  "/seguro-salud/adeslas-plena-plus/":    307,
   "/seguro-salud/adeslas-seniors/":       314,
   "/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/": 315,
+  // Autónomos, pymes y empresas
+  "/seguro-salud/autonomos/":             319,
+  "/seguro-salud/pymes/":                 320,
+  "/seguro-salud/empresas/":              320,
+  // Otros seguros
+  "/seguro-dental/":                      308,
+  "/seguro-decesos/":                     309,
+  "/seguro-adeslas-decesos-prima-unica/": 323,
+  "/seguro-mascotas/":                    318,
+  "/adeslas-asistencia-en-viaje/":        316,
+  "/seguro-accidentes/":                  317,
+  "/adeslas-extranjeros":                 312,
+  // Especiales
   "/adeslas-body-factory/":               321,
   "/adeslas-adif-renfe/":                 322,
-  "/seguro-adeslas-decesos-prima-unica/": 323,
 };
 
 const ContactCtaCard = () => {

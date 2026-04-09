@@ -8,6 +8,7 @@ const data: ProductPageData = {
   seoTitle: "Adeslas Decesos | Sepelio, Repatriación y Trámites desde 9€/mes",
   seoDescription: "Seguro de decesos Adeslas gestionado por Ocaso. Sepelio completo, repatriación internacional, billete acompañante y trámites incluidos. Atención 24h: 900 14 15 16. Límite 70 años (prima única para mayores). Desde 9€/mes.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-decesos/",
+  hubspotSource: 309,
   seoOgImage: "https://adeslas.numero1salud.es/og-decesos.jpg",
   seoProductSchema: {
     name: "Adeslas Decesos",
