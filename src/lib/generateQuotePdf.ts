@@ -56,157 +56,229 @@ export interface QuoteData {
 }
 
 /* ─── Ficha de producto ─────────────────────────────────────── */
+interface CoverageItem {
+  icon:  string;   // letra mayúscula que aparece en el cuadrado NAVY
+  title: string;   // texto de la cobertura
+}
+
 interface ProductInfo {
-  badge:     string;          // etiqueta pill
-  desc:      string;          // descripción (1-2 líneas)
-  coverages: string[];        // 6 coberturas, mostradas en rejilla 2 col
+  badge:     string;
+  desc:      string;
+  coverages: CoverageItem[];
+}
+
+/** Crea una CoverageItem derivando el icono del primer carácter */
+function cov(title: string, icon?: string): CoverageItem {
+  return { icon: (icon ?? title[0]).toUpperCase(), title };
 }
 
 const PRODUCTS: Record<string, ProductInfo> = {
   "Adeslas GO": {
     badge: "Seguro Ambulatorio · Copago máx. 260 €/año",
-    desc:  "Accede a más de 51.000 médicos y especialistas sin listas de espera. Medicina general, diagnóstico y urgencias 24 h incluidos. Tu copago nunca supera 260 € al año.",
+    desc:  "Accede a más de 51.000 médicos y especialistas sin listas de espera, sin necesidad de derivación. Medicina general, diagnóstico completo y urgencias 24 h incluidos. Tu copago anual nunca supera los 260 €, sea cual sea el uso del seguro.",
     coverages: [
-      "Medicina general y pediatría",
-      "Más de 40 especialidades médicas",
-      "Diagnóstico (analíticas, radiología)",
-      "Urgencias 24 h en toda España",
-      "Chequeo médico anual adaptado por edad",
-      "Copago máximo garantizado 260 €/año",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h en toda España", "U"),
+      cov("Más de 40 especialidades médicas", "E"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Pruebas diagnósticas incluidas", "P"),
+      cov("Análisis clínicos incluidos", "A"),
+      cov("Chequeo médico anual", "C"),
+      cov("Rehabilitación física", "R"),
+      cov("Diagnóstico por imagen (Rx, eco)", "D"),
+      cov("Copago máx. garantizado 260 €/año", "✓"),
+      cov("Y mucho más...", "+"),
     ],
   },
   "Adeslas Plena Vital": {
     badge: "Cobertura Completa · Copago máx. 300 €/año",
-    desc:  "Hospitalización, cirugía y todas las especialidades con acceso a +51.000 médicos. Copago nunca superior a 300 € al año, aunque uses mucho el seguro.",
+    desc:  "Hospitalización, cirugía y todas las especialidades sin listas de espera, con acceso a más de 51.000 médicos en 1.400 centros. El copago anual nunca supera los 300 €, por mucho que uses el seguro a lo largo del año.",
     coverages: [
-      "Hospitalización y cirugía ilimitadas",
-      "Más de 40 especialidades médicas",
-      "Diagnóstico de alta tecnología (TAC, RMN)",
-      "Urgencias 24 h en todo el territorio",
-      "Chequeo médico anual incluido",
-      "Copago máximo garantizado 300 €/año",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h en toda España", "U"),
+      cov("Más de 40 especialidades médicas", "E"),
+      cov("Hospitalización y cirugía incluidas", "H"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Pruebas diagnósticas incluidas", "P"),
+      cov("Análisis clínicos incluidos", "A"),
+      cov("Chequeo médico anual", "C"),
+      cov("Rehabilitación física", "R"),
+      cov("Copago máx. garantizado 300 €/año", "✓"),
+      cov("Y mucho más...", "+"),
     ],
   },
   "Adeslas Plena Vital Total": {
     badge: "Precio Garantizado 3 Años · Dental Incluido",
-    desc:  "Hospitalización completa, copago reducido y precio garantizado 3 años. Dental integrado con 46 actos, +51.000 médicos y 1.400 centros sin listas de espera.",
+    desc:  "Hospitalización completa y copago reducido con precio garantizado durante 3 años. Dental integrado con hasta 46 actos incluidos, asistencia en viajes y acceso a más de 51.000 médicos y 1.400 centros sin listas de espera.",
     coverages: [
-      "Hospitalización y cirugía ilimitadas",
-      "Dental: 46 actos sin franquicia",
-      "Diagnóstico avanzado (TAC, RMN, PET)",
-      "Asistencia en viaje hasta 25.000 €",
-      "Chequeo médico anual incluido",
-      "Precio garantizado 3 años sin subidas",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h en toda España", "U"),
+      cov("Más de 40 especialidades médicas", "E"),
+      cov("Hospitalización y cirugía incluidas", "H"),
+      cov("Dental: hasta 46 actos incluidos", "D"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Análisis clínicos y TAC / RMN", "A"),
+      cov("Chequeo médico anual", "C"),
+      cov("Rehabilitación física", "R"),
+      cov("Asistencia en viaje hasta 25.000 €", "V"),
+      cov("Precio garantizado 3 años", "✓"),
+      cov("Y mucho más...", "+"),
     ],
   },
   "Adeslas Plena Plus": {
     badge: "Sin Copagos · Hospitalización Ilimitada",
-    desc:  "Cobertura médica total sin copagos en ningún servicio: hospitalización ilimitada, cirugía, todas las especialidades. Red Adeslas de +51.000 médicos.",
+    desc:  "Cobertura médica total sin copagos en ningún servicio de la red Adeslas: hospitalización ilimitada, cirugía, todas las especialidades y urgencias 24 h. Más de 51.000 médicos y 1.400 centros a tu disposición sin listas de espera.",
     coverages: [
-      "Sin copagos en toda la red Adeslas",
-      "Hospitalización y cirugía ilimitadas",
-      "Más de 40 especialidades médicas",
-      "Diagnóstico de alta tecnología",
-      "Urgencias 24 h sin franquicia",
-      "Chequeo médico anual incluido",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h sin copago", "U"),
+      cov("Más de 40 especialidades sin copago", "E"),
+      cov("Hospitalización y cirugía sin límite", "H"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Pruebas diagnósticas incluidas", "P"),
+      cov("Análisis clínicos incluidos", "A"),
+      cov("Chequeo médico anual", "C"),
+      cov("Rehabilitación física", "R"),
+      cov("Sin copagos en toda la red Adeslas", "✓"),
+      cov("Y mucho más...", "+"),
     ],
   },
   "Adeslas Plena Total": {
     badge: "Sin Copagos · Dental · Asistencia Viaje 100.000 €",
-    desc:  "La cobertura más completa de Adeslas: sin copagos, dental integrado, asistencia en viajes hasta 100.000 €, protección por accidente y precio garantizado 3 años.",
+    desc:  "La cobertura más completa de Adeslas: sin copagos en ningún servicio, dental integrado con hasta 46 actos, asistencia en viajes hasta 100.000 €, hospitalización con cama para acompañante y precio garantizado 3 años.",
     coverages: [
-      "Sin copagos en ningún servicio",
-      "Dental completo: 46 actos incluidos",
-      "Asistencia en viaje hasta 100.000 €",
-      "Protección ante accidentes incluida",
-      "Hospitalización y cirugía ilimitadas",
-      "Precio garantizado 3 años sin subidas",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h sin copago", "U"),
+      cov("Más de 40 especialistas sin copago", "E"),
+      cov("Rehabilitación física incluida", "R"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Pruebas diagnósticas incluidas", "P"),
+      cov("Análisis clínicos incluidos", "A"),
+      cov("Chequeo médico anual", "C"),
+      cov("Asistencia en viaje hasta 100.000 €", "V"),
+      cov("Reembolso farmacia y fisioterapia", "F"),
+      cov("Hospitalización y cama acompañante", "H"),
+      cov("Y mucho más...", "+"),
     ],
   },
   "Adeslas Plena Extra": {
     badge: "Libre Elección · Reembolso 80 % · Hasta 150.000 €/año",
-    desc:  "Sin copagos y con libre elección de médico en España y el extranjero. Reembolsamos el 80 % de los gastos con un máximo de 150.000 € al año.",
+    desc:  "Sin copagos y con libre elección de médico tanto en España como en el extranjero. Reembolsamos el 80 % de los gastos médicos con un máximo de 150.000 € al año, incluidas las urgencias internacionales.",
     coverages: [
-      "Sin copagos en la red Adeslas",
-      "Libre elección de médico en España y extranjero",
-      "Reembolso 80 % (máx. 150.000 €/año)",
-      "Hospitalización y cirugía sin límite",
-      "Diagnóstico por imagen de alta tecnología",
-      "Urgencias 24 h nacionales e internacionales",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h nacionales e internacionales", "U"),
+      cov("Libre elección de médico en España", "L"),
+      cov("Especialistas en el extranjero", "E"),
+      cov("Hospitalización y cirugía sin límite", "H"),
+      cov("Reembolso 80 % (máx. 150.000 €/año)", "R"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Análisis clínicos y diagnóstico avanzado", "A"),
+      cov("Chequeo médico anual", "C"),
+      cov("Sin copagos en la red Adeslas", "✓"),
+      cov("Y mucho más...", "+"),
     ],
   },
   "Adeslas Plena": {
     badge: "Sin Copagos · Cobertura Médica Completa",
-    desc:  "Cobertura sanitaria completa sin copagos con acceso a toda la red Adeslas. Hospitalización, especialidades, cirugía y urgencias 24 h.",
+    desc:  "Cobertura sanitaria completa sin copagos con acceso a toda la red Adeslas de más de 51.000 médicos y 1.400 centros. Hospitalización ilimitada, todas las especialidades, cirugía y urgencias 24 h sin franquicia.",
     coverages: [
-      "Sin copagos en toda la red",
-      "Hospitalización y cirugía ilimitadas",
-      "Más de 40 especialidades médicas",
-      "Diagnóstico de alta tecnología",
-      "Urgencias 24 h en toda España",
-      "Chequeo médico anual incluido",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h sin copago", "U"),
+      cov("Más de 40 especialidades sin copago", "E"),
+      cov("Hospitalización y cirugía ilimitadas", "H"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Pruebas diagnósticas incluidas", "P"),
+      cov("Análisis clínicos incluidos", "A"),
+      cov("Chequeo médico anual", "C"),
+      cov("Rehabilitación física", "R"),
+      cov("Sin copagos en toda la red", "✓"),
+      cov("Y mucho más...", "+"),
     ],
   },
   "Adeslas Negocios NIF": {
     badge: "Para Autónomos · Sin Copagos · Deducible IRPF",
-    desc:  "Seguro médico sin copagos diseñado para autónomos: chequeo anual, acceso a +51.000 médicos sin esperas y hasta 500 €/año deducibles en el IRPF.",
+    desc:  "Seguro médico sin copagos diseñado específicamente para autónomos: chequeo anual, acceso a más de 51.000 médicos sin esperas y hasta 500 € al año deducibles en el IRPF. Un beneficio fiscal con toda la cobertura sanitaria.",
     coverages: [
-      "Sin copagos en toda la red Adeslas",
-      "Hospitalización y cirugía incluidas",
-      "Chequeo médico anual incluido",
-      "Deducible en IRPF hasta 500 €/año",
-      "Urgencias 24 h nacionales",
-      "+51.000 médicos sin listas de espera",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h en toda España", "U"),
+      cov("Más de 40 especialidades médicas", "E"),
+      cov("Hospitalización y cirugía incluidas", "H"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Pruebas diagnósticas incluidas", "P"),
+      cov("Análisis clínicos incluidos", "A"),
+      cov("Chequeo médico anual", "C"),
+      cov("Rehabilitación física", "R"),
+      cov("Deducible en IRPF hasta 500 €/año", "D"),
+      cov("Y mucho más...", "+"),
     ],
   },
   "Adeslas Pymes Total": {
     badge: "Empresas hasta 15 Empleados · 3 Años sin Subidas",
-    desc:  "Beneficio social deducible al 100 % para tu empresa: sin copagos, chequeo anual, dental incluido y precio garantizado 3 años para todos los empleados.",
+    desc:  "Beneficio social 100 % deducible en el Impuesto de Sociedades para empresas de hasta 15 empleados. Sin copagos, chequeo anual, dental incluido y precio garantizado 3 años. La mejor forma de cuidar a tu equipo.",
     coverages: [
-      "Sin copagos en toda la red",
-      "Chequeo médico anual para empleados",
-      "Dental incluido con principales actos",
-      "Hospitalización y cirugía ilimitadas",
-      "Precio garantizado 3 años",
-      "100 % deducible en el Impuesto de Sociedades",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h en toda España", "U"),
+      cov("Más de 40 especialidades sin copago", "E"),
+      cov("Hospitalización y cirugía ilimitadas", "H"),
+      cov("Dental incluido con principales actos", "D"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Análisis clínicos incluidos", "A"),
+      cov("Chequeo médico anual para empleados", "C"),
+      cov("Precio garantizado 3 años", "✓"),
+      cov("100 % deducible en Impuesto de Sociedades", "F"),
+      cov("Y mucho más...", "+"),
     ],
   },
   "Adeslas Seniors": {
     badge: "Personas de 55 a 84 Años · Asesor Personal 24 h",
-    desc:  "Seguro médico específico para personas mayores con asesor de salud personal, todas las especialidades y copago con tope anual garantizado.",
+    desc:  "Seguro médico específico para personas entre 55 y 84 años, con asesor de salud personal disponible las 24 h. Todas las especialidades, hospitalización completa y copago con tope anual garantizado.",
     coverages: [
-      "Válido de 55 a 84 años",
-      "Asesor de salud personal 24 h",
-      "Especialidades médicas completas",
-      "Hospitalización y cirugía incluidas",
-      "Diagnóstico avanzado (TAC, RMN)",
-      "Copago con tope anual garantizado",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h en toda España", "U"),
+      cov("Más de 40 especialidades médicas", "E"),
+      cov("Hospitalización y cirugía incluidas", "H"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Diagnóstico avanzado: TAC y RMN", "D"),
+      cov("Análisis clínicos incluidos", "A"),
+      cov("Chequeo médico anual adaptado", "C"),
+      cov("Rehabilitación física", "R"),
+      cov("Asesor de salud personal 24 h", "✓"),
+      cov("Y mucho más...", "+"),
     ],
   },
   "Adeslas Seniors Total": {
     badge: "3 Años sin Subidas · Dental · Asistencia Viaje",
-    desc:  "La cobertura más completa para mayores: precio garantizado 3 años, asistencia en viajes 100.000 €, dental incluido, asesor personal y topes de copago reducidos.",
+    desc:  "La cobertura más completa para personas mayores: precio garantizado 3 años, dental incluido, asistencia en viajes hasta 100.000 €, asesor de salud personal 24 h y topes de copago muy reducidos.",
     coverages: [
-      "Dental incluido con principales actos",
-      "Asistencia en viaje hasta 100.000 €",
-      "Asesor de salud personal 24 h",
-      "Hospitalización y cirugía ilimitadas",
-      "Precio garantizado 3 años sin subidas",
-      "Topes de copago anuales muy reducidos",
+      cov("Medicina general y pediatría", "M"),
+      cov("Urgencias 24 h en toda España", "U"),
+      cov("Más de 40 especialidades médicas", "E"),
+      cov("Hospitalización y cirugía ilimitadas", "H"),
+      cov("Dental incluido con principales actos", "D"),
+      cov("Telemedicina: tlf, chat y vídeo", "T"),
+      cov("Análisis clínicos y TAC / RMN", "A"),
+      cov("Chequeo médico anual adaptado", "C"),
+      cov("Asistencia en viaje hasta 100.000 €", "V"),
+      cov("Asesor de salud personal 24 h", "✓"),
+      cov("Precio garantizado 3 años", "G"),
+      cov("Y mucho más...", "+"),
     ],
   },
 };
 
 const DEFAULT_INFO: ProductInfo = {
   badge: "Seguro Adeslas 2026",
-  desc:  "Cobertura médica con acceso a la red Adeslas de más de 51.000 médicos y 1.400 centros en toda España.",
+  desc:  "Cobertura médica con acceso a la red Adeslas de más de 51.000 médicos y 1.400 centros en toda España. Sin listas de espera y con atención médica personalizada.",
   coverages: [
-    "+51.000 médicos sin listas de espera",
-    "1.400 centros médicos en España",
-    "Hospitalización y cirugía incluidas",
-    "Diagnóstico por imagen incluido",
-    "Urgencias 24 h en toda España",
-    "Atención telefónica 24 h",
+    cov("Medicina general y pediatría", "M"),
+    cov("Urgencias 24 h en toda España", "U"),
+    cov("Más de 40 especialidades médicas", "E"),
+    cov("Hospitalización y cirugía incluidas", "H"),
+    cov("Diagnóstico por imagen incluido", "D"),
+    cov("Análisis clínicos incluidos", "A"),
+    cov("Telemedicina: tlf, chat y vídeo", "T"),
+    cov("Chequeo médico anual", "C"),
+    cov("Atención telefónica 24 h", "✓"),
+    cov("Y mucho más...", "+"),
   ],
 };
 
@@ -371,60 +443,56 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
   sectionLabel(doc, "COBERTURAS INCLUIDAS", ML, y + 1);
   y += 5;
 
-  // Rejilla 2 columnas
-  const GAP   = 4;
-  const COL_W = (CW - GAP) / 2;
-  const COV   = info.coverages;          // array de 6 items
-  const ROWS  = Math.ceil(COV.length / 2);
+  // Rejilla 3 columnas con icono-letra
+  const COLS  = 3;
+  const GAP   = 3;
+  const COL_W = (CW - GAP * (COLS - 1)) / COLS;   // ≈ 58.7 mm
+  const COV   = info.coverages;
+  const ROWS  = Math.ceil(COV.length / COLS);
 
   for (let row = 0; row < ROWS; row++) {
-    const leftText  = COV[row * 2]     ?? "";
-    const rightText = COV[row * 2 + 1] ?? "";
+    // Calcular altura de fila según texto más largo en esta fila
+    const rowItems = COV.slice(row * COLS, row * COLS + COLS);
+    const textW    = COL_W - 14;   // espacio útil tras icono (5 mm) + padding
+    const maxLines = rowItems.reduce((acc, item) => {
+      const lines = doc.splitTextToSize(item.title, textW) as string[];
+      return Math.max(acc, lines.length);
+    }, 1);
+    const cellH = Math.max(maxLines * 4.0 + 8, 11);
 
-    const maxCharW = COL_W - 14;        // espacio útil tras icono y padding
+    rowItems.forEach((item, col) => {
+      const cx = ML + col * (COL_W + GAP);
 
-    const lLines = doc.splitTextToSize(leftText,  maxCharW) as string[];
-    const rLines = doc.splitTextToSize(rightText, maxCharW) as string[];
-    const maxL   = Math.max(lLines.length, rLines.length);
-    const cellH  = Math.max(maxL * 4.2 + 8, 12);
+      // Fondo y borde de la tarjeta
+      fillRect(doc,    cx, y, COL_W, cellH, MIST, 2.5);
+      outlineRect(doc, cx, y, COL_W, cellH, BORDER, 2.5);
 
-    // Columna izquierda
-    if (leftText) {
-      fillRect(doc,  ML, y, COL_W, cellH, MIST, 3);
-      outlineRect(doc, ML, y, COL_W, cellH, BORDER, 3);
-      // Checkmark circle
-      fillRect(doc, ML + 4, y + (cellH - 5) / 2, 5, 5, NAVY, 2.5);
+      // Cuadrado NAVY con letra
+      const iconSz = 5.5;
+      const iconX  = cx + 3.5;
+      const iconY  = y + (cellH - iconSz) / 2;
+      fillRect(doc, iconX, iconY, iconSz, iconSz, NAVY, 1.5);
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(7);
-      doc.setTextColor(255, 255, 255);
-      doc.text("✓", ML + 5.2, y + (cellH - 5) / 2 + 3.8);
-      // Texto cobertura
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(7.5);
-      doc.setTextColor(...SLATE);
-      doc.text(lLines, ML + 12, y + (cellH - maxL * 4.2) / 2 + 4.2);
-    }
+      doc.setFontSize(item.icon.length === 1 ? 6 : 5);
+      doc.setTextColor(...WHITE);
+      // Centrar letra horizontalmente en el cuadrado
+      const letterW = doc.getTextWidth(item.icon);
+      doc.text(item.icon, iconX + (iconSz - letterW) / 2, iconY + iconSz - 1.3);
 
-    // Columna derecha
-    if (rightText) {
-      const rx = ML + COL_W + GAP;
-      fillRect(doc, rx, y, COL_W, cellH, MIST, 3);
-      outlineRect(doc, rx, y, COL_W, cellH, BORDER, 3);
-      fillRect(doc, rx + 4, y + (cellH - 5) / 2, 5, 5, NAVY, 2.5);
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(7);
-      doc.setTextColor(255, 255, 255);
-      doc.text("✓", rx + 5.2, y + (cellH - 5) / 2 + 3.8);
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(7.5);
-      doc.setTextColor(...SLATE);
-      doc.text(rLines, rx + 12, y + (cellH - maxL * 4.2) / 2 + 4.2);
-    }
+      // Texto de la cobertura
+      const titleLines = doc.splitTextToSize(item.title, textW) as string[];
+      const textStartY = y + (cellH - titleLines.length * 4.0) / 2 + 3.8;
+      doc.setFont("helvetica", item.icon === "+" ? "italic" : "normal");
+      doc.setFontSize(7.2);
+      const titleColor = item.icon === "+" ? BLUE : SLATE;
+      doc.setTextColor(...titleColor);
+      doc.text(titleLines, cx + 11, textStartY);
+    });
 
     y += cellH + 2;
   }
 
-  y += 5;
+  y += 4;
 
   /* ════════════════════════════════════════════════════════════
      § 4 · DATOS DEL CLIENTE
