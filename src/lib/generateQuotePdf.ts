@@ -637,26 +637,52 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
   y += topCardH + 2;
 
   /* ─── Caja TOTAL navy ─── */
-  const totH = hayDesc ? 18 : 14;
+  const totH = hayDesc ? 21 : 14;
   fillRect(doc, ML, y, CW, totH, NAVY, 3);
-  fillRect(doc, ML, y + totH - 5, CW, 5, NAVY, 0);      // cuadrar esquinas inferiores
-  fillRect(doc, ML, y + totH - 2, CW, 2, MAGENTA, 0);   // remate magenta
+  fillRect(doc, ML, y + totH - 5, CW, 5, NAVY, 0);     // cuadrar esquinas inferiores
+  fillRect(doc, ML, y + totH - 2, CW, 2, MAGENTA, 0);  // remate magenta
 
   doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...WHITE);
   doc.text("TOTAL MENSUAL", LX - 2, y + 9);
 
   doc.setFont("helvetica", "bold"); doc.setFontSize(19); doc.setTextColor(...WHITE);
-  doc.text(fmt(quote.total), RX, y + 11, { align: "right" });
+  doc.text(fmt(quote.total), RX, y + 12, { align: "right" });
   doc.setFont("helvetica", "normal"); doc.setFontSize(6); doc.setTextColor(175, 210, 248);
-  doc.text("al mes", RX, y + 14, { align: "right" });
+  doc.text("al mes", RX, y + 15.5, { align: "right" });
 
   if (hayDesc) {
-    const saving = quote.subtotal - quote.total;
-    const ahorroTxt = `Ahorro mensual:  ${fmt(saving)}`;
-    const ahorroW   = doc.getTextWidth(ahorroTxt) + 7;
-    fillRect(doc, LX - 2, y + 12.5, ahorroW, 5, GREEN, 2);
-    doc.setFont("helvetica", "bold"); doc.setFontSize(6.5); doc.setTextColor(...WHITE);
-    doc.text(ahorroTxt, LX + 1.5, y + 16.5);
+    const saving     = quote.subtotal - quote.total;
+    const savingStr  = fmt(saving);
+
+    // Medir las dos partes del texto por separado
+    doc.setFont("helvetica", "bold"); doc.setFontSize(5.5);
+    const lblW = doc.getTextWidth("AHORRO MENSUAL");
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9);
+    const amtW = doc.getTextWidth(savingStr);
+
+    // Dimensiones de la píldora
+    const padX  = 4;
+    const sepW  = 4;   // espacio entre etiqueta y cantidad
+    const pillW = padX + lblW + sepW + amtW + padX;
+    const pillH = 7;
+    const pillX = LX - 2;
+    const pillY = y + 12.5;
+
+    // Fondo verde con esquinas bien redondeadas
+    fillRect(doc, pillX, pillY, pillW, pillH, [22, 150, 68], 3.5);
+
+    // Línea separadora vertical blanca tenue entre etiqueta y cantidad
+    const sepX = pillX + padX + lblW + sepW * 0.5;
+    doc.setDrawColor(255, 255, 255); doc.setLineWidth(0.3);
+    doc.line(sepX, pillY + 1.5, sepX, pillY + pillH - 1.5);
+
+    // Etiqueta "AHORRO MENSUAL" pequeña
+    doc.setFont("helvetica", "bold"); doc.setFontSize(5.5); doc.setTextColor(...WHITE);
+    doc.text("AHORRO MENSUAL", pillX + padX, pillY + pillH - 2.2);
+
+    // Importe más grande y destacado
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...WHITE);
+    doc.text(savingStr, pillX + padX + lblW + sepW, pillY + pillH - 2);
   }
 
   y += totH + 5;
