@@ -328,122 +328,205 @@ function fmt(n: number): string {
 export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   const PW = 210, PH = 297, ML = 14, MR = 14, CW = PW - ML - MR;
+  const SAFE_BOTTOM = PH - 18;   // reserva para aviso legal + footer
 
   const info = PRODUCTS[quote.producto] ?? DEFAULT_INFO;
   const hoy  = new Date().toLocaleDateString("es-ES", {
     day: "2-digit", month: "long", year: "numeric",
   });
 
-  /* ════════════════════════════════════════════════════════════
-     § 1 · CABECERA
-  ════════════════════════════════════════════════════════════ */
-  const HDR = 44;
-
-  // Fondo azul oscuro a página completa
-  fillRect(doc, 0, 0, PW, HDR, NAVY);
-
-  // Panel de acento azul claro (triángulo simulado con rect inclinado)
-  // Usamos dos rectángulos escalonados para dar efecto diagonal
-  fillRect(doc, PW * 0.60, 0, PW * 0.40, HDR, BLUE);
-  fillRect(doc, PW * 0.57, 0, PW * 0.05, HDR, [0, 100, 180]); // transición
-
-  // Barra inferior magenta
-  fillRect(doc, 0, HDR - 3, PW, 3, MAGENTA);
-
-  // Logo (arriba a la derecha, ~55 × 19 mm)
-  try {
-    doc.addImage("data:image/png;base64," + LOGO_B64, "PNG", PW - MR - 56, 7, 54, 19);
-  } catch {
-    doc.setFont("helvetica", "bold"); doc.setFontSize(9);
-    doc.setTextColor(255, 255, 255);
-    doc.text("ADESLAS · MARCHAL", PW - MR, 14, { align: "right" });
+  /* ── helper: nueva página si no cabe "needed" mm ─── */
+  let y = 0;
+  function newPage(): void {
+    doc.addPage();
+    y = 16;
+  }
+  function ensureSpace(needed: number): void {
+    if (y + needed > SAFE_BOTTOM) newPage();
   }
 
-  // Título principal
+  /* ── helper: footer (se dibuja en todas las páginas al final) ─ */
+  function drawFooters(): void {
+    const total = doc.getNumberOfPages();
+    for (let p = 1; p <= total; p++) {
+      doc.setPage(p);
+      // Barra footer navy
+      fillRect(doc, 0, PH - 11, PW, 11, NAVY);
+      // Acento izquierdo magenta
+      fillRect(doc, 0, PH - 11, 4, 11, MAGENTA);
+      // Punto separador centrado
+      fillRect(doc, PW / 2 - 0.5, PH - 11, 1, 11, [0, 70, 155]);
+      // Texto izquierda
+      doc.setFont("helvetica", "bold"); doc.setFontSize(7); doc.setTextColor(...WHITE);
+      doc.text("Marchal Aseguradores · Agente exclusivo Adeslas", 8, PH - 6.5);
+      // Texto derecha
+      doc.setFont("helvetica", "normal"); doc.setFontSize(6.5);
+      doc.setTextColor(165, 200, 245);
+      doc.text(
+        `adeslas.numero1salud.es  ·  Tel. 91 710 50 00  ·  ${p > 1 ? `Pág. ${p}` : ""}`,
+        PW - 8, PH - 6.5, { align: "right" },
+      );
+      // Línea divisoria legal
+      doc.setDrawColor(...BORDER); doc.setLineWidth(0.2);
+      doc.line(ML, PH - 14, PW - MR, PH - 14);
+      // Aviso legal compacto
+      doc.setFont("helvetica", "italic"); doc.setFontSize(5.5);
+      doc.setTextColor(170, 175, 185);
+      doc.text(
+        "Presupuesto orientativo sujeto a aceptación por Adeslas Seguros Médicos S.A. Precios tarifa 2026. Emitido por Marchal Aseguradores S.L.U. — Avda. de Filipinas 28, 28003 Madrid.",
+        ML, PH - 15.5,
+      );
+    }
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     § 1 · CABECERA (más compacta y moderna — 30 mm)
+  ════════════════════════════════════════════════════════════ */
+  const HDR = 30;
+
+  // Fondo NAVY a página completa
+  fillRect(doc, 0, 0, PW, HDR, NAVY);
+
+  // Panel derecho ligeramente más claro (subtil, da profundidad)
+  fillRect(doc, PW * 0.62, 0, PW * 0.38, HDR, [0, 58, 148]);
+
+  // Franja izquierda BLUE (acento moderno)
+  fillRect(doc, 0, 0, 3.5, HDR, BLUE);
+
+  // Línea inferior MAGENTA
+  fillRect(doc, 0, HDR - 2, PW, 2, MAGENTA);
+
+  // Logo (arriba a la derecha)
+  try {
+    doc.addImage("data:image/png;base64," + LOGO_B64, "PNG", PW - MR - 50, 6, 48, 16);
+  } catch {
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8);
+    doc.setTextColor(...WHITE);
+    doc.text("ADESLAS · MARCHAL", PW - MR, 13, { align: "right" });
+  }
+
+  // Título "PRESUPUESTO"
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(19);
-  doc.setTextColor(255, 255, 255);
-  doc.text("PRESUPUESTO", ML, 14);
+  doc.setFontSize(17);
+  doc.setTextColor(...WHITE);
+  doc.text("PRESUPUESTO", ML + 7, 12);
 
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(7.5);
-  doc.setTextColor(175, 210, 250);
-  doc.text("PERSONALIZADO · ADESLAS 2026", ML, 19.5);
+  // Subtítulo: "Personalizado para [nombre]" o genérico
+  if (cliente.nombre) {
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7.5);
+    doc.setTextColor(175, 212, 255);
+    const prefix = "Personalizado para  ";
+    doc.text(prefix, ML + 7, 18.5);
+    const prefW = doc.getTextWidth(prefix);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(...WHITE);
+    // Truncar nombre si es muy largo
+    const nombreShort = doc.splitTextToSize(
+      cliente.nombre, CW - prefW - 60,
+    )[0] as string;
+    doc.text(nombreShort, ML + 7 + prefW, 18.5);
+  } else {
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7.5);
+    doc.setTextColor(175, 212, 255);
+    doc.text("Presupuesto personalizado · 2026", ML + 7, 18.5);
+  }
 
-  // Separador sutil
-  doc.setDrawColor(255, 255, 255, 0.3);
-  doc.setLineWidth(0.2);
-  doc.line(ML, 22, ML + 75, 22);
-
-  // Datos agencia
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(8);
-  doc.setTextColor(210, 230, 255);
-  doc.text("Marchal Aseguradores · Agente exclusivo Adeslas", ML, 27);
-
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(9);
-  doc.setTextColor(255, 255, 255);
-  doc.text("Tel. 91 710 50 00", ML, 33);
-
-  // Fecha de emisión
+  // Fecha de emisión (parte baja del header)
   doc.setFont("helvetica", "italic");
-  doc.setFontSize(7.5);
-  doc.setTextColor(160, 195, 240);
-  doc.text(hoy, ML, 39.5);
-
-  let y = HDR + 6;
-
-  /* ════════════════════════════════════════════════════════════
-     § 2 · PRODUCTO
-  ════════════════════════════════════════════════════════════ */
-
-  // Tarjeta producto — fondo blanco con borde y sombra simulada
-  fillRect(doc, ML + 0.5, y + 0.5, CW, 30, [225, 230, 240], 4); // "sombra"
-  fillRect(doc, ML, y, CW, 30, WHITE, 4);
-  outlineRect(doc, ML, y, CW, 30, BORDER, 4);
-
-  // Barra lateral izquierda
-  fillRect(doc, ML, y, 5, 30, NAVY, 4);
-  fillRect(doc, ML, y + 4, 5, 26, NAVY);    // cuadrar parte inferior
-
-  // Nombre del producto (grande)
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(15);
-  doc.setTextColor(...NAVY);
-  doc.text(quote.producto, ML + 10, y + 10);
-
-  // Badge
-  doc.setFont("helvetica", "bold");
   doc.setFontSize(6.5);
-  doc.setTextColor(255, 255, 255);
-  const bw = doc.getTextWidth(info.badge) + 8;
-  fillRect(doc, ML + 10, y + 12.5, bw, 6.5, BLUE, 2);
-  doc.text(info.badge, ML + 14, y + 17.2);
+  doc.setTextColor(140, 185, 235);
+  doc.text(`Emitido el ${hoy}`, ML + 7, HDR - 5);
 
-  // Localización (top right)
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(7.5);
-  doc.setTextColor(...BLUE);
-  doc.text(`${quote.provincia}  ·  Zona ${quote.zona}`, ML + CW - 6, y + 10, { align: "right" });
-
-  // Descripción
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(7.8);
-  doc.setTextColor(75, 85, 99);
-  const descW   = CW - 18;
-  const descArr = doc.splitTextToSize(info.desc, descW) as string[];
-  doc.text(descArr.slice(0, 2), ML + 10, y + 23);
-
-  y += 36;
+  y = HDR + 5;
 
   /* ════════════════════════════════════════════════════════════
-     § 3 · COBERTURAS INCLUIDAS
+     § 2 · DATOS DEL CLIENTE (franja compacta bajo el header)
   ════════════════════════════════════════════════════════════ */
+  const tieneCliente = cliente.nombre || cliente.telefono || cliente.email;
+  if (tieneCliente) {
+    const fields = [
+      { label: "CLIENTE",   value: cliente.nombre },
+      { label: "TELÉFONO",  value: cliente.telefono },
+      { label: "EMAIL",     value: cliente.email },
+    ].filter(f => f.value);
+
+    const STRIP_H = 13;
+    // Fondo degradado simulado (rect claro + borde)
+    fillRect(doc, ML, y, CW, STRIP_H, [236, 242, 255], 3);
+    outlineRect(doc, ML, y, CW, STRIP_H, [195, 212, 245], 3, 0.4);
+    // Acento izquierdo BLUE
+    fillRect(doc, ML, y, 3, STRIP_H, BLUE, 3);
+    fillRect(doc, ML, y + 3, 3, STRIP_H - 3, BLUE);
+
+    const fieldW = CW / fields.length;
+    fields.forEach((f, i) => {
+      const fx = ML + i * fieldW + (i === 0 ? 8 : 5);
+      // Separador vertical entre campos
+      if (i > 0) {
+        doc.setDrawColor(...BORDER); doc.setLineWidth(0.25);
+        doc.line(ML + i * fieldW, y + 2.5, ML + i * fieldW, y + STRIP_H - 2.5);
+      }
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(5.8);
+      doc.setTextColor(110, 130, 175);
+      doc.text(f.label!, fx, y + 5);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8.2);
+      doc.setTextColor(...NAVY);
+      const val = doc.splitTextToSize(f.value!, fieldW - 8)[0] as string;
+      doc.text(val, fx, y + 10.5);
+    });
+
+    y += STRIP_H + 5;
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     § 3 · PRODUCTO
+  ════════════════════════════════════════════════════════════ */
+  ensureSpace(34);
+  const PROD_H = 28;
+
+  // Sombra sutil
+  fillRect(doc, ML + 0.5, y + 0.5, CW, PROD_H, [215, 224, 240], 4);
+  fillRect(doc, ML, y, CW, PROD_H, WHITE, 4);
+  outlineRect(doc, ML, y, CW, PROD_H, BORDER, 4, 0.3);
+
+  // Barra lateral NAVY
+  fillRect(doc, ML, y, 5, PROD_H, NAVY, 4);
+  fillRect(doc, ML, y + 4, 5, PROD_H - 4, NAVY);
+
+  // Nombre del producto
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.setTextColor(...NAVY);
+  doc.text(quote.producto, ML + 10, y + 9.5);
+
+  // Badge pill
+  const bw = doc.getTextWidth(info.badge) + 9;
+  fillRect(doc, ML + 10, y + 12, bw, 6.5, [0, 130, 200], 3);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(6.2); doc.setTextColor(...WHITE);
+  doc.text(info.badge, ML + 14.5, y + 16.5);
+
+  // Ubicación (top-right)
+  doc.setFont("helvetica", "normal"); doc.setFontSize(7.2); doc.setTextColor(...BLUE);
+  doc.text(`📍  ${quote.provincia}  ·  Zona ${quote.zona}`, ML + CW - 6, y + 9.5, { align: "right" });
+
+  // Descripción (2 líneas)
+  doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(70, 82, 100);
+  const descArr = doc.splitTextToSize(info.desc, CW - 18) as string[];
+  doc.text(descArr.slice(0, 2), ML + 10, y + 22);
+
+  y += PROD_H + 5;
+
+  /* ════════════════════════════════════════════════════════════
+     § 4 · COBERTURAS INCLUIDAS
+  ════════════════════════════════════════════════════════════ */
+  ensureSpace(20);
   sectionLabel(doc, "COBERTURAS INCLUIDAS", ML, y + 1);
   y += 5;
 
-  // Rejilla 3 columnas con icono-letra
   const COLS  = 3;
   const GAP   = 3;
   const COL_W = (CW - GAP * (COLS - 1)) / COLS;   // ≈ 58.7 mm
@@ -451,41 +534,43 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
   const ROWS  = Math.ceil(COV.length / COLS);
 
   for (let row = 0; row < ROWS; row++) {
-    // Calcular altura de fila según texto más largo en esta fila
     const rowItems = COV.slice(row * COLS, row * COLS + COLS);
-    const textW    = COL_W - 14;   // espacio útil tras icono (5 mm) + padding
+    const textW    = COL_W - 13;
     const maxLines = rowItems.reduce((acc, item) => {
       const lines = doc.splitTextToSize(item.title, textW) as string[];
       return Math.max(acc, lines.length);
     }, 1);
-    const cellH = Math.max(maxLines * 4.0 + 8, 11);
+    const cellH = Math.max(maxLines * 4.0 + 7.5, 10.5);
+
+    ensureSpace(cellH + 3);   // ← evita que la fila se parta
 
     rowItems.forEach((item, col) => {
       const cx = ML + col * (COL_W + GAP);
+      const isLast = item.icon === "+";
 
-      // Fondo y borde de la tarjeta
-      fillRect(doc,    cx, y, COL_W, cellH, MIST, 2.5);
-      outlineRect(doc, cx, y, COL_W, cellH, BORDER, 2.5);
+      // Fondo: último ítem con toque azul pálido, resto MIST
+      const cardBg: [number,number,number] = isLast ? [230, 242, 255] : MIST;
+      fillRect(doc,    cx, y, COL_W, cellH, cardBg, 2.5);
+      outlineRect(doc, cx, y, COL_W, cellH, isLast ? [160, 200, 240] : BORDER, 2.5, 0.3);
 
-      // Cuadrado NAVY con letra
+      // Cuadrado icono
       const iconSz = 5.5;
       const iconX  = cx + 3.5;
       const iconY  = y + (cellH - iconSz) / 2;
-      fillRect(doc, iconX, iconY, iconSz, iconSz, NAVY, 1.5);
+      const iconBg: [number,number,number] = isLast ? BLUE : NAVY;
+      fillRect(doc, iconX, iconY, iconSz, iconSz, iconBg, 1.5);
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(item.icon.length === 1 ? 6 : 5);
+      doc.setFontSize(item.icon.length === 1 ? 6 : 4.5);
       doc.setTextColor(...WHITE);
-      // Centrar letra horizontalmente en el cuadrado
       const letterW = doc.getTextWidth(item.icon);
       doc.text(item.icon, iconX + (iconSz - letterW) / 2, iconY + iconSz - 1.3);
 
-      // Texto de la cobertura
+      // Texto cobertura
       const titleLines = doc.splitTextToSize(item.title, textW) as string[];
       const textStartY = y + (cellH - titleLines.length * 4.0) / 2 + 3.8;
-      doc.setFont("helvetica", item.icon === "+" ? "italic" : "normal");
-      doc.setFontSize(7.2);
-      const titleColor = item.icon === "+" ? BLUE : SLATE;
-      doc.setTextColor(...titleColor);
+      doc.setFont("helvetica", isLast ? "bolditalic" : "normal");
+      doc.setFontSize(7.0);
+      doc.setTextColor(...(isLast ? BLUE : SLATE));
       doc.text(titleLines, cx + 11, textStartY);
     });
 
@@ -495,47 +580,9 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
   y += 4;
 
   /* ════════════════════════════════════════════════════════════
-     § 4 · DATOS DEL CLIENTE
-  ════════════════════════════════════════════════════════════ */
-  const tieneCliente = cliente.nombre || cliente.telefono || cliente.email;
-  if (tieneCliente) {
-    sectionLabel(doc, "DATOS DEL CLIENTE", ML, y + 1);
-    y += 5;
-
-    const fields = [
-      { label: "NOMBRE",    value: cliente.nombre },
-      { label: "TELÉFONO",  value: cliente.telefono },
-      { label: "EMAIL",     value: cliente.email },
-    ].filter(f => f.value);
-
-    const FH  = 18;
-    const FW  = (CW - (fields.length - 1) * 3) / fields.length;
-
-    fields.forEach((f, i) => {
-      const fx = ML + i * (FW + 3);
-      fillRect(doc, fx, y, FW, FH, WHITE, 3);
-      outlineRect(doc, fx, y, FW, FH, BORDER, 3);
-
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(6.5);
-      doc.setTextColor(148, 163, 184);
-      doc.text(f.label!, fx + 4, y + 6.5);
-
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(9);
-      doc.setTextColor(...NAVY);
-      // truncate if needed
-      const maxW = FW - 8;
-      const val = doc.splitTextToSize(f.value!, maxW)[0] as string;
-      doc.text(val, fx + 4, y + 14);
-    });
-
-    y += FH + 7;
-  }
-
-  /* ════════════════════════════════════════════════════════════
      § 5 · DESGLOSE POR ASEGURADO
   ════════════════════════════════════════════════════════════ */
+  ensureSpace(40);
   sectionLabel(doc, "DESGLOSE POR ASEGURADO", ML, y + 1);
   y += 4;
 
@@ -555,12 +602,12 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
       fontSize: 7.5,
       fontStyle: "bold",
       halign: "left",
-      cellPadding: { top: 3.5, bottom: 3.5, left: 5, right: 5 },
+      cellPadding: { top: 3, bottom: 3, left: 5, right: 5 },
     },
     bodyStyles: {
-      fontSize: 8.5,
+      fontSize: 8.2,
       textColor: SLATE,
-      cellPadding: { top: 3.5, bottom: 3.5, left: 5, right: 5 },
+      cellPadding: { top: 3, bottom: 3, left: 5, right: 5 },
     },
     columnStyles: {
       0: { cellWidth: 14, halign: "center" },
@@ -568,164 +615,145 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
       2: { cellWidth: 36, halign: "center" },
       3: { cellWidth: 46, halign: "right", fontStyle: "bold" },
     },
-    alternateRowStyles: { fillColor: [248, 250, 255] },
+    alternateRowStyles: { fillColor: [247, 250, 255] },
     tableWidth: CW,
     theme: "grid",
+    didDrawPage: () => { y = 16; },   // resetear y si autoTable pasa de página
   });
 
-  y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 8;
+  y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 7;
 
   /* ════════════════════════════════════════════════════════════
      § 6 · RESUMEN DE PRECIOS
   ════════════════════════════════════════════════════════════ */
+  const hayDesc = quote.ratioAuto > 0 || quote.pctComercialEfectivo > 0;
+  const priceH  = 9
+    + (quote.ratioAuto > 0 ? 7 : 0)
+    + (quote.pctComercialEfectivo > 0 ? 7 : 0)
+    + 7    // separador + padding
+    + 18;  // caja total
+
+  ensureSpace(priceH + 10);
   sectionLabel(doc, "RESUMEN DE PRECIOS", ML, y + 1);
   y += 5;
 
-  const hayDesc = quote.ratioAuto > 0 || quote.pctComercialEfectivo > 0;
-  // Calcular alto de la caja
-  const priceH = 8
-    + (quote.ratioAuto > 0 ? 7 : 0)
-    + (quote.pctComercialEfectivo > 0 ? 7 : 0)
-    + 6       // separador
-    + 18;     // total
-
+  // Tarjeta precio con borde y sombra
+  fillRect(doc, ML + 0.4, y + 0.4, CW, priceH, [215, 224, 240], 4);
   fillRect(doc, ML, y, CW, priceH, WHITE, 4);
-  outlineRect(doc, ML, y, CW, priceH, BORDER, 4);
+  outlineRect(doc, ML, y, CW, priceH, BORDER, 4, 0.3);
 
-  // Barra izquierda navy
+  // Acento NAVY izquierdo
   fillRect(doc, ML, y, 4, priceH, NAVY, 4);
   fillRect(doc, ML, y + 4, 4, priceH - 4, NAVY);
 
-  const LX = ML + 10, RX = ML + CW - 8;
-  let lY = y + 10;
+  const LX = ML + 11, RX = ML + CW - 8;
+  let lY = y + 11;
 
   // Subtotal
-  doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(107, 114, 128);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(8.2); doc.setTextColor(107, 114, 128);
   doc.text("Subtotal bruto", LX, lY);
   doc.text(fmt(quote.subtotal), RX, lY, { align: "right" });
 
   if (quote.ratioAuto > 0) {
     lY += 7;
-    doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...GREEN);
-    doc.text(`- ${quote.labelDescAuto}`, LX, lY);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8.2); doc.setTextColor(...GREEN);
+    doc.text(`↓  ${quote.labelDescAuto}`, LX, lY);
     doc.text(`- ${fmt(quote.descAuto)}`, RX, lY, { align: "right" });
   }
 
   if (quote.pctComercialEfectivo > 0) {
     lY += 7;
-    doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...BLUE);
-    doc.text(`- Descuento comercial ${quote.pctComercialEfectivo} %`, LX, lY);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8.2); doc.setTextColor(...BLUE);
+    doc.text(`↓  Descuento comercial ${quote.pctComercialEfectivo} %`, LX, lY);
     doc.text(`- ${fmt(quote.descComercial)}`, RX, lY, { align: "right" });
   }
 
-  // Línea divisoria
-  lY += 6;
+  // Separador
+  lY += 7;
   doc.setDrawColor(...BORDER); doc.setLineWidth(0.3);
-  doc.line(LX, lY, RX, lY);
-  lY += 4;
+  doc.line(LX, lY - 1, RX, lY - 1);
 
-  // TOTAL — contenedor con fondo navy
-  const totBoxW = 80, totBoxH = 16;
-  fillRect(doc, RX - totBoxW, lY - 2, totBoxW, totBoxH, NAVY, 3);
+  // Caja TOTAL (navy)
+  const totBoxW = 85, totBoxH = 17;
+  fillRect(doc, RX - totBoxW, lY + 1, totBoxW, totBoxH, NAVY, 3);
+  // Pequeño detalle: línea magenta bajo el precio
+  fillRect(doc, RX - totBoxW, lY + totBoxH - 1, totBoxW, 2, MAGENTA, 0);
 
-  doc.setFont("helvetica", "bold"); doc.setFontSize(17); doc.setTextColor(...WHITE);
-  doc.text(fmt(quote.total), RX - 5, lY + 9, { align: "right" });
-  doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(175, 205, 245);
-  doc.text("al mes", RX - 5, lY + 12.5, { align: "right" });
+  doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.setTextColor(...WHITE);
+  doc.text(fmt(quote.total), RX - 5, lY + 12, { align: "right" });
+  doc.setFont("helvetica", "normal"); doc.setFontSize(6.5); doc.setTextColor(175, 210, 248);
+  doc.text("al mes", RX - 5, lY + 15.5, { align: "right" });
 
   doc.setFont("helvetica", "bold"); doc.setFontSize(12); doc.setTextColor(...NAVY);
-  doc.text("TOTAL MENSUAL", LX, lY + 8);
+  doc.text("TOTAL MENSUAL", LX, lY + 9);
 
   if (hayDesc) {
     const saving = quote.subtotal - quote.total;
-    doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(...GREEN);
-    doc.text(`Ahorro mensual: ${fmt(saving)}`, LX, lY + 13);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...GREEN);
+    doc.text(`✓  Ahorro mensual: ${fmt(saving)}`, LX, lY + 15.5);
   }
 
   y += priceH + 8;
 
   /* ════════════════════════════════════════════════════════════
-     § 7 · CAMPAÑA SEGURÍSIMOS (sólo puntos, sin tarjeta regalo)
+     § 7 · CAMPAÑA SEGURÍSIMOS
   ════════════════════════════════════════════════════════════ */
   if (!quote.isSeniors && quote.totalPuntos > 0) {
-    const camH = 28;
+    ensureSpace(30);
+    const camH = 26;
     fillRect(doc, ML, y, CW, camH, AMBER_BG, 4);
-    outlineRect(doc, ML, y, CW, camH, [220, 160, 30], 4);
+    outlineRect(doc, ML, y, CW, camH, [215, 155, 25], 4, 0.4);
     fillRect(doc, ML, y, 4, camH, AMBER, 4);
     fillRect(doc, ML, y + 4, 4, camH - 4, AMBER);
 
-    doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...AMBER);
-    doc.text("CAMPAÑA SEGURÍSIMOS 2026  ·  PUNTOS ASEGURADO", ML + 10, y + 7);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(7); doc.setTextColor(...AMBER);
+    doc.text("★  CAMPAÑA SEGURÍSIMOS 2026  ·  PUNTOS ASEGURADO", ML + 10, y + 7);
 
-    doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(100, 65, 0);
     const nAseg = quote.preciosPorPersona.length;
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7.8); doc.setTextColor(95, 60, 0);
     doc.text(
       `${quote.puntosXAseg.toLocaleString("es-ES")} pts/asegurado  ×  ${nAseg} asegurado${nAseg > 1 ? "s" : ""}`,
-      ML + 10, y + 15,
+      ML + 10, y + 14.5,
     );
 
-    doc.setFont("helvetica", "bold"); doc.setFontSize(16); doc.setTextColor(140, 80, 0);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(16); doc.setTextColor(130, 75, 0);
     doc.text(
       `${quote.totalPuntos.toLocaleString("es-ES")} puntos`,
-      ML + 10, y + 24,
+      ML + 10, y + 22,
     );
 
     y += camH + 7;
   }
 
   if (quote.isSeniors && quote.totalAbono > 0) {
-    const camH = 28;
+    ensureSpace(30);
+    const camH = 26;
     fillRect(doc, ML, y, CW, camH, GREEN_BG, 4);
-    outlineRect(doc, ML, y, CW, camH, [100, 180, 110], 4);
+    outlineRect(doc, ML, y, CW, camH, [90, 170, 100], 4, 0.4);
     fillRect(doc, ML, y, 4, camH, GREEN, 4);
     fillRect(doc, ML, y + 4, 4, camH - 4, GREEN);
 
-    doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...GREEN);
-    doc.text("CAMPAÑA SEGURÍSIMOS 2026  ·  ABONO EN CUENTA", ML + 10, y + 7);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(7); doc.setTextColor(...GREEN);
+    doc.text("★  CAMPAÑA SEGURÍSIMOS 2026  ·  ABONO EN CUENTA", ML + 10, y + 7);
 
-    doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(20, 80, 40);
     const nAseg2 = quote.preciosPorPersona.length;
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7.8); doc.setTextColor(18, 75, 38);
     doc.text(
-      `${quote.abonoXAseg} €/asegurado  ×  ${nAseg2} asegurado${nAseg2 > 1 ? "s" : ""}  —  abono directo en cuenta bancaria`,
-      ML + 10, y + 15,
+      `${quote.abonoXAseg} €/asegurado  ×  ${nAseg2} asegurado${nAseg2 > 1 ? "s" : ""}  —  abono directo en cuenta`,
+      ML + 10, y + 14.5,
     );
 
-    doc.setFont("helvetica", "bold"); doc.setFontSize(16); doc.setTextColor(15, 110, 55);
-    doc.text(`${quote.totalAbono} € de abono`, ML + 10, y + 24);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(16); doc.setTextColor(14, 100, 50);
+    doc.text(`${quote.totalAbono} € de abono`, ML + 10, y + 22);
 
     y += camH + 7;
   }
 
   /* ════════════════════════════════════════════════════════════
-     § 8 · AVISO LEGAL
+     § 8 · FOOTER EN TODAS LAS PÁGINAS + DESCARGA
   ════════════════════════════════════════════════════════════ */
-  const legalY = Math.max(y + 4, PH - 25);
+  drawFooters();
 
-  doc.setDrawColor(...BORDER); doc.setLineWidth(0.25);
-  doc.line(ML, legalY, PW - MR, legalY);
-
-  doc.setFont("helvetica", "italic"); doc.setFontSize(6);
-  doc.setTextColor(156, 163, 175);
-  const legalLines = [
-    "Presupuesto orientativo sujeto a aceptación por Adeslas Seguros Médicos, S.A. Los precios corresponden a la tarifa vigente en 2026 y pueden variar según el",
-    "cuestionario de salud. Emitido por Marchal Aseguradores S.L.U. — Agente exclusivo Adeslas. Avda. de Filipinas 28, 28003 Madrid. Tel. 91 710 50 00.",
-  ];
-  legalLines.forEach((l, i) => doc.text(l, ML, legalY + 5 + i * 4));
-
-  /* ════════════════════════════════════════════════════════════
-     § 9 · PIE DE PÁGINA
-  ════════════════════════════════════════════════════════════ */
-  fillRect(doc, 0, PH - 10, PW, 10, NAVY);
-  fillRect(doc, 0, PH - 10, 5, 10, MAGENTA);  // acento izquierdo
-
-  doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...WHITE);
-  doc.text("Marchal Aseguradores · Agente exclusivo Adeslas", PW / 2, PH - 5.5, { align: "center" });
-  doc.setFont("helvetica", "normal"); doc.setFontSize(6.5); doc.setTextColor(160, 195, 240);
-  doc.text("adeslas.numero1salud.es  ·  Tel. 91 710 50 00", PW / 2, PH - 2, { align: "center" });
-
-  /* ════════════════════════════════════════════════════════════
-     § 10 · DESCARGA
-  ════════════════════════════════════════════════════════════ */
   const slug    = quote.producto.replace(/\s+/g, "-").toLowerCase();
   const client  = cliente.nombre ? `_${cliente.nombre.replace(/\s+/g, "-").toLowerCase()}` : "";
   const dateStr = new Date().toISOString().slice(0, 10);
