@@ -219,7 +219,11 @@ export default function TarificadorInterno() {
         const baseTrasFamiliar = subtotal - descAuto;
 
         // 2) Descuento comercial: slider independiente según producto
-        const pctComercialEfectivo = product.id === "pymes-total" ? pctPymes : pctGeneral;
+        // Adeslas GO no admite descuento comercial
+        const pctComercialEfectivo =
+          product.id === "go"        ? 0 :
+          product.id === "pymes-total" ? pctPymes :
+          pctGeneral;
         const descComercial = baseTrasFamiliar * (pctComercialEfectivo / 100);
         const total = baseTrasFamiliar - descComercial;
 
