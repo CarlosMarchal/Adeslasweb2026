@@ -86,7 +86,7 @@ const PRODUCTS: Record<string, ProductInfo> = {
       cov("Chequeo médico anual", "C"),
       cov("Rehabilitación física", "R"),
       cov("Diagnóstico por imagen (Rx, eco)", "D"),
-      cov("Copago máx. garantizado 260 €/año", "✓"),
+      cov("Copago máx. garantizado 260 €/año", "G"),
       cov("Y mucho más...", "+"),
     ],
   },
@@ -103,7 +103,7 @@ const PRODUCTS: Record<string, ProductInfo> = {
       cov("Análisis clínicos incluidos", "A"),
       cov("Chequeo médico anual", "C"),
       cov("Rehabilitación física", "R"),
-      cov("Copago máx. garantizado 300 €/año", "✓"),
+      cov("Copago máx. garantizado 300 €/año", "G"),
       cov("Y mucho más...", "+"),
     ],
   },
@@ -121,7 +121,7 @@ const PRODUCTS: Record<string, ProductInfo> = {
       cov("Chequeo médico anual", "C"),
       cov("Rehabilitación física", "R"),
       cov("Asistencia en viaje hasta 25.000 €", "V"),
-      cov("Precio garantizado 3 años", "✓"),
+      cov("Precio garantizado 3 años", "G"),
       cov("Y mucho más...", "+"),
     ],
   },
@@ -138,7 +138,7 @@ const PRODUCTS: Record<string, ProductInfo> = {
       cov("Análisis clínicos incluidos", "A"),
       cov("Chequeo médico anual", "C"),
       cov("Rehabilitación física", "R"),
-      cov("Sin copagos en toda la red Adeslas", "✓"),
+      cov("Sin copagos en toda la red Adeslas", "S"),
       cov("Y mucho más...", "+"),
     ],
   },
@@ -173,7 +173,7 @@ const PRODUCTS: Record<string, ProductInfo> = {
       cov("Telemedicina: tlf, chat y vídeo", "T"),
       cov("Análisis clínicos y diagnóstico avanzado", "A"),
       cov("Chequeo médico anual", "C"),
-      cov("Sin copagos en la red Adeslas", "✓"),
+      cov("Sin copagos en la red Adeslas", "S"),
       cov("Y mucho más...", "+"),
     ],
   },
@@ -190,7 +190,7 @@ const PRODUCTS: Record<string, ProductInfo> = {
       cov("Análisis clínicos incluidos", "A"),
       cov("Chequeo médico anual", "C"),
       cov("Rehabilitación física", "R"),
-      cov("Sin copagos en toda la red", "✓"),
+      cov("Sin copagos en toda la red", "S"),
       cov("Y mucho más...", "+"),
     ],
   },
@@ -223,7 +223,7 @@ const PRODUCTS: Record<string, ProductInfo> = {
       cov("Telemedicina: tlf, chat y vídeo", "T"),
       cov("Análisis clínicos incluidos", "A"),
       cov("Chequeo médico anual para empleados", "C"),
-      cov("Precio garantizado 3 años", "✓"),
+      cov("Precio garantizado 3 años", "G"),
       cov("100 % deducible en Impuesto de Sociedades", "F"),
       cov("Y mucho más...", "+"),
     ],
@@ -241,7 +241,7 @@ const PRODUCTS: Record<string, ProductInfo> = {
       cov("Análisis clínicos incluidos", "A"),
       cov("Chequeo médico anual adaptado", "C"),
       cov("Rehabilitación física", "R"),
-      cov("Asesor de salud personal 24 h", "✓"),
+      cov("Asesor de salud personal 24 h", "A"),
       cov("Y mucho más...", "+"),
     ],
   },
@@ -258,7 +258,7 @@ const PRODUCTS: Record<string, ProductInfo> = {
       cov("Análisis clínicos y TAC / RMN", "A"),
       cov("Chequeo médico anual adaptado", "C"),
       cov("Asistencia en viaje hasta 100.000 €", "V"),
-      cov("Asesor de salud personal 24 h", "✓"),
+      cov("Asesor de salud personal 24 h", "A"),
       cov("Precio garantizado 3 años", "G"),
       cov("Y mucho más...", "+"),
     ],
@@ -277,7 +277,7 @@ const DEFAULT_INFO: ProductInfo = {
     cov("Análisis clínicos incluidos", "A"),
     cov("Telemedicina: tlf, chat y vídeo", "T"),
     cov("Chequeo médico anual", "C"),
-    cov("Atención telefónica 24 h", "✓"),
+    cov("Atención telefónica 24 h", "A"),
     cov("Y mucho más...", "+"),
   ],
 };
@@ -511,7 +511,7 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
 
   // Ubicación (top-right)
   doc.setFont("helvetica", "normal"); doc.setFontSize(7.2); doc.setTextColor(...BLUE);
-  doc.text(`📍  ${quote.provincia}  ·  Zona ${quote.zona}`, ML + CW - 6, y + 9.5, { align: "right" });
+  doc.text(`${quote.provincia}  ·  Zona ${quote.zona}`, ML + CW - 6, y + 9.5, { align: "right" });
 
   // Descripción (2 líneas)
   doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(70, 82, 100);
@@ -627,124 +627,158 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
      § 6 · RESUMEN DE PRECIOS
   ════════════════════════════════════════════════════════════ */
   const hayDesc = quote.ratioAuto > 0 || quote.pctComercialEfectivo > 0;
-  const priceH  = 9
-    + (quote.ratioAuto > 0 ? 7 : 0)
-    + (quote.pctComercialEfectivo > 0 ? 7 : 0)
-    + 7    // separador + padding
-    + 18;  // caja total
 
-  ensureSpace(priceH + 10);
+  // Calcular número de líneas de desglose para la tarjeta superior
+  const nDescLines = (quote.ratioAuto > 0 ? 1 : 0) + (quote.pctComercialEfectivo > 0 ? 1 : 0);
+  const topCardH   = 9 + (nDescLines * 8) + 5;   // subtotal + descuentos + padding
+
+  ensureSpace(topCardH + 28);
   sectionLabel(doc, "RESUMEN DE PRECIOS", ML, y + 1);
   y += 5;
 
-  // Tarjeta precio con borde y sombra
-  fillRect(doc, ML + 0.4, y + 0.4, CW, priceH, [215, 224, 240], 4);
-  fillRect(doc, ML, y, CW, priceH, WHITE, 4);
-  outlineRect(doc, ML, y, CW, priceH, BORDER, 4, 0.3);
-
-  // Acento NAVY izquierdo
-  fillRect(doc, ML, y, 4, priceH, NAVY, 4);
-  fillRect(doc, ML, y + 4, 4, priceH - 4, NAVY);
+  /* ─── Tarjeta superior: líneas de desglose ─── */
+  fillRect(doc, ML, y, CW, topCardH, [248, 250, 255], 3);
+  outlineRect(doc, ML, y, CW, topCardH, BORDER, 3, 0.3);
+  // Acento izquierdo NAVY
+  fillRect(doc, ML, y, 3.5, topCardH, NAVY, 3);
+  fillRect(doc, ML, y + 3, 3.5, topCardH - 3, NAVY);
 
   const LX = ML + 11, RX = ML + CW - 8;
-  let lY = y + 11;
+  let lY = y + 9;
 
   // Subtotal
-  doc.setFont("helvetica", "normal"); doc.setFontSize(8.2); doc.setTextColor(107, 114, 128);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(120, 130, 148);
   doc.text("Subtotal bruto", LX, lY);
   doc.text(fmt(quote.subtotal), RX, lY, { align: "right" });
 
   if (quote.ratioAuto > 0) {
-    lY += 7;
-    doc.setFont("helvetica", "bold"); doc.setFontSize(8.2); doc.setTextColor(...GREEN);
-    doc.text(`↓  ${quote.labelDescAuto}`, LX, lY);
+    lY += 8;
+    // Píldora verde de descuento
+    const descLabelA = quote.labelDescAuto;
+    fillRect(doc, LX, lY - 5, 2.5, 5.5, GREEN, 1);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...GREEN);
+    doc.text(descLabelA, LX + 5, lY);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...GREEN);
     doc.text(`- ${fmt(quote.descAuto)}`, RX, lY, { align: "right" });
   }
 
   if (quote.pctComercialEfectivo > 0) {
-    lY += 7;
-    doc.setFont("helvetica", "bold"); doc.setFontSize(8.2); doc.setTextColor(...BLUE);
-    doc.text(`↓  Descuento comercial ${quote.pctComercialEfectivo} %`, LX, lY);
+    lY += 8;
+    fillRect(doc, LX, lY - 5, 2.5, 5.5, BLUE, 1);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...BLUE);
+    doc.text(`Descuento comercial  ${quote.pctComercialEfectivo} %`, LX + 5, lY);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...BLUE);
     doc.text(`- ${fmt(quote.descComercial)}`, RX, lY, { align: "right" });
   }
 
-  // Separador
-  lY += 7;
-  doc.setDrawColor(...BORDER); doc.setLineWidth(0.3);
-  doc.line(LX, lY - 1, RX, lY - 1);
+  y += topCardH + 2;
 
-  // Caja TOTAL (navy)
-  const totBoxW = 85, totBoxH = 17;
-  fillRect(doc, RX - totBoxW, lY + 1, totBoxW, totBoxH, NAVY, 3);
-  // Pequeño detalle: línea magenta bajo el precio
-  fillRect(doc, RX - totBoxW, lY + totBoxH - 1, totBoxW, 2, MAGENTA, 0);
+  /* ─── Tarjeta TOTAL — navy completo ─── */
+  const totH = hayDesc ? 22 : 18;
+  fillRect(doc, ML, y, CW, totH, NAVY, 3);
+  // Barra inferior magenta como remate visual
+  fillRect(doc, ML, y + totH - 2.5, CW, 2.5, MAGENTA, 0);
+  // Esquinas magenta → rellenar redondeo inferior con NAVY + borde magenta
+  fillRect(doc, ML, y + totH - 5, CW, 5, NAVY, 0); // anular redondeo inferior
+  fillRect(doc, ML, y + totH - 2.5, CW, 2.5, MAGENTA, 0);
 
-  doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.setTextColor(...WHITE);
-  doc.text(fmt(quote.total), RX - 5, lY + 12, { align: "right" });
+  // Label TOTAL MENSUAL (izquierda, blanco)
+  doc.setFont("helvetica", "bold"); doc.setFontSize(11); doc.setTextColor(...WHITE);
+  doc.text("TOTAL MENSUAL", LX - 2, y + 11);
+
+  // Importe (derecha, grande)
+  doc.setFont("helvetica", "bold"); doc.setFontSize(20); doc.setTextColor(...WHITE);
+  doc.text(fmt(quote.total), RX, y + 13, { align: "right" });
   doc.setFont("helvetica", "normal"); doc.setFontSize(6.5); doc.setTextColor(175, 210, 248);
-  doc.text("al mes", RX - 5, lY + 15.5, { align: "right" });
+  doc.text("al mes", RX, y + 16.5, { align: "right" });
 
-  doc.setFont("helvetica", "bold"); doc.setFontSize(12); doc.setTextColor(...NAVY);
-  doc.text("TOTAL MENSUAL", LX, lY + 9);
-
+  // Ahorro (si hay descuento) — etiqueta verde sobre NAVY
   if (hayDesc) {
     const saving = quote.subtotal - quote.total;
-    doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...GREEN);
-    doc.text(`✓  Ahorro mensual: ${fmt(saving)}`, LX, lY + 15.5);
+    // Píldora de ahorro
+    const ahorroTxt = `Ahorro mensual:  ${fmt(saving)}`;
+    const ahorroW   = doc.getTextWidth(ahorroTxt) + 8;
+    fillRect(doc, LX - 2, y + 14.5, ahorroW, 5.5, GREEN, 2);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(7); doc.setTextColor(...WHITE);
+    doc.text(ahorroTxt, LX + 2, y + 18.5);
   }
 
-  y += priceH + 8;
+  y += totH + 8;
 
   /* ════════════════════════════════════════════════════════════
      § 7 · CAMPAÑA SEGURÍSIMOS
   ════════════════════════════════════════════════════════════ */
   if (!quote.isSeniors && quote.totalPuntos > 0) {
-    ensureSpace(30);
-    const camH = 26;
+    ensureSpace(34);
+    const camH = 32;
+
+    // Fondo con degradado simulado: rect principal + franja superior más oscura
     fillRect(doc, ML, y, CW, camH, AMBER_BG, 4);
-    outlineRect(doc, ML, y, CW, camH, [215, 155, 25], 4, 0.4);
+    fillRect(doc, ML, y, CW, 9, [248, 235, 185], 4);
+    fillRect(doc, ML, y + 5, CW, 4, [248, 235, 185]); // cuadrar parte inferior del header
+    outlineRect(doc, ML, y, CW, camH, [200, 145, 20], 4, 0.45);
+
+    // Barra lateral ámbar
     fillRect(doc, ML, y, 4, camH, AMBER, 4);
     fillRect(doc, ML, y + 4, 4, camH - 4, AMBER);
 
-    doc.setFont("helvetica", "bold"); doc.setFontSize(7); doc.setTextColor(...AMBER);
-    doc.text("★  CAMPAÑA SEGURÍSIMOS 2026  ·  PUNTOS ASEGURADO", ML + 10, y + 7);
+    // Etiqueta superior
+    doc.setFont("helvetica", "bold"); doc.setFontSize(6.5); doc.setTextColor([140, 88, 0] as unknown as number, 0, 0);
+    doc.setTextColor(115, 68, 0);
+    doc.text("CAMPANA SEGURISIMOS 2026", ML + 10, y + 6);
+    // Separador bajo el título
+    doc.setDrawColor(200, 145, 20); doc.setLineWidth(0.25);
+    doc.line(ML + 10, y + 8, ML + CW - 8, y + 8);
 
+    // Detalle pts
     const nAseg = quote.preciosPorPersona.length;
-    doc.setFont("helvetica", "normal"); doc.setFontSize(7.8); doc.setTextColor(95, 60, 0);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(95, 60, 0);
     doc.text(
-      `${quote.puntosXAseg.toLocaleString("es-ES")} pts/asegurado  ×  ${nAseg} asegurado${nAseg > 1 ? "s" : ""}`,
-      ML + 10, y + 14.5,
+      `${quote.puntosXAseg.toLocaleString("es-ES")} pts/asegurado  x  ${nAseg} asegurado${nAseg > 1 ? "s" : ""}`,
+      ML + 10, y + 16,
     );
 
-    doc.setFont("helvetica", "bold"); doc.setFontSize(16); doc.setTextColor(130, 75, 0);
+    // Total puntos grande (derecha)
+    doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.setTextColor(120, 68, 0);
     doc.text(
       `${quote.totalPuntos.toLocaleString("es-ES")} puntos`,
-      ML + 10, y + 22,
+      RX, y + 28, { align: "right" },
     );
+    // Label "PUNTOS ASEGURADO" pequeño sobre el número
+    doc.setFont("helvetica", "bold"); doc.setFontSize(6); doc.setTextColor(160, 110, 30);
+    doc.text("PUNTOS CONSEGUIDOS", RX, y + 22.5, { align: "right" });
 
     y += camH + 7;
   }
 
   if (quote.isSeniors && quote.totalAbono > 0) {
-    ensureSpace(30);
-    const camH = 26;
+    ensureSpace(34);
+    const camH = 32;
+
     fillRect(doc, ML, y, CW, camH, GREEN_BG, 4);
-    outlineRect(doc, ML, y, CW, camH, [90, 170, 100], 4, 0.4);
+    fillRect(doc, ML, y, CW, 9, [215, 245, 220], 4);
+    fillRect(doc, ML, y + 5, CW, 4, [215, 245, 220]);
+    outlineRect(doc, ML, y, CW, camH, [80, 160, 90], 4, 0.45);
+
     fillRect(doc, ML, y, 4, camH, GREEN, 4);
     fillRect(doc, ML, y + 4, 4, camH - 4, GREEN);
 
-    doc.setFont("helvetica", "bold"); doc.setFontSize(7); doc.setTextColor(...GREEN);
-    doc.text("★  CAMPAÑA SEGURÍSIMOS 2026  ·  ABONO EN CUENTA", ML + 10, y + 7);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(6.5); doc.setTextColor(18, 80, 38);
+    doc.text("CAMPANA SEGURISIMOS 2026", ML + 10, y + 6);
+    doc.setDrawColor(80, 160, 90); doc.setLineWidth(0.25);
+    doc.line(ML + 10, y + 8, ML + CW - 8, y + 8);
 
     const nAseg2 = quote.preciosPorPersona.length;
-    doc.setFont("helvetica", "normal"); doc.setFontSize(7.8); doc.setTextColor(18, 75, 38);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(18, 75, 38);
     doc.text(
-      `${quote.abonoXAseg} €/asegurado  ×  ${nAseg2} asegurado${nAseg2 > 1 ? "s" : ""}  —  abono directo en cuenta`,
-      ML + 10, y + 14.5,
+      `${quote.abonoXAseg} EUR/asegurado  x  ${nAseg2} asegurado${nAseg2 > 1 ? "s" : ""}  -  abono directo en cuenta`,
+      ML + 10, y + 16,
     );
 
-    doc.setFont("helvetica", "bold"); doc.setFontSize(16); doc.setTextColor(14, 100, 50);
-    doc.text(`${quote.totalAbono} € de abono`, ML + 10, y + 22);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(6); doc.setTextColor(14, 100, 50);
+    doc.text("IMPORTE A ABONAR", RX, y + 22.5, { align: "right" });
+    doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.setTextColor(12, 90, 45);
+    doc.text(`${quote.totalAbono} EUR de abono`, RX, y + 28, { align: "right" });
 
     y += camH + 7;
   }
