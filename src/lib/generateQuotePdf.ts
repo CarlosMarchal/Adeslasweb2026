@@ -328,7 +328,7 @@ function fmt(n: number): string {
 export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   const PW = 210, PH = 297, ML = 14, MR = 14, CW = PW - ML - MR;
-  const SAFE_BOTTOM = PH - 18;   // reserva para aviso legal + footer
+  const SAFE_BOTTOM = PH - 14;   // reserva para aviso legal + footer
 
   const info = PRODUCTS[quote.producto] ?? DEFAULT_INFO;
   const hoy  = new Date().toLocaleDateString("es-ES", {
@@ -380,66 +380,47 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
   }
 
   /* ════════════════════════════════════════════════════════════
-     § 1 · CABECERA (más compacta y moderna — 30 mm)
+     § 1 · CABECERA (compacta — 26 mm)
   ════════════════════════════════════════════════════════════ */
-  const HDR = 30;
+  const HDR = 26;
 
-  // Fondo NAVY a página completa
   fillRect(doc, 0, 0, PW, HDR, NAVY);
-
-  // Panel derecho ligeramente más claro (subtil, da profundidad)
-  fillRect(doc, PW * 0.62, 0, PW * 0.38, HDR, [0, 58, 148]);
-
-  // Franja izquierda BLUE (acento moderno)
+  fillRect(doc, PW * 0.63, 0, PW * 0.37, HDR, [0, 58, 148]);
   fillRect(doc, 0, 0, 3.5, HDR, BLUE);
-
-  // Línea inferior MAGENTA
   fillRect(doc, 0, HDR - 2, PW, 2, MAGENTA);
 
-  // Logo (arriba a la derecha)
+  // Logo (derecha)
   try {
-    doc.addImage("data:image/png;base64," + LOGO_B64, "PNG", PW - MR - 50, 6, 48, 16);
+    doc.addImage("data:image/png;base64," + LOGO_B64, "PNG", PW - MR - 48, 5, 46, 15);
   } catch {
     doc.setFont("helvetica", "bold"); doc.setFontSize(8);
     doc.setTextColor(...WHITE);
-    doc.text("ADESLAS · MARCHAL", PW - MR, 13, { align: "right" });
+    doc.text("ADESLAS · MARCHAL", PW - MR, 11, { align: "right" });
   }
 
-  // Título "PRESUPUESTO"
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(17);
-  doc.setTextColor(...WHITE);
-  doc.text("PRESUPUESTO", ML + 7, 12);
+  // Título
+  doc.setFont("helvetica", "bold"); doc.setFontSize(16); doc.setTextColor(...WHITE);
+  doc.text("PRESUPUESTO", ML + 7, 10.5);
 
-  // Subtítulo: "Personalizado para [nombre]" o genérico
+  // Subtítulo con nombre
   if (cliente.nombre) {
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(7.5);
-    doc.setTextColor(175, 212, 255);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(175, 212, 255);
     const prefix = "Personalizado para  ";
-    doc.text(prefix, ML + 7, 18.5);
+    doc.text(prefix, ML + 7, 16.5);
     const prefW = doc.getTextWidth(prefix);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(...WHITE);
-    // Truncar nombre si es muy largo
-    const nombreShort = doc.splitTextToSize(
-      cliente.nombre, CW - prefW - 60,
-    )[0] as string;
-    doc.text(nombreShort, ML + 7 + prefW, 18.5);
+    doc.setFont("helvetica", "bold"); doc.setTextColor(...WHITE);
+    const nombreShort = doc.splitTextToSize(cliente.nombre, CW - prefW - 58)[0] as string;
+    doc.text(nombreShort, ML + 7 + prefW, 16.5);
   } else {
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(7.5);
-    doc.setTextColor(175, 212, 255);
-    doc.text("Presupuesto personalizado · 2026", ML + 7, 18.5);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(175, 212, 255);
+    doc.text("Presupuesto personalizado · 2026", ML + 7, 16.5);
   }
 
-  // Fecha de emisión (parte baja del header)
-  doc.setFont("helvetica", "italic");
-  doc.setFontSize(6.5);
-  doc.setTextColor(140, 185, 235);
-  doc.text(`Emitido el ${hoy}`, ML + 7, HDR - 5);
+  // Fecha
+  doc.setFont("helvetica", "italic"); doc.setFontSize(6); doc.setTextColor(140, 185, 235);
+  doc.text(`Emitido el ${hoy}`, ML + 7, HDR - 4);
 
-  y = HDR + 5;
+  y = HDR + 4;
 
   /* ════════════════════════════════════════════════════════════
      § 2 · DATOS DEL CLIENTE (franja compacta bajo el header)
@@ -452,80 +433,68 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
       { label: "EMAIL",     value: cliente.email },
     ].filter(f => f.value);
 
-    const STRIP_H = 13;
-    // Fondo degradado simulado (rect claro + borde)
+    const STRIP_H = 11;
     fillRect(doc, ML, y, CW, STRIP_H, [236, 242, 255], 3);
     outlineRect(doc, ML, y, CW, STRIP_H, [195, 212, 245], 3, 0.4);
-    // Acento izquierdo BLUE
     fillRect(doc, ML, y, 3, STRIP_H, BLUE, 3);
     fillRect(doc, ML, y + 3, 3, STRIP_H - 3, BLUE);
 
     const fieldW = CW / fields.length;
     fields.forEach((f, i) => {
       const fx = ML + i * fieldW + (i === 0 ? 8 : 5);
-      // Separador vertical entre campos
       if (i > 0) {
         doc.setDrawColor(...BORDER); doc.setLineWidth(0.25);
-        doc.line(ML + i * fieldW, y + 2.5, ML + i * fieldW, y + STRIP_H - 2.5);
+        doc.line(ML + i * fieldW, y + 2, ML + i * fieldW, y + STRIP_H - 2);
       }
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(5.8);
-      doc.setTextColor(110, 130, 175);
-      doc.text(f.label!, fx, y + 5);
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(8.2);
-      doc.setTextColor(...NAVY);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(5.5); doc.setTextColor(110, 130, 175);
+      doc.text(f.label!, fx, y + 4);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(7.8); doc.setTextColor(...NAVY);
       const val = doc.splitTextToSize(f.value!, fieldW - 8)[0] as string;
-      doc.text(val, fx, y + 10.5);
+      doc.text(val, fx, y + 9);
     });
 
-    y += STRIP_H + 5;
+    y += STRIP_H + 3;
   }
 
   /* ════════════════════════════════════════════════════════════
      § 3 · PRODUCTO
   ════════════════════════════════════════════════════════════ */
-  ensureSpace(34);
-  const PROD_H = 28;
+  ensureSpace(30);
+  const PROD_H = 24;
 
-  // Sombra sutil
-  fillRect(doc, ML + 0.5, y + 0.5, CW, PROD_H, [215, 224, 240], 4);
+  fillRect(doc, ML + 0.4, y + 0.4, CW, PROD_H, [215, 224, 240], 4);
   fillRect(doc, ML, y, CW, PROD_H, WHITE, 4);
   outlineRect(doc, ML, y, CW, PROD_H, BORDER, 4, 0.3);
-
-  // Barra lateral NAVY
   fillRect(doc, ML, y, 5, PROD_H, NAVY, 4);
   fillRect(doc, ML, y + 4, 5, PROD_H - 4, NAVY);
 
-  // Nombre del producto
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(14);
-  doc.setTextColor(...NAVY);
-  doc.text(quote.producto, ML + 10, y + 9.5);
+  // Nombre
+  doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...NAVY);
+  doc.text(quote.producto, ML + 10, y + 8.5);
 
-  // Badge pill
-  const bw = doc.getTextWidth(info.badge) + 9;
-  fillRect(doc, ML + 10, y + 12, bw, 6.5, [0, 130, 200], 3);
-  doc.setFont("helvetica", "bold"); doc.setFontSize(6.2); doc.setTextColor(...WHITE);
-  doc.text(info.badge, ML + 14.5, y + 16.5);
+  // Badge
+  const bw = doc.getTextWidth(info.badge) + 8;
+  fillRect(doc, ML + 10, y + 10.5, bw, 6, [0, 130, 200], 3);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(6); doc.setTextColor(...WHITE);
+  doc.text(info.badge, ML + 14, y + 14.8);
 
-  // Ubicación (top-right)
-  doc.setFont("helvetica", "normal"); doc.setFontSize(7.2); doc.setTextColor(...BLUE);
-  doc.text(`${quote.provincia}  ·  Zona ${quote.zona}`, ML + CW - 6, y + 9.5, { align: "right" });
+  // Ubicación
+  doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(...BLUE);
+  doc.text(`${quote.provincia}  ·  Zona ${quote.zona}`, ML + CW - 6, y + 8.5, { align: "right" });
 
-  // Descripción (2 líneas)
-  doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(70, 82, 100);
+  // Descripción (máx 2 líneas, font reducido)
+  doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(70, 82, 100);
   const descArr = doc.splitTextToSize(info.desc, CW - 18) as string[];
-  doc.text(descArr.slice(0, 2), ML + 10, y + 22);
+  doc.text(descArr.slice(0, 2), ML + 10, y + 20);
 
-  y += PROD_H + 5;
+  y += PROD_H + 3;
 
   /* ════════════════════════════════════════════════════════════
      § 4 · COBERTURAS INCLUIDAS
   ════════════════════════════════════════════════════════════ */
-  ensureSpace(20);
+  ensureSpace(16);
   sectionLabel(doc, "COBERTURAS INCLUIDAS", ML, y + 1);
-  y += 5;
+  y += 4;
 
   const COLS  = 3;
   const GAP   = 3;
@@ -535,56 +504,56 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
 
   for (let row = 0; row < ROWS; row++) {
     const rowItems = COV.slice(row * COLS, row * COLS + COLS);
-    const textW    = COL_W - 13;
+    const textW    = COL_W - 11;    // más ancho que antes para menos wrapping
     const maxLines = rowItems.reduce((acc, item) => {
+      doc.setFontSize(6.5);          // medir con el font que se usará
       const lines = doc.splitTextToSize(item.title, textW) as string[];
       return Math.max(acc, lines.length);
     }, 1);
-    const cellH = Math.max(maxLines * 4.0 + 7.5, 10.5);
+    const cellH = Math.max(maxLines * 3.6 + 7, 9.5);  // más compacto que antes
 
-    ensureSpace(cellH + 3);   // ← evita que la fila se parta
+    ensureSpace(cellH + 2);
 
     rowItems.forEach((item, col) => {
       const cx = ML + col * (COL_W + GAP);
       const isLast = item.icon === "+";
 
-      // Fondo: último ítem con toque azul pálido, resto MIST
       const cardBg: [number,number,number] = isLast ? [230, 242, 255] : MIST;
       fillRect(doc,    cx, y, COL_W, cellH, cardBg, 2.5);
       outlineRect(doc, cx, y, COL_W, cellH, isLast ? [160, 200, 240] : BORDER, 2.5, 0.3);
 
-      // Cuadrado icono
-      const iconSz = 5.5;
-      const iconX  = cx + 3.5;
+      // Icono (ligeramente más pequeño: 5×5mm)
+      const iconSz = 5;
+      const iconX  = cx + 3;
       const iconY  = y + (cellH - iconSz) / 2;
       const iconBg: [number,number,number] = isLast ? BLUE : NAVY;
       fillRect(doc, iconX, iconY, iconSz, iconSz, iconBg, 1.5);
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(item.icon.length === 1 ? 6 : 4.5);
+      doc.setFontSize(item.icon.length === 1 ? 5.5 : 4);
       doc.setTextColor(...WHITE);
       const letterW = doc.getTextWidth(item.icon);
-      doc.text(item.icon, iconX + (iconSz - letterW) / 2, iconY + iconSz - 1.3);
+      doc.text(item.icon, iconX + (iconSz - letterW) / 2, iconY + iconSz - 1.2);
 
       // Texto cobertura
+      doc.setFontSize(6.5);
       const titleLines = doc.splitTextToSize(item.title, textW) as string[];
-      const textStartY = y + (cellH - titleLines.length * 4.0) / 2 + 3.8;
+      const textStartY = y + (cellH - titleLines.length * 3.6) / 2 + 3.5;
       doc.setFont("helvetica", isLast ? "bolditalic" : "normal");
-      doc.setFontSize(7.0);
       doc.setTextColor(...(isLast ? BLUE : SLATE));
-      doc.text(titleLines, cx + 11, textStartY);
+      doc.text(titleLines, cx + 10, textStartY);
     });
 
-    y += cellH + 2;
+    y += cellH + 1.5;
   }
 
-  y += 4;
+  y += 3;
 
   /* ════════════════════════════════════════════════════════════
      § 5 · DESGLOSE POR ASEGURADO
   ════════════════════════════════════════════════════════════ */
-  ensureSpace(40);
+  ensureSpace(35);
   sectionLabel(doc, "DESGLOSE POR ASEGURADO", ML, y + 1);
-  y += 4;
+  y += 3;
 
   autoTable(doc, {
     startY: y,
@@ -599,15 +568,15 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
     headStyles: {
       fillColor: NAVY,
       textColor: WHITE,
-      fontSize: 7.5,
+      fontSize: 7.2,
       fontStyle: "bold",
       halign: "left",
-      cellPadding: { top: 3, bottom: 3, left: 5, right: 5 },
+      cellPadding: { top: 2.5, bottom: 2.5, left: 4, right: 4 },
     },
     bodyStyles: {
-      fontSize: 8.2,
+      fontSize: 7.8,
       textColor: SLATE,
-      cellPadding: { top: 3, bottom: 3, left: 5, right: 5 },
+      cellPadding: { top: 2.5, bottom: 2.5, left: 4, right: 4 },
     },
     columnStyles: {
       0: { cellWidth: 14, halign: "center" },
@@ -618,168 +587,143 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
     alternateRowStyles: { fillColor: [247, 250, 255] },
     tableWidth: CW,
     theme: "grid",
-    didDrawPage: () => { y = 16; },   // resetear y si autoTable pasa de página
+    didDrawPage: () => { y = 16; },
   });
 
-  y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 7;
+  y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 5;
 
   /* ════════════════════════════════════════════════════════════
      § 6 · RESUMEN DE PRECIOS
   ════════════════════════════════════════════════════════════ */
   const hayDesc = quote.ratioAuto > 0 || quote.pctComercialEfectivo > 0;
 
-  // Calcular número de líneas de desglose para la tarjeta superior
   const nDescLines = (quote.ratioAuto > 0 ? 1 : 0) + (quote.pctComercialEfectivo > 0 ? 1 : 0);
-  const topCardH   = 9 + (nDescLines * 8) + 5;   // subtotal + descuentos + padding
+  const topCardH   = 8 + (nDescLines * 7) + 4;   // más compacto: 8 base, 7/línea, 4 padding
 
-  ensureSpace(topCardH + 28);
+  ensureSpace(topCardH + 25);
   sectionLabel(doc, "RESUMEN DE PRECIOS", ML, y + 1);
-  y += 5;
+  y += 4;
 
-  /* ─── Tarjeta superior: líneas de desglose ─── */
+  /* ─── Tarjeta desglose ─── */
   fillRect(doc, ML, y, CW, topCardH, [248, 250, 255], 3);
   outlineRect(doc, ML, y, CW, topCardH, BORDER, 3, 0.3);
-  // Acento izquierdo NAVY
   fillRect(doc, ML, y, 3.5, topCardH, NAVY, 3);
   fillRect(doc, ML, y + 3, 3.5, topCardH - 3, NAVY);
 
   const LX = ML + 11, RX = ML + CW - 8;
-  let lY = y + 9;
+  let lY = y + 8;
 
   // Subtotal
-  doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(120, 130, 148);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(7.8); doc.setTextColor(120, 130, 148);
   doc.text("Subtotal bruto", LX, lY);
   doc.text(fmt(quote.subtotal), RX, lY, { align: "right" });
 
   if (quote.ratioAuto > 0) {
-    lY += 8;
-    // Píldora verde de descuento
-    const descLabelA = quote.labelDescAuto;
-    fillRect(doc, LX, lY - 5, 2.5, 5.5, GREEN, 1);
-    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...GREEN);
-    doc.text(descLabelA, LX + 5, lY);
-    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...GREEN);
+    lY += 7;
+    fillRect(doc, LX, lY - 4.5, 2.5, 5, GREEN, 1);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(7.8); doc.setTextColor(...GREEN);
+    doc.text(quote.labelDescAuto, LX + 5, lY);
     doc.text(`- ${fmt(quote.descAuto)}`, RX, lY, { align: "right" });
   }
 
   if (quote.pctComercialEfectivo > 0) {
-    lY += 8;
-    fillRect(doc, LX, lY - 5, 2.5, 5.5, BLUE, 1);
-    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...BLUE);
+    lY += 7;
+    fillRect(doc, LX, lY - 4.5, 2.5, 5, BLUE, 1);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(7.8); doc.setTextColor(...BLUE);
     doc.text(`Descuento comercial  ${quote.pctComercialEfectivo} %`, LX + 5, lY);
-    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...BLUE);
     doc.text(`- ${fmt(quote.descComercial)}`, RX, lY, { align: "right" });
   }
 
   y += topCardH + 2;
 
-  /* ─── Tarjeta TOTAL — navy completo ─── */
-  const totH = hayDesc ? 22 : 18;
+  /* ─── Caja TOTAL navy ─── */
+  const totH = hayDesc ? 18 : 14;
   fillRect(doc, ML, y, CW, totH, NAVY, 3);
-  // Barra inferior magenta como remate visual
-  fillRect(doc, ML, y + totH - 2.5, CW, 2.5, MAGENTA, 0);
-  // Esquinas magenta → rellenar redondeo inferior con NAVY + borde magenta
-  fillRect(doc, ML, y + totH - 5, CW, 5, NAVY, 0); // anular redondeo inferior
-  fillRect(doc, ML, y + totH - 2.5, CW, 2.5, MAGENTA, 0);
+  fillRect(doc, ML, y + totH - 5, CW, 5, NAVY, 0);      // cuadrar esquinas inferiores
+  fillRect(doc, ML, y + totH - 2, CW, 2, MAGENTA, 0);   // remate magenta
 
-  // Label TOTAL MENSUAL (izquierda, blanco)
-  doc.setFont("helvetica", "bold"); doc.setFontSize(11); doc.setTextColor(...WHITE);
-  doc.text("TOTAL MENSUAL", LX - 2, y + 11);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...WHITE);
+  doc.text("TOTAL MENSUAL", LX - 2, y + 9);
 
-  // Importe (derecha, grande)
-  doc.setFont("helvetica", "bold"); doc.setFontSize(20); doc.setTextColor(...WHITE);
-  doc.text(fmt(quote.total), RX, y + 13, { align: "right" });
-  doc.setFont("helvetica", "normal"); doc.setFontSize(6.5); doc.setTextColor(175, 210, 248);
-  doc.text("al mes", RX, y + 16.5, { align: "right" });
+  doc.setFont("helvetica", "bold"); doc.setFontSize(19); doc.setTextColor(...WHITE);
+  doc.text(fmt(quote.total), RX, y + 11, { align: "right" });
+  doc.setFont("helvetica", "normal"); doc.setFontSize(6); doc.setTextColor(175, 210, 248);
+  doc.text("al mes", RX, y + 14, { align: "right" });
 
-  // Ahorro (si hay descuento) — etiqueta verde sobre NAVY
   if (hayDesc) {
     const saving = quote.subtotal - quote.total;
-    // Píldora de ahorro
     const ahorroTxt = `Ahorro mensual:  ${fmt(saving)}`;
-    const ahorroW   = doc.getTextWidth(ahorroTxt) + 8;
-    fillRect(doc, LX - 2, y + 14.5, ahorroW, 5.5, GREEN, 2);
-    doc.setFont("helvetica", "bold"); doc.setFontSize(7); doc.setTextColor(...WHITE);
-    doc.text(ahorroTxt, LX + 2, y + 18.5);
+    const ahorroW   = doc.getTextWidth(ahorroTxt) + 7;
+    fillRect(doc, LX - 2, y + 12.5, ahorroW, 5, GREEN, 2);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(6.5); doc.setTextColor(...WHITE);
+    doc.text(ahorroTxt, LX + 1.5, y + 16.5);
   }
 
-  y += totH + 8;
+  y += totH + 5;
 
   /* ════════════════════════════════════════════════════════════
      § 7 · CAMPAÑA SEGURÍSIMOS
   ════════════════════════════════════════════════════════════ */
   if (!quote.isSeniors && quote.totalPuntos > 0) {
-    ensureSpace(34);
-    const camH = 32;
+    ensureSpace(26);
+    const camH = 22;
 
-    // Fondo con degradado simulado: rect principal + franja superior más oscura
     fillRect(doc, ML, y, CW, camH, AMBER_BG, 4);
-    fillRect(doc, ML, y, CW, 9, [248, 235, 185], 4);
-    fillRect(doc, ML, y + 5, CW, 4, [248, 235, 185]); // cuadrar parte inferior del header
-    outlineRect(doc, ML, y, CW, camH, [200, 145, 20], 4, 0.45);
-
-    // Barra lateral ámbar
+    fillRect(doc, ML, y, CW, 8, [248, 235, 185], 4);
+    fillRect(doc, ML, y + 4, CW, 4, [248, 235, 185]);
+    outlineRect(doc, ML, y, CW, camH, [200, 145, 20], 4, 0.4);
     fillRect(doc, ML, y, 4, camH, AMBER, 4);
     fillRect(doc, ML, y + 4, 4, camH - 4, AMBER);
 
-    // Etiqueta superior
-    doc.setFont("helvetica", "bold"); doc.setFontSize(6.5); doc.setTextColor(115, 68, 0);
-    doc.text("CAMPANA SEGURISIMOS 2026", ML + 10, y + 6);
-    // Separador bajo el título
-    doc.setDrawColor(200, 145, 20); doc.setLineWidth(0.25);
-    doc.line(ML + 10, y + 8, ML + CW - 8, y + 8);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(6.2); doc.setTextColor(115, 68, 0);
+    doc.text("CAMPANA SEGURISIMOS 2026", ML + 10, y + 5.5);
+    doc.setDrawColor(200, 145, 20); doc.setLineWidth(0.2);
+    doc.line(ML + 10, y + 7, ML + CW - 8, y + 7);
 
-    // Detalle pts
     const nAseg = quote.preciosPorPersona.length;
-    doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(95, 60, 0);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(95, 60, 0);
     doc.text(
       `${quote.puntosXAseg.toLocaleString("es-ES")} pts/asegurado  x  ${nAseg} asegurado${nAseg > 1 ? "s" : ""}`,
-      ML + 10, y + 16,
+      ML + 10, y + 13,
     );
 
-    // Total puntos grande (derecha)
-    doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.setTextColor(120, 68, 0);
-    doc.text(
-      `${quote.totalPuntos.toLocaleString("es-ES")} puntos`,
-      RX, y + 28, { align: "right" },
-    );
-    // Label "PUNTOS ASEGURADO" pequeño sobre el número
     doc.setFont("helvetica", "bold"); doc.setFontSize(6); doc.setTextColor(160, 110, 30);
-    doc.text("PUNTOS CONSEGUIDOS", RX, y + 22.5, { align: "right" });
+    doc.text("PUNTOS CONSEGUIDOS", RX, y + 13, { align: "right" });
+    doc.setFont("helvetica", "bold"); doc.setFontSize(15); doc.setTextColor(120, 68, 0);
+    doc.text(`${quote.totalPuntos.toLocaleString("es-ES")} puntos`, RX, y + 20, { align: "right" });
 
-    y += camH + 7;
+    y += camH + 5;
   }
 
   if (quote.isSeniors && quote.totalAbono > 0) {
-    ensureSpace(34);
-    const camH = 32;
+    ensureSpace(26);
+    const camH = 22;
 
     fillRect(doc, ML, y, CW, camH, GREEN_BG, 4);
-    fillRect(doc, ML, y, CW, 9, [215, 245, 220], 4);
-    fillRect(doc, ML, y + 5, CW, 4, [215, 245, 220]);
-    outlineRect(doc, ML, y, CW, camH, [80, 160, 90], 4, 0.45);
-
+    fillRect(doc, ML, y, CW, 8, [215, 245, 220], 4);
+    fillRect(doc, ML, y + 4, CW, 4, [215, 245, 220]);
+    outlineRect(doc, ML, y, CW, camH, [80, 160, 90], 4, 0.4);
     fillRect(doc, ML, y, 4, camH, GREEN, 4);
     fillRect(doc, ML, y + 4, 4, camH - 4, GREEN);
 
-    doc.setFont("helvetica", "bold"); doc.setFontSize(6.5); doc.setTextColor(18, 80, 38);
-    doc.text("CAMPANA SEGURISIMOS 2026", ML + 10, y + 6);
-    doc.setDrawColor(80, 160, 90); doc.setLineWidth(0.25);
-    doc.line(ML + 10, y + 8, ML + CW - 8, y + 8);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(6.2); doc.setTextColor(18, 80, 38);
+    doc.text("CAMPANA SEGURISIMOS 2026", ML + 10, y + 5.5);
+    doc.setDrawColor(80, 160, 90); doc.setLineWidth(0.2);
+    doc.line(ML + 10, y + 7, ML + CW - 8, y + 7);
 
     const nAseg2 = quote.preciosPorPersona.length;
-    doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(18, 75, 38);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(18, 75, 38);
     doc.text(
-      `${quote.abonoXAseg} EUR/asegurado  x  ${nAseg2} asegurado${nAseg2 > 1 ? "s" : ""}  -  abono directo en cuenta`,
-      ML + 10, y + 16,
+      `${quote.abonoXAseg} EUR/asegurado  x  ${nAseg2} asegurado${nAseg2 > 1 ? "s" : ""}`,
+      ML + 10, y + 13,
     );
 
     doc.setFont("helvetica", "bold"); doc.setFontSize(6); doc.setTextColor(14, 100, 50);
-    doc.text("IMPORTE A ABONAR", RX, y + 22.5, { align: "right" });
-    doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.setTextColor(12, 90, 45);
-    doc.text(`${quote.totalAbono} EUR de abono`, RX, y + 28, { align: "right" });
+    doc.text("IMPORTE A ABONAR", RX, y + 13, { align: "right" });
+    doc.setFont("helvetica", "bold"); doc.setFontSize(15); doc.setTextColor(12, 90, 45);
+    doc.text(`${quote.totalAbono} EUR de abono`, RX, y + 20, { align: "right" });
 
-    y += camH + 7;
+    y += camH + 5;
   }
 
   /* ════════════════════════════════════════════════════════════
