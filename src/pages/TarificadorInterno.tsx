@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { Trash2, Plus, ChevronDown, ChevronUp, Gift } from "lucide-react";
 import { products, provinces, getPrice, getZoneFromProvince } from "@/data/pricing";
+import { generateQuotePdf, type QuoteData } from "@/lib/generateQuotePdf";
 
 /* ─── Constantes ────────────────────────────────────────────── */
 const MAX_COMMERCIAL_DISCOUNT       = 5;  // % máximo para productos generales
@@ -161,6 +162,13 @@ export default function TarificadorInterno() {
   const [descuentoPymes, setDescuentoPymes]         = useState<number>(0);
   const [mostrarPremios, setMostrarPremios] = useState(false);
   const [grupo, setGrupo] = useState<"general" | "seniors" | "pymes">("general");
+
+  /* ── Estado modal presupuesto PDF ── */
+  const [showQuoteModal, setShowQuoteModal]   = useState(false);
+  const [selectedQuote, setSelectedQuote]     = useState<QuoteData | null>(null);
+  const [clienteNombre, setClienteNombre]     = useState("");
+  const [clienteTelefono, setClienteTelefono] = useState("");
+  const [clienteEmail, setClienteEmail]       = useState("");
 
   const zona        = getZoneFromProvince(provincia);
   const pctGeneral  = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
@@ -756,6 +764,41 @@ export default function TarificadorInterno() {
                         )}
                       </tfoot>
                     </table>
+
+                    {/* Botón generar presupuesto */}
+                    <div className="mt-4 flex justify-end">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedQuote({
+                            producto:             product.name,
+                            provincia,
+                            zona,
+                            preciosPorPersona,
+                            subtotal,
+                            descAuto,
+                            ratioAuto,
+                            labelDescAuto:        labelAutoDiscount(product.id, asegurados.length),
+                            descComercial,
+                            pctComercialEfectivo,
+                            total,
+                            isSeniors,
+                            totalPuntos,
+                            puntosXAseg,
+                            totalAbono,
+                            abonoXAseg,
+                            hayNulos,
+                          });
+                          setClienteNombre("");
+                          setClienteTelefono("");
+                          setClienteEmail("");
+                          setShowQuoteModal(true);
+                        }}
+                        className="flex items-center gap-2 px-5 py-2.5 bg-[#003087] hover:bg-[#002060] text-white text-sm font-semibold rounded-xl transition shadow-sm"
+                      >
+                        📄 Generar presupuesto
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -852,6 +895,90 @@ export default function TarificadorInterno() {
           </p>
         </div>
       </div>
+
+      {/* ── Modal: generar presupuesto PDF ── */}
+      {showQuoteModal && selectedQuote && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4"
+          onClick={() => setShowQuoteModal(false)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3 mb-1">
+              <span className="text-2xl">📄</span>
+              <h3 className="text-lg font-bold text-[#003087]">Generar presupuesto</h3>
+            </div>
+            <p className="text-sm text-slate-500 mb-5 pl-9">
+              <span className="font-semibold text-slate-700">{selectedQuote.producto}</span>
+              {" · "}{selectedQuote.provincia}{" · "}
+              <span className="font-bold text-[#009DD9]">{selectedQuote.total.toFixed(2).replace(".", ",")} €/mes</span>
+            </p>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-500 mb-1">
+                  Nombre del cliente <span className="text-slate-400 font-normal">(opcional)</span>
+                </label>
+                <input
+                  type="text"
+                  value={clienteNombre}
+                  onChange={(e) => setClienteNombre(e.target.value)}
+                  placeholder="Ej. Juan García"
+                  className="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#009DD9]"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-500 mb-1">
+                  Teléfono <span className="text-slate-400 font-normal">(opcional)</span>
+                </label>
+                <input
+                  type="tel"
+                  value={clienteTelefono}
+                  onChange={(e) => setClienteTelefono(e.target.value)}
+                  placeholder="Ej. 600 123 456"
+                  className="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#009DD9]"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-500 mb-1">
+                  Email <span className="text-slate-400 font-normal">(opcional)</span>
+                </label>
+                <input
+                  type="email"
+                  value={clienteEmail}
+                  onChange={(e) => setClienteEmail(e.target.value)}
+                  placeholder="Ej. cliente@email.com"
+                  className="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#009DD9]"
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-3 mt-6">
+              <button
+                onClick={() => setShowQuoteModal(false)}
+                className="flex-1 px-4 py-2.5 border border-slate-200 text-slate-600 font-semibold rounded-xl hover:bg-slate-50 transition"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={() => {
+                  generateQuotePdf(selectedQuote, {
+                    nombre:   clienteNombre   || undefined,
+                    telefono: clienteTelefono || undefined,
+                    email:    clienteEmail    || undefined,
+                  });
+                  setShowQuoteModal(false);
+                }}
+                className="flex-1 px-4 py-2.5 bg-[#003087] hover:bg-[#002060] text-white font-semibold rounded-xl transition shadow-sm flex items-center justify-center gap-2"
+              >
+                📥 Descargar PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
