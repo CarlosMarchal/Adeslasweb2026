@@ -40,7 +40,6 @@ const Footer = () => (
           <div className="space-y-1.5">
             {[
               { label: "Dental", to: "/seguro-dental/" },
-              { label: "Vida", to: "/seguro-dental/" },
               { label: "Decesos", to: "/seguro-decesos/" },
               { label: "Mascotas", to: "/seguro-dental/" },
             ].map((l) => (
