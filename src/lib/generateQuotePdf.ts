@@ -723,8 +723,7 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
     fillRect(doc, ML, y + 4, 4, camH - 4, AMBER);
 
     // Etiqueta superior
-    doc.setFont("helvetica", "bold"); doc.setFontSize(6.5); doc.setTextColor([140, 88, 0] as unknown as number, 0, 0);
-    doc.setTextColor(115, 68, 0);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(6.5); doc.setTextColor(115, 68, 0);
     doc.text("CAMPANA SEGURISIMOS 2026", ML + 10, y + 6);
     // Separador bajo el título
     doc.setDrawColor(200, 145, 20); doc.setLineWidth(0.25);

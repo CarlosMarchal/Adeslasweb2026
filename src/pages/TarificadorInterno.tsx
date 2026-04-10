@@ -964,16 +964,21 @@ export default function TarificadorInterno() {
               </button>
               <button
                 onClick={() => {
-                  generateQuotePdf(selectedQuote, {
-                    nombre:   clienteNombre   || undefined,
-                    telefono: clienteTelefono || undefined,
-                    email:    clienteEmail    || undefined,
-                  });
-                  setShowQuoteModal(false);
+                  try {
+                    generateQuotePdf(selectedQuote!, {
+                      nombre:   clienteNombre   || undefined,
+                      telefono: clienteTelefono || undefined,
+                      email:    clienteEmail    || undefined,
+                    });
+                    setShowQuoteModal(false);
+                  } catch (err) {
+                    console.error("[PDF] Error al generar el presupuesto:", err);
+                    alert("No se ha podido generar el PDF. Consulta la consola para más detalles.");
+                  }
                 }}
                 className="flex-1 px-4 py-2.5 bg-[#003087] hover:bg-[#002060] text-white font-semibold rounded-xl transition shadow-sm flex items-center justify-center gap-2"
               >
-                📥 Descargar PDF
+                Descargar PDF
               </button>
             </div>
           </div>
