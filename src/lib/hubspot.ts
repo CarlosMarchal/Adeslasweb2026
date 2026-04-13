@@ -107,8 +107,10 @@ function buildFields(payload: HubSpotPayload) {
   if (payload.email)     fields.push(field("email",     payload.email));
   if (payload.city)      fields.push(field("city",      payload.city));
   if (payload.edad1)     fields.push(field("edad1",     payload.edad1));
-  // google_click_id: campo personalizado escribible (backup para atribución de Google Ads)
-  if (gclid)             fields.push(field("google_click_id", gclid));
+  // hs_google_click_id: campo estándar de HubSpot para atribución de Google Ads.
+  // Funciona correctamente cuando el hutk se incluye en el contexto (el pixel
+  // de HubSpot debe estar instalado para que se genere la cookie hubspotutk).
+  if (gclid)             fields.push(field("hs_google_click_id", gclid));
   return fields;
 }
 
