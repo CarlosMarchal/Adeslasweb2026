@@ -23,8 +23,8 @@ const Footer = () => (
               { label: "Adeslas Go", to: "/seguro-salud/adeslas-go/" },
               { label: "Adeslas Plena Vital", to: "/seguro-salud/adeslas-plena-vital/" },
               { label: "Adeslas Plena Total", to: "/seguro-salud/adeslas-plena-total/" },
-              { label: "Adeslas Plena Total+", to: "/seguro-salud/adeslas-extra-150/" },
-              { label: "Adeslas Plena Total++", to: "/seguro-salud/adeslas-plena-plus/" },
+              { label: "Adeslas Plena Vital Total", to: "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/" },
+              { label: "Adeslas Plena Plus", to: "/seguro-salud/adeslas-plena-plus/" },
               { label: "Adeslas Extra 150", to: "/seguro-salud/adeslas-extra-150/" },
             ].map((l) => (
               <Link key={l.to} to={l.to} className="block text-sm transition-colors hover:text-primary-foreground" style={{ color: "rgba(255,255,255,0.5)" }}>
