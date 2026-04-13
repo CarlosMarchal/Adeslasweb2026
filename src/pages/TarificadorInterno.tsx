@@ -967,9 +967,9 @@ export default function TarificadorInterno() {
                 Cancelar
               </button>
               <button
-                onClick={() => {
+                onClick={async () => {
                   try {
-                    generateQuotePdf(selectedQuote!, {
+                    await generateQuotePdf(selectedQuote!, {
                       nombre:   clienteNombre   || undefined,
                       telefono: clienteTelefono || undefined,
                       email:    clienteEmail    || undefined,
