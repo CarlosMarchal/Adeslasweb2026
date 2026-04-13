@@ -89,6 +89,8 @@ export default defineConfig(({ mode }) => ({
     target: "esnext",
     // No precargar vendor-pdf ni vendor-date en la home: solo cargan cuando el usuario
     // visita /tarificador-interno/ (lazy). Evita los ~300 KiB de "JS sin usar" en home.
+    // Excluir de modulepreload los chunks que solo cargan bajo demanda.
+    // Evita que el navegador prefetche ~900 KiB de PDF/fecha en la home.
     modulePreload: {
       resolveDependencies: (_url: string, deps: string[]) =>
         deps.filter(
@@ -99,13 +101,36 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id: string) {
           if (!id.includes("node_modules")) return undefined;
-          // PDF libs: sólo cargan con TarificadorInterno (lazy) → chunk independiente
-          if (id.includes("jspdf") || id.includes("pdf-lib")) return "vendor-pdf";
-          // date-fns: sólo necesario con el calendario → chunk independiente
+
+          // ── PDF + dependencias transitivas ──────────────────────────────
+          // Solo cargan cuando el tarificador genera un presupuesto (lazy).
+          // Incluye las deps transitivas de jsPDF (fflate, fast-png, @babel/runtime)
+          // y el plugin html opcional (html2canvas, canvg y sus deps), para que
+          // ninguno de estos ~600 KiB llegue al bundle inicial de la home.
+          if (
+            id.includes("jspdf") || id.includes("pdf-lib") ||
+            // jsPDF direct deps
+            id.includes("fflate") || id.includes("fast-png") || id.includes("iobuffer") ||
+            // jsPDF optional html plugin deps (html2canvas + its deps)
+            id.includes("html2canvas") || id.includes("canvg") ||
+            id.includes("svg-pathdata") || id.includes("rgbcolor") ||
+            id.includes("stackblur-canvas") || id.includes("dompurify") ||
+            id.includes("performance-now") || id.includes("raf/") ||
+            // jsPDF compression deps
+            id.includes("pako") || id.includes("@babel/runtime") ||
+            id.includes("@pdf-lib")
+          ) return "vendor-pdf";
+
+          // ── date-fns: solo con el calendario ───────────────────────────
           if (id.includes("date-fns")) return "vendor-date";
+
+          // ── React ecosystem ─────────────────────────────────────────────
+          // Incluye motion-dom y motion-utils (sub-paquetes de framer-motion
+          // con nombre distinto) y @remix-run/router (sub-paquete de react-router).
           if (
             id.includes("react-dom") || id.includes("/react/") || id.includes("scheduler") ||
-            id.includes("framer-motion") || id.includes("react-router") ||
+            id.includes("framer-motion") || id.includes("motion-dom") || id.includes("motion-utils") ||
+            id.includes("react-router") || id.includes("@remix-run") ||
             id.includes("sonner") || id.includes("vaul") || id.includes("cmdk") ||
             id.includes("embla") || id.includes("recharts") || id.includes("next-themes") ||
             id.includes("react-hook-form") || id.includes("@hookform") ||
@@ -114,9 +139,13 @@ export default defineConfig(({ mode }) => ({
             id.includes("input-otp") || id.includes("react-helmet-async") ||
             id.includes("vite-react-ssg")
           ) return "vendor-react";
+
           if (id.includes("@tanstack")) return "vendor-query";
           if (id.includes("lucide-react")) return "vendor-icons";
-          if (id.includes("@radix-ui")) return "vendor-radix";
+
+          // ── Radix UI + floating-ui (su dep) ────────────────────────────
+          if (id.includes("@radix-ui") || id.includes("@floating-ui")) return "vendor-radix";
+
           return "vendor-misc";
         },
       },
