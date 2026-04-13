@@ -63,7 +63,9 @@ const LandingPlenaVitalOferta = () => {
           <img
             src={logo}
             alt="Adeslas Marchal"
-            className="h-10"
+            className="h-10 object-contain"
+            width="105"
+            height="44"
           />
           <a
             href="tel:917105000"

@@ -91,12 +91,17 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id: string) {
           if (!id.includes("node_modules")) return undefined;
+          // PDF libs: sólo cargan con TarificadorInterno (lazy) → chunk independiente
+          if (id.includes("jspdf") || id.includes("pdf-lib")) return "vendor-pdf";
+          // date-fns: sólo necesario con el calendario → chunk independiente
+          if (id.includes("date-fns")) return "vendor-date";
           if (
             id.includes("react-dom") || id.includes("/react/") || id.includes("scheduler") ||
             id.includes("framer-motion") || id.includes("react-router") ||
             id.includes("sonner") || id.includes("vaul") || id.includes("cmdk") ||
             id.includes("embla") || id.includes("recharts") || id.includes("next-themes") ||
-            id.includes("react-hook-form") || id.includes("react-day-picker") ||
+            id.includes("react-hook-form") || id.includes("@hookform") ||
+            id.includes("react-day-picker") ||
             id.includes("react-international-phone") || id.includes("react-resizable") ||
             id.includes("input-otp") || id.includes("react-helmet-async") ||
             id.includes("vite-react-ssg")

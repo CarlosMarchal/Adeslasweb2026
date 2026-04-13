@@ -140,6 +140,8 @@ const BlogSalud = () => {
                         alt={post.title}
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        width="600"
+                        height="400"
                       />
                       <div
                         className="absolute top-3 left-3 px-3 py-1 text-xs font-bold"
