@@ -15,12 +15,15 @@
     <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-900-normal.woff2" crossorigin>
     <!-- LCP hero image preload: tells browser to fetch before JS executes -->
     <link rel="preload" as="image" href="/images/hero-adeslas-seguros-medicos.webp" fetchpriority="high" type="image/webp" />
-    <!-- HubSpot: preconnect solo a los orígenes más críticos (máx. 4 para PageSpeed) -->
-    <!-- js.hs-scripts.com: pixel tracking → cookie hubspotutk → atribución Google Ads -->
+    <!-- HubSpot network hints:
+         · js.hs-scripts.com → preconnect: el tracker carga con async/defer
+           muy pronto; la conexión TCP+TLS estará caliente cuando arranque.
+         · api.hsforms.com   → dns-prefetch SOLO (no preconnect): este dominio
+           solo se usa al enviar un formulario, nunca en la carga inicial.
+           Un preconnect expiraría antes de usarse y PageSpeed lo puntúa negativo.
+         · El resto: dns-prefetch (resolución DNS sin TCP/TLS adicional). -->
     <link rel="preconnect" href="https://js.hs-scripts.com">
-    <!-- api.hsforms.com: endpoint de envío de formularios → leads -->
-    <link rel="preconnect" href="https://api.hsforms.com">
-    <!-- Resto de dominios HubSpot: dns-prefetch (resolución DNS sin TCP/TLS) -->
+    <link rel="dns-prefetch" href="https://api.hsforms.com">
     <link rel="dns-prefetch" href="https://js.hs-analytics.net">
     <link rel="dns-prefetch" href="https://js.hscollectedforms.net">
     <link rel="dns-prefetch" href="https://js.hs-banner.com">
