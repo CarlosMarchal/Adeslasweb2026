@@ -117,7 +117,14 @@ export default defineConfig(({ mode }) => ({
   ssgOptions: {
     script: "async",
     formatting: "minify",
-    crittersOptions: false,
+    // Critters: inline CSS crítico en cada página SSG y carga el bundle completo async.
+    // Elimina el CSS render-blocking que bloquea FCP/LCP ~889ms en la ruta crítica.
+    // pruneSource: false → el CSS file completo se mantiene (no hay riesgo de FOUC).
+    // preload: 'swap' → <link rel="preload" as="style" onload="this.rel='stylesheet'">
+    crittersOptions: {
+      preload: "swap",
+      pruneSource: false,
+    },
     // concurrency: 1 prevents race conditions when sharing ssrRoutePath between
     // parallel renders (the module variable is set before each render in main.tsx).
     concurrency: 1,
