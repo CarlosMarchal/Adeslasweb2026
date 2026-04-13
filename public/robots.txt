@@ -51,4 +51,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://adeslas.numero1salud.es/sitemap.xml
-LLMs: https://adeslas.numero1salud.es/llms.txt
+
+# GEO (Generative Engine Optimization): llms.txt disponible en /llms.txt
+# Los LLMs que siguen el estándar lo encuentran automáticamente.
+# No se declara aquí porque "LLMs:" no es una directiva robots.txt válida.
