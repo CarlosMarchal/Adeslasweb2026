@@ -3,10 +3,12 @@
  *
  * Post-build: itera todos los .html del dist/, aplica critters para:
  *   1. Extraer el CSS crítico (above-the-fold) e inlinarlo en <style>
- *   2. Cargar el bundle CSS completo de forma async (no render-blocking)
- *      mediante <link rel="preload" as="style" onload="this.rel='stylesheet'">
+ *   2. Convertir el bundle CSS completo a carga async no-bloqueante:
+ *      <link rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null">
  *
- * Esto elimina el "Solicitudes que bloquean el renderizado" de PageSpeed.
+ * NOTA: critters 0.0.24 con preload:'swap' produce rel="stylesheet" onload="this.rel='stylesheet'"
+ * (no-op). Por eso usamos preload:'none' para que critters solo inlinee el CSS crítico,
+ * y luego aplicamos nosotros la transformación a rel="preload" manualmente.
  *
  * Ejecutar después de `vite-react-ssg build`:
  *   node scripts/inline-critical-css.mjs
@@ -21,17 +23,30 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(__dirname, "../dist");
 
-// Critters: extrae CSS crítico e inlinea; carga el resto async con preload+swap
+// Critters: solo inlinea CSS crítico (preload:'none' = no toca el link original).
+// Nosotros convertimos el link a preload en el paso siguiente.
 const critters = new Critters({
   path: distDir,
   publicPath: "/",
-  preload: "swap",          // <link rel="preload" onload="this.rel='stylesheet'">
-  pruneSource: false,       // Mantiene el CSS completo (sin riesgo de FOUC en JS-off)
-  mergeStylesheets: true,   // Un solo <style> inline con todo el CSS crítico
-  inlineFonts: false,       // Las fuentes ya tienen preload en index.html
+  preload: "none",            // No modificar el <link> — lo haremos manualmente
+  pruneSource: false,         // Mantiene el CSS completo (sin FOUC si JS falla)
+  mergeStylesheets: true,
+  inlineFonts: false,
   preloadFonts: false,
   logLevel: "warn",
 });
+
+// Convierte <link rel="stylesheet" href="..."> a carga async con el truco media=print.
+// Es el método más compatible: funciona en todos los navegadores sin JS (media=print
+// fuerza la descarga sin bloquear render; onload cambia a media=all para aplicarlo).
+function makeAsyncCss(html) {
+  return html.replace(
+    /<link\s+rel="stylesheet"\s+crossorigin="?[^"]*"?\s+href="(\/assets\/[^"]+\.css)">/g,
+    (_, href) =>
+      `<link rel="preload" as="style" crossorigin href="${href}" onload="this.onload=null;this.rel='stylesheet'">` +
+      `<noscript><link rel="stylesheet" crossorigin href="${href}"></noscript>`
+  );
+}
 
 // Encuentra todos los HTML generados por SSG
 const htmlFiles = await glob("**/*.html", {
@@ -47,8 +62,11 @@ let errors = 0;
 for (const file of htmlFiles) {
   try {
     const html = readFileSync(file, "utf8");
-    const processed = await critters.process(html);
-    writeFileSync(file, processed, "utf8");
+    // Paso 1: critters inlinea el CSS crítico
+    const withCritical = await critters.process(html);
+    // Paso 2: convertimos el link completo a async (rel="preload" as="style")
+    const withAsyncCss = makeAsyncCss(withCritical);
+    writeFileSync(file, withAsyncCss, "utf8");
     ok++;
   } catch (err) {
     console.warn(`  ⚠ ${path.relative(distDir, file)}: ${err.message}`);
