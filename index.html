@@ -25,17 +25,16 @@
     <meta name="twitter:description" content="Todos los planes Adeslas 2026. Calcula tu precio online en 2 minutos. Sin listas de espera · +51.000 médicos." />
     <meta name="twitter:image" content="https://adeslas.numero1salud.es/og-adeslas-seguros.jpg" />
     <meta name="robots" content="index, follow" />
-    <!-- Fonts: non-render-blocking (saves ~750ms on mobile) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- HubSpot domains: preconnect reduce latencia del pixel y de la Forms API -->
+    <!-- HubSpot: preconnect solo a los orígenes más críticos (máx. 4 para PageSpeed) -->
+    <!-- js.hs-scripts.com: pixel tracking → cookie hubspotutk → atribución Google Ads -->
     <link rel="preconnect" href="https://js.hs-scripts.com">
-    <link rel="preconnect" href="https://js.hs-analytics.net">
+    <!-- api.hsforms.com: endpoint de envío de formularios → leads -->
     <link rel="preconnect" href="https://api.hsforms.com">
+    <!-- Resto de dominios HubSpot: dns-prefetch (resolución DNS sin TCP/TLS) -->
+    <link rel="dns-prefetch" href="https://js.hs-analytics.net">
     <link rel="dns-prefetch" href="https://js.hscollectedforms.net">
     <link rel="dns-prefetch" href="https://js.hs-banner.com">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="dns-prefetch" href="https://js.hsadspixel.net">
 
   </head>
   <body>
