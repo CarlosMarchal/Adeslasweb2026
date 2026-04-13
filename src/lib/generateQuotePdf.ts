@@ -37,6 +37,7 @@ export interface PersonaPrecio {
 }
 
 export interface QuoteData {
+  id:                    string;   // product.id — necesario para mapear el IPID
   producto:              string;
   provincia:             string;
   zona:                  number;

@@ -775,6 +775,7 @@ export default function TarificadorInterno() {
                         onClick={(e) => {
                           e.stopPropagation();
                           setSelectedQuote({
+                            id:                   product.id,
                             producto:             product.name,
                             provincia,
                             zona,
