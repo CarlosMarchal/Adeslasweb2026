@@ -5,7 +5,8 @@ import { TarificadorProvider } from "@/components/TarificadorContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaSection from "@/components/CtaSection";
-import heroBg from "@/assets/adeslas-cuadro-medico.webp";
+/* LCP fix: URL pública predecible */
+const HERO_BG = "/images/adeslas-cuadro-medico.webp";
 
 const stats = [
   { value: "+51.000", label: "Profesionales médicos" },
@@ -48,6 +49,7 @@ const CuadroMedico = () => {
       { name: "Inicio", url: "https://adeslas.numero1salud.es/" },
       { name: "Cuadro Médico", url: "https://adeslas.numero1salud.es/cuadro-medico/" },
     ],
+    preloadImage: HERO_BG,
     faqSchema: [
       {
         q: "¿Cuántos médicos tiene Adeslas en su cuadro médico?",
@@ -89,18 +91,15 @@ const CuadroMedico = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url(${heroBg})`,
+            backgroundImage: `url(${HERO_BG})`,
             opacity: 0.12,
             mixBlendMode: "luminosity",
           }}
         />
         <div className="container mx-auto px-4 py-10 lg:py-12 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
+          {/* Sin animación fade-in en el hero: el H1 es el elemento LCP y debe
+              ser visible de forma inmediata para no penalizar Core Web Vitals */}
+          <div className="max-w-3xl">
             <div
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-sm text-primary-foreground"
               style={{
@@ -124,7 +123,7 @@ const CuadroMedico = () => {
               1.400 centros y 1.200+ centros médicos en toda España. Descarga el
               cuadro médico de tu provincia.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

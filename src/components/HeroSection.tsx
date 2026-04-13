@@ -12,12 +12,10 @@ const HeroSection = () => {
 
       <div className="max-w-[1280px] mx-auto px-12 lg:px-20 py-8 lg:py-10 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
-          {/* Left column: badge, h1, description, trust badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          {/* Left column: badge, h1, description, trust badges
+              Sin animación fade-in: el H1 es el candidato LCP y debe ser
+              visible de inmediato (opacity:0 inicial retrasaría ~600ms el LCP) */}
+          <div>
             <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full mb-6 text-sm text-white border" style={{ borderColor: "rgba(255,255,255,0.4)", background: "transparent" }}>
               <span className="w-2 h-2 rounded-full" style={{ background: "#009DD9" }} />
               Seguros Médicos Adeslas
@@ -42,13 +40,13 @@ const HeroSection = () => {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right column: white callback form card */}
+          {/* Right column: tarificador — animación suave pero no bloquea LCP */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
             className="hidden lg:block"
           >
             <div className="rounded-2xl overflow-hidden max-w-[370px] mx-auto lg:ml-8 xl:ml-16" style={{ boxShadow: "0 20px 56px rgba(0,0,0,0.22)", height: "390px" }}>

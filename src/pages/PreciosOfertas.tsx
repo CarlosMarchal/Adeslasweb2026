@@ -10,7 +10,8 @@ import Footer from "@/components/Footer";
 import CalcButton from "@/components/CalcButton";
 import CtaSection from "@/components/CtaSection";
 import Tarificador from "@/components/Tarificador";
-import heroBg from "@/assets/adeslas-seguro-medico-ofertas.webp";
+/* LCP fix: URL pública predecible para que el preload funcione antes de que JS ejecute */
+const HERO_BG = "/images/adeslas-seguro-medico-ofertas.webp";
 
 /* ─────────── Product data ─────────── */
 
@@ -201,6 +202,7 @@ const PreciosOfertasInner = () => {
       { name: "Precios y Ofertas", url: "https://adeslas.numero1salud.es/precios-y-ofertas/" },
     ],
     faqSchema: faqs.map((f) => ({ q: f.q, a: f.a })),
+    preloadImage: HERO_BG,
   });
 
   return (
@@ -211,20 +213,15 @@ const PreciosOfertasInner = () => {
       {/* ────── Hero ────── */}
       <section
         className="relative overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroBg})`, minHeight: "460px" }}
+        style={{ backgroundImage: `url(${HERO_BG})`, minHeight: "460px" }}
       >
         {/* Dark overlay */}
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />
 
         <div className="container mx-auto px-4 py-8 lg:py-10 relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
-            {/* Left */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:pl-14 xl:pl-24"
-            >
+            {/* Left — sin animación fade-in para no bloquear LCP */}
+            <div className="lg:pl-14 xl:pl-24">
               <div
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-sm text-primary-foreground"
                 style={{
@@ -271,13 +268,13 @@ const PreciosOfertasInner = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            {/* Right — Tarificador real (igual que el resto de páginas) */}
+            {/* Right — Tarificador (animación sutil sin bloquear LCP) */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.35 }}
               className="hidden lg:block"
             >
               <div

@@ -757,8 +757,16 @@ export function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): void {
   ════════════════════════════════════════════════════════════ */
   drawFooters();
 
-  const slug    = quote.producto.replace(/\s+/g, "-").toLowerCase();
-  const client  = cliente.nombre ? `_${cliente.nombre.replace(/\s+/g, "-").toLowerCase()}` : "";
-  const dateStr = new Date().toISOString().slice(0, 10);
-  doc.save(`presupuesto-adeslas_${slug}${client}_${dateStr}.pdf`);
+  const toSlug = (s: string) =>
+    s.normalize("NFD").replace(/[\u0300-\u036f]/g, "")   // quitar tildes
+     .replace(/[^a-zA-Z0-9]+/g, "-")
+     .replace(/^-|-$/g, "")
+     .toLowerCase();
+
+  const partNombre   = cliente.nombre    ? toSlug(cliente.nombre)    : "";
+  const partTelefono = cliente.telefono  ? toSlug(cliente.telefono)  : "";
+  const partSeguro   = toSlug(quote.producto);
+
+  const parts = [partNombre, partTelefono, partSeguro].filter(Boolean);
+  doc.save(`${parts.join("_")}.pdf`);
 }

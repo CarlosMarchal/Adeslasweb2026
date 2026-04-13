@@ -66,6 +66,8 @@ interface SeoData {
   noindex?: boolean;
   /* robots personalizado */
   robots?: string;
+  /* LCP: preload de imagen hero — url pública (debe estar en /public/images/) */
+  preloadImage?: string;
 }
 
 /* ────────────────────────────────────────────────
@@ -318,6 +320,7 @@ export function useSeo({
   addLocalBusinessSchema = false,
   noindex = false,
   robots,
+  preloadImage,
 }: SeoData): React.ReactElement {
   /* ── FAQ Schema (solo items con respuestas de texto plano) ── */
   const stringFaqs = faqSchema?.filter((f) => typeof f.a === "string") as
@@ -419,6 +422,17 @@ export function useSeo({
         <meta name="description" content={description} />
         <meta name="robots" content={robotsContent} />
         <link rel="canonical" href={canonical} />
+
+        {/* LCP hero image preload — solo cuando se pasa preloadImage */}
+        {preloadImage && (
+          <link
+            rel="preload"
+            as="image"
+            href={preloadImage}
+            fetchPriority="high"
+            type="image/webp"
+          />
+        )}
 
         {/* Open Graph */}
         <meta property="og:title" content={title} />
