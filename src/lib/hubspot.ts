@@ -49,12 +49,13 @@ export interface HubSpotPayload {
   source: HubSpotSource;
 }
 
+/** Lee el gclid/gbraid/wbraid del URL actual o de sessionStorage (guardado al llegar) */
 function getGclid(): string {
   try {
     const params = new URLSearchParams(window.location.search);
     // gclid: clicks normales | gbraid: iOS/Safari App Campaigns | wbraid: iOS/Safari web
     return (
-      params.get("gclid") ||
+      params.get("gclid")  ||
       params.get("gbraid") ||
       params.get("wbraid") ||
       sessionStorage.getItem("hs_gclid") ||
@@ -65,6 +66,7 @@ function getGclid(): string {
   }
 }
 
+/** Guarda el gclid en sessionStorage en cuanto llega el usuario a cualquier página con él */
 export function captureGclid() {
   try {
     const params = new URLSearchParams(window.location.search);
@@ -75,11 +77,27 @@ export function captureGclid() {
   }
 }
 
+/**
+ * Lee la cookie hubspotutk — imprescindible para que HubSpot vincule el submit
+ * con la sesión rastreada y pueda asociar el clic de Google Ads automáticamente.
+ * Sin hutk, el contacto se crea "huérfano" y los campos hs_google_click_id
+ * y las fuentes de Google Ads no se populan aunque enviemos el gclid.
+ */
+function getHutk(): string {
+  try {
+    const match = document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/);
+    return match ? match[1] : "";
+  } catch {
+    return "";
+  }
+}
+
 function field(name: string, value: string) {
   return { objectTypeId: "0-1", name, value };
 }
 
-function buildFields(payload: HubSpotPayload, includeGclid: boolean) {
+function buildFields(payload: HubSpotPayload) {
+  const gclid  = getGclid();
   const fields = [
     field("tarificador",    String(payload.source)),
     field("url_campana_ai", window.location.href),
@@ -89,39 +107,39 @@ function buildFields(payload: HubSpotPayload, includeGclid: boolean) {
   if (payload.email)     fields.push(field("email",     payload.email));
   if (payload.city)      fields.push(field("city",      payload.city));
   if (payload.edad1)     fields.push(field("edad1",     payload.edad1));
-  if (includeGclid) {
-    const gclid = getGclid();
-    if (gclid) fields.push(field("hs_google_click_id", gclid));
-  }
+  // google_click_id: campo personalizado escribible (backup para atribución de Google Ads)
+  if (gclid)             fields.push(field("google_click_id", gclid));
   return fields;
 }
 
 export async function submitToHubSpot(payload: HubSpotPayload): Promise<void> {
-  const context = { pageName: document.title };
+  /**
+   * context completo:
+   *  - pageName:  título de la página (ya estaba)
+   *  - pageUri:   URL completa con gclid/UTMs para que HubSpot registre la fuente
+   *  - hutk:      cookie hubspotutk — vincula el submit con la sesión rastreada
+   *               y permite que HubSpot asocie el clic de Google Ads internamente
+   */
+  const hutk = getHutk();
+  const context: Record<string, string> = {
+    pageName: document.title,
+    pageUri:  window.location.href,
+  };
+  if (hutk) context.hutk = hutk;
+
+  const body = JSON.stringify({ fields: buildFields(payload), context });
+
   try {
-    // Primer intento: con gclid/gbraid
     const res = await fetch(ENDPOINT, {
-      method: "POST",
+      method:  "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fields: buildFields(payload, true), context }),
+      body,
     });
 
     if (res.ok) return;
 
     const err = await res.text();
-    console.warn("[HubSpot] Submission failed (attempt 1):", res.status, err);
-
-    // Reintento sin gclid (hs_google_click_id puede ser read-only vía Forms API)
-    const retry = await fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fields: buildFields(payload, false), context }),
-    });
-
-    if (!retry.ok) {
-      const retryErr = await retry.text();
-      console.error("[HubSpot] Submission failed (attempt 2):", retry.status, retryErr);
-    }
+    console.error("[HubSpot] Submission failed:", res.status, err);
   } catch (e) {
     console.error("[HubSpot] Network error:", e);
   }
