@@ -7,6 +7,11 @@
     <meta name="description" content="Adeslas Seguros Médicos: contrata tu seguro de salud privada online. Adeslas Go desde 21€/mes · Plena Total sin copagos · +51.000 médicos · 1.400 centros en toda España. Calcula tu precio en 2 minutos." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href="https://adeslas.numero1salud.es/" />
+    <!-- Fuentes Lato: preload de los 2 pesos críticos (regular + bold) para eliminar
+         el font-swap visible y el reflow. Deben ir ANTES del CSS para ganar la carrera.
+         crossorigin es obligatorio en preload de fuentes aunque sean same-origin. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-400-normal.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-700-normal.woff2" crossorigin>
     <!-- LCP hero image preload: tells browser to fetch before JS executes -->
     <link rel="preload" as="image" href="/images/hero-adeslas-seguros-medicos.webp" fetchpriority="high" type="image/webp" />
     <!-- Open Graph -->

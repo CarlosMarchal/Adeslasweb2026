@@ -87,6 +87,14 @@ export default defineConfig(({ mode }) => ({
   build: {
     emptyOutDir: false,
     target: "esnext",
+    // No precargar vendor-pdf ni vendor-date en la home: solo cargan cuando el usuario
+    // visita /tarificador-interno/ (lazy). Evita los ~300 KiB de "JS sin usar" en home.
+    modulePreload: {
+      resolveDependencies: (_url: string, deps: string[]) =>
+        deps.filter(
+          (d) => !d.includes("vendor-pdf") && !d.includes("vendor-date")
+        ),
+    },
     rollupOptions: {
       output: {
         manualChunks(id: string) {
