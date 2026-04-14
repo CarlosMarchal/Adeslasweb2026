@@ -144,7 +144,7 @@ export default defineConfig(({ mode }) => ({
           if (id.includes("lucide-react")) return "vendor-icons";
 
           // ── Radix UI + floating-ui (su dep) ────────────────────────────
-          if (id.includes("@radix-ui") || id.includes("@floating-ui")) return "vendor-radix";
+          if (id.includes("@radix-ui") || id.includes("@floating-ui")) return "vendor-react";
 
           return "vendor-misc";
         },
