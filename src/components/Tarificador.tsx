@@ -36,12 +36,15 @@ const applyFamilyDiscount = (price: number, numPeople: number): number =>
   numPeople >= FAMILY_DISCOUNT_THRESHOLD ? price * (1 - FAMILY_DISCOUNT_RATE) : price;
 
 const productLabels: Record<string, { tag: string; color: string }> = {
-  ya: { tag: "Más económico", color: "#10B981" },
-  esencial: { tag: "Con copagos", color: "#009FE3" },
-  completaPlusPlus: { tag: "Sin copagos", color: "#6366F1" },
-  completaPlus: { tag: "Con copago y 3 años sin subidas", color: "#8B5CF6" },
-  completa: { tag: "Más vendido", color: "#003087" },
-  reembolso: { tag: "Libre elección", color: "#D97706" },
+  ya:               { tag: "Cobertura ambulatoria",          color: "#10B981" },
+  esencial:         { tag: "Copagos medios",                 color: "#009FE3" },
+  plena:            { tag: "Copagos reducidos",              color: "#0EA5E9" },
+  completaPlusPlus: { tag: "Completa sin copagos",           color: "#6366F1" },
+  completaPlus:     { tag: "Copagos · 3 años sin subidas",   color: "#8B5CF6" },
+  completa:         { tag: "Recomendado · 3 años sin subidas", color: "#003087" },
+  reembolso:        { tag: "Libre elección",                 color: "#D97706" },
+  seniors:          { tag: "Recomendado personas mayores",   color: "#F59E0B" },
+  "seniors-total":  { tag: "Personas mayores · 3 años sin subidas", color: "#0369A1" },
 };
 
 const tipoOptions = [
