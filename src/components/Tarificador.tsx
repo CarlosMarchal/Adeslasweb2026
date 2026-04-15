@@ -782,7 +782,7 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
         {/* Cuerpo — altura fija, scroll al top al mostrar resultados */}
         <div
           ref={compactBodyRef}
-          className="px-5 py-3 flex flex-col justify-center"
+          className={`px-5 py-3 flex flex-col ${step === 3 ? "justify-start" : "justify-center"}`}
           style={{ height: "310px", overflowY: "auto", scrollbarWidth: "thin", scrollbarColor: "#D5E3F0 transparent" }}
         >
           {renderStepContent(true)}
