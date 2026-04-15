@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -38,8 +38,8 @@ const applyFamilyDiscount = (price: number, numPeople: number): number =>
 const productLabels: Record<string, { tag: string; color: string }> = {
   ya: { tag: "Más económico", color: "#10B981" },
   esencial: { tag: "Con copagos", color: "#009FE3" },
-  completaPlusPlus: { tag: "Con copago y 3 años sin subidas", color: "#6366F1" },
-  completaPlus: { tag: "Sin copagos", color: "#8B5CF6" },
+  completaPlusPlus: { tag: "Sin copagos", color: "#6366F1" },
+  completaPlus: { tag: "Con copago y 3 años sin subidas", color: "#8B5CF6" },
   completa: { tag: "Más vendido", color: "#003087" },
   reembolso: { tag: "Libre elección", color: "#D97706" },
 };
@@ -176,13 +176,6 @@ const slugToSource: Record<string, import("@/lib/hubspot").HubSpotSource> = {
 /* ───────── Component ───────── */
 
 const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps) => {
-  /*
-    Steps:
-    0 = Tipo de seguro
-    1 = Asegurados + edades  (skipped if tipo === 0 "Solo para mí")
-    2 = Datos contacto + provincia
-    3 = Resultados (comparative only — single product redirects to /mi-precio)
-  */
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [tipo, setTipo] = useState(-1);
@@ -198,6 +191,15 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
   const [phoneError, setPhoneError] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(true);
   const [termsError, setTermsError] = useState(false);
+
+  /* ── Ref para scroll al top al llegar a resultados ── */
+  const compactBodyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (step === 3 && compactBodyRef.current) {
+      compactBodyRef.current.scrollTop = 0;
+    }
+  }, [step]);
 
   const singleProduct = productSlug
     ? products.find(
@@ -238,11 +240,8 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     setNumAsegurados(opt.defaultNum);
     setEdades(Array(opt.defaultNum).fill(""));
 
-    // Auto-advance after a tiny delay for visual feedback
     setTimeout(() => {
       if (i === 0) {
-        // "Solo para mí" → skip step 1, go straight to step 1 but with 1 age field shown
-        // Actually we still need their age, so go to step 1 but simplified (1 person)
         goToStep(1);
       } else {
         goToStep(1);
@@ -261,7 +260,6 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
       setAgeError("La edad máxima de contratación es 70 años");
       return false;
     }
-    // "Mi pareja y yo" → both must be ≥18
     if (tipo === 1 && parsed.some((a) => a < 18)) {
       setAgeError("Ambos asegurados deben ser mayores de 18 años");
       return false;
@@ -271,7 +269,6 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
   };
 
   const handleShowResults = async () => {
-    // Validate contact
     if (!nombre.trim()) {
       setAgeError("Introduce tu nombre");
       return;
@@ -297,7 +294,6 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     }
     setTermsError(false);
 
-    // Send lead to HubSpot
     const source = singleProduct
       ? (slugToSource[productSlug ?? ""] ?? 302)
       : 302;
@@ -311,14 +307,13 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     });
     trackTarificadorSubmit(`${countryCode}${telefono}`, `tarificador_${source}`, source);
 
-    // Single product → redirect to personalized landing
     if (singleProduct) {
       const z = getZoneFromProvince(provincia);
       const parsed = edades.map((e) => parseInt(e, 10)).filter((a) => !isNaN(a));
       const basePrice = parsed.reduce((sum, age) => sum + getPrice(singleProduct, age, z), 0);
       const hasDiscount = parsed.length >= FAMILY_DISCOUNT_THRESHOLD;
       const finalPrice = applyFamilyDiscount(basePrice, parsed.length);
-      const slug = singleProduct.slug.replace(/^\//, ""); // remove leading slash
+      const slug = singleProduct.slug.replace(/^\//, "");
       const params = new URLSearchParams();
       params.set("nombre", nombre.trim());
       params.set("precio", finalPrice.toFixed(2));
@@ -397,10 +392,7 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     isValidPhone(telefono, countryCode) &&
     !!provincia;
 
-  /* ─── Country flag selector ─── */
   const selectedCountry = countryCodes.find((c) => c.code === countryCode) || countryCodes[0];
-
-  /* PhoneInput inlined below to avoid remount on every render */
 
   /* ─── Render step content ─── */
 
@@ -458,7 +450,6 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
           {/* ── Step 1: Ages ── */}
           {step === 1 && (
             <div>
-              {/* "Solo para mí" → simplified: just one age */}
               {tipo === 0 && (
                 <>
                   <p className="text-gris-texto font-bold text-sm mb-3">
@@ -483,7 +474,6 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
                 </>
               )}
 
-              {/* Others: numAsegurados + ages */}
               {tipo !== 0 && (
                 <>
                   <p className="text-gris-texto font-bold text-sm mb-3">
@@ -780,8 +770,12 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
             )}
           </div>
         </div>
-        {/* Cuerpo — altura fija para que el hero no cambie de tamaño al avanzar pasos */}
-        <div className="px-5 py-3 flex flex-col justify-center" style={{ height: "310px", overflowY: "auto", scrollbarWidth: "thin", scrollbarColor: "#D5E3F0 transparent" }}>
+        {/* Cuerpo — altura fija, scroll al top al mostrar resultados */}
+        <div
+          ref={compactBodyRef}
+          className="px-5 py-3 flex flex-col justify-center"
+          style={{ height: "310px", overflowY: "auto", scrollbarWidth: "thin", scrollbarColor: "#D5E3F0 transparent" }}
+        >
           {renderStepContent(true)}
           {renderProgress()}
         </div>
