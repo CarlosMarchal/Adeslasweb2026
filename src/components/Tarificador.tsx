@@ -1,8 +1,10 @@
+'use client';
+
 import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
 import { submitToHubSpot } from "@/lib/hubspot";
+import ModalResultados from "@/components/ModalResultados";
 import { trackTarificadorSubmit } from "@/lib/tracking";
 import { TermsCheckbox } from "@/components/TermsModal";
 import {
@@ -184,8 +186,8 @@ const slugToSource: Record<string, import("@/lib/hubspot").HubSpotSource> = {
 /* ───────── Component ───────── */
 
 const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps) => {
-  const navigate = useNavigate();
   const [step, setStep] = useState(0);
+  const [showModal, setShowModal] = useState(false);
   const [tipo, setTipo] = useState(-1);
   const [numAsegurados, setNumAsegurados] = useState(1);
   const [edades, setEdades] = useState<string[]>([""]);
@@ -287,7 +289,11 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     }
     setEmailError("");
     if (!isValidPhone(telefono, countryCode)) {
-      setPhoneError("Introduce un número de teléfono válido");
+      setPhoneError(
+        countryCode === "+34"
+          ? "Introduce un móvil español válido (6xx xxx xxx o 7xx xxx xxx)"
+          : "Introduce un número de teléfono válido"
+      );
       return;
     }
     setPhoneError("");
@@ -315,27 +321,8 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     });
     trackTarificadorSubmit(`${countryCode}${telefono}`, `tarificador_${source}`, source);
 
-    if (singleProduct) {
-      const z = getZoneFromProvince(provincia);
-      const parsed = edades.map((e) => parseInt(e, 10)).filter((a) => !isNaN(a));
-      const basePrice = parsed.reduce((sum, age) => sum + getPrice(singleProduct, age, z), 0);
-      const hasDiscount = parsed.length >= FAMILY_DISCOUNT_THRESHOLD;
-      const finalPrice = applyFamilyDiscount(basePrice, parsed.length);
-      const slug = singleProduct.slug.replace(/^\//, "");
-      const params = new URLSearchParams();
-      params.set("nombre", nombre.trim());
-      params.set("precio", finalPrice.toFixed(2));
-      params.set("edades", parsed.join(","));
-      params.set("provincia", provincia);
-      if (hasDiscount) {
-        params.set("descuento", "10");
-        params.set("precioBase", basePrice.toFixed(2));
-      }
-      navigate(`/mi-precio/${slug}?${params.toString()}`);
-      return;
-    }
-
-    goToStep(3);
+    // Mostrar siempre el modal de resultados (comparador y single product)
+    setShowModal(true);
   };
 
   /* ── Pricing calculation ── */
@@ -373,9 +360,9 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
         return { product: prod, price: discounted, originalPrice: hasDiscount ? total : undefined };
       })
       .filter(
-        (r): r is { product: ProductPricing; price: number; originalPrice?: number } => r !== null
+        (r): r is { product: ProductPricing; price: number; originalPrice: number | undefined } => r !== null
       )
-      .sort((a, b) => a.price - b.price);
+      .sort((a, b) => a!.price - b!.price);
   }, [edades, provincia, singleProduct, zone]);
 
   const reset = () => {
@@ -392,6 +379,7 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     setPhoneError("");
     setTermsAccepted(false);
     setTermsError(false);
+    setShowModal(false);
   };
 
   const parsedAges = edades.map((e) => parseInt(e, 10));
@@ -731,6 +719,22 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
       ))}
     </div>
   );
+
+  /* ─── Modal de resultados (full-screen) ─── */
+  if (showModal) {
+    return (
+      <ModalResultados
+        results={results}
+        ages={parsedAges.filter((a) => !isNaN(a))}
+        provincia={provincia}
+        nombre={nombre}
+        email={email}
+        telefono={`${countryCode}${telefono}`}
+        numAsegurados={numAsegurados}
+        onClose={() => setShowModal(false)}
+      />
+    );
+  }
 
   /* ─── Compact mode ─── */
 

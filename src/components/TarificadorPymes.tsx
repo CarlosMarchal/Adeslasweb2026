@@ -213,7 +213,10 @@ const TarificadorPymes = ({ context = "pymes" }: TarificadorPymesProps) => {
     setFormError("");
     if (!isValidEmail(email)) { setEmailError("Introduce un email válido"); return; }
     setEmailError("");
-    if (!isValidPhone(telefono, countryCode)) { setPhoneError("Introduce un número de teléfono válido"); return; }
+    if (!isValidPhone(telefono, countryCode)) {
+      setPhoneError(countryCode === "+34" ? "Introduce un móvil español válido (6xx o 7xx xxx xxx)" : "Introduce un número de teléfono válido");
+      return;
+    }
     setPhoneError("");
     if (!provincia) { setFormError("Selecciona una provincia"); return; }
     setFormError("");

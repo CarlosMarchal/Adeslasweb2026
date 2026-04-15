@@ -28,3 +28,8 @@ dist-ssr
 *.xlsx
 vite.config.ts.timestamp-*
 node_modules 2
+.vercel
+
+# Next.js
+.next/
+out/

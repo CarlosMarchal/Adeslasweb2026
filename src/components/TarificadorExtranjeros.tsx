@@ -19,9 +19,10 @@ const formatPrice = (price: number) => {
 const isValidEmail = (email: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
 
-const isValidPhone = (phone: string) => {
+const isValidPhone = (phone: string, code = "+34") => {
   const digits = phone.replace(/\D/g, "");
-  return digits.length >= 9 && digits.length <= 15;
+  if (code === "+34") return digits.length === 9 && /^[67]/.test(digits);
+  return digits.length >= 7 && digits.length <= 15;
 };
 
 const countryCodes = [
@@ -158,8 +159,12 @@ const TarificadorExtranjeros = ({ compact = false }: Props) => {
       return;
     }
     setEmailError("");
-    if (!isValidPhone(telefono)) {
-      setPhoneError("Introduce un número de teléfono válido");
+    if (!isValidPhone(telefono, countryCode)) {
+      setPhoneError(
+        countryCode === "+34"
+          ? "Introduce un móvil español válido (empieza por 6 o 7)"
+          : "Introduce un número de teléfono válido"
+      );
       return;
     }
     setPhoneError("");

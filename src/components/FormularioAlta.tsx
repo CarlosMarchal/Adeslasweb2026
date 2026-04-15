@@ -168,19 +168,35 @@ export default function FormularioAlta() {
   };
 
   // -------------------- Validation --------------------
-  const validatePersona = (p: PersonaBase) =>
-    !!(p.nombre && p.apellidos && p.docNum && p.fechaNacimiento && p.telefono && p.email && p.direccion && p.poblacion && p.cp);
+  /** Móvil español válido: 9 dígitos empezando por 6 o 7 */
+  const isValidSpanishMobile = (tel: string) => /^[67]\d{8}$/.test(tel.replace(/\s/g, ''));
+
+  const validatePersona = (p: PersonaBase) => {
+    if (!p.nombre || !p.apellidos || !p.docNum || !p.fechaNacimiento || !p.email || !p.direccion || !p.poblacion || !p.cp) return false;
+    if (!p.telefono || !isValidSpanishMobile(p.telefono)) return false;
+    return true;
+  };
 
   const validate = (): boolean => {
     setError('');
     if (step === 1 && !validatePersona(form.tomador)) {
-      setError('Por favor, rellena todos los campos obligatorios antes de continuar.');
+      const phoneOk = isValidSpanishMobile(form.tomador.telefono);
+      setError(
+        !phoneOk && form.tomador.telefono
+          ? 'El teléfono del tomador debe ser un móvil español (9 dígitos, empieza por 6 o 7).'
+          : 'Por favor, rellena todos los campos obligatorios antes de continuar.'
+      );
       return false;
     }
     if (step === 2) {
       for (const a of form.asegurados) {
         if (!validatePersona(a) || !a.parentesco) {
-          setError('Por favor, rellena todos los campos obligatorios de cada asegurado, incluido el parentesco.');
+          const phoneOk = isValidSpanishMobile(a.telefono);
+          setError(
+            !phoneOk && a.telefono
+              ? `El teléfono de ${a.nombre || 'un asegurado'} debe ser un móvil español (empieza por 6 o 7).`
+              : 'Por favor, rellena todos los campos obligatorios de cada asegurado, incluido el parentesco.'
+          );
           return false;
         }
       }
