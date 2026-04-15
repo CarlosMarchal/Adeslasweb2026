@@ -35,6 +35,11 @@ const FAMILY_DISCOUNT_RATE = 0.10;
 const applyFamilyDiscount = (price: number, numPeople: number): number =>
   numPeople >= FAMILY_DISCOUNT_THRESHOLD ? price * (1 - FAMILY_DISCOUNT_RATE) : price;
 
+/* Productos que aparecen en el comparativo de particulares */
+const INDIVIDUAL_PRODUCT_IDS = new Set([
+  "ya", "plena", "esencial", "completaPlus", "completaPlusPlus", "completa", "reembolso",
+]);
+
 const productLabels: Record<string, { tag: string; color: string }> = {
   ya:               { tag: "Cobertura ambulatoria",          color: "#10B981" },
   esencial:         { tag: "Copagos medios",                 color: "#009FE3" },
@@ -356,6 +361,7 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     }
 
     return products
+      .filter((prod) => INDIVIDUAL_PRODUCT_IDS.has(prod.id))
       .map((prod) => {
         let total = 0;
         for (const age of parsed) {
