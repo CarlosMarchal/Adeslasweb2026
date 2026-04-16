@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import {
   ChevronLeft, Check, Shield, Lock, Phone,
   User, Users, Heart, CreditCard, AlertCircle, CheckCircle2, Calendar,
@@ -140,17 +140,22 @@ function aseguradoVacio(edad: number): AseguradoData {
   };
 }
 
-// Próximos dos meses para el selector de fecha de inicio
-function getStartMonthOptions() {
-  const now   = new Date();
-  const opts  = [];
-  for (let i = 1; i <= 3; i++) {
-    const d    = new Date(now.getFullYear(), now.getMonth() + i, 1);
-    const key  = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`;
-    const label = d.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
-    opts.push({ value: key, label: `1 de ${label}` });
-  }
-  return opts;
+// Primera fecha disponible: hoy + 2 días (no se puede el mismo día ni el siguiente)
+function getFirstAvailableDate(): string {
+  const d = new Date();
+  d.setDate(d.getDate() + 2);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+const MONTH_NAMES_ES = [
+  'Enero','Febrero','Marzo','Abril','Mayo','Junio',
+  'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',
+];
+
+function formatDateLabel(dateStr: string): string {
+  if (!dateStr) return '';
+  const [y, m, d] = dateStr.split('-').map(Number);
+  return `${d} de ${MONTH_NAMES_ES[m - 1]} de ${y}`;
 }
 
 const MESES = [
@@ -298,13 +303,176 @@ const radioBtnCls = (active: boolean) =>
   }`;
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Calendar date picker
+// ─────────────────────────────────────────────────────────────────────────────
+function CalendarPicker({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  // Min date: today + 2 (no same day, no tomorrow)
+  const minDate = useMemo(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 2);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }, []);
+  // Max date: 3 months ahead
+  const maxDate = useMemo(() => {
+    const d = new Date();
+    d.setMonth(d.getMonth() + 3);
+    d.setHours(23, 59, 59, 999);
+    return d;
+  }, []);
+
+  // View state: which month/year we're looking at
+  const [viewYear, setViewYear]   = useState(minDate.getFullYear());
+  const [viewMonth, setViewMonth] = useState(minDate.getMonth()); // 0-indexed
+
+  const DAY_HEADERS = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+
+  // First day of the month (Mon=0 … Sun=6)
+  const firstDayOffset = useMemo(() => {
+    const dow = new Date(viewYear, viewMonth, 1).getDay(); // 0=Sun
+    return (dow + 6) % 7; // shift: Mon=0
+  }, [viewYear, viewMonth]);
+
+  const daysInMonth = useMemo(
+    () => new Date(viewYear, viewMonth + 1, 0).getDate(),
+    [viewYear, viewMonth],
+  );
+
+  const prevMonth = () => {
+    if (viewMonth === 0) { setViewMonth(11); setViewYear((y) => y - 1); }
+    else setViewMonth((m) => m - 1);
+  };
+  const nextMonth = () => {
+    if (viewMonth === 11) { setViewMonth(0); setViewYear((y) => y + 1); }
+    else setViewMonth((m) => m + 1);
+  };
+
+  // Prev disabled if we're already on the minimum month
+  const canGoPrev =
+    viewYear > minDate.getFullYear() ||
+    (viewYear === minDate.getFullYear() && viewMonth > minDate.getMonth());
+  // Next disabled 3 months ahead
+  const canGoNext =
+    viewYear < maxDate.getFullYear() ||
+    (viewYear === maxDate.getFullYear() && viewMonth < maxDate.getMonth());
+
+  const toDateStr = (d: number) =>
+    `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+
+  const isDisabled = (d: number) => {
+    const date = new Date(viewYear, viewMonth, d);
+    return date < minDate || date > maxDate;
+  };
+  const isSelected = (d: number) => value === toDateStr(d);
+  const isFirstAvailable = (d: number) =>
+    toDateStr(d) === `${minDate.getFullYear()}-${String(minDate.getMonth() + 1).padStart(2, '0')}-${String(minDate.getDate()).padStart(2, '0')}`;
+  const isToday = (d: number) => {
+    const t = new Date();
+    return d === t.getDate() && viewMonth === t.getMonth() && viewYear === t.getFullYear();
+  };
+
+  return (
+    <div>
+      {/* Month nav */}
+      <div className="flex items-center justify-between mb-3">
+        <button
+          type="button"
+          onClick={prevMonth}
+          disabled={!canGoPrev}
+          className="w-8 h-8 flex items-center justify-center rounded-full transition-colors disabled:opacity-30 hover:bg-gray-100"
+          aria-label="Mes anterior"
+        >
+          ‹
+        </button>
+        <span className="text-sm font-bold text-gray-700">
+          {MONTH_NAMES_ES[viewMonth]} {viewYear}
+        </span>
+        <button
+          type="button"
+          onClick={nextMonth}
+          disabled={!canGoNext}
+          className="w-8 h-8 flex items-center justify-center rounded-full transition-colors disabled:opacity-30 hover:bg-gray-100"
+          aria-label="Mes siguiente"
+        >
+          ›
+        </button>
+      </div>
+
+      {/* Day headers */}
+      <div className="grid grid-cols-7 mb-1">
+        {DAY_HEADERS.map((h) => (
+          <div key={h} className="text-center text-xs font-semibold text-gray-400 py-1">
+            {h}
+          </div>
+        ))}
+      </div>
+
+      {/* Day grid */}
+      <div className="grid grid-cols-7 gap-y-0.5">
+        {/* Empty offset cells */}
+        {Array.from({ length: firstDayOffset }).map((_, i) => (
+          <div key={`e${i}`} />
+        ))}
+        {/* Day buttons */}
+        {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => {
+          const disabled = isDisabled(d);
+          const selected = isSelected(d);
+          const first    = isFirstAvailable(d) && !selected;
+          const today    = isToday(d);
+
+          let cls = 'relative h-9 w-9 mx-auto rounded-full text-sm transition-all flex items-center justify-center ';
+          if (disabled)        cls += 'text-gray-300 cursor-not-allowed ';
+          else if (selected)   cls += 'font-black text-white shadow-md ';
+          else if (first)      cls += 'font-bold ring-2 ring-offset-1 ';
+          else                 cls += 'hover:bg-gray-100 text-gray-700 ';
+
+          return (
+            <button
+              key={d}
+              type="button"
+              disabled={disabled}
+              onClick={() => !disabled && onChange(toDateStr(d))}
+              className={cls}
+              style={
+                selected
+                  ? { backgroundColor: '#003087' }
+                  : first
+                    ? { color: '#009FE3', '--tw-ring-color': '#009FE3' } as React.CSSProperties
+                    : undefined
+              }
+            >
+              {d}
+              {today && !selected && (
+                <span
+                  className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
+                  style={{ backgroundColor: disabled ? '#D1D5DB' : '#009FE3' }}
+                />
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Selected date label */}
+      {value && (
+        <div
+          className="mt-3 flex items-center justify-center gap-2 py-2 rounded-xl text-sm font-semibold"
+          style={{ backgroundColor: '#EFF6FF', color: '#003087' }}
+        >
+          <Calendar className="w-4 h-4" />
+          Inicio: {formatDateLabel(value)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // MAIN COMPONENT
 // ─────────────────────────────────────────────────────────────────────────────
 interface Props { params: ContratarParams }
 
 export default function FormularioContratacion({ params }: Props) {
-  const startOpts = getStartMonthOptions();
-
   // ── Internal step:
   // 0 = Puente  1 = Titular  2 = Asegurados  3 = Salud
   // 4 = Pago    5 = Revisión  6 = Enviado
@@ -313,7 +481,7 @@ export default function FormularioContratacion({ params }: Props) {
   const [sending, setSending] = useState(false);
 
   const [form, setForm] = useState<FormState>({
-    fechaInicio:      startOpts[0].value,
+    fechaInicio:      getFirstAvailableDate(),
     nombre:           params.nombre.trim().split(' ')[0] ?? '',
     apellidos:        params.nombre.trim().split(' ').slice(1).join(' ') ?? '',
     docType:          'NIF',
@@ -609,8 +777,8 @@ export default function FormularioContratacion({ params }: Props) {
         </div>
       )}
 
-      {/* ── Content ── */}
-      <div className="max-w-xl mx-auto px-4 py-6 sm:px-6">
+      {/* ── Content — pb-24 deja espacio al botón sticky ── */}
+      <div className="max-w-xl mx-auto px-4 py-6 pb-24 sm:px-6">
 
         {/* ════════════════════════════════════════════════════════════
             STEP 0 — PUENTE / RESUMEN
@@ -647,63 +815,47 @@ export default function FormularioContratacion({ params }: Props) {
               </p>
             </div>
 
-            {/* Fecha de inicio */}
-            <div className="bg-white rounded-2xl p-5 mb-5 shadow-sm">
+            {/* Fecha de inicio — calendario */}
+            <div className="bg-white rounded-2xl p-4 mb-4 shadow-sm">
               <label className="block text-sm font-bold text-gray-700 mb-3">
                 📅 ¿Cuándo quieres que empiece tu seguro?
               </label>
-              <div className="space-y-2">
-                {startOpts.map((opt) => (
-                  <label
-                    key={opt.value}
-                    className={`flex items-center gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all ${
-                      form.fechaInicio === opt.value
-                        ? 'border-[#009FE3] bg-[#009FE3]/8'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="fechaInicio"
-                      value={opt.value}
-                      checked={form.fechaInicio === opt.value}
-                      onChange={() => upd('fechaInicio', opt.value)}
-                      className="sr-only"
-                    />
-                    <div
-                      className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                        form.fechaInicio === opt.value
-                          ? 'border-[#009FE3]'
-                          : 'border-gray-300'
-                      }`}
-                    >
-                      {form.fechaInicio === opt.value && (
-                        <div className="w-2 h-2 rounded-full bg-[#009FE3]" />
-                      )}
-                    </div>
-                    <span className="text-sm font-semibold text-gray-700">{opt.label}</span>
-                  </label>
-                ))}
-              </div>
+              <CalendarPicker
+                value={form.fechaInicio}
+                onChange={(v) => upd('fechaInicio', v)}
+              />
             </div>
 
             {/* Badges confianza */}
-            <div className="flex justify-center gap-5 text-xs text-gray-500 mb-6">
+            <div className="flex justify-center gap-5 text-xs text-gray-500 mb-3">
               <span className="flex items-center gap-1"><Shield className="w-3.5 h-3.5 text-green-500" /> 100% seguro</span>
               <span className="flex items-center gap-1"><Lock className="w-3.5 h-3.5 text-blue-400" /> SSL cifrado</span>
               <span className="flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-blue-400" /> Sin compromiso</span>
             </div>
 
-            <button
-              onClick={() => { setStep(1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              className="w-full py-4 rounded-2xl font-bold text-white text-base tracking-wide transition-all hover:opacity-90 active:scale-[0.98] shadow-lg"
-              style={{ backgroundColor: '#E4097D' }}
+            {/* CTA sticky — igual que NavButtons pero solo con "Continuar" */}
+            <div
+              className="fixed bottom-0 left-0 right-0 z-50 px-4 py-3"
+              style={{
+                background: 'rgba(255,255,255,0.97)',
+                backdropFilter: 'blur(8px)',
+                borderTop: '1px solid #E5E7EB',
+                boxShadow: '0 -4px 16px rgba(0,0,0,0.07)',
+              }}
             >
-              Continuar con la contratación →
-            </button>
-            <p className="text-xs text-gray-400 text-center mt-2">
-              Solo 4 pasos · Aproximadamente 3 minutos
-            </p>
+              <div className="max-w-xl mx-auto">
+                <button
+                  onClick={() => { setStep(1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  className="w-full py-3.5 rounded-xl font-bold text-white text-base tracking-wide transition-all hover:opacity-90 active:scale-[0.98]"
+                  style={{ backgroundColor: '#E4097D' }}
+                >
+                  Continuar con la contratación →
+                </button>
+                <p className="text-xs text-gray-400 text-center mt-1.5">
+                  Solo 4 pasos · Aproximadamente 3 minutos
+                </p>
+              </div>
+            </div>
           </div>
         )}
 
@@ -1556,23 +1708,45 @@ export default function FormularioContratacion({ params }: Props) {
 // Shared sub-components
 // ─────────────────────────────────────────────────────────────────────────────
 
-function NavButtons({ onPrev, onNext }: { onPrev: () => void; onNext: () => void }) {
+/**
+ * Botones de navegación — fijos en la parte inferior de la pantalla.
+ * El contenido principal tiene pb-24 para no quedar tapado.
+ */
+function NavButtons({
+  onPrev,
+  onNext,
+  nextLabel = 'Siguiente →',
+}: {
+  onPrev: () => void;
+  onNext: () => void;
+  nextLabel?: string;
+}) {
   return (
-    <div className="flex gap-3">
-      <button
-        onClick={onPrev}
-        className="flex items-center gap-1.5 px-4 py-3 rounded-xl border-2 border-gray-200 text-sm font-semibold text-gray-600 hover:border-gray-300 transition-colors"
-      >
-        <ChevronLeft className="w-4 h-4" />
-        Atrás
-      </button>
-      <button
-        onClick={onNext}
-        className="flex-1 py-3 rounded-xl font-bold text-white text-sm tracking-wide transition-all hover:opacity-90 active:scale-[0.98]"
-        style={{ backgroundColor: '#E4097D' }}
-      >
-        Siguiente →
-      </button>
+    <div
+      className="fixed bottom-0 left-0 right-0 z-50 px-4 py-3"
+      style={{
+        background: 'rgba(255,255,255,0.97)',
+        backdropFilter: 'blur(8px)',
+        borderTop: '1px solid #E5E7EB',
+        boxShadow: '0 -4px 16px rgba(0,0,0,0.07)',
+      }}
+    >
+      <div className="max-w-xl mx-auto flex gap-3">
+        <button
+          onClick={onPrev}
+          className="flex items-center gap-1.5 px-4 py-3 rounded-xl border-2 border-gray-200 text-sm font-semibold text-gray-600 hover:border-gray-300 transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4" />
+          Atrás
+        </button>
+        <button
+          onClick={onNext}
+          className="flex-1 py-3 rounded-xl font-bold text-white text-sm tracking-wide transition-all hover:opacity-90 active:scale-[0.98]"
+          style={{ backgroundColor: '#E4097D' }}
+        >
+          {nextLabel}
+        </button>
+      </div>
     </div>
   );
 }

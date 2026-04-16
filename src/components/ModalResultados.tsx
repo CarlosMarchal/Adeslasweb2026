@@ -3,17 +3,82 @@
 import { useEffect } from 'react';
 import { X, Phone, Shield, CheckCircle2, Star } from 'lucide-react';
 
+// ─── Coverage badges per product ──────────────────────────────────────────────
+const PRODUCT_COVERAGES: Record<string, { icon: string; label: string }[]> = {
+  ya: [
+    { icon: '🩺', label: 'Cobertura ambulatoria' },
+    { icon: '🔬', label: 'Diagnóstico completo' },
+    { icon: '🆘', label: 'Urgencias 24h' },
+    { icon: '💶', label: 'Copago máx. 260€/año' },
+  ],
+  esencial: [
+    { icon: '🏥', label: 'Hospitalización incluida' },
+    { icon: '✂️', label: 'Cirugía y especialistas' },
+    { icon: '🆘', label: 'Urgencias 24h' },
+    { icon: '💶', label: 'Copago máx. 300€/año' },
+  ],
+  plena: [
+    { icon: '🏥', label: 'Hospitalización' },
+    { icon: '✂️', label: 'Cirugía' },
+    { icon: '🔬', label: 'Diagnóstico' },
+    { icon: '💶', label: 'Copago reducido' },
+  ],
+  completaPlus: [
+    { icon: '📅', label: '3 años sin subida' },
+    { icon: '🦷', label: 'Dental incluido' },
+    { icon: '🧠', label: 'Psicología' },
+    { icon: '✈️', label: 'Asistencia en viajes' },
+  ],
+  completaPlusPlus: [
+    { icon: '✅', label: 'Sin copagos' },
+    { icon: '🏥', label: 'Hospitalización' },
+    { icon: '👶', label: 'Maternidad y parto' },
+    { icon: '✂️', label: 'Cirugía completa' },
+  ],
+  completa: [
+    { icon: '📅', label: '3 años sin subida' },
+    { icon: '✅', label: 'Sin copagos' },
+    { icon: '🦷', label: 'Dental 46 actos' },
+    { icon: '🧠', label: 'Psicología' },
+  ],
+  reembolso: [
+    { icon: '🌍', label: 'Cobertura mundial' },
+    { icon: '💰', label: 'Reembolso 80%' },
+    { icon: '👨‍⚕️', label: 'Libre elección médica' },
+    { icon: '📋', label: 'Sin red médica fija' },
+  ],
+  seniors: [
+    { icon: '👴', label: 'Para 55–84 años' },
+    { icon: '🏥', label: 'Hospitalización' },
+    { icon: '👨‍⚕️', label: 'Asesor personal' },
+    { icon: '🔬', label: 'Oncología y cardiología' },
+  ],
+  'seniors-total': [
+    { icon: '📅', label: '3 años sin subida' },
+    { icon: '🦷', label: 'Dental incluido' },
+    { icon: '👴', label: 'Para 63–84 años' },
+    { icon: '✈️', label: 'Asistencia en viajes' },
+  ],
+};
+
+// Products that deserve special visual highlight
+const HIGHLIGHTED_IDS = new Set(['completaPlus', 'completa']);
+const HIGHLIGHT_BANNER: Record<string, { text: string; bg: string }> = {
+  completaPlus: { text: '⭐ Precio garantizado 3 años sin subida', bg: '#7C3AED' },
+  completa:     { text: '🏆 El más completo · 3 años sin subida de prima', bg: '#003087' },
+};
+
 // ─── Product labels ────────────────────────────────────────────────────────────
 const productLabels: Record<string, { tag: string; color: string }> = {
-  ya:               { tag: 'Cobertura ambulatoria',                  color: '#10B981' },
-  esencial:         { tag: 'Copagos medios',                         color: '#009FE3' },
-  plena:            { tag: 'Copagos reducidos',                      color: '#0EA5E9' },
-  completaPlusPlus: { tag: 'Completa sin copagos',                   color: '#6366F1' },
-  completaPlus:     { tag: 'Copagos · 3 años sin subidas',           color: '#8B5CF6' },
-  completa:         { tag: 'Recomendado · 3 años sin subidas',       color: '#003087' },
-  reembolso:        { tag: 'Libre elección',                         color: '#D97706' },
-  seniors:          { tag: 'Recomendado personas mayores',           color: '#F59E0B' },
-  'seniors-total':  { tag: 'Personas mayores · 3 años sin subidas',  color: '#0369A1' },
+  ya:               { tag: 'Cobertura ambulatoria',           color: '#10B981' },
+  esencial:         { tag: 'Copagos medios',                  color: '#009FE3' },
+  plena:            { tag: 'Copagos reducidos',               color: '#0EA5E9' },
+  completaPlusPlus: { tag: 'Sin copagos',                     color: '#6366F1' },
+  completaPlus:     { tag: 'Copagos · 3 años sin subidas',    color: '#7C3AED' },
+  completa:         { tag: '3 años sin subidas · Sin copago', color: '#003087' },
+  reembolso:        { tag: 'Libre elección médica',           color: '#D97706' },
+  seniors:          { tag: 'Mayores 55–84 años',              color: '#F59E0B' },
+  'seniors-total':  { tag: 'Mayores · 3 años sin subidas',    color: '#0369A1' },
 };
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
@@ -51,14 +116,12 @@ export default function ModalResultados({
   numAsegurados,
   onClose,
 }: ModalResultadosProps) {
-  // Block body scroll while modal is open
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = prev; };
   }, []);
 
-  // Navigate to contracting flow
   const handleContratar = (result: ProductResult) => {
     const params = new URLSearchParams();
     params.set('producto',       result.product.slug.replace(/^\//, ''));
@@ -79,7 +142,6 @@ export default function ModalResultados({
   const primerNombre = nombre ? nombre.trim().split(' ')[0] : '';
 
   return (
-    /* ── Overlay fondo ── */
     <div
       className="fixed inset-0 z-[500] flex flex-col"
       style={{ backgroundColor: '#EEF5FB' }}
@@ -93,13 +155,14 @@ export default function ModalResultados({
       >
         <div>
           <p className="text-white font-bold text-base leading-tight">
-            {primerNombre ? `¡Hola ${primerNombre}! Tu seguro está listo 🎉` : 'Tu seguro Adeslas está listo 🎉'}
+            {primerNombre
+              ? `¡Hola ${primerNombre}! Tu seguro está listo 🎉`
+              : 'Tu seguro Adeslas está listo 🎉'}
           </p>
           <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.7)' }}>
             {numAsegurados} {numAsegurados === 1 ? 'asegurado' : 'asegurados'} · {provincia}
           </p>
         </div>
-
         <div className="flex items-center gap-2">
           <a
             href="tel:917105000"
@@ -122,10 +185,10 @@ export default function ModalResultados({
 
       {/* ── Contenido scrollable ── */}
       <main className="flex-1 overflow-y-auto">
-        <div className="max-w-2xl mx-auto px-4 py-5 sm:px-6">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6">
 
           {/* Trust badges */}
-          <div className="flex items-center justify-center gap-4 mb-5 text-xs text-gray-500 flex-wrap">
+          <div className="flex items-center justify-center gap-4 mb-4 text-xs text-gray-500 flex-wrap">
             <span className="flex items-center gap-1.5">
               <Shield className="w-3.5 h-3.5 text-green-500" />
               Contratación segura
@@ -141,12 +204,11 @@ export default function ModalResultados({
 
           {/* Sin resultados */}
           {results.length === 0 && (
-            <div className="bg-white rounded-2xl p-8 text-center shadow-sm">
+            <div className="bg-white rounded-2xl p-8 text-center shadow-sm max-w-sm mx-auto">
               <div className="text-4xl mb-3">⚠️</div>
               <h3 className="font-bold text-gray-800 mb-2">No hay tarifas disponibles</h3>
               <p className="text-sm text-gray-500 mb-5">
-                No hemos encontrado tarifas para los datos seleccionados. Prueba otra combinación o
-                llámanos.
+                No hemos encontrado tarifas para los datos seleccionados.
               </p>
               <button
                 onClick={onClose}
@@ -158,78 +220,125 @@ export default function ModalResultados({
             </div>
           )}
 
-          {/* Tarjetas de productos */}
-          <div className="space-y-3">
-            {results.map((result, index) => {
-              const { int, dec } = formatPrice(result.price);
-              const label = productLabels[result.product.id] ?? { tag: 'Seguro de salud', color: '#003087' };
-              const isTop = index === 0 && results.length > 1;
-              const hasDiscount = result.originalPrice !== undefined;
+          {/* ── Grid de productos: 1 col (móvil) → 2 col (md) → 3 col (xl) ── */}
+          {results.length > 0 && (
+            <div className={`grid gap-3 ${
+              results.length === 1
+                ? 'grid-cols-1 max-w-sm mx-auto'
+                : results.length === 2
+                  ? 'grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto'
+                  : 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3'
+            }`}>
+              {results.map((result, index) => {
+                const { int, dec }    = formatPrice(result.price);
+                const label           = productLabels[result.product.id] ?? { tag: 'Seguro de salud', color: '#003087' };
+                const coverages       = PRODUCT_COVERAGES[result.product.id] ?? [];
+                const isHighlighted   = HIGHLIGHTED_IDS.has(result.product.id);
+                const highlightBanner = HIGHLIGHT_BANNER[result.product.id];
+                const isBestPrice     = index === 0 && results.length > 1 && !isHighlighted;
+                const hasDiscount     = result.originalPrice !== undefined;
 
-              return (
-                <div
-                  key={result.product.id}
-                  className="bg-white rounded-2xl overflow-hidden transition-transform hover:scale-[1.01] active:scale-[0.99]"
-                  style={{
-                    boxShadow: isTop
-                      ? '0 6px 28px rgba(0, 48, 135, 0.16)'
-                      : '0 2px 10px rgba(0,0,0,0.06)',
-                    border: isTop ? '2px solid #009FE3' : '2px solid #EEF5FB',
-                  }}
-                >
-                  {/* Banner "Mejor precio" */}
-                  {isTop && (
-                    <div
-                      className="flex items-center justify-center gap-1.5 py-1.5 text-white text-xs font-bold"
-                      style={{ backgroundColor: '#009FE3' }}
-                    >
-                      <Star className="w-3 h-3 fill-white" />
-                      Mejor precio
-                    </div>
-                  )}
+                // Border & shadow per type
+                const cardBorder = isHighlighted
+                  ? `2px solid ${label.color}`
+                  : isBestPrice
+                    ? '2px solid #009FE3'
+                    : '2px solid #E5E7EB';
+                const cardShadow = isHighlighted
+                  ? `0 8px 32px ${label.color}30`
+                  : isBestPrice
+                    ? '0 6px 28px rgba(0,119,182,0.14)'
+                    : '0 2px 10px rgba(0,0,0,0.05)';
 
-                  <div className="p-4 sm:p-5">
-                    {/* Tag + descuento */}
-                    <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
-                      <span
-                        className="text-xs font-bold px-2.5 py-1 rounded-full"
-                        style={{
-                          backgroundColor: `${label.color}1A`,
-                          color: label.color,
-                        }}
+                return (
+                  <div
+                    key={result.product.id}
+                    className="bg-white rounded-2xl overflow-hidden flex flex-col transition-transform hover:scale-[1.015] active:scale-[0.99]"
+                    style={{ boxShadow: cardShadow, border: cardBorder }}
+                  >
+                    {/* Highlighted banner (PVT / Plena Total) */}
+                    {highlightBanner && (
+                      <div
+                        className="flex items-center justify-center gap-1.5 py-1.5 text-white text-xs font-bold tracking-wide"
+                        style={{ backgroundColor: highlightBanner.bg }}
                       >
-                        {label.tag}
-                      </span>
-                      {hasDiscount && (
-                        <span
-                          className="text-xs font-bold px-2.5 py-1 rounded-full"
-                          style={{ backgroundColor: '#DCFCE7', color: '#166534' }}
-                        >
-                          🎉 Descuento familiar −10%
-                        </span>
-                      )}
-                    </div>
+                        {highlightBanner.text}
+                      </div>
+                    )}
 
-                    {/* Nombre + precio */}
-                    <div className="flex items-end justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-lg leading-tight" style={{ color: '#003087' }}>
-                          {result.product.name}
-                        </h3>
-                        <p className="text-xs text-gray-400 mt-0.5">
-                          {numAsegurados} {numAsegurados === 1 ? 'asegurado' : 'asegurados'}
-                          {ages.length > 0 && ` · ${ages.join(', ')} años`}
-                          {' · '}{provincia}
-                        </p>
+                    {/* "Mejor precio" banner for first non-highlighted */}
+                    {isBestPrice && (
+                      <div
+                        className="flex items-center justify-center gap-1.5 py-1.5 text-white text-xs font-bold"
+                        style={{ backgroundColor: '#009FE3' }}
+                      >
+                        <Star className="w-3 h-3 fill-white" />
+                        Mejor precio
+                      </div>
+                    )}
+
+                    <div className="p-4 flex flex-col flex-1">
+                      {/* Tag + descuento */}
+                      <div className="flex items-center justify-between mb-2 flex-wrap gap-1.5">
+                        <span
+                          className="text-xs font-bold px-2.5 py-0.5 rounded-full"
+                          style={{
+                            backgroundColor: `${label.color}1A`,
+                            color: label.color,
+                          }}
+                        >
+                          {label.tag}
+                        </span>
+                        {hasDiscount && (
+                          <span
+                            className="text-xs font-bold px-2 py-0.5 rounded-full"
+                            style={{ backgroundColor: '#DCFCE7', color: '#166534' }}
+                          >
+                            🎉 −10% familia
+                          </span>
+                        )}
                       </div>
 
-                      <div className="text-right flex-shrink-0">
+                      {/* Nombre del producto */}
+                      <h3 className="font-black text-base leading-tight mb-1" style={{ color: '#003087' }}>
+                        {result.product.name}
+                      </h3>
+                      <p className="text-xs text-gray-400 mb-3">
+                        {numAsegurados} {numAsegurados === 1 ? 'asegurado' : 'asegurados'}
+                        {ages.length > 0 && ` · ${ages.join(', ')} años`}
+                        {' · '}{provincia}
+                      </p>
+
+                      {/* ── Badges de cobertura ── */}
+                      {coverages.length > 0 && (
+                        <div className="grid grid-cols-2 gap-1.5 mb-3">
+                          {coverages.map((cov, ci) => (
+                            <div
+                              key={ci}
+                              className="flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs font-medium"
+                              style={{
+                                backgroundColor: isHighlighted
+                                  ? `${label.color}12`
+                                  : '#F8FAFC',
+                                color: '#374151',
+                                border: `1px solid ${isHighlighted ? label.color + '25' : '#E5E7EB'}`,
+                              }}
+                            >
+                              <span className="text-sm leading-none">{cov.icon}</span>
+                              <span className="leading-tight">{cov.label}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Precio */}
+                      <div className="mt-auto pt-2 border-t border-gray-100">
                         {hasDiscount && (
-                          <p className="text-xs text-gray-400 line-through">
+                          <p className="text-xs text-gray-400 line-through text-right">
                             {formatPrice(result.originalPrice!).int},{formatPrice(result.originalPrice!).dec} €/mes
                           </p>
                         )}
-                        <div className="flex items-baseline gap-0.5 justify-end">
+                        <div className="flex items-baseline gap-0.5 justify-end mb-2">
                           <span className="text-3xl font-black" style={{ color: '#003087' }}>
                             {int}
                           </span>
@@ -239,29 +348,31 @@ export default function ModalResultados({
                           <span className="text-xs text-gray-400 ml-0.5">/mes</span>
                         </div>
                         {hasDiscount && (
-                          <p className="text-[11px] font-semibold" style={{ color: '#16A34A' }}>
+                          <p className="text-[11px] font-semibold text-right mb-2" style={{ color: '#16A34A' }}>
                             Ahorro {formatPrice(result.originalPrice! - result.price).int},{formatPrice(result.originalPrice! - result.price).dec}€/mes
                           </p>
                         )}
+
+                        {/* CTA contratar */}
+                        <button
+                          onClick={() => handleContratar(result)}
+                          className="w-full py-3 rounded-xl font-bold text-white text-sm tracking-wide transition-all hover:opacity-90 active:scale-[0.98]"
+                          style={{
+                            backgroundColor: isHighlighted ? label.color : '#E4097D',
+                          }}
+                        >
+                          Contratar {result.product.name} →
+                        </button>
                       </div>
                     </div>
-
-                    {/* CTA contratar */}
-                    <button
-                      onClick={() => handleContratar(result)}
-                      className="w-full mt-4 py-3.5 rounded-xl font-bold text-white text-sm tracking-wide transition-all hover:opacity-90 active:scale-[0.98]"
-                      style={{ backgroundColor: '#E4097D' }}
-                    >
-                      Contratar {result.product.name} →
-                    </button>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
 
           {/* Separador "o llámanos" */}
-          <div className="relative my-6">
+          <div className="relative my-5">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200" />
             </div>
@@ -271,7 +382,7 @@ export default function ModalResultados({
           </div>
 
           {/* Teléfono */}
-          <div className="bg-white rounded-2xl p-5 text-center shadow-sm mb-6">
+          <div className="bg-white rounded-2xl p-4 text-center shadow-sm mb-4 max-w-sm mx-auto">
             <p className="text-sm text-gray-500 mb-2">
               Nuestro equipo te resuelve cualquier duda al instante
             </p>
@@ -283,7 +394,7 @@ export default function ModalResultados({
               <Phone className="w-5 h-5" />
               91 710 50 00
             </a>
-            <p className="text-xs text-gray-400 mt-1.5">
+            <p className="text-xs text-gray-400 mt-1">
               Marchal Aseguradores · Lun–Vie 9:00–19:00
             </p>
           </div>
