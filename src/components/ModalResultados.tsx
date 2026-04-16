@@ -29,7 +29,7 @@ const PRODUCT_SPECS: Record<string, ProductSpec> = {
 };
 
 // ─── Grupos de características ───────────────────────────────────────────────
-type FeatureKey = 'especialidades' | 'diagnostico' | keyof ProductSpec;
+type FeatureKey = 'analisis' | 'especialidades' | 'diagnostico' | keyof ProductSpec;
 
 interface FeatureItem { key: FeatureKey; icon: string; label: string }
 
@@ -37,23 +37,24 @@ const FEATURE_GROUPS: { label: string; features: FeatureItem[] }[] = [
   {
     label: 'Cobertura médica',
     features: [
-      { key: 'especialidades',  icon: '🩺', label: 'Especialidades'  },
-      { key: 'diagnostico',     icon: '🔬', label: 'Diagnóstico'     },
-      { key: 'hospitalizacion', icon: '🏥', label: 'Hospitalización' },
-      { key: 'urgencias',       icon: '🚑', label: 'Urgencias 24 h'  },
+      { key: 'analisis',        icon: '🧪', label: 'Análisis clínicos' },
+      { key: 'especialidades',  icon: '🩺', label: 'Especialistas'     },
+      { key: 'diagnostico',     icon: '🔬', label: 'Diagnóstico'       },
+      { key: 'hospitalizacion', icon: '🏥', label: 'Hospitalización'   },
+      { key: 'urgencias',       icon: '🚑', label: 'Urgencias 24 h'    },
     ],
   },
   {
     label: 'Coberturas adicionales',
     features: [
-      { key: 'extranjero', icon: '✈️', label: 'Extranjero'  },
-      { key: 'farmacia',   icon: '💊', label: 'Farmacia'    },
+      { key: 'extranjero', icon: '✈️', label: 'Extranjero' },
+      { key: 'farmacia',   icon: '💊', label: 'Farmacia'   },
     ],
   },
   {
     label: 'Servicios incluidos',
     features: [
-      { key: 'fisioterapia', icon: '🏃', label: 'Fisioterapia'         },
+      { key: 'fisioterapia', icon: '🏃', label: 'Rehabilitación'       },
       { key: 'dental',       icon: '🦷', label: 'Dental incluido'      },
       { key: 'chequeo',      icon: '🩻', label: 'Chequeo médico anual' },
     ],
@@ -70,7 +71,7 @@ const COPAGO_PILL: Record<string, PillDef> = {
   completaPlus:     { label: 'Con copago',      bg: '#FEF3C7', color: '#92400E', border: '#FCD34D' },
   completaPlusPlus: { label: 'Sin copago',      bg: '#DCFCE7', color: '#15803D', border: '#86EFAC' },
   completa:         { label: 'Sin copago',      bg: '#DCFCE7', color: '#15803D', border: '#86EFAC' },
-  reembolso:        { label: 'Red sin copago',  bg: '#DCFCE7', color: '#15803D', border: '#86EFAC' },
+  reembolso:        { label: 'Sin copago',      bg: '#DCFCE7', color: '#15803D', border: '#86EFAC' },
   seniors:          { label: 'Con copago',      bg: '#FEF3C7', color: '#92400E', border: '#FCD34D' },
   'seniors-total':  { label: 'Con copago',      bg: '#FEF3C7', color: '#92400E', border: '#FCD34D' },
 };
@@ -82,7 +83,7 @@ const COVERAGE_PILL: Record<string, PillDef> = {
   completaPlus:     { label: 'Completa',       bg: '#EFF6FF', color: '#1D4ED8', border: '#BFDBFE' },
   completaPlusPlus: { label: 'Completa',       bg: '#EFF6FF', color: '#1D4ED8', border: '#BFDBFE' },
   completa:         { label: 'Completa',       bg: '#EFF6FF', color: '#1D4ED8', border: '#BFDBFE' },
-  reembolso:        { label: 'Libre elección', bg: '#FFF7ED', color: '#C2410C', border: '#FED7AA' },
+  reembolso:        { label: 'Completa + Reembolso', bg: '#EFF6FF', color: '#1D4ED8', border: '#BFDBFE' },
   seniors:          { label: '+55 años',       bg: '#F5F3FF', color: '#6D28D9', border: '#DDD6FE' },
   'seniors-total':  { label: '+63 años',       bg: '#F5F3FF', color: '#6D28D9', border: '#DDD6FE' },
 };
@@ -91,7 +92,8 @@ const HIGHLIGHTED_ID = 'completa';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function getCoverage(productId: string, key: FeatureKey): string | boolean | false {
-  if (key === 'especialidades' || key === 'diagnostico') return true;
+  // Siempre incluidos en todos los productos
+  if (key === 'analisis' || key === 'especialidades' || key === 'diagnostico') return true;
   const spec = PRODUCT_SPECS[productId];
   if (!spec) return false;
   return spec[key as keyof ProductSpec] as string | boolean | false;
