@@ -13,6 +13,7 @@
 import type { Metadata } from 'next';
 import nextDynamic from 'next/dynamic';
 import { getPageMeta } from '@/data/pageMeta';
+import { FAQ_SCHEMAS } from '@/data/faqSchemas';
 
 // ── Tipos ────────────────────────────────────────────────────────────────────
 interface PageProps {
@@ -58,11 +59,14 @@ const WEBSITE_SCHEMA = {
   }
 };
 
+const OG_DEFAULT = 'https://adeslas.numero1salud.es/og-default.jpg';
+
 // ── generateMetadata ─────────────────────────────────────────────────────────
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const slug = params.slug ?? [];
   const pathname = slug.length > 0 ? `/${slug.join('/')}` : '/';
   const meta = getPageMeta(pathname);
+  const ogImage = meta.ogImage ?? OG_DEFAULT;
 
   return {
     title: meta.title,
@@ -80,11 +84,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: 'Adeslas Seguros Médicos — Marchal Aseguradores',
       locale: 'es_ES',
       type: 'website',
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: meta.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: meta.title,
       description: meta.description,
+      images: [ogImage],
     },
   };
 }
@@ -93,9 +106,39 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 const AppSPA = nextDynamic(() => import('@/App'), { ssr: false });
 
 // ── Componente de página ─────────────────────────────────────────────────────
-export default function CatchAllPage() {
+export default function CatchAllPage({ params }: PageProps) {
+  const slug = params.slug ?? [];
+  const pathname = slug.length > 0 ? `/${slug.join('/')}` : '/';
+  const meta = getPageMeta(pathname);
+
+  // FAQ JSON-LD para esta ruta (si existe)
+  const faqs = FAQ_SCHEMAS[pathname] ?? FAQ_SCHEMAS[pathname.replace(/\/$/, '')] ?? null;
+  const faqJsonLd = faqs && faqs.length > 0
+    ? JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      })
+    : null;
+
   return (
     <>
+      {/* Preload imagen hero — mejora LCP en móvil (React 18 hoist to <head>) */}
+      {meta.preloadImage && (
+        <link
+          rel="preload"
+          as="image"
+          href={meta.preloadImage}
+          // @ts-ignore — fetchPriority es válido en React 18 / HTML spec
+          fetchPriority="high"
+          type="image/webp"
+        />
+      )}
+
       {/* JSON-LD server-renderizado: garantiza que Google indexe la entidad
           aunque el resto del contenido se hidrate client-side */}
       <script
@@ -106,6 +149,14 @@ export default function CatchAllPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_SCHEMA) }}
       />
+
+      {/* FAQ Schema por página — server-rendered para que Google lo lea sin JS */}
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: faqJsonLd }}
+        />
+      )}
 
       {/* SPA de React Router — se hidrata en el cliente */}
       <AppSPA />

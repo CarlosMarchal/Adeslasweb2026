@@ -11,6 +11,10 @@ export interface PageMeta {
   description: string;
   canonical: string;
   noindex?: boolean;
+  /** URL absoluta de la imagen OG para esta página (1200×630, /public/*.jpg) */
+  ogImage?: string;
+  /** URL pública de la imagen hero para server-side <link rel="preload"> (mejora LCP) */
+  preloadImage?: string;
 }
 
 const BASE = "https://adeslas.numero1salud.es";
@@ -22,192 +26,228 @@ const BASE = "https://adeslas.numero1salud.es";
 export const PAGE_META: Record<string, PageMeta> = {
   // ── HOME ──────────────────────────────────────────────────────────
   "/": {
-    title: "Adeslas Seguros Médicos | Salud Privada · +51.000 Médicos · Sin Listas de Espera",
+    title: "Seguros Médicos Adeslas 2026 | +51.000 Médicos · Desde 21€/mes",
     description:
-      "Contrata tu seguro médico Adeslas con Marchal Aseguradores, Agente Exclusivo. +51.000 médicos, 1.400 centros, sin listas de espera. GO desde 21€/mes. Calcula tu precio en 2 minutos.",
+      "Contrata Adeslas con Marchal Aseguradores, tu Agente Exclusivo. GO desde 21€, Plena Vital desde 38€, sin copagos desde 62€. Calcula tu precio en 2 minutos.",
     canonical: `${BASE}/`,
+    ogImage: `${BASE}/og-default.jpg`,
+    preloadImage: "/hero-adeslas-seguros-medicos.webp",
   },
 
   // ── PRODUCTOS DE SALUD ────────────────────────────────────────────
   "/adeslas-go": {
-    title: "Adeslas GO | Seguro Médico Ambulatorio con Copago — Desde 21€/mes",
+    title: "Adeslas GO | Copago Máx. 260€/año · Sin Cuestionario · Desde 21€/mes",
     description:
-      "Adeslas GO: seguro médico económico, sin cuestionario de salud y con cobertura ambulatoria completa. +51.000 médicos, urgencias 24h, copagos máx. 260€/año. Desde 21€/mes.",
+      "Cobertura ambulatoria completa sin cuestionario de salud. Medicina general, especialistas y urgencias 24h. Copago máximo 260€/año. Contrata con Marchal, Agente Exclusivo Adeslas.",
     canonical: `${BASE}/seguro-salud/adeslas-go/`,
+    ogImage: `${BASE}/og-go.jpg`,
+    preloadImage: "/images/seguro-medico-adeslas-go.webp",
   },
   "/adeslas-plena-vital": {
-    title: "Adeslas Plena Vital | Seguro Médico Completo con Tope de Copago — Desde 38€",
+    title: "Adeslas Plena Vital | Hospitalización Completa · Copago Máx. 300€ · Desde 38€",
     description:
-      "Adeslas Plena Vital — Agente Exclusivo Adeslas: hospitalización, todas las especialidades y urgencias 24h con copago máximo 300€/año. +51.000 médicos y 1.400 centros. Sin listas de espera. Desde 38€/mes.",
+      "Seguro médico completo con hospitalización y copago máx. 300€/año. +51.000 médicos, sin esperas. Calcula precio con Marchal, Agente Exclusivo Adeslas.",
     canonical: `${BASE}/seguro-salud/adeslas-plena-vital/`,
+    ogImage: `${BASE}/og-vital.jpg`,
+    preloadImage: "/images/seguro-medico-adeslas-plena-vital.webp",
   },
   "/adeslas-plena-vital-total": {
-    title: "Adeslas Plena Vital Total | Cobertura Total · 3 Años Sin Subida de Prima",
+    title: "Adeslas Plena Vital Total | 3 Años Sin Subida de Prima · Desde 48,50€/mes",
     description:
-      "Adeslas Plena Vital Total: cobertura completa con dental incluido, sin carencias y prima garantizada 3 años sin subidas. Copago reducido, +51.000 médicos y urgencias 24h. Desde 48,50€/mes.",
+      "Cobertura completa con dental, psicología y prima garantizada 3 años sin subidas. Copago reducido. El plan más equilibrado precio-cobertura de Adeslas.",
     canonical: `${BASE}/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/`,
+    ogImage: `${BASE}/og-vital-total.jpg`,
+    preloadImage: "/images/seguro-medico-adeslas-plena-vital-total.webp",
   },
   "/adeslas-plena-total": {
-    title: "Adeslas Plena Total | Seguro Médico Sin Copagos · Dental y Viajes Incluidos",
+    title: "Adeslas Plena Total | Sin Copagos · Dental · Psicología · Desde 83€/mes",
     description:
-      "Adeslas Plena Total: el seguro más completo sin copagos. Hospitalización ilimitada, dental (46 actos), asistencia en viajes 100.000€ y accidente. +51.000 médicos. Desde 83€/mes.",
+      "El seguro médico más completo: sin copago, hospitalización, dental (46 actos), psicología y asistencia en viajes 100.000€. +51.000 médicos. Desde 83€/mes.",
     canonical: `${BASE}/seguro-salud/adeslas-plena-total/`,
+    ogImage: `${BASE}/og-total.jpg`,
+    preloadImage: "/images/seguro-medico-adeslas-plena-total.webp",
   },
   "/adeslas-extra-150": {
-    title: "Adeslas Extra 150 | Seguro Médico Libre Elección · Reembolso 80% · Cobertura Mundial",
+    title: "Adeslas Extra 150 | Libre Elección Médica · Reembolso 80% · Cobertura Mundial",
     description:
-      "Adeslas Extra 150: seguro de libre elección médica con reembolso del 80% hasta 150.000€/año. Acude a cualquier médico, en cualquier país. Cobertura mundial sin restricciones.",
+      "Acude a cualquier médico en España o en el mundo. Reembolso del 80% hasta 150.000€/año, sin restricción de especialista ni red de médicos.",
     canonical: `${BASE}/seguro-salud/adeslas-extra-150/`,
+    ogImage: `${BASE}/og-extra-150.jpg`,
   },
   "/adeslas-plena-plus": {
-    title: "Adeslas Plena Plus | Seguro Médico Sin Copagos · Cobertura Completa",
+    title: "Adeslas Plena Plus | Sin Copagos · Cobertura Completa · Desde 62€/mes",
     description:
-      "Adeslas Plena Plus: seguro médico sin copagos con cobertura completa. Hospitalización ilimitada, todas las especialidades y urgencias 24h. +51.000 médicos y 1.400 centros.",
+      "Sin copago en ningún servicio. Hospitalización, cirugía, parto y todas las especialidades con +51.000 médicos. La opción sin copagos más asequible de Adeslas.",
     canonical: `${BASE}/seguro-salud/adeslas-plena-plus/`,
+    ogImage: `${BASE}/og-plena-plus.jpg`,
   },
 
   // ── SENIORS ───────────────────────────────────────────────────────
   "/adeslas-seniors": {
-    title: "Adeslas Seniors | Seguro Médico para Mayores de 55 años desde 67,50€",
+    title: "Adeslas Seniors | Seguro Médico Mayores 55-84 Años · Desde 67,50€/mes",
     description:
-      "Seguro médico Adeslas Seniors para mayores de 55 a 84 años. Asesor médico personal, oncología, cardiología, rehabilitación y cobertura completa. Copago reducido. Desde 67,50€/mes.",
+      "Seguro médico para personas de 55 a 84 años. Asesor personal, oncología, cardiología y rehabilitación. Prima garantizada sin subidas. Desde 67,50€/mes.",
     canonical: `${BASE}/seguro-salud/adeslas-seniors/`,
+    ogImage: `${BASE}/og-seniors.jpg`,
+    preloadImage: "/images/seguro-medico-adeslas-seniors.webp",
   },
   "/adeslas-seniors-total": {
-    title: "Adeslas Seniors Total | Cobertura Completa para Mayores de 63 años desde 101€",
+    title: "Adeslas Seniors Total | Mayores 63-84 Años · Dental · Viajes · Desde 101€",
     description:
-      "Adeslas Seniors Total: seguro médico para personas de 63 a 84 años sin subida de prima garantizada 3 años. Hospitalización, oncología, asistencia viajes 100.000€ y asesor personal. Desde 101€/mes.",
+      "Cobertura total para personas de 63 a 84 años: dental, psicología y asistencia en viajes. Prima garantizada 3 años sin subidas. Asesor médico personal.",
     canonical: `${BASE}/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/`,
+    ogImage: `${BASE}/og-seniors-total.jpg`,
   },
 
   // ── COLECTIVOS ────────────────────────────────────────────────────
   "/autonomos": {
-    title: "Seguro Médico Adeslas para Autónomos | Deducible IRPF · Sin Copago",
+    title: "Adeslas para Autónomos | Deducción IRPF hasta 500€ · Sin Copago",
     description:
-      "Seguro médico Adeslas para autónomos: sin copagos, deducible en IRPF hasta 500€/asegurado/año, +51.000 médicos y 1.400 centros. El seguro que cuida tu salud y te ahorra en impuestos.",
+      "Seguro médico Adeslas para autónomos con deducción hasta 500€/año por asegurado en IRPF. Sin copagos, +51.000 médicos. Tramitación inmediata con Marchal.",
     canonical: `${BASE}/seguro-salud/autonomos/`,
+    ogImage: `${BASE}/og-autonomos.jpg`,
   },
   "/pymes-empresas": {
-    title: "Adeslas PYMES TOTAL | Seguro Médico para Empresas · Dental · 3 Años Sin Subida",
+    title: "Adeslas PYMES TOTAL | Empresas · Dental · 3 Años Sin Subida de Prima",
     description:
-      "Adeslas PYMES TOTAL: seguro médico para pymes hasta 15 empleados. Sin copagos, chequeo médico anual, dental incluido y 3 años sin incremento de prima. Deducible al 100% en IS. +51.000 médicos.",
+      "Adeslas para pymes y empresas: sin copago, dental incluido, 3 años sin subida de prima. Hasta 15 empleados, deducción total en IS. +51.000 médicos.",
     canonical: `${BASE}/seguro-salud/pymes/`,
+    ogImage: `${BASE}/og-pymes-empresas.jpg`,
   },
 
   // ── ESPECIALES ────────────────────────────────────────────────────
   "/adeslas-extranjeros": {
-    title: "Adeslas Extranjeros | Seguro Médico para Estudiantes y Residentes en España desde 38€",
+    title: "Adeslas Extranjeros | Válido para Visado y NIE · Desde 38€/mes",
     description:
-      "Seguro médico Adeslas para extranjeros residentes y estudiantes en España. Cumple requisitos de visado y NIE. Cobertura completa con +51.000 médicos. Desde 38€/mes.",
+      "Seguro médico homologado para extranjeros residentes y estudiantes en España. Válido para visado, NIE y tramitación inmediata. Cobertura completa desde 38€/mes.",
     canonical: `${BASE}/adeslas-extranjeros/`,
+    ogImage: `${BASE}/og-extranjeros.jpg`,
   },
   "/adeslas-body-factory": {
-    title: "Adeslas Body Factory | Seguro Médico para Socios · Cobertura Completa",
+    title: "Adeslas Body Factory | Seguro Médico Exclusivo para Socios",
     description:
-      "Seguro médico Adeslas para socios de Body Factory. Cobertura completa con +51.000 médicos y condiciones exclusivas para clientes del gimnasio.",
+      "Seguro médico Adeslas con condiciones exclusivas para socios de Body Factory. Cobertura completa con +51.000 médicos en toda España.",
     canonical: `${BASE}/adeslas-body-factory/`,
+    ogImage: `${BASE}/og-body-factory.jpg`,
   },
   "/adeslas-adif-renfe": {
     title: "Adeslas ADIF/Renfe | Seguro Médico para Trabajadores Ferroviarios",
     description:
       "Seguro médico Adeslas con condiciones especiales para trabajadores de ADIF y Renfe. Cobertura completa con +51.000 médicos y acceso prioritario.",
     canonical: `${BASE}/adeslas-adif-renfe/`,
+    ogImage: `${BASE}/og-adif-renfe.jpg`,
   },
 
   // ── OTROS SEGUROS ─────────────────────────────────────────────────
   "/adeslas-dental": {
-    title: "Seguro Dental Adeslas | Sin Carencias desde Día 1 · Desde 9,45€/mes",
+    title: "Seguro Dental Adeslas | Sin Carencias · Niños Gratis · Desde 9,45€/mes",
     description:
-      "Seguro dental Adeslas desde 9,45€/mes: limpiezas y revisiones desde el día 1 sin coste. Implantes, endodoncia y ortodoncia con franquicias reducidas. Niños hasta 8 años gratis. +1.700 dentistas.",
+      "Limpiezas y revisiones desde el día 1 sin carencias. +1.700 dentistas. Niños hasta 8 años gratis. Implantes y ortodoncia a franquicia reducida.",
     canonical: `${BASE}/seguro-dental/`,
+    ogImage: `${BASE}/og-dental.jpg`,
   },
   "/adeslas-decesos": {
     title: "Adeslas Decesos | Sepelio, Repatriación y Trámites desde 9€/mes",
     description:
-      "Seguro de decesos Adeslas gestionado por Ocaso. Sepelio completo, repatriación internacional, billete acompañante y trámites incluidos. Atención 24h: 900 14 15 16. Desde 9€/mes.",
+      "Seguro de decesos Adeslas gestionado por Ocaso. Sepelio completo, repatriación internacional, billete acompañante y trámites incluidos. Atención 24h: 900 14 15 16.",
     canonical: `${BASE}/seguro-decesos/`,
+    ogImage: `${BASE}/og-decesos.jpg`,
   },
   "/adesla-decesos-prima-unica": {
-    title: "Adeslas Decesos Prima Única | Cobertura Vitalicia sin Cuotas Mensuales",
+    title: "Adeslas Decesos Prima Única | Cobertura Vitalicia · Un Solo Pago",
     description:
       "Seguro de decesos Adeslas con pago de prima única: cobertura vitalicia sin cuotas mensuales. Ideal para mayores de 70 años. Sepelio, repatriación y trámites incluidos.",
     canonical: `${BASE}/seguro-decesos-prima-unica/`,
+    ogImage: `${BASE}/og-decesos-prima-unica.jpg`,
   },
   "/adeslas-mascotas": {
     title: "Adeslas Mascotas | Seguro para Perros y Gatos desde 5,85€/mes",
     description:
-      "Seguro de mascotas Adeslas para perros y gatos. Básico desde 5,85€/mes (RC 200.000€) o Completo desde 24,74€/mes (+300 clínicas veterinarias). Sin restricción de raza ni edad.",
+      "Seguro de mascotas Adeslas para perros y gatos. Básico desde 5,85€/mes (RC 200.000€) o Completo desde 24,74€/mes (+300 clínicas). Sin restricción de raza ni edad.",
     canonical: `${BASE}/seguro-mascotas/`,
+    ogImage: `${BASE}/og-mascotas.jpg`,
   },
   "/adeslas-asistencia-viaje": {
-    title: "Adeslas Viaje | Seguro de Asistencia en Viaje desde 8,50€/día — Cobertura Mundial",
+    title: "Adeslas Asistencia en Viaje | Cobertura Mundial · Desde 8,50€/día",
     description:
-      "Seguro de asistencia en viaje Adeslas con cobertura mundial. Emergencias médicas, repatriación, cancelación de vuelos y equipaje. Contrata por días, semanas o meses. Desde 8,50€/día.",
+      "Seguro de asistencia en viaje con cobertura mundial. Emergencias médicas, repatriación, cancelación de vuelos y equipaje. Contrata por días o meses. Desde 8,50€/día.",
     canonical: `${BASE}/adeslas-asistencia-en-viaje/`,
+    ogImage: `${BASE}/og-viaje.jpg`,
   },
   "/adeslas-accidentes": {
-    title: "Adeslas Accidentes | Seguro de Accidentes con Cobertura 24h desde 5,89€/mes",
+    title: "Adeslas Accidentes | Cobertura 24h en Todo el Mundo · Desde 5,89€/mes",
     description:
       "Seguro de accidentes Adeslas con cobertura 24h en todo el mundo. Fallecimiento, invalidez, asistencia médica y hospitalización por accidente. Desde 5,89€/mes.",
     canonical: `${BASE}/seguro-accidentes/`,
+    ogImage: `${BASE}/og-accidentes.jpg`,
   },
 
   // ── PÁGINAS DE NECESIDAD ──────────────────────────────────────────
   "/seguro-medico-individual": {
-    title: "Adeslas Individual | Seguro Médico desde 21€/mes · Sin Esperas · Prima Fija 3 Años",
+    title: "Adeslas Individual | Desde 21€/mes · Prima Fija 3 Años · Sin Esperas",
     description:
-      "Seguro médico Adeslas individual desde 21€/mes. Prima fija 3 años sin subidas. Elige entre GO, Plena Vital, Plena Plus o Plena Total. +51.000 médicos, sin listas de espera. Calcula tu precio en 2 minutos.",
+      "Seguro médico individual Adeslas desde 21€/mes. Prima fija 3 años sin subidas. Elige entre GO, Plena Vital, Plena Plus o Plena Total. +51.000 médicos. Calcula en 2 minutos.",
     canonical: `${BASE}/seguro-salud/adeslas-individual/`,
+    ogImage: `${BASE}/og-individual.jpg`,
   },
   "/seguro-medico-familiar": {
-    title: "Adeslas Seguro Médico Familiar | Pediatría, Especialistas y Sin Copagos",
+    title: "Adeslas Familiar | Pediatría · Especialistas · Sin Copagos · Desde 22€",
     description:
-      "Adeslas seguro médico familiar: pediatría, especialistas y hospitalización para toda la familia desde 22,55€/mes. Descuento 10% desde el 4º asegurado. Sin listas de espera.",
+      "Seguro médico familiar Adeslas: pediatría, especialistas y hospitalización. Descuento del 10% desde el 4º asegurado. Sin listas de espera. Desde 22,55€/mes.",
     canonical: `${BASE}/seguro-salud/seguro-familia/`,
+    ogImage: `${BASE}/og-familiar.jpg`,
   },
   "/seguro-medico-infantil": {
-    title: "Adeslas Seguro Médico Infantil | Pediatría Sin Esperas para Niños desde 21€/mes",
+    title: "Seguro Médico Infantil Adeslas | Pediatría 24h · Sin Esperas · Desde 21€",
     description:
-      "Seguro médico infantil Adeslas: pediatría, especialistas y urgencias 24h para niños desde 21€/mes. Sin listas de espera, +51.000 médicos y 1.400 centros.",
+      "Pediatría sin esperas para tus hijos con Adeslas. Urgencias 24h, vacunas y especialistas. Descuento familiar desde el 4º asegurado. Alta inmediata desde 21€/mes.",
     canonical: `${BASE}/seguro-salud/adeslas-infantil/`,
+    ogImage: `${BASE}/og-infantil.jpg`,
   },
   "/seguro-medico-ginecologia": {
-    title: "Adeslas Ginecología | Seguro Médico con Cobertura Ginecológica Completa",
+    title: "Adeslas Ginecología | Cobertura Ginecológica Completa · Sin Lista de Espera",
     description:
-      "Seguro médico Adeslas con cobertura ginecológica completa: ginecólogos, ecografías, revisiones y más. +51.000 médicos, sin listas de espera.",
+      "Seguro médico con ginecólogos, ecografías, revisiones y seguimiento completo. Sin listas de espera con +51.000 médicos. Tramitación con Marchal, Agente Exclusivo.",
     canonical: `${BASE}/seguro-salud/adeslas-ginecologia/`,
+    ogImage: `${BASE}/og-ginecologia.jpg`,
   },
   "/seguro-medico-embarazadas": {
-    title: "Adeslas Embarazo | Seguro Médico para Embarazadas con Parto y Neonatología",
+    title: "Adeslas Embarazo | Parto, Ecografías y Neonatología · Sin Lista de Espera",
     description:
-      "Seguro médico Adeslas para embarazadas con cobertura de parto y neonatología. Ginecólogos, ecografías y atención completa durante el embarazo. Sin listas de espera.",
+      "Cobertura completa de embarazo en Adeslas: ginecólogos, ecografías, parto y neonatología. Sin listas de espera. Contrata con Marchal, Agente Exclusivo Adeslas.",
     canonical: `${BASE}/seguro-salud/embarazo/`,
+    ogImage: `${BASE}/og-embarazadas.jpg`,
   },
   "/seguro-medico-mayores": {
-    title: "Adeslas Seniors | Seguro Médico para Personas Mayores de 55 años desde 67,50€/mes",
+    title: "Seguro Médico para Mayores de 55 Años | Adeslas Seniors · Desde 67,50€",
     description:
-      "Seguro médico Adeslas para personas mayores de 55 años. Asesor personal, oncología, cardiología y cobertura completa. Copago reducido. Desde 67,50€/mes.",
+      "Adeslas Seniors para personas mayores de 55 años: oncología, cardiología, rehabilitación y asesor personal. Sin límite de renovación. Desde 67,50€/mes.",
     canonical: `${BASE}/seguro-salud/seguro-para-personas-mayores/`,
+    ogImage: `${BASE}/og-mayores.jpg`,
   },
 
   // ── UTILIDADES ────────────────────────────────────────────────────
   "/cuadro-medico": {
-    title: "Cuadro Médico Adeslas | Busca tu Médico Especialista — +51.000 Médicos",
+    title: "Cuadro Médico Adeslas 2026 | +51.000 Especialistas · Busca por Provincia",
     description:
-      "Busca médicos Adeslas por especialidad y provincia. Más de 51.000 médicos en 1.400 centros en toda España. Encuentra tu especialista sin listas de espera.",
+      "Encuentra tu médico Adeslas por especialidad y provincia. Más de 51.000 médicos en 1.400 centros en toda España. Sin esperas, sin listas.",
     canonical: `${BASE}/cuadro-medico/`,
+    ogImage: `${BASE}/og-cuadro-medico.jpg`,
+    preloadImage: "/adeslas-cuadro-medico.webp",
   },
   "/contacto": {
     title: "Contacto | Marchal Aseguradores — Agente Exclusivo Adeslas",
     description:
       "Contacta con Marchal Aseguradores, Agente Exclusivo Adeslas. Asesoramiento personalizado sin compromiso. Teléfono, email y formulario de contacto.",
     canonical: `${BASE}/contacto/`,
+    ogImage: `${BASE}/og-contacto.jpg`,
   },
   "/blog": {
     title: "Blog de Salud Adeslas | Consejos, Noticias y Bienestar",
     description:
-      "El blog de salud de Marchal Aseguradores. Consejos de bienestar, novedades de seguros Adeslas y artículos sobre salud escritos por expertos.",
+      "Artículos de salud, consejos de bienestar y novedades de seguros Adeslas. Escritos por expertos de Marchal Aseguradores, Agente Exclusivo.",
     canonical: `${BASE}/adeslas-blog/`,
+    ogImage: `${BASE}/og-blog.jpg`,
   },
   "/politica-de-privacidad": {
     title: "Política de Privacidad | Marchal Aseguradores",
@@ -216,10 +256,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     noindex: true,
   },
   "/precios-ofertas": {
-    title: "Precios y Ofertas Adeslas 2026 | Compara y Ahorra en tu Seguro Médico",
+    title: "Precios Adeslas 2026 | Compara Planes · Ahorra · GO desde 21€/mes",
     description:
-      "Consulta todos los precios y ofertas de los seguros Adeslas 2026. Compara coberturas y encuentra el plan más económico. GO desde 21€/mes.",
+      "Consulta todos los precios y ofertas de seguros Adeslas 2026. Compara coberturas y elige el plan más económico para ti. Calcula precio en 2 minutos.",
     canonical: `${BASE}/precios-y-ofertas/`,
+    ogImage: `${BASE}/og-precios.jpg`,
+    preloadImage: "/adeslas-seguro-medico-ofertas.webp",
   },
 
   // ── LANDING / OFERTA ──────────────────────────────────────────────
@@ -228,6 +270,7 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Oferta exclusiva Adeslas Plena Vital. Pide tu precio personalizado y empieza a disfrutar de cobertura completa con copago máximo 300€/año. +51.000 médicos.",
     canonical: `${BASE}/oferta-plena-vital/`,
+    ogImage: `${BASE}/og-vital.jpg`,
     noindex: true,
   },
 
