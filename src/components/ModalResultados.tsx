@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { X, Phone, Shield, CheckCircle2, Star } from 'lucide-react';
+import { X, Phone, Shield, CheckCircle2 } from 'lucide-react';
 
 // ─── Coverage badges per product ──────────────────────────────────────────────
 const PRODUCT_COVERAGES: Record<string, { icon: string; label: string }[]> = {
@@ -62,10 +62,9 @@ const PRODUCT_COVERAGES: Record<string, { icon: string; label: string }[]> = {
 };
 
 // Products that deserve special visual highlight
-const HIGHLIGHTED_IDS = new Set(['completaPlus', 'completa']);
+const HIGHLIGHTED_IDS = new Set(['completa']);
 const HIGHLIGHT_BANNER: Record<string, { text: string; bg: string }> = {
-  completaPlus: { text: '⭐ Precio garantizado 3 años sin subida', bg: '#7C3AED' },
-  completa:     { text: '🏆 El más completo · 3 años sin subida de prima', bg: '#003087' },
+  completa: { text: '🏆 El más completo · 3 años sin subida de prima', bg: '#003087' },
 };
 
 // ─── Product labels ────────────────────────────────────────────────────────────
@@ -143,7 +142,7 @@ export default function ModalResultados({
 
   return (
     <div
-      className="fixed inset-0 z-[500] flex flex-col"
+      className="fixed inset-0 z-[800] flex flex-col"
       style={{ backgroundColor: '#EEF5FB' }}
     >
       {/* ── Cabecera ── */}
@@ -235,20 +234,15 @@ export default function ModalResultados({
                 const coverages       = PRODUCT_COVERAGES[result.product.id] ?? [];
                 const isHighlighted   = HIGHLIGHTED_IDS.has(result.product.id);
                 const highlightBanner = HIGHLIGHT_BANNER[result.product.id];
-                const isBestPrice     = index === 0 && results.length > 1 && !isHighlighted;
                 const hasDiscount     = result.originalPrice !== undefined;
 
-                // Border & shadow per type
+                // Border & shadow: solo Plena Total destacado, resto uniforme
                 const cardBorder = isHighlighted
                   ? `2px solid ${label.color}`
-                  : isBestPrice
-                    ? '2px solid #009FE3'
-                    : '2px solid #E5E7EB';
+                  : '2px solid #E5E7EB';
                 const cardShadow = isHighlighted
                   ? `0 8px 32px ${label.color}30`
-                  : isBestPrice
-                    ? '0 6px 28px rgba(0,119,182,0.14)'
-                    : '0 2px 10px rgba(0,0,0,0.05)';
+                  : '0 2px 10px rgba(0,0,0,0.05)';
 
                 return (
                   <div
@@ -263,17 +257,6 @@ export default function ModalResultados({
                         style={{ backgroundColor: highlightBanner.bg }}
                       >
                         {highlightBanner.text}
-                      </div>
-                    )}
-
-                    {/* "Mejor precio" banner for first non-highlighted */}
-                    {isBestPrice && (
-                      <div
-                        className="flex items-center justify-center gap-1.5 py-1.5 text-white text-xs font-bold"
-                        style={{ backgroundColor: '#009FE3' }}
-                      >
-                        <Star className="w-3 h-3 fill-white" />
-                        Mejor precio
                       </div>
                     )}
 
@@ -358,7 +341,7 @@ export default function ModalResultados({
                           onClick={() => handleContratar(result)}
                           className="w-full py-3 rounded-xl font-bold text-white text-sm tracking-wide transition-all hover:opacity-90 active:scale-[0.98]"
                           style={{
-                            backgroundColor: isHighlighted ? label.color : '#E4097D',
+                            backgroundColor: '#E4097D',
                           }}
                         >
                           Contratar {result.product.name} →
