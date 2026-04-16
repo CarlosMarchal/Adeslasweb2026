@@ -626,7 +626,7 @@ export default function ModalResultados({
                     ))}
                   </tbody>
 
-                  {/* ════ CTAs ════ */}
+                  {/* ════ CTAs — desactivados temporalmente, reactivar en fase de contratación ════
                   <tfoot>
                     <tr>
                       <td style={{
@@ -681,6 +681,7 @@ export default function ModalResultados({
                       })}
                     </tr>
                   </tfoot>
+                  ════ fin CTAs desactivados ════ */}
                 </table>
               </div>
             </div>
