@@ -8,23 +8,44 @@ import { X, Phone, Shield, CheckCircle2 } from 'lucide-react';
 interface ProductSpec {
   hospitalizacion: boolean;
   urgencias:       boolean;
-  extranjero:      string | false;
-  farmacia:        string | false;
+  extranjero:      string | false;   // false = no cubierto, string = capital
+  farmacia:        string | false;   // false = no, '50 %' / '80 %' = porcentaje reembolso
   fisioterapia:    boolean;
+  dental:          boolean;          // dental básico incluido en la prima
   sinCopago:       boolean;
 }
 
-// ─── Coberturas 2026 ──────────────────────────────────────────────────────────
+// ─── Coberturas verificadas desde páginas de producto (2026) ─────────────────
+//
+// Fuente: AdeslaGo.tsx, AdeslaPlenaVital.tsx, AdeslaPlenaVitalTotal.tsx,
+//         AdeslaPlenaPlus.tsx, AdeslaPlenaTotal.tsx, AdeslaExtra150.tsx,
+//         AdeslasSeniors.tsx, AdeslasSeniorsTotal.tsx
+//
+// GO (ya):          Sólo ambulatorio. Sin hospitalización, sin urgencias,
+//                   sin extranjero. Copago LMA 260 €/año.
+// Plena Vital:      Completo. Sin extranjero (no mencionado). LMA 300 €/año.
+// Plena Vital Total:Completo. Extranjero 30.000 €. Farmacia 50 % (200 €/año).
+//                   Dental incluido. LMA 500 €/año.
+// Plena Plus:       Completo. Extranjero 12.000 €. Sin farmacia. SIN copago.
+// Plena Total:      Completo. Extranjero 100.000 €. Farmacia 50 % (200 €/año).
+//                   Dental incluido. SIN copago. Prima garantizada 3 años.
+// Extra 150:        Libre elección. Reembolso 80 % fuera de red. Máx 150.000 €/año.
+//                   Extranjero incluido (reembolso 80 % en cualquier país).
+// Seniors:          Completo +55 años. Extranjero 12.000 €. Dental básico.
+//                   Copago LMA ambulatorio 250 €/año.
+// Seniors Total:    Completo +63 años. Extranjero 100.000 €. Farmacia 50 %.
+//                   Dental incluido. Copago LMA amb. 250 €/año + hosp. 800 €/año.
+//                   Prima garantizada 3 años.
 const PRODUCT_SPECS: Record<string, ProductSpec> = {
-  ya:               { hospitalizacion: false, urgencias: false, extranjero: false,       farmacia: false,  fisioterapia: true,  sinCopago: false },
-  esencial:         { hospitalizacion: true,  urgencias: true,  extranjero: '6.000 €',   farmacia: false,  fisioterapia: true,  sinCopago: false },
-  plena:            { hospitalizacion: true,  urgencias: true,  extranjero: '6.000 €',   farmacia: false,  fisioterapia: true,  sinCopago: false },
-  completaPlus:     { hospitalizacion: true,  urgencias: true,  extranjero: '60.000 €',  farmacia: '50 %', fisioterapia: true,  sinCopago: false },
-  completaPlusPlus: { hospitalizacion: true,  urgencias: true,  extranjero: '60.000 €',  farmacia: '80 %', fisioterapia: true,  sinCopago: true  },
-  completa:         { hospitalizacion: true,  urgencias: true,  extranjero: '100.000 €', farmacia: '50 %', fisioterapia: true,  sinCopago: true  },
-  reembolso:        { hospitalizacion: true,  urgencias: true,  extranjero: 'Mundial',   farmacia: '80 %', fisioterapia: true,  sinCopago: false },
-  seniors:          { hospitalizacion: true,  urgencias: true,  extranjero: '6.000 €',   farmacia: false,  fisioterapia: true,  sinCopago: false },
-  'seniors-total':  { hospitalizacion: true,  urgencias: true,  extranjero: '60.000 €',  farmacia: '50 %', fisioterapia: true,  sinCopago: true  },
+  ya:               { hospitalizacion: false, urgencias: false, extranjero: false,       farmacia: false,  fisioterapia: true,  dental: false, sinCopago: false },
+  esencial:         { hospitalizacion: true,  urgencias: true,  extranjero: false,       farmacia: false,  fisioterapia: true,  dental: false, sinCopago: false },
+  plena:            { hospitalizacion: true,  urgencias: true,  extranjero: false,       farmacia: false,  fisioterapia: true,  dental: false, sinCopago: false },
+  completaPlus:     { hospitalizacion: true,  urgencias: true,  extranjero: '30.000 €',  farmacia: '50 %', fisioterapia: true,  dental: true,  sinCopago: false },
+  completaPlusPlus: { hospitalizacion: true,  urgencias: true,  extranjero: '12.000 €',  farmacia: false,  fisioterapia: true,  dental: false, sinCopago: true  },
+  completa:         { hospitalizacion: true,  urgencias: true,  extranjero: '100.000 €', farmacia: '50 %', fisioterapia: true,  dental: true,  sinCopago: true  },
+  reembolso:        { hospitalizacion: true,  urgencias: true,  extranjero: 'Mundial',   farmacia: '80 %', fisioterapia: true,  dental: false, sinCopago: false },
+  seniors:          { hospitalizacion: true,  urgencias: true,  extranjero: '12.000 €',  farmacia: false,  fisioterapia: true,  dental: true,  sinCopago: false },
+  'seniors-total':  { hospitalizacion: true,  urgencias: true,  extranjero: '100.000 €', farmacia: '50 %', fisioterapia: true,  dental: true,  sinCopago: false },
 };
 
 // ─── Filas de comparación ─────────────────────────────────────────────────────
@@ -38,22 +59,28 @@ const FEATURES: { key: FeatureKey; icon: string; label: string }[] = [
   { key: 'extranjero',      icon: '✈️', label: 'Extranjero'        },
   { key: 'farmacia',        icon: '💊', label: 'Farmacia'          },
   { key: 'fisioterapia',    icon: '🏃', label: 'Fisioterapia'      },
+  { key: 'dental',          icon: '🦷', label: 'Dental incluido'   },
   { key: 'sinCopago',       icon: '💳', label: 'Sin copago'        },
 ];
 
 // ─── Pills de copago ──────────────────────────────────────────────────────────
+// Verificado con LMA de cada producto:
+//   GO: LMA 260 €/año | Plena Vital: LMA 300 €/año | Vital Total: LMA 500 €/año
+//   Plena Plus: CERO copagos | Plena Total: CERO copagos
+//   Extra 150: sin copago en red / reembolso 80 % fuera de red
+//   Seniors: LMA ambulatorio 250 €/año | Seniors Total: LMA amb 250 €/año + hosp 800 €/año
 interface PillDef { label: string; bg: string; color: string }
 
 const COPAGO_PILL: Record<string, PillDef> = {
-  ya:               { label: 'Con copago',      bg: '#FEF3C7', color: '#92400E' },
-  esencial:         { label: 'Con copago',      bg: '#FEF3C7', color: '#92400E' },
-  plena:            { label: 'Copago reducido', bg: '#E0F2FE', color: '#0369A1' },
-  completaPlus:     { label: 'Con copago',      bg: '#FEF3C7', color: '#92400E' },
-  completaPlusPlus: { label: 'Sin copago',      bg: '#DCFCE7', color: '#15803D' },
-  completa:         { label: 'Sin copago',      bg: '#DCFCE7', color: '#15803D' },
-  reembolso:        { label: 'Sin copago',      bg: '#DCFCE7', color: '#15803D' },
-  seniors:          { label: 'Con copago',      bg: '#FEF3C7', color: '#92400E' },
-  'seniors-total':  { label: 'Sin copago',      bg: '#DCFCE7', color: '#15803D' },
+  ya:               { label: 'Con copago',         bg: '#FEF3C7', color: '#92400E' },
+  esencial:         { label: 'Con copago',         bg: '#FEF3C7', color: '#92400E' },
+  plena:            { label: 'Copago reducido',    bg: '#E0F2FE', color: '#0369A1' },
+  completaPlus:     { label: 'Con copago',         bg: '#FEF3C7', color: '#92400E' },
+  completaPlusPlus: { label: 'Sin copago',         bg: '#DCFCE7', color: '#15803D' },
+  completa:         { label: 'Sin copago',         bg: '#DCFCE7', color: '#15803D' },
+  reembolso:        { label: 'Red sin copago',     bg: '#DCFCE7', color: '#15803D' },
+  seniors:          { label: 'Con copago',         bg: '#FEF3C7', color: '#92400E' },
+  'seniors-total':  { label: 'Con copago',         bg: '#FEF3C7', color: '#92400E' }, // LMA amb 250€ + hosp 800€
 };
 
 // ─── Pills de tipo de cobertura ───────────────────────────────────────────────
@@ -66,13 +93,14 @@ const COVERAGE_PILL: Record<string, PillDef> = {
   completa:         { label: 'Completa',             bg: '#EFF6FF', color: '#1D4ED8' },
   reembolso:        { label: 'Libre elección',       bg: '#FFF7ED', color: '#C2410C' },
   seniors:          { label: 'Completa · +55 años',  bg: '#EFF6FF', color: '#1D4ED8' },
-  'seniors-total':  { label: 'Completa · +55 años',  bg: '#EFF6FF', color: '#1D4ED8' },
+  'seniors-total':  { label: 'Completa · +63 años',  bg: '#EFF6FF', color: '#1D4ED8' },
 };
 
 // ─── Columna destacada ────────────────────────────────────────────────────────
 const HIGHLIGHTED_ID = 'completa';
 
 // ─── Helper valor de cobertura ────────────────────────────────────────────────
+// 'especialidades' y 'diagnostico' son universales en todos los productos Adeslas.
 function getCoverage(productId: string, key: FeatureKey): string | boolean | false {
   if (key === 'especialidades' || key === 'diagnostico') return true;
   const spec = PRODUCT_SPECS[productId];
