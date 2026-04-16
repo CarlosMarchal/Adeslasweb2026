@@ -11,6 +11,7 @@ import Tarificador from "@/components/Tarificador";
 import CtaSection from "@/components/CtaSection";
 import { usePhonePopup } from "@/components/PhonePopupContext";
 import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
+import { imgSrc } from "@/lib/imgSrc";
 
 /* ───────── Types ───────── */
 
@@ -62,7 +63,7 @@ export interface ProductPageData {
   heroSubtitle: string;
   price: string;
   pricePeriod?: string;
-  heroImage?: string;          /* custom hero background image (import) */
+  heroImage?: string | unknown; /* custom hero background image (import or StaticImageData) */
   heroGradient?: string;       /* custom gradient override */
 
   /* Features grid */
@@ -209,7 +210,7 @@ const ProductHero = ({
   return (
   <section
     className="relative overflow-hidden bg-cover bg-center flex items-center"
-    style={{ backgroundImage: `url(${data.heroImage || heroBg})`, minHeight: "520px" }}
+    style={{ backgroundImage: `url(${imgSrc(data.heroImage || heroBg)})`, minHeight: "520px" }}
     role="img"
     aria-label={`${data.heroTitle}${data.heroHighlight ? " " + data.heroHighlight : ""} — Adeslas seguros médicos privados`}
   >

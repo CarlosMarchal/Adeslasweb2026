@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import logoAzul from "@/assets/Logo-adeslas-Marchal-color.webp";
+import { imgSrc } from "@/lib/imgSrc";
 import { useTarificador } from "@/components/TarificadorContext";
 import { usePageCalc } from "@/components/PageCalcContext";
 import { usePhonePopup } from "@/components/PhonePopupContext";
@@ -354,7 +355,7 @@ const Header = () => {
 
             {/* Logo + claim */}
             <Link to="/" className="flex items-center gap-3 flex-shrink-0">
-              <img src={logoAzul} alt="Adeslas — Seguros Médicos Privados en España" className="h-10 lg:h-11 object-contain" width="105" height="44" />
+              <img src={imgSrc(logoAzul)} alt="Adeslas — Seguros Médicos Privados en España" className="h-10 lg:h-11 object-contain" width="105" height="44" />
               {!scrolled && (
                 <div className="hidden xl:flex items-center pl-3" style={{ borderLeft: "1px solid #D5E3F0" }}>
                   <span className="text-[11px] leading-tight" style={{ color: "#C0D0DC" }}>
@@ -398,7 +399,7 @@ const Header = () => {
               </a>
               {/* CTA principal — desktop always opens tarificador modal */}
               <button
-                onClick={openTarificador}
+                onClick={() => openTarificador()}
                 className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm text-white btn-cta-magenta active:scale-[0.98] cursor-pointer ml-1"
                 style={{ backgroundColor: "#E4097D" }}
               >
@@ -586,13 +587,13 @@ const Header = () => {
           paddingBottom: "max(0.625rem, env(safe-area-inset-bottom))",
         }}
       >
-        <button onClick={openPhonePopup}
+        <button onClick={() => openPhonePopup()}
             className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm border-2 active:scale-[0.98]"
             style={{ borderColor: "#009FE3", color: "#009FE3" }}>
             <Phone className="w-4 h-4" />
             Te llamamos
           </button>
-        <button onClick={onCalcClick ?? openTarificador}
+        <button onClick={onCalcClick ?? (() => openTarificador())}
           className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm text-white active:scale-[0.98]"
           style={{ backgroundColor: "#009FE3" }}>
           {calcLabel ?? "Calcular mi precio"}

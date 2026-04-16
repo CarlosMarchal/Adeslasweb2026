@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { trackClickToCallContratacion, trackClickToCallAsistencia } from "@/lib/tracking";
 import logoBlanco from "@/assets/Logo-adeslas-Marchal-blanco.webp";
+import { imgSrc } from "@/lib/imgSrc";
 
 const Footer = () => (
   <footer style={{ backgroundColor: "#1A2B4A" }}>
@@ -8,7 +9,7 @@ const Footer = () => (
       <div className="grid md:grid-cols-[2fr_1.2fr_1.2fr_1.2fr_1.2fr] gap-6 lg:gap-8">
         {/* Logo y dirección */}
         <div>
-          <img src={logoBlanco} alt="Adeslas Seguros Médicos — Salud Privada en España" className="h-8 object-contain mb-4" width="189" height="64" />
+          <img src={imgSrc(logoBlanco)} alt="Adeslas Seguros Médicos — Salud Privada en España" className="h-8 object-contain mb-4" width="189" height="64" />
           <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
             Avenida de Filipinas, 28 · CP 28003<br />
             Madrid

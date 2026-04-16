@@ -420,7 +420,7 @@ export function getZoneFromProvince(province: string): number {
 
 /** Get dental monthly price */
 export function getDentalPrice(members: number, isAseguradoSalud: boolean): number | null {
-  const key = String(Math.min(members, 10));
+  const key = String(Math.min(members, 10)) as keyof typeof dentalPricing.asegurado;
   const table = isAseguradoSalud ? dentalPricing.asegurado : dentalPricing.noAsegurado;
   return table[key] ?? null;
 }

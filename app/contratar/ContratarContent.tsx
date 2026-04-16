@@ -24,17 +24,17 @@ export default function ContratarContent() {
   const searchParams = useSearchParams();
   const router       = useRouter();
 
-  // Parse params
-  const producto       = searchParams.get('producto')       ?? '';
-  const productoNombre = searchParams.get('productoNombre') ?? 'Seguro Adeslas';
-  const precioStr      = searchParams.get('precio')         ?? '0';
-  const precioBaseStr  = searchParams.get('precioBase')     ?? '';
-  const descuentoStr   = searchParams.get('descuento')      ?? '';
-  const nombre         = searchParams.get('nombre')         ?? '';
-  const email          = searchParams.get('email')          ?? '';
-  const telefono       = searchParams.get('telefono')       ?? '';
-  const edadesStr      = searchParams.get('edades')         ?? '';
-  const provincia      = searchParams.get('provincia')      ?? '';
+  // Parse params (searchParams may be null during SSR prerender)
+  const producto       = searchParams?.get('producto')       ?? '';
+  const productoNombre = searchParams?.get('productoNombre') ?? 'Seguro Adeslas';
+  const precioStr      = searchParams?.get('precio')         ?? '0';
+  const precioBaseStr  = searchParams?.get('precioBase')     ?? '';
+  const descuentoStr   = searchParams?.get('descuento')      ?? '';
+  const nombre         = searchParams?.get('nombre')         ?? '';
+  const email          = searchParams?.get('email')          ?? '';
+  const telefono       = searchParams?.get('telefono')       ?? '';
+  const edadesStr      = searchParams?.get('edades')         ?? '';
+  const provincia      = searchParams?.get('provincia')      ?? '';
 
   const precio     = parseFloat(precioStr)     || 0;
   const precioBase = precioBaseStr ? parseFloat(precioBaseStr) : undefined;

@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import Tarificador from "@/components/Tarificador";
 import CtaSection from "@/components/CtaSection";
 import defaultHeroBg from "@/assets/seguro-salud-adeslas-familias.webp";
+import { imgSrc } from "@/lib/imgSrc";
 
 /* ───── Types ───── */
 
@@ -42,7 +43,7 @@ export interface SegmentFaq {
 
 export interface SegmentPageData {
   seo: SegmentSeo;
-  heroBg?: string;
+  heroBg?: string | unknown; /* accepts StaticImageData from Next.js image imports */
   heroTitle: string;
   heroSubtitle: string;
   heroPromo?: string;
@@ -82,7 +83,7 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
         {/* ── Hero with 2 columns — full photo + dark overlay, same as home ── */}
         <section
           className="relative overflow-hidden bg-cover bg-center flex items-center"
-          style={{ backgroundImage: `url(${data.heroBg || defaultHeroBg})`, minHeight: "520px" }}
+          style={{ backgroundImage: `url(${imgSrc(data.heroBg || defaultHeroBg)})`, minHeight: "520px" }}
           role="img"
           aria-label={`${data.heroTitle} — Adeslas seguros médicos privados`}
         >

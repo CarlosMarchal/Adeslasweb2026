@@ -11,64 +11,64 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { PhonePopupProvider } from "./components/PhonePopupContext";
 
 /* ── Home page: eager (crítico para LCP en la ruta /) ── */
-import Index from "./pages/Index";
+import Index from "./views/Index";
 
 /* ── Todas las demás páginas: lazy (se descargan solo cuando se navega a ellas) ── */
-const NotFound = lazy(() => import("./pages/NotFound"));
+const NotFound = lazy(() => import("./views/NotFound"));
 
 /* Planes */
-const AdeslaGo             = lazy(() => import("./pages/AdeslaGo"));
-const AdeslaPlenaVital     = lazy(() => import("./pages/AdeslaPlenaVital"));
-const AdeslaPlenaVitalTotal= lazy(() => import("./pages/AdeslaPlenaVitalTotal"));
-const AdeslaPlenaTotal     = lazy(() => import("./pages/AdeslaPlenaTotal"));
-const AdeslaExtra150       = lazy(() => import("./pages/AdeslaExtra150"));
-const AdeslaPlenaPlus      = lazy(() => import("./pages/AdeslaPlenaPlus"));
-const AdeslasSeniors       = lazy(() => import("./pages/AdeslasSeniors"));
-const AdeslasSeniorsTotal  = lazy(() => import("./pages/AdeslasSeniorsTotal"));
+const AdeslaGo             = lazy(() => import("./views/AdeslaGo"));
+const AdeslaPlenaVital     = lazy(() => import("./views/AdeslaPlenaVital"));
+const AdeslaPlenaVitalTotal= lazy(() => import("./views/AdeslaPlenaVitalTotal"));
+const AdeslaPlenaTotal     = lazy(() => import("./views/AdeslaPlenaTotal"));
+const AdeslaExtra150       = lazy(() => import("./views/AdeslaExtra150"));
+const AdeslaPlenaPlus      = lazy(() => import("./views/AdeslaPlenaPlus"));
+const AdeslasSeniors       = lazy(() => import("./views/AdeslasSeniors"));
+const AdeslasSeniorsTotal  = lazy(() => import("./views/AdeslasSeniorsTotal"));
 
 /* Autónomos, Pymes & Empresas */
-const Autonomos    = lazy(() => import("./pages/Autonomos"));
-const PymesEmpresas= lazy(() => import("./pages/PymesEmpresas"));
+const Autonomos    = lazy(() => import("./views/Autonomos"));
+const PymesEmpresas= lazy(() => import("./views/PymesEmpresas"));
 
 /* Extranjeros & Colectivos */
-const AdeslaExtranjeros      = lazy(() => import("./pages/AdeslaExtranjeros"));
-const AdeslaBodyFactory      = lazy(() => import("./pages/AdeslaBodyFactory"));
-const AdeslaAdifRenfe        = lazy(() => import("./pages/AdeslaAdifRenfe"));
-const AdeslaDeceosPrimaUnica = lazy(() => import("./pages/AdeslaDeceosPrimaUnica"));
+const AdeslaExtranjeros      = lazy(() => import("./views/AdeslaExtranjeros"));
+const AdeslaBodyFactory      = lazy(() => import("./views/AdeslaBodyFactory"));
+const AdeslaAdifRenfe        = lazy(() => import("./views/AdeslaAdifRenfe"));
+const AdeslaDeceosPrimaUnica = lazy(() => import("./views/AdeslaDeceosPrimaUnica"));
 
 /* Formulario Alta & Landings */
-const FormularioDeAlta        = lazy(() => import("./pages/FormularioDeAlta"));
-const LandingPlenaVitalOferta = lazy(() => import("./pages/LandingPlenaVitalOferta"));
+const FormularioDeAlta        = lazy(() => import("./views/FormularioDeAlta"));
+const LandingPlenaVitalOferta = lazy(() => import("./views/LandingPlenaVitalOferta"));
 
 /* Otros seguros */
-const AdeslasDental        = lazy(() => import("./pages/AdeslasDental"));
-const AdeslaDecesos        = lazy(() => import("./pages/AdeslaDecesos"));
-const AdeslasMascotas      = lazy(() => import("./pages/AdeslasMascotas"));
-const AdeslaAsistenciaViaje= lazy(() => import("./pages/AdeslaAsistenciaViaje"));
-const AdeslaAccidentes     = lazy(() => import("./pages/AdeslaAccidentes"));
+const AdeslasDental        = lazy(() => import("./views/AdeslasDental"));
+const AdeslaDecesos        = lazy(() => import("./views/AdeslaDecesos"));
+const AdeslasMascotas      = lazy(() => import("./views/AdeslasMascotas"));
+const AdeslaAsistenciaViaje= lazy(() => import("./views/AdeslaAsistenciaViaje"));
+const AdeslaAccidentes     = lazy(() => import("./views/AdeslaAccidentes"));
 
 /* Segmentos */
-const SeguroIndividual  = lazy(() => import("./pages/SeguroIndividual"));
-const SeguroFamiliar    = lazy(() => import("./pages/SeguroFamiliar"));
-const SeguroInfantil    = lazy(() => import("./pages/SeguroInfantil"));
-const SeguroGinecologia = lazy(() => import("./pages/SeguroGinecologia"));
-const SeguroEmbarazadas = lazy(() => import("./pages/SeguroEmbarazadas"));
-const SeguroMayores     = lazy(() => import("./pages/SeguroMayores"));
+const SeguroIndividual  = lazy(() => import("./views/SeguroIndividual"));
+const SeguroFamiliar    = lazy(() => import("./views/SeguroFamiliar"));
+const SeguroInfantil    = lazy(() => import("./views/SeguroInfantil"));
+const SeguroGinecologia = lazy(() => import("./views/SeguroGinecologia"));
+const SeguroEmbarazadas = lazy(() => import("./views/SeguroEmbarazadas"));
+const SeguroMayores     = lazy(() => import("./views/SeguroMayores"));
 
 /* Institucionales */
-const CuadroMedico      = lazy(() => import("./pages/CuadroMedico"));
-const Contacto          = lazy(() => import("./pages/Contacto"));
-const BlogSalud         = lazy(() => import("./pages/BlogSalud"));
-const BlogArticle       = lazy(() => import("./pages/BlogArticle"));
-const PoliticaPrivacidad= lazy(() => import("./pages/PoliticaPrivacidad"));
-const MiPrecio          = lazy(() => import("./pages/MiPrecio"));
-const PreciosOfertas    = lazy(() => import("./pages/PreciosOfertas"));
+const CuadroMedico      = lazy(() => import("./views/CuadroMedico"));
+const Contacto          = lazy(() => import("./views/Contacto"));
+const BlogSalud         = lazy(() => import("./views/BlogSalud"));
+const BlogArticle       = lazy(() => import("./views/BlogArticle"));
+const PoliticaPrivacidad= lazy(() => import("./views/PoliticaPrivacidad"));
+const MiPrecio          = lazy(() => import("./views/MiPrecio"));
+const PreciosOfertas    = lazy(() => import("./views/PreciosOfertas"));
 
 /* Uso interno */
-const TarificadorInterno = lazy(() => import("./pages/TarificadorInterno"));
+const TarificadorInterno = lazy(() => import("./views/TarificadorInterno"));
 
 /* Contratación (nuevo flujo CRO) */
-const ContratarPage = lazy(() => import("./pages/ContratarPage"));
+const ContratarPage = lazy(() => import("./views/ContratarPage"));
 
 /* ── Fallback mientras carga la página ── */
 const PageLoader = () => (
