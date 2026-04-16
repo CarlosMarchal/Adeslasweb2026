@@ -256,12 +256,46 @@ export const PAGE_META: Record<string, PageMeta> = {
 };
 
 /**
+ * Mapeo de URLs canónicas /seguro-salud/... → clave corta en PAGE_META.
+ * Permite que ambas rutas (corta y larga) devuelvan los mismos metadatos.
+ */
+const SEGURO_SALUD_ALIASES: Record<string, string> = {
+  "/seguro-salud/adeslas-go/":                                                          "/adeslas-go",
+  "/seguro-salud/adeslas-plena-vital/":                                                 "/adeslas-plena-vital",
+  "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/": "/adeslas-plena-vital-total",
+  "/seguro-salud/adeslas-plena-total/":                                                 "/adeslas-plena-total",
+  "/seguro-salud/adeslas-extra-150/":                                                   "/adeslas-extra-150",
+  "/seguro-salud/adeslas-plena-plus/":                                                  "/adeslas-plena-plus",
+  "/seguro-salud/adeslas-seniors/":                                                     "/adeslas-seniors",
+  "/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/":            "/adeslas-seniors-total",
+  "/seguro-salud/autonomos/":                                                           "/autonomos",
+  "/seguro-salud/pymes/":                                                               "/pymes-empresas",
+  "/seguro-salud/pymes":                                                                "/pymes-empresas",
+  "/seguro-salud/empresas/":                                                            "/pymes-empresas",
+  "/seguro-salud/adeslas-individual/":                                                  "/seguro-medico-individual",
+  "/seguro-salud/seguro-familia/":                                                      "/seguro-medico-familiar",
+  "/seguro-salud/adeslas-infantil/":                                                    "/seguro-medico-infantil",
+  "/seguro-salud/adeslas-ginecologia/":                                                 "/seguro-medico-ginecologia",
+  "/seguro-salud/embarazo/":                                                            "/seguro-medico-embarazadas",
+  "/seguro-salud/seguro-para-personas-mayores/":                                        "/seguro-medico-mayores",
+  "/seguro-salud/ofertas-adeslas-precios/":                                             "/precios-ofertas",
+};
+
+/**
  * Devuelve los metadatos para una ruta dada.
  * Soporta rutas dinámicas como /blog/:slug y /mi-precio/:slug.
  */
 export function getPageMeta(pathname: string): PageMeta {
-  // Coincidencia exacta
+  // Normalizar trailing slash (excepto la raíz "/")
+  const normalized = pathname !== "/" && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+
+  // Coincidencia exacta (con y sin trailing slash)
+  if (PAGE_META[normalized]) return PAGE_META[normalized];
   if (PAGE_META[pathname]) return PAGE_META[pathname];
+
+  // Alias /seguro-salud/... → clave corta
+  const aliasKey = SEGURO_SALUD_ALIASES[pathname] || SEGURO_SALUD_ALIASES[normalized + "/"];
+  if (aliasKey && PAGE_META[aliasKey]) return PAGE_META[aliasKey];
 
   // Rutas dinámicas de blog
   if (pathname.startsWith("/blog/")) {

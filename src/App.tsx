@@ -154,6 +154,27 @@ const App = () => (
               <Route path="/mi-precio/:slug"       element={<MiPrecio />} />
               <Route path="/precios-ofertas"       element={<PreciosOfertas />} />
 
+              {/* ── Rutas /seguro-salud/ — URLs canónicas enlazadas desde nav, footer y tarificador ── */}
+              <Route path="/seguro-salud/adeslas-go/"                                                          element={<AdeslaGo />} />
+              <Route path="/seguro-salud/adeslas-plena-vital/"                                                 element={<AdeslaPlenaVital />} />
+              <Route path="/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/"element={<AdeslaPlenaVitalTotal />} />
+              <Route path="/seguro-salud/adeslas-plena-total/"                                                 element={<AdeslaPlenaTotal />} />
+              <Route path="/seguro-salud/adeslas-extra-150/"                                                   element={<AdeslaExtra150 />} />
+              <Route path="/seguro-salud/adeslas-plena-plus/"                                                  element={<AdeslaPlenaPlus />} />
+              <Route path="/seguro-salud/adeslas-seniors/"                                                     element={<AdeslasSeniors />} />
+              <Route path="/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/"            element={<AdeslasSeniorsTotal />} />
+              <Route path="/seguro-salud/autonomos/"                                                           element={<Autonomos />} />
+              <Route path="/seguro-salud/pymes/"                                                               element={<PymesEmpresas />} />
+              <Route path="/seguro-salud/pymes"                                                                element={<PymesEmpresas />} />
+              <Route path="/seguro-salud/empresas/"                                                            element={<PymesEmpresas />} />
+              <Route path="/seguro-salud/adeslas-individual/"                                                  element={<SeguroIndividual />} />
+              <Route path="/seguro-salud/seguro-familia/"                                                      element={<SeguroFamiliar />} />
+              <Route path="/seguro-salud/adeslas-infantil/"                                                    element={<SeguroInfantil />} />
+              <Route path="/seguro-salud/adeslas-ginecologia/"                                                 element={<SeguroGinecologia />} />
+              <Route path="/seguro-salud/embarazo/"                                                            element={<SeguroEmbarazadas />} />
+              <Route path="/seguro-salud/seguro-para-personas-mayores/"                                        element={<SeguroMayores />} />
+              <Route path="/seguro-salud/ofertas-adeslas-precios/"                                             element={<PreciosOfertas />} />
+
               {/* Formulario de Alta (legacy) */}
               <Route path="/seguro-salud/adeslas-formulario-de-alta" element={<FormularioDeAlta />} />
 
