@@ -871,6 +871,46 @@ export default function FormularioContratacion({ params }: Props) {
                 Tus datos personales
               </h2>
 
+              {/* ── Documento de identidad — PRIMER campo (máxima visibilidad) ── */}
+              <div
+                className="rounded-xl p-3.5 mb-4"
+                style={{ backgroundColor: '#EFF6FF', border: '1px solid #BFDBFE' }}
+              >
+                <p className="text-xs font-semibold mb-2" style={{ color: '#1D4ED8' }}>
+                  🪪 Documento de identidad del tomador *
+                </p>
+                <div className="flex gap-2">
+                  <select
+                    className={`${selectCls} w-32 flex-shrink-0`}
+                    value={form.docType}
+                    onChange={(e) => upd('docType', e.target.value as DocType)}
+                  >
+                    <option value="NIF">NIF / DNI</option>
+                    <option value="NIE">NIE</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                  </select>
+                  <input
+                    type="text"
+                    className={inputCls}
+                    value={form.docNum}
+                    onChange={(e) => upd('docNum', e.target.value.toUpperCase().slice(0, 15))}
+                    placeholder={form.docType === 'NIF' ? '12345678A' : form.docType === 'NIE' ? 'X1234567A' : 'Nº Pasaporte'}
+                    autoComplete="off"
+                    inputMode="text"
+                    style={{ textTransform: 'uppercase' }}
+                  />
+                </div>
+                {err('docNum') && (
+                  <p className="flex items-center gap-1 text-xs mt-1.5" style={{ color: '#EF4444' }}>
+                    <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                    {err('docNum')}
+                  </p>
+                )}
+                {!err('docNum') && form.docType === 'NIF' && (
+                  <p className="text-xs mt-1.5 text-gray-400">Formato: 8 dígitos + letra (ej. 12345678A)</p>
+                )}
+              </div>
+
               {/* Nombre */}
               <Field label="Nombre *" error={err('nombre')}>
                 <input
@@ -893,34 +933,6 @@ export default function FormularioContratacion({ params }: Props) {
                   placeholder="Tus apellidos"
                   autoComplete="family-name"
                 />
-              </Field>
-
-              {/* Tipo documento + número */}
-              <Field label="Documento de identidad *" error={err('docNum')}>
-                <div className="flex gap-2">
-                  <select
-                    className={`${selectCls} w-32 flex-shrink-0`}
-                    value={form.docType}
-                    onChange={(e) => upd('docType', e.target.value as DocType)}
-                  >
-                    <option value="NIF">NIF</option>
-                    <option value="NIE">NIE</option>
-                    <option value="Pasaporte">Pasaporte</option>
-                  </select>
-                  <input
-                    type="text"
-                    className={inputCls}
-                    value={form.docNum}
-                    onChange={(e) => upd('docNum', e.target.value.toUpperCase().slice(0, 15))}
-                    placeholder={form.docType === 'NIF' ? '12345678A' : form.docType === 'NIE' ? 'X1234567A' : 'Número'}
-                    autoComplete="off"
-                    inputMode="text"
-                    style={{ textTransform: 'uppercase' }}
-                  />
-                </div>
-                {form.docType === 'NIF' && (
-                  <p className="text-xs mt-1 text-gray-400">Formato: 8 números + letra (ej. 12345678A)</p>
-                )}
               </Field>
 
               {/* Fecha de nacimiento */}

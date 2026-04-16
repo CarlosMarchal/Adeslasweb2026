@@ -1,83 +1,56 @@
 'use client';
 
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Phone, Shield, CheckCircle2 } from 'lucide-react';
 
-// ─── Coverage badges per product ──────────────────────────────────────────────
-const PRODUCT_COVERAGES: Record<string, { icon: string; label: string }[]> = {
-  ya: [
-    { icon: '🩺', label: 'Cobertura ambulatoria' },
-    { icon: '🔬', label: 'Diagnóstico completo' },
-    { icon: '🆘', label: 'Urgencias 24h' },
-    { icon: '💶', label: 'Copago máx. 260€/año' },
-  ],
-  esencial: [
-    { icon: '🏥', label: 'Hospitalización incluida' },
-    { icon: '✂️', label: 'Cirugía y especialistas' },
-    { icon: '🆘', label: 'Urgencias 24h' },
-    { icon: '💶', label: 'Copago máx. 300€/año' },
-  ],
-  plena: [
-    { icon: '🏥', label: 'Hospitalización' },
-    { icon: '✂️', label: 'Cirugía' },
-    { icon: '🔬', label: 'Diagnóstico' },
-    { icon: '💶', label: 'Copago reducido' },
-  ],
-  completaPlus: [
-    { icon: '📅', label: '3 años sin subida' },
-    { icon: '🦷', label: 'Dental incluido' },
-    { icon: '🧠', label: 'Psicología' },
-    { icon: '✈️', label: 'Asistencia en viajes' },
-  ],
-  completaPlusPlus: [
-    { icon: '✅', label: 'Sin copagos' },
-    { icon: '🏥', label: 'Hospitalización' },
-    { icon: '👶', label: 'Maternidad y parto' },
-    { icon: '✂️', label: 'Cirugía completa' },
-  ],
-  completa: [
-    { icon: '📅', label: '3 años sin subida' },
-    { icon: '✅', label: 'Sin copagos' },
-    { icon: '🦷', label: 'Dental 46 actos' },
-    { icon: '🧠', label: 'Psicología' },
-  ],
-  reembolso: [
-    { icon: '🌍', label: 'Cobertura mundial' },
-    { icon: '💰', label: 'Reembolso 80%' },
-    { icon: '👨‍⚕️', label: 'Libre elección médica' },
-    { icon: '📋', label: 'Sin red médica fija' },
-  ],
-  seniors: [
-    { icon: '👴', label: 'Para 55–84 años' },
-    { icon: '🏥', label: 'Hospitalización' },
-    { icon: '👨‍⚕️', label: 'Asesor personal' },
-    { icon: '🔬', label: 'Oncología y cardiología' },
-  ],
-  'seniors-total': [
-    { icon: '📅', label: '3 años sin subida' },
-    { icon: '🦷', label: 'Dental incluido' },
-    { icon: '👴', label: 'Para 63–84 años' },
-    { icon: '✈️', label: 'Asistencia en viajes' },
-  ],
+// ─── Coverage specs per product ───────────────────────────────────────────────
+interface ProductSpec {
+  extranjero: string | false;  // false = no cubierto, string = capital
+  farmacia:   string | false;
+  fisioterapia: boolean;
+  sinCopago: boolean;
+}
+
+const PRODUCT_SPECS: Record<string, ProductSpec> = {
+  ya:               { extranjero: '6.000 €',  farmacia: false,   fisioterapia: false, sinCopago: true  },
+  esencial:         { extranjero: '6.000 €',  farmacia: false,   fisioterapia: true,  sinCopago: false },
+  plena:            { extranjero: '6.000 €',  farmacia: false,   fisioterapia: true,  sinCopago: false },
+  completaPlus:     { extranjero: '60.000 €', farmacia: '50 %',  fisioterapia: true,  sinCopago: false },
+  completaPlusPlus: { extranjero: '60.000 €', farmacia: '80 %',  fisioterapia: true,  sinCopago: true  },
+  completa:         { extranjero: '60.000 €', farmacia: '50 %',  fisioterapia: true,  sinCopago: true  },
+  reembolso:        { extranjero: 'Mundial',  farmacia: '80 %',  fisioterapia: true,  sinCopago: false },
+  seniors:          { extranjero: '6.000 €',  farmacia: false,   fisioterapia: true,  sinCopago: false },
+  'seniors-total':  { extranjero: '60.000 €', farmacia: '50 %',  fisioterapia: true,  sinCopago: true  },
 };
 
-// Products that deserve special visual highlight
+// Rows always shown in the coverage mini-table
+const COVERAGE_ROWS: { key: keyof ProductSpec | 'especialidades' | 'diagnostico' | 'urgencias'; icon: string; label: string }[] = [
+  { key: 'especialidades', icon: '🩺', label: 'Especialidades médicas' },
+  { key: 'diagnostico',    icon: '🔬', label: 'Pruebas diagnósticas'  },
+  { key: 'urgencias',      icon: '🚨', label: 'Urgencias 24 h'        },
+  { key: 'extranjero',     icon: '✈️', label: 'Asistencia extranjero' },
+  { key: 'farmacia',       icon: '💊', label: 'Reembolso farmacia'    },
+  { key: 'fisioterapia',   icon: '🏃', label: 'Fisioterapia'          },
+];
+
+// ─── Product labels (copago pill) ─────────────────────────────────────────────
+const productLabels: Record<string, { tag: string; color: string }> = {
+  ya:               { tag: 'Sin copago',                       color: '#10B981' },
+  esencial:         { tag: 'Con copago',                       color: '#009FE3' },
+  plena:            { tag: 'Copago reducido',                  color: '#0EA5E9' },
+  completaPlusPlus: { tag: 'Sin copago',                       color: '#6366F1' },
+  completaPlus:     { tag: 'Con copago · 3 años sin subidas',  color: '#7C3AED' },
+  completa:         { tag: 'Sin copago · 3 años sin subidas',  color: '#003087' },
+  reembolso:        { tag: 'Reembolso 80% · Libre elección',   color: '#D97706' },
+  seniors:          { tag: 'Mayores 55–84 años',               color: '#F59E0B' },
+  'seniors-total':  { tag: 'Sin copago · 3 años sin subidas',  color: '#0369A1' },
+};
+
+// ─── Highlight: ONLY Plena Total ──────────────────────────────────────────────
 const HIGHLIGHTED_IDS = new Set(['completa']);
 const HIGHLIGHT_BANNER: Record<string, { text: string; bg: string }> = {
   completa: { text: '🏆 El más completo · 3 años sin subida de prima', bg: '#003087' },
-};
-
-// ─── Product labels ────────────────────────────────────────────────────────────
-const productLabels: Record<string, { tag: string; color: string }> = {
-  ya:               { tag: 'Cobertura ambulatoria',           color: '#10B981' },
-  esencial:         { tag: 'Copagos medios',                  color: '#009FE3' },
-  plena:            { tag: 'Copagos reducidos',               color: '#0EA5E9' },
-  completaPlusPlus: { tag: 'Sin copagos',                     color: '#6366F1' },
-  completaPlus:     { tag: 'Copagos · 3 años sin subidas',    color: '#7C3AED' },
-  completa:         { tag: '3 años sin subidas · Sin copago', color: '#003087' },
-  reembolso:        { tag: 'Libre elección médica',           color: '#D97706' },
-  seniors:          { tag: 'Mayores 55–84 años',              color: '#F59E0B' },
-  'seniors-total':  { tag: 'Mayores · 3 años sin subidas',    color: '#0369A1' },
 };
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
@@ -88,14 +61,14 @@ interface ProductResult {
 }
 
 interface ModalResultadosProps {
-  results: ProductResult[];
-  ages: number[];
-  provincia: string;
-  nombre: string;
-  email: string;
-  telefono: string;
+  results:       ProductResult[];
+  ages:          number[];
+  provincia:     string;
+  nombre:        string;
+  email:         string;
+  telefono:      string;
   numAsegurados: number;
-  onClose: () => void;
+  onClose:       () => void;
 }
 
 // ─── Helpers ───────────────────────────────────────────────────────────────────
@@ -103,6 +76,18 @@ const formatPrice = (price: number) => {
   const [int, dec] = price.toFixed(2).split('.');
   return { int, dec };
 };
+
+// Helper: get a coverage row value for a product
+function getCoverageValue(
+  productId: string,
+  key: string,
+): string | boolean | false {
+  // These 3 are always covered for all Adeslas products
+  if (key === 'especialidades' || key === 'diagnostico' || key === 'urgencias') return true;
+  const spec = PRODUCT_SPECS[productId];
+  if (!spec) return false;
+  return spec[key as keyof ProductSpec] as string | boolean | false;
+}
 
 // ─── Component ─────────────────────────────────────────────────────────────────
 export default function ModalResultados({
@@ -140,9 +125,11 @@ export default function ModalResultados({
 
   const primerNombre = nombre ? nombre.trim().split(' ')[0] : '';
 
-  return (
+  // ── renderizamos en document.body via portal para evitar
+  //    problemas con transforms de framer-motion y stacking contexts ──
+  return createPortal(
     <div
-      className="fixed inset-0 z-[800] flex flex-col"
+      className="fixed inset-0 z-[9999] flex flex-col"
       style={{ backgroundColor: '#EEF5FB' }}
     >
       {/* ── Cabecera ── */}
@@ -219,7 +206,7 @@ export default function ModalResultados({
             </div>
           )}
 
-          {/* ── Grid de productos: 1 col (móvil) → 2 col (md) → 3 col (xl) ── */}
+          {/* ── Grid de productos ── */}
           {results.length > 0 && (
             <div className={`grid gap-3 ${
               results.length === 1
@@ -228,18 +215,16 @@ export default function ModalResultados({
                   ? 'grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto'
                   : 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3'
             }`}>
-              {results.map((result, index) => {
+              {results.map((result) => {
                 const { int, dec }    = formatPrice(result.price);
                 const label           = productLabels[result.product.id] ?? { tag: 'Seguro de salud', color: '#003087' };
-                const coverages       = PRODUCT_COVERAGES[result.product.id] ?? [];
                 const isHighlighted   = HIGHLIGHTED_IDS.has(result.product.id);
                 const highlightBanner = HIGHLIGHT_BANNER[result.product.id];
                 const hasDiscount     = result.originalPrice !== undefined;
+                const spec            = PRODUCT_SPECS[result.product.id];
 
-                // Border & shadow: solo Plena Total destacado, resto uniforme
-                const cardBorder = isHighlighted
-                  ? `2px solid ${label.color}`
-                  : '2px solid #E5E7EB';
+                // Borders: only Plena Total highlighted, rest uniform
+                const cardBorder = isHighlighted ? `2px solid ${label.color}` : '2px solid #E5E7EB';
                 const cardShadow = isHighlighted
                   ? `0 8px 32px ${label.color}30`
                   : '0 2px 10px rgba(0,0,0,0.05)';
@@ -247,10 +232,10 @@ export default function ModalResultados({
                 return (
                   <div
                     key={result.product.id}
-                    className="bg-white rounded-2xl overflow-hidden flex flex-col transition-transform hover:scale-[1.015] active:scale-[0.99]"
+                    className="bg-white rounded-2xl overflow-hidden flex flex-col transition-transform hover:scale-[1.012] active:scale-[0.99]"
                     style={{ boxShadow: cardShadow, border: cardBorder }}
                   >
-                    {/* Highlighted banner (PVT / Plena Total) */}
+                    {/* Highlighted banner — solo Plena Total */}
                     {highlightBanner && (
                       <div
                         className="flex items-center justify-center gap-1.5 py-1.5 text-white text-xs font-bold tracking-wide"
@@ -261,7 +246,7 @@ export default function ModalResultados({
                     )}
 
                     <div className="p-4 flex flex-col flex-1">
-                      {/* Tag + descuento */}
+                      {/* Tag copago + descuento */}
                       <div className="flex items-center justify-between mb-2 flex-wrap gap-1.5">
                         <span
                           className="text-xs font-bold px-2.5 py-0.5 rounded-full"
@@ -292,25 +277,58 @@ export default function ModalResultados({
                         {' · '}{provincia}
                       </p>
 
-                      {/* ── Badges de cobertura ── */}
-                      {coverages.length > 0 && (
-                        <div className="grid grid-cols-2 gap-1.5 mb-3">
-                          {coverages.map((cov, ci) => (
+                      {/* ── Tabla de coberturas ✓/✗ ── */}
+                      <div
+                        className="rounded-xl mb-3 overflow-hidden"
+                        style={{ border: '1px solid #E5E7EB' }}
+                      >
+                        {COVERAGE_ROWS.map((row, ri) => {
+                          const val     = getCoverageValue(result.product.id, row.key);
+                          const hasIt   = val !== false;
+                          const detail  = typeof val === 'string' ? val : null;
+                          const isLast  = ri === COVERAGE_ROWS.length - 1;
+
+                          return (
                             <div
-                              key={ci}
-                              className="flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs font-medium"
+                              key={row.key}
+                              className="flex items-center justify-between px-3 py-1.5 text-xs"
                               style={{
-                                backgroundColor: isHighlighted
-                                  ? `${label.color}12`
-                                  : '#F8FAFC',
-                                color: '#374151',
-                                border: `1px solid ${isHighlighted ? label.color + '25' : '#E5E7EB'}`,
+                                borderBottom: isLast ? 'none' : '1px solid #F3F4F6',
+                                backgroundColor: ri % 2 === 0 ? '#FAFAFA' : '#FFFFFF',
                               }}
                             >
-                              <span className="text-sm leading-none">{cov.icon}</span>
-                              <span className="leading-tight">{cov.label}</span>
+                              <span className="flex items-center gap-1.5 text-gray-600">
+                                <span className="text-sm leading-none">{row.icon}</span>
+                                {row.label}
+                              </span>
+                              <span
+                                className="font-bold flex-shrink-0 ml-2"
+                                style={{ color: hasIt ? '#16A34A' : '#D1D5DB' }}
+                              >
+                                {hasIt
+                                  ? detail
+                                    ? <span className="text-[10px] font-semibold" style={{ color: '#16A34A' }}>{detail}</span>
+                                    : '✓'
+                                  : '✗'}
+                              </span>
                             </div>
-                          ))}
+                          );
+                        })}
+                      </div>
+
+                      {/* Copago badge */}
+                      {spec && (
+                        <div className="flex items-center gap-1.5 mb-3">
+                          <span
+                            className="text-[11px] font-bold px-2.5 py-0.5 rounded-full"
+                            style={
+                              spec.sinCopago
+                                ? { backgroundColor: '#DCFCE7', color: '#15803D' }
+                                : { backgroundColor: '#FEF3C7', color: '#92400E' }
+                            }
+                          >
+                            {spec.sinCopago ? '✓ Sin copago' : '⚠ Con copago'}
+                          </span>
                         </div>
                       )}
 
@@ -336,13 +354,11 @@ export default function ModalResultados({
                           </p>
                         )}
 
-                        {/* CTA contratar */}
+                        {/* CTA — siempre rojo corporativo */}
                         <button
                           onClick={() => handleContratar(result)}
                           className="w-full py-3 rounded-xl font-bold text-white text-sm tracking-wide transition-all hover:opacity-90 active:scale-[0.98]"
-                          style={{
-                            backgroundColor: '#E4097D',
-                          }}
+                          style={{ backgroundColor: '#E4097D' }}
                         >
                           Contratar {result.product.name} →
                         </button>
@@ -384,6 +400,7 @@ export default function ModalResultados({
 
         </div>
       </main>
-    </div>
+    </div>,
+    document.body,
   );
 }
