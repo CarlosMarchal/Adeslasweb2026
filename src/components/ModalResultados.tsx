@@ -158,12 +158,13 @@ function ValueCell({ value, isHL }: { value: string | boolean | false; isHL: boo
         fontWeight: 700,
         padding: '3px 8px',
         borderRadius: 20,
-        backgroundColor: isHL ? 'rgba(255,255,255,0.2)' : '#DBEAFE',
-        color: isHL ? '#FFFFFF' : '#1E40AF',
+        backgroundColor: isHL ? '#FFFFFF' : '#DBEAFE',
+        color: isHL ? '#003087' : '#1E40AF',
         lineHeight: 1.5,
         whiteSpace: 'nowrap',
         letterSpacing: '0.01em',
-        border: isHL ? '1px solid rgba(255,255,255,0.35)' : '1px solid #BFDBFE',
+        border: isHL ? '1px solid rgba(255,255,255,0.9)' : '1px solid #BFDBFE',
+        boxShadow: isHL ? '0 1px 6px rgba(0,0,0,0.15)' : 'none',
       }}>
         {value}
       </span>
