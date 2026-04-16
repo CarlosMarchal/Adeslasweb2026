@@ -588,13 +588,13 @@ const Header = () => {
         }}
       >
         <button onClick={() => openPhonePopup()}
-            className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm border-2 active:scale-[0.98]"
+            className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm border-2 active:scale-[0.98] btn-cta-light"
             style={{ borderColor: "#009FE3", color: "#009FE3" }}>
             <Phone className="w-4 h-4" />
             Te llamamos
           </button>
         <button onClick={onCalcClick ?? (() => openTarificador())}
-          className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm text-white active:scale-[0.98]"
+          className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm text-white active:scale-[0.98] btn-cta-blue"
           style={{ backgroundColor: "#009FE3" }}>
           {calcLabel ?? "Calcular mi precio"}
         </button>
@@ -674,7 +674,7 @@ const Header = () => {
                     style={{ color: "#1A3A5C" }}
                   />
                 </div>
-                <button type="submit" className="w-full py-3.5 rounded-xl text-white font-bold text-base" style={{ backgroundColor: "#E4097D" }}>
+                <button type="submit" className="w-full py-3.5 rounded-xl text-white font-bold text-base btn-cta-magenta" style={{ backgroundColor: "#E4097D" }}>
                   Te llamamos ahora
                 </button>
               </form>
