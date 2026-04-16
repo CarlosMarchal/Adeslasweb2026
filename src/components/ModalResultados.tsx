@@ -98,6 +98,8 @@ function getCoverage(productId: string, key: FeatureKey): string | boolean | fal
 }
 
 // ─── CheckIcon corporativo Adeslas ────────────────────────────────────────────
+// isHL=false → círculo azul #009FE3 con ✓ blanco (columnas normales)
+// isHL=true  → círculo blanco puro con ✓ azul oscuro (columna destacada)
 function CheckIcon({ isHL = false }: { isHL?: boolean }) {
   return (
     <span
@@ -106,18 +108,20 @@ function CheckIcon({ isHL = false }: { isHL?: boolean }) {
         width: 22,
         height: 22,
         borderRadius: '50%',
-        backgroundColor: isHL ? 'rgba(255,255,255,0.95)' : '#009FE3',
+        backgroundColor: isHL ? '#FFFFFF' : '#009FE3',
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
-        boxShadow: isHL ? '0 1px 6px rgba(0,0,0,0.15)' : '0 2px 8px rgba(0,159,227,0.4)',
+        boxShadow: isHL
+          ? '0 2px 8px rgba(0,0,0,0.22)'
+          : '0 2px 8px rgba(0,159,227,0.4)',
       }}
     >
       <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
         <path
           d="M1.5 5L4.5 8L10.5 1.5"
           stroke={isHL ? '#003087' : '#FFFFFF'}
-          strokeWidth="2"
+          strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -127,11 +131,17 @@ function CheckIcon({ isHL = false }: { isHL?: boolean }) {
 }
 
 // ─── CrossIcon ────────────────────────────────────────────────────────────────
-function CrossIcon() {
+// isHL=true → × blanco semitransparente visible sobre fondo azul oscuro
+function CrossIcon({ isHL = false }: { isHL?: boolean }) {
   return (
     <span style={{ display: 'inline-flex', width: 22, height: 22, alignItems: 'center', justifyContent: 'center' }}>
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-        <path d="M2.5 2.5L9.5 9.5M9.5 2.5L2.5 9.5" stroke="#D1D5DB" strokeWidth="1.8" strokeLinecap="round" />
+        <path
+          d="M2.5 2.5L9.5 9.5M9.5 2.5L2.5 9.5"
+          stroke={isHL ? 'rgba(255,255,255,0.45)' : '#CBD5E1'}
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
       </svg>
     </span>
   );
@@ -139,7 +149,7 @@ function CrossIcon() {
 
 // ─── ValueCell ────────────────────────────────────────────────────────────────
 function ValueCell({ value, isHL }: { value: string | boolean | false; isHL: boolean }) {
-  if (value === false) return <CrossIcon />;
+  if (value === false) return <CrossIcon isHL={isHL} />;
   if (typeof value === 'string') {
     return (
       <span style={{
@@ -208,16 +218,20 @@ export default function ModalResultados({
     return () => { document.body.style.overflow = prev; };
   }, []);
 
-  // Scroll horizontal → indicador
+  // Scroll horizontal → indicador + sombra sticky
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [hasScrolled,    setHasScrolled]    = useState(false);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    const check = () => setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+    const check = () => {
+      setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+      setHasScrolled(el.scrollLeft > 4);
+    };
     check();
-    el.addEventListener('scroll', check);
+    el.addEventListener('scroll', check, { passive: true });
     window.addEventListener('resize', check);
     return () => {
       el.removeEventListener('scroll', check);
@@ -379,7 +393,7 @@ export default function ModalResultados({
                   {/* ════ CABECERAS ════ */}
                   <thead>
                     <tr>
-                      {/* Celda esquina */}
+                      {/* Celda esquina — vacía intencionalmente */}
                       <th style={{
                         position: 'sticky', left: 0, zIndex: 20,
                         backgroundColor: '#F8FAFC',
@@ -387,14 +401,9 @@ export default function ModalResultados({
                         borderRight: '1px solid #DDE5EF',
                         padding: '16px 14px',
                         verticalAlign: 'bottom', textAlign: 'left',
-                      }}>
-                        <span style={{
-                          fontSize: 9, fontWeight: 800, color: '#94A3B8',
-                          textTransform: 'uppercase', letterSpacing: '0.1em',
-                        }}>
-                          Cobertura
-                        </span>
-                      </th>
+                        boxShadow: hasScrolled ? '4px 0 14px rgba(0,48,135,0.12)' : 'none',
+                        transition: 'box-shadow 0.2s',
+                      }} />
 
                       {results.map((result) => {
                         const isHL    = result.product.id === HIGHLIGHTED_ID;
@@ -523,6 +532,8 @@ export default function ModalResultados({
                             borderBottom: '1px solid #DDE5EF',
                             borderRight: '1px solid #DDE5EF',
                             padding: '7px 14px',
+                            boxShadow: hasScrolled ? '4px 0 14px rgba(0,48,135,0.12)' : 'none',
+                            transition: 'box-shadow 0.2s',
                           }}>
                             <span style={{
                               fontSize: 9, fontWeight: 800, color: '#64748B',
@@ -564,7 +575,8 @@ export default function ModalResultados({
                                 borderBottom: isAbsoluteLast ? 'none' : '1px solid #F1F5F9',
                                 borderRight: '1px solid #DDE5EF',
                                 padding: '10px 14px',
-                                transition: 'background-color 0.12s',
+                                boxShadow: hasScrolled ? '4px 0 14px rgba(0,48,135,0.12)' : 'none',
+                                transition: 'background-color 0.12s, box-shadow 0.2s',
                               }}>
                                 <span style={{
                                   fontSize: 12, color: '#334155', fontWeight: 500,
@@ -613,6 +625,8 @@ export default function ModalResultados({
                         backgroundColor: '#F8FAFC',
                         borderTop: '2px solid #DDE5EF',
                         padding: '12px 10px',
+                        boxShadow: hasScrolled ? '4px 0 14px rgba(0,48,135,0.12)' : 'none',
+                        transition: 'box-shadow 0.2s',
                       }} />
                       {results.map((result) => {
                         const isHL = result.product.id === HIGHLIGHTED_ID;
@@ -669,25 +683,114 @@ export default function ModalResultados({
               <div className="w-full border-t border-gray-200" />
             </div>
             <div className="relative flex justify-center text-[11px] text-gray-400 bg-[#EEF5FB] px-3">
-              o si prefieres hablar con un asesor
+              ¿Tienes dudas sobre las coberturas?
             </div>
           </div>
 
-          {/* Teléfono */}
-          <div className="bg-white rounded-2xl p-4 text-center shadow-sm mb-5 w-full max-w-xs mx-auto">
-            <p className="text-xs text-gray-500 mb-1.5">Nuestro equipo resuelve cualquier duda al instante</p>
-            <a
-              href="tel:917105000"
-              className="inline-flex items-center gap-2 font-extrabold text-xl"
-              style={{ color: '#009FE3' }}
+          {/* Card contacto dual: teléfono + WhatsApp */}
+          <div
+            className="bg-white rounded-2xl shadow-sm mb-20 sm:mb-8 w-full mx-auto overflow-hidden"
+            style={{ maxWidth: 400, border: '1px solid #E2E8F0' }}
+          >
+            <div
+              className="px-4 py-2.5 text-center"
+              style={{ backgroundColor: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}
             >
-              <Phone className="w-4 h-4" /> 91 710 50 00
-            </a>
-            <p className="text-[10px] text-gray-400 mt-1">Adeslas · Lun–Vie 9:00–19:00</p>
+              <p className="text-xs font-semibold text-gray-500">
+                Nuestros asesores te ayudan a elegir el seguro perfecto
+              </p>
+            </div>
+            <div className="grid grid-cols-2 divide-x divide-gray-100">
+
+              {/* Teléfono */}
+              <a
+                href="tel:917105000"
+                className="flex flex-col items-center gap-1.5 py-4 px-3 text-center hover:bg-gray-50 transition-colors"
+              >
+                <span
+                  className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: '#EFF6FF' }}
+                >
+                  <Phone className="w-4 h-4" style={{ color: '#009FE3' }} />
+                </span>
+                <span className="text-xs font-bold" style={{ color: '#003087' }}>91 710 50 00</span>
+                <span className="text-[10px] text-gray-400 leading-tight">Lun–Vie 9:00–19:00</span>
+              </a>
+
+              {/* WhatsApp */}
+              <a
+                href={`https://wa.me/34722567198?text=${encodeURIComponent('Hola, tengo dudas sobre las coberturas de los seguros Adeslas y me gustaría recibir asesoramiento personalizado. ¿Me pueden ayudar?')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-1.5 py-4 px-3 text-center transition-colors"
+                style={{ cursor: 'pointer' }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#F0FDF4'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; }}
+              >
+                <span
+                  className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: '#DCFCE7' }}
+                >
+                  {/* WhatsApp SVG */}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#16A34A">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                </span>
+                <span className="text-xs font-bold" style={{ color: '#15803D' }}>WhatsApp</span>
+                <span className="text-[10px] text-gray-400 leading-tight">Respuesta inmediata</span>
+              </a>
+            </div>
           </div>
 
         </div>
       </main>
+
+      {/* ══ BOTÓN WHATSAPP FLOTANTE ════════════════════════════════════════════
+           Visible siempre en mobile (fixed bottom-right), se oculta en desktop
+           donde el card de contacto ya es visible en el scroll ══════════════ */}
+      <a
+        href={`https://wa.me/34722567198?text=${encodeURIComponent('Hola, tengo dudas sobre las coberturas de los seguros Adeslas y me gustaría recibir asesoramiento personalizado. ¿Me pueden ayudar?')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp"
+        style={{
+          position: 'fixed',
+          bottom: 20,
+          right: 20,
+          zIndex: 10001,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          backgroundColor: '#25D366',
+          color: '#FFFFFF',
+          padding: '10px 16px 10px 12px',
+          borderRadius: 50,
+          boxShadow: '0 4px 20px rgba(37,211,102,0.50)',
+          textDecoration: 'none',
+          fontSize: 13,
+          fontWeight: 700,
+          lineHeight: 1.2,
+          transition: 'transform 0.15s, box-shadow 0.15s',
+          whiteSpace: 'nowrap',
+        }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
+          (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 28px rgba(37,211,102,0.60)';
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+          (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(37,211,102,0.50)';
+        }}
+      >
+        {/* Icono WhatsApp */}
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF" style={{ flexShrink: 0 }}>
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        {/* Texto oculto en mobile muy pequeño, visible en pantallas medias */}
+        <span className="hidden sm:inline">¿Dudas? Escríbenos</span>
+        <span className="sm:hidden">Dudas</span>
+      </a>
+
     </div>,
     document.body,
   );
