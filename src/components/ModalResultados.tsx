@@ -4,56 +4,70 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Phone, Shield, CheckCircle2 } from 'lucide-react';
 
-// ─── Coverage specs per product ───────────────────────────────────────────────
+// ─── Tipos ────────────────────────────────────────────────────────────────────
 interface ProductSpec {
-  extranjero: string | false;  // false = no cubierto, string = capital
-  farmacia:   string | false;
-  fisioterapia: boolean;
-  sinCopago: boolean;
+  hospitalizacion: boolean;
+  urgencias:       boolean;
+  extranjero:      string | false;   // false = no cubierto, string = capital
+  farmacia:        string | false;   // false = no, '50 %' / '80 %' = porcentaje
+  fisioterapia:    boolean;
+  sinCopago:       boolean;
 }
 
+// ─── Coberturas corregidas (2026) ─────────────────────────────────────────────
+// GO (ya): solo ambulatorio + fisio, SIN urgencias, SIN hospitalización,
+//          SIN asistencia extranjero, CON copago.
 const PRODUCT_SPECS: Record<string, ProductSpec> = {
-  ya:               { extranjero: '6.000 €',  farmacia: false,   fisioterapia: false, sinCopago: true  },
-  esencial:         { extranjero: '6.000 €',  farmacia: false,   fisioterapia: true,  sinCopago: false },
-  plena:            { extranjero: '6.000 €',  farmacia: false,   fisioterapia: true,  sinCopago: false },
-  completaPlus:     { extranjero: '60.000 €', farmacia: '50 %',  fisioterapia: true,  sinCopago: false },
-  completaPlusPlus: { extranjero: '60.000 €', farmacia: '80 %',  fisioterapia: true,  sinCopago: true  },
-  completa:         { extranjero: '60.000 €', farmacia: '50 %',  fisioterapia: true,  sinCopago: true  },
-  reembolso:        { extranjero: 'Mundial',  farmacia: '80 %',  fisioterapia: true,  sinCopago: false },
-  seniors:          { extranjero: '6.000 €',  farmacia: false,   fisioterapia: true,  sinCopago: false },
-  'seniors-total':  { extranjero: '60.000 €', farmacia: '50 %',  fisioterapia: true,  sinCopago: true  },
+  ya:               { hospitalizacion: false, urgencias: false, extranjero: false,        farmacia: false,  fisioterapia: true,  sinCopago: false },
+  esencial:         { hospitalizacion: true,  urgencias: true,  extranjero: '6.000 €',    farmacia: false,  fisioterapia: true,  sinCopago: false },
+  plena:            { hospitalizacion: true,  urgencias: true,  extranjero: '6.000 €',    farmacia: false,  fisioterapia: true,  sinCopago: false },
+  completaPlus:     { hospitalizacion: true,  urgencias: true,  extranjero: '60.000 €',   farmacia: '50 %', fisioterapia: true,  sinCopago: false },
+  completaPlusPlus: { hospitalizacion: true,  urgencias: true,  extranjero: '60.000 €',   farmacia: '80 %', fisioterapia: true,  sinCopago: true  },
+  completa:         { hospitalizacion: true,  urgencias: true,  extranjero: '100.000 €',  farmacia: '50 %', fisioterapia: true,  sinCopago: true  },
+  reembolso:        { hospitalizacion: true,  urgencias: true,  extranjero: 'Mundial',    farmacia: '80 %', fisioterapia: true,  sinCopago: false },
+  seniors:          { hospitalizacion: true,  urgencias: true,  extranjero: '6.000 €',    farmacia: false,  fisioterapia: true,  sinCopago: false },
+  'seniors-total':  { hospitalizacion: true,  urgencias: true,  extranjero: '60.000 €',   farmacia: '50 %', fisioterapia: true,  sinCopago: true  },
 };
 
-// Rows always shown in the coverage mini-table
-const COVERAGE_ROWS: { key: keyof ProductSpec | 'especialidades' | 'diagnostico' | 'urgencias'; icon: string; label: string }[] = [
-  { key: 'especialidades', icon: '🩺', label: 'Especialidades médicas' },
-  { key: 'diagnostico',    icon: '🔬', label: 'Pruebas diagnósticas'  },
-  { key: 'urgencias',      icon: '🚨', label: 'Urgencias 24 h'        },
-  { key: 'extranjero',     icon: '✈️', label: 'Asistencia extranjero' },
-  { key: 'farmacia',       icon: '💊', label: 'Reembolso farmacia'    },
-  { key: 'fisioterapia',   icon: '🏃', label: 'Fisioterapia'          },
+// ─── Filas de la tabla comparativa ────────────────────────────────────────────
+type FeatureKey = 'especialidades' | 'diagnostico' | keyof ProductSpec;
+
+const FEATURES: { key: FeatureKey; icon: string; label: string }[] = [
+  { key: 'especialidades',  icon: '🩺', label: 'Especialidades médicas' },
+  { key: 'diagnostico',     icon: '🔬', label: 'Pruebas diagnósticas'   },
+  { key: 'hospitalizacion', icon: '🏥', label: 'Hospitalización'        },
+  { key: 'urgencias',       icon: '🚨', label: 'Urgencias 24 h'         },
+  { key: 'extranjero',      icon: '✈️', label: 'Asistencia extranjero'  },
+  { key: 'farmacia',        icon: '💊', label: 'Reembolso farmacia'     },
+  { key: 'fisioterapia',    icon: '🏃', label: 'Fisioterapia'           },
+  { key: 'sinCopago',       icon: '💳', label: 'Sin copago'             },
 ];
 
-// ─── Product labels (copago pill) ─────────────────────────────────────────────
-const productLabels: Record<string, { tag: string; color: string }> = {
-  ya:               { tag: 'Sin copago',                       color: '#10B981' },
-  esencial:         { tag: 'Con copago',                       color: '#009FE3' },
-  plena:            { tag: 'Copago reducido',                  color: '#0EA5E9' },
-  completaPlusPlus: { tag: 'Sin copago',                       color: '#6366F1' },
-  completaPlus:     { tag: 'Con copago · 3 años sin subidas',  color: '#7C3AED' },
-  completa:         { tag: 'Sin copago · 3 años sin subidas',  color: '#003087' },
-  reembolso:        { tag: 'Reembolso 80% · Libre elección',   color: '#D97706' },
-  seniors:          { tag: 'Mayores 55–84 años',               color: '#F59E0B' },
-  'seniors-total':  { tag: 'Sin copago · 3 años sin subidas',  color: '#0369A1' },
+// ─── Helper: valor de cobertura para un producto ──────────────────────────────
+function getCoverage(productId: string, key: FeatureKey): string | boolean | false {
+  if (key === 'especialidades' || key === 'diagnostico') return true;
+  const spec = PRODUCT_SPECS[productId];
+  if (!spec) return false;
+  return spec[key as keyof ProductSpec] as string | boolean | false;
+}
+
+// ─── Columna resaltada ────────────────────────────────────────────────────────
+const HIGHLIGHTED_ID = 'completa';
+
+// ─── Etiquetas de copago por producto ─────────────────────────────────────────
+const COPAGO_LABELS: Record<string, string> = {
+  ya:               'Ambulatorio · Con copago',
+  esencial:         'Con copago',
+  plena:            'Copago reducido',
+  completaPlus:     'Con copago',
+  completaPlusPlus: 'Sin copago',
+  completa:         'Sin copago',
+  reembolso:        'Reembolso · Libre elección',
+  seniors:          '55–84 años',
+  'seniors-total':  'Sin copago',
 };
 
-// ─── Highlight: ONLY Plena Total ──────────────────────────────────────────────
-const HIGHLIGHTED_IDS = new Set(['completa']);
-const HIGHLIGHT_BANNER: Record<string, { text: string; bg: string }> = {
-  completa: { text: '🏆 El más completo · 3 años sin subida de prima', bg: '#003087' },
-};
-
-// ─── Types ─────────────────────────────────────────────────────────────────────
+// ─── Tipos ────────────────────────────────────────────────────────────────────
 interface ProductResult {
   product: { id: string; name: string; slug: string };
   price: number;
@@ -71,25 +85,38 @@ interface ModalResultadosProps {
   onClose:       () => void;
 }
 
-// ─── Helpers ───────────────────────────────────────────────────────────────────
 const formatPrice = (price: number) => {
   const [int, dec] = price.toFixed(2).split('.');
   return { int, dec };
 };
 
-// Helper: get a coverage row value for a product
-function getCoverageValue(
-  productId: string,
-  key: string,
-): string | boolean | false {
-  // These 3 are always covered for all Adeslas products
-  if (key === 'especialidades' || key === 'diagnostico' || key === 'urgencias') return true;
-  const spec = PRODUCT_SPECS[productId];
-  if (!spec) return false;
-  return spec[key as keyof ProductSpec] as string | boolean | false;
+// ─── Celda de valor ───────────────────────────────────────────────────────────
+function CoverageCell({ value, isHighlighted }: { value: string | boolean | false; isHighlighted: boolean }) {
+  if (value === false) {
+    return (
+      <span className="text-base" style={{ color: '#D1D5DB' }}>✗</span>
+    );
+  }
+  if (typeof value === 'string') {
+    return (
+      <span
+        className="inline-block text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-tight"
+        style={{
+          backgroundColor: isHighlighted ? 'rgba(255,255,255,0.18)' : '#DBEAFE',
+          color:           isHighlighted ? '#FFFFFF' : '#1D4ED8',
+        }}
+      >
+        {value}
+      </span>
+    );
+  }
+  // true → check verde
+  return (
+    <span className="text-base" style={{ color: '#16A34A' }}>✓</span>
+  );
 }
 
-// ─── Component ─────────────────────────────────────────────────────────────────
+// ─── Componente principal ─────────────────────────────────────────────────────
 export default function ModalResultados({
   results,
   ages,
@@ -125,8 +152,7 @@ export default function ModalResultados({
 
   const primerNombre = nombre ? nombre.trim().split(' ')[0] : '';
 
-  // ── renderizamos en document.body via portal para evitar
-  //    problemas con transforms de framer-motion y stacking contexts ──
+  // ── Portal: evita problemas con stacking contexts de framer-motion ──────────
   return createPortal(
     <div
       className="fixed inset-0 z-[9999] flex flex-col"
@@ -171,7 +197,7 @@ export default function ModalResultados({
 
       {/* ── Contenido scrollable ── */}
       <main className="flex-1 overflow-y-auto">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6">
+        <div className="max-w-full mx-auto px-3 py-4 sm:px-5">
 
           {/* Trust badges */}
           <div className="flex items-center justify-center gap-4 mb-4 text-xs text-gray-500 flex-wrap">
@@ -206,167 +232,256 @@ export default function ModalResultados({
             </div>
           )}
 
-          {/* ── Grid de productos ── */}
+          {/* ── Tabla comparativa ── */}
           {results.length > 0 && (
-            <div className={`grid gap-3 ${
-              results.length === 1
-                ? 'grid-cols-1 max-w-sm mx-auto'
-                : results.length === 2
-                  ? 'grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto'
-                  : 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3'
-            }`}>
-              {results.map((result) => {
-                const { int, dec }    = formatPrice(result.price);
-                const label           = productLabels[result.product.id] ?? { tag: 'Seguro de salud', color: '#003087' };
-                const isHighlighted   = HIGHLIGHTED_IDS.has(result.product.id);
-                const highlightBanner = HIGHLIGHT_BANNER[result.product.id];
-                const hasDiscount     = result.originalPrice !== undefined;
-                const spec            = PRODUCT_SPECS[result.product.id];
-
-                // Borders: only Plena Total highlighted, rest uniform
-                const cardBorder = isHighlighted ? `2px solid ${label.color}` : '2px solid #E5E7EB';
-                const cardShadow = isHighlighted
-                  ? `0 8px 32px ${label.color}30`
-                  : '0 2px 10px rgba(0,0,0,0.05)';
-
-                return (
-                  <div
-                    key={result.product.id}
-                    className="bg-white rounded-2xl overflow-hidden flex flex-col transition-transform hover:scale-[1.012] active:scale-[0.99]"
-                    style={{ boxShadow: cardShadow, border: cardBorder }}
-                  >
-                    {/* Highlighted banner — solo Plena Total */}
-                    {highlightBanner && (
-                      <div
-                        className="flex items-center justify-center gap-1.5 py-1.5 text-white text-xs font-bold tracking-wide"
-                        style={{ backgroundColor: highlightBanner.bg }}
+            <div
+              className="rounded-2xl overflow-hidden shadow-sm"
+              style={{ border: '1px solid #E5E7EB' }}
+            >
+              {/* Scroll horizontal en móvil */}
+              <div className="overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
+                <table
+                  style={{
+                    borderCollapse: 'separate',
+                    borderSpacing: 0,
+                    minWidth: `${140 + results.length * 130}px`,
+                    width: '100%',
+                  }}
+                >
+                  {/* ── Cabeceras de producto ── */}
+                  <thead>
+                    <tr>
+                      {/* Celda etiqueta — sticky izquierda */}
+                      <th
+                        style={{
+                          position: 'sticky',
+                          left: 0,
+                          zIndex: 20,
+                          width: 140,
+                          minWidth: 140,
+                          backgroundColor: '#F8FAFC',
+                          borderBottom: '2px solid #E5E7EB',
+                          borderRight: '1px solid #E5E7EB',
+                          padding: '12px 10px',
+                          textAlign: 'left',
+                          verticalAlign: 'bottom',
+                        }}
                       >
-                        {highlightBanner.text}
-                      </div>
-                    )}
-
-                    <div className="p-4 flex flex-col flex-1">
-                      {/* Tag copago + descuento */}
-                      <div className="flex items-center justify-between mb-2 flex-wrap gap-1.5">
-                        <span
-                          className="text-xs font-bold px-2.5 py-0.5 rounded-full"
-                          style={{
-                            backgroundColor: `${label.color}1A`,
-                            color: label.color,
-                          }}
-                        >
-                          {label.tag}
+                        <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wide">
+                          Cobertura
                         </span>
-                        {hasDiscount && (
-                          <span
-                            className="text-xs font-bold px-2 py-0.5 rounded-full"
-                            style={{ backgroundColor: '#DCFCE7', color: '#166534' }}
+                      </th>
+
+                      {/* Una columna por producto */}
+                      {results.map((result) => {
+                        const isHighlighted  = result.product.id === HIGHLIGHTED_ID;
+                        const hasDiscount    = result.originalPrice !== undefined;
+                        const { int, dec }   = formatPrice(result.price);
+                        const copagoLabel    = COPAGO_LABELS[result.product.id] ?? 'Seguro de salud';
+                        const sinCopago      = PRODUCT_SPECS[result.product.id]?.sinCopago ?? false;
+
+                        return (
+                          <th
+                            key={result.product.id}
+                            style={{
+                              minWidth: 130,
+                              padding: '0',
+                              borderBottom: `2px solid ${isHighlighted ? '#003087' : '#E5E7EB'}`,
+                              borderLeft: '1px solid #E5E7EB',
+                              verticalAlign: 'top',
+                              background: isHighlighted
+                                ? 'linear-gradient(160deg, #002266 0%, #003087 60%, #004DB3 100%)'
+                                : '#FFFFFF',
+                            }}
                           >
-                            🎉 −10% familia
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Nombre del producto */}
-                      <h3 className="font-black text-base leading-tight mb-1" style={{ color: '#003087' }}>
-                        {result.product.name}
-                      </h3>
-                      <p className="text-xs text-gray-400 mb-3">
-                        {numAsegurados} {numAsegurados === 1 ? 'asegurado' : 'asegurados'}
-                        {ages.length > 0 && ` · ${ages.join(', ')} años`}
-                        {' · '}{provincia}
-                      </p>
-
-                      {/* ── Tabla de coberturas ✓/✗ ── */}
-                      <div
-                        className="rounded-xl mb-3 overflow-hidden"
-                        style={{ border: '1px solid #E5E7EB' }}
-                      >
-                        {COVERAGE_ROWS.map((row, ri) => {
-                          const val     = getCoverageValue(result.product.id, row.key);
-                          const hasIt   = val !== false;
-                          const detail  = typeof val === 'string' ? val : null;
-                          const isLast  = ri === COVERAGE_ROWS.length - 1;
-
-                          return (
-                            <div
-                              key={row.key}
-                              className="flex items-center justify-between px-3 py-1.5 text-xs"
-                              style={{
-                                borderBottom: isLast ? 'none' : '1px solid #F3F4F6',
-                                backgroundColor: ri % 2 === 0 ? '#FAFAFA' : '#FFFFFF',
-                              }}
-                            >
-                              <span className="flex items-center gap-1.5 text-gray-600">
-                                <span className="text-sm leading-none">{row.icon}</span>
-                                {row.label}
-                              </span>
-                              <span
-                                className="font-bold flex-shrink-0 ml-2"
-                                style={{ color: hasIt ? '#16A34A' : '#D1D5DB' }}
+                            {/* Banner top para el destacado */}
+                            {isHighlighted && (
+                              <div
+                                style={{
+                                  backgroundColor: '#E4097D',
+                                  color: '#FFFFFF',
+                                  fontSize: 10,
+                                  fontWeight: 800,
+                                  textAlign: 'center',
+                                  padding: '4px 8px',
+                                  letterSpacing: '0.02em',
+                                }}
                               >
-                                {hasIt
-                                  ? detail
-                                    ? <span className="text-[10px] font-semibold" style={{ color: '#16A34A' }}>{detail}</span>
-                                    : '✓'
-                                  : '✗'}
+                                🏆 MÁS COMPLETO · 3 años sin subida
+                              </div>
+                            )}
+
+                            <div style={{ padding: '10px 10px 12px' }}>
+                              {/* Nombre producto */}
+                              <p
+                                style={{
+                                  fontSize: 12,
+                                  fontWeight: 900,
+                                  lineHeight: 1.2,
+                                  marginBottom: 6,
+                                  color: isHighlighted ? '#FFFFFF' : '#003087',
+                                }}
+                              >
+                                {result.product.name}
+                              </p>
+
+                              {/* Precio */}
+                              {hasDiscount && (
+                                <p style={{ fontSize: 10, color: isHighlighted ? 'rgba(255,255,255,0.55)' : '#9CA3AF', textDecoration: 'line-through', marginBottom: 1 }}>
+                                  {formatPrice(result.originalPrice!).int},{formatPrice(result.originalPrice!).dec} €
+                                </p>
+                              )}
+                              <div style={{ display: 'flex', alignItems: 'baseline', gap: 1, marginBottom: 6 }}>
+                                <span style={{ fontSize: 22, fontWeight: 900, lineHeight: 1, color: isHighlighted ? '#FFFFFF' : '#003087' }}>
+                                  {int}
+                                </span>
+                                <span style={{ fontSize: 13, fontWeight: 700, color: isHighlighted ? '#FFFFFF' : '#003087' }}>
+                                  ,{dec}€
+                                </span>
+                                <span style={{ fontSize: 10, color: isHighlighted ? 'rgba(255,255,255,0.6)' : '#9CA3AF', marginLeft: 2 }}>
+                                  /mes
+                                </span>
+                              </div>
+                              {hasDiscount && (
+                                <p style={{ fontSize: 10, fontWeight: 700, color: '#4ADE80', marginBottom: 4 }}>
+                                  🎉 −10% familia
+                                </p>
+                              )}
+
+                              {/* Copago pill */}
+                              <span
+                                style={{
+                                  display: 'inline-block',
+                                  fontSize: 10,
+                                  fontWeight: 700,
+                                  padding: '2px 7px',
+                                  borderRadius: 20,
+                                  backgroundColor: sinCopago
+                                    ? (isHighlighted ? 'rgba(74,222,128,0.25)' : '#DCFCE7')
+                                    : (isHighlighted ? 'rgba(255,255,255,0.15)' : '#FEF9C3'),
+                                  color: sinCopago
+                                    ? (isHighlighted ? '#4ADE80' : '#15803D')
+                                    : (isHighlighted ? 'rgba(255,255,255,0.85)' : '#92400E'),
+                                }}
+                              >
+                                {copagoLabel}
                               </span>
                             </div>
-                          );
-                        })}
-                      </div>
+                          </th>
+                        );
+                      })}
+                    </tr>
+                  </thead>
 
-                      {/* Copago badge */}
-                      {spec && (
-                        <div className="flex items-center gap-1.5 mb-3">
-                          <span
-                            className="text-[11px] font-bold px-2.5 py-0.5 rounded-full"
-                            style={
-                              spec.sinCopago
-                                ? { backgroundColor: '#DCFCE7', color: '#15803D' }
-                                : { backgroundColor: '#FEF3C7', color: '#92400E' }
-                            }
+                  {/* ── Filas de cobertura ── */}
+                  <tbody>
+                    {FEATURES.map((feature, fi) => {
+                      const isEven = fi % 2 === 0;
+                      return (
+                        <tr key={feature.key}>
+                          {/* Etiqueta — sticky izquierda */}
+                          <td
+                            style={{
+                              position: 'sticky',
+                              left: 0,
+                              zIndex: 10,
+                              backgroundColor: isEven ? '#F9FAFB' : '#FFFFFF',
+                              borderBottom: fi < FEATURES.length - 1 ? '1px solid #F3F4F6' : 'none',
+                              borderRight: '1px solid #E5E7EB',
+                              padding: '9px 10px',
+                              whiteSpace: 'nowrap',
+                            }}
                           >
-                            {spec.sinCopago ? '✓ Sin copago' : '⚠ Con copago'}
-                          </span>
-                        </div>
-                      )}
+                            <span style={{ fontSize: 12, color: '#4B5563', display: 'flex', alignItems: 'center', gap: 5 }}>
+                              <span style={{ fontSize: 14 }}>{feature.icon}</span>
+                              {feature.label}
+                            </span>
+                          </td>
 
-                      {/* Precio */}
-                      <div className="mt-auto pt-2 border-t border-gray-100">
-                        {hasDiscount && (
-                          <p className="text-xs text-gray-400 line-through text-right">
-                            {formatPrice(result.originalPrice!).int},{formatPrice(result.originalPrice!).dec} €/mes
-                          </p>
-                        )}
-                        <div className="flex items-baseline gap-0.5 justify-end mb-2">
-                          <span className="text-3xl font-black" style={{ color: '#003087' }}>
-                            {int}
-                          </span>
-                          <span className="text-base font-bold" style={{ color: '#003087' }}>
-                            ,{dec}€
-                          </span>
-                          <span className="text-xs text-gray-400 ml-0.5">/mes</span>
-                        </div>
-                        {hasDiscount && (
-                          <p className="text-[11px] font-semibold text-right mb-2" style={{ color: '#16A34A' }}>
-                            Ahorro {formatPrice(result.originalPrice! - result.price).int},{formatPrice(result.originalPrice! - result.price).dec}€/mes
-                          </p>
-                        )}
+                          {/* Valor por producto */}
+                          {results.map((result) => {
+                            const isHighlighted = result.product.id === HIGHLIGHTED_ID;
+                            const value = getCoverage(result.product.id, feature.key);
+                            return (
+                              <td
+                                key={result.product.id}
+                                style={{
+                                  borderBottom: fi < FEATURES.length - 1 ? '1px solid #F3F4F6' : 'none',
+                                  borderLeft: '1px solid #E5E7EB',
+                                  padding: '9px 10px',
+                                  textAlign: 'center',
+                                  backgroundColor: isHighlighted
+                                    ? (isEven ? 'rgba(0,48,135,0.07)' : 'rgba(0,48,135,0.03)')
+                                    : (isEven ? '#F9FAFB' : '#FFFFFF'),
+                                }}
+                              >
+                                <CoverageCell value={value} isHighlighted={false} />
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
 
-                        {/* CTA — siempre rojo corporativo */}
-                        <button
-                          onClick={() => handleContratar(result)}
-                          className="w-full py-3 rounded-xl font-bold text-white text-sm tracking-wide transition-all hover:opacity-90 active:scale-[0.98]"
-                          style={{ backgroundColor: '#E4097D' }}
-                        >
-                          Contratar {result.product.name} →
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+                  {/* ── Fila de CTAs ── */}
+                  <tfoot>
+                    <tr>
+                      {/* Celda vacía sticky */}
+                      <td
+                        style={{
+                          position: 'sticky',
+                          left: 0,
+                          zIndex: 10,
+                          backgroundColor: '#F8FAFC',
+                          borderTop: '2px solid #E5E7EB',
+                          padding: '12px 10px',
+                        }}
+                      />
+
+                      {results.map((result) => {
+                        const isHighlighted = result.product.id === HIGHLIGHTED_ID;
+                        return (
+                          <td
+                            key={result.product.id}
+                            style={{
+                              borderTop: `2px solid ${isHighlighted ? '#003087' : '#E5E7EB'}`,
+                              borderLeft: '1px solid #E5E7EB',
+                              padding: '12px 8px',
+                              textAlign: 'center',
+                              backgroundColor: isHighlighted
+                                ? 'rgba(0,48,135,0.04)'
+                                : '#FFFFFF',
+                            }}
+                          >
+                            <button
+                              onClick={() => handleContratar(result)}
+                              style={{
+                                width: '100%',
+                                backgroundColor: '#E4097D',
+                                color: '#FFFFFF',
+                                fontSize: 11,
+                                fontWeight: 800,
+                                padding: '8px 6px',
+                                borderRadius: 10,
+                                border: 'none',
+                                cursor: 'pointer',
+                                letterSpacing: '0.01em',
+                                transition: 'opacity 0.15s',
+                                lineHeight: 1.3,
+                              }}
+                              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.88')}
+                              onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                            >
+                              Contratar →
+                            </button>
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
           )}
 
@@ -394,7 +509,7 @@ export default function ModalResultados({
               91 710 50 00
             </a>
             <p className="text-xs text-gray-400 mt-1">
-              Marchal Aseguradores · Lun–Vie 9:00–19:00
+              Adeslas · Lun–Vie 9:00–19:00
             </p>
           </div>
 

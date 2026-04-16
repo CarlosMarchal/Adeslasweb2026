@@ -241,7 +241,7 @@ function buildEmailHTML(form: FormState, params: ContratarParams): string {
         </p>
       </div>
       <p style="font-size:12px;color:#94a3b8;text-align:center;margin-top:16px;">
-        Solicitud enviada desde adeslas.numero1salud.es — Marchal Aseguradores
+        Solicitud enviada desde adeslas.numero1salud.es
       </p>
     </div>
   `;
@@ -693,7 +693,7 @@ export default function FormularioContratacion({ params }: Props) {
             <Phone className="w-5 h-5" />
             91 710 50 00
           </a>
-          <p className="text-xs text-gray-400 mt-1">Marchal Aseguradores · Sin compromiso</p>
+          <p className="text-xs text-gray-400 mt-1">Adeslas · Sin compromiso</p>
         </div>
       </div>
     );
@@ -881,7 +881,8 @@ export default function FormularioContratacion({ params }: Props) {
                 </p>
                 <div className="flex gap-2">
                   <select
-                    className={`${selectCls} w-32 flex-shrink-0`}
+                    className={selectCls}
+                    style={{ width: '8.5rem', flexShrink: 0 }}
                     value={form.docType}
                     onChange={(e) => upd('docType', e.target.value as DocType)}
                   >
@@ -892,12 +893,12 @@ export default function FormularioContratacion({ params }: Props) {
                   <input
                     type="text"
                     className={inputCls}
+                    style={{ flex: '1 1 auto', minWidth: 0, textTransform: 'uppercase' }}
                     value={form.docNum}
                     onChange={(e) => upd('docNum', e.target.value.toUpperCase().slice(0, 15))}
                     placeholder={form.docType === 'NIF' ? '12345678A' : form.docType === 'NIE' ? 'X1234567A' : 'Nº Pasaporte'}
                     autoComplete="off"
                     inputMode="text"
-                    style={{ textTransform: 'uppercase' }}
                   />
                 </div>
                 {err('docNum') && (
@@ -1116,7 +1117,8 @@ export default function FormularioContratacion({ params }: Props) {
                       {!a.usarDniTitular && (
                         <div className="flex gap-2">
                           <select
-                            className={`${selectCls} w-32 flex-shrink-0`}
+                            className={selectCls}
+                            style={{ width: '8.5rem', flexShrink: 0 }}
                             value={a.docType}
                             onChange={(e) => updAsegurado(i, 'docType', e.target.value as DocType)}
                           >
@@ -1127,10 +1129,10 @@ export default function FormularioContratacion({ params }: Props) {
                           <input
                             type="text"
                             className={inputCls}
+                            style={{ flex: '1 1 auto', minWidth: 0, textTransform: 'uppercase' }}
                             value={a.docNum}
                             onChange={(e) => updAsegurado(i, 'docNum', e.target.value.toUpperCase().slice(0, 15))}
                             placeholder="Nº documento"
-                            style={{ textTransform: 'uppercase' }}
                           />
                         </div>
                       )}
