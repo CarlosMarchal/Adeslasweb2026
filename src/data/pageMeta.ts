@@ -3,7 +3,10 @@
  * Usado por Next.js generateMetadata() en app/[[...slug]]/page.tsx
  * para server-render los <head> meta tags aunque el body sea client-side.
  *
- * Última actualización: 2026-04-15
+ * Última actualización: 2026-04-16
+ *
+ * NOTA: No se incluyen referencias a intermediarios en el SEO público.
+ * El site compite directamente como marca Adeslas.
  */
 
 export interface PageMeta {
@@ -28,7 +31,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/": {
     title: "Seguros Médicos Adeslas 2026 | +51.000 Médicos · Desde 21€/mes",
     description:
-      "Contrata Adeslas con Marchal Aseguradores, tu Agente Exclusivo. GO desde 21€, Plena Vital desde 38€, sin copagos desde 62€. Calcula tu precio en 2 minutos.",
+      "Contrata tu seguro Adeslas directamente online. GO desde 21€, Plena Vital desde 38€, sin copagos desde 62€. +51.000 médicos. Calcula tu precio en 2 minutos.",
     canonical: `${BASE}/`,
     ogImage: `${BASE}/og-default.jpg`,
     preloadImage: "/hero-adeslas-seguros-medicos.webp",
@@ -36,9 +39,9 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   // ── PRODUCTOS DE SALUD ────────────────────────────────────────────
   "/adeslas-go": {
-    title: "Adeslas GO | Copago Máx. 260€/año · Sin Cuestionario · Desde 21€/mes",
+    title: "Adeslas GO | Sin Copago · Sin Cuestionario · Desde 21€/mes",
     description:
-      "Cobertura ambulatoria completa sin cuestionario de salud. Medicina general, especialistas y urgencias 24h. Copago máximo 260€/año. Contrata con Marchal, Agente Exclusivo Adeslas.",
+      "Cobertura ambulatoria completa sin cuestionario de salud. Medicina general, especialistas y urgencias 24h. Sin copago. Alta online inmediata desde 21€/mes.",
     canonical: `${BASE}/seguro-salud/adeslas-go/`,
     ogImage: `${BASE}/og-go.jpg`,
     preloadImage: "/images/seguro-medico-adeslas-go.webp",
@@ -46,7 +49,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/adeslas-plena-vital": {
     title: "Adeslas Plena Vital | Hospitalización Completa · Copago Máx. 300€ · Desde 38€",
     description:
-      "Seguro médico completo con hospitalización y copago máx. 300€/año. +51.000 médicos, sin esperas. Calcula precio con Marchal, Agente Exclusivo Adeslas.",
+      "Seguro médico completo con hospitalización y copago máx. 300€/año. +51.000 médicos, sin esperas ni listas de espera. Calcula tu precio en 2 minutos.",
     canonical: `${BASE}/seguro-salud/adeslas-plena-vital/`,
     ogImage: `${BASE}/og-vital.jpg`,
     preloadImage: "/images/seguro-medico-adeslas-plena-vital.webp",
@@ -62,7 +65,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/adeslas-plena-total": {
     title: "Adeslas Plena Total | Sin Copagos · Dental · Psicología · Desde 83€/mes",
     description:
-      "El seguro médico más completo: sin copago, hospitalización, dental (46 actos), psicología y asistencia en viajes 100.000€. +51.000 médicos. Desde 83€/mes.",
+      "El seguro médico más completo de Adeslas: sin copago, hospitalización, dental (46 actos), psicología y asistencia en viajes 100.000€. +51.000 médicos. Desde 83€/mes.",
     canonical: `${BASE}/seguro-salud/adeslas-plena-total/`,
     ogImage: `${BASE}/og-total.jpg`,
     preloadImage: "/images/seguro-medico-adeslas-plena-total.webp",
@@ -70,7 +73,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/adeslas-extra-150": {
     title: "Adeslas Extra 150 | Libre Elección Médica · Reembolso 80% · Cobertura Mundial",
     description:
-      "Acude a cualquier médico en España o en el mundo. Reembolso del 80% hasta 150.000€/año, sin restricción de especialista ni red de médicos.",
+      "Acude a cualquier médico en España o en el mundo. Reembolso del 80% hasta 150.000€/año, sin restricción de especialista ni red médica obligatoria.",
     canonical: `${BASE}/seguro-salud/adeslas-extra-150/`,
     ogImage: `${BASE}/og-extra-150.jpg`,
   },
@@ -86,7 +89,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/adeslas-seniors": {
     title: "Adeslas Seniors | Seguro Médico Mayores 55-84 Años · Desde 67,50€/mes",
     description:
-      "Seguro médico para personas de 55 a 84 años. Asesor personal, oncología, cardiología y rehabilitación. Prima garantizada sin subidas. Desde 67,50€/mes.",
+      "Seguro médico Adeslas para personas de 55 a 84 años. Asesor personal, oncología, cardiología y rehabilitación. Prima garantizada sin subidas. Desde 67,50€/mes.",
     canonical: `${BASE}/seguro-salud/adeslas-seniors/`,
     ogImage: `${BASE}/og-seniors.jpg`,
     preloadImage: "/images/seguro-medico-adeslas-seniors.webp",
@@ -94,7 +97,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/adeslas-seniors-total": {
     title: "Adeslas Seniors Total | Mayores 63-84 Años · Dental · Viajes · Desde 101€",
     description:
-      "Cobertura total para personas de 63 a 84 años: dental, psicología y asistencia en viajes. Prima garantizada 3 años sin subidas. Asesor médico personal.",
+      "Cobertura total Adeslas para personas de 63 a 84 años: dental, psicología y asistencia en viajes. Prima garantizada 3 años sin subidas. Asesor médico personal.",
     canonical: `${BASE}/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/`,
     ogImage: `${BASE}/og-seniors-total.jpg`,
   },
@@ -103,7 +106,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/autonomos": {
     title: "Adeslas para Autónomos | Deducción IRPF hasta 500€ · Sin Copago",
     description:
-      "Seguro médico Adeslas para autónomos con deducción hasta 500€/año por asegurado en IRPF. Sin copagos, +51.000 médicos. Tramitación inmediata con Marchal.",
+      "Seguro médico Adeslas para autónomos con deducción hasta 500€/año por asegurado en IRPF. Sin copagos, +51.000 médicos. Contratación online inmediata.",
     canonical: `${BASE}/seguro-salud/autonomos/`,
     ogImage: `${BASE}/og-autonomos.jpg`,
   },
@@ -149,7 +152,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/adeslas-decesos": {
     title: "Adeslas Decesos | Sepelio, Repatriación y Trámites desde 9€/mes",
     description:
-      "Seguro de decesos Adeslas gestionado por Ocaso. Sepelio completo, repatriación internacional, billete acompañante y trámites incluidos. Atención 24h: 900 14 15 16.",
+      "Seguro de decesos Adeslas gestionado por Ocaso. Sepelio completo, repatriación internacional, billete acompañante y trámites incluidos. Atención 24h.",
     canonical: `${BASE}/seguro-decesos/`,
     ogImage: `${BASE}/og-decesos.jpg`,
   },
@@ -207,14 +210,14 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/seguro-medico-ginecologia": {
     title: "Adeslas Ginecología | Cobertura Ginecológica Completa · Sin Lista de Espera",
     description:
-      "Seguro médico con ginecólogos, ecografías, revisiones y seguimiento completo. Sin listas de espera con +51.000 médicos. Tramitación con Marchal, Agente Exclusivo.",
+      "Seguro médico Adeslas con ginecólogos, ecografías, revisiones y seguimiento completo. Sin listas de espera con +51.000 médicos. Calcula tu precio en 2 minutos.",
     canonical: `${BASE}/seguro-salud/adeslas-ginecologia/`,
     ogImage: `${BASE}/og-ginecologia.jpg`,
   },
   "/seguro-medico-embarazadas": {
     title: "Adeslas Embarazo | Parto, Ecografías y Neonatología · Sin Lista de Espera",
     description:
-      "Cobertura completa de embarazo en Adeslas: ginecólogos, ecografías, parto y neonatología. Sin listas de espera. Contrata con Marchal, Agente Exclusivo Adeslas.",
+      "Cobertura completa de embarazo en Adeslas: ginecólogos, ecografías, parto y neonatología. Sin listas de espera. Alta online inmediata.",
     canonical: `${BASE}/seguro-salud/embarazo/`,
     ogImage: `${BASE}/og-embarazadas.jpg`,
   },
@@ -236,22 +239,22 @@ export const PAGE_META: Record<string, PageMeta> = {
     preloadImage: "/adeslas-cuadro-medico.webp",
   },
   "/contacto": {
-    title: "Contacto | Marchal Aseguradores — Agente Exclusivo Adeslas",
+    title: "Contacto | Adeslas — Asesoramiento Gratuito Sin Compromiso",
     description:
-      "Contacta con Marchal Aseguradores, Agente Exclusivo Adeslas. Asesoramiento personalizado sin compromiso. Teléfono, email y formulario de contacto.",
+      "Contacta con nuestro equipo para cualquier consulta sobre seguros Adeslas. Asesoramiento personalizado sin compromiso. Teléfono, email y formulario de contacto.",
     canonical: `${BASE}/contacto/`,
     ogImage: `${BASE}/og-contacto.jpg`,
   },
   "/blog": {
     title: "Blog de Salud Adeslas | Consejos, Noticias y Bienestar",
     description:
-      "Artículos de salud, consejos de bienestar y novedades de seguros Adeslas. Escritos por expertos de Marchal Aseguradores, Agente Exclusivo.",
+      "Artículos de salud, consejos de bienestar y novedades sobre seguros Adeslas. Información actualizada para cuidar tu salud y la de tu familia.",
     canonical: `${BASE}/adeslas-blog/`,
     ogImage: `${BASE}/og-blog.jpg`,
   },
   "/politica-de-privacidad": {
-    title: "Política de Privacidad | Marchal Aseguradores",
-    description: "Política de privacidad y protección de datos de Marchal Aseguradores.",
+    title: "Política de Privacidad | adeslas.numero1salud.es",
+    description: "Política de privacidad y protección de datos de adeslas.numero1salud.es.",
     canonical: `${BASE}/politica-de-privacidad`,
     noindex: true,
   },
@@ -278,33 +281,28 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/seguro-salud/adeslas-formulario-de-alta": {
     title: "Formulario de Alta Adeslas | Contrata tu Seguro Médico",
     description:
-      "Completa el formulario de alta y empieza a disfrutar de tu seguro Adeslas. Proceso rápido y sencillo con Marchal Aseguradores.",
+      "Completa el formulario de alta y empieza a disfrutar de tu seguro Adeslas. Proceso rápido y sencillo.",
     canonical: `${BASE}/seguro-salud/adeslas-formulario-de-alta`,
     noindex: true,
   },
 
   // ── INTERNOS (noindex) ────────────────────────────────────────────
   "/tarificador-interno": {
-    title: "Tarificador Interno | Marchal Aseguradores",
-    description: "Tarificador de uso interno para comerciales de Marchal Aseguradores.",
+    title: "Tarificador Interno | Adeslas",
+    description: "Tarificador de uso interno.",
     canonical: `${BASE}/tarificador-interno`,
     noindex: true,
   },
   "/contratar": {
-    title: "Contratar Seguro Adeslas | Marchal Aseguradores",
-    description: "Contrata tu seguro Adeslas en pocos pasos con Marchal Aseguradores.",
+    title: "Contratar Seguro Adeslas | Alta Online en Minutos",
+    description: "Contrata tu seguro Adeslas online en pocos pasos. Alta inmediata.",
     canonical: `${BASE}/contratar`,
     noindex: true,
   },
 };
 
 /**
- * Mapeo de URLs canónicas /seguro-salud/... → clave corta en PAGE_META.
- * Permite que ambas rutas (corta y larga) devuelvan los mismos metadatos.
- */
-/**
  * Alias para URLs canónicas que no usan /seguro-salud/ pero difieren del path interno.
- * Ejemplo: sitemap tiene /seguro-dental/ pero la ruta interna es /adeslas-dental
  */
 const CANONICAL_ALIASES: Record<string, string> = {
   "/seguro-dental":                    "/adeslas-dental",
@@ -352,7 +350,7 @@ export function getPageMeta(pathname: string): PageMeta {
   if (PAGE_META[normalized]) return PAGE_META[normalized];
   if (PAGE_META[pathname]) return PAGE_META[pathname];
 
-  // Alias URLs canónicas (seguro-dental, adeslas-blog, precios-y-ofertas, etc.)
+  // Alias URLs canónicas
   const canonicalKey = CANONICAL_ALIASES[normalized] || CANONICAL_ALIASES[pathname];
   if (canonicalKey && PAGE_META[canonicalKey]) return PAGE_META[canonicalKey];
 
@@ -364,9 +362,9 @@ export function getPageMeta(pathname: string): PageMeta {
   if (pathname.startsWith("/blog/")) {
     const slug = pathname.replace("/blog/", "");
     return {
-      title: `${slug.replace(/-/g, " ")} | Blog Adeslas — Marchal Aseguradores`,
+      title: `${slug.replace(/-/g, " ")} | Blog de Salud Adeslas`,
       description:
-        "Artículo del blog de salud de Marchal Aseguradores. Información y consejos sobre seguros Adeslas y bienestar.",
+        "Artículo del blog de salud de Adeslas. Información y consejos sobre seguros médicos y bienestar.",
       canonical: `${BASE}/blog/${slug}`,
     };
   }
@@ -385,9 +383,9 @@ export function getPageMeta(pathname: string): PageMeta {
 
   // Fallback genérico
   return {
-    title: "Adeslas Seguros Médicos | Marchal Aseguradores — Agente Exclusivo",
+    title: "Adeslas Seguros Médicos 2026 | +51.000 Médicos · Sin Listas de Espera",
     description:
-      "Marchal Aseguradores, Agente Exclusivo Adeslas. Seguros médicos, dentales, mascotas y más. +51.000 médicos, sin listas de espera.",
+      "Seguros médicos Adeslas: salud, dental, mascotas y más. +51.000 médicos, sin listas de espera. Calcula tu precio en 2 minutos.",
     canonical: `${BASE}${pathname}`,
   };
 }

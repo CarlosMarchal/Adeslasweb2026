@@ -43,7 +43,7 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     },
     {
       q: "¿Puedo contratar Adeslas si soy autónomo?",
-      a: "Sí. Los autónomos pueden deducir hasta 500€/año por asegurado (ellos, cónyuge e hijos dependientes) en el IRPF. Puedes elegir cualquier plan según tus necesidades. Marchal Aseguradores gestiona el alta en 24 horas.",
+      a: "Sí. Los autónomos pueden deducir hasta 500€/año por asegurado (ellos, cónyuge e hijos dependientes) en el IRPF. Puedes elegir cualquier plan según tus necesidades. El alta se gestiona online en menos de 24 horas.",
     },
     {
       q: "¿Adeslas tiene seguro dental?",
@@ -59,7 +59,7 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     },
     {
       q: "¿Cuánto cuesta Adeslas GO?",
-      a: "Adeslas GO cuesta desde 21€/mes para personas de hasta 30 años. El precio exacto depende de la edad y provincia. Para calcularlo exacto, usa el tarificador de Marchal Aseguradores en esta misma web.",
+      a: "Adeslas GO cuesta desde 21€/mes para personas de hasta 30 años. El precio exacto depende de la edad y provincia. Puedes calcularlo en 2 minutos con el tarificador de esta web, sin compromiso.",
     },
     {
       q: "¿Adeslas GO tiene cuestionario de salud?",
@@ -79,7 +79,7 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     },
     {
       q: "¿Cuánto cuesta Adeslas Plena Vital?",
-      a: "Adeslas Plena Vital cuesta desde 38€/mes para personas de hasta 30 años. El precio varía según la edad y provincia. Puedes calcular tu precio exacto en 2 minutos en el tarificador de Marchal Aseguradores.",
+      a: "Adeslas Plena Vital cuesta desde 38€/mes para personas de hasta 30 años. El precio varía según la edad y provincia. Puedes calcular tu precio exacto en 2 minutos en el tarificador de esta web, sin compromiso.",
     },
     {
       q: "¿Cuánto es el copago máximo de Adeslas Plena Vital?",
@@ -139,7 +139,7 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     },
     {
       q: "¿Cómo contratan los autónomos el seguro Adeslas?",
-      a: "A través de Marchal Aseguradores, Agente Exclusivo Adeslas. El proceso es 100% online o por teléfono, con alta en 24 horas y sin desplazamientos. Necesitas DNI/NIE, cuenta bancaria para la domiciliación y el IBAN.",
+      a: "El proceso es 100% online o por teléfono, con alta en 24 horas y sin desplazamientos. Solo necesitas DNI/NIE, cuenta bancaria para la domiciliación y el IBAN.",
     },
   ],
 
@@ -151,11 +151,11 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     },
     {
       q: "¿Qué documentación se entrega para el visado con el seguro Adeslas?",
-      a: "Marchal Aseguradores facilita la carta de cobertura en español e inglés, el certificado de seguro con todas las coberturas y el número de póliza. Toda la documentación es inmediata tras la contratación.",
+      a: "Recibirás la carta de cobertura en español e inglés, el certificado de seguro con todas las coberturas y el número de póliza. Toda la documentación es inmediata tras la contratación.",
     },
     {
       q: "¿Cuánto cuesta el seguro médico para extranjeros en España?",
-      a: "El seguro médico Adeslas para extranjeros en España cuesta desde 38€/mes. El precio exacto depende de la edad, la provincia y el plan elegido. Puedes calcular tu precio exacto en el tarificador de Marchal Aseguradores.",
+      a: "El seguro médico Adeslas para extranjeros en España cuesta desde 38€/mes. El precio exacto depende de la edad, la provincia y el plan elegido. Puedes calcular tu precio exacto en el tarificador de esta web en 2 minutos.",
     },
   ],
 
@@ -171,7 +171,7 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     },
     {
       q: "¿Puedo contratar Adeslas estando ya embarazada?",
-      a: "Puedes contratar Adeslas estando embarazada, pero la cobertura del parto estará sujeta al período de carencia de 8 meses. Si tu embarazo supera ese período de carencia, el parto quedará cubierto. Consulta tu caso concreto con Marchal Aseguradores para valorar la mejor solución.",
+      a: "Puedes contratar Adeslas estando embarazada, pero la cobertura del parto estará sujeta al período de carencia de 8 meses. Si tu embarazo supera ese período de carencia, el parto quedará cubierto. Consulta tu caso concreto con nuestro equipo para valorar la mejor solución.",
     },
   ],
 
@@ -215,7 +215,7 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     },
     {
       q: "¿Hay descuentos en los seguros Adeslas?",
-      a: "Sí. Adeslas aplica un descuento del 10% a partir del 4º asegurado en pólizas familiares o de empresa. Además, puntualmente pueden existir ofertas de lanzamiento o descuentos por campaña. Consulta las ofertas actuales en Marchal Aseguradores.",
+      a: "Sí. Adeslas aplica un descuento del 10% a partir del 4º asegurado en pólizas familiares o de empresa. Además, puntualmente pueden existir ofertas de lanzamiento o descuentos por campaña. Consulta las ofertas actuales en esta web.",
     },
     {
       q: "¿Puedo calcular el precio exacto de mi seguro Adeslas?",

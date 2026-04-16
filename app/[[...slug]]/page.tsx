@@ -24,10 +24,10 @@ interface PageProps {
 const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "InsuranceAgency",
-  "name": "Marchal Aseguradores",
-  "alternateName": "Adeslas Seguros Médicos — Agente Exclusivo",
+  "name": "Adeslas Seguros Médicos",
+  "alternateName": "Adeslas",
   "url": "https://adeslas.numero1salud.es",
-  "logo": "https://adeslas.numero1salud.es/logo-marchal-aseguradores.webp",
+  "logo": "https://adeslas.numero1salud.es/logo-adeslas.webp",
   "telephone": "+34-626-865-379",
   "email": "adeslas@numero1salud.es",
   "address": {
@@ -47,7 +47,7 @@ const ORGANIZATION_SCHEMA = {
 const WEBSITE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Adeslas Seguros Médicos — Marchal Aseguradores",
+  "name": "Adeslas Seguros Médicos",
   "url": "https://adeslas.numero1salud.es",
   "potentialAction": {
     "@type": "SearchAction",
@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: meta.title,
       description: meta.description,
       url: meta.canonical,
-      siteName: 'Adeslas Seguros Médicos — Marchal Aseguradores',
+      siteName: 'Adeslas Seguros Médicos',
       locale: 'es_ES',
       type: 'website',
       images: [
