@@ -88,7 +88,10 @@ const COVERAGE_PILL: Record<string, PillDef> = {
   'seniors-total':  { label: '+63 años',       bg: '#F5F3FF', color: '#6D28D9', border: '#DDD6FE' },
 };
 
-const HIGHLIGHTED_ID = 'completa';
+// Columnas con fondo azul destacado
+const HIGHLIGHTED_IDS = new Set(['completa', 'completaPlus']);
+// Columnas que muestran la pill "3 años sin subidas"
+const PROMO_IDS       = new Set(['completa', 'completaPlus']);
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function getCoverage(productId: string, key: FeatureKey): string | boolean | false {
@@ -409,7 +412,7 @@ export default function ModalResultados({
                       }} />
 
                       {results.map((result) => {
-                        const isHL    = result.product.id === HIGHLIGHTED_ID;
+                        const isHL    = HIGHLIGHTED_IDS.has(result.product.id);
                         const hasDisc = result.originalPrice !== undefined;
                         const { int, dec } = fmtPrice(result.price);
                         const copago   = COPAGO_PILL[result.product.id]   ?? { label: 'Con copago', bg: '#FEF3C7', color: '#92400E', border: '#FCD34D' };
@@ -427,27 +430,12 @@ export default function ModalResultados({
                                 : '#FFFFFF',
                             }}
                           >
-                            {/* Badge destacado */}
-                            {isHL && (
-                              <div style={{
-                                backgroundColor: '#E4097D',
-                                color: '#FFF',
-                                fontSize: 9, fontWeight: 900,
-                                textAlign: 'center',
-                                padding: '4px 6px',
-                                letterSpacing: '0.07em',
-                                whiteSpace: 'nowrap',
-                              }}>
-                                🏆 MÁS COMPLETO
-                              </div>
-                            )}
-
-                            {/* Contenido cabecera */}
+                            {/* Contenido cabecera — altura uniforme en todas las columnas */}
                             <div style={{
                               padding: '12px 10px 14px',
                               display: 'flex', flexDirection: 'column',
                               alignItems: 'center', gap: 6,
-                              minHeight: isHL ? 146 : 152,
+                              minHeight: 152,
                             }}>
                               {/* Nombre producto */}
                               <p style={{
@@ -513,6 +501,24 @@ export default function ModalResultados({
                                 }}>
                                   {coverage.label}
                                 </span>
+
+                                {/* Pill promocional: 3 años sin subidas */}
+                                {PROMO_IDS.has(result.product.id) && (
+                                  <span style={{
+                                    display: 'inline-flex', alignItems: 'center', gap: 4,
+                                    fontSize: 10, fontWeight: 800,
+                                    padding: '3px 9px', borderRadius: 20, lineHeight: 1.5,
+                                    whiteSpace: 'nowrap',
+                                    backgroundColor: isHL ? '#FFFFFF' : '#003087',
+                                    color: isHL ? '#003087' : '#FFFFFF',
+                                    border: isHL ? '1px solid rgba(255,255,255,0.8)' : '1px solid #003087',
+                                    boxShadow: isHL
+                                      ? '0 2px 8px rgba(0,0,0,0.18)'
+                                      : '0 2px 8px rgba(0,48,135,0.30)',
+                                  }}>
+                                    🔒 3 años sin subidas
+                                  </span>
+                                )}
                               </div>
                             </div>
                           </th>
@@ -546,7 +552,7 @@ export default function ModalResultados({
                             </span>
                           </td>
                           {results.map((r) => {
-                            const isHL = r.product.id === HIGHLIGHTED_ID;
+                            const isHL = HIGHLIGHTED_IDS.has(r.product.id);
                             return (
                               <td key={r.product.id} style={{
                                 backgroundColor: isHL ? 'rgba(0,48,135,0.07)' : '#EEF3FA',
@@ -593,7 +599,7 @@ export default function ModalResultados({
 
                               {/* Valores */}
                               {results.map((result) => {
-                                const isHL = result.product.id === HIGHLIGHTED_ID;
+                                const isHL = HIGHLIGHTED_IDS.has(result.product.id);
                                 const val  = getCoverage(result.product.id, feat.key);
                                 return (
                                   <td
@@ -632,7 +638,7 @@ export default function ModalResultados({
                         transition: 'box-shadow 0.2s',
                       }} />
                       {results.map((result) => {
-                        const isHL = result.product.id === HIGHLIGHTED_ID;
+                        const isHL = HIGHLIGHTED_IDS.has(result.product.id);
                         return (
                           <td
                             key={result.product.id}
