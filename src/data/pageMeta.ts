@@ -259,6 +259,22 @@ export const PAGE_META: Record<string, PageMeta> = {
  * Mapeo de URLs canónicas /seguro-salud/... → clave corta en PAGE_META.
  * Permite que ambas rutas (corta y larga) devuelvan los mismos metadatos.
  */
+/**
+ * Alias para URLs canónicas que no usan /seguro-salud/ pero difieren del path interno.
+ * Ejemplo: sitemap tiene /seguro-dental/ pero la ruta interna es /adeslas-dental
+ */
+const CANONICAL_ALIASES: Record<string, string> = {
+  "/seguro-dental":                    "/adeslas-dental",
+  "/seguro-decesos":                   "/adeslas-decesos",
+  "/seguro-decesos-prima-unica":       "/adesla-decesos-prima-unica",
+  "/seguro-adeslas-decesos-prima-unica":"/adesla-decesos-prima-unica",
+  "/seguro-mascotas":                  "/adeslas-mascotas",
+  "/adeslas-asistencia-en-viaje":      "/adeslas-asistencia-viaje",
+  "/seguro-accidentes":                "/adeslas-accidentes",
+  "/adeslas-blog":                     "/blog",
+  "/precios-y-ofertas":                "/precios-ofertas",
+};
+
 const SEGURO_SALUD_ALIASES: Record<string, string> = {
   "/seguro-salud/adeslas-go/":                                                          "/adeslas-go",
   "/seguro-salud/adeslas-plena-vital/":                                                 "/adeslas-plena-vital",
@@ -292,6 +308,10 @@ export function getPageMeta(pathname: string): PageMeta {
   // Coincidencia exacta (con y sin trailing slash)
   if (PAGE_META[normalized]) return PAGE_META[normalized];
   if (PAGE_META[pathname]) return PAGE_META[pathname];
+
+  // Alias URLs canónicas (seguro-dental, adeslas-blog, precios-y-ofertas, etc.)
+  const canonicalKey = CANONICAL_ALIASES[normalized] || CANONICAL_ALIASES[pathname];
+  if (canonicalKey && PAGE_META[canonicalKey]) return PAGE_META[canonicalKey];
 
   // Alias /seguro-salud/... → clave corta
   const aliasKey = SEGURO_SALUD_ALIASES[pathname] || SEGURO_SALUD_ALIASES[normalized + "/"];

@@ -129,13 +129,20 @@ const App = () => (
               <Route path="/adeslas-body-factory"   element={<AdeslaBodyFactory />} />
               <Route path="/adeslas-adif-renfe"     element={<AdeslaAdifRenfe />} />
 
-              {/* Dental & otros */}
-              <Route path="/adeslas-dental"         element={<AdeslasDental />} />
-              <Route path="/adeslas-decesos"        element={<AdeslaDecesos />} />
-              <Route path="/adesla-decesos-prima-unica" element={<AdeslaDeceosPrimaUnica />} />
-              <Route path="/adeslas-mascotas"       element={<AdeslasMascotas />} />
-              <Route path="/adeslas-asistencia-viaje"element={<AdeslaAsistenciaViaje />} />
-              <Route path="/adeslas-accidentes"     element={<AdeslaAccidentes />} />
+              {/* Dental & otros — rutas internas + URLs canónicas del sitemap */}
+              <Route path="/adeslas-dental"              element={<AdeslasDental />} />
+              <Route path="/seguro-dental"               element={<AdeslasDental />} />
+              <Route path="/adeslas-decesos"             element={<AdeslaDecesos />} />
+              <Route path="/seguro-decesos"              element={<AdeslaDecesos />} />
+              <Route path="/adesla-decesos-prima-unica"  element={<AdeslaDeceosPrimaUnica />} />
+              <Route path="/seguro-decesos-prima-unica"  element={<AdeslaDeceosPrimaUnica />} />
+              <Route path="/seguro-adeslas-decesos-prima-unica" element={<AdeslaDeceosPrimaUnica />} />
+              <Route path="/adeslas-mascotas"            element={<AdeslasMascotas />} />
+              <Route path="/seguro-mascotas"             element={<AdeslasMascotas />} />
+              <Route path="/adeslas-asistencia-viaje"    element={<AdeslaAsistenciaViaje />} />
+              <Route path="/adeslas-asistencia-en-viaje" element={<AdeslaAsistenciaViaje />} />
+              <Route path="/adeslas-accidentes"          element={<AdeslaAccidentes />} />
+              <Route path="/seguro-accidentes"           element={<AdeslaAccidentes />} />
 
               {/* Páginas por segmento */}
               <Route path="/seguro-medico-individual" element={<SeguroIndividual />} />
@@ -149,10 +156,12 @@ const App = () => (
               <Route path="/cuadro-medico"         element={<CuadroMedico />} />
               <Route path="/contacto"              element={<Contacto />} />
               <Route path="/blog"                  element={<BlogSalud />} />
+              <Route path="/adeslas-blog"          element={<BlogSalud />} />
               <Route path="/blog/:slug"            element={<BlogArticle />} />
               <Route path="/politica-de-privacidad"element={<PoliticaPrivacidad />} />
               <Route path="/mi-precio/:slug"       element={<MiPrecio />} />
               <Route path="/precios-ofertas"       element={<PreciosOfertas />} />
+              <Route path="/precios-y-ofertas"     element={<PreciosOfertas />} />
 
               {/* ── Rutas /seguro-salud/ — URLs canónicas enlazadas desde nav, footer y tarificador ── */}
               <Route path="/seguro-salud/adeslas-go/"                                                          element={<AdeslaGo />} />
