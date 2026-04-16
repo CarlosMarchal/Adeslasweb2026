@@ -9,6 +9,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PhonePopupProvider } from "./components/PhonePopupContext";
+import { HelmetProvider } from "react-helmet-async";
 
 /* ── Home page: eager (crítico para LCP en la ruta /) ── */
 import Index from "./views/Index";
@@ -97,6 +98,7 @@ const ScrollToTop = () => {
 };
 
 const App = () => (
+  <HelmetProvider>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -171,6 +173,7 @@ const App = () => (
       </PhonePopupProvider>
     </TooltipProvider>
   </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;
