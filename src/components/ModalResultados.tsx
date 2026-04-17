@@ -93,6 +93,26 @@ const HIGHLIGHTED_IDS = new Set(['completa', 'completaPlus']);
 // Columnas que muestran la pill "3 años sin subidas"
 const PROMO_IDS       = new Set(['completa', 'completaPlus']);
 
+// ─── Categorías de producto (para cabecera agrupada) ─────────────────────────
+const CATEGORY_MAP: Record<string, string> = {
+  ya:               'Ambulatorio',
+  esencial:         'Completo',
+  plena:            'Completo',
+  completaPlus:     'Completo',
+  completaPlusPlus: 'Completo',
+  completa:         'Completo',
+  reembolso:        'Reembolso',
+  seniors:          'Sénior',
+  'seniors-total':  'Sénior',
+};
+
+const CATEGORY_STYLE: Record<string, { color: string; border: string; bg: string }> = {
+  Ambulatorio: { color: '#475569', border: '#94A3B8', bg: '#F8FAFC' },
+  Completo:    { color: '#1D4ED8', border: '#3B82F6', bg: '#EFF6FF' },
+  Reembolso:   { color: '#C2410C', border: '#F97316', bg: '#FFF7ED' },
+  Sénior:      { color: '#6D28D9', border: '#8B5CF6', bg: '#F5F3FF' },
+};
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function getCoverage(productId: string, key: FeatureKey): string | boolean | false {
   // Siempre incluidos en todos los productos
@@ -248,6 +268,17 @@ export default function ModalResultados({
   // Hover por fila
   const [hoveredRow, setHoveredRow] = useState<string | null>(null);
 
+  // Grupos de categoría para la cabecera agrupada (Ambulatorio / Completo / Reembolso)
+  const categoryGroups = results.reduce<{ label: string; count: number }[]>((acc, r) => {
+    const cat = CATEGORY_MAP[r.product.id] ?? 'Completo';
+    if (acc.length === 0 || acc[acc.length - 1].label !== cat) {
+      acc.push({ label: cat, count: 1 });
+    } else {
+      acc[acc.length - 1].count++;
+    }
+    return acc;
+  }, []);
+
   // Navegar a contratación
   const handleContratar = (result: ProductResult) => {
     const params = new URLSearchParams();
@@ -398,8 +429,47 @@ export default function ModalResultados({
 
                   {/* ════ CABECERAS ════ */}
                   <thead>
+
+                    {/* ── Fila de categorías agrupadas ── */}
                     <tr>
-                      {/* Celda esquina — vacía intencionalmente */}
+                      {/* Celda esquina superior — sticky */}
+                      <th style={{
+                        position: 'sticky', left: 0, zIndex: 22,
+                        backgroundColor: '#F8FAFC',
+                        borderRight: '1px solid #DDE5EF',
+                        borderBottom: '1px solid #DDE5EF',
+                        padding: 0,
+                        boxShadow: hasScrolled ? '4px 0 14px rgba(0,48,135,0.12)' : 'none',
+                        transition: 'box-shadow 0.2s',
+                      }} />
+                      {categoryGroups.map((group) => {
+                        const s = CATEGORY_STYLE[group.label] ?? CATEGORY_STYLE['Completo'];
+                        return (
+                          <th
+                            key={group.label}
+                            colSpan={group.count}
+                            style={{
+                              backgroundColor: s.bg,
+                              borderBottom: `2px solid ${s.border}`,
+                              borderLeft: `1px solid ${s.border}`,
+                              padding: '7px 10px',
+                              textAlign: 'center',
+                            }}
+                          >
+                            <span style={{
+                              fontSize: 10, fontWeight: 800, letterSpacing: '0.1em',
+                              textTransform: 'uppercase', color: s.color,
+                            }}>
+                              {group.label}
+                            </span>
+                          </th>
+                        );
+                      })}
+                    </tr>
+
+                    {/* ── Fila de columnas de producto ── */}
+                    <tr>
+                      {/* Celda esquina inferior — sticky */}
                       <th style={{
                         position: 'sticky', left: 0, zIndex: 20,
                         backgroundColor: '#F8FAFC',
@@ -415,8 +485,7 @@ export default function ModalResultados({
                         const isHL    = HIGHLIGHTED_IDS.has(result.product.id);
                         const hasDisc = result.originalPrice !== undefined;
                         const { int, dec } = fmtPrice(result.price);
-                        const copago   = COPAGO_PILL[result.product.id]   ?? { label: 'Con copago', bg: '#FEF3C7', color: '#92400E', border: '#FCD34D' };
-                        const coverage = COVERAGE_PILL[result.product.id] ?? { label: 'Completa',   bg: '#EFF6FF', color: '#1D4ED8', border: '#BFDBFE' };
+                        const copago = COPAGO_PILL[result.product.id] ?? { label: 'Con copago', bg: '#FEF3C7', color: '#92400E', border: '#FCD34D' };
 
                         return (
                           <th
@@ -435,7 +504,7 @@ export default function ModalResultados({
                               padding: '12px 10px 14px',
                               display: 'flex', flexDirection: 'column',
                               alignItems: 'center', gap: 6,
-                              minHeight: 152,
+                              minHeight: 138,
                             }}>
                               {/* Nombre producto */}
                               <p style={{
@@ -479,8 +548,9 @@ export default function ModalResultados({
                                 )}
                               </div>
 
-                              {/* Pills — empujadas al fondo con mt-auto */}
+                              {/* Pills — copago + promo (cobertura movida a cabecera de grupo) */}
                               <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 5, alignItems: 'center', width: '100%' }}>
+                                {/* Pill copago */}
                                 <span style={{
                                   display: 'inline-block', fontSize: 10, fontWeight: 700,
                                   padding: '3px 9px', borderRadius: 20, lineHeight: 1.5,
@@ -490,16 +560,6 @@ export default function ModalResultados({
                                   border: isHL ? '1px solid rgba(255,255,255,0.3)' : `1px solid ${copago.border}`,
                                 }}>
                                   {copago.label}
-                                </span>
-                                <span style={{
-                                  display: 'inline-block', fontSize: 10, fontWeight: 700,
-                                  padding: '3px 9px', borderRadius: 20, lineHeight: 1.5,
-                                  whiteSpace: 'nowrap',
-                                  backgroundColor: isHL ? 'rgba(255,255,255,0.13)' : coverage.bg,
-                                  color: isHL ? 'rgba(255,255,255,0.9)' : coverage.color,
-                                  border: isHL ? '1px solid rgba(255,255,255,0.2)' : `1px solid ${coverage.border}`,
-                                }}>
-                                  {coverage.label}
                                 </span>
 
                                 {/* Pill promocional: 3 años sin subidas */}
