@@ -78,6 +78,14 @@ function puntosXAsegurado(cat: CampaignCat, totalAsegurados: number): number {
   return 0;
 }
 
+/* ─── Puntos con módulo dental activo (valores exactos por categoría) ── */
+function puntosXAseguradoConDental(cat: CampaignCat, totalAsegurados: number): number {
+  const es3plus = totalAsegurados >= 3;
+  if (cat === "go")        return es3plus ? 750 : 500;   // Go: +250 pts flat
+  if (cat === "salud_sin") return es3plus ? 1500 : 750;  // Salud sin dental → nivel salud_con
+  return puntosXAsegurado(cat, totalAsegurados);          // resto sin cambio
+}
+
 /* ─── Cálculo de abono en cuenta por asegurado (Seniors) ────── */
 function abonoXAsegurado(cat: CampaignCat, totalAsegurados: number): number {
   const es3plus = totalAsegurados >= 3;
@@ -256,10 +264,14 @@ export default function TarificadorInterno() {
         // Puntos o abono — con bonus dental cuando el toggle está activo y el producto no lo incluye ya
         const conDentalBonus = includeDental && !dentalYaIncluido && !isSeniors && cat !== "sin_puntos";
         const puntosXAsegBase = isSeniors ? 0 : puntosXAsegurado(cat, asegurados.length);
-        const puntosXAseg = conDentalBonus ? Math.round(puntosXAsegBase * 1.5) : puntosXAsegBase;
+        const puntosXAseg = conDentalBonus
+          ? puntosXAseguradoConDental(cat, asegurados.length)
+          : puntosXAsegBase;
         const totalPuntos = puntosXAseg * validCount;
         const abonoXAseg  = isSeniors ? abonoXAsegurado(cat, asegurados.length) : 0;
         const totalAbono  = abonoXAseg * validCount;
+        // Fórmula tarjeta 750 pts = 75 €: se activa con dental toggle O si el producto ya incluye dental (salud_con)
+        const useDentalTarjetaFormula = conDentalBonus || cat === "salud_con";
 
         return {
           product, cat, isSeniors,
@@ -268,7 +280,7 @@ export default function TarificadorInterno() {
           preciosPorPersona, hayNulos,
           totalPuntos, totalAbono,
           puntosXAseg, abonoXAseg,
-          conDentalBonus,
+          conDentalBonus, useDentalTarjetaFormula,
           pctComercialEfectivo,
         };
       })
@@ -600,7 +612,7 @@ export default function TarificadorInterno() {
               preciosPorPersona, hayNulos,
               totalPuntos, totalAbono,
               puntosXAseg, abonoXAseg,
-              conDentalBonus,
+              conDentalBonus, useDentalTarjetaFormula,
               pctComercialEfectivo,
             }) => (
               <div
@@ -639,7 +651,7 @@ export default function TarificadorInterno() {
                     {/* Incentivo campaña */}
                     <div className="mt-1.5 flex flex-wrap gap-2">
                       {!isSeniors && totalPuntos > 0 && (() => {
-                        const tarjeta = conDentalBonus
+                        const tarjeta = useDentalTarjetaFormula
                           ? Math.floor(totalPuntos / 750) * 75
                           : Math.floor(totalPuntos / 500) * 50;
                         return (
@@ -803,11 +815,11 @@ export default function TarificadorInterno() {
                                     {totalPuntos.toLocaleString()} puntos
                                   </span>
                                 </p>
-                                {(conDentalBonus ? Math.floor(totalPuntos / 750) * 75 : Math.floor(totalPuntos / 500) * 50) > 0 && (
+                                {(useDentalTarjetaFormula ? Math.floor(totalPuntos / 750) * 75 : Math.floor(totalPuntos / 500) * 50) > 0 && (
                                   <p className="text-xs font-bold text-slate-800 mt-1.5 bg-white border border-slate-300 rounded-lg px-3 py-1.5 inline-block">
                                     🎴 Tarjeta prepago disponible:{" "}
                                     <span className="text-base text-slate-900">
-                                      {conDentalBonus ? Math.floor(totalPuntos / 750) * 75 : Math.floor(totalPuntos / 500) * 50} €
+                                      {useDentalTarjetaFormula ? Math.floor(totalPuntos / 750) * 75 : Math.floor(totalPuntos / 500) * 50} €
                                     </span>
                                     <span className="font-normal text-slate-400 ml-1">
                                       (o canjea por otros premios)
