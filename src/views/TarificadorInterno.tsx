@@ -157,7 +157,7 @@ const DENTAL_YA_INCLUIDO = new Set([
 
 // Precio del módulo dental según nº de asegurados (coste por póliza, no por persona)
 function getPrecioDental(numAsegurados: number): number {
-  if (numAsegurados === 1) return 8.90;
+  if (numAsegurados === 1) return 8.93;
   if (numAsegurados === 2) return 12.76;
   if (numAsegurados <= 4) return 17.85;
   return 21.25;
