@@ -253,8 +253,10 @@ export default function TarificadorInterno() {
         const descComercial = baseTrasFamiliar * (pctComercialEfectivo / 100);
         const total = baseTrasFamiliar - descComercial;
 
-        // Puntos o abono
-        const puntosXAseg = isSeniors ? 0 : puntosXAsegurado(cat, asegurados.length);
+        // Puntos o abono — con bonus dental cuando el toggle está activo y el producto no lo incluye ya
+        const conDentalBonus = includeDental && !dentalYaIncluido && !isSeniors && cat !== "sin_puntos";
+        const puntosXAsegBase = isSeniors ? 0 : puntosXAsegurado(cat, asegurados.length);
+        const puntosXAseg = conDentalBonus ? Math.round(puntosXAsegBase * 1.5) : puntosXAsegBase;
         const totalPuntos = puntosXAseg * validCount;
         const abonoXAseg  = isSeniors ? abonoXAsegurado(cat, asegurados.length) : 0;
         const totalAbono  = abonoXAseg * validCount;
@@ -266,6 +268,7 @@ export default function TarificadorInterno() {
           preciosPorPersona, hayNulos,
           totalPuntos, totalAbono,
           puntosXAseg, abonoXAseg,
+          conDentalBonus,
           pctComercialEfectivo,
         };
       })
@@ -597,6 +600,7 @@ export default function TarificadorInterno() {
               preciosPorPersona, hayNulos,
               totalPuntos, totalAbono,
               puntosXAseg, abonoXAseg,
+              conDentalBonus,
               pctComercialEfectivo,
             }) => (
               <div
@@ -635,7 +639,9 @@ export default function TarificadorInterno() {
                     {/* Incentivo campaña */}
                     <div className="mt-1.5 flex flex-wrap gap-2">
                       {!isSeniors && totalPuntos > 0 && (() => {
-                        const tarjeta = Math.floor(totalPuntos / 500) * 50;
+                        const tarjeta = conDentalBonus
+                          ? Math.floor(totalPuntos / 750) * 75
+                          : Math.floor(totalPuntos / 500) * 50;
                         return (
                           <>
                             <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full">
@@ -797,11 +803,11 @@ export default function TarificadorInterno() {
                                     {totalPuntos.toLocaleString()} puntos
                                   </span>
                                 </p>
-                                {Math.floor(totalPuntos / 500) * 50 > 0 && (
+                                {(conDentalBonus ? Math.floor(totalPuntos / 750) * 75 : Math.floor(totalPuntos / 500) * 50) > 0 && (
                                   <p className="text-xs font-bold text-slate-800 mt-1.5 bg-white border border-slate-300 rounded-lg px-3 py-1.5 inline-block">
                                     🎴 Tarjeta prepago disponible:{" "}
                                     <span className="text-base text-slate-900">
-                                      {Math.floor(totalPuntos / 500) * 50} €
+                                      {conDentalBonus ? Math.floor(totalPuntos / 750) * 75 : Math.floor(totalPuntos / 500) * 50} €
                                     </span>
                                     <span className="font-normal text-slate-400 ml-1">
                                       (o canjea por otros premios)
