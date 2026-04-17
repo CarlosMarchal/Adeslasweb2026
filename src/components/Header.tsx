@@ -522,7 +522,7 @@ const Header = () => {
           >
             <div className="max-w-[1200px] mx-auto px-8 py-9 flex items-start gap-0">
               {megaOpen === "seguros" && <MegaSegurosContent onNavigate={() => setMegaOpen(null)} />}
-              {megaOpen === "planes" && <MegaPlanesContent onNavigate={() => setMegaOpen(null)} />}
+              {megaOpen === "planes" && <MegaPlanesContent onNavigate={() => setMegaOpen(null)} onOpenPhonePopup={() => openPhonePopup()} />}
             </div>
           </motion.div>
         )}
@@ -726,7 +726,7 @@ const MegaSegurosContent = ({ onNavigate }: { onNavigate: () => void }) => {
 };
 
 /* ───── Mega Planes ───── */
-const MegaPlanesContent = ({ onNavigate }: { onNavigate: () => void }) => (
+const MegaPlanesContent = ({ onNavigate, onOpenPhonePopup }: { onNavigate: () => void; onOpenPhonePopup: () => void }) => (
   <>
     <div className="w-[30%] pr-6 border-r border-borde">
       <div className="label-style mb-2" style={{ color: "#374151" }}>Sin copago</div>
@@ -742,9 +742,13 @@ const MegaPlanesContent = ({ onNavigate }: { onNavigate: () => void }) => (
         <div className="text-lg font-black mt-1 mb-1">Te lo explicamos</div>
         <div className="text-[13px] leading-[1.55]" style={{ color: "rgba(255,255,255,0.70)" }}>Un asesor personal te explica las diferencias en 2 minutos. Sin compromiso.</div>
       </div>
-      <Link to="/contacto/" className="block text-center py-2.5 rounded-[7px] font-bold text-sm mt-4 btn-cta-magenta" style={{ backgroundColor: "#E4097D", color: "#fff" }}>
+      <button
+        onClick={() => { onNavigate(); onOpenPhonePopup(); }}
+        className="block w-full text-center py-2.5 rounded-[7px] font-bold text-sm mt-4 btn-cta-magenta cursor-pointer"
+        style={{ backgroundColor: "#E4097D", color: "#fff" }}
+      >
         Hablar con un asesor →
-      </Link>
+      </button>
     </div>
   </>
 );
