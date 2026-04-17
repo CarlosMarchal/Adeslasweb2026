@@ -45,6 +45,8 @@
     "vite.config.ts",
     "vite.config.js",
     "vitest.config.ts",
-    "vitest.config.js"
+    "vitest.config.js",
+    "src/main.tsx",
+    "src/test"
   ]
 }
