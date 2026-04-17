@@ -146,6 +146,23 @@ function labelDental(cat: CampaignCat): string {
   return "Sin dental";
 }
 
+/* ─── Módulo dental ─────────────────────────────────────────── */
+// Productos que ya incluyen dental: no se suma el módulo adicional
+const DENTAL_YA_INCLUIDO = new Set([
+  "completa",      // Plena Total
+  "completaPlus",  // Plena Vital Total
+  "seniors-total", // Seniors Total
+  "pymes-total",   // Pymes Total
+]);
+
+// Precio del módulo dental según nº de asegurados (coste por póliza, no por persona)
+function getPrecioDental(numAsegurados: number): number {
+  if (numAsegurados === 1) return 8.90;
+  if (numAsegurados === 2) return 12.76;
+  if (numAsegurados <= 4) return 17.85;
+  return 21.25;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    COMPONENTE PRINCIPAL
 ═══════════════════════════════════════════════════════════════ */
@@ -162,6 +179,7 @@ export default function TarificadorInterno() {
   const [descuentoPymes, setDescuentoPymes]         = useState<number>(0);
   const [mostrarPremios, setMostrarPremios] = useState(false);
   const [grupo, setGrupo] = useState<"general" | "seniors" | "pymes">("general");
+  const [includeDental, setIncludeDental] = useState(false);
 
   /* ── Estado modal presupuesto PDF ── */
   const [showQuoteModal, setShowQuoteModal]   = useState(false);
@@ -213,12 +231,20 @@ export default function TarificadorInterno() {
         const validCount = preciosPorPersona.filter((p) => p.precio !== null).length;
         const subtotal = preciosPorPersona.reduce((s, p) => s + (p.precio ?? 0), 0);
 
+        // Módulo dental: precio por póliza si está activado y el producto no lo incluye ya
+        const dentalYaIncluido = DENTAL_YA_INCLUIDO.has(product.id);
+        const dentalExtra = includeDental && !dentalYaIncluido
+          ? getPrecioDental(asegurados.length)
+          : 0;
+        const subtotalConDental = subtotal + dentalExtra;
+
         // 1) Descuento automático por volumen (reglas específicas por producto)
         const ratioAuto = getAutoDiscount(product.id, asegurados.length);
         const descAuto = subtotal * ratioAuto;
-        const baseTrasFamiliar = subtotal - descAuto;
+        // Base dental no está sujeta al descuento de volumen (ya tiene precio escalonado)
+        const baseTrasFamiliar = (subtotal - descAuto) + dentalExtra;
 
-        // 2) Descuento comercial: slider independiente según producto
+        // 2) Descuento comercial: slider independiente según producto — va sobre el total (base + dental)
         // Adeslas GO no admite descuento comercial
         const pctComercialEfectivo =
           product.id === "go"        ? 0 :
@@ -235,7 +261,8 @@ export default function TarificadorInterno() {
 
         return {
           product, cat, isSeniors,
-          subtotal, descAuto, ratioAuto, descComercial, total,
+          subtotal, subtotalConDental, dentalExtra, dentalYaIncluido,
+          descAuto, ratioAuto, descComercial, total,
           preciosPorPersona, hayNulos,
           totalPuntos, totalAbono,
           puntosXAseg, abonoXAseg,
@@ -244,7 +271,7 @@ export default function TarificadorInterno() {
       })
       .filter((r) => r.subtotal > 0 && esElegible(r.product.id))
       .sort((a, b) => a.total - b.total);
-  }, [asegurados, zona, pctGeneral, pctPymes, hayMayoresDe70, contMenoresDe65]);
+  }, [asegurados, zona, pctGeneral, pctPymes, hayMayoresDe70, contMenoresDe65, includeDental]);
 
   /* ── Filtrado por grupo seleccionado ── */
   const SENIORS_IDS = new Set(["seniors", "seniors-total"]);
@@ -437,6 +464,42 @@ export default function TarificadorInterno() {
                 )}
               </div>
 
+              {/* Módulo dental (solo para Seguros de salud) */}
+              {grupo === "general" && (
+                <div className={`rounded-xl border-2 p-4 transition-all col-span-full ${
+                  includeDental ? "border-teal-400 bg-teal-50" : "border-slate-100 bg-slate-50"
+                }`}>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-xl">🦷</span>
+                      <div>
+                        <p className="text-sm font-semibold text-slate-700">
+                          Incluir módulo dental
+                        </p>
+                        <p className="text-xs text-slate-400">
+                          +{getPrecioDental(asegurados.length).toFixed(2).replace(".", ",")} €/mes
+                          {" · "}
+                          {asegurados.length === 1 ? "1 persona" :
+                           asegurados.length === 2 ? "2 personas" :
+                           asegurados.length <= 4  ? "3-4 personas" : "5+ personas"}
+                          {" · "}
+                          Plena Total, Vital Total y Seniors Total ya lo incluyen
+                        </p>
+                      </div>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        className="sr-only peer"
+                        checked={includeDental}
+                        onChange={(e) => setIncludeDental(e.target.checked)}
+                      />
+                      <div className="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-500"></div>
+                    </label>
+                  </div>
+                </div>
+              )}
+
               {/* Descuento exclusivo Pymes Total */}
               <div className={`bg-pink-50 border border-pink-200 rounded-xl p-4 ${grupo !== "pymes" ? "hidden" : ""}`}>
                 <label className="block text-sm font-semibold text-pink-700 mb-1">
@@ -529,7 +592,8 @@ export default function TarificadorInterno() {
 
             {resultadosFiltrados.map(({
               product, cat, isSeniors,
-              subtotal, descAuto, ratioAuto, descComercial, total,
+              subtotal, dentalExtra, dentalYaIncluido,
+              descAuto, ratioAuto, descComercial, total,
               preciosPorPersona, hayNulos,
               totalPuntos, totalAbono,
               puntosXAseg, abonoXAseg,
@@ -599,9 +663,10 @@ export default function TarificadorInterno() {
                     </div>
 
                     {/* Resumen descuentos aplicados en la fila */}
-                    {(ratioAuto > 0 || pctComercialEfectivo > 0) && (
+                    {(ratioAuto > 0 || pctComercialEfectivo > 0 || dentalExtra > 0) && (
                       <p className="text-xs text-slate-400 mt-0.5">
                         Bruto {subtotal.toFixed(2)} €
+                        {dentalExtra > 0 && ` · 🦷 +${dentalExtra.toFixed(2)} €`}
                         {ratioAuto > 0 && ` · ${labelAutoDiscount(product.id, asegurados.length)} -${descAuto.toFixed(2)} €`}
                         {pctComercialEfectivo > 0 && ` · Comercial -${descComercial.toFixed(2)} €`}
                       </p>
@@ -610,9 +675,9 @@ export default function TarificadorInterno() {
 
                   <div className="flex items-center gap-4 shrink-0">
                     <div className="text-right">
-                      {(ratioAuto > 0 || pctComercialEfectivo > 0) && (
+                      {(ratioAuto > 0 || pctComercialEfectivo > 0 || dentalExtra > 0) && (
                         <p className="text-xs line-through text-slate-400">
-                          {subtotal.toFixed(2)} €
+                          {(subtotal + dentalExtra).toFixed(2)} €
                         </p>
                       )}
                       {ratioAuto > 0 && (
@@ -668,6 +733,27 @@ export default function TarificadorInterno() {
                           <td colSpan={3} className="pt-3 font-semibold text-slate-600">Subtotal bruto</td>
                           <td className="pt-3 text-right font-bold text-slate-800">{subtotal.toFixed(2)} €</td>
                         </tr>
+                        {/* Módulo dental */}
+                        {dentalExtra > 0 && (
+                          <tr>
+                            <td colSpan={3} className="py-1 text-teal-600 font-semibold">
+                              🦷 Módulo dental ({asegurados.length === 1 ? "1 persona" : asegurados.length === 2 ? "2 personas" : asegurados.length <= 4 ? "3-4 personas" : "5+ personas"})
+                            </td>
+                            <td className="py-1 text-right text-teal-600 font-bold">
+                              +{dentalExtra.toFixed(2)} €
+                            </td>
+                          </tr>
+                        )}
+                        {dentalYaIncluido && (
+                          <tr>
+                            <td colSpan={3} className="py-1 text-teal-600 font-semibold">
+                              🦷 Módulo dental
+                            </td>
+                            <td className="py-1 text-right">
+                              <span className="text-xs font-bold bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full">Incluido</span>
+                            </td>
+                          </tr>
+                        )}
                         {ratioAuto > 0 && (
                           <tr>
                             <td colSpan={3} className="py-1 text-green-600 font-semibold">
