@@ -88,6 +88,11 @@ const COVERAGE_PILL: Record<string, PillDef> = {
   'seniors-total':  { label: '+63 años',       bg: '#F5F3FF', color: '#6D28D9', border: '#DDD6FE' },
 };
 
+// Nombres cortos para la tabla (no afecta SEO ni el resto de la web)
+const TABLE_NAME: Record<string, string> = {
+  completaPlus: 'Adeslas Vital Total',
+};
+
 // Columnas con fondo azul destacado
 const HIGHLIGHTED_IDS = new Set(['completa', 'completaPlus']);
 // Columnas que muestran la pill "3 años sin subidas"
@@ -107,8 +112,8 @@ const CATEGORY_MAP: Record<string, string> = {
 };
 
 const CATEGORY_STYLE: Record<string, { color: string; border: string; bg: string }> = {
-  Ambulatorio: { color: '#475569', border: '#94A3B8', bg: '#F8FAFC' },
-  Completo:    { color: '#1D4ED8', border: '#3B82F6', bg: '#EFF6FF' },
+  Ambulatorio: { color: '#C2410C', border: '#F97316', bg: '#FFF7ED' },
+  Completo:    { color: '#C2410C', border: '#F97316', bg: '#FFF7ED' },
   Reembolso:   { color: '#C2410C', border: '#F97316', bg: '#FFF7ED' },
   Sénior:      { color: '#6D28D9', border: '#8B5CF6', bg: '#F5F3FF' },
 };
@@ -516,7 +521,7 @@ export default function ModalResultados({
                                 hyphens: 'auto',
                                 width: '100%',
                               }}>
-                                {result.product.name}
+                                {TABLE_NAME[result.product.id] ?? result.product.name}
                               </p>
 
                               {/* Precio */}
