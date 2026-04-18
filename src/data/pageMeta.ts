@@ -34,7 +34,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       "Contrata tu seguro Adeslas directamente online. GO desde 21€, Plena Vital desde 38€, sin copagos desde 62€. +51.000 médicos. Calcula tu precio en 2 minutos.",
     canonical: `${BASE}/`,
     ogImage: `${BASE}/og-default.jpg`,
-    preloadImage: "/hero-adeslas-seguros-medicos.webp",
+    preloadImage: "/images/hero-adeslas-seguros-medicos.webp",
   },
 
   // ── PRODUCTOS DE SALUD ────────────────────────────────────────────

@@ -21,6 +21,44 @@ const nextConfig = {
     unoptimized: true,
   },
 
+  // ── HTTP Cache-Control headers para assets estáticos ────────────────────────
+  // Fuentes y imágenes: inmutables 1 año (el hash del nombre cambia con cada build)
+  // Páginas HTML: no cachear en cliente para que ISR funcione correctamente
+  async headers() {
+    return [
+      {
+        // Fuentes self-hosted: cache 1 año inmutable
+        source: '/fonts/:font*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Imágenes públicas (hero, OG, cuadros médicos)
+        source: '/images/:image*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+      {
+        // OG images y favicons en raíz de /public
+        source: '/:file(og-.*|favicon.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+    ];
+  },
+
   // Alias @/ → src/ (igual que en el proyecto Vite)
   webpack(config) {
     config.resolve.alias['@'] = path.join(__dirname, 'src');

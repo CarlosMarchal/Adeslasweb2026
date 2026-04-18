@@ -23,10 +23,16 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        {/* ── Fuentes Lato ─────────────────────────────────────────────────── */}
+        {/* ── Fuentes Lato (self-hosted, sin petición externa) ─────────────── */}
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-300-normal.woff2" crossOrigin="anonymous" />
         <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-400-normal.woff2" crossOrigin="anonymous" />
         <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-700-normal.woff2" crossOrigin="anonymous" />
         <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-900-normal.woff2" crossOrigin="anonymous" />
+
+        {/* ── GTM / Google network hints ───────────────────────────────────── */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
         {/* ── HubSpot network hints ────────────────────────────────────────── */}
         <link rel="preconnect" href="https://js.hs-scripts.com" />
@@ -36,16 +42,13 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://js.hs-banner.com" />
         <link rel="dns-prefetch" href="https://js.hsadspixel.net" />
 
-        {/* ── Google Tag Manager (dataLayer init — MUST be in <head>) ──────── */}
-        <Script
-          id="gtm-init"
-          strategy="beforeInteractive"
+        {/* ── Google Tag Manager — dataLayer init (inline, no bloquea render) ─
+            Solo inicializa el array; el script gtm.js se carga afterInteractive
+            para no penalizar LCP/FCP. Los eventos previos a la carga de GTM
+            se encolan en dataLayer y se procesan cuando GTM está listo. ─────── */}
+        <script
           dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${GTM_ID}');`,
+            __html: `window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`,
           }}
         />
       </head>
@@ -63,11 +66,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         {children}
 
-        {/* ── HubSpot tracking pixel — async/defer para no bloquear LCP ───── */}
+        {/* ── GTM loader — afterInteractive: no bloquea LCP/FCP ───────────── */}
+        <Script
+          id="gtm-loader"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
+        />
+
+        {/* ── HubSpot tracking pixel — lazyOnload: carga en idle ───────────── */}
         <Script
           id="hs-script"
           src={`//js.hs-scripts.com/${HS_PORTAL}.js`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>
