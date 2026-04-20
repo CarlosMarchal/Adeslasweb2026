@@ -209,12 +209,22 @@ const ProductHero = ({
   const { openPhonePopup } = usePhonePopup();
   return (
   <section
-    className="relative overflow-hidden bg-cover bg-center flex items-center"
-    style={{ backgroundImage: `url(${imgSrc(data.heroImage || heroBg)})`, minHeight: "520px" }}
+    className="relative overflow-hidden flex items-center"
+    style={{ minHeight: "520px" }}
     role="img"
     aria-label={`${data.heroTitle}${data.heroHighlight ? " " + data.heroHighlight : ""} — Adeslas seguros médicos privados`}
   >
-    {/* Dark overlay — same approach as home HeroSection */}
+    {/* LCP FIX: <img> visible al preload scanner vs background-image CSS que no lo es */}
+    <img
+      src={imgSrc(data.heroImage || heroBg)}
+      alt=""
+      aria-hidden="true"
+      fetchPriority="high"
+      loading="eager"
+      decoding="async"
+      className="absolute inset-0 w-full h-full object-cover object-center"
+    />
+    {/* Dark overlay */}
     <div className="absolute inset-0 bg-black/65" />
 
     <div className="container mx-auto px-4 py-12 lg:py-10 relative z-10 w-full">

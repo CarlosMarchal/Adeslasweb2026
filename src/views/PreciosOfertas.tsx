@@ -212,9 +212,19 @@ const PreciosOfertasInner = () => {
 
       {/* ────── Hero ────── */}
       <section
-        className="relative overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: `url(${HERO_BG})`, minHeight: "460px" }}
+        className="relative overflow-hidden"
+        style={{ minHeight: "460px" }}
       >
+        {/* LCP FIX: <img> en lugar de background-image CSS — visible al preload scanner */}
+        <img
+          src={HERO_BG}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
         {/* Dark overlay */}
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />
 

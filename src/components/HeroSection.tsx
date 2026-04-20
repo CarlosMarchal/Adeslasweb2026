@@ -6,7 +6,22 @@ const HERO_BG = "/images/hero-adeslas-seguros-medicos.webp";
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${HERO_BG})`, minHeight: "460px" }} role="img" aria-label="Seguros médicos Adeslas 2026 — compara todos los planes Adeslas y calcula tu precio online desde 21€/mes">
+    <section className="relative overflow-hidden" style={{ minHeight: "460px" }} role="img" aria-label="Seguros médicos Adeslas 2026 — compara todos los planes Adeslas y calcula tu precio online desde 21€/mes">
+      {/*
+       * LCP FIX: imagen hero como <img> en lugar de CSS background-image.
+       * El preload scanner del navegador descubre <img> en el HTML inicial y la
+       * descarga en paralelo con el resto de recursos. background-image CSS es
+       * invisible al scanner hasta que se parsea el CSS → +1-2s de LCP en móvil.
+       */}
+      <img
+        src={HERO_BG}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        loading="eager"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      />
       {/* Dark overlay */}
       <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />
 

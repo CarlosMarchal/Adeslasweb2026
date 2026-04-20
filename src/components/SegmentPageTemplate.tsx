@@ -82,11 +82,21 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
       <main>
         {/* ── Hero with 2 columns — full photo + dark overlay, same as home ── */}
         <section
-          className="relative overflow-hidden bg-cover bg-center flex items-center"
-          style={{ backgroundImage: `url(${imgSrc(data.heroBg || defaultHeroBg)})`, minHeight: "520px" }}
+          className="relative overflow-hidden flex items-center"
+          style={{ minHeight: "520px" }}
           role="img"
           aria-label={`${data.heroTitle} — Adeslas seguros médicos privados`}
         >
+          {/* LCP FIX: <img> visible al preload scanner vs background-image CSS */}
+          <img
+            src={imgSrc(data.heroBg || defaultHeroBg)}
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/65" />
 
