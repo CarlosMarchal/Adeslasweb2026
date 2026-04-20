@@ -421,7 +421,13 @@ export function useSeo({
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="robots" content={robotsContent} />
-        <link rel="canonical" href={canonical} />
+        {/*
+         * NOTA: NO añadir <link rel="canonical"> aquí.
+         * Next.js generateMetadata() ya inyecta el canonical en el HTML estático.
+         * Como el SPA se carga con ssr:false, react-helmet-async no puede reemplazar
+         * ese tag — sólo añade un segundo, causando MULTIPLE_LINKS en HubSpot/GSC.
+         * La fuente de verdad del canonical es src/data/pageMeta.ts.
+         */}
 
         {/* LCP hero image preload — solo cuando se pasa preloadImage */}
         {preloadImage && (

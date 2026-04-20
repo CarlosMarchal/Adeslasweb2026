@@ -31,7 +31,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/": {
     title: "Seguros Médicos Adeslas 2026 | +51.000 Médicos · Desde 21€/mes",
     description:
-      "Contrata tu seguro Adeslas directamente online. GO desde 21€, Plena Vital desde 38€, sin copagos desde 62€. +51.000 médicos. Calcula tu precio en 2 minutos.",
+      "Contrata tu seguro Adeslas online. GO desde 21€, Plena Vital desde 38€, sin copagos desde 62€. +51.000 médicos. Calcula tu precio en 2 minutos.",
     canonical: `${BASE}/`,
     ogImage: `${BASE}/og-default.jpg`,
     preloadImage: "/images/hero-adeslas-seguros-medicos.webp",
@@ -47,7 +47,7 @@ export const PAGE_META: Record<string, PageMeta> = {
     preloadImage: "/images/seguro-medico-adeslas-go.webp",
   },
   "/adeslas-plena-vital": {
-    title: "Adeslas Plena Vital | Hospitalización Completa · Copago Máx. 300€ · Desde 38€",
+    title: "Adeslas Plena Vital | Hospitalización · Copago Máx. 300€ · Desde 38€",
     description:
       "Seguro médico completo con hospitalización y copago máx. 300€/año. +51.000 médicos, sin esperas ni listas de espera. Calcula tu precio en 2 minutos.",
     canonical: `${BASE}/seguro-salud/adeslas-plena-vital/`,
@@ -55,7 +55,7 @@ export const PAGE_META: Record<string, PageMeta> = {
     preloadImage: "/images/seguro-medico-adeslas-plena-vital.webp",
   },
   "/adeslas-plena-vital-total": {
-    title: "Adeslas Plena Vital Total | 3 Años Sin Subida de Prima · Desde 48,50€/mes",
+    title: "Adeslas Plena Vital Total | 3 Años Sin Subidas · Desde 48,50€/mes",
     description:
       "Cobertura completa con dental, psicología y prima garantizada 3 años sin subidas. Copago reducido. El plan más equilibrado precio-cobertura de Adeslas.",
     canonical: `${BASE}/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/`,
@@ -63,15 +63,15 @@ export const PAGE_META: Record<string, PageMeta> = {
     preloadImage: "/images/seguro-medico-adeslas-plena-vital-total.webp",
   },
   "/adeslas-plena-total": {
-    title: "Adeslas Plena Total | Sin Copagos · Dental · Psicología · Desde 83€/mes",
+    title: "Adeslas Plena Total | Sin Copagos · Dental · Desde 83€/mes",
     description:
-      "El seguro médico más completo de Adeslas: sin copago, hospitalización, dental (46 actos), psicología y asistencia en viajes 100.000€. +51.000 médicos. Desde 83€/mes.",
+      "Seguro Adeslas sin copago: hospitalización, dental (46 actos), psicología y asistencia en viajes 100.000€. +51.000 médicos. Desde 83€/mes.",
     canonical: `${BASE}/seguro-salud/adeslas-plena-total/`,
     ogImage: `${BASE}/og-total.jpg`,
     preloadImage: "/images/seguro-medico-adeslas-plena-total.webp",
   },
   "/adeslas-extra-150": {
-    title: "Adeslas Extra 150 | Libre Elección Médica · Reembolso 80% · Cobertura Mundial",
+    title: "Adeslas Extra 150 | Libre Elección · Reembolso 80% · Cobertura Mundial",
     description:
       "Acude a cualquier médico en España o en el mundo. Reembolso del 80% hasta 150.000€/año, sin restricción de especialista ni red médica obligatoria.",
     canonical: `${BASE}/seguro-salud/adeslas-extra-150/`,
@@ -80,7 +80,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/adeslas-plena-plus": {
     title: "Adeslas Plena Plus | Sin Copagos · Cobertura Completa · Desde 62€/mes",
     description:
-      "Sin copago en ningún servicio. Hospitalización, cirugía, parto y todas las especialidades con +51.000 médicos. La opción sin copagos más asequible de Adeslas.",
+      "Sin copago en ningún servicio: hospitalización, cirugía, parto y especialidades. +51.000 médicos. La opción sin copagos más asequible de Adeslas.",
     canonical: `${BASE}/seguro-salud/adeslas-plena-plus/`,
     ogImage: `${BASE}/og-plena-plus.jpg`,
   },
@@ -89,15 +89,15 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/adeslas-seniors": {
     title: "Adeslas Seniors | Seguro Médico Mayores 55-84 Años · Desde 67,50€/mes",
     description:
-      "Seguro médico Adeslas para personas de 55 a 84 años. Asesor personal, oncología, cardiología y rehabilitación. Prima garantizada sin subidas. Desde 67,50€/mes.",
+      "Adeslas Seniors 55-84 años: asesor personal, oncología, cardiología y rehabilitación. Prima garantizada sin subidas. Desde 67,50€/mes.",
     canonical: `${BASE}/seguro-salud/adeslas-seniors/`,
     ogImage: `${BASE}/og-seniors.jpg`,
     preloadImage: "/images/seguro-medico-adeslas-seniors.webp",
   },
   "/adeslas-seniors-total": {
-    title: "Adeslas Seniors Total | Mayores 63-84 Años · Dental · Viajes · Desde 101€",
+    title: "Adeslas Seniors Total | Dental · Viajes · 63-84 Años · Desde 101€",
     description:
-      "Cobertura total Adeslas para personas de 63 a 84 años: dental, psicología y asistencia en viajes. Prima garantizada 3 años sin subidas. Asesor médico personal.",
+      "Adeslas Seniors Total 63-84 años: dental, psicología y asistencia en viajes. Prima garantizada 3 años sin subidas. Asesor médico personal.",
     canonical: `${BASE}/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/`,
     ogImage: `${BASE}/og-seniors-total.jpg`,
   },
@@ -122,7 +122,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/adeslas-extranjeros": {
     title: "Adeslas Extranjeros | Válido para Visado y NIE · Desde 38€/mes",
     description:
-      "Seguro médico homologado para extranjeros residentes y estudiantes en España. Válido para visado, NIE y tramitación inmediata. Cobertura completa desde 38€/mes.",
+      "Seguro médico homologado para extranjeros en España. Válido para visado y NIE. Tramitación inmediata. Cobertura completa desde 38€/mes.",
     canonical: `${BASE}/adeslas-extranjeros/`,
     ogImage: `${BASE}/og-extranjeros.jpg`,
   },
@@ -159,28 +159,28 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/adesla-decesos-prima-unica": {
     title: "Adeslas Decesos Prima Única | Cobertura Vitalicia · Un Solo Pago",
     description:
-      "Seguro de decesos Adeslas con pago de prima única: cobertura vitalicia sin cuotas mensuales. Ideal para mayores de 70 años. Sepelio, repatriación y trámites incluidos.",
+      "Decesos Adeslas de prima única: cobertura vitalicia sin cuotas mensuales. Ideal para mayores de 70 años. Sepelio, repatriación y trámites incluidos.",
     canonical: `${BASE}/seguro-decesos-prima-unica/`,
     ogImage: `${BASE}/og-decesos-prima-unica.jpg`,
   },
   "/adeslas-mascotas": {
     title: "Adeslas Mascotas | Seguro para Perros y Gatos desde 5,85€/mes",
     description:
-      "Seguro de mascotas Adeslas para perros y gatos. Básico desde 5,85€/mes (RC 200.000€) o Completo desde 24,74€/mes (+300 clínicas). Sin restricción de raza ni edad.",
+      "Adeslas Mascotas para perros y gatos. Básico desde 5,85€/mes (RC 200.000€) o Completo desde 24,74€/mes (+300 clínicas). Sin restricción de raza.",
     canonical: `${BASE}/seguro-mascotas/`,
     ogImage: `${BASE}/og-mascotas.jpg`,
   },
   "/adeslas-asistencia-viaje": {
     title: "Adeslas Asistencia en Viaje | Cobertura Mundial · Desde 8,50€/día",
     description:
-      "Seguro de asistencia en viaje con cobertura mundial. Emergencias médicas, repatriación, cancelación de vuelos y equipaje. Contrata por días o meses. Desde 8,50€/día.",
+      "Asistencia en viaje Adeslas: cobertura mundial. Emergencias médicas, repatriación y cancelación de vuelos. Por días o meses. Desde 8,50€/día.",
     canonical: `${BASE}/adeslas-asistencia-en-viaje/`,
     ogImage: `${BASE}/og-viaje.jpg`,
   },
   "/adeslas-accidentes": {
     title: "Adeslas Accidentes | Cobertura 24h en Todo el Mundo · Desde 5,89€/mes",
     description:
-      "Seguro de accidentes Adeslas con cobertura 24h en todo el mundo. Fallecimiento, invalidez, asistencia médica y hospitalización por accidente. Desde 5,89€/mes.",
+      "Accidentes Adeslas: cobertura 24h en todo el mundo. Fallecimiento, invalidez, asistencia médica y hospitalización por accidente. Desde 5,89€/mes.",
     canonical: `${BASE}/seguro-accidentes/`,
     ogImage: `${BASE}/og-accidentes.jpg`,
   },
@@ -189,33 +189,33 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/seguro-medico-individual": {
     title: "Adeslas Individual | Desde 21€/mes · Prima Fija 3 Años · Sin Esperas",
     description:
-      "Seguro médico individual Adeslas desde 21€/mes. Prima fija 3 años sin subidas. Elige entre GO, Plena Vital, Plena Plus o Plena Total. +51.000 médicos. Calcula en 2 minutos.",
+      "Seguro médico individual Adeslas desde 21€/mes. Prima fija 3 años. Elige entre GO, Plena Vital, Plena Plus o Plena Total. +51.000 médicos.",
     canonical: `${BASE}/seguro-salud/adeslas-individual/`,
     ogImage: `${BASE}/og-individual.jpg`,
   },
   "/seguro-medico-familiar": {
     title: "Adeslas Familiar | Pediatría · Especialistas · Sin Copagos · Desde 22€",
     description:
-      "Seguro médico familiar Adeslas: pediatría, especialistas y hospitalización. Descuento del 10% desde el 4º asegurado. Sin listas de espera. Desde 22,55€/mes.",
+      "Seguro familiar Adeslas: pediatría, especialistas y hospitalización. Descuento 10% desde el 4º asegurado. Sin listas de espera. Desde 22,55€/mes.",
     canonical: `${BASE}/seguro-salud/seguro-familia/`,
     ogImage: `${BASE}/og-familiar.jpg`,
   },
   "/seguro-medico-infantil": {
-    title: "Seguro Médico Infantil Adeslas | Pediatría 24h · Sin Esperas · Desde 21€",
+    title: "Seguro Infantil Adeslas | Pediatría 24h · Sin Esperas · Desde 21€",
     description:
-      "Pediatría sin esperas para tus hijos con Adeslas. Urgencias 24h, vacunas y especialistas. Descuento familiar desde el 4º asegurado. Alta inmediata desde 21€/mes.",
+      "Pediatría sin esperas para tus hijos con Adeslas. Urgencias 24h, vacunas y especialistas. 10% descuento desde el 4º asegurado. Desde 21€/mes.",
     canonical: `${BASE}/seguro-salud/adeslas-infantil/`,
     ogImage: `${BASE}/og-infantil.jpg`,
   },
   "/seguro-medico-ginecologia": {
-    title: "Adeslas Ginecología | Cobertura Ginecológica Completa · Sin Lista de Espera",
+    title: "Adeslas Ginecología | Cobertura Completa · Sin Lista de Espera",
     description:
-      "Seguro médico Adeslas con ginecólogos, ecografías, revisiones y seguimiento completo. Sin listas de espera con +51.000 médicos. Calcula tu precio en 2 minutos.",
+      "Adeslas Ginecología: ginecólogos, ecografías, revisiones y seguimiento completo. Sin listas de espera. +51.000 médicos. Calcula en 2 minutos.",
     canonical: `${BASE}/seguro-salud/adeslas-ginecologia/`,
     ogImage: `${BASE}/og-ginecologia.jpg`,
   },
   "/seguro-medico-embarazadas": {
-    title: "Adeslas Embarazo | Parto, Ecografías y Neonatología · Sin Lista de Espera",
+    title: "Adeslas Embarazo | Parto, Ecografías y Neonatología · Sin Esperas",
     description:
       "Cobertura completa de embarazo en Adeslas: ginecólogos, ecografías, parto y neonatología. Sin listas de espera. Alta online inmediata.",
     canonical: `${BASE}/seguro-salud/embarazo/`,
@@ -231,7 +231,7 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   // ── UTILIDADES ────────────────────────────────────────────────────
   "/cuadro-medico": {
-    title: "Cuadro Médico Adeslas 2026 | +51.000 Especialistas · Busca por Provincia",
+    title: "Cuadro Médico Adeslas 2026 | +51.000 Médicos · Por Provincia",
     description:
       "Encuentra tu médico Adeslas por especialidad y provincia. Más de 51.000 médicos en 1.400 centros en toda España. Sin esperas, sin listas.",
     canonical: `${BASE}/cuadro-medico/`,
@@ -241,7 +241,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/contacto": {
     title: "Contacto | Adeslas — Asesoramiento Gratuito Sin Compromiso",
     description:
-      "Contacta con nuestro equipo para cualquier consulta sobre seguros Adeslas. Asesoramiento personalizado sin compromiso. Teléfono, email y formulario de contacto.",
+      "Contacta con nuestro equipo para consultas sobre seguros Adeslas. Asesoramiento personalizado sin compromiso. Teléfono, email y formulario de contacto.",
     canonical: `${BASE}/contacto/`,
     ogImage: `${BASE}/og-contacto.jpg`,
   },
@@ -284,6 +284,80 @@ export const PAGE_META: Record<string, PageMeta> = {
       "Completa el formulario de alta y empieza a disfrutar de tu seguro Adeslas. Proceso rápido y sencillo.",
     canonical: `${BASE}/seguro-salud/adeslas-formulario-de-alta`,
     noindex: true,
+  },
+
+  // ── BLOG — entradas individuales (título + descripción únicos por post) ──────
+  "/blog/comparativa-seguros-medicos-adeslas-2026": {
+    title: "Comparativa Seguros Adeslas 2026: Cuál Elegir Según tu Perfil",
+    description:
+      "Adeslas Go, Plena Vital, Plena Total o Plena Plus: diferencias reales entre todos los seguros Adeslas 2026 para elegir el que más te conviene.",
+    canonical: `${BASE}/blog/comparativa-seguros-medicos-adeslas-2026/`,
+  },
+  "/blog/higiene-sueno-adultos": {
+    title: "Higiene del Sueño: Dormir Mejor sin Pastillas | Blog Adeslas",
+    description:
+      "El insomnio afecta a 1 de cada 3 adultos en España. Estrategias basadas en evidencia para recuperar un sueño reparador sin medicación.",
+    canonical: `${BASE}/blog/higiene-sueno-adultos/`,
+  },
+  "/blog/como-mejorar-tu-energia-diaria": {
+    title: "Cómo Mejorar tu Energía Diaria: Hábitos que Funcionan",
+    description:
+      "Si llegas agotado a media mañana o te cuesta arrancar, estos hábitos sencillos pueden marcar la diferencia en tu vitalidad y rendimiento diario.",
+    canonical: `${BASE}/blog/como-mejorar-tu-energia-diaria/`,
+  },
+  "/blog/superalimentos-que-incorporar": {
+    title: "Superalimentos: Cuáles Merecen la Pena y Cuáles son Marketing",
+    description:
+      "Distingue qué superalimentos tienen respaldo científico real de los que son solo tendencias de marketing. Guía práctica para tomar mejores decisiones.",
+    canonical: `${BASE}/blog/superalimentos-que-incorporar/`,
+  },
+  "/blog/gestion-emocional-dia-a-dia": {
+    title: "Gestión Emocional: Herramientas para el Día a Día | Adeslas",
+    description:
+      "Técnicas concretas de inteligencia emocional que puedes practicar hoy mismo para gestionar el estrés y las emociones difíciles del día a día.",
+    canonical: `${BASE}/blog/gestion-emocional-dia-a-dia/`,
+  },
+  "/blog/salud-familiar-estilo-de-vida": {
+    title: "Salud en Familia: Claves para un Estilo de Vida Saludable",
+    description:
+      "Los hábitos saludables que se instauran en la infancia duran toda la vida. Claves para crear un entorno familiar que favorezca la salud de todos.",
+    canonical: `${BASE}/blog/salud-familiar-estilo-de-vida/`,
+  },
+  "/blog/caminar-beneficios-reales": {
+    title: "Caminar 30 Minutos al Día: Beneficios que Confirma la Ciencia",
+    description:
+      "Sin equipamiento ni cuota de gimnasio. Caminar es uno de los hábitos más accesibles con mayor impacto en la salud cardiovascular, mental y física.",
+    canonical: `${BASE}/blog/caminar-beneficios-reales/`,
+  },
+  "/blog/revisiones-medicas-por-edad": {
+    title: "Revisiones Médicas por Edad: Guía Práctica | Blog Adeslas",
+    description:
+      "Las revisiones preventivas detectan problemas antes de que den síntomas. Qué pruebas son recomendables a los 30, 40, 50 años o más.",
+    canonical: `${BASE}/blog/revisiones-medicas-por-edad/`,
+  },
+  "/blog/dieta-mediterranea-en-casa": {
+    title: "Dieta Mediterránea: Beneficios y Cómo Adoptarla en Casa",
+    description:
+      "Uno de los patrones alimentarios con mayor respaldo científico. Aprende sus beneficios probados y cómo incorporarlo a tu rutina sin complicaciones.",
+    canonical: `${BASE}/blog/dieta-mediterranea-en-casa/`,
+  },
+  "/blog/salud-bucodental-guia-completa": {
+    title: "Salud Bucodental: Guía Completa para Cuidar tu Boca",
+    description:
+      "El cepillado es solo el principio. Todo lo que necesitas para mantener una boca sana y evitar problemas que afectan a tu salud general.",
+    canonical: `${BASE}/blog/salud-bucodental-guia-completa/`,
+  },
+  "/blog/cuanto-cuesta-operacion-privada-espana-2026": {
+    title: "Cuánto Cuesta una Operación Privada en España en 2026",
+    description:
+      "Precios reales de operaciones privadas en España: apendicitis, rodilla, cataratas y más. Descubre cuánto cuesta la sanidad privada sin seguro médico.",
+    canonical: `${BASE}/blog/cuanto-cuesta-operacion-privada-espana-2026/`,
+  },
+  "/blog/seguro-medico-sin-copago-2026": {
+    title: "Seguro Médico sin Copago: Qué es y Cuánto Cuesta en 2026",
+    description:
+      "Sin copago: pagas la prima mensual y no abonas nada más en cada visita. Descubre cómo funciona y qué planes sin copago ofrece Adeslas en 2026.",
+    canonical: `${BASE}/blog/seguro-medico-sin-copago-2026/`,
   },
 
   // ── INTERNOS (noindex) ────────────────────────────────────────────
