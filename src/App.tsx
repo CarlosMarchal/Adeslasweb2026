@@ -65,6 +65,11 @@ const PoliticaPrivacidad= lazy(() => import("./views/PoliticaPrivacidad"));
 const MiPrecio          = lazy(() => import("./views/MiPrecio"));
 const PreciosOfertas    = lazy(() => import("./views/PreciosOfertas"));
 
+/* SEO transaccional — alta, contratar, precios */
+const AltaAdeslas          = lazy(() => import("./views/AltaAdeslas"));
+const ComoContratarAdeslas = lazy(() => import("./views/ComoContratarAdeslas"));
+const PreciosAdeslas       = lazy(() => import("./views/PreciosAdeslas"));
+
 /* Uso interno */
 const TarificadorInterno = lazy(() => import("./views/TarificadorInterno"));
 
@@ -191,6 +196,14 @@ const App = () => (
 
               {/* Landings campaña (noindex) */}
               <Route path="/oferta-plena-vital"    element={<LandingPlenaVitalOferta />} />
+
+              {/* SEO transaccional — alta, contratar, precios */}
+              <Route path="/alta-adeslas"          element={<AltaAdeslas />} />
+              <Route path="/alta-adeslas/"         element={<AltaAdeslas />} />
+              <Route path="/como-contratar-adeslas"  element={<ComoContratarAdeslas />} />
+              <Route path="/como-contratar-adeslas/" element={<ComoContratarAdeslas />} />
+              <Route path="/precios-adeslas"       element={<PreciosAdeslas />} />
+              <Route path="/precios-adeslas/"      element={<PreciosAdeslas />} />
 
               {/* Herramienta interna — no indexada en Google */}
               <Route path="/tarificador-interno" element={<TarificadorInterno />} />

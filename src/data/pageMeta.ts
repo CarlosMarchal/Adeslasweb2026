@@ -360,6 +360,29 @@ export const PAGE_META: Record<string, PageMeta> = {
     canonical: `${BASE}/blog/seguro-medico-sin-copago-2026/`,
   },
 
+  // ── SEO TRANSACCIONAL — alta, contratar, precios ─────────────────
+  "/alta-adeslas": {
+    title: "Alta en Adeslas 2026 | Cómo Darse de Alta Online · Sin Esperas",
+    description:
+      "Guía completa para darse de alta en Adeslas en 2026: documentación necesaria, pasos del proceso, cuándo empieza la cobertura y todos los planes disponibles. Alta online en 2 minutos.",
+    canonical: `${BASE}/alta-adeslas/`,
+    ogImage: `${BASE}/og-default.jpg`,
+  },
+  "/como-contratar-adeslas": {
+    title: "Cómo Contratar Adeslas 2026 | Guía Paso a Paso · Alta Online en 2 min",
+    description:
+      "Guía completa para contratar un seguro Adeslas en 2026: 3 formas de contratación, paso a paso, qué plan elegir y precios actualizados. Contrata online, por teléfono o solicita que te llamemos.",
+    canonical: `${BASE}/como-contratar-adeslas/`,
+    ogImage: `${BASE}/og-default.jpg`,
+  },
+  "/precios-adeslas": {
+    title: "Precios Adeslas 2026 | Tarifas Actualizadas · Desde 21€/mes",
+    description:
+      "Todos los precios de los seguros Adeslas en 2026: GO desde 21€, Plena Vital desde 38€, Plena Plus desde 50,92€ y Plena Total desde 83€/mes. Tabla de precios por edad y factores que afectan a tu tarifa.",
+    canonical: `${BASE}/precios-adeslas/`,
+    ogImage: `${BASE}/og-default.jpg`,
+  },
+
   // ── INTERNOS (noindex) ────────────────────────────────────────────
   "/tarificador-interno": {
     title: "Tarificador Interno | Adeslas",

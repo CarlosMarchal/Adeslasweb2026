@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 ──────────────────────────────────────────────── */
 export const SITE = {
   name: "Adeslas Seguros Médicos",
-  legalName: "Marchal Mediadores S.L.U.",
+  legalName: "Marchal Aseguradores S.L.U.",
   url: "https://adeslas.numero1salud.es",
   phone: "+34917105000",
   phoneDisplay: "91 710 50 00",

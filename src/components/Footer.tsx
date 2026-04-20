@@ -42,7 +42,7 @@ const Footer = () => (
             {[
               { label: "Dental", to: "/seguro-dental/" },
               { label: "Decesos", to: "/seguro-decesos/" },
-              { label: "Mascotas", to: "/seguro-dental/" },
+              { label: "Mascotas", to: "/seguro-mascotas/" },
             ].map((l) => (
               <Link key={l.to} to={l.to} className="block text-sm transition-colors hover:text-primary-foreground" style={{ color: "rgba(255,255,255,0.5)" }}>
                 {l.label}
@@ -74,6 +74,9 @@ const Footer = () => (
           <h4 className="text-primary-foreground font-bold text-sm mb-3">Adeslas para Empresas y Recursos</h4>
           <div className="space-y-1.5">
             {[
+              { label: "Alta en Adeslas", to: "/alta-adeslas/" },
+              { label: "Cómo contratar Adeslas", to: "/como-contratar-adeslas/" },
+              { label: "Precios Adeslas 2026", to: "/precios-adeslas/" },
               { label: "Autónomos", to: "/seguro-salud/autonomos/" },
               { label: "Pymes", to: "/pymes" },
               { label: "Empresas", to: "/empresas" },
