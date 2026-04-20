@@ -23,19 +23,28 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        {/* ── LCP hero image — preload global en el layout base ───────────────
-            La imagen hero de la home es el elemento LCP candidato. Precargarla
-            aquí (en el HTML base, antes del SPA) reduce el Resource Load Delay
-            de LCP de ~1000 ms a <50 ms porque el navegador inicia la descarga
-            en paralelo con el parse del HTML, sin esperar a que React hidrate.
-            Solo aplica a la ruta / (el <link> está siempre en el head, pero el
-            SPA solo renderiza HeroSection en /, por lo que en otras rutas el
-            preload es inofensivo — el navegador descubrirá que no lo necesita). ─ */}
+        {/* ── LCP hero image — preload responsivo en el layout base ────────────
+            Precargar ANTES de que el SPA hidrate reduce el Resource Load Delay
+            de LCP de ~1000 ms a <50 ms. Se envían dos preloads con media query:
+            · mobile (≤768px): 36 KB en lugar de 85 KB → -54% en móvil
+            · desktop (>768px): versión 1440px optimizada
+            En otras rutas estos preloads son inofensivos (el navegador detecta
+            que las imágenes no se usan y las descarta sin coste). ─────────────── */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero-adeslas-seguros-medicos-mobile.webp"
+          media="(max-width: 768px)"
+          // @ts-ignore
+          fetchPriority="high"
+          type="image/webp"
+        />
         <link
           rel="preload"
           as="image"
           href="/images/hero-adeslas-seguros-medicos.webp"
-          // @ts-ignore — fetchPriority es válido en React 18 / HTML Living Standard
+          media="(min-width: 769px)"
+          // @ts-ignore
           fetchPriority="high"
           type="image/webp"
         />
@@ -46,14 +55,17 @@ export default function RootLayout({
         <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-700-normal.woff2" crossOrigin="anonymous" />
         <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-900-normal.woff2" crossOrigin="anonymous" />
 
-        {/* ── GTM / Google network hints ───────────────────────────────────── */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        {/* ── GTM / Google — solo dns-prefetch (GTM carga en interacción, no en cold) ─
+            preconnect inicia TCP/TLS inmediatamente y expira si no se usa en <10 s.
+            Como GTM ahora carga en la primera interacción del usuario (no en cold),
+            un preconnect al inicio sería descartado. dns-prefetch es más económico. ── */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://stats.g.doubleclick.net" />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
 
-        {/* ── HubSpot network hints ────────────────────────────────────────── */}
-        <link rel="preconnect" href="https://js.hs-scripts.com" />
+        {/* ── HubSpot — dns-prefetch (carga a los 12 s o en interacción, >10 s timeout) */}
+        <link rel="dns-prefetch" href="https://js.hs-scripts.com" />
         <link rel="dns-prefetch" href="https://api.hsforms.com" />
         <link rel="dns-prefetch" href="https://js.hs-analytics.net" />
         <link rel="dns-prefetch" href="https://js.hscollectedforms.net" />
@@ -114,11 +126,32 @@ export default function RootLayout({
           }}
         />
 
-        {/* ── HubSpot tracking pixel — lazyOnload: carga en idle ───────────── */}
+        {/* ── HubSpot tracking pixel — se carga en primer evento de usuario ──────
+            hs-analytics genera 619 ms de TBT incluso con lazyOnload (carga en idle
+            pero el idle puede coincidir con el window de medición TBT 0-5 s).
+            Moviéndolo a post-interacción lo sacamos completamente del window TBT.
+            Fallback a 12 s para capturar visitas que no interactúan (bots, etc.). ─ */}
         <Script
           id="hs-script"
-          src={`//js.hs-scripts.com/${HS_PORTAL}.js`}
-          strategy="lazyOnload"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+(function(){
+  var loaded=false;
+  function load(){
+    if(loaded)return;loaded=true;
+    var s=document.createElement('script');
+    s.src='//js.hs-scripts.com/${HS_PORTAL}.js';
+    s.async=true;s.defer=true;
+    document.body.appendChild(s);
+  }
+  ['scroll','click','touchstart','keydown','mousemove'].forEach(function(e){
+    window.addEventListener(e,load,{once:true,passive:true});
+  });
+  setTimeout(load,12000);
+})();
+`,
+          }}
         />
       </body>
     </html>

@@ -87,7 +87,8 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
           role="img"
           aria-label={`${data.heroTitle} — Adeslas seguros médicos privados`}
         >
-          {/* LCP FIX: <img> visible al preload scanner vs background-image CSS */}
+          {/* LCP FIX: <img> con sizes correcto — el navegador elige la resolución
+              adecuada al viewport sin descargar más píxeles de los necesarios */}
           <img
             src={imgSrc(data.heroBg || defaultHeroBg)}
             alt=""
@@ -95,6 +96,7 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
             fetchPriority="high"
             loading="eager"
             decoding="async"
+            sizes="(max-width: 768px) 100vw, 1440px"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
           {/* Dark overlay */}

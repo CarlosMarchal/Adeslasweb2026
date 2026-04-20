@@ -1,12 +1,18 @@
 'use client';
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "@/lib/motion";
 import { X } from "lucide-react";
 import { submitToHubSpot } from "@/lib/hubspot";
-import ModalResultados from "@/components/ModalResultados";
 import { trackTarificadorSubmit } from "@/lib/tracking";
-import { TermsCheckbox } from "@/components/TermsModal";
+
+/* ── Lazy: solo se descarga cuando el usuario abre el modal o el checkbox ────
+   ModalResultados = 872 líneas — solo necesario al enviar el formulario.
+   TermsModal = solo necesario al hacer clic en el checkbox de privacidad. ─── */
+const ModalResultados = lazy(() => import("@/components/ModalResultados"));
+const TermsCheckboxLazy = lazy(() =>
+  import("@/components/TermsModal").then((m) => ({ default: m.TermsCheckbox }))
+);
 import {
   products,
   provinces,
@@ -655,11 +661,13 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
                   {ageError}
                 </p>
               )}
-              <TermsCheckbox
-                checked={termsAccepted}
-                onChange={(val) => { setTermsAccepted(val); if (val) setTermsError(false); }}
-                error={termsError}
-              />
+              <Suspense fallback={<div style={{ height: 36 }} />}>
+                <TermsCheckboxLazy
+                  checked={termsAccepted}
+                  onChange={(val) => { setTermsAccepted(val); if (val) setTermsError(false); }}
+                  error={termsError}
+                />
+              </Suspense>
               <div className="flex justify-between mt-2">
                 <button
                   onClick={() => goToStep(1)}
@@ -720,19 +728,26 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     </div>
   );
 
-  /* ─── Modal de resultados (full-screen) ─── */
+  /* ─── Modal de resultados (full-screen) — lazy: se descarga solo al enviar ─── */
   if (showModal) {
     return (
-      <ModalResultados
-        results={results}
-        ages={parsedAges.filter((a) => !isNaN(a))}
-        provincia={provincia}
-        nombre={nombre}
-        email={email}
-        telefono={`${countryCode}${telefono}`}
-        numAsegurados={numAsegurados}
-        onClose={() => setShowModal(false)}
-      />
+      <Suspense fallback={
+        <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#fff" }}>
+          <div style={{ width: 32, height: 32, border: "3px solid #E8EFF4", borderTopColor: "#009FE3", borderRadius: "50%", animation: "adeslas-spin 0.7s linear infinite" }} />
+          <style>{`@keyframes adeslas-spin { to { transform: rotate(360deg); } }`}</style>
+        </div>
+      }>
+        <ModalResultados
+          results={results}
+          ages={parsedAges.filter((a) => !isNaN(a))}
+          provincia={provincia}
+          nombre={nombre}
+          email={email}
+          telefono={`${countryCode}${telefono}`}
+          numAsegurados={numAsegurados}
+          onClose={() => setShowModal(false)}
+        />
+      </Suspense>
     );
   }
 

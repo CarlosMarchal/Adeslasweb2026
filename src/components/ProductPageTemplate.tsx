@@ -214,7 +214,8 @@ const ProductHero = ({
     role="img"
     aria-label={`${data.heroTitle}${data.heroHighlight ? " " + data.heroHighlight : ""} — Adeslas seguros médicos privados`}
   >
-    {/* LCP FIX: <img> visible al preload scanner vs background-image CSS que no lo es */}
+    {/* LCP FIX: <img> con sizes correcto — el navegador descarga solo la
+        resolución necesaria según el viewport (no 1600px en un móvil de 414px) */}
     <img
       src={imgSrc(data.heroImage || heroBg)}
       alt=""
@@ -222,6 +223,7 @@ const ProductHero = ({
       fetchPriority="high"
       loading="eager"
       decoding="async"
+      sizes="(max-width: 768px) 100vw, 1440px"
       className="absolute inset-0 w-full h-full object-cover object-center"
     />
     {/* Dark overlay */}

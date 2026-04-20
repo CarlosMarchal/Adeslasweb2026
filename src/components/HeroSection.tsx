@@ -1,27 +1,41 @@
 import { motion } from "@/lib/motion";
 import Tarificador from "@/components/Tarificador";
 
-/* Image is in /public/images/ so the browser can preload it before JS executes (LCP fix) */
-const HERO_BG = "/images/hero-adeslas-seguros-medicos.webp";
+/* Desktop: 1440px, Mobile: 828px (414px@2x) — ver public/images/ */
+const HERO_DESKTOP = "/images/hero-adeslas-seguros-medicos.webp";
+const HERO_MOBILE  = "/images/hero-adeslas-seguros-medicos-mobile.webp";
 
 const HeroSection = () => {
   return (
     <section className="relative overflow-hidden" style={{ minHeight: "460px" }} role="img" aria-label="Seguros médicos Adeslas 2026 — compara todos los planes Adeslas y calcula tu precio online desde 21€/mes">
       {/*
-       * LCP FIX: imagen hero como <img> en lugar de CSS background-image.
-       * El preload scanner del navegador descubre <img> en el HTML inicial y la
-       * descarga en paralelo con el resto de recursos. background-image CSS es
-       * invisible al scanner hasta que se parsea el CSS → +1-2s de LCP en móvil.
+       * LCP: <picture> responsivo — mobile (828px) descarga 36 KB en lugar de
+       * 85 KB de la versión desktop. Mejora directamente el LCP en móvil.
+       * fetchpriority="high" garantiza que el preload scanner la priorice.
        */}
-      <img
-        src={HERO_BG}
-        alt=""
-        aria-hidden="true"
-        fetchPriority="high"
-        loading="eager"
-        decoding="async"
-        className="absolute inset-0 w-full h-full object-cover object-center"
-      />
+      <picture>
+        {/* Mobile: pantallas ≤768px → 828px image (36 KB) */}
+        <source
+          srcSet={HERO_MOBILE}
+          media="(max-width: 768px)"
+          type="image/webp"
+        />
+        {/* Desktop: pantallas >768px → 1440px image (85 KB) */}
+        <source
+          srcSet={HERO_DESKTOP}
+          media="(min-width: 769px)"
+          type="image/webp"
+        />
+        <img
+          src={HERO_DESKTOP}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+      </picture>
       {/* Dark overlay */}
       <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />
 

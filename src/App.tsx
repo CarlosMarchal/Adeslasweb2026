@@ -1,7 +1,6 @@
 'use client';
 
 import { lazy, Suspense, useEffect } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { LazyMotion, domAnimation } from "framer-motion";
 import { captureGclid } from "@/lib/hubspot";
@@ -86,7 +85,6 @@ const PageLoader = () => (
   </div>
 );
 
-const queryClient = new QueryClient();
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -104,8 +102,7 @@ const App = () => (
       renderer completo de framer-motion (~60 KB). Todos los componentes
       usan `m` re-exportado como `motion` desde @/lib/motion. */}
   <LazyMotion features={domAnimation} strict>
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+  <TooltipProvider>
       <Toaster />
       <Sonner />
       <PhonePopupProvider>
@@ -207,7 +204,6 @@ const App = () => (
         </BrowserRouter>
       </PhonePopupProvider>
     </TooltipProvider>
-  </QueryClientProvider>
   </LazyMotion>
   </HelmetProvider>
 );
