@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion";
 import { useSeo } from "@/hooks/use-seo";
 import { usePhonePopup } from "@/components/PhonePopupContext";
 import logo from "@/assets/Logo-adeslas-Marchal-color.webp";

@@ -4,6 +4,34 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
 
+  // ── Tree-shaking agresivo para paquetes grandes ──────────────────────────────
+  // Next.js analiza qué exports se usan realmente y elimina el resto del bundle.
+  // Impacto estimado: framer-motion −40 KB, lucide-react −300 KB gzipped en build.
+  experimental: {
+    optimizePackageImports: [
+      'framer-motion',
+      'lucide-react',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-alert-dialog',
+      '@radix-ui/react-avatar',
+      '@radix-ui/react-checkbox',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-label',
+      '@radix-ui/react-navigation-menu',
+      '@radix-ui/react-popover',
+      '@radix-ui/react-radio-group',
+      '@radix-ui/react-select',
+      '@radix-ui/react-separator',
+      '@radix-ui/react-slot',
+      '@radix-ui/react-switch',
+      '@radix-ui/react-tabs',
+      '@radix-ui/react-toast',
+      '@radix-ui/react-tooltip',
+      'date-fns',
+    ],
+  },
+
   // Este proyecto es híbrido Vite + Next.js. Los archivos Vite (src/main.tsx,
   // vite.config.ts, src/test/) tienen sus propios tipos que no son compatibles
   // con el entorno Next.js. Desactivamos las comprobaciones de Next.js para

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion";
 import { X } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import { TarificadorProvider } from "@/components/TarificadorContext";

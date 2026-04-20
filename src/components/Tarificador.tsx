@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion";
 import { X } from "lucide-react";
 import { submitToHubSpot } from "@/lib/hubspot";
 import ModalResultados from "@/components/ModalResultados";

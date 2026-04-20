@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 
 const stats = [
   { value: 50, prefix: "+", suffix: " años", label: "de experiencia" },

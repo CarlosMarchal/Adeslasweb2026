@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useRef, type ReactNode } from "react";
 import { submitToHubSpot, type HubSpotSource } from "@/lib/hubspot";
 import { trackGenerateLead } from "@/lib/tracking";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion";
 import { Phone, X } from "lucide-react";
 import { TermsCheckbox } from "@/components/TermsModal";
 

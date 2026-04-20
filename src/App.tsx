@@ -3,6 +3,7 @@
 import { lazy, Suspense, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { LazyMotion, domAnimation } from "framer-motion";
 import { captureGclid } from "@/lib/hubspot";
 import { trackPageView } from "@/lib/tracking";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -99,6 +100,10 @@ const ScrollToTop = () => {
 
 const App = () => (
   <HelmetProvider>
+  {/* LazyMotion: carga solo domAnimation features (~18 KB) en lugar del
+      renderer completo de framer-motion (~60 KB). Todos los componentes
+      usan `m` re-exportado como `motion` desde @/lib/motion. */}
+  <LazyMotion features={domAnimation} strict>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -203,6 +208,7 @@ const App = () => (
       </PhonePopupProvider>
     </TooltipProvider>
   </QueryClientProvider>
+  </LazyMotion>
   </HelmetProvider>
 );
 

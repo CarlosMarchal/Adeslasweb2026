@@ -3,7 +3,7 @@ import { submitToHubSpot } from "@/lib/hubspot";
 import { trackGenerateLead, trackClickToCallContratacion, trackClickToCallAsistencia } from "@/lib/tracking";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, ArrowRight } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "@/lib/motion";
 import logoAzul from "@/assets/Logo-adeslas-Marchal-color.webp";
 import { imgSrc } from "@/lib/imgSrc";
 import { useTarificador } from "@/components/TarificadorContext";

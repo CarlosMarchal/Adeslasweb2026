@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 import CalcButton from "@/components/CalcButton";
 import { usePhonePopup } from "@/components/PhonePopupContext";
 import { trackClickToCallContratacion, trackClickToCallAsistencia } from "@/lib/tracking";

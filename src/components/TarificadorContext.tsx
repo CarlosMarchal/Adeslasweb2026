@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "@/lib/motion";
 import Tarificador from "@/components/Tarificador";
 
 interface TarificadorContextType {

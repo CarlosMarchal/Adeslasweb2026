@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 import { Link } from "react-router-dom";
 import CalcButton from "@/components/CalcButton";
 

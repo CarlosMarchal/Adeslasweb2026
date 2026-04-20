@@ -1,15 +1,19 @@
+import { lazy, Suspense } from "react";
 import { useSeo } from "@/hooks/use-seo";
 import { TarificadorProvider } from "@/components/TarificadorContext";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ProductsSection from "@/components/ProductsSection";
 import Tarificador from "@/components/Tarificador";
-import WhyAdeslaSection from "@/components/WhyAdeslaSection";
-import StatsSection from "@/components/StatsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import FaqSection from "@/components/FaqSection";
-import CtaSection from "@/components/CtaSection";
-import Footer from "@/components/Footer";
+
+/* ── Secciones below-fold: lazy — se descargan solo cuando el usuario
+      empieza a hacer scroll. Reduce el parse/eval inicial en ~200-300 ms en móvil. ── */
+const WhyAdeslaSection  = lazy(() => import("@/components/WhyAdeslaSection"));
+const StatsSection      = lazy(() => import("@/components/StatsSection"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const FaqSection        = lazy(() => import("@/components/FaqSection"));
+const CtaSection        = lazy(() => import("@/components/CtaSection"));
+const Footer            = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   const _seo = useSeo({
@@ -78,15 +82,19 @@ const Index = () => {
     <TarificadorProvider>
       {_seo}
       <Header />
+      {/* Above-fold: eager — crítico para LCP y FCP */}
       <HeroSection />
       <ProductsSection />
       <Tarificador />
-      <WhyAdeslaSection />
-      <StatsSection />
-      <TestimonialsSection />
-      <FaqSection />
-      <CtaSection />
-      <Footer />
+      {/* Below-fold: lazy — se parsean/evalúan solo cuando el usuario hace scroll */}
+      <Suspense fallback={<div style={{ minHeight: "200px" }} />}>
+        <WhyAdeslaSection />
+        <StatsSection />
+        <TestimonialsSection />
+        <FaqSection />
+        <CtaSection />
+        <Footer />
+      </Suspense>
     </TarificadorProvider>
   );
 };

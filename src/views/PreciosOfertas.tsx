@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion";
 import { ChevronDown } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import { TarificadorProvider, useTarificador } from "@/components/TarificadorContext";

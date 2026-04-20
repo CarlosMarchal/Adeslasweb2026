@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 import Tarificador from "@/components/Tarificador";
 
 /* Image is in /public/images/ so the browser can preload it before JS executes (LCP fix) */

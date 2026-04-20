@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams, Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/motion";
 import { Phone, CheckCircle2, ArrowLeft, Shield, Star, Award, X, Clock } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import logoAzul from "@/assets/Logo-adeslas-Marchal-color.webp";
