@@ -28,13 +28,27 @@ export interface BlogPostFull extends BlogPostMeta {
 
 export const categories = [
   "Todos",
+  // ── Nivel 1: Hubs comerciales (prioridad alta) ──
+  "Seguros Adeslas",
+  "Comparativas",
+  "Coberturas",
+  "Copagos",
+  "Carencias",
+  "Hospitalización",
+  "Precios",
+  "Cuadro Médico",
+  // ── Nivel 2: Médico-informativos ──
+  "Prevención",
+  "Salud Familiar",
+  "Salud Mental",
+  // ── Nivel 3: Bienestar y complementarios ──
   "Bienestar",
   "Nutrición",
-  "Prevención",
-  "Familia",
-  "Salud Mental",
   "Dental",
-  "Seguros",
+  // ── Nivel 4: Verticales secundarios ──
+  "Mascotas",
+  "Extranjeros",
+  "Decesos",
 ];
 
 export const blogPosts: BlogPostFull[] = [
@@ -689,10 +703,10 @@ export const blogPosts: BlogPostFull[] = [
     ],
   },
 
-  /* ── 10. Seguros ── */
+  /* ── 10. Seguros Adeslas ── */
   {
     slug: "comparativa-seguros-medicos-adeslas-2026",
-    category: "Seguros",
+    category: "Seguros Adeslas",
     title: "Comparativa de seguros médicos Adeslas 2026: cuál elegir según tu perfil",
     excerpt:
       "Adeslas Go, Plena Vital, Plena Vital Total, Plena Total, Plena Plus, Extra 150... Descubre las diferencias reales entre cada plan y cuál se adapta mejor a tu situación.",
@@ -883,6 +897,108 @@ export const blogPosts: BlogPostFull[] = [
       "como-mejorar-tu-energia-diaria",
       "salud-bucodental-guia-completa",
     ],
+  },
+
+
+  /* ── Copagos: seguro-medico-sin-copago-2026 ── */
+  {
+    slug: "seguro-medico-sin-copago-2026",
+    category: "Copagos",
+    title: "Seguro médico sin copago: qué es, cómo funciona y cuánto cuesta en 2026",
+    excerpt: "Un seguro sin copago significa que pagas la prima mensual y no abonas nada más cada vez que vas al médico. Sin sorpresas, sin tickets. Descubre si te compensa.",
+    date: "23 Abr 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+    seoTitle: "Seguro Médico Sin Copago 2026: Qué Es y Cuánto Cuesta | Adeslas",
+    seoDescription: "Descubre qué es un seguro médico sin copago, cómo funciona, cuánto cuesta y si te compensa frente al seguro con copago. Guía completa 2026 con Adeslas.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "Un seguro médico sin copago es aquel en el que pagas únicamente la prima mensual acordada y no abonas ningún importe adicional cada vez que usas el seguro: ni en consultas de especialista, ni en urgencias, ni en pruebas diagnósticas, ni en cirugía. Lo que ves en la póliza es todo lo que pagas. Sin sorpresas al final del mes."
+        },
+        {
+            "type": "paragraph",
+            "text": "En 2026, los seguros médicos sin copago de Adeslas más destacados son Adeslas Plena Plus y Adeslas Plena Total. Si valoras la previsibilidad económica y usas el seguro con frecuencia, un plan sin copago suele compensar respecto a uno con copago. A continuación te explicamos en detalle cómo funciona el sistema de copago, cuándo sale a cuenta eliminarlo y qué opciones tienes en Adeslas."
+        },
+        {
+            "type": "heading",
+            "text": "Copago vs. sin copago: la diferencia real"
+        },
+        {
+            "type": "paragraph",
+            "text": "El copago es una cantidad fija que el asegurado paga por cada servicio que utiliza: una consulta al especialista, una radiografía, una analítica. El objetivo es que el asegurado tenga conciencia del coste sanitario y no use el seguro de forma abusiva. El resultado es una prima mensual más baja a cambio de pagar algo cada vez que acudes al médico."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Con copago: prima más baja + pago pequeño por cada servicio usado",
+                "Sin copago: prima algo más alta + cero coste adicional por cada visita",
+                "Con LMA (Límite Máximo Anual): copago hasta un tope; a partir de ahí, el resto del año es gratis",
+                "La diferencia de prima entre ambas modalidades suele estar entre 15 € y 40 € al mes según edad y provincia"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "¿Cuándo compensa el seguro sin copago?"
+        },
+        {
+            "type": "paragraph",
+            "text": "La respuesta depende de cuánto uses el seguro. Si eres una persona sana que acude al médico pocas veces al año, el seguro con copago suele ser más económico en cómputo anual. Pero si tienes hijos, llevas seguimiento de enfermedades crónicas, eres mayor de 45 años o simplemente valoras no pensar en cuánto cuesta cada visita, el seguro sin copago te da tranquilidad mental que tiene un valor difícil de medir en euros."
+        },
+        {
+            "type": "callout",
+            "text": "Cálculo orientativo: si vas al médico más de 12-15 veces al año entre toda la familia, un seguro sin copago suele salir más barato que uno con copago, incluso con el LMA incluido. A partir de ese uso, la prima sin copago se amortiza."
+        },
+        {
+            "type": "heading",
+            "text": "Seguros Adeslas sin copago en 2026"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Adeslas Plena Plus: cobertura ambulatoria + hospitalización completa, sin copago en ningún servicio. Prima más ajustada de los planes sin copago",
+                "Adeslas Plena Total: igual que Plena Plus + dental (46 actos incluidos) + accidentes + asistencia en viaje hasta 100.000 € + prima garantizada 3 años",
+                "Adeslas Plena Extra 150: sin copago + libre elección de cualquier médico u hospital + reembolso del 80 % fuera de la red (hasta 150.000 €/año)"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "¿Qué incluye un seguro sin copago de Adeslas?"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Medicina general y todas las especialidades sin coste por visita",
+                "Diagnóstico de alta tecnología: TAC, resonancia magnética, PET...",
+                "Urgencias 24 horas en toda España",
+                "Hospitalización en habitación individual con cama para acompañante",
+                "Cirugía programada y de urgencia sin límite de intervenciones",
+                "Acceso a más de 51.000 médicos y 1.400 centros en España",
+                "Sin listas de espera"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "¿Tiene carencias el seguro sin copago?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Sí. Los seguros sin copago de Adeslas tienen los mismos periodos de carencia que los planes con copago: 6 meses para hospitalización, 8 meses para el parto y maternidad, y acceso inmediato a la mayoría de servicios ambulatorios. Las carencias son estándar del sector y no dependen del tipo de copago que elijas."
+        },
+        {
+            "type": "heading",
+            "text": "¿Cómo contratar un seguro sin copago con Adeslas?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Puedes calcular el precio exacto de un seguro Adeslas sin copago según tu edad, provincia y número de asegurados en el comparador de Marchal Aseguradores, sin compromiso. Como agente exclusivo Adeslas, te asesoramos sin coste para encontrar el plan que mejor se adapta a tu situación real."
+        },
+        {
+            "type": "callout",
+            "text": "Como agente exclusivo Adeslas, en Marchal Aseguradores te ayudamos a comparar los planes con y sin copago para tu caso concreto. Llámanos al 91 710 50 00 o usa el comparador online sin compromiso."
+        }
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","carencias-seguros-medicos-adeslas","seguro-medico-familias-2026"],
   },
 
 ];
