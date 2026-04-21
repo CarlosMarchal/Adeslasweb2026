@@ -1103,6 +1103,126 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026","hospitalizacion-privada-vs-publica"],
   },
 
+
+  /* ── Comparativas: adeslas-vs-sanitas-comparativa-2026 ── */
+  {
+    slug: "adeslas-vs-sanitas-comparativa-2026",
+    category: "Comparativas",
+    title: "Adeslas vs Sanitas 2026: comparativa real de coberturas, precios y red médica",
+    excerpt: "Adeslas y Sanitas son las dos aseguradoras médicas privadas más grandes de España. Esta es la comparativa que nadie te hace con los datos que realmente importan.",
+    date: "29 Abr 2026",
+    readTime: "10 min",
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop",
+    seoTitle: "Adeslas vs Sanitas 2026: Comparativa Completa de Seguros Médicos",
+    seoDescription: "Comparativa detallada entre Adeslas y Sanitas en 2026: coberturas, precios, red médica, copagos, carencias y cuál conviene según tu perfil. Análisis honesto.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "Adeslas y Sanitas son las dos aseguradoras de salud privada con mayor presencia en España. Elegir entre una y otra depende de factores concretos: dónde vives, si prefieres copago o no, qué especialidades necesitas más, el tamaño de la red médica en tu provincia y el precio mensual que estás dispuesto a pagar. Esta comparativa te da los datos reales para decidir."
+        },
+        {
+            "type": "paragraph",
+            "text": "Como agente exclusivo Adeslas en Marchal Aseguradores, conocemos en profundidad los planes Adeslas. Sobre Sanitas, ofrecemos los datos públicos disponibles para que puedas comparar con criterio. El objetivo no es venderte nada: es que llegues a esta decisión con información real."
+        },
+        {
+            "type": "heading",
+            "text": "Red médica: cuadro médico y centros propios"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Adeslas: más de 51.000 médicos y 1.400 centros concertados en toda España. Trabaja principalmente con clínicas y hospitales concertados, lo que significa mayor variedad geográfica",
+                "Sanitas: cuenta con hospitales y clínicas propias (Sanitas La Moraleja, La Zarzuela, CIMA Barcelona, entre otros) más red concertada. La red propia es de alta calidad pero más concentrada en grandes ciudades",
+                "Ventaja Adeslas: mayor cobertura en ciudades medianas y pequeñas gracias a la red concertada",
+                "Ventaja Sanitas: hospitales propios de referencia en Madrid y Barcelona con alto nivel de especialización"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Coberturas: qué incluye cada aseguradora"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ambas aseguradoras ofrecen coberturas similares en sus planes equivalentes: medicina general, especialidades, diagnóstico, hospitalización, urgencias y cirugía. Las diferencias están en los detalles de cada producto: límites de reembolso, cobertura dental, asistencia en viaje, garantía de prima y el sistema de copago."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Cobertura ambulatoria: equivalente en ambas para planes completos",
+                "Hospitalización: ambas incluyen habitación individual en planes completos",
+                "Dental: Adeslas Plena Total incluye 46 actos dentales; en Sanitas depende del plan",
+                "Asistencia en viaje: Adeslas Plena Total hasta 100.000 €; varía en Sanitas según producto",
+                "Prima garantizada: Adeslas ofrece garantía de 3 años sin subida en Plena Total y Plena Vital Total",
+                "Libre elección: Adeslas Extra 150 ofrece reembolso del 80 % con límite de 150.000 €/año"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Copagos y Límite Máximo Anual"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ambas aseguradoras ofrecen planes con y sin copago. En Adeslas, los planes con copago tienen un LMA (Límite Máximo Anual) que garantiza que, una vez alcanzado un tope, el resto del año no pagas copago. Este sistema da previsibilidad económica aunque uses el seguro con frecuencia."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Adeslas Go: copago con LMA 260 €/año (hasta 54 años)",
+                "Adeslas Plena Vital: copago con LMA 300 €/año",
+                "Adeslas Plena Vital Total: copago con LMA 500 €/año + extras incluidos",
+                "Adeslas Plena Plus y Plena Total: sin copago",
+                "Sanitas Más Salud: con copago variable según servicio",
+                "Sanitas Esencial: sin copago en plan completo"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Carencias: periodos de espera"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Ambas aseguradoras tienen carencias similares por imperativo legal y del sector",
+                "Hospitalización y cirugía: 6 meses en Adeslas (estándar del sector)",
+                "Maternidad y parto: 8 meses en Adeslas",
+                "Medicina ambulatoria: acceso inmediato o pocos días en ambas",
+                "Preexistencias: ambas requieren declaración de salud; las preexistencias conocidas pueden quedar excluidas"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Precio: cuál es más barato"
+        },
+        {
+            "type": "paragraph",
+            "text": "El precio depende de la edad, la provincia, el plan elegido y el número de asegurados. En términos generales, para planes equivalentes con coberturas similares, Adeslas suele ser entre un 5 % y un 15 % más competitivo en precio que Sanitas en la mayoría de perfiles. Sin embargo, la diferencia no es uniforme: para personas mayores de 55 años en algunas provincias, Sanitas puede ser más ajustado."
+        },
+        {
+            "type": "callout",
+            "text": "La única forma de comparar precios exactos es calcular tu presupuesto personalizado. En Marchal Aseguradores puedes obtener el precio exacto de Adeslas para tu perfil en segundos. Para Sanitas, te recomendamos solicitar presupuesto directamente o con su agente."
+        },
+        {
+            "type": "heading",
+            "text": "¿Cuál elegir según tu perfil?"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Si vives en Madrid o Barcelona y valoras hospital propio de alta gama → Sanitas tiene ventaja en esa franja",
+                "Si vives en ciudad mediana o pequeña y necesitas red amplia → Adeslas tiene mayor cobertura geográfica",
+                "Si buscas el mejor precio para cobertura completa → Adeslas es generalmente más competitivo",
+                "Si priorizas garantía de prima a 3 años → Adeslas Plena Total o Plena Vital Total",
+                "Si quieres dental + accidentes + viaje en un solo plan sin copago → Adeslas Plena Total"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "En Marchal Aseguradores somos agente exclusivo Adeslas. Si decides que Adeslas es tu opción, te ayudamos a encontrar el plan exacto para tu situación sin coste ni compromiso. Llámanos al 91 710 50 00 o calcula tu precio en el comparador online."
+        }
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026","carencias-seguros-medicos-adeslas"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
