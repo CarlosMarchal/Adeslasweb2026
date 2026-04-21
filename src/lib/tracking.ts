@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-/* ── SHA-256 hash (Web Crypto API) ── */
+/* ── SHA-256 hash (Web Crypto API) — best effort, NO bloquea el push principal ── */
 async function sha256(value: string): Promise<string> {
   const normalized = value.replace(/\s/g, "").toLowerCase();
   const encoded = new TextEncoder().encode(normalized);
@@ -26,16 +26,30 @@ function pushEvent(event: string, params: Record<string, unknown> = {}) {
   window.dataLayer.push({ event, ...params });
 }
 
-/* ── generate_lead: usuario deja su teléfono ── */
-export async function trackGenerateLead(phone: string, source: string, hubspotSource?: number) {
-  const hashedPhone = await sha256(phone);
+/* ── generate_lead: usuario deja su teléfono
+   SÍNCRONO — push inmediato al dataLayer. El hash SHA-256 se calcula en
+   background (best effort) y se pushea como evento secundario si completa.
+   Antes era async con `await sha256(...)` y si crypto.subtle fallaba
+   silenciosamente (contexto inseguro, ITP Safari, extensiones) el evento
+   principal no llegaba nunca a GTM. ── */
+export function trackGenerateLead(phone: string, source: string, hubspotSource?: number) {
+  const phoneClean = phone.replace(/\s/g, "");
   pushEvent("generate_lead", {
     lead_source: source,
     ...(hubspotSource !== undefined && { hubspot_source: hubspotSource }),
-    user_data: {
-      sha256_phone_number: hashedPhone,
-    },
+    user_data: { phone_number: phoneClean },
   });
+  // Hash en background — enriquece el tracking pero no bloquea
+  if (typeof crypto !== "undefined" && crypto.subtle) {
+    sha256(phoneClean)
+      .then((hashedPhone) => {
+        pushEvent("generate_lead_hashed", {
+          lead_source: source,
+          user_data: { sha256_phone_number: hashedPhone },
+        });
+      })
+      .catch((err) => console.error("[tracking] sha256 failed:", err));
+  }
 }
 
 /* ── click_to_call_contratacion: clic en 91 710 50 00 ── */
@@ -63,14 +77,22 @@ export function trackPageView(pathname: string) {
   });
 }
 
-/* ── tarificador_submit: envío del calculador de precios ── */
-export async function trackTarificadorSubmit(phone: string, source: string, hubspotSource?: number) {
-  const hashedPhone = await sha256(phone);
+/* ── tarificador_submit: envío del calculador de precios (síncrono, mismo patrón que generate_lead) ── */
+export function trackTarificadorSubmit(phone: string, source: string, hubspotSource?: number) {
+  const phoneClean = phone.replace(/\s/g, "");
   pushEvent("generate_lead", {
     lead_source: source,
     ...(hubspotSource !== undefined && { hubspot_source: hubspotSource }),
-    user_data: {
-      sha256_phone_number: hashedPhone,
-    },
+    user_data: { phone_number: phoneClean },
   });
+  if (typeof crypto !== "undefined" && crypto.subtle) {
+    sha256(phoneClean)
+      .then((hashedPhone) => {
+        pushEvent("generate_lead_hashed", {
+          lead_source: source,
+          user_data: { sha256_phone_number: hashedPhone },
+        });
+      })
+      .catch((err) => console.error("[tracking] sha256 failed:", err));
+  }
 }
