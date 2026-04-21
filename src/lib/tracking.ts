@@ -34,6 +34,7 @@ export function trackGenerateLead(phone: string, source: string, hubspotSource?:
     lead_source: source,
     ...(hubspotSource !== undefined && { hubspot_source: hubspotSource }),
     user_data: {
+      phone_number: phone.replace(/\s/g, ""),
       sha256_phone_number: hashPhone(phone),
     },
   });
@@ -70,6 +71,7 @@ export function trackTarificadorSubmit(phone: string, source: string, hubspotSou
     lead_source: source,
     ...(hubspotSource !== undefined && { hubspot_source: hubspotSource }),
     user_data: {
+      phone_number: phone.replace(/\s/g, ""),
       sha256_phone_number: hashPhone(phone),
     },
   });
