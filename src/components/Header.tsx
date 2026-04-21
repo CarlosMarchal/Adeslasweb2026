@@ -313,8 +313,9 @@ const Header = () => {
     e.preventDefault();
     if (!isPhoneValid(navPhone)) { setNavPhoneError(true); return; }
     setNavPhoneError(false);
-    await submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 301 });
+    // Tracking síncrono ANTES del fetch — el push al dataLayer no puede depender de HubSpot
     trackGenerateLead(navPhone, "header_desktop_te_llamamos", 301);
+    submitToHubSpot({ phone: "+34" + navPhone.replace(/\s/g, ""), source: 301 }).catch((err) => console.error("[HubSpot]", err));
     setNavPhone("");
     setShowThankYouModal(true);
   };
@@ -327,8 +328,8 @@ const Header = () => {
     e.preventDefault();
     if (!isPhoneValid(mobilePhone)) { setMobilePhoneError(true); return; }
     setMobilePhoneError(false);
-    await submitToHubSpot({ phone: "+34" + mobilePhone.replace(/\s/g, ""), source: 301 });
     trackGenerateLead(mobilePhone, "header_mobile_te_llamamos", 301);
+    submitToHubSpot({ phone: "+34" + mobilePhone.replace(/\s/g, ""), source: 301 }).catch((err) => console.error("[HubSpot]", err));
     setMobilePhone("");
     setShowPhonePopup(false);
     setShowThankYouModal(true);

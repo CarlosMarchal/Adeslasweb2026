@@ -317,15 +317,15 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     const source = singleProduct
       ? (slugToSource[productSlug ?? ""] ?? 302)
       : 302;
-    await submitToHubSpot({
+    trackTarificadorSubmit(`${countryCode}${telefono}`, `tarificador_${source}`, source);
+    submitToHubSpot({
       firstname: nombre.trim(),
       email,
       phone: `${countryCode}${telefono}`,
       city: provincia,
       edad1: edades.filter(Boolean).join(","),
       source,
-    });
-    trackTarificadorSubmit(`${countryCode}${telefono}`, `tarificador_${source}`, source);
+    }).catch((err) => console.error("[HubSpot]", err));
 
     // Mostrar siempre el modal de resultados (comparador y single product)
     setShowModal(true);

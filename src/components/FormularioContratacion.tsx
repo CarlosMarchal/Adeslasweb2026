@@ -5,6 +5,7 @@ import {
   ChevronLeft, Check, Shield, Lock, Phone,
   User, Users, Heart, CreditCard, AlertCircle, CheckCircle2, Calendar,
 } from 'lucide-react';
+import { trackGenerateLead } from '@/lib/tracking';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Types
@@ -629,6 +630,8 @@ export default function FormularioContratacion({ params }: Props) {
   // ── Submit ───────────────────────────────────────────────────────────────
   const handleSubmit = async () => {
     if (!validateStep5()) return;
+    // Tracking síncrono ANTES del fetch — evento de conversión al dataLayer
+    trackGenerateLead(form.telefono, `formulario_contratacion_${params.productoNombre ?? "desconocido"}`);
     setSending(true);
     try {
       const res = await fetch('/api/enviar-alta', {

@@ -5,6 +5,7 @@ import {
   Check, ChevronRight, ChevronLeft, Plus, User, Users,
   Heart, FileText, CreditCard, CheckCircle, Shield, Lock, X,
 } from 'lucide-react';
+import { trackGenerateLead } from '@/lib/tracking';
 
 // El envío de email se gestiona en el servidor:
 // → app/api/enviar-alta/route.ts (Nodemailer + Gmail SMTP)
@@ -303,6 +304,8 @@ export default function FormularioAlta() {
   // -------------------- Submit ------------------------
   const handleSubmit = async () => {
     if (!validate()) return;
+    // Tracking síncrono ANTES del fetch — evento de conversión al dataLayer
+    trackGenerateLead(form.tomador.telefono, "formulario_alta_completo");
     setSending(true);
     try {
       const res = await fetch('/api/enviar-alta', {

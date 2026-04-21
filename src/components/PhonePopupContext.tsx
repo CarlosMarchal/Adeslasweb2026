@@ -38,8 +38,8 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
     setTermsError(false);
     if (!/^[67]\d{8}$/.test(phone.replace(/\s/g, ""))) { setPhoneError(true); return; }
     setPhoneError(false);
-    await submitToHubSpot({ phone: "+34" + phone.replace(/\s/g, ""), source: sourceRef.current });
     trackGenerateLead(phone, "popup_te_llamamos", sourceRef.current);
+    submitToHubSpot({ phone: "+34" + phone.replace(/\s/g, ""), source: sourceRef.current }).catch((err) => console.error("[HubSpot]", err));
     setSent(true);
     setTimeout(() => { setSent(false); setPhone(""); setTermsAccepted(false); setOpen(false); }, 3000);
   };

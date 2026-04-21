@@ -223,15 +223,15 @@ const TarificadorPymes = ({ context = "pymes" }: TarificadorPymesProps) => {
     if (!termsAccepted) { setTermsError(true); return; }
     setTermsError(false);
 
-    await submitToHubSpot({
+    trackTarificadorSubmit(`${countryCode}${telefono}`, "tarificador_pymes_320", 320);
+    submitToHubSpot({
       firstname: nombre.trim(),
       email,
       phone: `${countryCode}${telefono}`,
       city: provincia,
       edad1: parsedAges.filter(a => !isNaN(a)).join(","),
       source: 320,
-    });
-    trackTarificadorSubmit(`${countryCode}${telefono}`, "tarificador_pymes_320", 320);
+    }).catch((err) => console.error("[HubSpot]", err));
 
     setStep(2);
   };
