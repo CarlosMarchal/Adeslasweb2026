@@ -4,20 +4,19 @@
    Consent gestionado externamente por Consentiam.eu vía GTM
 ───────────────────────────────────────────── */
 
+import { sha256 } from "js-sha256";
+
 declare global {
   interface Window {
     dataLayer: Record<string, unknown>[];
   }
 }
 
-/* ── SHA-256 hash (Web Crypto API) — best effort, NO bloquea el push principal ── */
-async function sha256(value: string): Promise<string> {
-  const normalized = value.replace(/\s/g, "").toLowerCase();
-  const encoded = new TextEncoder().encode(normalized);
-  const buffer = await crypto.subtle.digest("SHA-256", encoded);
-  return Array.from(new Uint8Array(buffer))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
+/* ── SHA-256 sync hash — js-sha256 es JS puro, no depende de crypto.subtle
+   (que es async y rechazaba silenciosamente en Safari ITP/extensiones).
+   Hashing en <1 ms para un número de teléfono. ── */
+function hashPhone(phone: string): string {
+  return sha256(phone.replace(/\s/g, "").toLowerCase());
 }
 
 /* ── Generic dataLayer push ── */
@@ -27,29 +26,17 @@ function pushEvent(event: string, params: Record<string, unknown> = {}) {
 }
 
 /* ── generate_lead: usuario deja su teléfono
-   SÍNCRONO — push inmediato al dataLayer. El hash SHA-256 se calcula en
-   background (best effort) y se pushea como evento secundario si completa.
-   Antes era async con `await sha256(...)` y si crypto.subtle fallaba
-   silenciosamente (contexto inseguro, ITP Safari, extensiones) el evento
-   principal no llegaba nunca a GTM. ── */
+   SÍNCRONO — hash calculado en JS puro y push atómico al dataLayer en el
+   mismo tick del click. Garantiza entrega del evento antes de cualquier
+   re-render, navegación o unmount. ── */
 export function trackGenerateLead(phone: string, source: string, hubspotSource?: number) {
-  const phoneClean = phone.replace(/\s/g, "");
   pushEvent("generate_lead", {
     lead_source: source,
     ...(hubspotSource !== undefined && { hubspot_source: hubspotSource }),
-    user_data: { phone_number: phoneClean },
+    user_data: {
+      sha256_phone_number: hashPhone(phone),
+    },
   });
-  // Hash en background — enriquece el tracking pero no bloquea
-  if (typeof crypto !== "undefined" && crypto.subtle) {
-    sha256(phoneClean)
-      .then((hashedPhone) => {
-        pushEvent("generate_lead_hashed", {
-          lead_source: source,
-          user_data: { sha256_phone_number: hashedPhone },
-        });
-      })
-      .catch((err) => console.error("[tracking] sha256 failed:", err));
-  }
 }
 
 /* ── click_to_call_contratacion: clic en 91 710 50 00 ── */
@@ -77,22 +64,13 @@ export function trackPageView(pathname: string) {
   });
 }
 
-/* ── tarificador_submit: envío del calculador de precios (síncrono, mismo patrón que generate_lead) ── */
+/* ── tarificador_submit: envío del calculador de precios (mismo patrón sync que generate_lead) ── */
 export function trackTarificadorSubmit(phone: string, source: string, hubspotSource?: number) {
-  const phoneClean = phone.replace(/\s/g, "");
   pushEvent("generate_lead", {
     lead_source: source,
     ...(hubspotSource !== undefined && { hubspot_source: hubspotSource }),
-    user_data: { phone_number: phoneClean },
+    user_data: {
+      sha256_phone_number: hashPhone(phone),
+    },
   });
-  if (typeof crypto !== "undefined" && crypto.subtle) {
-    sha256(phoneClean)
-      .then((hashedPhone) => {
-        pushEvent("generate_lead_hashed", {
-          lead_source: source,
-          user_data: { sha256_phone_number: hashedPhone },
-        });
-      })
-      .catch((err) => console.error("[tracking] sha256 failed:", err));
-  }
 }
