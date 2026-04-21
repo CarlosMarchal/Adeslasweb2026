@@ -2,6 +2,8 @@
 
 > **Lee este documento completo antes de tocar nada relacionado con tracking, formularios, GTM, HubSpot o performance (`app/layout.tsx`, `src/lib/tracking.ts`, `src/lib/hubspot.ts`, handlers de `<form>`).**
 >
+> **Para reglas formales con prioridades P0/P1/P2 → ver [`docs/SOP-TRACKING.md`](./docs/SOP-TRACKING.md).** Ese documento es autoritativo para cualquier cambio en el tracking. Este `CLAUDE.md` es el resumen operativo.
+>
 > Autor original: Juan Carlos Díaz — Convertiam.com (`jcarlos@convertiam.com`)
 > Co-mantenedor: Carlos Marchal — Marchal Aseguradores
 > Producto: web Adeslas para Marchal Aseguradores — `numero1salud.es`
