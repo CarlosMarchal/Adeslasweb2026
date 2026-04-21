@@ -17,7 +17,12 @@
       "Bash(npx --no-install tsc --noEmit)",
       "Bash(npx vite:*)",
       "Bash(npm install:*)",
-      "Bash(git status:*)"
+      "Bash(git status:*)",
+      "Bash(node_modules/.bin/tsc --noEmit -p tsconfig.app.json)",
+      "Bash(git diff *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git fetch *)"
     ]
   }
 }
