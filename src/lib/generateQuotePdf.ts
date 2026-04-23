@@ -28,6 +28,7 @@ export interface ClienteInfo {
   nombre?: string;
   telefono?: string;
   email?: string;
+  includePuntos?: boolean;  // si false, omite la sección de puntos Segurísimos en el PDF
 }
 
 export interface PersonaPrecio {
@@ -698,7 +699,7 @@ export async function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): 
   /* ════════════════════════════════════════════════════════════
      § 7 · CAMPAÑA SEGURÍSIMOS
   ════════════════════════════════════════════════════════════ */
-  if (!quote.isSeniors && quote.totalPuntos > 0) {
+  if (!quote.isSeniors && quote.totalPuntos > 0 && cliente.includePuntos !== false) {
     ensureSpace(26);
     const camH = 22;
 

@@ -195,6 +195,7 @@ export default function TarificadorInterno() {
   const [clienteNombre, setClienteNombre]     = useState("");
   const [clienteTelefono, setClienteTelefono] = useState("");
   const [clienteEmail, setClienteEmail]       = useState("");
+  const [includePuntosPdf, setIncludePuntosPdf] = useState(true);
 
   const zona        = getZoneFromProvince(provincia);
   const pctGeneral  = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
@@ -1064,7 +1065,29 @@ export default function TarificadorInterno() {
               </div>
             </div>
 
-            <div className="flex gap-3 mt-6">
+            {/* ── Toggle puntos Segurísimos ── */}
+            {selectedQuote && !selectedQuote.isSeniors && selectedQuote.totalPuntos > 0 && (
+              <div className="flex items-center justify-between gap-3 mt-5 px-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">⭐</span>
+                  <div>
+                    <p className="text-sm font-semibold text-slate-700 leading-tight">Incluir puntos Segurísimos</p>
+                    <p className="text-xs text-slate-400">Añade la sección de campaña al PDF</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIncludePuntosPdf((v) => !v)}
+                  className={`relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none ${includePuntosPdf ? "bg-amber-400" : "bg-slate-200"}`}
+                  role="switch"
+                  aria-checked={includePuntosPdf}
+                >
+                  <span className={`inline-block h-5 w-5 rounded-full bg-white shadow transform transition duration-200 ${includePuntosPdf ? "translate-x-5" : "translate-x-0"}`} />
+                </button>
+              </div>
+            )}
+
+            <div className="flex gap-3 mt-5">
               <button
                 onClick={() => setShowQuoteModal(false)}
                 className="flex-1 px-4 py-2.5 border border-slate-200 text-slate-600 font-semibold rounded-xl hover:bg-slate-50 transition"
@@ -1075,9 +1098,10 @@ export default function TarificadorInterno() {
                 onClick={async () => {
                   try {
                     await generateQuotePdf(selectedQuote!, {
-                      nombre:   clienteNombre   || undefined,
-                      telefono: clienteTelefono || undefined,
-                      email:    clienteEmail    || undefined,
+                      nombre:        clienteNombre   || undefined,
+                      telefono:      clienteTelefono || undefined,
+                      email:         clienteEmail    || undefined,
+                      includePuntos: includePuntosPdf,
                     });
                     setShowQuoteModal(false);
                   } catch (err) {
