@@ -1104,6 +1104,93 @@ export const blogPosts: BlogPostFull[] = [
   },
 
 
+
+  /* ── Carencias: carencias-seguros-medicos-adeslas ── */
+  {
+    slug: "carencias-seguros-medicos-adeslas",
+    category: "Carencias",
+    title: "Carencias en seguros médicos Adeslas: qué son, cuánto duran y cómo afectan",
+    excerpt: "Las carencias son el periodo de espera desde que contratas el seguro hasta que puedes usar ciertas coberturas. Entenderlas bien evita sorpresas desagradables.",
+    date: "2 May 2026",
+    readTime: "7 min",
+    image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=600&h=400&fit=crop",
+    seoTitle: "Carencias en Seguros Médicos Adeslas: Qué Son y Cuánto Duran | 2026",
+    seoDescription: "Guía completa sobre las carencias de los seguros médicos Adeslas 2026: hospitalización, maternidad, qué servicios tienen acceso inmediato y cómo evitar esperas.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "Las carencias son los periodos de espera que existen entre la fecha de contratación de un seguro médico y el momento en que puedes usar determinadas coberturas. No son un truco de las aseguradoras: son la forma en que los seguros médicos garantizan su viabilidad financiera y mantienen las primas en niveles razonables para todos los asegurados."
+        },
+        {
+            "type": "paragraph",
+            "text": "En los seguros Adeslas, la mayoría de los servicios ambulatorios tienen acceso inmediato o en muy pocos días. Las carencias más largas afectan a las coberturas de mayor coste: hospitalización, cirugía programada y maternidad. Aquí te explicamos exactamente qué puedes usar desde el primer día y qué tiene periodo de espera."
+        },
+        {
+            "type": "heading",
+            "text": "Servicios con acceso inmediato en Adeslas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Urgencias: acceso desde el primer día en toda la red Adeslas",
+                "Medicina general y médico de cabecera: desde el primer día",
+                "Especialidades médicas: acceso inmediato en la mayoría de casos",
+                "Diagnóstico ambulatorio: analíticas, ecografías, radiografías",
+                "Psicología y salud mental (consulta ambulatoria)",
+                "Podología",
+                "Óptica (en planes que la incluyen)"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Carencias habituales en los seguros Adeslas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Hospitalización y cirugía programada: 6 meses desde la fecha de efecto",
+                "Maternidad y parto: 8 meses desde la fecha de efecto",
+                "Psiquiatría con ingreso: 6 meses",
+                "Rehabilitación con ingreso: 6 meses",
+                "Diagnóstico de alta tecnología (resonancia magnética, PET, TAC): en algunos casos hasta 3-6 meses según el plan"
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "Si tienes una urgencia real (accidente, apendicitis, infarto), las carencias no se aplican. Las urgencias están cubiertas desde el primer día en todos los planes Adeslas."
+        },
+        {
+            "type": "heading",
+            "text": "¿Qué pasa si necesito operarme antes de que pasen los 6 meses?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Si necesitas una cirugía durante el periodo de carencia y no es una urgencia, tienes dos opciones: esperar a que se cumpla el periodo de carencia (y entonces la cobertura es total), o abonar la intervención de forma privada sin usar el seguro. Adeslas, como el resto de aseguradoras, puede considerar urgente una situación que lo sea clínicamente aunque no sea evidente a primera vista, por lo que siempre es recomendable consultar antes."
+        },
+        {
+            "type": "heading",
+            "text": "¿Puedo eliminar las carencias al contratar?"
+        },
+        {
+            "type": "paragraph",
+            "text": "En determinadas circunstancias sí. Si vienes de otro seguro médico sin interrupción de cobertura, Adeslas puede reconocer el tiempo ya cumplido en la aseguradora anterior y reducir o eliminar las carencias. Esto se llama 'portabilidad de carencias' y requiere aportar documentación de la póliza anterior. Consúltalo con tu asesor de Marchal Aseguradores."
+        },
+        {
+            "type": "heading",
+            "text": "Preexistencias: diferente a las carencias"
+        },
+        {
+            "type": "paragraph",
+            "text": "Las carencias afectan a todos los asegurados por igual, independientemente de su estado de salud. Las preexistencias son enfermedades o condiciones que ya tienes en el momento de contratar. Adeslas puede excluirlas de la cobertura o incluirlas con condiciones especiales dependiendo del caso. Por eso es importante ser honesto en el cuestionario de salud: ocultar preexistencias puede derivar en la nulidad del contrato."
+        },
+        {
+            "type": "callout",
+            "text": "Como agente exclusivo Adeslas, en Marchal Aseguradores te ayudamos a entender exactamente qué carencias aplican a tu caso y si puedes aprovechar la portabilidad. Llámanos al 91 710 50 00 o consulta sin compromiso."
+        }
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026","seguro-medico-familias-2026"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
