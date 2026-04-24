@@ -68,10 +68,10 @@ const WEBSITE_SCHEMA = {
   "url": "https://adeslas.numero1salud.es",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://adeslas.numero1salud.es/cuadro-medico?q={search_term_string}"
-    },
+    // Formato estándar de Google para Sitelinks Searchbox.
+    // Se usa string directa (no objeto EntryPoint) para evitar que GSC
+    // interprete la URL-template como una página real sin canonical.
+    "target": "https://adeslas.numero1salud.es/cuadro-medico/?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 };

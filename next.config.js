@@ -49,6 +49,44 @@ const nextConfig = {
     unoptimized: true,
   },
 
+  // ── Redirects: migración WordPress → Next.js ────────────────────────────────
+  // La web anterior era WordPress. Google sigue rastreando 151 URLs de esa época
+  // (principalmente PDFs de cuadros médicos en /wp-content/uploads/2024/04/).
+  // Estas 301s le indican a Google dónde encontrar el contenido equivalente.
+  async redirects() {
+    return [
+      // PDFs de cuadros médicos y cualquier otro upload de WordPress
+      {
+        source: '/wp-content/:path*',
+        destination: '/cuadro-medico/',
+        permanent: true,
+      },
+      // Rutas WordPress admin/login
+      {
+        source: '/wp-admin/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/wp-login.php',
+        destination: '/',
+        permanent: true,
+      },
+      // Ruta /wordpress del sitio antiguo
+      {
+        source: '/wordpress',
+        destination: '/',
+        permanent: true,
+      },
+      // Feed WordPress
+      {
+        source: '/feed/',
+        destination: '/adeslas-blog/',
+        permanent: true,
+      },
+    ];
+  },
+
   // ── HTTP Cache-Control headers para assets estáticos ────────────────────────
   // Fuentes y imágenes: inmutables 1 año (el hash del nombre cambia con cada build)
   // Páginas HTML: no cachear en cliente para que ISR funcione correctamente
@@ -81,6 +119,23 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+      {
+        // Canonical HTTP header para PDFs de cuadros médicos.
+        // Los PDFs no tienen HTML, así que no pueden usar <link rel="canonical">.
+        // La alternativa es el header HTTP Link, que Google respeta para PDFs.
+        // Evita que Google trate los 51 PDFs de provincias como "duplicados sin canonical".
+        source: '/cuadros-medicos/:file*',
+        headers: [
+          {
+            key: 'Link',
+            value: '<https://adeslas.numero1salud.es/cuadros-medicos/:file*>; rel="canonical"',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, stale-while-revalidate=86400',
           },
         ],
       },

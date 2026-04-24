@@ -47,7 +47,20 @@ Allow: /
 User-agent: YouBot
 Allow: /
 
+# ── WordPress (sitio antiguo — migrado a Next.js) ────────────────────────────
+# Estas rutas ya no existen. Los redirects 301 en next.config.js gestionan
+# los usuarios que lleguen a ellas, pero indicamos aquí a los crawlers que
+# no pierdan tiempo rastreándolas.
 User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-includes/
+Disallow: /wp-json/
+Disallow: /wordpress
+Disallow: /?author=
+Disallow: /feed/
+Disallow: /xmlrpc.php
+Allow: /wp-content/uploads/
 Allow: /
 
 Sitemap: https://adeslas.numero1salud.es/sitemap.xml
