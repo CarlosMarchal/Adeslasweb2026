@@ -91,6 +91,30 @@ const nextConfig = {
         destination: '/cuadro-medico/',
         permanent: true,
       },
+      // URLs antiguas sin guiones (/segurosalud/slug → /seguro-[slug]/)
+      // Estaban en "rastreadas sin indexar": el SPA devolvía 200 vacío.
+      {
+        source: '/segurosalud/seguromascotas',
+        destination: '/seguro-mascotas/',
+        permanent: true,
+      },
+      {
+        source: '/segurosalud/decesos',
+        destination: '/seguro-decesos/',
+        permanent: true,
+      },
+      // Cualquier otra ruta /segurosalud/* no cubierta arriba → home
+      {
+        source: '/segurosalud/:slug*',
+        destination: '/',
+        permanent: true,
+      },
+      // /mas-seguros → página de inicio (sin contenido en nuevo site)
+      {
+        source: '/mas-seguros',
+        destination: '/',
+        permanent: true,
+      },
       // Posts del blog antiguo en /adeslas-blog/:slug — ya no existen en el nuevo site.
       // El SPA devolvía 200 con contenido vacío → Google los marcaba como Soft 404.
       // Se redirigen al hub del blog para mantener el flujo de usuario.
@@ -108,12 +132,19 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Fuentes self-hosted: cache 1 año inmutable
+        // Fuentes self-hosted: cache 1 año inmutable + noindex para bots.
+        // Google rastreaba /fonts/lato-latin-900-normal.woff2 (y las demás)
+        // y las marcaba como "rastreadas sin indexar". X-Robots-Tag le indica
+        // explícitamente que no intente indexar archivos de fuente.
         source: '/fonts/:font*',
         headers: [
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
           },
         ],
       },
