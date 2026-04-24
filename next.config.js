@@ -84,6 +84,21 @@ const nextConfig = {
         destination: '/adeslas-blog/',
         permanent: true,
       },
+      // Ruta /Documentos/ de era pre-WordPress (PDFs de cuadros médicos dentales)
+      // Generaban Soft 404: el servidor devolvía 200 con página vacía
+      {
+        source: '/Documentos/:path*',
+        destination: '/cuadro-medico/',
+        permanent: true,
+      },
+      // Posts del blog antiguo en /adeslas-blog/:slug — ya no existen en el nuevo site.
+      // El SPA devolvía 200 con contenido vacío → Google los marcaba como Soft 404.
+      // Se redirigen al hub del blog para mantener el flujo de usuario.
+      {
+        source: '/adeslas-blog/:slug+',
+        destination: '/adeslas-blog/',
+        permanent: true,
+      },
     ];
   },
 
