@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useDeferredValue } from "react";
 import { motion } from "@/lib/motion";
 import { useSeo } from "@/hooks/use-seo";
 import { TarificadorProvider } from "@/components/TarificadorContext";
@@ -38,6 +38,10 @@ const provincias = [
 
 const CuadroMedico = () => {
   const [search, setSearch] = useState("");
+  // useDeferredValue: el input se actualiza inmediatamente (sin lag visual),
+  // pero el filtrado de las 52 provincias se difiere al siguiente frame idle.
+  // Esto elimina el bloqueo del main thread en cada keystroke en móvil.
+  const deferredSearch = useDeferredValue(search);
 
   const _seo = useSeo({
     title: "Cuadro Médico Adeslas 2026 | +51.000 Médicos y 1.400 Centros en España",
@@ -71,7 +75,7 @@ const CuadroMedico = () => {
   });
 
   const filtered = provincias.filter((p) =>
-    p.toLowerCase().includes(search.toLowerCase())
+    p.toLowerCase().includes(deferredSearch.toLowerCase())
   );
 
   return (
