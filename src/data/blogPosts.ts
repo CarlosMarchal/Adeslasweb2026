@@ -1287,6 +1287,110 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026","carencias-seguros-medicos-adeslas"],
   },
 
+
+  /* ── Hospitalización: hospitalizacion-privada-vs-publica ── */
+  {
+    slug: "hospitalizacion-privada-vs-publica",
+    category: "Hospitalización",
+    title: "Hospitalización privada vs. pública en España: diferencias reales en 2026",
+    excerpt: "¿Qué cambia realmente entre ingresar en un hospital público o en uno privado? Tiempos, habitación, acceso al médico, pruebas, alta. Las diferencias son más grandes de lo que crees.",
+    date: "8 May 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=400&fit=crop",
+    seoTitle: "Hospitalización Privada vs Pública en España 2026: Diferencias Reales",
+    seoDescription: "Comparativa real entre hospitalización privada y pública en España 2026: tiempos de espera, habitación, médico asignado, pruebas y coste. Descubre qué cambia con un seguro Adeslas.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "La diferencia entre un ingreso hospitalario en la sanidad pública y en la privada va mucho más allá de la habitación individual. Afecta a cuánto tiempo esperas para ser intervenido, quién te opera, cuándo te hacen las pruebas, cómo se gestionan las urgencias y cómo es el proceso de alta. Estas son las diferencias reales que importan en 2026."
+        },
+        {
+            "type": "heading",
+            "text": "1. Tiempos de espera para cirugía programada"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Sanidad pública: espera media de 5 meses para cirugía electiva en 2026 (Ministerio de Sanidad). En traumatología y oftalmología puede superar los 12 meses en varias CC.AA.",
+                "Sanidad privada con Adeslas: no hay lista de espera para cirugía. La cita con el especialista suele obtenerse en 24-72 horas y el quirófano en días o pocas semanas",
+                "Impacto: una persona que necesita una prótesis de rodilla espera de media 18 meses en la red pública de algunas comunidades. En la privada, puede operarse en 2-3 semanas"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "2. Habitación y condiciones de ingreso"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Sanidad pública: habitación compartida como norma general (2-4 camas). Acompañante no garantizado o con restricciones horarias",
+                "Sanidad privada con Adeslas: habitación individual en todos los planes completos (Plena Vital, Plena Plus, Plena Total). Cama para acompañante incluida",
+                "Para familias con niños ingresados o mayores que necesitan compañía, la habitación individual con cama de acompañante es una diferencia muy significativa"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "3. Médico que te atiende"
+        },
+        {
+            "type": "paragraph",
+            "text": "En la sanidad pública, el médico que te opera es el asignado por el hospital ese día, no necesariamente el especialista que te ha seguido durante el proceso diagnóstico. En la sanidad privada con Adeslas, puedes elegir al cirujano de la red que quieres que te opere, con quién ya has consultado previamente y de cuya experiencia tienes información directa."
+        },
+        {
+            "type": "heading",
+            "text": "4. Diagnóstico previo al ingreso"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Sanidad pública: las pruebas preoperatorias pueden demorarse semanas o meses",
+                "Sanidad privada: resonancias, TAC y analíticas preoperatorias se obtienen en días",
+                "El acceso rápido al diagnóstico puede adelantar la cirugía de forma significativa y mejorar el resultado clínico"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "5. Urgencias: la gran diferencia en guardia"
+        },
+        {
+            "type": "paragraph",
+            "text": "Las urgencias hospitalarias públicas en España registran esperas medias de 2 a 5 horas para ser atendido por el médico, según el nivel de triaje. En urgencias privadas, la espera se reduce drásticamente: en la mayoría de clínicas y hospitales Adeslas, el tiempo hasta ser visto por el médico es inferior a 30 minutos."
+        },
+        {
+            "type": "callout",
+            "text": "Las urgencias están cubiertas desde el primer día en todos los planes Adeslas, sin carencias y sin copago adicional en los planes sin copago. En caso de accidente o emergencia grave, también se cubre la atención en el hospital público más cercano."
+        },
+        {
+            "type": "heading",
+            "text": "6. Alta médica y seguimiento postoperatorio"
+        },
+        {
+            "type": "paragraph",
+            "text": "En la sanidad privada, el seguimiento postoperatorio es más inmediato y personalizado. Las revisiones con el cirujano se obtienen en días, no en semanas. La rehabilitación post-quirúrgica, incluida en los planes Adeslas, puede iniciarse de forma inmediata sin esperar a la derivación de fisioterapia pública."
+        },
+        {
+            "type": "heading",
+            "text": "¿Qué cubre Adeslas en hospitalización?"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Habitación individual con cama para acompañante",
+                "Cirugía programada y de urgencia sin límite de intervenciones",
+                "Anestesia y quirófano incluidos",
+                "Pruebas diagnósticas preoperatorias y postoperatorias",
+                "Rehabilitación post-quirúrgica ambulatoria",
+                "Seguimiento con el especialista tras el alta"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Como agente exclusivo Adeslas, en Marchal Aseguradores podemos ayudarte a entender exactamente qué cubre tu plan en caso de hospitalización. Llámanos al 91 710 50 00."
+        }
+    ],
+    relatedSlugs: ["cuanto-cuesta-operacion-privada-espana-2026","comparativa-seguros-medicos-adeslas-2026","carencias-seguros-medicos-adeslas"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
