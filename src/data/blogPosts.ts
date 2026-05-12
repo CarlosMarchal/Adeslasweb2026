@@ -1391,6 +1391,93 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["cuanto-cuesta-operacion-privada-espana-2026","comparativa-seguros-medicos-adeslas-2026","carencias-seguros-medicos-adeslas"],
   },
 
+
+  /* ── Comparativas: adeslas-vs-dkv-comparativa-2026 ── */
+  {
+    slug: "adeslas-vs-dkv-comparativa-2026",
+    category: "Comparativas",
+    title: "Adeslas vs DKV 2026: comparativa de seguros médicos para elegir con criterio",
+    excerpt: "DKV y Adeslas compiten directamente en el segmento de seguros médicos privados en España. Esta comparativa analiza coberturas, red médica, precios y puntos fuertes de cada una.",
+    date: "11 May 2026",
+    readTime: "9 min",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
+    seoTitle: "Adeslas vs DKV 2026: Comparativa Completa de Seguros Médicos | Marchal",
+    seoDescription: "Comparativa detallada Adeslas vs DKV en 2026: coberturas, red médica, copagos, precios y cuál conviene más según tu perfil. Análisis objetivo del agente exclusivo Adeslas.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "DKV y Adeslas son dos de las aseguradoras médicas con mayor penetración en España, especialmente en el segmento de particulares y autónomos. Ambas ofrecen coberturas completas, red médica amplia y planes con y sin copago. La diferencia está en los detalles: precio por perfil de edad, tamaño de la red en tu provincia, coberturas adicionales y condiciones de la prima. Esta comparativa analiza los factores que realmente importan."
+        },
+        {
+            "type": "heading",
+            "text": "Red médica: tamaño y distribución geográfica"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Adeslas: más de 51.000 médicos y 1.400 centros en toda España. Red especialmente fuerte en Madrid, Cataluña, Andalucía, Comunidad Valenciana y Galicia",
+                "DKV: red concertada de alta calidad, con mayor presencia histórica en Cataluña y Aragón. Cuadro médico más reducido en algunas provincias del interior",
+                "En ciudades medianas y pequeñas, la red Adeslas suele ser más amplia",
+                "En Barcelona y Zaragoza, DKV tiene una presencia muy consolidada con clínicas propias de referencia"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Filosofía y posicionamiento"
+        },
+        {
+            "type": "paragraph",
+            "text": "DKV se posiciona históricamente en el segmento de bienestar y salud integral, con programas de salud preventiva y beneficios de estilo de vida para asegurados. Adeslas, la mayor aseguradora médica de España por número de asegurados, se centra en la cobertura sanitaria completa con la red más amplia del país."
+        },
+        {
+            "type": "heading",
+            "text": "Coberturas comparadas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Asistencia ambulatoria: completa en ambas para planes equivalentes",
+                "Hospitalización: incluida en planes completos de ambas aseguradoras con habitación individual",
+                "Dental: DKV incluye coberturas dentales básicas en algunos planes; Adeslas lo incluye en Plena Total y Plena Vital Total",
+                "Salud mental: DKV destaca por su cobertura de salud mental con mayor número de sesiones de psicología en algunos planes",
+                "Programas preventivos: DKV tiene programas de salud activa y DKVit para asegurados; Adeslas incluye chequeo anual en varios planes",
+                "Asistencia en viaje: Adeslas Plena Total hasta 100.000 €; DKV incluye asistencia en viaje en algunos planes según modalidad"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Precio: quién sale más barato según perfil"
+        },
+        {
+            "type": "paragraph",
+            "text": "El precio es el factor más variable. DKV es competitivo en perfiles jóvenes de 25-40 años, especialmente en Cataluña y Aragón. Adeslas es generalmente más competitivo para familias con hijos y para personas de 40-60 años con cobertura completa. Para adultos mayores de 60 años, los precios de ambas aseguradoras se aproximan y dependen mucho de la provincia."
+        },
+        {
+            "type": "callout",
+            "text": "La única forma de comparar precios reales es solicitar presupuesto para tu perfil concreto. En Marchal Aseguradores calculamos tu precio Adeslas exacto en segundos. Para DKV, solicita presupuesto directamente."
+        },
+        {
+            "type": "heading",
+            "text": "¿Cuál elegir según tu situación?"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Si vives en Cataluña o Aragón y valoras la red histórica de DKV → DKV puede ser buena opción",
+                "Si vives fuera de Cataluña o necesitas la red más amplia de España → Adeslas tiene ventaja",
+                "Si buscas programas de salud preventiva y bienestar → DKV destaca en ese aspecto",
+                "Si priorizas precio para cobertura completa en la mayoría de provincias → Adeslas generalmente más competitivo",
+                "Si quieres dental + accidentes + viaje en un único plan sin copago → Adeslas Plena Total"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Como agente exclusivo Adeslas, en Marchal Aseguradores te asesoramos sin coste para elegir el plan que mejor se adapta a tu situación. Llámanos al 91 710 50 00 o calcula tu precio en el comparador online."
+        }
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
