@@ -4,6 +4,14 @@ const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
 
+  // ── Trailing slash canónico ─────────────────────────────────────────────────
+  // GSC reporta 64 páginas con "Duplicada: sin canonical indicado por usuario".
+  // La causa es que /seguro-salud/adeslas-go y /seguro-salud/adeslas-go/ se
+  // tratan como dos URLs distintas. Con trailingSlash: true, Next.js normaliza
+  // todas las URLs a la versión con barra final y redirige la versión sin barra
+  // con un 308 permanente, eliminando la duplicación.
+  trailingSlash: true,
+
   // ── Tree-shaking agresivo para paquetes grandes ──────────────────────────────
   // Next.js analiza qué exports se usan realmente y elimina el resto del bundle.
   // Impacto estimado: framer-motion −40 KB, lucide-react −300 KB gzipped en build.
@@ -121,6 +129,57 @@ const nextConfig = {
       {
         source: '/adeslas-blog/:slug+',
         destination: '/adeslas-blog/',
+        permanent: true,
+      },
+
+      // ── Rutas del sitio antiguo /salud/*.html y /salud/*.php ────────────────
+      // GSC reporta estas URLs como indexadas con contenido incorrecto (el SPA
+      // las servía como 200 mostrando la home). Redirigimos a la página equivalente
+      // del nuevo site o a la home si no hay equivalente directo.
+      {
+        source: '/salud/pymes.html',
+        destination: '/seguro-salud/pymes/',
+        permanent: true,
+      },
+      {
+        source: '/salud/autonomos.html',
+        destination: '/seguro-salud/autonomos/',
+        permanent: true,
+      },
+      {
+        source: '/salud/adeslasplenaextra.html',
+        destination: '/seguro-salud/adeslas-extra-150/',
+        permanent: true,
+      },
+      {
+        source: '/salud/aviso-legal.php',
+        destination: '/politica-de-privacidad',
+        permanent: true,
+      },
+      // Cualquier otra ruta /salud/* no cubierta arriba → home
+      {
+        source: '/salud/:path*',
+        destination: '/',
+        permanent: true,
+      },
+
+      // ── Rutas /renfe/ del sitio antiguo ─────────────────────────────────────
+      // GSC reporta /renfe/solicitud-seguro.pdf como indexado. No existe en el nuevo
+      // site. Redirigir a la página del seguro ADIF/Renfe.
+      {
+        source: '/renfe/:path*',
+        destination: '/adeslas-adif-renfe/',
+        permanent: true,
+      },
+
+      // ── Blog: artículos retirados ───────────────────────────────────────────
+      // Artículos que llegaron a publicarse en /blog/[slug] pero se retiraron por
+      // política editorial. Mantenemos un 301 al hub del blog para no servir un
+      // soft 404 mientras Google reindexa, y para conservar el equity SEO de
+      // backlinks externos que pudieran apuntar a la URL antigua.
+      {
+        source: '/blog/adeslas-vs-dkv-comparativa-2026',
+        destination: '/blog/',
         permanent: true,
       },
     ];
