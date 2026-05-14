@@ -123,6 +123,15 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      // Búsqueda WordPress (?s=query) — reliquia del sitio anterior.
+      // Google tiene indexada la URL /?s={search_term_string} del SearchAction del WP.
+      // Redirigimos cualquier ?s= al buscador de cuadro médico del nuevo site.
+      {
+        source: '/',
+        has: [{ type: 'query', key: 's' }],
+        destination: '/cuadro-medico/',
+        permanent: true,
+      },
       // Posts del blog antiguo en /adeslas-blog/:slug — ya no existen en el nuevo site.
       // El SPA devolvía 200 con contenido vacío → Google los marcaba como Soft 404.
       // Se redirigen al hub del blog para mantener el flujo de usuario.
