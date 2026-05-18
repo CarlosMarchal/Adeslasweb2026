@@ -1392,6 +1392,179 @@ export const blogPosts: BlogPostFull[] = [
   },
 
 
+
+  /* ── Seguros Adeslas: seguro-medico-autonomos-2026 ── */
+  {
+    slug: "seguro-medico-autonomos-2026",
+    category: "Seguros Adeslas",
+    title: "Seguro médico para autónomos en 2026: qué debes tener en cuenta antes de contratar",
+    excerpt: "Como autónomo, tu salud es tu negocio. Un día de baja sin cobertura adecuada puede costarte más que meses de prima. Esta guía te ayuda a elegir bien.",
+    date: "14 May 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+    seoTitle: "Seguro Médico para Autónomos 2026: Guía Completa | Adeslas",
+    seoDescription: "Guía completa para autónomos sobre cómo elegir el mejor seguro médico en 2026: cobertura, precio, deducción fiscal y qué plan Adeslas se adapta mejor.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "Para un autónomo, la salud no es solo bienestar personal: es la base de su capacidad de generar ingresos. Un periodo de baja por enfermedad o una espera de meses para ser operado puede traducirse directamente en pérdida de clientes, proyectos y facturación. Por eso, contar con un seguro médico privado de calidad es, para un autónomo, una decisión de negocio tanto como una decisión de salud."
+        },
+        {
+            "type": "heading",
+            "text": "¿Puede el autónomo deducirse el seguro médico?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Sí. Los autónomos en España pueden deducirse las primas de seguro médico en el IRPF, dentro de los rendimientos de actividades económicas. El límite de deducción es de 500 € al año por persona asegurada (el propio autónomo, su cónyuge y los hijos menores de 25 años que convivan con él). Si el autónomo tiene discapacidad, el límite sube a 1.500 €. Consulta siempre con tu asesor fiscal para aplicarlo correctamente."
+        },
+        {
+            "type": "callout",
+            "text": "Una familia de autónomo con cónyuge e hijo puede deducirse hasta 1.500 € anuales en primas de seguro médico. Si la prima anual es de 2.400 €, el coste fiscal neto puede reducirse significativamente."
+        },
+        {
+            "type": "heading",
+            "text": "Qué necesita un autónomo en su seguro médico"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Acceso sin listas de espera: no puedes permitirte esperar 6 meses para una operación",
+                "Urgencias 24 horas en toda España: imprescindible si viajas o trabajas en varias provincias",
+                "Especialistas directos: sin derivación obligatoria que alarga los plazos",
+                "Diagnóstico rápido: resonancias y TAC en días, no en meses",
+                "Hospitalización completa: para cirugías que no pueden posponerse",
+                "Precio estable: una prima que no tenga subidas sorpresa cada año"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Planes Adeslas recomendados para autónomos"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Adeslas Plena Plus: cobertura completa sin copago al precio más ajustado de los planes sin copago. Ideal para autónomos que valoran previsibilidad de gasto",
+                "Adeslas Plena Total: sin copago + dental + accidentes + asistencia en viaje hasta 100.000 € + prima garantizada 3 años. La mejor opción si viajas frecuentemente por trabajo",
+                "Adeslas Plena Vital: cobertura completa con copago y LMA de 300 €/año. Opción equilibrada si quieres cobertura total con prima más baja y aceptas el copago"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "¿Merece la pena el seguro médico frente a la mutua de autónomos?"
+        },
+        {
+            "type": "paragraph",
+            "text": "La mutua de accidentes de trabajo y enfermedades profesionales es obligatoria para autónomos y cubre contingencias laborales. El seguro médico privado cubre la salud general: enfermedades comunes, especialistas, hospitalización por cualquier causa, cirugías no laborales. Son coberturas complementarias, no sustitutivas. La pregunta no es si necesitas uno u otro, sino cuánto te cuesta no tener el seguro médico cuando lo necesitas."
+        },
+        {
+            "type": "heading",
+            "text": "Cuánto cuesta un seguro médico para autónomos con Adeslas"
+        },
+        {
+            "type": "paragraph",
+            "text": "Para un autónomo de 35-45 años, un seguro médico completo sin copago con Adeslas puede estar entre 70 € y 120 € al mes según provincia y plan elegido. Con la deducción fiscal aplicada, el coste neto puede reducirse entre un 20 % y un 30 % dependiendo del tramo de IRPF. Un coste que se amortiza con una sola visita evitada a urgencias privadas."
+        },
+        {
+            "type": "callout",
+            "text": "Como agente exclusivo Adeslas, en Marchal Aseguradores te ayudamos a encontrar el plan con mejor relación cobertura-precio para tu actividad y situación. Llámanos al 91 710 50 00."
+        }
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026","seguro-medico-familias-2026"],
+  },
+
+
+  /* ── Precios: listas-de-espera-sanidad-publica-espana-2026 ── */
+  {
+    slug: "listas-de-espera-sanidad-publica-espana-2026",
+    category: "Precios",
+    title: "Listas de espera en la sanidad pública española en 2026: datos reales y alternativas",
+    excerpt: "¿Cuánto se espera realmente para ver un especialista o para operarse en la sanidad pública en 2026? Los datos del Ministerio de Sanidad son más reveladores de lo que imaginas.",
+    date: "17 May 2026",
+    readTime: "7 min",
+    image: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=600&h=400&fit=crop",
+    seoTitle: "Listas de Espera Sanidad Pública España 2026: Datos y Alternativas",
+    seoDescription: "Datos reales de listas de espera en la sanidad pública española 2026 por especialidad y comunidad autónoma. Cuánto se espera y qué alternativa ofrece Adeslas.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "Las listas de espera en la sanidad pública española son uno de los principales motivos por los que las familias deciden contratar un seguro médico privado. No es una percepción subjetiva: los datos oficiales del Sistema de Información sobre Listas de Espera del SNS (SISLE) confirman esperas que, en muchos casos, se miden en meses o incluso en más de un año."
+        },
+        {
+            "type": "paragraph",
+            "text": "Esta guía recoge los datos más recientes disponibles para 2026, ordenados por especialidad y tipo de espera, y explica cuál es la alternativa real que ofrece un seguro médico privado como Adeslas."
+        },
+        {
+            "type": "heading",
+            "text": "Espera media para ver al especialista en la sanidad pública"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Traumatología y ortopedia: 70-120 días de media nacional",
+                "Dermatología: 60-100 días",
+                "Oftalmología: 55-90 días",
+                "Cardiología: 50-80 días",
+                "Digestivo (gastroenterología): 60-90 días",
+                "Neurología: 80-130 días",
+                "Psiquiatría: 45-90 días",
+                "Ginecología: 30-60 días",
+                "Reumatología: 80-120 días"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Espera para cirugía electiva en la sanidad pública 2026"
+        },
+        {
+            "type": "paragraph",
+            "text": "La espera media para cirugía electiva (programada, no urgente) a nivel nacional supera los 5 meses. Pero la media esconde grandes diferencias entre comunidades autónomas. Cataluña, Madrid y País Vasco tienen listas más cortas que la media. Comunidades como Canarias, Murcia o algunas zonas de Castilla-La Mancha pueden superar los 12-18 meses para determinadas intervenciones."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Cataratas: espera media de 5-9 meses",
+                "Prótesis de rodilla: 12-18 meses en muchas CC.AA.",
+                "Hernia inguinal: 4-8 meses",
+                "Colecistectomía (vesícula): 4-7 meses",
+                "Intervenciones de columna: 8-14 meses",
+                "Varices: 6-12 meses"
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "Una espera de 12 meses para una prótesis de rodilla significa 12 meses con dolor, movilidad reducida y, en muchos casos, sin poder trabajar con normalidad. El coste real de la espera no es solo médico: es económico y de calidad de vida."
+        },
+        {
+            "type": "heading",
+            "text": "¿Cómo afecta esto a pruebas diagnósticas?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Las listas de espera no son solo para cirugía. Las pruebas diagnósticas también tienen demoras significativas en la sanidad pública. Una resonancia magnética puede tardar 2-4 meses en muchas comunidades. Una colonoscopia, entre 2 y 6 meses. En un contexto donde el diagnóstico temprano es clave —especialmente en oncología— estas demoras pueden tener consecuencias clínicas reales."
+        },
+        {
+            "type": "heading",
+            "text": "La alternativa: qué ofrece Adeslas frente a las listas de espera"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Cita con especialista: en 24-72 horas en la mayoría de casos",
+                "Resonancia magnética o TAC: en menos de una semana",
+                "Colonoscopia o gastroscopia diagnóstica: en 7-15 días",
+                "Cirugía electiva: desde semanas, no meses",
+                "Sin necesidad de derivación del médico de cabecera para acceder al especialista",
+                "Seguimiento post-quirúrgico inmediato"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Un seguro médico privado no sustituye a la sanidad pública: la complementa. Muchas personas usan la pública para la medicina preventiva y de seguimiento, y la privada para el acceso rápido a especialistas y diagnóstico. Como agente exclusivo Adeslas, en Marchal Aseguradores te ayudamos a encontrar el plan que encaje con tu uso real. Llámanos al 91 710 50 00."
+        }
+    ],
+    relatedSlugs: ["hospitalizacion-privada-vs-publica","cuanto-cuesta-operacion-privada-espana-2026","comparativa-seguros-medicos-adeslas-2026"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
