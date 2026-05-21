@@ -132,6 +132,18 @@ const nextConfig = {
         destination: '/cuadro-medico/',
         permanent: true,
       },
+      // SearchAction template URL — Google rastreó la URL-plantilla del JSON-LD
+      // WebSite schema (/cuadro-medico/?q={search_term_string}) como si fuera
+      // una página real, generando "Duplicada sin canonical" en GSC.
+      // El 301 le indica a Google el canonical correcto y limpia la URL cacheada.
+      // Solo coincide con el placeholder literal: no afecta búsquedas reales
+      // (que tienen valores reales en ?q= y se gestionan client-side por React Router).
+      {
+        source: '/cuadro-medico',
+        has: [{ type: 'query', key: 'q', value: '\\{search_term_string\\}' }],
+        destination: '/cuadro-medico/',
+        permanent: true,
+      },
       // Posts del blog antiguo en /adeslas-blog/:slug — ya no existen en el nuevo site.
       // El SPA devolvía 200 con contenido vacío → Google los marcaba como Soft 404.
       // Se redirigen al hub del blog para mantener el flujo de usuario.
@@ -237,15 +249,24 @@ const nextConfig = {
         ],
       },
       {
-        // Canonical HTTP header para PDFs de cuadros médicos.
-        // Los PDFs no tienen HTML, así que no pueden usar <link rel="canonical">.
-        // La alternativa es el header HTTP Link, que Google respeta para PDFs.
-        // Evita que Google trate los 51 PDFs de provincias como "duplicados sin canonical".
+        // PDFs de cuadros médicos: noindex para evitar "Duplicada sin canonical".
+        //
+        // Los PDFs no pueden llevar <link rel="canonical"> dentro del documento.
+        // La alternativa natural sería el header HTTP Link con rel="canonical",
+        // pero Next.js NO interpola los parámetros de ruta (:file*) en el valor
+        // del header — todos los PDFs recibirían el literal ":file*" como URL,
+        // que Google ignoraría (URL inválida).
+        //
+        // La solución correcta es X-Robots-Tag: noindex: le indica a Google que
+        // no intente indexar los PDFs como páginas independientes. Los archivos
+        // siguen siendo accesibles para descarga directa desde la web.
+        // El contenido de los cuadros médicos sigue siendo descubrible a través
+        // de la página /cuadro-medico/ que sí tiene canonical y está indexada.
         source: '/cuadros-medicos/:file*',
         headers: [
           {
-            key: 'Link',
-            value: '<https://adeslas.numero1salud.es/cuadros-medicos/:file*>; rel="canonical"',
+            key: 'X-Robots-Tag',
+            value: 'noindex',
           },
           {
             key: 'Cache-Control',
