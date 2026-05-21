@@ -133,9 +133,13 @@ export async function submitToHubSpot(payload: HubSpotPayload): Promise<void> {
 
   try {
     const res = await fetch(ENDPOINT, {
-      method:  "POST",
-      headers: { "Content-Type": "application/json" },
+      method:    "POST",
+      headers:   { "Content-Type": "application/json" },
       body,
+      // keepalive: garantiza que el request llega aunque el usuario cierre la
+      // pestaña o pulse "atrás" justo tras el submit. El payload de HubSpot es
+      // ~400 bytes, muy por debajo del límite de 64 KB de keepalive.
+      keepalive: true,
     });
 
     if (res.ok) return;
