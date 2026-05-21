@@ -3,6 +3,7 @@ import { X, Phone } from "lucide-react";
 import { submitToHubSpot } from "@/lib/hubspot";
 import { trackGenerateLead, trackClickToCallContratacion } from "@/lib/tracking";
 import { AnimatePresence, motion } from "@/lib/motion";
+import { TermsModal } from "@/components/TermsModal";
 
 /* ─────────────────────────────────────────────────────────────────
    StickyCtaBanner — CRO sticky desktop
@@ -37,11 +38,12 @@ export default function StickyCtaBanner() {
   const [dismissed,    setDismissed]    = useState(false);
   const [phone,        setPhone]        = useState("");
   const [phoneError,   setPhoneError]   = useState(false);
-  const [privacyOk,    setPrivacyOk]    = useState(false);
-  const [privacyError, setPrivacyError] = useState(false);
-  const [sent,         setSent]         = useState(false);
-  const [ctaHover,     setCtaHover]     = useState(false);
-  const [inputFocus,   setInputFocus]   = useState(false);
+  const [privacyOk,      setPrivacyOk]      = useState(false);
+  const [privacyError,   setPrivacyError]   = useState(false);
+  const [termsModalOpen, setTermsModalOpen] = useState(false);
+  const [sent,           setSent]           = useState(false);
+  const [ctaHover,       setCtaHover]       = useState(false);
+  const [inputFocus,     setInputFocus]     = useState(false);
 
   /* Mostrar tras scroll */
   useEffect(() => {
@@ -80,6 +82,9 @@ export default function StickyCtaBanner() {
   if (dismissed) return null;
 
   return (
+    <>
+    {/* Modal de términos — z-index superior al banner (480) */}
+    <TermsModal open={termsModalOpen} onClose={() => setTermsModalOpen(false)} />
     <AnimatePresence>
       {visible && (
         <motion.div
@@ -100,7 +105,7 @@ export default function StickyCtaBanner() {
               className="px-5 py-1.5 rounded-full text-white text-[12px] font-black uppercase tracking-[1.5px]"
               style={{ backgroundColor: AZUL_ADESLAS, border: "2px solid rgba(255,255,255,0.30)" }}
             >
-              ¿QUIERES CONTRATAR?
+              ¿Quieres más información?
             </div>
           </div>
 
@@ -192,56 +197,40 @@ export default function StickyCtaBanner() {
                     />
                   </div>
 
-                  {/* Checkbox privacidad */}
-                  <label
-                    className="flex items-start gap-2 cursor-pointer flex-1"
-                    style={{ maxWidth: 360 }}
-                  >
+                  {/* Checkbox términos — abre TermsModal al clicar el enlace */}
+                  <div className="flex items-center gap-2 flex-shrink-0">
                     <div
-                      className="relative flex-shrink-0 mt-0.5"
-                      style={{ width: 18, height: 18 }}
+                      onClick={() => {
+                        setPrivacyOk(!privacyOk);
+                        if (privacyError) setPrivacyError(false);
+                      }}
+                      className="flex-shrink-0 flex items-center justify-center rounded cursor-pointer transition-colors"
+                      style={{
+                        width: 18,
+                        height: 18,
+                        backgroundColor: privacyOk ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.12)",
+                        border: `2px solid ${privacyError ? "#FF4D4D" : "rgba(255,255,255,0.50)"}`,
+                      }}
                     >
-                      <input
-                        type="checkbox"
-                        checked={privacyOk}
-                        onChange={(e) => {
-                          setPrivacyOk(e.target.checked);
-                          if (privacyError) setPrivacyError(false);
-                        }}
-                        className="sr-only"
-                      />
-                      <div
-                        className="w-full h-full rounded flex items-center justify-center transition-colors"
-                        style={{
-                          backgroundColor: privacyOk ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.15)",
-                          border: `2px solid ${privacyError ? "#FF4D4D" : "rgba(255,255,255,0.55)"}`,
-                        }}
-                      >
-                        {privacyOk && (
-                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-                            <path d="M2 6l3 3 5-5" stroke={AZUL_ADESLAS} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        )}
-                      </div>
+                      {privacyOk && (
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                          <path d="M2 6l3 3 5-5" stroke={AZUL_ADESLAS} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
                     </div>
-                    <span
-                      className="text-[11px] leading-[1.35]"
-                      style={{ color: "rgba(255,255,255,0.80)" }}
-                    >
-                      He leído y acepto la{" "}
-                      <a
-                        href="/politica-de-privacidad/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline underline-offset-1 font-semibold"
-                        style={{ color: "rgba(255,255,255,0.95)" }}
-                        onClick={(e) => e.stopPropagation()}
+                    <span className="text-[11px] leading-tight" style={{ color: "rgba(255,255,255,0.80)" }}>
+                      Acepto los{" "}
+                      <button
+                        type="button"
+                        onClick={(e) => { e.stopPropagation(); setTermsModalOpen(true); }}
+                        className="underline underline-offset-1 font-semibold cursor-pointer"
+                        style={{ color: "rgba(255,255,255,0.97)" }}
                       >
-                        política de privacidad
-                      </a>{" "}
-                      y consiento el tratamiento de mis datos para todas las finalidades contenidas en la misma
+                        términos y condiciones
+                      </button>
+                      {" "}y la política de privacidad
                     </span>
-                  </label>
+                  </div>
 
                   {/* Errores inline */}
                   {(phoneError || privacyError) && (
@@ -296,5 +285,6 @@ export default function StickyCtaBanner() {
         </motion.div>
       )}
     </AnimatePresence>
+    </>
   );
 }
