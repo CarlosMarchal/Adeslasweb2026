@@ -159,17 +159,18 @@ export default function StickyCtaBanner() {
                 <>
                   {/* Input teléfono */}
                   <div
-                    className="flex items-center gap-1.5 rounded-lg px-3 flex-shrink-0"
+                    className="flex items-center gap-2 rounded-lg px-4 flex-shrink-0"
                     style={{
-                      backgroundColor: "rgba(255,255,255,0.95)",
-                      height: 42,
-                      border: `2px solid ${phoneError ? "#FF4D4D" : inputFocus ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.4)"}`,
-                      minWidth: 220,
-                      transition: "border-color 0.15s",
+                      backgroundColor: "#ffffff",
+                      height: 50,
+                      border: `2.5px solid ${phoneError ? "#FF4D4D" : inputFocus ? "#009FE3" : "rgba(255,255,255,0.85)"}`,
+                      minWidth: 250,
+                      boxShadow: inputFocus ? "0 0 0 3px rgba(0,159,227,0.25)" : "0 2px 8px rgba(0,0,0,0.15)",
+                      transition: "border-color 0.15s, box-shadow 0.15s",
                     }}
                   >
-                    <span className="text-base leading-none select-none">🇪🇸</span>
-                    <span className="text-sm font-semibold select-none" style={{ color: "#374151" }}>+34</span>
+                    <span className="text-lg leading-none select-none">🇪🇸</span>
+                    <span className="text-sm font-bold select-none" style={{ color: "#374151" }}>+34</span>
                     <input
                       type="tel"
                       value={phone}
@@ -179,19 +180,19 @@ export default function StickyCtaBanner() {
                       placeholder="Tu teléfono"
                       autoComplete="tel"
                       inputMode="numeric"
-                      className="h-full text-sm border-0 bg-transparent outline-none flex-1 cursor-text"
-                      style={{ color: "#1A3A5C", minWidth: 110 }}
+                      className="h-full text-[15px] font-medium border-0 bg-transparent outline-none flex-1 cursor-text"
+                      style={{ color: "#1A3A5C", minWidth: 120 }}
                     />
                   </div>
 
                   {/* Checkbox términos — abre TermsModal al clicar el enlace */}
-                  <div className="flex items-center gap-2 flex-shrink-0">
+                  <div className="flex items-start gap-2 flex-shrink-0" style={{ maxWidth: 180 }}>
                     <div
                       onClick={() => {
                         setPrivacyOk(!privacyOk);
                         if (privacyError) setPrivacyError(false);
                       }}
-                      className="flex-shrink-0 flex items-center justify-center rounded cursor-pointer transition-colors"
+                      className="flex-shrink-0 flex items-center justify-center rounded cursor-pointer transition-colors mt-0.5"
                       style={{
                         width: 18,
                         height: 18,
@@ -205,7 +206,7 @@ export default function StickyCtaBanner() {
                         </svg>
                       )}
                     </div>
-                    <span className="text-[11px] leading-tight" style={{ color: "rgba(255,255,255,0.80)" }}>
+                    <span className="text-[11px] leading-snug" style={{ color: "rgba(255,255,255,0.80)" }}>
                       Acepto los{" "}
                       <button
                         type="button"
@@ -215,7 +216,7 @@ export default function StickyCtaBanner() {
                       >
                         términos y condiciones
                       </button>
-                      {" "}y la política de privacidad
+                      <br />y la política de privacidad
                     </span>
                   </div>
 
