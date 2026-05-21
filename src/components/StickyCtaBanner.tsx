@@ -109,63 +109,60 @@ export default function StickyCtaBanner() {
             </div>
           </div>
 
-          {/* ── Contenido principal ── */}
-          <div
-            className="max-w-[1280px] mx-auto w-full flex items-center gap-6 px-10 lg:px-16"
+          {/* ── Contenido principal — 3 columnas equilibradas ── */}
+          <form
+            onSubmit={handleSubmit}
+            className="max-w-[1280px] mx-auto w-full flex items-center px-10 lg:px-16"
             style={{ height: 72 }}
           >
-            {/* Columna izq — "TE LLAMAMOS GRATIS" */}
-            <div className="flex flex-col leading-none flex-shrink-0" style={{ minWidth: 140 }}>
-              <span className="text-white text-[11px] font-bold uppercase tracking-[1.2px]" style={{ opacity: 0.8 }}>
-                TE INFORMAMOS
-              </span>
-              <span className="text-white font-black" style={{ fontSize: 19, lineHeight: 1.1 }}>
-                SIN COMPROMISO
-              </span>
-            </div>
-
-            {/* Divisor */}
-            <div style={{ width: 1, height: 40, backgroundColor: "rgba(255,255,255,0.25)", flexShrink: 0 }} />
-
-            {/* Formulario */}
-            <form onSubmit={handleSubmit} className="flex items-center gap-3 flex-1">
-              {sent ? (
-                /* Estado de confirmación */
-                <div className="flex items-center gap-3 flex-1">
-                  <div
-                    className="flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <p className="text-white font-bold text-sm">
-                    ¡Perfecto! Te llamamos en breve.{" "}
-                    <span style={{ opacity: 0.8, fontWeight: 400 }}>Sin compromiso.</span>
-                  </p>
-                  {/* O llama directamente */}
-                  <a
-                    href="tel:917105000"
-                    onClick={() => trackClickToCallContratacion("sticky_banner_desktop")}
-                    className="ml-auto flex items-center gap-1.5 text-white text-sm font-bold underline underline-offset-2 flex-shrink-0"
-                    style={{ opacity: 0.85 }}
-                  >
-                    <Phone className="w-3.5 h-3.5" />
-                    91 710 50 00
-                  </a>
+            {sent ? (
+              /* Estado de confirmación — ocupa todo el ancho */
+              <div className="flex items-center gap-4 flex-1">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: "rgba(255,255,255,0.2)" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
-              ) : (
-                <>
-                  {/* Input teléfono */}
+                <p className="text-white font-bold text-sm">
+                  ¡Perfecto! Te informamos en breve.{" "}
+                  <span style={{ opacity: 0.8, fontWeight: 400 }}>Sin compromiso.</span>
+                </p>
+                <a href="tel:917105000"
+                  onClick={() => trackClickToCallContratacion("sticky_banner_desktop")}
+                  className="ml-auto flex items-center gap-1.5 text-white text-sm font-bold underline underline-offset-2 flex-shrink-0"
+                  style={{ opacity: 0.85 }}>
+                  <Phone className="w-3.5 h-3.5" />
+                  91 710 50 00
+                </a>
+              </div>
+            ) : (
+              <>
+                {/* COL 1 — Branding (flex:1, alineado a la derecha) */}
+                <div className="flex items-center justify-end pr-8" style={{ flex: 1 }}>
+                  <div className="flex flex-col leading-none">
+                    <span className="text-white text-[11px] font-bold uppercase tracking-[1.2px]" style={{ opacity: 0.8 }}>
+                      TE INFORMAMOS
+                    </span>
+                    <span className="text-white font-black" style={{ fontSize: 19, lineHeight: 1.1 }}>
+                      SIN COMPROMISO
+                    </span>
+                  </div>
+                </div>
+
+                {/* Divisor */}
+                <div style={{ width: 1, height: 40, backgroundColor: "rgba(255,255,255,0.22)", flexShrink: 0 }} />
+
+                {/* COL 2 — Input teléfono (centrado, padding simétrico) */}
+                <div className="flex items-center justify-center px-8 flex-shrink-0">
                   <div
-                    className="flex items-center gap-2 rounded-lg px-4 flex-shrink-0"
+                    className="flex items-center gap-2 rounded-lg px-4"
                     style={{
                       backgroundColor: "#ffffff",
                       height: 50,
-                      border: `2.5px solid ${phoneError ? "#FF4D4D" : inputFocus ? "#009FE3" : "rgba(255,255,255,0.85)"}`,
-                      minWidth: 250,
-                      boxShadow: inputFocus ? "0 0 0 3px rgba(0,159,227,0.25)" : "0 2px 8px rgba(0,0,0,0.15)",
+                      width: 260,
+                      border: `2.5px solid ${phoneError ? "#FF4D4D" : inputFocus ? "#009FE3" : "rgba(255,255,255,0.80)"}`,
+                      boxShadow: inputFocus ? "0 0 0 3px rgba(0,159,227,0.25)" : "0 2px 10px rgba(0,0,0,0.18)",
                       transition: "border-color 0.15s, box-shadow 0.15s",
                     }}
                   >
@@ -181,21 +178,23 @@ export default function StickyCtaBanner() {
                       autoComplete="tel"
                       inputMode="numeric"
                       className="h-full text-[15px] font-medium border-0 bg-transparent outline-none flex-1 cursor-text"
-                      style={{ color: "#1A3A5C", minWidth: 120 }}
+                      style={{ color: "#1A3A5C" }}
                     />
                   </div>
+                </div>
 
-                  {/* Checkbox términos — abre TermsModal al clicar el enlace */}
-                  <div className="flex items-start gap-2 flex-shrink-0" style={{ maxWidth: 180 }}>
+                {/* Divisor */}
+                <div style={{ width: 1, height: 40, backgroundColor: "rgba(255,255,255,0.22)", flexShrink: 0 }} />
+
+                {/* COL 3 — Checkbox + errores + CTA (flex:1, alineado a la izquierda) */}
+                <div className="flex items-center gap-5 pl-8" style={{ flex: 1 }}>
+                  {/* Checkbox términos */}
+                  <div className="flex items-start gap-2 flex-shrink-0" style={{ minWidth: 160 }}>
                     <div
-                      onClick={() => {
-                        setPrivacyOk(!privacyOk);
-                        if (privacyError) setPrivacyError(false);
-                      }}
+                      onClick={() => { setPrivacyOk(!privacyOk); if (privacyError) setPrivacyError(false); }}
                       className="flex-shrink-0 flex items-center justify-center rounded cursor-pointer transition-colors mt-0.5"
                       style={{
-                        width: 18,
-                        height: 18,
+                        width: 18, height: 18,
                         backgroundColor: privacyOk ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.12)",
                         border: `2px solid ${privacyError ? "#FF4D4D" : "rgba(255,255,255,0.50)"}`,
                       }}
@@ -224,44 +223,43 @@ export default function StickyCtaBanner() {
                   {(phoneError || privacyError) && (
                     <div className="flex flex-col gap-0.5 flex-shrink-0">
                       {phoneError   && <span className="text-[10px] font-bold" style={{ color: "#FFB3B3" }}>Teléfono no válido</span>}
-                      {privacyError && <span className="text-[10px] font-bold" style={{ color: "#FFB3B3" }}>Acepta la privacidad</span>}
+                      {privacyError && <span className="text-[10px] font-bold" style={{ color: "#FFB3B3" }}>Acepta términos</span>}
                     </div>
                   )}
 
-                  {/* Botón CTA naranja */}
+                  {/* CTA magenta */}
                   <button
                     type="submit"
                     onMouseEnter={() => setCtaHover(true)}
                     onMouseLeave={() => setCtaHover(false)}
-                    className="flex items-center justify-center gap-2 font-black text-white rounded-lg px-7 transition-all active:scale-[0.97] flex-shrink-0 cursor-pointer"
+                    className="flex items-center justify-center gap-2 font-black text-white rounded-lg px-6 transition-all active:scale-[0.97] flex-shrink-0 cursor-pointer ml-auto"
                     style={{
                       backgroundColor: ctaHover ? MAGENTA_HOVER : MAGENTA_CTA,
                       height: 46,
-                      fontSize: 15,
-                      letterSpacing: "0.5px",
-                      boxShadow: ctaHover
-                        ? "0 4px 20px rgba(228,9,125,0.55)"
-                        : "0 2px 12px rgba(228,9,125,0.40)",
+                      fontSize: 14,
+                      letterSpacing: "0.4px",
+                      boxShadow: ctaHover ? "0 4px 20px rgba(228,9,125,0.55)" : "0 2px 12px rgba(228,9,125,0.40)",
                       transition: "background-color 0.15s, box-shadow 0.15s",
                     }}
                   >
                     <Phone className="w-4 h-4" />
                     QUIERO QUE ME LLAMEN
                   </button>
-                </>
-              )}
-            </form>
+                </div>
+              </>
+            )}
 
             {/* Botón cerrar */}
             <button
+              type="button"
               onClick={() => setDismissed(true)}
               aria-label="Cerrar banner"
-              className="flex-shrink-0 ml-2 p-1.5 rounded-full transition-colors hover:bg-white/10 active:bg-white/20 cursor-pointer"
-              style={{ color: "rgba(255,255,255,0.60)" }}
+              className="flex-shrink-0 ml-4 p-1.5 rounded-full transition-colors hover:bg-white/10 active:bg-white/20 cursor-pointer"
+              style={{ color: "rgba(255,255,255,0.55)" }}
             >
               <X className="w-4 h-4" />
             </button>
-          </div>
+          </form>
 
           {/* ── Micro-texto garantía ── */}
           <div
