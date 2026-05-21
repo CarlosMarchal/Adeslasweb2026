@@ -127,19 +127,6 @@ export default function StickyCtaBanner() {
             {/* Divisor */}
             <div style={{ width: 1, height: 40, backgroundColor: "rgba(255,255,255,0.25)", flexShrink: 0 }} />
 
-            {/* Horario */}
-            <div className="flex flex-col leading-tight flex-shrink-0" style={{ minWidth: 160 }}>
-              <span className="text-white text-[11px] font-medium" style={{ opacity: 0.75 }}>
-                De lunes a viernes
-              </span>
-              <span className="text-white text-[13px] font-bold">
-                9:00 a 19:00 horas
-              </span>
-            </div>
-
-            {/* Divisor */}
-            <div style={{ width: 1, height: 40, backgroundColor: "rgba(255,255,255,0.25)", flexShrink: 0 }} />
-
             {/* Formulario */}
             <form onSubmit={handleSubmit} className="flex items-center gap-3 flex-1">
               {sent ? (
@@ -258,7 +245,7 @@ export default function StickyCtaBanner() {
                     }}
                   >
                     <Phone className="w-4 h-4" />
-                    LLAMADME
+                    QUIERO QUE ME LLAMEN
                   </button>
                 </>
               )}
