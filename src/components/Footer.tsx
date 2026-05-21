@@ -14,6 +14,9 @@ const Footer = () => (
             Avenida de Filipinas, 28 · CP 28003<br />
             Madrid
           </p>
+          <p className="text-xs mt-3 font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>
+            Marchal Aseguradores · Agente exclusivo Adeslas
+          </p>
         </div>
 
         {/* Seguros de Salud */}
