@@ -207,7 +207,7 @@ export default function StickyCtaBanner() {
                       )}
                     </div>
                     <span className="text-[11px] leading-snug" style={{ color: "rgba(255,255,255,0.80)" }}>
-                      Acepto los{" "}
+                      Acepto{" "}
                       <button
                         type="button"
                         onClick={(e) => { e.stopPropagation(); setTermsModalOpen(true); }}
