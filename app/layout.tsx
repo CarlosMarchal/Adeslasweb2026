@@ -4,12 +4,31 @@ import './globals.css';
 import '../src/App.css';
 
 export const metadata: Metadata = {
-  title: 'Adeslas 2026',
-  description: 'Web Adeslas - Seguros de Salud',
+  // metadataBase es necesario para que Next.js resuelva correctamente las URLs
+  // relativas de OG images, canonical y demás en todas las páginas.
+  metadataBase: new URL('https://adeslas.numero1salud.es'),
+
+  // Título fallback (rutas sin generateMetadata) y template para las que sí lo tienen.
+  // El template se aplica cuando cada página devuelve solo un string en title.
+  title: {
+    default: 'Adeslas Seguros Médicos 2026 | Desde 21€/mes · +51.000 Médicos',
+    template: '%s | Adeslas Seguros Médicos',
+  },
+
+  // Descripción fallback — visible si generateMetadata no devuelve description
+  description:
+    'Contrata tu seguro médico Adeslas online. Desde 21€/mes, +51.000 médicos, sin copago desde 62€. Calcula tu precio y alta inmediata.',
+
   robots: {
     index: true,
     follow: true,
   },
+
+  // Datos de verificación de propiedad — no requieren modificar el <head> manualmente
+  // (descomenta y añade el contenido cuando se genere la verificación en GSC/Bing)
+  // verification: {
+  //   google: 'TU_TOKEN_DE_VERIFICACION',
+  // },
 };
 
 const GTM_ID = 'GTM-M6ZDN42';
