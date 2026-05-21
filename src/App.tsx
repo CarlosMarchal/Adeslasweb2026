@@ -10,6 +10,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PhonePopupProvider } from "./components/PhonePopupContext";
 import { HelmetProvider } from "react-helmet-async";
+import StickyCtaBanner from "./components/StickyCtaBanner";
 
 /* ── Home page: eager (crítico para LCP en la ruta /) ── */
 import Index from "./views/Index";
@@ -214,6 +215,8 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
+          {/* Banner sticky desktop — solo ≥1024 px, aparece tras scroll > 400 px */}
+          <StickyCtaBanner />
         </BrowserRouter>
       </PhonePopupProvider>
     </TooltipProvider>
