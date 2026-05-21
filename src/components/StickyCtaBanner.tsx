@@ -53,6 +53,22 @@ export default function StickyCtaBanner() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* Empujar el body hacia arriba para que el footer no quede tapado.
+     Solo en desktop (≥1024 px) — en mobile el banner no se renderiza. */
+  useEffect(() => {
+    const isDesktop = () => window.innerWidth >= 1024;
+    const apply = () => {
+      document.body.style.paddingBottom =
+        visible && !dismissed && isDesktop() ? "100px" : "";
+    };
+    apply();
+    window.addEventListener("resize", apply);
+    return () => {
+      window.removeEventListener("resize", apply);
+      document.body.style.paddingBottom = "";
+    };
+  }, [visible, dismissed]);
+
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(formatPhoneDisplay(e.target.value));
     if (phoneError) setPhoneError(false);
