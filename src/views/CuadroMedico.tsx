@@ -185,22 +185,24 @@ const CuadroMedico = () => {
             />
           </motion.div>
 
+          {/* INP FIX: se usan <a> nativos en lugar de motion.a.
+              Razón: motion.a crea un IntersectionObserver por cada tarjeta (52 provincias).
+              Cuando el usuario escribe en el buscador, React re-renderiza las 52 tarjetas y
+              framer-motion re-evalúa el estado de animación de cada una → bloqueo de
+              ~240 ms en el main thread en móvil (INP 244 ms según GSC, mayo 2026).
+              Las transiciones hover siguen funcionando 100% vía CSS (Tailwind transition-*). */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-            {filtered.map((p, i) => (
-              <motion.a
+            {filtered.map((p) => (
+              <a
                 key={p}
                 href={`/cuadros-medicos/Adeslas%20Cuadro%20Medico%20${encodeURIComponent(p)}%202026.pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: Math.min(i * 0.015, 0.3) }}
-                className="group bg-blanco border border-borde p-4 flex items-center gap-3 transition-all hover:-translate-y-0.5 hover:border-azul-medio"
+                className="group bg-blanco border border-borde p-4 flex items-center gap-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-azul-medio hover:shadow-sm"
                 style={{ borderRadius: "12px" }}
               >
                 <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-azul-medio"
+                  className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-200 group-hover:bg-azul-medio"
                   style={{ backgroundColor: "#E8F4FC" }}
                 >
                   <svg
@@ -208,22 +210,21 @@ const CuadroMedico = () => {
                     height="16"
                     viewBox="0 0 16 16"
                     fill="none"
-                    className="transition-colors"
                   >
                     <path
                       d="M8 1v10M4 7l4 4 4-4M2 13h12"
-                      stroke="#009FE3"
+                      stroke="currentColor"
                       strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="group-hover:stroke-white"
+                      className="text-azul-medio group-hover:text-white transition-colors duration-200"
                     />
                   </svg>
                 </div>
-                <span className="text-sm font-medium text-gris-texto group-hover:text-azul-medio transition-colors">
+                <span className="text-sm font-medium text-gris-texto group-hover:text-azul-medio transition-colors duration-200">
                   {p}
                 </span>
-              </motion.a>
+              </a>
             ))}
           </div>
 
@@ -279,19 +280,17 @@ const CuadroMedico = () => {
               Más de 40 especialidades médicas incluidas en tu seguro Adeslas. Acceso directo sin derivaciones ni listas de espera.
             </p>
           </motion.div>
+          {/* INP FIX: grid estático sin motion — las 24 especialidades son contenido
+              puramente informativo, no requieren animación de entrada. */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-            {specialties.map((s, i) => (
-              <motion.div
+            {specialties.map((s) => (
+              <div
                 key={s}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.02 }}
                 className="bg-gris-claro border border-borde p-4 text-center text-sm font-medium text-gris-texto"
                 style={{ borderRadius: "12px" }}
               >
                 {s}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "@/lib/motion";
-import { useState } from "react";
+import { useState, memo, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
@@ -59,10 +59,96 @@ export interface SegmentPageData {
   schemaFaq?: boolean;
 }
 
+/* ───── FAQ Section (componente aislado) ─────────────────────────────────────
+   INP FIX: el estado openFaq vivía en SegmentPageTemplate, de modo que cada click
+   en una pregunta provocaba el re-render completo del template (hero + productos +
+   todos los motion.div con whileInView). En móvil esto genera > 200 ms de trabajo
+   en el main thread antes del siguiente paint → INP 271 ms (GSC, mayo 2026).
+   Extrayendo el estado al componente hijo el re-render queda confinado solo a
+   FaqSection, que es mucho más ligero. memo() evita que re-renders del padre
+   propaguen trabajo innecesario a este bloque. */
+interface FaqSectionProps {
+  faqs: SegmentFaq[];
+}
+
+const FaqSection = memo(({ faqs }: FaqSectionProps) => {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const toggle = useCallback((i: number) => {
+    setOpenFaq((prev) => (prev === i ? null : i));
+  }, []);
+
+  return (
+    <section className="section-pad bg-gris-claro">
+      <div className="container mx-auto px-4 max-w-[780px]">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-10"
+        >
+          <h2 className="text-2xl md:text-3xl font-black" style={{ color: "#003087" }}>
+            Preguntas frecuentes
+          </h2>
+        </motion.div>
+        <div className="space-y-3">
+          {faqs.map((faq, i) => {
+            const isOpen = openFaq === i;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="bg-blanco border border-borde overflow-hidden"
+                style={{ borderRadius: "12px" }}
+              >
+                <button
+                  onClick={() => toggle(i)}
+                  className="w-full flex items-center justify-between p-5 text-left"
+                >
+                  <span className="font-bold text-gris-texto text-[15px] pr-4">{faq.question}</span>
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-200"
+                    style={{ backgroundColor: isOpen ? "#009FE3" : "#E8F4FC" }}
+                  >
+                    <span
+                      className="text-lg font-bold transition-transform duration-200"
+                      style={{ color: isOpen ? "#fff" : "#009FE3", transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}
+                    >
+                      +
+                    </span>
+                  </div>
+                </button>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <div className="px-5 pb-5 text-sm text-gris-medio leading-relaxed">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+});
+
+FaqSection.displayName = "FaqSection";
+
 /* ───── Template ───── */
 
 const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const _seo = useSeo({
     title: data.seo.title,
@@ -286,69 +372,8 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
         {/* ── Tarificador Section ── */}
         <Tarificador />
 
-        {/* ── FAQ Section ── */}
-        <section className="section-pad bg-gris-claro">
-          <div className="container mx-auto px-4 max-w-[780px]">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-10"
-            >
-              <h2 className="text-2xl md:text-3xl font-black" style={{ color: "#003087" }}>
-                Preguntas frecuentes
-              </h2>
-            </motion.div>
-            <div className="space-y-3">
-              {data.faqs.map((faq, i) => {
-                const isOpen = openFaq === i;
-                return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                    className="bg-blanco border border-borde overflow-hidden"
-                    style={{ borderRadius: "12px" }}
-                  >
-                    <button
-                      onClick={() => setOpenFaq(isOpen ? null : i)}
-                      className="w-full flex items-center justify-between p-5 text-left"
-                    >
-                      <span className="font-bold text-gris-texto text-[15px] pr-4">{faq.question}</span>
-                      <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-200"
-                        style={{ backgroundColor: isOpen ? "#009FE3" : "#E8F4FC" }}
-                      >
-                        <span
-                          className="text-lg font-bold transition-transform duration-200"
-                          style={{ color: isOpen ? "#fff" : "#009FE3", transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}
-                        >
-                          +
-                        </span>
-                      </div>
-                    </button>
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25 }}
-                        >
-                          <div className="px-5 pb-5 text-sm text-gris-medio leading-relaxed">
-                            {faq.answer}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        {/* ── FAQ Section — renderizado en componente aislado (ver FaqSection arriba) ── */}
+        <FaqSection faqs={data.faqs} />
 
         <CtaSection />
       </main>
