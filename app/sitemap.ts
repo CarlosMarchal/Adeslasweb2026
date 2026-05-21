@@ -22,6 +22,30 @@ const BASE = 'https://adeslas.numero1salud.es';
 // Fecha de última modificación para páginas estáticas — se actualiza con cada deploy
 const LAST_BUILD = new Date().toISOString().split('T')[0];
 
+// Parseo seguro de fechas en formato "DD Mon YYYY" (ej: "14 May 2026").
+// new Date("14 May 2026") funciona en V8 pero no está garantizado en todos los
+// entornos de Node.js de Vercel — convertimos a ISO "YYYY-MM-DD" manualmente.
+const MONTHS: Record<string, string> = {
+  Jan: '01', Feb: '02', Mar: '03', Apr: '04', May: '05', Jun: '06',
+  Jul: '07', Aug: '08', Sep: '09', Oct: '10', Nov: '11', Dec: '12',
+};
+
+function toSafeDate(dateStr: string): string {
+  try {
+    // Intenta parseo "DD Mon YYYY"
+    const parts = dateStr.trim().split(' ');
+    if (parts.length === 3) {
+      const [day, mon, year] = parts;
+      const month = MONTHS[mon];
+      if (month) return `${year}-${month}-${day.padStart(2, '0')}`;
+    }
+    // Fallback: parseo nativo con guardia de validez
+    const d = new Date(dateStr);
+    if (!isNaN(d.getTime())) return d.toISOString().split('T')[0];
+  } catch { /* noop */ }
+  return LAST_BUILD;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // ── 1. Rutas del SPA desde PAGE_META ────────────────────────────────────────
   const staticRoutes: MetadataRoute.Sitemap = Object.entries(PAGE_META)
@@ -50,9 +74,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ── 2. Artículos del blog en /blog/:slug ────────────────────────────────────
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${BASE}/blog/${post.slug}`,
-    lastModified: post.date
-      ? new Date(post.date).toISOString().split('T')[0]
-      : LAST_BUILD,
+    lastModified: post.date ? toSafeDate(post.date) : LAST_BUILD,
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));
