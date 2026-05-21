@@ -1401,7 +1401,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "Como autónomo, tu salud es tu negocio. Un día de baja sin cobertura adecuada puede costarte más que meses de prima. Esta guía te ayuda a elegir bien.",
     date: "14 May 2026",
     readTime: "8 min",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop",
     seoTitle: "Seguro Médico para Autónomos 2026: Guía Completa | Adeslas",
     seoDescription: "Guía completa para autónomos sobre cómo elegir el mejor seguro médico en 2026: cobertura, precio, deducción fiscal y qué plan Adeslas se adapta mejor.",
     body: [
