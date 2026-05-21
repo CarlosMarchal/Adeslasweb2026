@@ -1565,6 +1565,106 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["hospitalizacion-privada-vs-publica","cuanto-cuesta-operacion-privada-espana-2026","comparativa-seguros-medicos-adeslas-2026"],
   },
 
+
+  /* ── Cuadro Médico: cuadro-medico-adeslas-como-funciona ── */
+  {
+    slug: "cuadro-medico-adeslas-como-funciona",
+    category: "Cuadro Médico",
+    title: "Cuadro médico Adeslas: cómo funciona, cómo consultarlo y qué especialidades incluye",
+    excerpt: "El cuadro médico es uno de los factores más importantes al elegir un seguro. Adeslas cuenta con más de 51.000 médicos en España. Aquí te explicamos cómo sacarle partido.",
+    date: "20 May 2026",
+    readTime: "6 min",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&h=400&fit=crop",
+    seoTitle: "Cuadro Médico Adeslas 2026: Cómo Funciona y Cómo Consultarlo",
+    seoDescription: "Todo sobre el cuadro médico Adeslas: cómo consultarlo, qué especialidades incluye, cómo pedir cita y cómo funciona la app de Adeslas. Guía completa 2026.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "El cuadro médico de Adeslas es la red de médicos, especialistas, clínicas y hospitales concertados a los que puedes acceder como asegurado. Con más de 51.000 médicos y más de 1.400 centros en toda España, es la mayor red médica privada del país. Saber cómo utilizarla correctamente marca la diferencia entre aprovechar al máximo tu seguro y no hacerlo."
+        },
+        {
+            "type": "heading",
+            "text": "Cómo consultar el cuadro médico Adeslas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Web oficial Adeslas: en la sección 'Cuadro Médico' puedes filtrar por especialidad, provincia y centro",
+                "App Adeslas: disponible para iOS y Android, permite consultar y pedir cita directamente",
+                "Teléfono de atención al cliente: disponible para resolver dudas sobre profesionales disponibles en tu zona",
+                "Tu asesor de Marchal Aseguradores: te ayudamos a identificar los mejores profesionales para tu caso concreto"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Especialidades incluidas en el cuadro médico Adeslas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Medicina general y médico de cabecera",
+                "Cardiología, neumología, digestivo, nefrología, endocrinología",
+                "Traumatología y cirugía ortopédica",
+                "Neurología y neurocirugía",
+                "Ginecología y obstetricia",
+                "Pediatría y neonatología",
+                "Psiquiatría y psicología",
+                "Dermatología",
+                "Oftalmología",
+                "Otorrinolaringología (ORL)",
+                "Urología",
+                "Oncología médica y radioterapia",
+                "Reumatología",
+                "Hematología",
+                "Cirugía general, plástica, vascular y torácica",
+                "Anestesiología",
+                "Podología (hasta 12 sesiones/año)",
+                "Fisioterapia y rehabilitación"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "¿Cómo pedir cita con un médico del cuadro Adeslas?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Puedes pedir cita de tres formas: directamente a través de la app Adeslas, llamando al centro médico o clínica elegida, o a través de la web de Adeslas. No necesitas derivación del médico de cabecera para acceder a la mayoría de especialistas: puedes ir directamente al especialista que necesites con tu número de póliza."
+        },
+        {
+            "type": "callout",
+            "text": "Una de las ventajas más valoradas por los asegurados Adeslas es precisamente el acceso directo al especialista sin necesidad de pasar primero por el médico de cabecera. Esto reduce significativamente el tiempo hasta el diagnóstico."
+        },
+        {
+            "type": "heading",
+            "text": "¿Qué pasa si necesito un médico que no está en el cuadro?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Si el especialista que quieres consultar no forma parte de la red Adeslas, tienes dos opciones según el plan que tengas: con los planes estándar, la consulta fuera de red no está cubierta. Con Adeslas Plena Extra 150, puedes acudir a cualquier médico u hospital —dentro y fuera de la red— y Adeslas te reembolsa el 80 % del gasto hasta 150.000 € al año."
+        },
+        {
+            "type": "heading",
+            "text": "La app Adeslas: gestiona todo desde el móvil"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Consultar y pedir cita con cualquier médico del cuadro",
+                "Ver tu tarjeta de asegurado en formato digital",
+                "Acceder a informes y resultados de pruebas",
+                "Gestionar la póliza y datos personales",
+                "Localizar el centro más cercano con mapa interactivo",
+                "Contacto con el servicio de atención al asegurado"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Si tienes dudas sobre qué médico elegir para tu situación concreta o quieres saber si tu médico habitual forma parte del cuadro Adeslas, en Marchal Aseguradores te ayudamos a verificarlo antes de contratar. Llámanos al 91 710 50 00."
+        }
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","carencias-seguros-medicos-adeslas","hospitalizacion-privada-vs-publica"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
