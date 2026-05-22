@@ -74,10 +74,10 @@ export default function RootLayout({
         <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-700-normal.woff2" crossOrigin="anonymous" />
         <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-900-normal.woff2" crossOrigin="anonymous" />
 
-        {/* ── GTM / Google — solo dns-prefetch (GTM carga en interacción, no en cold) ─
-            preconnect inicia TCP/TLS inmediatamente y expira si no se usa en <10 s.
-            Como GTM ahora carga en la primera interacción del usuario (no en cold),
-            un preconnect al inicio sería descartado. dns-prefetch es más económico. ── */}
+        {/* ── GTM / Google — preconnect (GTM carga afterInteractive, tras hidratación) ─
+            afterInteractive garantiza carga siempre, independientemente de interacción.
+            preconnect adelanta la resolución DNS+TCP+TLS para que gtm.js cargue rápido. ── */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://stats.g.doubleclick.net" />
@@ -115,34 +115,15 @@ export default function RootLayout({
 
         {children}
 
-        {/* ── GTM loader — se carga en el PRIMER evento de usuario (scroll/click/touch/key)
-            o como fallback a los 8 s. Esto mueve los ~1.400 ms de TBT que generan
-            las 3 etiquetas gtag de GTM completamente fuera del window de medición TBT
-            (0-5 s), sin sacrificar el tracking de usuarios que interactúan con la página.
-            Los eventos previos se encolan en window.dataLayer y se procesan cuando GTM carga. ─ */}
+        {/* ── GTM loader — afterInteractive: carga tras hidratación, SIEMPRE,
+            independientemente de si el usuario interactúa o no.
+            Los eventos encolados en window.dataLayer (generate_lead, click_to_call…)
+            se procesan en cuanto GTM carga. NO usar IIFE con espera de interacción:
+            ese patrón pierde eventos de usuarios que rebotan sin interactuar (ver CLAUDE.md §3.2). ─ */}
         <Script
           id="gtm-loader"
           strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-(function(){
-  var loaded=false;
-  function load(){
-    if(loaded)return;loaded=true;
-    var s=document.createElement('script');
-    s.src='https://www.googletagmanager.com/gtm.js?id=${GTM_ID}';
-    s.async=true;
-    document.head.appendChild(s);
-  }
-  // Carga en primer evento de usuario
-  ['scroll','click','touchstart','keydown','mousemove'].forEach(function(e){
-    window.addEventListener(e,load,{once:true,passive:true});
-  });
-  // Fallback: carga a los 8 s si no hay interacción
-  setTimeout(load,8000);
-})();
-`,
-          }}
+          src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
         />
 
         {/* ── HubSpot tracking pixel — se carga en primer evento de usuario ──────
