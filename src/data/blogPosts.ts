@@ -1665,6 +1665,405 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","carencias-seguros-medicos-adeslas","hospitalizacion-privada-vs-publica"],
   },
 
+  /* ── GEO #1: ¿Merece la pena un seguro médico privado en España? ── */
+  {
+    slug: "merece-la-pena-seguro-medico-privado-espana-2026",
+    category: "Seguros Adeslas",
+    title: "¿Merece la pena un seguro médico privado en España en 2026?",
+    excerpt:
+      "El 39% de los españoles ya tiene seguro privado. Pero, ¿de verdad merece la pena pagarlo si ya cotizamos a la Seguridad Social? Analizamos los datos reales sin eufemismos.",
+    date: "22 May 2026",
+    readTime: "9 min",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+    seoTitle: "¿Merece la Pena un Seguro Médico Privado en España en 2026?",
+    seoDescription:
+      "Análisis honesto con datos reales: listas de espera, costes, coberturas y para quién tiene más sentido contratar un seguro médico privado en España en 2026.",
+    body: [
+      {
+        type: "paragraph",
+        text: "La pregunta es legítima. Pagamos cotizaciones a la Seguridad Social cada mes y, sobre el papel, tenemos acceso a toda la sanidad pública. ¿Por qué gastar 40, 60 o 90 euros más al mes en un seguro privado? La respuesta honesta es: depende. Pero hay datos que hacen esa respuesta mucho más clara de lo que parece.",
+      },
+      {
+        type: "heading",
+        text: "El dato que cambia el debate: las listas de espera reales",
+      },
+      {
+        type: "paragraph",
+        text: "Según el último informe del Sistema de Información sobre Listas de Espera del SNS (Ministerio de Sanidad, diciembre 2025), la espera media para ver a un especialista en España es de 93 días. Para una intervención quirúrgica, la media supera los 120 días. En comunidades como Canarias, Cataluña o Comunidad Valenciana, los tiempos se extienden hasta los 6-8 meses para pruebas como resonancias magnéticas.",
+      },
+      {
+        type: "callout",
+        text: "93 días de media para ver a un especialista en la sanidad pública. Con un seguro médico privado Adeslas: cita en 24-48 horas en cualquier punto de España.",
+      },
+      {
+        type: "paragraph",
+        text: "Eso no significa que la sanidad pública sea mala. Es excelente en emergencias, en oncología de alta complejidad y en patologías crónicas graves. El problema son los tiempos para la atención no urgente: una rodilla que duele, un nódulo que inquieta, una mancha de piel que no desaparece. En esos casos, tres meses de espera no son un problema administrativo: son tres meses de incertidumbre y deterioro.",
+      },
+      {
+        type: "heading",
+        text: "Para quién tiene más sentido el seguro privado",
+      },
+      {
+        type: "list",
+        items: [
+          "Personas activas laboralmente: cada semana de baja innecesaria tiene un coste real. Resolver una lesión o un diagnóstico en días en lugar de meses tiene valor económico directo.",
+          "Familias con hijos: la pediatría privada ofrece visita el mismo día, sin esperas. En niños, no hay margen para \"a ver si en tres semanas hay hueco\".",
+          "Autónomos: sin nómina, cada día sin poder trabajar es pérdida directa. La sanidad privada elimina ese riesgo.",
+          "Mayores de 45 años: la probabilidad de necesitar especialistas (cardiología, traumatología, oftalmología) crece exponencialmente a partir de esa edad.",
+          "Personas con patologías crónicas controladas: revisiones periódicas y acceso rápido a especialistas sin depender de derivaciones del médico de cabecera.",
+          "Trabajadores en municipios pequeños: la cobertura especializada de la sanidad pública es mucho más limitada fuera de las grandes ciudades.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "El coste real frente al coste percibido",
+      },
+      {
+        type: "paragraph",
+        text: "Un seguro médico Adeslas cuesta desde 21€/mes para personas jóvenes. Para una persona de 40 años con cobertura completa (sin copago), el precio ronda los 80-100€/mes. Eso son 1.200€ al año. La pregunta es: ¿cuánto cuestan los servicios que vas a usar si pagas directamente en la sanidad privada sin seguro?",
+      },
+      {
+        type: "list",
+        items: [
+          "Una consulta con especialista privado: entre 60€ y 150€",
+          "Una resonancia magnética privada: entre 200€ y 450€",
+          "Una analítica completa privada: entre 80€ y 200€",
+          "Un día de hospitalización en clínica privada: entre 500€ y 1.500€",
+          "Una operación de menisco: entre 3.000€ y 8.000€",
+          "Un parto en clínica privada: entre 2.500€ y 6.000€",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Con dos o tres visitas al año al especialista y una prueba diagnóstica, el seguro ya se ha pagado solo. A partir de ahí, todo es beneficio: acceso ilimitado a 51.000 médicos, hospitalización sin tope, urgencias 24 horas en toda España.",
+      },
+      {
+        type: "heading",
+        text: "Lo que el seguro privado NO sustituye",
+      },
+      {
+        type: "paragraph",
+        text: "Un seguro médico privado no sustituye a la Seguridad Social: no cubre las prestaciones económicas por enfermedad, no gestiona la baja laboral (eso es competencia de la Seguridad Social o la Mutua), y en patologías de alta complejidad como ciertos tipos de cáncer, trasplantes o tratamientos experimentales, la sanidad pública puede ofrecer recursos que la privada no alcanza. El seguro privado es un complemento, no un sustituto.",
+      },
+      {
+        type: "heading",
+        text: "La conclusión práctica",
+      },
+      {
+        type: "paragraph",
+        text: "Para una persona activa de entre 25 y 65 años en España, con familia o sin ella, el seguro médico privado tiene un retorno claro si se usa aunque sea moderadamente: dos o tres visitas al especialista al año, una prueba diagnóstica, o simplemente el valor de saber que mañana por la mañana puedes pedir cita con el cardiólogo si lo necesitas. El coste de la tranquilidad, en este caso, se puede calcular: desde 21€ al mes.",
+      },
+      {
+        type: "callout",
+        text: "¿Quieres saber cuánto costaría un seguro Adeslas para ti exactamente? Calcula tu precio en menos de 2 minutos, sin compromiso y sin dar datos bancarios.",
+      },
+    ],
+    relatedSlugs: [
+      "comparativa-seguros-medicos-adeslas-2026",
+      "listas-de-espera-sanidad-publica-espana-2026",
+      "cuanto-cuesta-operacion-privada-espana-2026",
+    ],
+  },
+
+  /* ── GEO #2: Coste real seguro médico familiar 2026 ── */
+  {
+    slug: "seguro-medico-familia-coste-real-2026",
+    category: "Precios",
+    title: "Seguro médico para familia: coste real para 2, 3 o 4 personas en 2026",
+    excerpt:
+      "¿Cuánto cuesta realmente asegurar a toda la familia con Adeslas? Ejemplos de precio con edades reales, el descuento del 4º asegurado y qué plan conviene según tu situación.",
+    date: "23 May 2026",
+    readTime: "7 min",
+    image: "https://images.unsplash.com/photo-1511895426328-dc8714191011?w=600&h=400&fit=crop",
+    seoTitle: "Seguro Médico Familiar: Coste Real para 2, 3 o 4 Personas en 2026",
+    seoDescription:
+      "Ejemplos de precio reales para familias de 2, 3 y 4 personas con seguro médico Adeslas 2026. Qué plan elegir, cómo funciona el descuento familiar y cuánto se ahorra.",
+    body: [
+      {
+        type: "paragraph",
+        text: "Cuando buscas seguro médico para toda la familia, el precio que ves en los comparadores es siempre para una persona. La realidad familiar es más compleja: distintas edades, distintas necesidades, y la duda de si sale más a cuenta hacer pólizas individuales o una póliza colectiva. Este artículo responde con números reales.",
+      },
+      {
+        type: "heading",
+        text: "Cómo funciona el precio en Adeslas para familias",
+      },
+      {
+        type: "paragraph",
+        text: "En Adeslas, el precio de cada asegurado se calcula individualmente en función de su edad y provincia. En una póliza familiar, todos los miembros pueden estar en el mismo contrato, lo que facilita la gestión, pero cada persona paga su prima según su tramo de edad. El gran beneficio de la póliza familiar es el descuento del 10% que se aplica a todos los asegurados a partir del cuarto miembro.",
+      },
+      {
+        type: "heading",
+        text: "Ejemplos de precio para familias reales (Plena Vital, Madrid, 2026)",
+      },
+      {
+        type: "paragraph",
+        text: "Los siguientes ejemplos son orientativos para la provincia de Madrid con el plan Adeslas Plena Vital (cobertura completa con hospitalización y copago máx. 300€/año), que es el plan más contratado por familias. Los precios pueden variar ligeramente según la edad exacta y la fecha de contratación.",
+      },
+      {
+        type: "list",
+        items: [
+          "Pareja sin hijos (35 + 33 años): aproximadamente 95-110€/mes en total. Cada uno paga su prima individual, sin descuento por ser dos.",
+          "Familia de 3 (pareja 38+36 años + hijo 7 años): aproximadamente 130-150€/mes. El hijo paga una prima menor que los adultos.",
+          "Familia de 4 (pareja 40+38 años + dos hijos 10 y 7 años): aproximadamente 165-185€/mes con el descuento del 10% aplicado al cuarto asegurado.",
+          "Familia de 5 (pareja 42+40 años + tres hijos): el descuento del 10% aplica al 4º y 5º asegurado, reduciendo el coste total respecto a cinco pólizas individuales.",
+        ],
+      },
+      {
+        type: "callout",
+        text: "El plan Adeslas Plena Vital Total añade dental incluido y precio garantizado 3 años. Para familias que planifican su presupuesto, es la opción más recomendada: pagas un poco más ahora pero sabes exactamente cuánto vas a pagar en los próximos tres años.",
+      },
+      {
+        type: "heading",
+        text: "¿Qué plan Adeslas elegir para una familia con hijos?",
+      },
+      {
+        type: "paragraph",
+        text: "Para familias con hijos en edad escolar (0-18 años), la prioridad es la cobertura pediátrica sin esperas y la hospitalización. Estas son las opciones más recomendadas:",
+      },
+      {
+        type: "list",
+        items: [
+          "Adeslas Plena Vital (desde 38€/mes adulto): la opción más económica con hospitalización completa. Copago máximo 300€/año por asegurado. Recomendado para familias con buen estado de salud y uso moderado del seguro.",
+          "Adeslas Plena Vital Total (desde 48,50€/mes adulto): añade dental incluido, psicología y garantía de precio 3 años. El más recomendado para familias que quieren control total del gasto a medio plazo.",
+          "Adeslas Plena Total (desde 83€/mes adulto): sin copago en ningún servicio, con dental y psicología. Para familias que usan mucho el seguro y no quieren pensar en copagos.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "El descuento del 4º asegurado: cómo funciona exactamente",
+      },
+      {
+        type: "paragraph",
+        text: "A partir del cuarto asegurado en la misma póliza, Adeslas aplica un descuento del 10% en la prima de ese asegurado y de todos los siguientes. El descuento se aplica sobre la prima base de cada persona según su edad. En familias numerosas, el ahorro es significativo: con 5 asegurados, el cuarto y el quinto tienen un 10% de descuento, lo que puede suponer 15-25€/mes de ahorro.",
+      },
+      {
+        type: "heading",
+        text: "¿Conviene hacer una póliza conjunta o pólizas individuales?",
+      },
+      {
+        type: "paragraph",
+        text: "Una sola póliza familiar simplifica la gestión (una domiciliación, un interlocutor, una renovación anual) y activa el descuento a partir del cuarto asegurado. Las pólizas individuales ofrecen más flexibilidad si cada miembro quiere un plan diferente (por ejemplo, los adultos con Plena Total y los niños con Plena Vital). No hay una respuesta única, pero para familias donde todos van a tener el mismo plan, la póliza conjunta es más eficiente.",
+      },
+      {
+        type: "callout",
+        text: "Calcula el precio exacto para tu familia en el tarificador de Marchal Aseguradores. En menos de 2 minutos tienes el desglose por persona y el total mensual, sin necesidad de dar datos bancarios.",
+      },
+    ],
+    relatedSlugs: [
+      "seguro-medico-familias-2026",
+      "comparativa-seguros-medicos-adeslas-2026",
+      "merece-la-pena-seguro-medico-privado-espana-2026",
+    ],
+  },
+
+  /* ── GEO #3: Cambiar de seguro médico sin carencias ── */
+  {
+    slug: "como-cambiar-seguro-medico-sin-carencias-2026",
+    category: "Carencias",
+    title: "Cómo cambiar de seguro médico sin carencias ni interrupciones en 2026",
+    excerpt:
+      "Cambiar de aseguradora no tiene por qué suponer empezar de cero. Si sabes cómo hacerlo, puedes mantener todas tus coberturas activas desde el primer día. Guía completa.",
+    date: "24 May 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
+    seoTitle: "Cómo Cambiar de Seguro Médico a Adeslas sin Carencias en 2026",
+    seoDescription:
+      "Guía paso a paso para cambiar de seguro médico a Adeslas sin períodos de carencia. Qué documentos necesitas, cómo solicitar el reconocimiento de antigüedad y cuándo hacer el cambio.",
+    body: [
+      {
+        type: "paragraph",
+        text: "El miedo a las carencias es uno de los principales frenos para cambiar de seguro médico. «Y si cambio, ¿tendré que esperar 8 meses para que me cubra el parto?», «¿Y si me diagnostican algo antes de que acaben las carencias?». Son preguntas legítimas, y la respuesta es: si el cambio se hace bien, las carencias no existen.",
+      },
+      {
+        type: "heading",
+        text: "Por qué existen las carencias y cuándo no aplican",
+      },
+      {
+        type: "paragraph",
+        text: "Las carencias protegen a la aseguradora de que alguien contrate el seguro sabiendo que va a necesitar una intervención inminente. Tienen sentido cuando contratas por primera vez. Pero cuando llevas años pagando un seguro médico y simplemente cambias de compañía, mantener esas carencias sería injusto: ya has demostrado que no eres un asegurado de alto riesgo.",
+      },
+      {
+        type: "paragraph",
+        text: "Por eso, la industria aseguradora en España tiene un mecanismo establecido: el reconocimiento de antigüedad. Si cambias de aseguradora sin interrupción —es decir, con continuidad de cobertura— la nueva compañía puede eliminar o reducir las carencias reconociendo el tiempo que llevas asegurado.",
+      },
+      {
+        type: "heading",
+        text: "Condiciones para cambiar a Adeslas sin carencias",
+      },
+      {
+        type: "list",
+        items: [
+          "Debes llevar al menos 12 meses asegurado con tu aseguradora actual (algunos períodos de carencia específicos pueden requerir más tiempo).",
+          "No debe haber interrupción entre el vencimiento del seguro anterior y el inicio del seguro Adeslas. Lo ideal es solapar unos días para garantizar la continuidad.",
+          "Debes aportar certificado de antigüedad emitido por tu aseguradora actual (la mayoría lo genera automáticamente al tramitar la baja).",
+          "El cambio debe hacerse antes del vencimiento del seguro, no después. Una vez que la póliza ha caducado y ha pasado tiempo sin seguro, las carencias vuelven a aplicar.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Paso a paso: cómo hacer el cambio correctamente",
+      },
+      {
+        type: "list",
+        items: [
+          "Paso 1. Calcula tu precio en Adeslas: antes de nada, confirma que el plan Adeslas que te interesa existe dentro de tu presupuesto. Hazlo en https://adeslas.numero1salud.es/precios-y-ofertas/",
+          "Paso 2. Fecha de vencimiento de tu póliza actual: localiza la fecha exacta en que vence tu seguro. Los contratos de seguro se renuevan automáticamente, así que tienes que comunicar la no-renovación con al menos 30 días de antelación (revisa las condiciones de tu póliza actual, puede ser más).",
+          "Paso 3. Comunica la baja a tu aseguradora: envía un escrito (normalmente por burofax, email con acuse o carta certificada) comunicando que no deseas renovar. Solicita al mismo tiempo el certificado de antigüedad.",
+          "Paso 4. Contrata Adeslas con fecha de efecto solapada: la fecha de inicio de tu nuevo seguro Adeslas debe ser igual o anterior a la fecha de fin de tu seguro actual. Con esa continuidad, Adeslas puede reconocer tu antigüedad.",
+          "Paso 5. Aporta el certificado de antigüedad: una vez contratado el nuevo seguro, aporta el certificado de tu aseguradora anterior. El equipo de Marchal Aseguradores gestiona este trámite contigo.",
+        ],
+      },
+      {
+        type: "callout",
+        text: "Importante: no canceles el seguro anterior hasta tener el nuevo en vigor. La interrupción, aunque sea de un día, puede hacer que las carencias vuelvan a aplicar.",
+      },
+      {
+        type: "heading",
+        text: "Qué pasa si tienes una patología preexistente",
+      },
+      {
+        type: "paragraph",
+        text: "Las patologías preexistentes declaradas en el cuestionario de salud pueden generar exclusiones o sobreprimas en el nuevo seguro, independientemente del tiempo que lleves asegurado. Esto no tiene que ver con las carencias, sino con la evaluación del riesgo. Sin embargo, si tu patología preexistente estaba ya cubierta en tu seguro anterior y el cambio se hace correctamente, Adeslas puede reconocer esa cobertura sin exclusiones adicionales. Cada caso es distinto: consúltalo con nuestro equipo antes de tramitar el cambio.",
+      },
+      {
+        type: "heading",
+        text: "Cuándo es el mejor momento para cambiar de seguro",
+      },
+      {
+        type: "paragraph",
+        text: "El mejor momento es siempre antes del vencimiento de tu póliza actual, con al menos 30-45 días de margen. Así tienes tiempo de solicitar el certificado de antigüedad, contratar el nuevo seguro con la fecha de efecto correcta y resolver cualquier incidencia sin prisas. Cambiar de seguro médico bien hecho es un proceso de dos semanas, no de un día.",
+      },
+      {
+        type: "callout",
+        text: "En Marchal Aseguradores gestionamos todo el proceso de cambio contigo, incluyendo la comunicación de baja a tu aseguradora actual y el reconocimiento de antigüedad en Adeslas. Llámanos al 91 710 50 00 o solicita que te llamemos.",
+      },
+    ],
+    relatedSlugs: [
+      "carencias-seguros-medicos-adeslas",
+      "comparativa-seguros-medicos-adeslas-2026",
+      "merece-la-pena-seguro-medico-privado-espana-2026",
+    ],
+  },
+
+  /* ── GEO #4: Sanidad privada sin seguro — costes reales ── */
+  {
+    slug: "sanidad-privada-sin-seguro-costes-reales-2026",
+    category: "Precios",
+    title: "Sanidad privada sin seguro en España: precios reales de consultas y operaciones en 2026",
+    excerpt:
+      "¿Cuánto cuesta ir al médico privado pagando directamente? Precios reales de consultas, pruebas diagnósticas y operaciones en España en 2026, sin pasar por ningún seguro.",
+    date: "25 May 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop",
+    seoTitle: "Sanidad Privada sin Seguro: Precios Reales en España 2026",
+    seoDescription:
+      "Precios reales de consultas, pruebas diagnósticas, operaciones y hospitalización en la sanidad privada española en 2026. Cuánto cuesta sin seguro médico y qué ahorra tener uno.",
+    body: [
+      {
+        type: "paragraph",
+        text: "Antes de contratar un seguro médico, es natural preguntarse: ¿cuánto me costaría pagar directamente cuando lo necesite? La respuesta depende de lo que necesites, pero los números son más sorprendentes de lo que la gente espera. Este artículo recoge precios reales de clínicas privadas en España en 2026.",
+      },
+      {
+        type: "heading",
+        text: "Consultas con especialista: lo más frecuente",
+      },
+      {
+        type: "paragraph",
+        text: "La visita al especialista es el servicio más utilizado en la sanidad privada. Los precios varían según la especialidad, la ciudad y el prestigio del médico, pero los rangos habituales en clínicas privadas de nivel medio en España son:",
+      },
+      {
+        type: "list",
+        items: [
+          "Médico de cabecera / médico de familia: 40-80€ por visita",
+          "Dermatólogo: 80-150€ primera consulta, 60-100€ revisión",
+          "Cardiólogo: 100-180€ primera consulta (sin pruebas)",
+          "Traumatólogo: 80-150€ primera consulta",
+          "Ginecólogo: 80-150€ revisión anual con ecografía",
+          "Psicólogo o psiquiatra: 70-150€ por sesión de 50 minutos",
+          "Oftalmólogo: 70-120€ primera consulta",
+          "Neurólogo: 120-200€ primera consulta",
+          "Digestólogo: 100-160€ primera consulta",
+          "Oncólogo: 150-250€ primera consulta",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Pruebas diagnósticas: el coste oculto",
+      },
+      {
+        type: "paragraph",
+        text: "Las pruebas son donde el coste se dispara. Una sola consulta puede generar una cadena de pruebas que suma cientos de euros antes de llegar a un diagnóstico:",
+      },
+      {
+        type: "list",
+        items: [
+          "Analítica básica (hemograma + bioquímica): 60-120€",
+          "Analítica completa con hormonas y marcadores: 150-350€",
+          "Radiografía simple: 40-80€",
+          "Ecografía abdominal o pélvica: 80-180€",
+          "Resonancia magnética (cualquier zona): 250-550€",
+          "TAC (tomografía computerizada): 200-450€",
+          "Colonoscopia: 400-800€",
+          "Gastroscopia: 300-600€",
+          "Ecocardiograma: 150-300€",
+          "Mamografía: 80-150€",
+        ],
+      },
+      {
+        type: "callout",
+        text: "Una resonancia magnética de rodilla, un cardiólogo y una analítica completa: 600-1.000€ de una sola vez. Con un seguro Adeslas Plena Vital (desde 38€/mes), eso queda cubierto con el copago máximo de 300€ al año, sin importar cuántas pruebas se hagan.",
+      },
+      {
+        type: "heading",
+        text: "Intervenciones quirúrgicas: donde el coste es más serio",
+      },
+      {
+        type: "list",
+        items: [
+          "Apendicitis (apendicectomía laparoscópica): 3.500-7.000€ (incluye hospitalización 2-3 días)",
+          "Operación de menisco: 3.000-6.000€ (incluye hospitalización 1 día)",
+          "Artroscopia de hombro: 3.500-6.500€",
+          "Hernia inguinal: 2.500-5.000€",
+          "Cataratas (un ojo, monofocal): 1.500-3.000€",
+          "Amígdalas (amigdalectomía): 2.000-4.000€",
+          "Cálculos renales (litotricia): 1.500-3.500€",
+          "Cesárea o parto en clínica privada: 2.500-6.000€ (incluye estancia madre y bebé)",
+          "Prótesis de rodilla: 8.000-16.000€",
+          "Bypass coronario: 15.000-30.000€",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Estos precios son orientativos y representan el coste total para el paciente que paga directamente, sin seguro. En algunas clínicas de alta gama de Madrid o Barcelona, los precios pueden ser notablemente superiores.",
+      },
+      {
+        type: "heading",
+        text: "La hospitalización: el componente más impredecible",
+      },
+      {
+        type: "paragraph",
+        text: "El mayor riesgo financiero de no tener seguro no son las consultas: es la hospitalización inesperada. Una hospitalización en clínica privada de nivel medio cuesta entre 500€ y 1.500€ por día solo de habitación, sin contar médicos, enfermería, análisis y medicación. Un ingreso de 5 días puede suponer fácilmente 8.000-15.000€.",
+      },
+      {
+        type: "heading",
+        text: "Cuándo el cálculo cambia claramente a favor del seguro",
+      },
+      {
+        type: "paragraph",
+        text: "Si en un año normal usas el sistema sanitario con cierta frecuencia —dos o tres visitas al especialista, una prueba diagnóstica, alguna urgencia— el coste sin seguro supera rápidamente los 600-1.000€. Un seguro Adeslas Plena Vital cuesta unos 500-700€ al año para un adulto de 35-40 años en Madrid, con copago máximo de 300€ anuales. El punto de equilibrio se alcanza antes de lo que parece, y eso sin contar la hospitalización.",
+      },
+      {
+        type: "callout",
+        text: "El seguro médico no es solo un producto financiero. Es acceso garantizado a 51.000 médicos sin esperas, sin sorpresas de precio y sin que una mala semana de salud arruine tu presupuesto anual. Calcula tu precio en Adeslas desde 21€/mes.",
+      },
+    ],
+    relatedSlugs: [
+      "cuanto-cuesta-operacion-privada-espana-2026",
+      "merece-la-pena-seguro-medico-privado-espana-2026",
+      "comparativa-seguros-medicos-adeslas-2026",
+    ],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>

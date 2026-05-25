@@ -395,6 +395,30 @@ export const PAGE_META: Record<string, PageMeta> = {
       "Más de 51.000 médicos en toda España. Cómo consultar el cuadro médico Adeslas, qué especialidades incluye y cómo pedir cita sin necesidad de derivación ni autorización previa.",
     canonical: `${BASE}/blog/cuadro-medico-adeslas-como-funciona/`,
   },
+  "/blog/merece-la-pena-seguro-medico-privado-espana-2026": {
+    title: "¿Merece la Pena un Seguro Médico Privado en España en 2026?",
+    description:
+      "Análisis honesto con datos reales del Ministerio de Sanidad: listas de espera, costes reales y para quién tiene sentido contratar un seguro médico privado en España.",
+    canonical: `${BASE}/blog/merece-la-pena-seguro-medico-privado-espana-2026/`,
+  },
+  "/blog/seguro-medico-familia-coste-real-2026": {
+    title: "Seguro Médico Familiar: Coste Real para 2, 3 o 4 Personas en 2026",
+    description:
+      "Ejemplos de precio reales para familias de 2, 3 y 4 personas con Adeslas en 2026. Descuento del 4º asegurado, qué plan elegir y cuánto se paga realmente al mes.",
+    canonical: `${BASE}/blog/seguro-medico-familia-coste-real-2026/`,
+  },
+  "/blog/como-cambiar-seguro-medico-sin-carencias-2026": {
+    title: "Cómo Cambiar de Seguro Médico a Adeslas sin Carencias en 2026",
+    description:
+      "Guía paso a paso para cambiar de aseguradora a Adeslas sin perder coberturas. Qué es el reconocimiento de antigüedad, qué documentos necesitas y cuándo hacer el cambio.",
+    canonical: `${BASE}/blog/como-cambiar-seguro-medico-sin-carencias-2026/`,
+  },
+  "/blog/sanidad-privada-sin-seguro-costes-reales-2026": {
+    title: "Sanidad Privada sin Seguro en España: Precios Reales 2026",
+    description:
+      "Cuánto cuesta ir al médico privado pagando directamente en España en 2026. Precios de consultas, pruebas diagnósticas, operaciones y hospitalización sin seguro médico.",
+    canonical: `${BASE}/blog/sanidad-privada-sin-seguro-costes-reales-2026/`,
+  },
 
   // ── SEO TRANSACCIONAL — alta, contratar, precios ─────────────────
   "/alta-adeslas": {
