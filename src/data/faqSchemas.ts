@@ -222,4 +222,276 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
       a: "Sí. En esta misma web puedes calcular el precio exacto para tu edad, provincia y el plan que te interesa en menos de 2 minutos, sin compromiso y sin facilitar datos bancarios.",
     },
   ],
+
+  // ── ADESLAS PLENA VITAL TOTAL ────────────────────────────────────────
+  "/adeslas-plena-vital-total": [
+    {
+      q: "¿Qué es Adeslas Plena Vital Total?",
+      a: "Adeslas Plena Vital Total es el seguro médico de cobertura completa con copago reducido, dental incluido y prima garantizada sin subidas durante 3 años. Incluye asistencia ambulatoria, hospitalización, diagnóstico, fisioterapia, cobertura dental, chequeo médico anual y asistencia en viajes hasta 30.000€.",
+    },
+    {
+      q: "¿Cuánto cuesta Adeslas Plena Vital Total?",
+      a: "Adeslas Plena Vital Total cuesta desde 48,50€/mes para personas de hasta 30 años. Es el plan más recomendado por su equilibrio entre precio, cobertura y estabilidad: prima garantizada 3 años, dental incluido y copago con tope anual.",
+    },
+    {
+      q: "¿Cuál es el copago de Adeslas Plena Vital Total?",
+      a: "Adeslas Plena Vital Total tiene un copago por servicio con un Límite Máximo Anual (LMA) de 500€ por asegurado al año. Una vez alcanzado ese importe, el resto del año no hay ningún copago adicional, independientemente del uso que se haga del seguro.",
+    },
+    {
+      q: "¿Por qué Plena Vital Total es mejor que Plena Vital?",
+      a: "Plena Vital Total añade tres ventajas sobre Plena Vital: prima garantizada 3 años sin subidas (frente a revisión anual), cobertura dental incluida y asistencia en viaje hasta 30.000€. A cambio, el LMA anual es algo mayor (500€ vs 300€). Para familias que planifican su presupuesto a medio plazo, Plena Vital Total es la opción más recomendada.",
+    },
+  ],
+
+  // ── ADESLAS PLENA PLUS ───────────────────────────────────────────────
+  "/adeslas-plena-plus": [
+    {
+      q: "¿Qué cubre Adeslas Plena Plus?",
+      a: "Adeslas Plena Plus cubre la asistencia sanitaria completa sin copagos: medicina general, todas las especialidades, hospitalización en habitación individual, cirugía, urgencias 24 horas y diagnóstico de alta tecnología. Acceso a más de 51.000 médicos y 1.400 centros en toda España.",
+    },
+    {
+      q: "¿Cuánto cuesta Adeslas Plena Plus?",
+      a: "Adeslas Plena Plus cuesta desde 62€/mes para personas de hasta 30 años. Es el plan sin copago más asequible de la gama Adeslas, con cobertura hospitalaria completa incluida.",
+    },
+    {
+      q: "¿Cuál es la diferencia entre Adeslas Plena Plus y Plena Total?",
+      a: "Ambos son sin copago, pero Plena Total añade cobertura dental (46 actos incluidos), psicología (20 sesiones/año), asistencia en viajes hasta 100.000€, reembolso de farmacia y prima garantizada 3 años. Plena Plus es más económico (desde 62€/mes vs 83€/mes) y cubre lo esencial sin ningún copago.",
+    },
+    {
+      q: "¿Adeslas Plena Plus cubre el parto?",
+      a: "Sí. Adeslas Plena Plus cubre el parto vaginal y por cesárea en habitación individual, el seguimiento del embarazo, neonatología y revisión postparto, sin copago en ninguno de estos servicios.",
+    },
+  ],
+
+  // ── ADESLAS EXTRA 150 ────────────────────────────────────────────────
+  "/adeslas-extra-150": [
+    {
+      q: "¿Qué es Adeslas Extra 150 y cómo funciona?",
+      a: "Adeslas Extra 150 es el seguro de libre elección médica de Adeslas. Permite acudir a cualquier médico o clínica en España o en el extranjero, dentro o fuera de la red Adeslas. La aseguradora reembolsa el 80% de los gastos, con un límite de 150.000€ por asegurado y año. No requiere derivación ni autorización previa.",
+    },
+    {
+      q: "¿Cuánto cubre Adeslas Extra 150 por reembolso?",
+      a: "Adeslas Extra 150 reembolsa el 80% de los gastos médicos fuera de la red hasta 150.000€ al año por asegurado. La cobertura ambulatoria fuera de red tiene un sublímite de 40.000€/año. Dentro de la red Adeslas (51.000+ médicos), la cobertura es completa sin copago.",
+    },
+    {
+      q: "¿A quién le conviene Adeslas Extra 150?",
+      a: "Adeslas Extra 150 es ideal para personas que tienen un médico de confianza fuera de la red Adeslas, que viajan frecuentemente o trabajan en el extranjero, que quieren máxima libertad de elección sin renunciar a la cobertura completa, o que necesitan acceder a especialistas de referencia no disponibles en redes cerradas.",
+    },
+    {
+      q: "¿Cuánto cuesta Adeslas Extra 150?",
+      a: "Adeslas Extra 150 cuesta desde 90€/mes para personas de hasta 30 años. El precio varía según la edad y la provincia. Es el plan más premium de la gama para particulares.",
+    },
+  ],
+
+  // ── ADESLAS SENIORS ──────────────────────────────────────────────────
+  "/adeslas-seniors": [
+    {
+      q: "¿Qué es Adeslas Seniors?",
+      a: "Adeslas Seniors es el seguro médico diseñado específicamente para personas de entre 55 y 84 años. Incluye un asesor médico personal, cobertura especial en oncología, cardiología y rehabilitación, hospitalización completa y prima garantizada sin subidas durante 3 años. Desde 67,50€/mes.",
+    },
+    {
+      q: "¿Hasta qué edad se puede contratar Adeslas Seniors?",
+      a: "Adeslas Seniors se puede contratar hasta los 84 años. Es accesible desde los 55 años y, una vez contratado, se renueva sin límite de edad siempre que se mantenga vigente.",
+    },
+    {
+      q: "¿Qué especialidades cubre Adeslas Seniors?",
+      a: "Adeslas Seniors cubre todas las especialidades médicas, con especial atención a las necesidades del asegurado mayor: oncología, cardiología, traumatología, rehabilitación, oftalmología y neurología. Incluye hospitalización completa, cirugía, urgencias 24h y diagnóstico avanzado.",
+    },
+    {
+      q: "¿Tiene asesor médico personal Adeslas Seniors?",
+      a: "Sí. Una de las características distintivas de Adeslas Seniors es el asesor médico personal: un profesional que orienta al asegurado en la gestión de su salud, le ayuda a coordinar especialistas, a entender diagnósticos y a optimizar el uso del seguro. Es un servicio incluido sin coste adicional.",
+    },
+  ],
+
+  // ── ADESLAS SENIORS TOTAL ────────────────────────────────────────────
+  "/adeslas-seniors-total": [
+    {
+      q: "¿Qué diferencia hay entre Adeslas Seniors y Adeslas Seniors Total?",
+      a: "Adeslas Seniors Total añade tres coberturas sobre Adeslas Seniors: dental incluido, psicología y asistencia en viajes. Además, la prima está garantizada durante 3 años. Está disponible para personas de entre 63 y 84 años. Es el plan más completo para mayores que buscan cobertura integral.",
+    },
+    {
+      q: "¿Cuánto cuesta Adeslas Seniors Total?",
+      a: "Adeslas Seniors Total cuesta desde 101€/mes para personas de entre 63 y 84 años. El precio exacto depende de la edad y la provincia. Incluye dental, psicología, asistencia en viaje y prima garantizada 3 años.",
+    },
+    {
+      q: "¿Adeslas Seniors Total cubre la hospitalización sin límite?",
+      a: "Sí. Adeslas Seniors Total cubre la hospitalización de forma ilimitada en habitación individual con cama para acompañante, incluyendo cirugía, UCI, neonatología y todas las intervenciones necesarias, sin copago y sin límite de días.",
+    },
+  ],
+
+  // ── ADESLAS DECESOS ──────────────────────────────────────────────────
+  "/adeslas-decesos": [
+    {
+      q: "¿Qué cubre el seguro de decesos Adeslas?",
+      a: "El seguro de decesos Adeslas, gestionado por Ocaso, cubre el sepelio completo (incluido nicho, lápida, esquela y transporte), la repatriación internacional si el fallecimiento se produce fuera de España o de la provincia de residencia, el billete de avión o tren para un acompañante, la gestión de trámites administrativos y la asistencia 24 horas.",
+    },
+    {
+      q: "¿Cuánto cuesta el seguro de decesos Adeslas?",
+      a: "El seguro de decesos Adeslas tiene primas desde 9€/mes para personas jóvenes. El precio final depende de la edad del asegurado y de si se contrata de manera individual o para toda la familia.",
+    },
+    {
+      q: "¿Qué es la repatriación en el seguro de decesos?",
+      a: "La repatriación cubre el traslado del fallecido a su localidad de residencia o al lugar de entierro si el fallecimiento se produce fuera de España o fuera de la provincia. Incluye todos los trámites, certificaciones y el transporte, sin coste adicional para la familia.",
+    },
+    {
+      q: "¿Puede contratarse el seguro de decesos sin cuestionario de salud?",
+      a: "Sí. El seguro de decesos Adeslas no requiere cuestionario de salud previo. Se puede contratar a cualquier edad, con independencia del estado de salud del asegurado.",
+    },
+  ],
+
+  // ── ADESLAS MASCOTAS ─────────────────────────────────────────────────
+  "/adeslas-mascotas": [
+    {
+      q: "¿Qué cubre el seguro de mascotas Adeslas?",
+      a: "El seguro de mascotas Adeslas tiene dos modalidades: Básico (responsabilidad civil de 200.000€, defensa jurídica y asistencia en viaje) desde 5,85€/mes; y Completo (RC más cobertura veterinaria en más de 300 clínicas, sin restricción de raza) desde 24,74€/mes. Cubre perros y gatos.",
+    },
+    {
+      q: "¿Tiene el seguro de mascotas Adeslas restricción de razas?",
+      a: "No. El seguro de mascotas Adeslas Completo no tiene restricción de razas, incluyendo razas consideradas potencialmente peligrosas. El seguro cubre tanto perros como gatos sin discriminación por raza ni tamaño.",
+    },
+    {
+      q: "¿Cuánto cuesta el seguro de mascotas Adeslas?",
+      a: "El seguro básico de mascotas Adeslas cuesta desde 5,85€/mes e incluye responsabilidad civil de 200.000€. El seguro completo, que añade cobertura veterinaria en más de 300 clínicas, cuesta desde 24,74€/mes.",
+    },
+  ],
+
+  // ── SEGURO FAMILIAR ──────────────────────────────────────────────────
+  "/seguro-medico-familiar": [
+    {
+      q: "¿Cómo funciona el seguro médico familiar de Adeslas?",
+      a: "El seguro familiar Adeslas permite incluir a todos los miembros de la familia en una sola póliza: titular, cónyuge o pareja de hecho, hijos y otros dependientes. Cada asegurado tiene cobertura completa independiente. A partir del 4º asegurado se aplica un descuento del 10%.",
+    },
+    {
+      q: "¿Cuánto cuesta el seguro familiar Adeslas?",
+      a: "El seguro familiar Adeslas cuesta desde 22,55€/mes por asegurado para personas de hasta 30 años. El precio total depende del número de asegurados y sus edades. Desde el 4º asegurado se aplica un 10% de descuento.",
+    },
+    {
+      q: "¿El seguro familiar Adeslas cubre a los hijos desde recién nacidos?",
+      a: "Sí. Los bebés pueden ser añadidos a la póliza familiar desde el momento del nacimiento. Para los primeros 3 meses de vida se puede dar de alta sin cuestionario de salud. Incluye pediatría, urgencias 24h y todas las especialidades pediátricas.",
+    },
+    {
+      q: "¿Hay descuento en el seguro familiar Adeslas?",
+      a: "Sí. Adeslas aplica un descuento del 10% en la prima de cada asegurado a partir del 4º miembro en la misma póliza familiar. Este descuento aplica a todos los asegurados, incluidos los que ya estaban en la póliza.",
+    },
+  ],
+
+  // ── SEGURO INDIVIDUAL ────────────────────────────────────────────────
+  "/seguro-medico-individual": [
+    {
+      q: "¿Cuál es el seguro médico individual más económico de Adeslas?",
+      a: "El seguro individual más económico de Adeslas es Adeslas GO, desde 21€/mes para personas de hasta 30 años. Cubre asistencia ambulatoria completa con copago (tope 260€/año) pero no incluye hospitalización programada.",
+    },
+    {
+      q: "¿Qué seguro médico individual de Adeslas incluye hospitalización?",
+      a: "Para hospitalización individual, Adeslas ofrece: Plena Vital (desde 38€/mes, con copago tope 300€/año), Plena Vital Total (desde 48,50€/mes, sin subidas 3 años), Plena Plus (desde 62€/mes, sin copago) y Plena Total (desde 83€/mes, sin copago con dental y más coberturas).",
+    },
+    {
+      q: "¿Se puede contratar el seguro individual Adeslas sin cuestionario?",
+      a: "Adeslas GO puede contratarse sin cuestionario de salud. Los planes con hospitalización (Plena Vital, Plena Plus, Plena Total) requieren un breve cuestionario de salud. El proceso es online y el alta suele ser inmediata o en 24 horas.",
+    },
+  ],
+
+  // ── SEGURO MAYORES ───────────────────────────────────────────────────
+  "/seguro-medico-mayores": [
+    {
+      q: "¿Qué seguro médico recomienda Adeslas para mayores de 55 años?",
+      a: "Para personas mayores de 55 años, Adeslas recomienda Adeslas Seniors: prima desde 67,50€/mes, asesor médico personal, cobertura especial en oncología, cardiología y rehabilitación, y prima garantizada 3 años. Para quienes además quieren dental y psicología incluidos, Adeslas Seniors Total es la opción más completa.",
+    },
+    {
+      q: "¿Tiene Adeslas seguro médico para mayores de 70 años?",
+      a: "Sí. Adeslas Seniors y Adeslas Seniors Total aceptan nuevas contrataciones hasta los 84 años de edad. Una vez contratado, el seguro se renueva sin límite de edad siempre que se mantenga en vigor.",
+    },
+    {
+      q: "¿Cubre Adeslas Seniors la oncología?",
+      a: "Sí. Adeslas Seniors tiene cobertura especial en oncología: diagnóstico precoz, tratamiento en centros de referencia, quimioterapia, radioterapia, inmunoterapia y seguimiento oncológico. Es una de las coberturas más valoradas del plan.",
+    },
+  ],
+
+  // ── PYMES Y EMPRESAS ─────────────────────────────────────────────────
+  "/pymes-empresas": [
+    {
+      q: "¿Qué es Adeslas PYMES TOTAL?",
+      a: "Adeslas PYMES TOTAL es el seguro médico colectivo para empresas de hasta 15 empleados. Sin copago, dental incluido, prima garantizada 3 años sin subidas y cobertura completa (ambulatoria, hospitalización, urgencias). La prima es deducible al 100% en el Impuesto de Sociedades.",
+    },
+    {
+      q: "¿Cuántos trabajadores necesita una empresa para contratar Adeslas?",
+      a: "A partir de 2 trabajadores (incluido el autónomo titular) puede contratarse Adeslas PYMES TOTAL. El plan cubre hasta 15 empleados. Para grupos más grandes, existe una tarificación específica.",
+    },
+    {
+      q: "¿Es deducible el seguro médico de empresa Adeslas?",
+      a: "Sí. Las primas del seguro médico de empresa Adeslas son deducibles al 100% en el Impuesto de Sociedades como gasto de personal. Para los trabajadores, el seguro médico de empresa está exento de IRPF hasta 500€/año por asegurado (titular, cónyuge e hijos).",
+    },
+    {
+      q: "¿Cuánto cuesta Adeslas para empresas?",
+      a: "El precio del seguro médico para empresas Adeslas depende del número de empleados y sus edades. La modalidad sin copago con dental incluido parte desde precios competitivos con prima garantizada 3 años. Solicita un presupuesto personalizado a través del tarificador de esta web.",
+    },
+  ],
+
+  // ── CÓMO CONTRATAR ADESLAS ───────────────────────────────────────────
+  "/como-contratar-adeslas": [
+    {
+      q: "¿Cómo se contrata un seguro Adeslas?",
+      a: "Hay tres formas de contratar Adeslas: (1) Online en esta web: calcula tu precio, elige tu plan y formaliza el alta en menos de 2 minutos. (2) Por teléfono: llama al 91 710 50 00 y un asesor te guía sin compromiso. (3) Solicita que te llamemos: déjanos tu número y te llamamos cuando quieras. El alta es inmediata o en 24 horas.",
+    },
+    {
+      q: "¿Qué documentación se necesita para contratar Adeslas?",
+      a: "Para contratar Adeslas necesitas: DNI o NIE del titular y de los asegurados, cuenta bancaria (IBAN) para la domiciliación de la prima y, para los planes con hospitalización, cumplimentar un breve cuestionario de salud online. No es necesario desplazarse ni aportar documentación en papel.",
+    },
+    {
+      q: "¿Cuándo empieza la cobertura del seguro Adeslas?",
+      a: "La cobertura del seguro Adeslas comienza el día 1 del mes siguiente a la contratación (o desde la fecha de efecto que elijas). Algunas coberturas tienen períodos de carencia: parto (8 meses), prótesis dentales (6 meses), psicología (3 meses). Las urgencias y las consultas ambulatorias no tienen carencia.",
+    },
+    {
+      q: "¿Puedo contratar Adeslas si tengo enfermedades previas?",
+      a: "Depende del plan y de la enfermedad. Adeslas GO no tiene cuestionario de salud y puede contratarse con cualquier condición previa. Los planes con hospitalización requieren un cuestionario y pueden incluir exclusiones o sobreprimas por patologías preexistentes declaradas. Consulta tu caso concreto con nuestro equipo.",
+    },
+  ],
+
+  // ── ALTA ADESLAS ─────────────────────────────────────────────────────
+  "/alta-adeslas": [
+    {
+      q: "¿Cómo darse de alta en Adeslas?",
+      a: "Darse de alta en Adeslas es 100% online. Accede al formulario de alta, introduce los datos del titular y los asegurados, completa el cuestionario de salud (si aplica), indica tu IBAN para la domiciliación y confirma el alta. Recibirás la documentación por email y el carnet de asegurado en la app Adeslas.",
+    },
+    {
+      q: "¿Cuánto tiempo tarda el alta en Adeslas?",
+      a: "El alta en Adeslas es inmediata una vez aprobada la solicitud. Normalmente el proceso completo lleva menos de 2 minutos. Recibirás el número de póliza, las condiciones y el acceso a la app Adeslas en el mismo día.",
+    },
+    {
+      q: "¿Cuándo puedo usar el seguro Adeslas tras el alta?",
+      a: "Desde el primer día del mes de efecto de la póliza. Si el alta se formaliza en mayo, la cobertura comienza el 1 de junio (o desde la fecha de efecto elegida). Las coberturas sin carencia (urgencias, consultas ambulatorias) son accesibles desde ese día.",
+    },
+  ],
+
+  // ── PRECIOS ADESLAS ──────────────────────────────────────────────────
+  "/precios-adeslas": [
+    {
+      q: "¿Cuánto cuesta un seguro médico Adeslas en 2026?",
+      a: "Precios de referencia para una persona de hasta 30 años en 2026: Adeslas GO desde 21€/mes, Plena Vital desde 38€/mes, Plena Vital Total desde 48,50€/mes, Plena Plus desde 62€/mes, Plena Total desde 83€/mes, Extra 150 desde 90€/mes, Seniors (55+) desde 67,50€/mes. El precio final depende de tu edad y provincia.",
+    },
+    {
+      q: "¿Por qué varía el precio del seguro Adeslas según la edad?",
+      a: "El precio varía con la edad porque la probabilidad de uso del seguro aumenta con los años. Las tarifas son más económicas para personas jóvenes y se incrementan progresivamente. Las subidas anuales son limitadas y, en los planes con prima garantizada (Plena Vital Total, Plena Total), no hay subida durante 3 años.",
+    },
+    {
+      q: "¿Qué factores afectan al precio del seguro Adeslas?",
+      a: "Los factores que determinan el precio final de un seguro Adeslas son: la edad del asegurado (principal factor), la provincia de residencia (Madrid, Barcelona y otras capitales tienen tarifas diferentes), el plan elegido (coberturas y copago) y el número de asegurados en la póliza (descuento del 10% desde el 4º).",
+    },
+  ],
+
+  // ── GINECOLOGÍA ──────────────────────────────────────────────────────
+  "/seguro-medico-ginecologia": [
+    {
+      q: "¿Cubre Adeslas las consultas de ginecología?",
+      a: "Sí. Todos los planes Adeslas (excepto Adeslas GO para intervenciones) incluyen ginecología completa: consultas periódicas, revisiones, citologías, ecografías ginecológicas, colposcopia y todas las pruebas diagnósticas. Sin listas de espera y con libre elección de ginecólogo dentro del cuadro médico.",
+    },
+    {
+      q: "¿Cubre Adeslas las revisiones ginecológicas preventivas?",
+      a: "Sí. Las revisiones ginecológicas preventivas están incluidas en todos los planes con hospitalización. Esto incluye la revisión anual, la citología cervical (Papanicolau), la ecografía ginecológica y la mamografía a partir de los 40 años (según protocolo de la aseguradora).",
+    },
+    {
+      q: "¿Cubre Adeslas la reproducción asistida?",
+      a: "La reproducción asistida (FIV, inseminación artificial) no está incluida en las coberturas estándar de los planes Adeslas. Sí están cubiertos los estudios diagnósticos de fertilidad y las consultas con el especialista en reproducción.",
+    },
+  ],
 };

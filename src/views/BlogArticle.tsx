@@ -148,9 +148,51 @@ const BlogArticle = () => {
 
   const related = getRelatedPosts(post.relatedSlugs);
 
+  // Article JSON-LD — ayuda a Google y LLMs a identificar el artículo como
+  // contenido original de autor, mejora la elegibilidad para AI Overviews y
+  // permite que Perplexity/ChatGPT citen la fuente correctamente.
+  const articleJsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.seoDescription,
+    "image": post.image,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": {
+      "@type": "Organization",
+      "name": "Marchal Aseguradores",
+      "url": "https://adeslas.numero1salud.es",
+      "description": "Agente exclusivo Adeslas con más de 15 años de experiencia en el sector del seguro médico privado en España."
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Marchal Aseguradores — Agente Exclusivo Adeslas",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://adeslas.numero1salud.es/logo-adeslas.webp"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://adeslas.numero1salud.es/blog/${slug}`
+    },
+    "articleSection": post.category,
+    "inLanguage": "es-ES",
+    "about": {
+      "@type": "Thing",
+      "name": "Seguros médicos Adeslas en España"
+    }
+  });
+
   return (
     <TarificadorProvider>
       {_seo}
+      {/* Article schema — server-render no disponible en SPA, se inyecta aquí como fallback */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: articleJsonLd }}
+      />
       <Header />
 
       {/* Hero image */}

@@ -359,6 +359,42 @@ export const PAGE_META: Record<string, PageMeta> = {
       "Sin copago: pagas la prima mensual y no abonas nada más en cada visita. Descubre cómo funciona y qué planes sin copago ofrece Adeslas en 2026.",
     canonical: `${BASE}/blog/seguro-medico-sin-copago-2026/`,
   },
+  "/blog/carencias-seguros-medicos-adeslas": {
+    title: "Carencias en Seguros Médicos Adeslas: Qué Son y Cuánto Duran",
+    description:
+      "Las carencias son el período de espera desde que contratas hasta que puedes usar ciertas coberturas. Guía completa sobre todos los períodos de carencia de Adeslas 2026.",
+    canonical: `${BASE}/blog/carencias-seguros-medicos-adeslas/`,
+  },
+  "/blog/seguro-medico-familias-2026": {
+    title: "Seguro Médico para Familias en 2026: Guía Completa para Elegir Bien",
+    description:
+      "Cómo elegir el mejor seguro médico familiar en 2026. Coberturas, precios, descuentos desde el 4º asegurado y qué plan Adeslas se adapta mejor a tu familia.",
+    canonical: `${BASE}/blog/seguro-medico-familias-2026/`,
+  },
+  "/blog/hospitalizacion-privada-vs-publica": {
+    title: "Hospitalización Privada vs Pública en España 2026: Diferencias Reales",
+    description:
+      "Tiempos de espera, habitación individual, acceso al médico y pruebas diagnósticas. Diferencias reales entre ingresar en la sanidad pública o privada en España en 2026.",
+    canonical: `${BASE}/blog/hospitalizacion-privada-vs-publica/`,
+  },
+  "/blog/seguro-medico-autonomos-2026": {
+    title: "Seguro Médico para Autónomos en 2026: Deducciones IRPF y Mejores Planes",
+    description:
+      "Autónomos: deduce hasta 500€/año en IRPF por el seguro de salud. Qué plan Adeslas elegir, cómo funciona la deducción y todo lo que necesitas saber antes de contratar.",
+    canonical: `${BASE}/blog/seguro-medico-autonomos-2026/`,
+  },
+  "/blog/listas-de-espera-sanidad-publica-espana-2026": {
+    title: "Listas de Espera Sanidad Pública España 2026: Datos Reales y Alternativas",
+    description:
+      "Datos del Ministerio de Sanidad: cuánto se espera para ver un especialista o para operarse en la sanidad pública española en 2026. Y qué alternativa ofrece el seguro privado.",
+    canonical: `${BASE}/blog/listas-de-espera-sanidad-publica-espana-2026/`,
+  },
+  "/blog/cuadro-medico-adeslas-como-funciona": {
+    title: "Cuadro Médico Adeslas 2026: Cómo Funciona y Qué Especialidades Incluye",
+    description:
+      "Más de 51.000 médicos en toda España. Cómo consultar el cuadro médico Adeslas, qué especialidades incluye y cómo pedir cita sin necesidad de derivación ni autorización previa.",
+    canonical: `${BASE}/blog/cuadro-medico-adeslas-como-funciona/`,
+  },
 
   // ── SEO TRANSACCIONAL — alta, contratar, precios ─────────────────
   "/alta-adeslas": {
