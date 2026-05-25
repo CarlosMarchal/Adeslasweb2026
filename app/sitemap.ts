@@ -72,8 +72,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
   // ── 2. Artículos del blog en /blog/:slug ────────────────────────────────────
+  // Trailing slash obligatorio: next.config.js tiene trailingSlash: true, por lo
+  // que la URL canónica de cada artículo es /blog/slug/ (con barra final).
+  // Sin esta barra el sitemap enviaba a Google la URL incorrecta, que redirigía
+  // con 308 añadiendo confusión al proceso de re-indexación.
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${BASE}/blog/${post.slug}`,
+    url: `${BASE}/blog/${post.slug}/`,
     lastModified: post.date ? toSafeDate(post.date) : LAST_BUILD,
     changeFrequency: 'monthly' as const,
     priority: 0.6,
