@@ -1,0 +1,91 @@
+import { motion } from "@/lib/motion";
+import Tarificador from "@/components/Tarificador";
+
+/* Desktop: 1440px, Mobile: 828px (414px@2x) — ver public/images/ */
+const HERO_DESKTOP = "/images/hero-adeslas-seguros-medicos.webp";
+const HERO_MOBILE  = "/images/hero-adeslas-seguros-medicos-mobile.webp";
+
+const HeroSection = () => {
+  return (
+    <section className="relative overflow-hidden" style={{ minHeight: "460px" }} role="img" aria-label="Seguros médicos Adeslas 2026 — compara todos los planes Adeslas y calcula tu precio online desde 21€/mes">
+      {/*
+       * LCP: <picture> responsivo — mobile (828px) descarga 36 KB en lugar de
+       * 85 KB de la versión desktop. Mejora directamente el LCP en móvil.
+       * fetchpriority="high" garantiza que el preload scanner la priorice.
+       */}
+      <picture>
+        {/* Mobile: pantallas ≤768px → 828px image (36 KB) */}
+        <source
+          srcSet={HERO_MOBILE}
+          media="(max-width: 768px)"
+          type="image/webp"
+        />
+        {/* Desktop: pantallas >768px → 1440px image (85 KB) */}
+        <source
+          srcSet={HERO_DESKTOP}
+          media="(min-width: 769px)"
+          type="image/webp"
+        />
+        <img
+          src={HERO_DESKTOP}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+      </picture>
+      {/* Dark overlay */}
+      <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.65)" }} />
+
+      <div className="max-w-[1280px] mx-auto px-12 lg:px-20 py-8 lg:py-10 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+          {/* Left column: badge, h1, description, trust badges
+              Sin animación fade-in: el H1 es el candidato LCP y debe ser
+              visible de inmediato (opacity:0 inicial retrasaría ~600ms el LCP) */}
+          <div>
+            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full mb-6 text-sm text-white border" style={{ borderColor: "rgba(255,255,255,0.4)", background: "transparent" }}>
+              <span className="w-2 h-2 rounded-full" style={{ background: "#009DD9" }} />
+              Seguros Médicos Adeslas
+            </div>
+            <h1 className="text-white mb-3 text-[26px] md:text-[36px] leading-tight md:leading-[1.15] font-bold">
+              Seguros Médicos Adeslas<br /><span style={{ color: "#009FE3" }}>Compara planes y calcula tu precio ahora</span>
+            </h1>
+            <p className="text-white/85 mb-6 text-sm md:text-base leading-relaxed max-w-md">
+              GO desde 21€ · Plena Vital desde 38€ · Plena Total sin copagos desde 83€. Más de 51.000 médicos, sin listas de espera en toda España.
+            </p>
+            {/* Trust badges */}
+            <div className="flex flex-wrap gap-3">
+              {[
+                { emoji: "⭐", label: "+30 años de experiencia" },
+                { emoji: "🏥", label: "Sin listas de espera" },
+                { emoji: "👨‍⚕️", label: "+51.000 médicos" },
+                { emoji: "🏨", label: "+1.400 centros" },
+              ].map(({ emoji, label }) => (
+                <div key={label} className="flex items-center gap-1.5 text-white text-xs sm:text-sm">
+                  <span className="w-8 h-8 rounded-full flex items-center justify-center text-sm flex-shrink-0" style={{ background: "rgba(255,255,255,0.15)" }}>{emoji}</span>
+                  {label}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right column: tarificador — animación suave pero no bloquea LCP */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="hidden lg:block"
+          >
+            <div className="rounded-2xl overflow-hidden max-w-[370px] mx-auto lg:ml-8 xl:ml-16" style={{ boxShadow: "0 20px 56px rgba(0,0,0,0.22)", height: "390px" }}>
+              <Tarificador compact />
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;
