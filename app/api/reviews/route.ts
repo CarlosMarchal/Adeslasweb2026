@@ -31,6 +31,37 @@ export interface ReviewsResponse {
   place_url: string;
 }
 
+// ── Filtrado y selección de reseñas ─────────────────────────────────────────
+//
+// Criterios (en orden):
+//   1. Rating == 5 (único entero estrictamente > 4,5 en Google)
+//   2. Texto no vacío y con sustancia (>= 40 caracteres)
+//   3. Puntuación de relevancia comercial (keywords de seguro/servicio)
+//   4. Máximo 3 reseñas mostradas
+//
+// Declaradas a nivel de módulo para no recrearlas en cada petición.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const COMMERCIAL_KEYWORDS = [
+  'seguro', 'segura', 'seguros', 'póliza', 'cobertura', 'coberturas',
+  'médico', 'médica', 'médicos', 'médicas', 'clínica', 'hospital',
+  'atención', 'servicio', 'servicios', 'precio', 'precios', 'cuota',
+  'contratar', 'contratado', 'contratamos', 'contrata', 'contrato',
+  'tramitar', 'tramité', 'gestión', 'gestiones', 'gestor',
+  'adeslas', 'salud', 'sanidad', 'aseguradora', 'compañía',
+  'copago', 'prima', 'consulta', 'especialista', 'urgencias',
+  'marchal', 'asesor', 'asesora', 'profesional', 'rápido', 'rápida',
+  'recomiendo', 'recomendable', 'excelente', 'estupendo', 'genial',
+];
+
+const commercialScore = (text: string): number => {
+  const lower = text.toLowerCase();
+  return COMMERCIAL_KEYWORDS.reduce(
+    (score, kw) => score + (lower.includes(kw) ? 1 : 0),
+    0
+  );
+};
+
 export async function GET() {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = process.env.GOOGLE_PLACE_ID;
@@ -52,7 +83,6 @@ export async function GET() {
       `&key=${apiKey}`;
 
     const res = await fetch(url, {
-      // next.revalidate aquí duplica la directiva de módulo — redundante pero explícito
       next: { revalidate: 86400 },
     });
 
@@ -67,39 +97,6 @@ export async function GET() {
     }
 
     const result = data.result;
-
-    // ── Filtrado y selección de reseñas ──────────────────────────────────────
-    //
-    // Criterios (en orden):
-    //   1. Rating == 5 (único entero estrictamente > 4,5 en Google)
-    //   2. Texto no vacío y con sustancia (>= 40 caracteres)
-    //   3. Puntuación de relevancia comercial (keywords de seguro/servicio)
-    //   4. Máximo 3 reseñas mostradas
-    //
-    // Keywords comerciales: palabras que denotan experiencia con el servicio,
-    // la atención, el precio o el producto. Cuantas más aparezcan, mayor score.
-    // ─────────────────────────────────────────────────────────────────────────
-
-    const COMMERCIAL_KEYWORDS = [
-      'seguro', 'segura', 'seguros', 'póliza', 'cobertura', 'coberturas',
-      'médico', 'médica', 'médicos', 'médicas', 'clínica', 'hospital',
-      'atención', 'servicio', 'servicios', 'precio', 'precios', 'cuota',
-      'contratar', 'contratado', 'contratamos', 'contrata', 'contrato',
-      'tramitar', 'tramité', 'gestión', 'gestiones', 'gestor',
-      'adeslas', 'salud', 'sanidad', 'aseguradora', 'compañía',
-      'copago', 'prima', 'consulta', 'especialista', 'urgencias',
-      'marchal', 'asesor', 'asesora', 'profesional', 'rápido', 'rápida',
-      'recomiendo', 'recomendable', 'excelente', 'estupendo', 'genial',
-    ];
-
-    function commercialScore(text: string): number {
-      const lower = text.toLowerCase();
-      return COMMERCIAL_KEYWORDS.reduce(
-        (score, kw) => score + (lower.includes(kw) ? 1 : 0),
-        0
-      );
-    }
-
     const allReviews: GoogleReview[] = result.reviews ?? [];
 
     const filtered = allReviews
