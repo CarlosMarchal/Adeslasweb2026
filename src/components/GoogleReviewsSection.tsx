@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { m as motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 
 // ─────────────────────────────────────────────
 // Tipos (duplicados aquí para evitar importar desde app/)
