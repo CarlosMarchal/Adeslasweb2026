@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import CalcButton from "@/components/CalcButton";
 import Tarificador from "@/components/Tarificador";
 import CtaSection from "@/components/CtaSection";
+import GoogleReviewsSection from "@/components/GoogleReviewsSection";
 import { usePhonePopup } from "@/components/PhonePopupContext";
 import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
 import { imgSrc } from "@/lib/imgSrc";
@@ -666,6 +667,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
         <ProductDetail data={data} />
         <ProductFaqSection faqs={data.faqs} productName={data.cardName} />
         {data.showPromo !== false && <PromoBanner onCalcClick={openCustom} />}
+        <GoogleReviewsSection />
         <CtaSection onCalcClick={openCustom} />
         <Footer />
         {/* Global modal for customTarificador (mobile + desktop CTA) */}

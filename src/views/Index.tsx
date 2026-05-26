@@ -8,9 +8,10 @@ import Tarificador from "@/components/Tarificador";
 
 /* ── Secciones below-fold: lazy — se descargan solo cuando el usuario
       empieza a hacer scroll. Reduce el parse/eval inicial en ~200-300 ms en móvil. ── */
-const WhyAdeslaSection  = lazy(() => import("@/components/WhyAdeslaSection"));
-const StatsSection      = lazy(() => import("@/components/StatsSection"));
-const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const WhyAdeslaSection      = lazy(() => import("@/components/WhyAdeslaSection"));
+const StatsSection          = lazy(() => import("@/components/StatsSection"));
+const GoogleReviewsSection  = lazy(() => import("@/components/GoogleReviewsSection"));
+const TestimonialsSection   = lazy(() => import("@/components/TestimonialsSection"));
 const FaqSection        = lazy(() => import("@/components/FaqSection"));
 const CtaSection        = lazy(() => import("@/components/CtaSection"));
 const Footer            = lazy(() => import("@/components/Footer"));
@@ -90,6 +91,7 @@ const Index = () => {
       <Suspense fallback={<div style={{ minHeight: "200px" }} />}>
         <WhyAdeslaSection />
         <StatsSection />
+        <GoogleReviewsSection />
         <TestimonialsSection />
         <FaqSection />
         <CtaSection />
