@@ -665,9 +665,9 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
         )}
         <FeaturesGrid features={data.features} productName={data.cardName} />
         <ProductDetail data={data} />
+        <GoogleReviewsSection />
         <ProductFaqSection faqs={data.faqs} productName={data.cardName} />
         {data.showPromo !== false && <PromoBanner onCalcClick={openCustom} />}
-        <GoogleReviewsSection />
         <CtaSection onCalcClick={openCustom} />
         <Footer />
         {/* Global modal for customTarificador (mobile + desktop CTA) */}

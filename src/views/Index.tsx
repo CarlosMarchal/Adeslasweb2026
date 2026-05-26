@@ -11,7 +11,6 @@ import Tarificador from "@/components/Tarificador";
 const WhyAdeslaSection      = lazy(() => import("@/components/WhyAdeslaSection"));
 const StatsSection          = lazy(() => import("@/components/StatsSection"));
 const GoogleReviewsSection  = lazy(() => import("@/components/GoogleReviewsSection"));
-const TestimonialsSection   = lazy(() => import("@/components/TestimonialsSection"));
 const FaqSection        = lazy(() => import("@/components/FaqSection"));
 const CtaSection        = lazy(() => import("@/components/CtaSection"));
 const Footer            = lazy(() => import("@/components/Footer"));
@@ -92,7 +91,6 @@ const Index = () => {
         <WhyAdeslaSection />
         <StatsSection />
         <GoogleReviewsSection />
-        <TestimonialsSection />
         <FaqSection />
         <CtaSection />
         <Footer />
