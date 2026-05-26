@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "@/lib/motion";
+import { motion } from "../lib/motion";
 
 // ─────────────────────────────────────────────
 // Tipos (duplicados aquí para evitar importar desde app/)
