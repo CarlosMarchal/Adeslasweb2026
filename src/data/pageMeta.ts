@@ -419,6 +419,24 @@ export const PAGE_META: Record<string, PageMeta> = {
       "Cuánto cuesta ir al médico privado pagando directamente en España en 2026. Precios de consultas, pruebas diagnósticas, operaciones y hospitalización sin seguro médico.",
     canonical: `${BASE}/blog/sanidad-privada-sin-seguro-costes-reales-2026/`,
   },
+  "/blog/que-cubre-seguro-medico-adeslas-2026": {
+    title: "¿Qué Cubre un Seguro Médico Adeslas? Coberturas Completas 2026",
+    description:
+      "Guía completa de coberturas del seguro médico Adeslas 2026: ambulatorio, hospitalización, urgencias, diagnóstico, salud mental, maternidad y más.",
+    canonical: `${BASE}/blog/que-cubre-seguro-medico-adeslas-2026/`,
+  },
+  "/blog/seguro-medico-mayores-60-anos-adeslas-2026": {
+    title: "Seguro Médico para Mayores de 60 Años: Guía Adeslas 2026",
+    description:
+      "Seguro médico para mayores de 60 años con Adeslas: planes Seniors (55-84), coberturas más usadas, precios orientativos por edad y cuándo conviene contratar.",
+    canonical: `${BASE}/blog/seguro-medico-mayores-60-anos-adeslas-2026/`,
+  },
+  "/blog/urgencias-seguro-medico-privado-como-funciona-2026": {
+    title: "Urgencias con Seguro Médico Privado: Cómo Funciona en 2026 | Adeslas",
+    description:
+      "Urgencias con seguro médico privado Adeslas: qué hacer, cómo acceder, copago por plan, cobertura en el extranjero y cuándo es mejor usar la sanidad pública.",
+    canonical: `${BASE}/blog/urgencias-seguro-medico-privado-como-funciona-2026/`,
+  },
 
   // ── SEO TRANSACCIONAL — alta, contratar, precios ─────────────────
   "/alta-adeslas": {
