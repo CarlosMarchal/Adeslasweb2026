@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "@/lib/motion";
-import { trackClickToCallContratacion } from "@/lib/tracking";
+import { trackClickToCallContratacion, trackTarificadorSubmit } from "@/lib/tracking";
+import { submitToHubSpot } from "@/lib/hubspot";
 import { TermsCheckbox } from "@/components/TermsModal";
 import {
   provinces,
@@ -178,6 +179,17 @@ const TarificadorExtranjeros = ({ compact = false }: Props) => {
       return;
     }
     setTermsError(false);
+    // Tracking síncrono PRIMERO — antes de cualquier await (CLAUDE.md §3.1)
+    trackTarificadorSubmit(`${countryCode}${telefono}`, "tarificador_extranjeros_312", 312);
+    // HubSpot: fire-and-forget, no bloquea UI
+    submitToHubSpot({
+      firstname: nombre.trim(),
+      email,
+      phone: `${countryCode}${telefono}`,
+      city: provincia,
+      edad1: edad,
+      source: 312,
+    }).catch((err) => console.error("[HubSpot extranjeros]", err));
     goToStep(3);
   };
 
