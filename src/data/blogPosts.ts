@@ -2101,7 +2101,7 @@ export const blogPosts: BlogPostFull[] = [
                 "Pediatría: para los asegurados menores de 14 años (o hasta 18 según el plan)",
                 "Podología: hasta 12 sesiones al año según el plan",
                 "Rehabilitación ambulatoria: fisioterapia, logopedia, terapia ocupacional",
-                "Psicología clínica: sesiones con psicólogo en la red Adeslas sin límite de número de sesiones"
+                "Psicología clínica: sesiones con psicólogo en la red Adeslas (10 sesiones/año en Plena Vital; 20 sesiones/año en Plena Vital Total y Plena Total; con carencia de 3 meses)"
             ]
         },
         {
@@ -2134,10 +2134,6 @@ export const blogPosts: BlogPostFull[] = [
             "text": "Las urgencias están cubiertas desde el mismo día en que el seguro entra en vigor, sin ningún periodo de carencia. Esto es válido para todos los planes Adeslas. Puedes acudir a cualquier centro de urgencias de la red Adeslas en toda España, 24 horas al día, 365 días al año."
         },
         {
-            "type": "callout",
-            "text": "Importante: si sufres una urgencia vital (accidente, infarto, ictus) y el hospital más cercano no es de la red Adeslas, ve al hospital más próximo. Adeslas cubrirá los gastos de estabilización en cualquier centro, aunque no sea concertado, si la situación es una urgencia real."
-        },
-        {
             "type": "heading",
             "text": "Hospitalización y cirugía"
         },
@@ -2164,7 +2160,7 @@ export const blogPosts: BlogPostFull[] = [
         },
         {
             "type": "paragraph",
-            "text": "Todos los planes Adeslas incluyen cobertura de salud mental ambulatoria: consultas con psiquiatra y con psicólogo clínico dentro de la red, sin límite de sesiones. La psiquiatría hospitalaria (ingreso psiquiátrico) está cubierta en los planes con hospitalización, con la misma carencia de 6 meses que el resto de ingresos."
+            "text": "Los planes con hospitalización incluyen psiquiatría y psicología clínica en la red. El número de sesiones de psicología varía según el plan: 10 sesiones/año en Plena Vital y 20 sesiones/año en Plena Vital Total y Plena Total. La psicología tiene una carencia de 3 meses. Consulta las condiciones concretas de tu plan con tu asesor."
         },
         {
             "type": "heading",
@@ -2232,7 +2228,7 @@ export const blogPosts: BlogPostFull[] = [
         },
         {
             "type": "paragraph",
-            "text": "En 2026, Adeslas permite contratar sus seguros hasta los 70 años de edad. A partir de ahí, si ya eres asegurado, puedes renovar indefinidamente. Por eso la recomendación es contratar antes de los 65: la prima es más baja, los periodos de carencia ya estarán cumplidos cuando más lo necesites, y muchas condiciones crónicas todavía no están declaradas."
+            "text": "Adeslas dispone de planes específicamente diseñados para mayores de 55 años: Adeslas Seniors (de 55 a 84 años) y Adeslas Seniors Total (de 63 a 84 años), con prima garantizada 3 años sin subidas y asesor médico personal incluido. Para quienes tienen menos de 63-70 años, los planes estándar (Go, Plena Vital, Plena Plus) también son una opción a valorar. En todos los casos, cuanto antes se contrate, más ventajosas son las condiciones: prima más baja y carencias ya cumplidas cuando más se necesiten."
         },
         {
             "type": "heading",
@@ -2298,19 +2294,35 @@ export const blogPosts: BlogPostFull[] = [
         },
         {
             "type": "heading",
-            "text": "¿Hasta qué edad se puede contratar un seguro Adeslas?"
+            "text": "Planes Adeslas específicos para mayores: Seniors y Seniors Total"
         },
         {
             "type": "paragraph",
-            "text": "Adeslas permite contratar por primera vez hasta los 70 años en la mayoría de sus planes. Si ya eres asegurado antes de los 70, puedes seguir renovando indefinidamente, sin límite de edad. Una vez dentro, estás cubierto de por vida mientras pagues la prima."
+            "text": "Adeslas tiene dos planes diseñados específicamente para personas mayores de 55 años, con cobertura hasta los 84 y renovación ilimitada a partir de ahí mientras se mantenga la póliza."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Adeslas Seniors (55–84 años): cobertura completa con hospitalización, asesor médico personal incluido, coberturas reforzadas en oncología, cardiología, traumatología y rehabilitación. Prima desde 67,50 €/mes. Prima garantizada 3 años sin subidas.",
+                "Adeslas Seniors Total (63–84 años): todo lo de Seniors más dental (46 actos), psicología (20 sesiones/año) y asistencia en viaje. Prima desde 101 €/mes. Prima garantizada 3 años sin subidas.",
+                "Ambos planes: sin límite de renovación a partir de los 84 años si ya eres asegurado. Sin necesidad de cambiar de plan por cumplir años."
+            ]
         },
         {
             "type": "heading",
-            "text": "Adeslas Go: el plan de entrada más eficiente para mayores"
+            "text": "Límites de edad para contratar por primera vez"
         },
         {
             "type": "paragraph",
-            "text": "Para muchos mayores de 60 que ya tienen la sanidad pública como respaldo, Adeslas Go puede ser una entrada muy eficiente: cubre toda la asistencia ambulatoria (especialistas, diagnóstico, urgencias) con copago moderado y Límite Máximo Anual. Si lo que buscas es acceso rápido a especialistas y pruebas diagnósticas sin esperar meses, Adeslas Go te lo da desde el primer día a la prima más ajustada."
+            "text": "Los límites de edad para una primera contratación varían según el plan. Los planes estándar (Go, Plena Vital, Plena Plus) aceptan nuevas contrataciones hasta los 70 años. Los planes Plena Vital Total y Plena Total tienen un límite más bajo (63 y 62 años respectivamente). Adeslas Seniors y Seniors Total están disponibles para nuevos asegurados hasta los 84 años. Si ya tienes un plan Adeslas activo, puedes renovarlo indefinidamente sin importar la edad."
+        },
+        {
+            "type": "heading",
+            "text": "¿Qué plan elegir según la edad?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Para mayores de 60 que contratan por primera vez, la recomendación depende de la edad y las necesidades. Hasta los 62-63 años, los planes estándar completos (Plena Total, Plena Vital Total) siguen siendo accesibles y ofrecen la gama más amplia. A partir de los 63 años o cuando se busca un plan pensado para el uso médico más frecuente de la edad, Adeslas Seniors y Seniors Total son la opción diseñada para este perfil. En todos los casos, el asesor de Marchal Aseguradores puede ayudarte a elegir el plan más adecuado sin compromiso."
         },
         {
             "type": "callout",
@@ -2373,19 +2385,11 @@ export const blogPosts: BlogPostFull[] = [
         },
         {
             "type": "heading",
-            "text": "¿Qué pasa si la urgencia ocurre fuera de la red Adeslas?"
-        },
-        {
-            "type": "paragraph",
-            "text": "Si tienes una urgencia vital y el hospital más cercano no es de la red Adeslas —por ejemplo, en una zona rural— ve directamente al hospital más próximo. Adeslas cubrirá los gastos de estabilización y atención de urgencia, aunque no sea un centro concertado. Una vez estabilizado, si necesitas seguimiento o ingreso programado, el traslado a un centro de la red será organizado por Adeslas."
-        },
-        {
-            "type": "heading",
             "text": "Urgencias en el extranjero"
         },
         {
             "type": "paragraph",
-            "text": "Los planes Adeslas Plena Vital Total, Plena Total y Extra 150 incluyen cobertura de asistencia médica en viaje en el extranjero, que cubre urgencias durante desplazamientos fuera de España hasta el importe establecido en la póliza (hasta 100.000 € según el plan). Si tienes Go, Plena Vital o Plena Plus, para viajes internacionales se recomienda contratar un seguro de viaje complementario."
+            "text": "Los planes Adeslas Plena Vital Total, Plena Total y Extra 150 incluyen cobertura de asistencia médica en viaje en el extranjero. Los importes máximos según el plan son: Plena Vital Total hasta 30.000 €, Plena Total hasta 100.000 €. Si tienes Go, Plena Vital o Plena Plus, estos planes no incluyen cobertura en el extranjero; para viajes internacionales se recomienda contratar un seguro de viaje complementario."
         },
         {
             "type": "heading",
