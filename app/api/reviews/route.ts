@@ -36,11 +36,16 @@ export interface ReviewsResponse {
 // Criterios (en orden):
 //   1. Rating == 5 (único entero estrictamente > 4,5 en Google)
 //   2. Texto no vacío y con sustancia (>= 40 caracteres)
-//   3. Puntuación de relevancia comercial (keywords de seguro/servicio)
-//   4. Máximo 3 reseñas mostradas
+//   3. Fecha mínima: 1 de enero de 2023 (excluye reseñas muy antiguas)
+//   4. Puntuación de relevancia comercial (keywords de seguro/servicio)
+//      → desempate por recencia (más reciente primero)
+//   5. Máximo 3 reseñas mostradas
 //
 // Declaradas a nivel de módulo para no recrearlas en cada petición.
 // ─────────────────────────────────────────────────────────────────────────────
+
+// 1 Enero 2023 00:00:00 UTC
+const MIN_REVIEW_TIMESTAMP = 1672531200;
 
 const COMMERCIAL_KEYWORDS = [
   'seguro', 'segura', 'seguros', 'póliza', 'cobertura', 'coberturas',
@@ -100,8 +105,16 @@ export async function GET() {
     const allReviews: GoogleReview[] = result.reviews ?? [];
 
     const filtered = allReviews
-      .filter((r: GoogleReview) => r.rating >= 5 && r.text?.trim().length >= 40)
-      .sort((a: GoogleReview, b: GoogleReview) => commercialScore(b.text) - commercialScore(a.text))
+      .filter((r: GoogleReview) =>
+        r.rating >= 5 &&
+        r.text?.trim().length >= 40 &&
+        r.time >= MIN_REVIEW_TIMESTAMP          // excluir reseñas anteriores a 2023
+      )
+      .sort((a: GoogleReview, b: GoogleReview) => {
+        const scoreDiff = commercialScore(b.text) - commercialScore(a.text);
+        if (scoreDiff !== 0) return scoreDiff;  // 1º: más relevancia comercial
+        return b.time - a.time;                 // 2º desempate: más reciente primero
+      })
       .slice(0, 3);
 
     const payload: ReviewsResponse = {

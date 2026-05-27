@@ -2064,6 +2064,345 @@ export const blogPosts: BlogPostFull[] = [
     ],
   },
 
+
+  /* ── Coberturas: que-cubre-seguro-medico-adeslas-2026 ── */
+  {
+    slug: "que-cubre-seguro-medico-adeslas-2026",
+    category: "Coberturas",
+    title: "¿Qué cubre un seguro médico Adeslas? Coberturas completas 2026",
+    excerpt: "Desde la primera consulta hasta una hospitalización compleja: esto es exactamente lo que incluye un seguro médico Adeslas en 2026, cobertura por cobertura.",
+    date: "30 May 2026",
+    readTime: "9 min",
+    image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=400&fit=crop",
+    seoTitle: "¿Qué Cubre un Seguro Médico Adeslas? Coberturas Completas 2026",
+    seoDescription: "Guía completa de coberturas del seguro médico Adeslas 2026: ambulatorio, hospitalización, urgencias, diagnóstico, salud mental, dental, maternidad y más. Todo lo que incluye tu póliza.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "Un seguro médico Adeslas cubre, en función del plan elegido: toda la asistencia ambulatoria (médico general y más de 40 especialidades), diagnóstico de alta tecnología (resonancias, TAC, PET), urgencias 24 horas los 365 días del año, hospitalización en habitación individual, cirugía sin límite de intervenciones, salud mental, y servicios adicionales como telemedicina y segunda opinión médica. Es, en la práctica, una alternativa completa a la sanidad pública sin listas de espera."
+        },
+        {
+            "type": "paragraph",
+            "text": "A continuación desglosamos cada bloque de cobertura para que sepas exactamente qué tienes incluido y, tan importante como eso, qué no cubre ningún seguro médico estándar y por qué."
+        },
+        {
+            "type": "heading",
+            "text": "Asistencia ambulatoria: el núcleo del seguro"
+        },
+        {
+            "type": "paragraph",
+            "text": "La cobertura ambulatoria es la que más usan los asegurados en su día a día. Incluye todas las consultas con médico de cabecera y con especialistas sin necesidad de derivación previa, igual que funciona la medicina privada: eliges el médico, pides cita directamente y vas. Sin burocracia, sin esperas de semanas."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Medicina general y de familia: cita el mismo día o al día siguiente en la mayoría de centros",
+                "Más de 40 especialidades médicas: cardiología, dermatología, ginecología, traumatología, urología, reumatología, neurología, endocrinología y muchas más",
+                "Pediatría: para los asegurados menores de 14 años (o hasta 18 según el plan)",
+                "Podología: hasta 12 sesiones al año según el plan",
+                "Rehabilitación ambulatoria: fisioterapia, logopedia, terapia ocupacional",
+                "Psicología clínica: sesiones con psicólogo en la red Adeslas sin límite de número de sesiones"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Diagnóstico de alta tecnología"
+        },
+        {
+            "type": "paragraph",
+            "text": "Una de las mayores ventajas frente a la sanidad pública es el acceso rápido a pruebas diagnósticas de alta tecnología. En la sanidad pública, una resonancia magnética puede tener una lista de espera de 3 a 6 meses. Con Adeslas, la espera media es de días."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Resonancia magnética (RM): sin límite de exploraciones",
+                "Tomografía axial computarizada (TAC): incluida en todos los planes",
+                "PET (tomografía por emisión de positrones): cubierta en los planes con hospitalización",
+                "Ecografías: diagnósticas y de seguimiento",
+                "Analíticas de sangre y orina: en laboratorios propios y concertados",
+                "Radiografías: incluidas en todos los planes",
+                "Electrocardiograma, prueba de esfuerzo, ecocardiograma: en cardiología",
+                "Endoscopia, colonoscopia, gastroscopia: cubiertas por el seguro"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Urgencias: cobertura desde el primer día, sin carencia"
+        },
+        {
+            "type": "paragraph",
+            "text": "Las urgencias están cubiertas desde el mismo día en que el seguro entra en vigor, sin ningún periodo de carencia. Esto es válido para todos los planes Adeslas. Puedes acudir a cualquier centro de urgencias de la red Adeslas en toda España, 24 horas al día, 365 días al año."
+        },
+        {
+            "type": "callout",
+            "text": "Importante: si sufres una urgencia vital (accidente, infarto, ictus) y el hospital más cercano no es de la red Adeslas, ve al hospital más próximo. Adeslas cubrirá los gastos de estabilización en cualquier centro, aunque no sea concertado, si la situación es una urgencia real."
+        },
+        {
+            "type": "heading",
+            "text": "Hospitalización y cirugía"
+        },
+        {
+            "type": "paragraph",
+            "text": "La cobertura de hospitalización incluye todo lo que ocurre durante un ingreso: la habitación individual con cama para un acompañante, los honorarios del cirujano y del anestesista, el uso del quirófano, las pruebas realizadas durante el ingreso, la medicación hospitalaria y la recuperación postoperatoria. No hay copago adicional por la habitación ni por las noches de ingreso."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Habitación individual con cama para acompañante: incluida en todos los planes con hospitalización",
+                "Cirugía programada: intervenciones planificadas con el especialista, sin límite de número",
+                "Cirugía urgente: cubierta desde el primer día (no tiene carencia)",
+                "Cirugía ambulatoria (sin ingreso nocturno): incluida",
+                "Unidad de Cuidados Intensivos (UCI): cubierta cuando es necesaria",
+                "Rehabilitación hospitalaria post-quirúrgica: incluida en el ingreso",
+                "Medicación durante el ingreso: cubierta al 100 %",
+                "Carencia de hospitalización programada: 6 meses desde la contratación"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Salud mental: psicología y psiquiatría"
+        },
+        {
+            "type": "paragraph",
+            "text": "Todos los planes Adeslas incluyen cobertura de salud mental ambulatoria: consultas con psiquiatra y con psicólogo clínico dentro de la red, sin límite de sesiones. La psiquiatría hospitalaria (ingreso psiquiátrico) está cubierta en los planes con hospitalización, con la misma carencia de 6 meses que el resto de ingresos."
+        },
+        {
+            "type": "heading",
+            "text": "Maternidad y obstetricia"
+        },
+        {
+            "type": "paragraph",
+            "text": "El seguimiento del embarazo, el parto (natural o por cesárea) y el postparto están cubiertos en todos los planes Adeslas que incluyen hospitalización. Existe una carencia de 8 meses para la cobertura de maternidad. Los controles prenatales (ecografías, analíticas, visitas al ginecólogo) tienen acceso inmediato como cobertura ambulatoria."
+        },
+        {
+            "type": "heading",
+            "text": "Servicios adicionales según el plan"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Telemedicina y videoconsulta: disponible en todos los planes, sin coste adicional",
+                "Segunda opinión médica: acceso a una segunda valoración especializada para diagnósticos complejos",
+                "Asistencia médica en viaje: cobertura internacional en Plena Vital Total, Plena Total y Extra 150",
+                "Chequeo médico anual: revisión preventiva adaptada a edad y sexo",
+                "Seguro dental incluido: en Plena Vital Total y Plena Total (46 actos dentales cubiertos)",
+                "Transporte sanitario: en urgencias que lo requieran"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "¿Qué NO cubre un seguro médico Adeslas?"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Medicación ambulatoria: los medicamentos recetados para tomar en casa no están cubiertos",
+                "Preexistencias no declaradas: enfermedades anteriores a la contratación pueden quedar excluidas",
+                "Tratamientos estéticos sin finalidad médica: cirugía estética, tratamientos de rejuvenecimiento",
+                "Implantes dentales y ortodoncia: no cubiertos en los planes sin dental explícito",
+                "Fertilización in vitro (FIV): los tratamientos de reproducción asistida no están incluidos",
+                "Gafas y lentes de contacto: la óptica ambulatoria solo en planes que lo mencionen",
+                "Tratamientos de adicciones: desintoxicación de alcohol, drogas u otras adicciones"
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "Como agente exclusivo Adeslas, en Marchal Aseguradores te explicamos exactamente qué cubre cada plan para tu situación concreta. Llámanos al 91 710 50 00 o calcula tu precio sin compromiso en el comparador online."
+        }
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026","carencias-seguros-medicos-adeslas","hospitalizacion-privada-vs-publica"],
+  },
+
+
+  /* ── Seguros Adeslas: seguro-medico-mayores-60-anos-adeslas-2026 ── */
+  {
+    slug: "seguro-medico-mayores-60-anos-adeslas-2026",
+    category: "Seguros Adeslas",
+    title: "Seguro médico para mayores de 60 años: guía completa Adeslas 2026",
+    excerpt: "A partir de los 60, el acceso rápido a especialistas y la ausencia de listas de espera marcan la diferencia. Te explicamos qué cubre Adeslas, cuánto cuesta y por qué conviene contratar antes de necesitarlo.",
+    date: "2 Jun 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&h=400&fit=crop",
+    seoTitle: "Seguro Médico para Mayores de 60 Años: Guía Adeslas 2026",
+    seoDescription: "Todo sobre el seguro médico para mayores de 60 y 65 años con Adeslas: coberturas más usadas, precios orientativos por edad, preexistencias y por qué conviene contratar cuanto antes.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "A partir de los 60 años, la salud pasa a ser el activo más preciado y la sanidad pública empieza a mostrar sus limitaciones más visibles: listas de espera de meses para ver a un especialista, escasa continuidad asistencial y dificultad para acceder a pruebas diagnósticas de forma ágil. Un seguro médico privado con Adeslas resuelve exactamente estos tres problemas. Y cuanto antes se contrate, más económico resulta y menos condicionantes tienen las preexistencias."
+        },
+        {
+            "type": "paragraph",
+            "text": "En 2026, Adeslas permite contratar sus seguros hasta los 70 años de edad. A partir de ahí, si ya eres asegurado, puedes renovar indefinidamente. Por eso la recomendación es contratar antes de los 65: la prima es más baja, los periodos de carencia ya estarán cumplidos cuando más lo necesites, y muchas condiciones crónicas todavía no están declaradas."
+        },
+        {
+            "type": "heading",
+            "text": "Por qué el seguro médico es especialmente valioso después de los 60"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Mayor frecuencia de uso: a partir de los 60 años, la media de consultas médicas anuales se duplica respecto a los 40",
+                "Necesidad de especialistas: cardiología, traumatología, urología, reumatología y oncología son las especialidades más demandadas",
+                "Diagnóstico precoz: las pruebas diagnósticas accesibles sin espera aumentan la probabilidad de detectar enfermedades en fases iniciales y tratables",
+                "Listas de espera en la pública: en 2026, la espera media para cirugía electiva supera los 5 meses y puede llegar a 18 meses en traumatología u oftalmología",
+                "Riesgo económico de hospitalización: una sola noche en hospital privado cuesta entre 500 y 1.500 €; el seguro elimina ese riesgo"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Coberturas más usadas por mayores de 60 con Adeslas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Cardiología: ecocardiograma, holter, prueba de esfuerzo, seguimiento de hipertensión y arritmias",
+                "Traumatología: resonancias de rodilla/cadera/columna, rehabilitación, cirugía de prótesis",
+                "Urología: seguimiento de próstata (PSA, ecografía), infecciones, litiasis renal",
+                "Reumatología: artritis, artrosis, osteoporosis, densitometría ósea",
+                "Oftalmología: cataratas, glaucoma, macular, seguimiento diabético",
+                "Neurología: seguimiento de migrañas, vértigo, evaluación cognitiva",
+                "Oncología: detección precoz y seguimiento de tumores",
+                "Endocrinología: control de diabetes, tiroides, obesidad",
+                "Urgencias 24 h: especialmente crítico ante situaciones cardiológicas y neurológicas"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "¿Cuánto cuesta un seguro Adeslas a partir de los 60 años?"
+        },
+        {
+            "type": "paragraph",
+            "text": "La prima aumenta con la edad porque la probabilidad de uso también aumenta. Sin embargo, sigue siendo muy inferior al coste de una sola hospitalización privada. Precios orientativos para 2026 en Madrid (varían por provincia y plan):"
+        },
+        {
+            "type": "list",
+            "items": [
+                "60-64 años: entre 90 € y 160 € al mes aproximadamente, según el plan",
+                "65-69 años: entre 110 € y 200 € al mes aproximadamente",
+                "Planes con copago (Go, Plena Vital): prima más baja, pequeño pago por cada servicio",
+                "Planes sin copago (Plena Plus, Plena Total): prima algo más alta, cero coste adicional por visita",
+                "A partir de los 70: solo renovación si ya eres asegurado; prima recalculada en cada aniversario"
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "Una sola cirugía de cadera puede costar más de 15.000 € en un hospital privado sin seguro. La prima anual de un seguro Adeslas completo para un asegurado de 65 años raramente supera los 2.000-2.400 €. La primera intervención amortiza años de primas."
+        },
+        {
+            "type": "heading",
+            "text": "Preexistencias a los 60: ¿qué pasa con las enfermedades que ya tengo?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Las preexistencias son enfermedades o condiciones médicas que ya tienes en el momento de contratar. Adeslas puede, dependiendo del caso: incluirlas con normalidad, incluirlas con un sobreprecio, excluirlas específicamente, o denegar en casos de riesgo muy elevado. Muchas condiciones habituales como hipertensión controlada, diabetes tipo 2 o artrosis son aceptadas con normalidad. La clave es ser completamente honesto en el cuestionario de salud: ocultar una preexistencia puede invalidar el contrato cuando más lo necesitas."
+        },
+        {
+            "type": "heading",
+            "text": "¿Hasta qué edad se puede contratar un seguro Adeslas?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Adeslas permite contratar por primera vez hasta los 70 años en la mayoría de sus planes. Si ya eres asegurado antes de los 70, puedes seguir renovando indefinidamente, sin límite de edad. Una vez dentro, estás cubierto de por vida mientras pagues la prima."
+        },
+        {
+            "type": "heading",
+            "text": "Adeslas Go: el plan de entrada más eficiente para mayores"
+        },
+        {
+            "type": "paragraph",
+            "text": "Para muchos mayores de 60 que ya tienen la sanidad pública como respaldo, Adeslas Go puede ser una entrada muy eficiente: cubre toda la asistencia ambulatoria (especialistas, diagnóstico, urgencias) con copago moderado y Límite Máximo Anual. Si lo que buscas es acceso rápido a especialistas y pruebas diagnósticas sin esperar meses, Adeslas Go te lo da desde el primer día a la prima más ajustada."
+        },
+        {
+            "type": "callout",
+            "text": "En Marchal Aseguradores somos agente exclusivo Adeslas. Te ayudamos a encontrar el plan más adecuado para tu estado de salud y presupuesto, con especial experiencia en asegurados mayores de 60. Llámanos al 91 710 50 00."
+        }
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","merece-la-pena-seguro-medico-privado-espana-2026","carencias-seguros-medicos-adeslas","listas-de-espera-sanidad-publica-espana-2026"],
+  },
+
+
+  /* ── Coberturas: urgencias-seguro-medico-privado-como-funciona-2026 ── */
+  {
+    slug: "urgencias-seguro-medico-privado-como-funciona-2026",
+    category: "Coberturas",
+    title: "Urgencias con seguro médico privado: cómo funciona y qué hacer paso a paso",
+    excerpt: "¿Qué haces cuando tienes una urgencia y tienes seguro médico privado? ¿Vas al hospital público o al privado? ¿Necesitas autorización? Te lo explicamos paso a paso.",
+    date: "5 Jun 2026",
+    readTime: "7 min",
+    image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&h=400&fit=crop",
+    seoTitle: "Urgencias con Seguro Médico Privado: Cómo Funciona en 2026 | Adeslas",
+    seoDescription: "Guía completa sobre urgencias con seguro médico privado Adeslas: qué hacer, cómo acceder, copago, urgencias fuera de la red, en el extranjero y cuándo usar la pública.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "Las urgencias están cubiertas en todos los planes Adeslas desde el primer día de vigencia del seguro, sin ningún periodo de carencia. Cuando tienes una urgencia, puedes acudir directamente a cualquier centro de urgencias de la red Adeslas presentando tu tarjeta de asegurado, sin llamar antes ni pedir autorización previa. El proceso es tan simple como en la sanidad pública, pero sin colas."
+        },
+        {
+            "type": "heading",
+            "text": "Qué se considera una urgencia médica"
+        },
+        {
+            "type": "paragraph",
+            "text": "A efectos prácticos del seguro, las urgencias incluyen: fiebre alta en niños, dolor agudo intenso, traumatismos por accidente, síntomas cardiológicos (dolor en el pecho, palpitaciones irregulares), síntomas neurológicos (pérdida súbita de fuerza, habla arrastrada, confusión), crisis de ansiedad, cortes que requieren sutura, quemaduras, fracturas óseas y cualquier situación que tú percibas como urgente y que no pueda esperar a una consulta programada."
+        },
+        {
+            "type": "heading",
+            "text": "Paso a paso: cómo usar las urgencias con tu seguro Adeslas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Paso 1 — Localiza el centro de urgencias más cercano de la red Adeslas: usa la app de Adeslas o llama al teléfono de atención 24 h",
+                "Paso 2 — Acude al centro con tu tarjeta de asegurado (física o digital en la app): no necesitas autorización previa para urgencias",
+                "Paso 3 — En recepción identifícate como asegurado Adeslas: el centro verifica tu cobertura en el sistema en segundos",
+                "Paso 4 — Recibe la atención médica: consulta, pruebas diagnósticas y tratamiento están cubiertos",
+                "Paso 5 — Si necesitas hospitalización urgente, el ingreso queda cubierto aunque no hayas cumplido la carencia de 6 meses para hospitalización programada"
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "Las urgencias no tienen carencia: están cubiertas desde el primer día del seguro, incluso si la hospitalización programada sigue en período de carencia. Un accidente de tráfico, un infarto o una apendicitis siempre están cubiertos desde el día 1."
+        },
+        {
+            "type": "heading",
+            "text": "¿Tiene copago ir a urgencias con el seguro?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Depende del plan. En los planes sin copago (Plena Plus, Plena Total, Extra 150), las urgencias no tienen ningún coste adicional. En los planes con copago (Adeslas Go, Plena Vital, Plena Vital Total), las urgencias sí tienen copago, habitualmente igual al copago de una consulta especializada. Este importe se descuenta del Límite Máximo Anual (LMA), de forma que si ya has superado el LMA ese año, las urgencias son también gratuitas."
+        },
+        {
+            "type": "heading",
+            "text": "¿Qué pasa si la urgencia ocurre fuera de la red Adeslas?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Si tienes una urgencia vital y el hospital más cercano no es de la red Adeslas —por ejemplo, en una zona rural— ve directamente al hospital más próximo. Adeslas cubrirá los gastos de estabilización y atención de urgencia, aunque no sea un centro concertado. Una vez estabilizado, si necesitas seguimiento o ingreso programado, el traslado a un centro de la red será organizado por Adeslas."
+        },
+        {
+            "type": "heading",
+            "text": "Urgencias en el extranjero"
+        },
+        {
+            "type": "paragraph",
+            "text": "Los planes Adeslas Plena Vital Total, Plena Total y Extra 150 incluyen cobertura de asistencia médica en viaje en el extranjero, que cubre urgencias durante desplazamientos fuera de España hasta el importe establecido en la póliza (hasta 100.000 € según el plan). Si tienes Go, Plena Vital o Plena Plus, para viajes internacionales se recomienda contratar un seguro de viaje complementario."
+        },
+        {
+            "type": "heading",
+            "text": "¿Cuándo es mejor ir a urgencias públicas aunque tengas seguro privado?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Tener seguro médico privado no obliga a usarlo siempre. La sanidad pública sigue siendo preferible en: emergencias donde el tiempo es crítico y el hospital público está más cerca, situaciones que requieren recursos que solo tiene la pública (trasplantes, tratamientos oncológicos de alta complejidad, enfermedades raras), o cuando necesitas documentación oficial para procesos médico-legales. El seguro privado y la sanidad pública son complementarios."
+        },
+        {
+            "type": "callout",
+            "text": "Con un seguro Adeslas de Marchal Aseguradores tienes acceso a más de 1.400 centros y clínicas en toda España. Consulta el cuadro médico en tu app o llámanos al 91 710 50 00 si tienes dudas sobre tu cobertura de urgencias."
+        }
+    ],
+    relatedSlugs: ["que-cubre-seguro-medico-adeslas-2026","hospitalizacion-privada-vs-publica","comparativa-seguros-medicos-adeslas-2026","carencias-seguros-medicos-adeslas"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
