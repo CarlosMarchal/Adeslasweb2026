@@ -8,10 +8,12 @@ import { NextRequest, NextResponse } from 'next/server';
 // se lanzó desde /api/netelip-bridge.
 //
 // Flujo:
-//   1. Netelip llama a extensión del comercial (lanzado desde bridge)
-//   2. Si comercial descuelga  → statuscall=answer  → bridge al cliente
-//   3. Si nadie descuelga      → statuscall=noanswer → hangup
-//      (el cliente NO recibe ninguna llamada en el caso 3)
+//   1. Netelip llama al comercial (extensión SIP o móvil PSTN)
+//   2a. Comercial SIP descuelga  → statuscall=''     + userdata relleno → dial cliente
+//   2b. Comercial PSTN descuelga → statuscall=answer + userdata relleno → dial cliente
+//   3.  Cliente contesta tras bridge → statuscall=answer + userdata vacío → hangup control
+//   4.  Nadie descuelga          → statuscall=noanswer → hangup
+//       (el cliente NO recibe ninguna llamada en el caso 4)
 //
 // Esta URL debe estar configurada en el panel Netelip como
 // "URL de control para llamadas salientes" de tu API Voice.
@@ -42,13 +44,25 @@ export async function POST(req: NextRequest) {
 
   console.log(`[netelip-control] evento — statuscall: "${statuscall}" | callId: ${callId} | src: ${src} | dst: ${dst} | clientPhone: ${clientPhone}`);
 
-  // ── CALLBACK 1: María descuelga ────────────────────────────────
-  // Netelip llama aquí justo cuando el comercial contesta.
-  // No incluye statuscall en este primer callback — es la señal de que
-  // el comercial está en línea y hay que conectar con el cliente.
+  // ── CALLBACK 1a: Comercial SIP (Zoiper) descuelga ─────────────
+  // Para typedst=extension: el primer callback no lleva statuscall
+  // pero sí lleva userdata con el teléfono del cliente.
   if (!statuscall && clientPhone) {
     const dialNumber = toDialFormat(clientPhone);
-    console.log(`[netelip-control] ✅ Comercial descolgó — Bridging a cliente: ${dialNumber}`);
+    console.log(`[netelip-control] ✅ Comercial (SIP) descolgó — Bridging a cliente: ${dialNumber}`);
+    return NextResponse.json({
+      command: 'dial',
+      options: `pstn,${dialNumber},30,called,300`,
+    });
+  }
+
+  // ── CALLBACK 1b: Comercial PSTN (móvil) descuelga ─────────────
+  // Para typedst=pstn: Netelip envía statuscall=answer cuando el comercial
+  // descuelga su móvil. El userdata relleno distingue este caso del
+  // callback de "cliente contestó tras bridge" (que llega sin userdata).
+  if (statuscall === 'answer' && clientPhone) {
+    const dialNumber = toDialFormat(clientPhone);
+    console.log(`[netelip-control] ✅ Comercial (PSTN) descolgó — Bridging a cliente: ${dialNumber}`);
     return NextResponse.json({
       command: 'dial',
       options: `pstn,${dialNumber},30,called,300`,
@@ -56,9 +70,8 @@ export async function POST(req: NextRequest) {
   }
 
   // ── CALLBACK 2a: Cliente ha contestado (resultado del dial) ────
-  // La llamada bridge se ha completado. El comercial y el cliente
-  // están hablando. Solo confirmamos con hangup del control session.
-  if (statuscall === 'answer') {
+  // statuscall=answer SIN userdata: el bridge se completó correctamente.
+  if (statuscall === 'answer' && !clientPhone) {
     console.log(`[netelip-control] ✅ Cliente contestó — llamada bridgeada correctamente`);
     return NextResponse.json({ command: 'hangup' });
   }
