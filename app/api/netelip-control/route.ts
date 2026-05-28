@@ -25,20 +25,29 @@ function toDialFormat(phone: string): string {
 }
 
 export async function POST(req: NextRequest) {
-  // Netelip envía los datos como form-urlencoded
-  let data: URLSearchParams;
+  // Netelip puede enviar los datos como query params en la URL,
+  // como form-urlencoded en el body, o ambos. Leemos de los dos sitios.
+  const urlParams = new URL(req.url).searchParams;
+
+  let bodyParams = new URLSearchParams();
   try {
     const text = await req.text();
-    data = new URLSearchParams(text);
-  } catch {
-    return NextResponse.json({ command: 'hangup' });
-  }
+    if (text) bodyParams = new URLSearchParams(text);
+  } catch { /* body vacío o no parseable */ }
 
-  const statuscall = (data.get('statuscall') ?? '').toLowerCase();
-  const clientPhone = data.get('userdata') ?? '';
-  const callId      = data.get('ID') ?? '';
-  const src         = data.get('src') ?? '';
-  const dst         = data.get('dst') ?? '';
+  // Prioridad: query param → body param → vacío
+  const getParam = (key: string) =>
+    urlParams.get(key) ?? bodyParams.get(key) ?? '';
+
+  const statuscall = getParam('statuscall').toLowerCase();
+  const clientPhone = getParam('userdata');
+  const callId      = getParam('ID');
+  const src         = getParam('src');
+  const dst         = getParam('dst');
+
+  // Log completo para debug — incluye raw query string
+  console.log(`[netelip-control] raw query: ${urlParams.toString()}`);
+  console.log(`[netelip-control] raw body: ${bodyParams.toString()}`);
 
   console.log(`[netelip-control] evento — statuscall: ${statuscall} | callId: ${callId} | src: ${src} | dst: ${dst} | clientPhone: ${clientPhone}`);
 
