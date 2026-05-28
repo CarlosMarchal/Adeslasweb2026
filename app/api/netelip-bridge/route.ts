@@ -30,13 +30,21 @@ const getExtensionMap = (): Record<string, string> => {
   }
 };
 
-// Normaliza teléfono español a formato Netelip: 34XXXXXXXXX (sin + ni 00)
+// Normaliza teléfono español a formato Netelip src/userdata: 34XXXXXXXXX (sin + ni 00)
 function normalizePhone(raw: string): string | null {
   const digits = raw.replace(/[\s\-+().]/g, '');
   if (digits.startsWith('0034')) return digits.slice(2);    // 0034XX → 34XX
   if (digits.startsWith('34') && digits.length === 11) return digits;
   if (/^[679]\d{8}$/.test(digits)) return `34${digits}`;   // 9 dígitos sin prefijo
   return null;
+}
+
+// Convierte número a formato dst PSTN: 0034XXXXXXXXX (con prefijo 00)
+// Netelip requiere este formato para llamadas salientes a números externos.
+function toPstnDst(phone: string): string {
+  if (phone.startsWith('0034')) return phone;
+  if (phone.startsWith('34'))   return `00${phone}`;
+  return `0034${phone}`;
 }
 
 export async function POST(req: NextRequest) {
@@ -87,15 +95,17 @@ export async function POST(req: NextRequest) {
   // Si contiene una extensión corta (2-4 dígitos), usamos 'extension'.
   const isFullNumber = /^\d{9,}$/.test(extension); // 9+ dígitos = número real
   const typedst = isFullNumber ? 'pstn' : 'extension';
+  // Para PSTN, Netelip requiere formato 0034XXXXXXXXX en el dst
+  const dstFormatted = isFullNumber ? toPstnDst(extension) : extension;
 
   // src  → número que ve el comercial en su pantalla (teléfono del cliente)
-  // dst  → número/extensión del comercial
+  // dst  → número/extensión del comercial (formato 0034XX para PSTN)
   // userdata → teléfono del cliente, viaja con la llamada hasta /netelip-control
   const params = new URLSearchParams({
     token:    process.env.NETELIP_TOKEN!,
     api:      process.env.NETELIP_API_NAME!,
     src:      clientPhone,
-    dst:      extension,
+    dst:      dstFormatted,
     typedst,
     duration: '30',
     userdata: clientPhone,
@@ -120,6 +130,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, reason: 'call_rejected', detail: netelipResponse });
   }
 
-  console.log(`[netelip-bridge] ✅ Llamada lanzada — dst: ${extension} (${typedst}) | Cliente: ${clientPhone} | ID: ${netelipResponse.ID}`);
+  console.log(`[netelip-bridge] ✅ Llamada lanzada — dst: ${dstFormatted} (${typedst}) | Cliente: ${clientPhone} | ID: ${netelipResponse.ID}`);
   return NextResponse.json({ ok: true, callId: netelipResponse.ID });
 }
