@@ -203,6 +203,16 @@ const nextConfig = {
         destination: '/blog/',
         permanent: true,
       },
+
+      // ── Soft 404: /seguro-salud/adeslas-one/ ───────────────────────────────
+      // Devuelve HTTP 200 con contenido genérico (sin H1, meta vacíos).
+      // Google la rastrea como página real vacía → daña autoridad del dominio.
+      // Redirigir al producto equivalente más cercano.
+      {
+        source: '/seguro-salud/adeslas-one',
+        destination: '/seguro-salud/adeslas-go/',
+        permanent: true,
+      },
     ];
   },
 

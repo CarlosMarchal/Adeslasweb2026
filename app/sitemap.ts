@@ -49,7 +49,10 @@ function toSafeDate(dateStr: string): string {
 export default function sitemap(): MetadataRoute.Sitemap {
   // ── 1. Rutas del SPA desde PAGE_META ────────────────────────────────────────
   const staticRoutes: MetadataRoute.Sitemap = Object.entries(PAGE_META)
-    .filter(([, meta]) => !meta.noindex)
+    // Excluir entradas individuales de /blog/:slug — ya se generan en blogRoutes.
+    // Sin este filtro los artículos del blog aparecen dos veces en el sitemap,
+    // lo que Google puede interpretar como señal de baja calidad del sitemap.
+    .filter(([path, meta]) => !meta.noindex && !path.startsWith('/blog/'))
     .map(([, meta]) => ({
       url: meta.canonical.endsWith('/')
         ? meta.canonical
