@@ -71,15 +71,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ command: 'hangup' });
   }
 
-  // ── CALLBACK sin statuscall y sin clientPhone: comercial no contestó
+  // ── CALLBACK intermedio vacío (Netelip polling mientras ejecuta dial) ──
+  // Netelip llama al control URL mientras el dial está en progreso.
+  // NO responder con hangup — dejar que el dial continúe.
   if (!statuscall && !clientPhone) {
-    console.warn('[netelip-control] Sin statuscall ni clientPhone — comercial no contestó o llamada cancelada');
-    return NextResponse.json({ command: 'hangup' });
+    console.log('[netelip-control] Callback intermedio vacío — ignorando (dial en progreso)');
+    return new Response('', { status: 200 });
   }
 
-  // ── Cualquier otro estado ──────────────────────────────────────
+  // ── Cualquier otro estado no reconocido ────────────────────────
   console.warn(`[netelip-control] Estado no reconocido: "${statuscall}" | clientPhone: "${clientPhone}"`);
-  return NextResponse.json({ command: 'hangup' });
+  return new Response('', { status: 200 });
 }
 
 // Netelip puede hacer una petición GET de validación al guardar la URL
