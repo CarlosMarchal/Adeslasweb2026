@@ -81,16 +81,22 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, reason: 'invalid_phone' });
   }
 
-  // ── 5. Lanzar llamada a la extensión del comercial ────────────
-  // src  → número que ve el comercial en su terminal (teléfono del cliente)
-  // dst  → extensión Netelip del comercial
+  // ── 5. Lanzar llamada al comercial ───────────────────────────
+  // Si el mapa contiene un número largo (móvil/fijo), llamamos vía PSTN
+  // para evitar incompatibilidades SIP re-INVITE con clientes SIP (Zoiper).
+  // Si contiene una extensión corta (2-4 dígitos), usamos 'extension'.
+  const isFullNumber = /^\d{9,}$/.test(extension); // 9+ dígitos = número real
+  const typedst = isFullNumber ? 'pstn' : 'extension';
+
+  // src  → número que ve el comercial en su pantalla (teléfono del cliente)
+  // dst  → número/extensión del comercial
   // userdata → teléfono del cliente, viaja con la llamada hasta /netelip-control
   const params = new URLSearchParams({
     token:    process.env.NETELIP_TOKEN!,
     api:      process.env.NETELIP_API_NAME!,
     src:      clientPhone,
     dst:      extension,
-    typedst:  'extension',
+    typedst,
     duration: '30',
     userdata: clientPhone,
   });
@@ -114,6 +120,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, reason: 'call_rejected', detail: netelipResponse });
   }
 
-  console.log(`[netelip-bridge] ✅ Llamada lanzada — Extensión: ${extension} | Cliente: ${clientPhone} | ID: ${netelipResponse.ID}`);
+  console.log(`[netelip-bridge] ✅ Llamada lanzada — dst: ${extension} (${typedst}) | Cliente: ${clientPhone} | ID: ${netelipResponse.ID}`);
   return NextResponse.json({ ok: true, callId: netelipResponse.ID });
 }
