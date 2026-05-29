@@ -605,85 +605,84 @@ const PromoPill = ({
   size?: "sm" | "md" | "lg";
 }) => {
   /*
-   * Implementación limpia sin position:absolute — evita problemas de clipping.
-   * Sep = tira con fondo lc→rc + badge blanco centrado en flujo normal.
-   * overflow:hidden + borderRadius:999px en el contenedor crea la cápsula.
+   * TÉCNICA DE CURVA ENTRE SECCIONES:
+   * Cada sección "posterior" al primero tiene:
+   *   - borderTopLeftRadius + borderBottomLeftRadius: curveH 50%
+   *     → crea un borde izquierdo convexo en la sección actual
+   *     → la sección anterior queda con un borde cóncavo (el background anterior
+   *       queda visible "dentro" de la curva de la sección actual)
+   *   - marginLeft: calc(-1 * curveH)
+   *     → la sección se solapa con la anterior en curveH píxeles
+   *   - paddingLeft compensado = padH + curveH
+   *     → el contenido empieza en la posición visual correcta
+   *   - zIndex progresivo (DOM order lo resuelve automáticamente)
+   * El badge "+" está dentro de cada sección curvada, position:absolute
+   * en left:0, top:50% → centrado en el punto más izquierdo de la curva.
+   * Todo dentro del outer pill (overflow:hidden) → no hay escapes.
    *
-   * Responsive: clamp() de mobile 390px a desktop 1440px.
-   * 3 secciones a 390px ≈ 370px → cabe sin scroll.
+   * Responsive: clamp() mobile 390px → desktop 1440px.
+   * Con 3 secciones a 390px: ancho efectivo ≈ 340-370px → cabe de un vistazo.
    */
   const numFont  = "clamp(26px, 4.8vw, 58px)";
   const txtFont  = "clamp(8px, 1.1vw, 13px)";
   const padV     = "clamp(12px, 2vw, 20px)";
   const padH     = "clamp(14px, 2.4vw, 28px)";
   const gap      = "clamp(5px, 0.7vw, 9px)";
-  const badgeDia = "clamp(24px, 3.2vw, 36px)";
-  const plusFont = "clamp(13px, 1.5vw, 17px)";
+  /* curveH: radio horizontal del arco entre secciones (profundidad del "mordisco") */
+  const curveH   = "clamp(16px, 2.5vw, 26px)";
+  const badgeDia = "clamp(22px, 3vw, 32px)";
+  const plusFont = "clamp(12px, 1.4vw, 16px)";
 
-  type SectionProps = { bg: string; number: string; text: string };
-  const Section = ({ bg, number, text }: SectionProps) => (
+  type SectionProps = { bg: string; number: string; text: string; curved?: boolean };
+  const Section = ({ bg, number, text, curved }: SectionProps) => (
     <div style={{
+      position: "relative" as const,
       background: bg,
       display: "flex",
       alignItems: "center",
       gap,
       paddingTop: padV,
       paddingBottom: padV,
-      paddingLeft: padH,
+      /* Secciones curvadas: padH extra para compensar el margen negativo */
+      paddingLeft: curved ? `calc(${padH} + ${curveH})` : padH,
       paddingRight: padH,
       flexShrink: 0,
+      /* Curva izquierda: border-radius forma el arco + margen negativo lo solapa */
+      ...(curved && {
+        borderTopLeftRadius:    `${curveH} 50%`,
+        borderBottomLeftRadius: `${curveH} 50%`,
+        marginLeft: `calc(-1 * ${curveH})`,
+        zIndex: 1,
+      }),
     }}>
-      <span style={{
-        fontSize: numFont,
-        fontWeight: 900,
-        lineHeight: 1,
-        color: "#fff",
-        flexShrink: 0,
-        letterSpacing: "-0.02em",
-      }}>
+      {/* Badge "+" centrado en el punto más izquierdo de la curva */}
+      {curved && (
+        <div style={{
+          position: "absolute" as const,
+          left: "0",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+          width: badgeDia,
+          height: badgeDia,
+          borderRadius: "50%",
+          background: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontWeight: 900,
+          fontSize: plusFont,
+          color: "#003087",
+          boxShadow: "0 1px 6px rgba(0,0,0,0.20)",
+          zIndex: 2,
+          flexShrink: 0,
+        }}>+</div>
+      )}
+      <span style={{ fontSize: numFont, fontWeight: 900, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
         {number}
       </span>
-      <span style={{
-        fontSize: txtFont,
-        fontWeight: 800,
-        lineHeight: 1.25,
-        color: "#fff",
-        textTransform: "uppercase" as const,
-        whiteSpace: "pre-line" as const,
-      }}>
+      <span style={{ fontSize: txtFont, fontWeight: 800, lineHeight: 1.25, color: "#fff", textTransform: "uppercase" as const, whiteSpace: "pre-line" as const }}>
         {text}
       </span>
-    </div>
-  );
-
-  /* Sep: tira de ancho = badgeDia con fondo partido lc/rc.
-     El badge blanco con "+" ocupa todo el ancho del Sep y queda centrado.
-     Todo en flujo normal — sin position:absolute, sin problemas de clipping. */
-  type SepProps = { lc: string; rc: string };
-  const Sep = ({ lc, rc }: SepProps) => (
-    <div style={{
-      width: badgeDia,
-      flexShrink: 0,
-      alignSelf: "stretch",
-      background: `linear-gradient(to right, ${lc} 50%, ${rc} 50%)`,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}>
-      <div style={{
-        width: badgeDia,
-        height: badgeDia,
-        borderRadius: "50%",
-        background: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontWeight: 900,
-        fontSize: plusFont,
-        color: "#003087",
-        flexShrink: 0,
-        boxShadow: "0 1px 6px rgba(0,0,0,0.18)",
-      }}>+</div>
     </div>
   );
 
@@ -691,19 +690,16 @@ const PromoPill = ({
     <div style={{
       display: "inline-flex",
       alignItems: "stretch",
-      borderRadius: "clamp(12px, 2vw, 20px)",
+      /* Borde exterior: esquinas redondeadas suaves, NO semicírculo */
+      borderRadius: "clamp(8px, 1.2vw, 14px)",
       overflow: "hidden",
       boxShadow: "0 6px 24px rgba(0,0,0,0.28)",
       isolation: "isolate" as React.CSSProperties["isolation"],
     }}>
       <Section bg="#E4097D" number={pill.left.number}  text={pill.left.text} />
-      <Sep lc="#E4097D" rc="#009FE3" />
-      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} />
+      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} curved />
       {pill.extra && (
-        <>
-          <Sep lc="#009FE3" rc="#003087" />
-          <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} />
-        </>
+        <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} curved />
       )}
     </div>
   );
