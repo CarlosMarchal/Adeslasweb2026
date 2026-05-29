@@ -605,93 +605,96 @@ const PromoPill = ({
   size?: "sm" | "md" | "lg";
 }) => {
   /*
-   * DISEÑO: cápsula única con curva circular entre secciones, fiel a imagen Adeslas.
+   * Implementación limpia sin position:absolute — evita problemas de clipping.
+   * Sep = tira con fondo lc→rc + badge blanco centrado en flujo normal.
+   * overflow:hidden + borderRadius:999px en el contenedor crea la cápsula.
    *
-   * Técnica del separador (Sep):
-   *   - El Sep tiene ancho = arcRad (= arcDia/2).
-   *   - El círculo (arcDia × arcDia, color rc) se centra en el BORDE IZQUIERDO del Sep
-   *     (= borde derecho de la sección anterior).
-   *   - Mitad izquierda del círculo → "muerde" la sección anterior → curva cóncava.
-   *   - Mitad derecha del círculo → queda dentro del Sep → no tapa la sección siguiente.
-   *   - Fondo degradado (lc → rc) en el Sep cubre los gaps arriba/abajo del círculo.
-   *   - INVARIANTE: padH > arcRad en todos los viewports → el contenido nunca queda tapado.
-   *
-   * Responsive: clamp() adapta todo de mobile 390px a desktop 1440px.
-   *   - mobile 390: numFont=26px, padH=22px, arcRad=20px → 3 secciones ≈ 375px ✓
-   *   - desktop 1440: numFont=54px, padH=50px, arcRad=45px → pill completo ✓
+   * Responsive: clamp() de mobile 390px a desktop 1440px.
+   * 3 secciones a 390px ≈ 370px → cabe sin scroll.
    */
-  const numFont  = "clamp(26px, 4.5vw, 54px)";
-  const txtFont  = "clamp(7.5px, 1.1vw, 12px)";
-  const padV     = "clamp(10px, 1.8vw, 18px)";
-  /* padH DEBE ser siempre > arcRad para que el número no quede tapado por el arco */
-  const padH     = "clamp(22px, 4.5vw, 50px)";
+  const numFont  = "clamp(26px, 4.8vw, 58px)";
+  const txtFont  = "clamp(8px, 1.1vw, 13px)";
+  const padV     = "clamp(12px, 2vw, 20px)";
+  const padH     = "clamp(14px, 2.4vw, 28px)";
   const gap      = "clamp(5px, 0.7vw, 9px)";
-  /* arcDia ≥ altura del pill a desktop (90px) para que el arco cubra de arriba a abajo */
-  const arcDia   = "clamp(40px, 8vw, 90px)";
-  const arcRad   = "clamp(20px, 4vw, 45px)";   /* = arcDia / 2 — ancho del Sep */
-  const badgeDia = "clamp(20px, 2.5vw, 28px)";
-  const plusFont = "clamp(11px, 1.2vw, 14px)";
+  const badgeDia = "clamp(24px, 3.2vw, 36px)";
+  const plusFont = "clamp(13px, 1.5vw, 17px)";
 
   type SectionProps = { bg: string; number: string; text: string };
   const Section = ({ bg, number, text }: SectionProps) => (
     <div style={{
-      background: bg, display: "flex", alignItems: "center",
-      gap, paddingTop: padV, paddingBottom: padV, paddingLeft: padH, paddingRight: padH, flexShrink: 0,
+      background: bg,
+      display: "flex",
+      alignItems: "center",
+      gap,
+      paddingTop: padV,
+      paddingBottom: padV,
+      paddingLeft: padH,
+      paddingRight: padH,
+      flexShrink: 0,
     }}>
-      <span style={{ fontSize: numFont, fontWeight: 900, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
+      <span style={{
+        fontSize: numFont,
+        fontWeight: 900,
+        lineHeight: 1,
+        color: "#fff",
+        flexShrink: 0,
+        letterSpacing: "-0.02em",
+      }}>
         {number}
       </span>
-      <span style={{ fontSize: txtFont, fontWeight: 800, lineHeight: 1.25, color: "#fff", textTransform: "uppercase" as const, whiteSpace: "pre-line" as const }}>
+      <span style={{
+        fontSize: txtFont,
+        fontWeight: 800,
+        lineHeight: 1.25,
+        color: "#fff",
+        textTransform: "uppercase" as const,
+        whiteSpace: "pre-line" as const,
+      }}>
         {text}
       </span>
     </div>
   );
 
-  /* Sep: genera la curva circular entre dos secciones de color.
-     - Ancho = arcRad (reserva espacio para la mitad derecha del círculo).
-     - Círculo (arcDia) centrado en el borde izquierdo → borde derecho de sección anterior.
-     - Fondo split lc/rc: cubre los gaps que el círculo no alcanza arriba/abajo. */
+  /* Sep: tira de ancho = badgeDia con fondo partido lc/rc.
+     El badge blanco con "+" ocupa todo el ancho del Sep y queda centrado.
+     Todo en flujo normal — sin position:absolute, sin problemas de clipping. */
   type SepProps = { lc: string; rc: string };
   const Sep = ({ lc, rc }: SepProps) => (
     <div style={{
-      position: "relative" as const,
-      width: arcRad,
+      width: badgeDia,
       flexShrink: 0,
       alignSelf: "stretch",
       background: `linear-gradient(to right, ${lc} 50%, ${rc} 50%)`,
-      zIndex: 1,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     }}>
-      {/* Círculo (rc) centrado en borde izquierdo — su mitad izq bites into sección lc */}
       <div style={{
-        position: "absolute" as const,
-        top: "50%", left: "0",
-        transform: "translate(-50%, -50%)",
-        width: arcDia, height: arcDia,
-        borderRadius: "50%",
-        background: rc,
-        zIndex: 0,
-      }} />
-      {/* Badge "+" blanco centrado sobre el círculo */}
-      <div style={{
-        position: "absolute" as const,
-        top: "50%", left: "0",
-        transform: "translate(-50%, -50%)",
-        zIndex: 2,
-        width: badgeDia, height: badgeDia,
+        width: badgeDia,
+        height: badgeDia,
         borderRadius: "50%",
         background: "#fff",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        fontWeight: 900, fontSize: plusFont, color: "#003087",
-        boxShadow: "0 1px 5px rgba(0,0,0,0.18)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontWeight: 900,
+        fontSize: plusFont,
+        color: "#003087",
+        flexShrink: 0,
+        boxShadow: "0 1px 6px rgba(0,0,0,0.18)",
       }}>+</div>
     </div>
   );
 
   return (
     <div style={{
-      display: "inline-flex", alignItems: "stretch",
-      borderRadius: "999px", overflow: "hidden",
+      display: "inline-flex",
+      alignItems: "stretch",
+      borderRadius: "999px",
+      overflow: "hidden",
       boxShadow: "0 6px 24px rgba(0,0,0,0.28)",
+      isolation: "isolate" as React.CSSProperties["isolation"],
     }}>
       <Section bg="#E4097D" number={pill.left.number}  text={pill.left.text} />
       <Sep lc="#E4097D" rc="#009FE3" />
