@@ -48,6 +48,24 @@ const INDIVIDUAL_PRODUCT_IDS = new Set([
   "ya", "plena", "esencial", "completaPlus", "completaPlusPlus", "completa", "reembolso",
 ]);
 
+/* ── Campaña: badge de promo por producto ────────────────────────────────────
+   GO ("ya") y Pymes no tienen oferta pública en esta campaña.
+   Plena Total ("completa") y Plena Vital Total ("completaPlus") con ≥3 aseg.
+   muestran "25% de descuento"; el resto "Hasta 3 meses gratis + 250 pts".
+   Seniors acumulan abono en cuenta.
+─────────────────────────────────────────────────────────────────────────── */
+const CAMPAIGN_NO_PROMO   = new Set(["ya", "pymes-total"]);
+const CAMPAIGN_FAMILIA_V  = new Set(["completa", "completaPlus"]);
+const CAMPAIGN_SENIORS    = new Set(["seniors", "seniors-total"]);
+
+function getCampaignBadge(productId: string, numAsegurados: number): { text: string; bg: string; color: string } | null {
+  if (CAMPAIGN_NO_PROMO.has(productId)) return null;
+  if (CAMPAIGN_SENIORS.has(productId))  return { text: "💶 Abono en cuenta",                   bg: "#F0FDF4", color: "#15803D" };
+  if (CAMPAIGN_FAMILIA_V.has(productId) && numAsegurados >= 3)
+                                         return { text: "🎁 25% de descuento",                   bg: "#FDF2F8", color: "#9D174D" };
+  return                                        { text: "🎁 Hasta 3 meses gratis · 250 pts/aseg.", bg: "#FDF2F8", color: "#9D174D" };
+}
+
 const productLabels: Record<string, { tag: string; color: string }> = {
   ya:               { tag: "Cobertura ambulatoria",          color: "#10B981" },
   esencial:         { tag: "Copagos medios",                 color: "#009FE3" },
@@ -981,6 +999,19 @@ const ResultsView = ({
             {isMultiple && " · Total familia"}
           </p>
         </div>
+        {/* Badge campaña — single product */}
+        {(() => {
+          const cb = getCampaignBadge(results[0].product.id, numAsegurados);
+          if (!cb) return null;
+          return (
+            <div
+              className="rounded-xl px-4 py-2 mb-3 flex items-center justify-center gap-2 text-xs font-bold"
+              style={{ backgroundColor: cb.bg, color: cb.color, borderRadius: "10px" }}
+            >
+              {cb.text}
+            </div>
+          );
+        })()}
         <p className="text-xs text-gris-medio mb-3">
           Un asesor se pondrá en contacto contigo para formalizar tu seguro.
         </p>
@@ -1062,6 +1093,19 @@ const ResultsView = ({
                     </span>
                   )}
                 </div>
+                {/* Badge campaña */}
+                {(() => {
+                  const cb = getCampaignBadge(product.id, numAsegurados);
+                  if (!cb) return null;
+                  return (
+                    <span
+                      className="inline-block mt-1 text-[9px] font-bold px-2 py-0.5 rounded-full"
+                      style={{ backgroundColor: cb.bg, color: cb.color }}
+                    >
+                      {cb.text}
+                    </span>
+                  );
+                })()}
               </div>
               <div className="text-right flex-shrink-0">
                 {originalPrice !== undefined && (

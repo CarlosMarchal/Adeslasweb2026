@@ -68,6 +68,22 @@ const CAMPAIGN_CAT: Record<string, CampaignCat> = {
   "seniors-total":    "seniors_con", // Seniors Total (con dental) → abono en cuenta
 };
 
+/* ─── Mensaje público de la campaña por producto ───────────────
+   Refleja lo que ve el cliente final (no la lógica Segurísimos).
+   · GO y Pymes: sin oferta pública en esta campaña.
+   · Plena Total / Vital Total con ≥3 aseg: 25% de descuento.
+   · Seniors: abono en cuenta.
+   · Resto: hasta 3 meses gratis + 250 pts/aseg.
+────────────────────────────────────────────────────────────── */
+function getMensajePublico(productId: string, n: number): { text: string; color: string; bg: string } | null {
+  if (productId === "ya" || productId === "pymes-total") return null;
+  if (productId === "seniors" || productId === "seniors-total")
+    return { text: "💶 Abono en cuenta (oferta pública)", color: "#15803D", bg: "#F0FDF4" };
+  if ((productId === "completa" || productId === "completaPlus") && n >= 3)
+    return { text: "🏷️ Oferta pública: 25% de descuento (≥3 asegurados)", color: "#9D174D", bg: "#FDF2F8" };
+  return { text: "🏷️ Oferta pública: Hasta 3 meses gratis + 250 pts/aseg.", color: "#92400E", bg: "#FFFBEB" };
+}
+
 /* ─── Cálculo de puntos por asegurado ──────────────────────── */
 function puntosXAsegurado(cat: CampaignCat, totalAsegurados: number): number {
   const es3plus = totalAsegurados >= 3;
@@ -681,6 +697,20 @@ export default function TarificadorInterno() {
                       )}
                     </div>
 
+                    {/* Badge oferta pública campaña */}
+                    {(() => {
+                      const mp = getMensajePublico(product.id, asegurados.length);
+                      if (!mp) return null;
+                      return (
+                        <span
+                          className="inline-block text-[10px] font-semibold px-2.5 py-0.5 rounded-full mt-1"
+                          style={{ backgroundColor: mp.bg, color: mp.color }}
+                        >
+                          {mp.text}
+                        </span>
+                      );
+                    })()}
+
                     {/* Resumen descuentos aplicados en la fila */}
                     {(ratioAuto > 0 || pctComercialEfectivo > 0 || dentalExtra > 0) && (
                       <p className="text-xs text-slate-400 mt-0.5">
@@ -831,6 +861,17 @@ export default function TarificadorInterno() {
                                   {labelDental(cat)} ·{" "}
                                   {asegurados.length >= 3 ? "Tarifa 3+ asegurados" : "Tarifa 1-2 asegurados"}
                                 </p>
+                                {/* Mensaje oferta pública campaña */}
+                                {(() => {
+                                  const mp = getMensajePublico(product.id, asegurados.length);
+                                  if (!mp) return null;
+                                  return (
+                                    <p className="text-xs font-semibold mt-2 pt-2 border-t border-amber-200"
+                                       style={{ color: mp.color }}>
+                                      {mp.text}
+                                    </p>
+                                  );
+                                })()}
                               </div>
                             </td>
                           </tr>
@@ -854,6 +895,16 @@ export default function TarificadorInterno() {
                                   {asegurados.length >= 3 ? "Tarifa 3+ asegurados" : "Tarifa 1-2 asegurados"} ·{" "}
                                   Abono directo en cuenta bancaria
                                 </p>
+                                {(() => {
+                                  const mp = getMensajePublico(product.id, asegurados.length);
+                                  if (!mp) return null;
+                                  return (
+                                    <p className="text-xs font-semibold mt-2 pt-2 border-t border-green-200"
+                                       style={{ color: mp.color }}>
+                                      {mp.text}
+                                    </p>
+                                  );
+                                })()}
                               </div>
                             </td>
                           </tr>

@@ -98,6 +98,30 @@ const HIGHLIGHTED_IDS = new Set(['completa', 'completaPlus']);
 // Columnas que muestran la pill "3 años sin subidas"
 const PROMO_IDS       = new Set(['completa', 'completaPlus']);
 
+// ─── Campaña: promo pública por producto ─────────────────────────────────────
+// GO y Pymes no tienen oferta pública en esta campaña
+const NO_CAMPAIGN_IDS = new Set(['ya', 'pymes-total']);
+// Plena Total y Plena Vital Total con ≥3 asegurados muestran "25% de descuento"
+const FAMILIA_VARIANT_IDS = new Set(['completa', 'completaPlus']);
+// Seniors acumulan abono en cuenta en lugar de meses gratis
+const SENIORS_CAMPAIGN_IDS = new Set(['seniors', 'seniors-total']);
+
+function getCampaignPill(productId: string, numAsegurados: number): { text: string; bg: string; color: string; border: string } | null {
+  if (NO_CAMPAIGN_IDS.has(productId)) return null;
+  if (SENIORS_CAMPAIGN_IDS.has(productId)) return {
+    text: '💶 Abono en cuenta',
+    bg: '#F0FDF4', color: '#15803D', border: '#86EFAC',
+  };
+  if (FAMILIA_VARIANT_IDS.has(productId) && numAsegurados >= 3) return {
+    text: '🎁 25 % de descuento',
+    bg: '#FDF2F8', color: '#9D174D', border: '#F9A8D4',
+  };
+  return {
+    text: '🎁 Hasta 3 meses gratis · 250 pts/aseg.',
+    bg: '#FDF2F8', color: '#9D174D', border: '#F9A8D4',
+  };
+}
+
 // ─── Categorías de producto (para cabecera agrupada) ─────────────────────────
 const CATEGORY_MAP: Record<string, string> = {
   ya:               'Ambulatorio',
@@ -584,6 +608,25 @@ export default function ModalResultados({
                                     🔒 3 años sin subidas
                                   </span>
                                 )}
+
+                                {/* Pill campaña: 3 meses gratis / 25% dto / abono en cuenta */}
+                                {(() => {
+                                  const cp = getCampaignPill(result.product.id, numAsegurados);
+                                  if (!cp) return null;
+                                  return (
+                                    <span style={{
+                                      display: 'inline-flex', alignItems: 'center', gap: 4,
+                                      fontSize: 9, fontWeight: 800,
+                                      padding: '3px 8px', borderRadius: 20, lineHeight: 1.5,
+                                      whiteSpace: 'nowrap',
+                                      backgroundColor: isHL ? 'rgba(228,9,125,0.15)' : cp.bg,
+                                      color: isHL ? '#FFB3D9' : cp.color,
+                                      border: isHL ? '1px solid rgba(228,9,125,0.5)' : `1px solid ${cp.border}`,
+                                    }}>
+                                      {cp.text}
+                                    </span>
+                                  );
+                                })()}
                               </div>
                             </div>
                           </th>
