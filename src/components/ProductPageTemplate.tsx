@@ -691,7 +691,7 @@ const PromoPill = ({
     <div style={{
       display: "inline-flex",
       alignItems: "stretch",
-      borderRadius: "999px",
+      borderRadius: "clamp(12px, 2vw, 20px)",
       overflow: "hidden",
       boxShadow: "0 6px 24px rgba(0,0,0,0.28)",
       isolation: "isolate" as React.CSSProperties["isolation"],
