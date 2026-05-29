@@ -319,7 +319,10 @@ const ProductHero = ({
           className="flex justify-center mt-6 px-4"
         >
           {data.heroPromoPill ? (
-            <PromoPill pill={data.heroPromoPill} size="lg" />
+            /* Wrapper scroll horizontal en mobile para evitar cortes */
+            <div style={{ maxWidth: "100%", overflowX: "auto", overflowY: "visible", padding: "4px 2px", WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"] }}>
+              <PromoPill pill={data.heroPromoPill} size="lg" />
+            </div>
           ) : (
             <div
               className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold text-center max-w-xs sm:max-w-none"
@@ -457,7 +460,7 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
               {cardPill}
             </div>
             {data.cardPromoPill && (
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center mb-4" style={{ overflowX: "auto", overflowY: "visible", padding: "2px 0" }}>
                 <PromoPill pill={data.cardPromoPill} size="sm" />
               </div>
             )}
@@ -601,50 +604,79 @@ const PromoPill = ({
   pill: { left: { number: string; text: string }; right: { number: string; text: string }; extra?: { number: string; text: string } };
   size?: "sm" | "md" | "lg";
 }) => {
-  const numFontSize = size === "lg" ? "clamp(40px, 5.5vw, 64px)" : size === "sm" ? "22px" : "clamp(28px, 3.5vw, 44px)";
-  const textFontSize = size === "lg" ? "clamp(10px, 1.4vw, 14px)" : size === "sm" ? "9px" : "clamp(9px, 1.1vw, 12px)";
-  const padV = size === "lg" ? "16px" : size === "sm" ? "9px" : "13px";
-  const padH = size === "lg" ? "26px" : size === "sm" ? "13px" : "18px";
-  const gap = size === "lg" ? 12 : size === "sm" ? 6 : 9;
-  const shadow = size === "sm" ? "0 2px 8px rgba(0,0,0,0.18)" : "0 5px 20px rgba(0,0,0,0.25)";
+  const isLg = size === "lg";
+  const isSm = size === "sm";
 
-  const halfBase: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    gap,
-    padding: `${padV} ${padH}`,
-  };
-  const numBase: React.CSSProperties = {
-    fontSize: numFontSize,
-    fontWeight: 900,
-    lineHeight: 1,
-    color: "#fff",
-    flexShrink: 0,
-  };
-  const txtBase: React.CSSProperties = {
-    fontSize: textFontSize,
-    fontWeight: 800,
-    lineHeight: 1.2,
-    color: "#fff",
-    textTransform: "uppercase",
-    whiteSpace: "pre-line",
-  };
+  /* Tamaños escalados para reproducir las proporciones de la imagen de referencia */
+  const numFontSize = isLg ? "clamp(52px, 7vw, 82px)" : isSm ? "26px" : "clamp(34px, 4.5vw, 54px)";
+  const textFontSize = isLg ? "clamp(11px, 1.5vw, 15px)" : isSm ? "9px" : "clamp(10px, 1.2vw, 13px)";
+  const padV = isLg ? "14px" : isSm ? "8px" : "12px";
+  const padHOuter = isLg ? "28px" : isSm ? "14px" : "20px";   /* primer y último bloque */
+  const padHInner = isLg ? "20px" : isSm ? "10px" : "14px";   /* bloques del medio */
+  const gap = isLg ? 10 : isSm ? 5 : 8;
+  const plusSize = isLg ? 28 : isSm ? 18 : 22;
+  const plusFont = isLg ? 16 : isSm ? 11 : 13;
+  const shadow = isSm ? "0 2px 10px rgba(0,0,0,0.20)" : "0 6px 24px rgba(0,0,0,0.28)";
+
+  type SectionProps = { bg: string; number: string; text: string; first?: boolean; last?: boolean };
+
+  const Section = ({ bg, number, text, first, last }: SectionProps) => (
+    <div style={{
+      background: bg,
+      display: "flex",
+      alignItems: "center",
+      gap,
+      paddingTop: padV,
+      paddingBottom: padV,
+      paddingLeft: first ? padHOuter : padHInner,
+      paddingRight: last ? padHOuter : padHInner,
+      borderRadius: first ? `999px 0 0 999px` : last ? `0 999px 999px 0` : "0",
+    }}>
+      <span style={{ fontSize: numFontSize, fontWeight: 900, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
+        {number}
+      </span>
+      <span style={{ fontSize: textFontSize, fontWeight: 800, lineHeight: 1.25, color: "#fff", textTransform: "uppercase", whiteSpace: "pre-line" }}>
+        {text}
+      </span>
+    </div>
+  );
+
+  const Plus = () => (
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 2,
+      margin: `${parseInt(padV) + 4}px -${Math.round(plusSize / 2)}px`,
+      flexShrink: 0,
+    }}>
+      <div style={{
+        width: plusSize,
+        height: plusSize,
+        borderRadius: "50%",
+        background: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontWeight: 900,
+        fontSize: plusFont,
+        color: "#003087",
+        flexShrink: 0,
+        boxShadow: "0 1px 4px rgba(0,0,0,0.18)",
+      }}>+</div>
+    </div>
+  );
 
   return (
-    <div style={{ display: "inline-flex", borderRadius: 999, overflow: "hidden", boxShadow: shadow }}>
-      <div style={{ ...halfBase, background: "#E4097D" }}>
-        <span style={numBase}>{pill.left.number}</span>
-        <span style={txtBase}>{pill.left.text}</span>
-      </div>
-      <div style={{ ...halfBase, background: "#009FE3" }}>
-        <span style={numBase}>{pill.right.number}</span>
-        <span style={txtBase}>{pill.right.text}</span>
-      </div>
+    <div style={{ display: "inline-flex", alignItems: "stretch", filter: `drop-shadow(${shadow})` }}>
+      <Section bg="#E4097D" number={pill.left.number} text={pill.left.text} first />
+      <Plus />
+      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} last={!pill.extra} />
       {pill.extra && (
-        <div style={{ ...halfBase, background: "#003087" }}>
-          <span style={numBase}>{pill.extra.number}</span>
-          <span style={txtBase}>{pill.extra.text}</span>
-        </div>
+        <>
+          <Plus />
+          <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} last />
+        </>
       )}
     </div>
   );
