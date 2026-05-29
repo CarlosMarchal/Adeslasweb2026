@@ -68,7 +68,7 @@ const plans: Plan[] = [
     price: "38",
     pill: "Hospitalización · Copago LMA 300€",
     pillDark: false,
-    promoBadge: "🎁 Promoción puntos",
+    promoBadge: "🎁 3 meses GRATIS + 250 pts",
     coverages: [
       "Todo lo de Adeslas Go sin copago",
       "Hospitalización por accidente",
@@ -86,7 +86,7 @@ const plans: Plan[] = [
     pillDark: true,
     featured: true,
     badge: "El más vendido",
-    promoBadge: "🎁 Promoción puntos",
+    promoBadge: "🎁 3 meses GRATIS + 3 años sin subida",
     coverages: [
       "Hospitalización y cirugía sin límites",
       "Especialistas sin copago",
@@ -102,7 +102,7 @@ const plans: Plan[] = [
     price: "50,92",
     pill: "Sin copago · Cobertura completa",
     pillDark: false,
-    promoBadge: "🎁 Promoción puntos",
+    promoBadge: "🎁 3 meses GRATIS + 250 pts",
     coverages: [
       "Hospitalización y cirugía sin copago",
       "Especialistas sin copago ni derivación",
@@ -118,7 +118,7 @@ const plans: Plan[] = [
     price: "55",
     pill: "Copago LMA 500€ · Con extras",
     pillDark: false,
-    promoBadge: "🎁 Promoción puntos",
+    promoBadge: "🎁 3 meses GRATIS + 3 años sin subida",
     coverages: [
       "Hospitalización y cirugía con copago",
       "Dental: 46 actos incluidos",
@@ -134,7 +134,7 @@ const plans: Plan[] = [
     price: "90",
     pill: "Libre elección · Reembolso 80 %",
     pillDark: false,
-    promoBadge: "🎁 Promoción puntos",
+    promoBadge: "🎁 3 meses GRATIS + 250 pts",
     coverages: [
       "Elige cualquier médico o clínica",
       "Reembolso hasta el 80 % del gasto",
@@ -355,12 +355,15 @@ const PreciosOfertasInner = () => {
                   <div
                     className={
                       p.badge
-                        ? "absolute top-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold text-white shadow-md whitespace-nowrap"
-                        : "absolute -top-3 right-4 px-3 py-1 rounded-full text-[11px] font-bold text-white shadow-md whitespace-nowrap"
+                        ? "absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-bold text-white shadow-md text-center leading-tight"
+                        : "absolute -top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-bold text-white shadow-md text-center leading-tight"
                     }
                     style={{
                       background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
                       boxShadow: "0 3px 10px rgba(249,115,22,0.40)",
+                      maxWidth: "calc(100% - 1.5rem)",
+                      whiteSpace: "normal",
+                      wordBreak: "break-word",
                     }}
                   >
                     {p.promoBadge}

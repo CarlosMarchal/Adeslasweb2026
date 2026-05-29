@@ -282,27 +282,28 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
                 >
                   {/* Badge header */}
                   <div
-                    className={`py-2.5 px-4 text-xs font-bold uppercase tracking-wider ${
-                      product.promoBadge
-                        ? "flex items-center justify-between gap-2"
-                        : "text-center"
-                    }`}
+                    className="py-2 px-4 text-xs font-bold uppercase tracking-wider text-center"
                     style={{
                       backgroundColor: product.highlighted ? "#009FE3" : "#F4F6FA",
                       color: product.highlighted ? "#fff" : "#6B8296",
                     }}
                   >
-                    <span className={product.promoBadge ? "" : "w-full text-center"}>{product.badge}</span>
+                    <span>{product.badge}</span>
                     {product.promoBadge && (
-                      <span
-                        className="flex-shrink-0 px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm whitespace-nowrap"
-                        style={{
-                          background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
-                          boxShadow: "0 2px 8px rgba(249,115,22,0.40)",
-                        }}
-                      >
-                        {product.promoBadge}
-                      </span>
+                      <div className="flex justify-center mt-1">
+                        <span
+                          className="px-2.5 py-0.5 rounded-full text-[9px] font-bold text-white leading-tight text-center"
+                          style={{
+                            background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
+                            boxShadow: "0 2px 8px rgba(249,115,22,0.40)",
+                            maxWidth: "100%",
+                            whiteSpace: "normal",
+                            wordBreak: "break-word",
+                          }}
+                        >
+                          {product.promoBadge}
+                        </span>
+                      </div>
                     )}
                   </div>
 

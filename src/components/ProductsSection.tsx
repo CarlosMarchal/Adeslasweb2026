@@ -32,7 +32,7 @@ const featuredProducts = [
     pillDark: true,
     featured: true,
     badge: "El más vendido",
-    promoBadge: "🎁 Promoción puntos",
+    promoBadge: "🎁 3 meses GRATIS + 3 años sin subida",
     coverages: ["Hospitalización completa", "Cirugía sin límites", "Especialistas sin copago", "Urgencias nacionales", "Videoconsultas 24h"],
   },
   {
@@ -43,7 +43,7 @@ const featuredProducts = [
     price: "48,00",
     pill: "Cobertura total · Copago reducido",
     pillDark: false,
-    promoBadge: "🎁 Promoción puntos",
+    promoBadge: "🎁 3 meses GRATIS + 250 pts",
     coverages: ["Hospitalización completa", "Cirugía sin límites", "Especialistas con copago", "Urgencias nacionales", "Videoconsultas 24h"],
   },
 ];
@@ -190,12 +190,15 @@ const ProductsSection = () => (
               <div
                 className={
                   p.badge
-                    ? "absolute top-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold text-white shadow-md whitespace-nowrap"
-                    : "absolute -top-3 right-4 px-3 py-1 rounded-full text-[11px] font-bold text-white shadow-md whitespace-nowrap"
+                    ? "absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-bold text-white shadow-md text-center leading-tight"
+                    : "absolute -top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-bold text-white shadow-md text-center leading-tight"
                 }
                 style={{
                   background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
                   boxShadow: "0 3px 10px rgba(249,115,22,0.40)",
+                  maxWidth: "calc(100% - 1.5rem)",
+                  whiteSpace: "normal",
+                  wordBreak: "break-word",
                 }}
               >
                 {(p as any).promoBadge}
