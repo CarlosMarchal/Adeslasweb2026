@@ -78,8 +78,7 @@ const data: ProductPageData = {
   cardPill: "Sin copago · Persona física NIF",
   cardPillDark: true,
   heroPromoPill: {
-    left:  { number: "15%", text: "DE\nDESCUENTO" },
-    right: { number: "5%",  text: "DESDE 1\nASEGURADO" },
+    left: { number: "15%", text: "DE\nDESCUENTO" },
   },
   cardPromoBadge: "🏷️ Hasta 15% de descuento en la prima",
   cardCoverages: [

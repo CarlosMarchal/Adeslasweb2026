@@ -35,6 +35,7 @@ export interface ProductTab {
   cardPillDark?: boolean;
   cardPrice?: string;
   cardPricePeriod?: string;
+  cardPromoBadge?: string;
 }
 
 export interface ProductFaq {
@@ -414,7 +415,8 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
   const cardPill        = tab.cardPill        ?? data.cardPill;
   const cardPillDark    = tab.cardPillDark    ?? data.cardPillDark;
   const cardPrice       = tab.cardPrice       ?? data.price;
-  const cardPricePeriod = tab.cardPricePeriod ?? (data.pricePeriod || "mes");
+  const cardPricePeriod   = tab.cardPricePeriod   ?? (data.pricePeriod || "mes");
+  const cardPromoBadge    = tab.cardPromoBadge    ?? data.cardPromoBadge;
 
   return (
     <section className="section-pad bg-gris-claro">
@@ -432,7 +434,7 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
             className="bg-blanco border-2 border-azul-medio p-6 lg:sticky lg:top-28 min-w-0 overflow-hidden relative"
             style={{ borderRadius: "16px" }}
           >
-            {data.cardPromoBadge && (
+            {cardPromoBadge && (
               <div className="flex justify-center mb-3">
                 <div
                   className="px-3 py-1.5 rounded-full text-[11px] font-bold text-white text-center leading-snug"
@@ -444,7 +446,7 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
                     whiteSpace: "normal",
                   }}
                 >
-                  {data.cardPromoBadge}
+                  {cardPromoBadge}
                 </div>
               </div>
             )}

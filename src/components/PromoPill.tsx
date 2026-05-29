@@ -23,7 +23,7 @@ import React from "react";
 
 export interface PromoPillData {
   left:   { number: string; text: string };
-  right:  { number: string; text: string };
+  right?: { number: string; text: string };
   extra?: { number: string; text: string };
 }
 
@@ -133,7 +133,7 @@ const PromoPill = ({ pill, size: _size = "md" }: PromoPillProps) => {
       isolation: "isolate" as React.CSSProperties["isolation"],
     }}>
       <Section bg="#E4097D" number={pill.left.number}  text={pill.left.text}  hasNext prefix="hasta" />
-      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} curved hasNext={!!pill.extra} secondary />
+      {pill.right && <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} curved hasNext={!!pill.extra} secondary />}
       {pill.extra && (
         <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} curved secondary />
       )}
