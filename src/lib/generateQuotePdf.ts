@@ -697,6 +697,53 @@ export async function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): 
   y += totH + 5;
 
   /* ════════════════════════════════════════════════════════════
+     § 7a · OFERTA PÚBLICA CAMPAÑA (franja magenta — visible al cliente)
+     Muestra el mensaje exacto que ve el cliente:
+     · GO y Pymes: sin sección.
+     · Plena Total / Vital Total con ≥3 aseg: 25% de descuento.
+     · Seniors: se omite (ya tiene su sección de abono).
+     · Resto: hasta 3 meses gratis + pts exactos por asegurado.
+  ════════════════════════════════════════════════════════════ */
+  {
+    const nAsegPub    = quote.preciosPorPersona.length;
+    const es25pct     = (quote.id === "completa" || quote.id === "completaPlus") && nAsegPub >= 3;
+    const sinPromo    = quote.id === "ya" || quote.id === "pymes-total" || quote.isSeniors;
+
+    if (!sinPromo && cliente.includePuntos !== false) {
+      ensureSpace(20);
+      const pH = 18;
+      const MAGENTA_BG: [number,number,number] = [255, 230, 242];
+
+      fillRect(doc, ML, y, CW, pH, MAGENTA_BG, 4);
+      outlineRect(doc, ML, y, CW, pH, MAGENTA, 4, 0.4);
+      fillRect(doc, ML, y, 4, pH, MAGENTA, 4);
+      fillRect(doc, ML, y + 4, 4, pH - 4, MAGENTA);
+
+      doc.setFont("helvetica", "bold"); doc.setFontSize(6); doc.setTextColor(160, 10, 80);
+      doc.text("OFERTA PUBLICA · CAMPAÑA JUN-DIC 2026", ML + 8, y + 5);
+      doc.setDrawColor(...MAGENTA); doc.setLineWidth(0.15);
+      doc.line(ML + 8, y + 6.5, ML + CW - 6, y + 6.5);
+
+      if (es25pct) {
+        doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...MAGENTA);
+        doc.text("25% DE DESCUENTO", ML + 8, y + 13.5);
+        doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(160, 10, 80);
+        doc.text("por contratar con 3 o mas asegurados", RX, y + 13.5, { align: "right" });
+      } else {
+        doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...MAGENTA);
+        doc.text("HASTA 3 MESES GRATIS", ML + 8, y + 13.5);
+        doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(160, 10, 80);
+        doc.text(
+          `+ ${quote.puntosXAseg.toLocaleString("es-ES")} puntos x ${nAsegPub} aseg. = ${quote.totalPuntos.toLocaleString("es-ES")} puntos`,
+          RX, y + 13.5, { align: "right" }
+        );
+      }
+
+      y += pH + 3;
+    }
+  }
+
+  /* ════════════════════════════════════════════════════════════
      § 7 · CAMPAÑA SEGURÍSIMOS
   ════════════════════════════════════════════════════════════ */
   if (!quote.isSeniors && quote.totalPuntos > 0 && cliente.includePuntos !== false) {

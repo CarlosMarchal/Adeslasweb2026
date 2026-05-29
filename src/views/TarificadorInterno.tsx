@@ -697,17 +697,35 @@ export default function TarificadorInterno() {
                       )}
                     </div>
 
-                    {/* Badge oferta pública campaña */}
+                    {/* Oferta pública campaña — bloque destacado en fila compacta */}
                     {(() => {
                       const mp = getMensajePublico(product.id, asegurados.length);
                       if (!mp) return null;
+                      const es25 = mp.text.includes("25%");
+                      const esAbono = mp.text.includes("Abono");
                       return (
-                        <span
-                          className="inline-block text-[10px] font-semibold px-2.5 py-0.5 rounded-full mt-1"
-                          style={{ backgroundColor: mp.bg, color: mp.color }}
+                        <div
+                          className="flex items-center gap-2 mt-1.5 px-3 py-1.5 rounded-lg"
+                          style={{ backgroundColor: mp.bg, border: `1px solid ${es25 ? "#F9A8D4" : esAbono ? "#86EFAC" : "#FDE68A"}` }}
                         >
-                          {mp.text}
-                        </span>
+                          <span className="text-base">{es25 ? "🎁" : esAbono ? "💶" : "🎁"}</span>
+                          <div>
+                            <p className="text-[11px] font-black leading-tight" style={{ color: mp.color }}>
+                              {es25
+                                ? "25% de descuento"
+                                : esAbono
+                                  ? `${abonoXAseg} € abono · ${totalAbono} € total`
+                                  : `${asegurados.length >= 3 ? "3 meses gratis" : "Hasta 3 meses gratis"}`}
+                            </p>
+                            {!esAbono && (
+                              <p className="text-[10px] font-semibold leading-tight" style={{ color: mp.color, opacity: 0.75 }}>
+                                {es25
+                                  ? "con 3+ asegurados"
+                                  : `+ ${puntosXAseg.toLocaleString()} pts × ${asegurados.length} aseg. = ${totalPuntos.toLocaleString()} puntos`}
+                              </p>
+                            )}
+                          </div>
+                        </div>
                       );
                     })()}
 
@@ -861,15 +879,30 @@ export default function TarificadorInterno() {
                                   {labelDental(cat)} ·{" "}
                                   {asegurados.length >= 3 ? "Tarifa 3+ asegurados" : "Tarifa 1-2 asegurados"}
                                 </p>
-                                {/* Mensaje oferta pública campaña */}
+                                {/* Oferta pública campaña — en el desglose expandido */}
                                 {(() => {
                                   const mp = getMensajePublico(product.id, asegurados.length);
                                   if (!mp) return null;
+                                  const es25 = mp.text.includes("25%");
                                   return (
-                                    <p className="text-xs font-semibold mt-2 pt-2 border-t border-amber-200"
-                                       style={{ color: mp.color }}>
-                                      {mp.text}
-                                    </p>
+                                    <div className="mt-2 pt-2 border-t border-amber-200">
+                                      <p className="text-[10px] font-bold uppercase tracking-wide text-amber-600 mb-1">
+                                        Lo que ve el cliente
+                                      </p>
+                                      <p className="text-sm font-black" style={{ color: mp.color }}>
+                                        🎁 {es25
+                                          ? "25% de descuento (3+ asegurados)"
+                                          : `Hasta 3 meses gratis + ${puntosXAseg.toLocaleString()} puntos/asegurado`}
+                                      </p>
+                                      {!es25 && (
+                                        <p className="text-xs font-semibold mt-0.5" style={{ color: mp.color, opacity: 0.8 }}>
+                                          Total puntos: {totalPuntos.toLocaleString()} · Equivale a tarjeta prepago{" "}
+                                          {(Math.floor(totalPuntos / (useDentalTarjetaFormula ? 750 : 500)) * (useDentalTarjetaFormula ? 75 : 50)) > 0
+                                            ? `${Math.floor(totalPuntos / (useDentalTarjetaFormula ? 750 : 500)) * (useDentalTarjetaFormula ? 75 : 50)} €`
+                                            : "disponible"}
+                                        </p>
+                                      )}
+                                    </div>
                                   );
                                 })()}
                               </div>

@@ -33,20 +33,21 @@ interface PromoPillProps {
 }
 
 const PromoPill = ({ pill, size: _size = "md" }: PromoPillProps) => {
-  /* Sección principal (izquierda) — tamaños grandes */
-  const numFont    = "clamp(20px, 4.8vw, 58px)";
-  const txtFont    = "clamp(7.5px, 1.1vw, 13px)";
-  const prefixFont = "clamp(6px, 0.8vw, 9px)";
-  const padV       = "clamp(10px, 2vw, 20px)";
-  const padH       = "clamp(10px, 2.4vw, 28px)";
-  const gap        = "clamp(4px, 0.7vw, 9px)";
-  const curveH     = "clamp(12px, 2.5vw, 26px)";
-  const badgeDia   = "clamp(18px, 3vw, 32px)";
-  const plusFont   = "clamp(11px, 1.4vw, 16px)";
+  /* Sección principal (izquierda) — tamaños grandes
+     Mínimos aumentados para que el pill se vea mayor en mobile (≤768 px) */
+  const numFont    = "clamp(27px, 4.8vw, 58px)";
+  const txtFont    = "clamp(9.5px, 1.1vw, 13px)";
+  const prefixFont = "clamp(7.5px, 0.8vw, 9px)";
+  const padV       = "clamp(13px, 2vw, 20px)";
+  const padH       = "clamp(13px, 2.4vw, 28px)";
+  const gap        = "clamp(5px, 0.7vw, 9px)";
+  const curveH     = "clamp(14px, 2.5vw, 26px)";
+  const badgeDia   = "clamp(22px, 3vw, 32px)";
+  const plusFont   = "clamp(13px, 1.4vw, 16px)";
   /* Secciones secundarias (cyan / azul marino) — más compactas y menos protagonistas */
-  const numFontSm  = "clamp(15px, 3.2vw, 38px)";
-  const txtFontSm  = "clamp(6.5px, 0.95vw, 11px)";
-  const padHSm     = "clamp(8px, 1.8vw, 20px)";
+  const numFontSm  = "clamp(19px, 3.2vw, 38px)";
+  const txtFontSm  = "clamp(8px, 0.95vw, 11px)";
+  const padHSm     = "clamp(10px, 1.8vw, 20px)";
 
   type SectionProps = {
     bg: string;

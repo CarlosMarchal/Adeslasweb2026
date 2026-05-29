@@ -502,6 +502,14 @@ const Header = () => {
         </div>
       </header>
 
+      {/* ── Banner promocional mobile-only — campaña Jun-Dic 2026 ── */}
+      <div
+        className="lg:hidden w-full py-2.5 px-4 text-center text-xs font-bold text-white"
+        style={{ backgroundColor: "#E4097D", letterSpacing: "0.01em" }}
+      >
+        🎁 Ahora, hasta 3 meses gratis en tu seguro + 250 puntos por asegurado
+      </div>
+
       {/* ── Mega menu ── */}
       <AnimatePresence>
         {megaOpen && (

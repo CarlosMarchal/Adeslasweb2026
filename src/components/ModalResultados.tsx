@@ -609,16 +609,22 @@ export default function ModalResultados({
                                   </span>
                                 )}
 
-                                {/* Pill campaña: 3 meses gratis / 25% dto / abono en cuenta */}
+                                {/* Pill campaña: 3 meses gratis / 25% dto / abono en cuenta
+                                    whiteSpace:normal permite que el texto rompa línea dentro
+                                    del ancho de columna (138 px) sin desbordar */}
                                 {(() => {
                                   const cp = getCampaignPill(result.product.id, numAsegurados);
                                   if (!cp) return null;
                                   return (
                                     <span style={{
-                                      display: 'inline-flex', alignItems: 'center', gap: 4,
-                                      fontSize: 9, fontWeight: 800,
-                                      padding: '3px 8px', borderRadius: 20, lineHeight: 1.5,
-                                      whiteSpace: 'nowrap',
+                                      display: 'inline-block',
+                                      fontSize: 8.5, fontWeight: 800,
+                                      padding: '3px 7px', borderRadius: 10, lineHeight: 1.4,
+                                      whiteSpace: 'normal',
+                                      textAlign: 'center',
+                                      wordBreak: 'break-word',
+                                      width: '100%',
+                                      boxSizing: 'border-box' as const,
                                       backgroundColor: isHL ? 'rgba(228,9,125,0.15)' : cp.bg,
                                       color: isHL ? '#FFB3D9' : cp.color,
                                       border: isHL ? '1px solid rgba(228,9,125,0.5)' : `1px solid ${cp.border}`,
