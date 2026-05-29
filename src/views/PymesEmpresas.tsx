@@ -88,6 +88,11 @@ const dataBase: Omit<ProductPageData, "seoTitle" | "seoDescription" | "seoCanoni
   ),
   cardName: "Adeslas Pymes y Empresas",
   cardDescription: "Dos productos para empresas: Adeslas EMPRESAS (5-99 asegurados) y Adeslas PYMES TOTAL (hasta 15, con chequeo médico y dental incluidos). Sin copagos en ambos.",
+  heroPromoPill: {
+    left:  { number: "15%", text: "DE\nDESCUENTO" },
+    right: { number: "5%",  text: "DESDE 1\nASEGURADO" },
+  },
+  cardPromoBadge: "🏷️ Hasta 15% de descuento en la prima",
   cardPill: "EMPRESAS · PYMES TOTAL",
   cardPillDark: true,
   cardCoverages: [
@@ -293,7 +298,7 @@ const dataBase: Omit<ProductPageData, "seoTitle" | "seoDescription" | "seoCanoni
     },
   ],
   schemaFaq: true,
-  showPromo: true,
+  showPromo: false,
 };
 
 const PymesEmpresas = () => {

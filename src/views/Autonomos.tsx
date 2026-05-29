@@ -77,7 +77,11 @@ const data: ProductPageData = {
   cardDescription: "Cobertura sanitaria completa sin copagos para autónomos. Acceso a más de +51.000 médicos y 1.400 centros. Deducible en IRPF.",
   cardPill: "Sin copago · Persona física NIF",
   cardPillDark: true,
-  cardPromoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts/asegurado",
+  heroPromoPill: {
+    left:  { number: "15%", text: "DE\nDESCUENTO" },
+    right: { number: "5%",  text: "DESDE 1\nASEGURADO" },
+  },
+  cardPromoBadge: "🏷️ Hasta 15% de descuento en la prima",
   cardCoverages: [
     "Medicina general, pediatría y +40 especialidades",
     "Hospitalización en habitación individual con acompañante",
@@ -239,7 +243,7 @@ const data: ProductPageData = {
     },
   ],
   schemaFaq: true,
-  showPromo: true,
+  showPromo: false,
 };
 
 const Autonomos = () => <ProductPageTemplate data={data} />;
