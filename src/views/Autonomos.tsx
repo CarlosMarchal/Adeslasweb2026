@@ -78,9 +78,9 @@ const data: ProductPageData = {
   cardPill: "Sin copago · Persona física NIF",
   cardPillDark: true,
   heroPromoPill: {
-    left: { number: "15%", text: "DE\nDESCUENTO" },
+    left: { number: "10%", text: "DE\nDESCUENTO" },
   },
-  cardPromoBadge: "🏷️ Hasta 15% de descuento en la prima",
+  cardPromoBadge: "🏷️ Hasta 10% de descuento en la prima",
   cardCoverages: [
     "Medicina general, pediatría y +40 especialidades",
     "Hospitalización en habitación individual con acompañante",

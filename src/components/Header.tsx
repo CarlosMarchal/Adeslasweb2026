@@ -507,7 +507,9 @@ const Header = () => {
         className="lg:hidden w-full py-2.5 px-4 text-center text-xs font-bold text-white"
         style={{ backgroundColor: "#E4097D", letterSpacing: "0.01em" }}
       >
-        {(pathname.includes("/autonomos") || pathname.includes("/pymes") || pathname.includes("/empresas"))
+        {pathname.includes("/autonomos")
+          ? "\ud83c\udff7\ufe0f Ahora, hasta 10% de descuento en tu seguro de aut\u00f3nomo"
+          : (pathname.includes("/pymes") || pathname.includes("/empresas"))
           ? "\ud83c\udff7\ufe0f Ahora, hasta 15% de descuento en tu seguro de empresa"
           : "\ud83c\udf81 Ahora, hasta 3 meses gratis en tu seguro + 250 puntos por asegurado"
         }
