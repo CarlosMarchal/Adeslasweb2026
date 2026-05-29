@@ -55,6 +55,7 @@ const data: SegmentPageData = {
       badge: "Máxima Cobertura",
       features: ["Libre elección de médico y hospital", "Reembolso 80% cualquier profesional", "Válido en España y en el extranjero", "Red Adeslas sin copago + reembolso combinados", "Máximo garantizado 150.000€/año"],
       highlighted: false,
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
   ],
   tarificadorTitle: "Calcula tu precio personalizado",

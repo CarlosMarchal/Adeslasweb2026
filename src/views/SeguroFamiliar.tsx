@@ -57,6 +57,7 @@ const data: SegmentPageData = {
       badge: "Máxima Cobertura",
       features: ["Libre elección de médico y hospital", "Reembolso hasta 90% del gasto", "Válido en centros públicos y privados", "Cobertura internacional ilimitada", "Ideal para familias con necesidades especiales"],
       highlighted: false,
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
   ],
   tarificadorTitle: "Calcula el precio para tu familia",

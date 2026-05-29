@@ -55,6 +55,7 @@ const data: SegmentPageData = {
       badge: "Máxima Cobertura",
       features: ["Libre elección de ginecólogo y hospital", "Reembolso hasta 90% del gasto", "Válido en centros públicos y privados", "Técnicas de reproducción asistida", "Cobertura internacional ilimitada"],
       highlighted: false,
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
   ],
   tarificadorTitle: "Calcula tu precio personalizado",
