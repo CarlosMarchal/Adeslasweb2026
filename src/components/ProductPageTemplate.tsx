@@ -431,14 +431,19 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
             style={{ borderRadius: "16px" }}
           >
             {data.cardPromoBadge && (
-              <div
-                className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-bold text-white shadow-md whitespace-nowrap"
-                style={{
-                  background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
-                  boxShadow: "0 3px 10px rgba(249,115,22,0.40)",
-                }}
-              >
-                {data.cardPromoBadge}
+              <div className="flex justify-center mb-3">
+                <div
+                  className="px-3 py-1.5 rounded-full text-[11px] font-bold text-white text-center leading-snug"
+                  style={{
+                    background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
+                    boxShadow: "0 3px 10px rgba(249,115,22,0.40)",
+                    maxWidth: "100%",
+                    wordBreak: "break-word",
+                    whiteSpace: "normal",
+                  }}
+                >
+                  {data.cardPromoBadge}
+                </div>
               </div>
             )}
             <h3 className="text-gris-texto mb-1">{cardName}</h3>
@@ -459,11 +464,6 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
             >
               {cardPill}
             </div>
-            {data.cardPromoPill && (
-              <div className="flex justify-center mb-4" style={{ overflowX: "auto", overflowY: "visible", padding: "2px 0" }}>
-                <PromoPill pill={data.cardPromoPill} size="sm" />
-              </div>
-            )}
             <div className="space-y-2.5 mb-6">
               {cardCoverages.map((c) => (
                 <div key={c} className="flex items-center gap-2 text-sm text-gris-texto">
@@ -605,22 +605,18 @@ const PromoPill = ({
   size?: "sm" | "md" | "lg";
 }) => {
   const isLg = size === "lg";
-  const isSm = size === "sm";
 
-  /* Tamaños escalados para reproducir las proporciones de la imagen de referencia */
-  const numFontSize = isLg ? "clamp(52px, 7vw, 82px)" : isSm ? "26px" : "clamp(34px, 4.5vw, 54px)";
-  const textFontSize = isLg ? "clamp(11px, 1.5vw, 15px)" : isSm ? "9px" : "clamp(10px, 1.2vw, 13px)";
-  const padV = isLg ? "14px" : isSm ? "8px" : "12px";
-  const padHOuter = isLg ? "28px" : isSm ? "14px" : "20px";   /* primer y último bloque */
-  const padHInner = isLg ? "20px" : isSm ? "10px" : "14px";   /* bloques del medio */
-  const gap = isLg ? 10 : isSm ? 5 : 8;
-  const plusSize = isLg ? 28 : isSm ? 18 : 22;
-  const plusFont = isLg ? 16 : isSm ? 11 : 13;
-  const shadow = isSm ? "0 2px 10px rgba(0,0,0,0.20)" : "0 6px 24px rgba(0,0,0,0.28)";
+  /* Tamaños que reproducen las proporciones de la imagen de referencia */
+  const numFontSize = isLg ? "clamp(52px, 7vw, 82px)" : "clamp(34px, 4.5vw, 54px)";
+  const textFontSize = isLg ? "clamp(11px, 1.5vw, 15px)" : "clamp(10px, 1.2vw, 13px)";
+  const padV = isLg ? "18px" : "14px";
+  const padH = isLg ? "30px" : "22px";
+  const gap = isLg ? 12 : 9;
+  const shadow = "0 6px 24px rgba(0,0,0,0.28)";
 
-  type SectionProps = { bg: string; number: string; text: string; first?: boolean; last?: boolean };
+  type SectionProps = { bg: string; number: string; text: string };
 
-  const Section = ({ bg, number, text, first, last }: SectionProps) => (
+  const Section = ({ bg, number, text }: SectionProps) => (
     <div style={{
       background: bg,
       display: "flex",
@@ -628,9 +624,9 @@ const PromoPill = ({
       gap,
       paddingTop: padV,
       paddingBottom: padV,
-      paddingLeft: first ? padHOuter : padHInner,
-      paddingRight: last ? padHOuter : padHInner,
-      borderRadius: first ? `999px 0 0 999px` : last ? `0 999px 999px 0` : "0",
+      paddingLeft: padH,
+      paddingRight: padH,
+      flexShrink: 0,
     }}>
       <span style={{ fontSize: numFontSize, fontWeight: 900, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
         {number}
@@ -641,43 +637,11 @@ const PromoPill = ({
     </div>
   );
 
-  const Plus = () => (
-    <div style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      zIndex: 2,
-      margin: `${parseInt(padV) + 4}px -${Math.round(plusSize / 2)}px`,
-      flexShrink: 0,
-    }}>
-      <div style={{
-        width: plusSize,
-        height: plusSize,
-        borderRadius: "50%",
-        background: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontWeight: 900,
-        fontSize: plusFont,
-        color: "#003087",
-        flexShrink: 0,
-        boxShadow: "0 1px 4px rgba(0,0,0,0.18)",
-      }}>+</div>
-    </div>
-  );
-
   return (
-    <div style={{ display: "inline-flex", alignItems: "stretch", filter: `drop-shadow(${shadow})` }}>
-      <Section bg="#E4097D" number={pill.left.number} text={pill.left.text} first />
-      <Plus />
-      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} last={!pill.extra} />
-      {pill.extra && (
-        <>
-          <Plus />
-          <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} last />
-        </>
-      )}
+    <div style={{ display: "inline-flex", alignItems: "stretch", borderRadius: "999px", overflow: "hidden", boxShadow: shadow }}>
+      <Section bg="#E4097D" number={pill.left.number} text={pill.left.text} />
+      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} />
+      {pill.extra && <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} />}
     </div>
   );
 };
