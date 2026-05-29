@@ -22,7 +22,8 @@ const data: ProductPageData = {
   ],
   productSlug: "/seguro-salud/adeslas-plena-vital/",
   hubspotSource: 304,
-  heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
+  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
+  heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   badge: "Cobertura completa · Copago máx. 300€/año",
   heroTitle: "Seguro Médico Adeslas Plena Vital",
   heroImage: heroImg,
@@ -101,7 +102,8 @@ const data: ProductPageData = {
   ],
   cardPill: "Copagos LMA 300€ · Cobertura total",
   cardPillDark: true,
-  cardPromoBadge: "🎁 Promoción puntos",
+  cardPromoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts/asegurado",
+  cardPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   tabs: [
     {
       label: "Coberturas",

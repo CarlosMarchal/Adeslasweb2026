@@ -24,8 +24,9 @@ const TopBanner = () => {
           className="text-primary-foreground font-bold"
           style={{ fontSize: "13px" }}
         >
-          🎁 Oferta especial: descuentos exclusivos en todos los seguros Adeslas —{" "}
-          <span className="underline">Calcula tu precio ahora</span>
+          🎁 Hasta{" "}
+          <strong>3 meses gratis</strong> + puntos para regalos — Oferta hasta el 31 dic. 2026 —{" "}
+          <span className="underline">Calcula tu precio</span>
         </a>
       </div>
     </div>

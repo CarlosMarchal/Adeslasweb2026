@@ -22,7 +22,8 @@ const data: ProductPageData = {
   ],
   productSlug: "/seguro-salud/adeslas-plena-total/",
   hubspotSource: 305,
-  heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
+  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado + 3 años sin subida de precio · Oferta hasta 31 dic. 2026",
+  heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" }, extra: { number: "3", text: "AÑOS\nSIN SUBIDA\nDE PRECIO" } },
   badge: "3 años sin subidas de prima",
   heroTitle: "Seguro Médico Adeslas Plena Total",
   heroImage: heroImg,
@@ -102,7 +103,8 @@ const data: ProductPageData = {
   ],
   cardPill: "Sin copagos · Protección total",
   cardPillDark: true,
-  cardPromoBadge: "🎁 Promoción puntos",
+  cardPromoBadge: "🎁 Hasta 3 meses GRATIS + 3 años sin subida",
+  cardPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" }, extra: { number: "3", text: "AÑOS\nSIN SUBIDA\nDE PRECIO" } },
   tabs: [
     {
       label: "Coberturas",

@@ -111,6 +111,12 @@ export interface ProductPageData {
   /* Optional promo banner shown in hero below subtitle */
   heroPromo?: string;
 
+  /* Bicolor pill (magenta + blue) shown in hero — overrides heroPromo when set */
+  heroPromoPill?: { left: { number: string; text: string }; right: { number: string; text: string }; extra?: { number: string; text: string } };
+
+  /* Bicolor pill (mini) shown inside the product card */
+  cardPromoPill?: { left: { number: string; text: string }; right: { number: string; text: string }; extra?: { number: string; text: string } };
+
   /* Optional custom content rendered in the hero below the subtitle/promobar (e.g. pricing cards) */
   heroContent?: React.ReactNode;
 
@@ -304,25 +310,29 @@ const ProductHero = ({
         </motion.div>
       </div>
 
-      {/* Píldora promo puntos regalo — centrada, fondo del hero */}
-      {data.heroPromo && (
+      {/* Píldora promo hero — bicolor si hay heroPromoPill, naranja si solo heroPromo */}
+      {(data.heroPromoPill || data.heroPromo) && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65, duration: 0.45, ease: "easeOut" }}
-          className="flex justify-center mt-6"
+          className="flex justify-center mt-6 px-4"
         >
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold text-center max-w-xs sm:max-w-none"
-            style={{
-              background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
-              color: "#fff",
-              boxShadow: "0 4px 20px rgba(249,115,22,0.45)",
-            }}
-          >
-            <span className="flex-shrink-0" style={{ fontSize: 14 }}>🎁</span>
-            <span>Consigue puntos al contratar este seguro y canjéalo por tarjeta monedero o regalos</span>
-          </div>
+          {data.heroPromoPill ? (
+            <PromoPill pill={data.heroPromoPill} size="lg" />
+          ) : (
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold text-center max-w-xs sm:max-w-none"
+              style={{
+                background: "linear-gradient(135deg, #F59E0B 0%, #F97316 100%)",
+                color: "#fff",
+                boxShadow: "0 4px 20px rgba(249,115,22,0.45)",
+              }}
+            >
+              <span className="flex-shrink-0" style={{ fontSize: 14 }}>🎁</span>
+              <span>{data.heroPromo}</span>
+            </div>
+          )}
         </motion.div>
       )}
     </div>
@@ -446,6 +456,11 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
             >
               {cardPill}
             </div>
+            {data.cardPromoPill && (
+              <div className="flex justify-center mb-4">
+                <PromoPill pill={data.cardPromoPill} size="sm" />
+              </div>
+            )}
             <div className="space-y-2.5 mb-6">
               {cardCoverages.map((c) => (
                 <div key={c} className="flex items-center gap-2 text-sm text-gris-texto">
@@ -577,32 +592,225 @@ const ProductFaqSection = ({ faqs, productName }: { faqs: ProductFaq[]; productN
   );
 };
 
+/* ───────── Bicolor Promo Pill ───────── */
+
+const PromoPill = ({
+  pill,
+  size = "md",
+}: {
+  pill: { left: { number: string; text: string }; right: { number: string; text: string }; extra?: { number: string; text: string } };
+  size?: "sm" | "md" | "lg";
+}) => {
+  const numFontSize = size === "lg" ? "clamp(40px, 5.5vw, 64px)" : size === "sm" ? "22px" : "clamp(28px, 3.5vw, 44px)";
+  const textFontSize = size === "lg" ? "clamp(10px, 1.4vw, 14px)" : size === "sm" ? "9px" : "clamp(9px, 1.1vw, 12px)";
+  const padV = size === "lg" ? "16px" : size === "sm" ? "9px" : "13px";
+  const padH = size === "lg" ? "26px" : size === "sm" ? "13px" : "18px";
+  const gap = size === "lg" ? 12 : size === "sm" ? 6 : 9;
+  const shadow = size === "sm" ? "0 2px 8px rgba(0,0,0,0.18)" : "0 5px 20px rgba(0,0,0,0.25)";
+
+  const halfBase: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap,
+    padding: `${padV} ${padH}`,
+  };
+  const numBase: React.CSSProperties = {
+    fontSize: numFontSize,
+    fontWeight: 900,
+    lineHeight: 1,
+    color: "#fff",
+    flexShrink: 0,
+  };
+  const txtBase: React.CSSProperties = {
+    fontSize: textFontSize,
+    fontWeight: 800,
+    lineHeight: 1.2,
+    color: "#fff",
+    textTransform: "uppercase",
+    whiteSpace: "pre-line",
+  };
+
+  return (
+    <div style={{ display: "inline-flex", borderRadius: 999, overflow: "hidden", boxShadow: shadow }}>
+      <div style={{ ...halfBase, background: "#E4097D" }}>
+        <span style={numBase}>{pill.left.number}</span>
+        <span style={txtBase}>{pill.left.text}</span>
+      </div>
+      <div style={{ ...halfBase, background: "#009FE3" }}>
+        <span style={numBase}>{pill.right.number}</span>
+        <span style={txtBase}>{pill.right.text}</span>
+      </div>
+      {pill.extra && (
+        <div style={{ ...halfBase, background: "#003087" }}>
+          <span style={numBase}>{pill.extra.number}</span>
+          <span style={txtBase}>{pill.extra.text}</span>
+        </div>
+      )}
+    </div>
+  );
+};
+
 /* ───────── Promo Banner ───────── */
 
 const PromoBanner = ({ onCalcClick }: { onCalcClick?: () => void }) => (
-  <section className="section-pad" style={{ background: "linear-gradient(135deg, #003087 0%, #009FE3 100%)" }}>
-    <div className="container mx-auto max-w-3xl text-center">
+  <section className="section-pad" style={{ background: "linear-gradient(150deg, #002470 0%, #003087 40%, #005BA6 75%, #009FE3 100%)" }}>
+    <div className="container mx-auto max-w-5xl">
       <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-        <div className="inline-block px-4 py-1.5 rounded-full text-sm font-bold mb-6" style={{ backgroundColor: "rgba(255,255,255,0.15)", color: "#fff" }}>
-          Promoción vigente
-        </div>
-        <h2 className="text-primary-foreground text-2xl md:text-3xl mb-4">Aprovecha nuestras promociones vigentes</h2>
-        <p className="text-base mb-6 max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.8)" }}>
-          Consulta con nosotros las promociones disponibles y encuentra la mejor opción para ti.
-        </p>
-        {onCalcClick ? (
-          <button
-            onClick={onCalcClick}
-            className="px-6 py-3 rounded-lg font-bold text-sm cursor-pointer btn-cta-white"
-            style={{ backgroundColor: "#fff", color: "#003087", borderRadius: "7px" }}
+
+        {/* Cabecera */}
+        <div className="text-center mb-8">
+          <div
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-5"
+            style={{ backgroundColor: "#E4097D", color: "#fff", letterSpacing: "0.04em" }}
           >
-            Calcular mi precio →
-          </button>
-        ) : (
-          <CalcButton className="px-6 py-3 rounded-lg font-bold text-sm cursor-pointer btn-cta-white" style={{ backgroundColor: "#fff", color: "#003087", borderRadius: "7px" }}>
-            Calcular mi precio →
-          </CalcButton>
-        )}
+            ⏰ Promoción vigente · Hasta el 31 de diciembre de 2026
+          </div>
+          <h2 className="text-white font-bold mb-3" style={{ fontSize: "clamp(1.6rem, 4vw, 2.5rem)", lineHeight: 1.2 }}>
+            Hasta{" "}
+            <span style={{ color: "#FFD600" }}>3 meses gratis</span>{" "}
+            al contratar tu seguro Adeslas
+          </h2>
+          <p className="text-base max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.8)" }}>
+            Cuantos más asegurados, mayor ventaja. Y además acumula{" "}
+            <strong style={{ color: "#FFD600" }}>250 puntos por asegurado</strong> para canjear por regalos exclusivos.
+          </p>
+        </div>
+
+        {/* Tiers de meses gratis */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          {[
+            {
+              icon: "👤",
+              label: "1 asegurado",
+              premio: "1 mes gratis",
+              highlight: false,
+            },
+            {
+              icon: "👥",
+              label: "2 asegurados",
+              premio: "2 meses gratis",
+              highlight: false,
+            },
+            {
+              icon: "👨‍👩‍👧",
+              label: "3 o más asegurados",
+              premio: "3 meses gratis",
+              highlight: true,
+            },
+          ].map((tier, i) => (
+            <div
+              key={i}
+              className="rounded-2xl p-5 text-center flex flex-col items-center gap-2"
+              style={{
+                background: tier.highlight ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.09)",
+                border: tier.highlight ? "2px solid #FFD600" : "1px solid rgba(255,255,255,0.15)",
+                position: "relative",
+              }}
+            >
+              {tier.highlight && (
+                <div
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-xs font-bold"
+                  style={{ backgroundColor: "#FFD600", color: "#003087", whiteSpace: "nowrap" }}
+                >
+                  ✦ Máxima ventaja
+                </div>
+              )}
+              <span style={{ fontSize: 30 }}>{tier.icon}</span>
+              <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>{tier.label}</span>
+              <span
+                className="font-bold text-xl leading-tight"
+                style={{ color: tier.highlight ? "#FFD600" : "#fff" }}
+              >
+                {tier.premio}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Puntos Segurisimos */}
+        <div
+          className="rounded-2xl p-5 mb-8"
+          style={{
+            background: "rgba(255,255,255,0.08)",
+            border: "1px solid rgba(255,255,255,0.15)",
+          }}
+        >
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex-shrink-0 text-center">
+              <div className="text-3xl mb-1">🎁</div>
+              <div className="font-bold text-white text-sm">Programa</div>
+              <div className="font-bold text-white text-sm">Segurisimos</div>
+            </div>
+            <div className="flex-1 text-center sm:text-left">
+              <p className="font-bold text-white mb-2">
+                250 puntos por asegurado contratado — acumulables
+              </p>
+              <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+                {[
+                  "🎬 Netflix",
+                  "⚽ DAZN",
+                  "🏰 Disney+",
+                  "📺 Movistar",
+                  "💳 Tarjeta prepago",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="px-3 py-1 rounded-full text-xs font-semibold text-white"
+                    style={{ background: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.2)" }}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="flex-shrink-0 text-center hidden sm:block">
+              <div className="font-bold text-white text-xs mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>Ejemplo</div>
+              <div className="rounded-xl px-4 py-3" style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)" }}>
+                <div className="text-xs" style={{ color: "rgba(255,255,255,0.7)" }}>4 asegurados</div>
+                <div className="font-bold text-white text-lg">1.000 pts</div>
+                <div className="text-xs" style={{ color: "#FFD600" }}>= 100€ Netflix</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          {onCalcClick ? (
+            <button
+              onClick={onCalcClick}
+              className="btn-cta-magenta font-bold cursor-pointer"
+              style={{
+                backgroundColor: "#E4097D",
+                color: "#fff",
+                padding: "14px 36px",
+                borderRadius: "10px",
+                fontSize: "1rem",
+                border: "none",
+              }}
+            >
+              Calcular mi precio y activar oferta →
+            </button>
+          ) : (
+            <CalcButton
+              className="btn-cta-magenta font-bold cursor-pointer"
+              style={{
+                backgroundColor: "#E4097D",
+                color: "#fff",
+                padding: "14px 36px",
+                borderRadius: "10px",
+                fontSize: "1rem",
+                border: "none",
+              }}
+            >
+              Calcular mi precio y activar oferta →
+            </CalcButton>
+          )}
+          <p className="text-xs mt-3" style={{ color: "rgba(255,255,255,0.5)" }}>
+            Oferta válida del 1 jun. al 31 dic. 2026. Condiciones en adeslas.es.
+          </p>
+        </div>
+
       </motion.div>
     </div>
   </section>
