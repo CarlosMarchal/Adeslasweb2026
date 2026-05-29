@@ -599,49 +599,70 @@ const ProductFaqSection = ({ faqs, productName }: { faqs: ProductFaq[]; productN
 
 const PromoPill = ({
   pill,
-  size = "md",
+  size: _size = "md", // eslint-disable-line @typescript-eslint/no-unused-vars
 }: {
   pill: { left: { number: string; text: string }; right: { number: string; text: string }; extra?: { number: string; text: string } };
   size?: "sm" | "md" | "lg";
 }) => {
-  const isLg = size === "lg";
-
-  /* Tamaños que reproducen las proporciones de la imagen de referencia */
-  const numFontSize = isLg ? "clamp(52px, 7vw, 82px)" : "clamp(34px, 4.5vw, 54px)";
-  const textFontSize = isLg ? "clamp(11px, 1.5vw, 15px)" : "clamp(10px, 1.2vw, 13px)";
-  const padV = isLg ? "18px" : "14px";
-  const padH = isLg ? "30px" : "22px";
-  const gap = isLg ? 12 : 9;
-  const shadow = "0 6px 24px rgba(0,0,0,0.28)";
+  /* Totalmente responsive con clamp():
+     - mobile 390px → valores mínimos
+     - desktop 1440px → valores máximos                                   */
+  const numFont  = "clamp(32px, 5vw, 58px)";
+  const txtFont  = "clamp(8.5px, 1.15vw, 13px)";
+  const padV     = "clamp(10px, 1.8vw, 16px)";
+  const padH     = "clamp(14px, 2.2vw, 24px)";
+  const gap      = "clamp(5px, 0.7vw, 10px)";
+  const sepW     = "clamp(26px, 3.2vw, 38px)";
+  const circleW  = "clamp(20px, 2.5vw, 30px)";
+  const plusFont = "clamp(11px, 1.3vw, 15px)";
 
   type SectionProps = { bg: string; number: string; text: string };
-
   const Section = ({ bg, number, text }: SectionProps) => (
     <div style={{
-      background: bg,
-      display: "flex",
-      alignItems: "center",
-      gap,
-      paddingTop: padV,
-      paddingBottom: padV,
-      paddingLeft: padH,
-      paddingRight: padH,
-      flexShrink: 0,
+      background: bg, display: "flex", alignItems: "center",
+      gap, paddingTop: padV, paddingBottom: padV, paddingLeft: padH, paddingRight: padH, flexShrink: 0,
     }}>
-      <span style={{ fontSize: numFontSize, fontWeight: 900, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
+      <span style={{ fontSize: numFont, fontWeight: 900, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
         {number}
       </span>
-      <span style={{ fontSize: textFontSize, fontWeight: 800, lineHeight: 1.25, color: "#fff", textTransform: "uppercase", whiteSpace: "pre-line" }}>
+      <span style={{ fontSize: txtFont, fontWeight: 800, lineHeight: 1.25, color: "#fff", textTransform: "uppercase" as const, whiteSpace: "pre-line" as const }}>
         {text}
       </span>
     </div>
   );
 
+  /* Separador: fondo partido izq/der + círculo blanco con "+" centrado */
+  type SepProps = { lc: string; rc: string };
+  const Sep = ({ lc, rc }: SepProps) => (
+    <div style={{
+      width: sepW, flexShrink: 0,
+      background: `linear-gradient(to right, ${lc} 50%, ${rc} 50%)`,
+      display: "flex", alignItems: "center", justifyContent: "center",
+    }}>
+      <div style={{
+        width: circleW, height: circleW, borderRadius: "50%", background: "#fff",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        fontWeight: 900, fontSize: plusFont, color: "#003087", flexShrink: 0,
+        boxShadow: "0 1px 4px rgba(0,0,0,0.15)", position: "relative" as const, zIndex: 1,
+      }}>+</div>
+    </div>
+  );
+
   return (
-    <div style={{ display: "inline-flex", alignItems: "stretch", borderRadius: "999px", overflow: "hidden", boxShadow: shadow }}>
-      <Section bg="#E4097D" number={pill.left.number} text={pill.left.text} />
+    <div style={{
+      display: "inline-flex", alignItems: "stretch",
+      borderRadius: "999px", overflow: "hidden",
+      boxShadow: "0 6px 24px rgba(0,0,0,0.28)",
+    }}>
+      <Section bg="#E4097D" number={pill.left.number}  text={pill.left.text} />
+      <Sep lc="#E4097D" rc="#009FE3" />
       <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} />
-      {pill.extra && <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} />}
+      {pill.extra && (
+        <>
+          <Sep lc="#009FE3" rc="#003087" />
+          <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} />
+        </>
+      )}
     </div>
   );
 };
