@@ -1,5 +1,6 @@
 import { motion } from "@/lib/motion";
 import Tarificador from "@/components/Tarificador";
+import PromoPill from "@/components/PromoPill";
 
 /* Desktop: 1440px, Mobile: 828px (414px@2x) — ver public/images/ */
 const HERO_DESKTOP = "/images/hero-adeslas-seguros-medicos.webp";
@@ -52,9 +53,13 @@ const HeroSection = () => {
             <h1 className="text-white mb-3 text-[26px] md:text-[36px] leading-tight md:leading-[1.15] font-bold">
               Seguros Médicos Adeslas<br /><span style={{ color: "#009FE3" }}>Compara planes y calcula tu precio ahora</span>
             </h1>
-            <p className="text-white/85 mb-6 text-sm md:text-base leading-relaxed max-w-md">
+            <p className="text-white/85 mb-4 text-sm md:text-base leading-relaxed max-w-md">
               GO desde 21€ · Plena Vital desde 38€ · Plena Total sin copagos desde 83€. Más de 51.000 médicos, sin listas de espera en toda España.
             </p>
+            {/* Promo pill campaña Jun-Dic 2026 */}
+            <div className="mb-6">
+              <PromoPill pill={{ left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } }} />
+            </div>
             {/* Trust badges */}
             <div className="flex flex-wrap gap-3">
               {[

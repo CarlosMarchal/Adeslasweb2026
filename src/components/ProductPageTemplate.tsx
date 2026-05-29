@@ -13,6 +13,7 @@ import GoogleReviewsSection from "@/components/GoogleReviewsSection";
 import { usePhonePopup } from "@/components/PhonePopupContext";
 import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
 import { imgSrc } from "@/lib/imgSrc";
+import PromoPillShared from "@/components/PromoPill";
 
 /* ───────── Types ───────── */
 
@@ -596,119 +597,8 @@ const ProductFaqSection = ({ faqs, productName }: { faqs: ProductFaq[]; productN
 };
 
 /* ───────── Bicolor Promo Pill ───────── */
-
-const PromoPill = ({
-  pill,
-  size: _size = "md", // eslint-disable-line @typescript-eslint/no-unused-vars
-}: {
-  pill: { left: { number: string; text: string }; right: { number: string; text: string }; extra?: { number: string; text: string } };
-  size?: "sm" | "md" | "lg";
-}) => {
-  /*
-   * TÉCNICA DE CURVA ENTRE SECCIONES:
-   * Cada sección "posterior" al primero tiene:
-   *   - borderTopLeftRadius + borderBottomLeftRadius: curveH 50%
-   *     → crea un borde izquierdo convexo en la sección actual
-   *     → la sección anterior queda con un borde cóncavo (el background anterior
-   *       queda visible "dentro" de la curva de la sección actual)
-   *   - marginLeft: calc(-1 * curveH)
-   *     → la sección se solapa con la anterior en curveH píxeles
-   *   - paddingLeft compensado = padH + curveH
-   *     → el contenido empieza en la posición visual correcta
-   *   - zIndex progresivo (DOM order lo resuelve automáticamente)
-   * El badge "+" está dentro de cada sección curvada, position:absolute
-   * en left:0, top:50% → centrado en el punto más izquierdo de la curva.
-   * Todo dentro del outer pill (overflow:hidden) → no hay escapes.
-   *
-   * Responsive: clamp() mobile 390px → desktop 1440px.
-   * Con 3 secciones a 390px: ancho efectivo ≈ 340-370px → cabe de un vistazo.
-   */
-  const numFont  = "clamp(20px, 4.8vw, 58px)";
-  const txtFont  = "clamp(7.5px, 1.1vw, 13px)";
-  const padV     = "clamp(10px, 2vw, 20px)";
-  const padH     = "clamp(10px, 2.4vw, 28px)";
-  const gap      = "clamp(4px, 0.7vw, 9px)";
-  /* curveH: radio horizontal del arco entre secciones (profundidad del "mordisco") */
-  const curveH   = "clamp(12px, 2.5vw, 26px)";
-  const badgeDia = "clamp(18px, 3vw, 32px)";
-  const plusFont = "clamp(11px, 1.4vw, 16px)";
-
-  type SectionProps = { bg: string; number: string; text: string; curved?: boolean; hasNext?: boolean };
-  const Section = ({ bg, number, text, curved, hasNext }: SectionProps) => (
-    <div style={{
-      position: "relative" as const,
-      background: bg,
-      display: "flex",
-      alignItems: "center",
-      gap,
-      paddingTop: padV,
-      paddingBottom: padV,
-      /* Secciones curvadas: padH extra izquierda para compensar el margen negativo */
-      paddingLeft: curved ? `calc(${padH} + ${curveH})` : padH,
-      /* Secciones con siguiente curvada: padH extra derecha para que la curva no tape el texto */
-      paddingRight: hasNext ? `calc(${padH} + ${curveH})` : padH,
-      flexShrink: 0,
-      /* Curva izquierda: border-radius forma el arco + margen negativo lo solapa */
-      ...(curved && {
-        borderTopLeftRadius:    `${curveH} 50%`,
-        borderBottomLeftRadius: `${curveH} 50%`,
-        marginLeft: `calc(-1 * ${curveH})`,
-        zIndex: 1,
-      }),
-    }}>
-      {/* Badge "+" centrado en el punto más izquierdo de la curva */}
-      {curved && (
-        <div style={{
-          position: "absolute" as const,
-          left: "0",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          width: badgeDia,
-          height: badgeDia,
-          borderRadius: "50%",
-          background: "#fff",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontWeight: 900,
-          fontSize: plusFont,
-          color: "#003087",
-          boxShadow: "0 1px 6px rgba(0,0,0,0.20)",
-          zIndex: 2,
-          flexShrink: 0,
-        }}>+</div>
-      )}
-      <span style={{ fontSize: numFont, fontWeight: 900, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
-        {number}
-      </span>
-      <span style={{ fontSize: txtFont, fontWeight: 800, lineHeight: 1.25, color: "#fff", textTransform: "uppercase" as const, whiteSpace: "pre-line" as const }}>
-        {text}
-      </span>
-    </div>
-  );
-
-  return (
-    <div style={{
-      display: "inline-flex",
-      alignItems: "stretch",
-      /* Borde izquierdo = mismo arco que los separadores internos (curveH 50%)
-         Borde derecho   = suave (sin semicírculo) */
-      borderTopLeftRadius:    `${curveH} 50%`,
-      borderBottomLeftRadius: `${curveH} 50%`,
-      borderTopRightRadius:    "clamp(8px, 1.2vw, 14px)",
-      borderBottomRightRadius: "clamp(8px, 1.2vw, 14px)",
-      overflow: "hidden",
-      boxShadow: "0 6px 24px rgba(0,0,0,0.28)",
-      isolation: "isolate" as React.CSSProperties["isolation"],
-    }}>
-      <Section bg="#E4097D" number={pill.left.number}  text={pill.left.text} hasNext />
-      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} curved hasNext={!!pill.extra} />
-      {pill.extra && (
-        <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} curved />
-      )}
-    </div>
-  );
-};
+/* Delegado al componente compartido src/components/PromoPill.tsx */
+const PromoPill = PromoPillShared;
 
 /* ───────── Promo Banner ───────── */
 
