@@ -33,15 +33,20 @@ interface PromoPillProps {
 }
 
 const PromoPill = ({ pill, size: _size = "md" }: PromoPillProps) => {
-  const numFont   = "clamp(20px, 4.8vw, 58px)";
-  const txtFont   = "clamp(7.5px, 1.1vw, 13px)";
-  const prefixFont= "clamp(6px, 0.8vw, 9px)";
-  const padV      = "clamp(10px, 2vw, 20px)";
-  const padH      = "clamp(10px, 2.4vw, 28px)";
-  const gap       = "clamp(4px, 0.7vw, 9px)";
-  const curveH    = "clamp(12px, 2.5vw, 26px)";
-  const badgeDia  = "clamp(18px, 3vw, 32px)";
-  const plusFont  = "clamp(11px, 1.4vw, 16px)";
+  /* Sección principal (izquierda) — tamaños grandes */
+  const numFont    = "clamp(20px, 4.8vw, 58px)";
+  const txtFont    = "clamp(7.5px, 1.1vw, 13px)";
+  const prefixFont = "clamp(6px, 0.8vw, 9px)";
+  const padV       = "clamp(10px, 2vw, 20px)";
+  const padH       = "clamp(10px, 2.4vw, 28px)";
+  const gap        = "clamp(4px, 0.7vw, 9px)";
+  const curveH     = "clamp(12px, 2.5vw, 26px)";
+  const badgeDia   = "clamp(18px, 3vw, 32px)";
+  const plusFont   = "clamp(11px, 1.4vw, 16px)";
+  /* Secciones secundarias (cyan / azul marino) — más compactas y menos protagonistas */
+  const numFontSm  = "clamp(15px, 3.2vw, 38px)";
+  const txtFontSm  = "clamp(6.5px, 0.95vw, 11px)";
+  const padHSm     = "clamp(8px, 1.8vw, 20px)";
 
   type SectionProps = {
     bg: string;
@@ -50,9 +55,14 @@ const PromoPill = ({ pill, size: _size = "md" }: PromoPillProps) => {
     curved?: boolean;
     hasNext?: boolean;
     prefix?: string;
+    secondary?: boolean;
   };
 
-  const Section = ({ bg, number, text, curved, hasNext, prefix }: SectionProps) => (
+  const Section = ({ bg, number, text, curved, hasNext, prefix, secondary }: SectionProps) => {
+    const nf  = secondary ? numFontSm : numFont;
+    const tf  = secondary ? txtFontSm : txtFont;
+    const ph  = secondary ? padHSm    : padH;
+    return (
     <div style={{
       position: "relative" as const,
       background: bg,
@@ -61,8 +71,8 @@ const PromoPill = ({ pill, size: _size = "md" }: PromoPillProps) => {
       gap,
       paddingTop: padV,
       paddingBottom: padV,
-      paddingLeft: curved ? `calc(${padH} + ${curveH})` : padH,
-      paddingRight: hasNext ? `calc(${padH} + ${curveH})` : padH,
+      paddingLeft: curved ? `calc(${ph} + ${curveH})` : ph,
+      paddingRight: hasNext ? `calc(${ph} + ${curveH})` : ph,
       flexShrink: 0,
       ...(curved && {
         borderTopLeftRadius:    `${curveH} 50%`,
@@ -92,7 +102,7 @@ const PromoPill = ({ pill, size: _size = "md" }: PromoPillProps) => {
           flexShrink: 0,
         }}>+</div>
       )}
-      <span style={{ fontSize: numFont, fontWeight: 900, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
+      <span style={{ fontSize: nf, fontWeight: 900, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
         {number}
       </span>
       <div style={{ display: "flex", flexDirection: "column" as const, alignItems: "flex-start" }}>
@@ -101,12 +111,13 @@ const PromoPill = ({ pill, size: _size = "md" }: PromoPillProps) => {
             {prefix}
           </span>
         )}
-        <span style={{ fontSize: txtFont, fontWeight: 800, lineHeight: 1.25, color: "#fff", textTransform: "uppercase" as const, whiteSpace: "pre-line" as const }}>
+        <span style={{ fontSize: tf, fontWeight: 800, lineHeight: 1.25, color: "#fff", textTransform: "uppercase" as const, whiteSpace: "pre-line" as const }}>
           {text}
         </span>
       </div>
     </div>
-  );
+    );
+  };
 
   return (
     <div style={{
@@ -121,9 +132,9 @@ const PromoPill = ({ pill, size: _size = "md" }: PromoPillProps) => {
       isolation: "isolate" as React.CSSProperties["isolation"],
     }}>
       <Section bg="#E4097D" number={pill.left.number}  text={pill.left.text}  hasNext prefix="hasta" />
-      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} curved hasNext={!!pill.extra} />
+      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} curved hasNext={!!pill.extra} secondary />
       {pill.extra && (
-        <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} curved />
+        <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} curved secondary />
       )}
     </div>
   );
