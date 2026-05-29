@@ -605,15 +605,17 @@ const PromoPill = ({
   size?: "sm" | "md" | "lg";
 }) => {
   /* Totalmente responsive con clamp():
-     - mobile 390px → valores mínimos
-     - desktop 1440px → valores máximos                                   */
+     mobile 390px → valores mínimos  |  desktop 1440px → valores máximos  */
   const numFont  = "clamp(32px, 5vw, 58px)";
   const txtFont  = "clamp(8.5px, 1.15vw, 13px)";
   const padV     = "clamp(10px, 1.8vw, 16px)";
   const padH     = "clamp(14px, 2.2vw, 24px)";
   const gap      = "clamp(5px, 0.7vw, 10px)";
-  const sepW     = "clamp(26px, 3.2vw, 38px)";
-  const circleW  = "clamp(20px, 2.5vw, 30px)";
+  /* arcDia: diámetro del círculo de transición entre secciones.
+     Debe ser ≥ altura del pill (padV*2 + numFont) para cubrir todo el borde.
+     Su mitad izquierda "muerde" la sección anterior → crea la curva cóncava. */
+  const arcDia   = "clamp(56px, 9vw, 96px)";
+  const badgeDia = "clamp(20px, 2.5vw, 30px)";
   const plusFont = "clamp(11px, 1.3vw, 15px)";
 
   type SectionProps = { bg: string; number: string; text: string };
@@ -631,19 +633,37 @@ const PromoPill = ({
     </div>
   );
 
-  /* Separador: fondo partido izq/der + círculo blanco con "+" centrado */
-  type SepProps = { lc: string; rc: string };
-  const Sep = ({ lc, rc }: SepProps) => (
-    <div style={{
-      width: sepW, flexShrink: 0,
-      background: `linear-gradient(to right, ${lc} 50%, ${rc} 50%)`,
-      display: "flex", alignItems: "center", justifyContent: "center",
-    }}>
+  /* Sep: divisor entre secciones con curva circular.
+     - Ancho 0 → se posiciona exactamente en la frontera entre colores.
+     - Un gran círculo (rc color) centrado en esa frontera: su mitad izquierda
+       cubre la sección anterior (lc) creando la curva cóncava de la referencia.
+     - El badge blanco "+" se superpone encima con z-index mayor.
+     - El outer pill container (overflow:hidden) recorta todo al borde de la cápsula. */
+  type SepProps = { rc: string };
+  const Sep = ({ rc }: SepProps) => (
+    <div style={{ position: "relative" as const, width: "0px", flexShrink: 0, alignSelf: "stretch", zIndex: 1 }}>
+      {/* Círculo de transición: rc color biting into left section */}
       <div style={{
-        width: circleW, height: circleW, borderRadius: "50%", background: "#fff",
+        position: "absolute" as const,
+        top: "50%", left: "0",
+        transform: "translate(-50%, -50%)",
+        width: arcDia, height: arcDia,
+        borderRadius: "50%",
+        background: rc,
+        zIndex: 0,
+      }} />
+      {/* Badge "+" */}
+      <div style={{
+        position: "absolute" as const,
+        top: "50%", left: "0",
+        transform: "translate(-50%, -50%)",
+        zIndex: 2,
+        width: badgeDia, height: badgeDia,
+        borderRadius: "50%",
+        background: "#fff",
         display: "flex", alignItems: "center", justifyContent: "center",
-        fontWeight: 900, fontSize: plusFont, color: "#003087", flexShrink: 0,
-        boxShadow: "0 1px 4px rgba(0,0,0,0.15)", position: "relative" as const, zIndex: 1,
+        fontWeight: 900, fontSize: plusFont, color: "#003087",
+        boxShadow: "0 1px 5px rgba(0,0,0,0.18)",
       }}>+</div>
     </div>
   );
@@ -655,11 +675,11 @@ const PromoPill = ({
       boxShadow: "0 6px 24px rgba(0,0,0,0.28)",
     }}>
       <Section bg="#E4097D" number={pill.left.number}  text={pill.left.text} />
-      <Sep lc="#E4097D" rc="#009FE3" />
+      <Sep rc="#009FE3" />
       <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} />
       {pill.extra && (
         <>
-          <Sep lc="#009FE3" rc="#003087" />
+          <Sep rc="#003087" />
           <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} />
         </>
       )}
