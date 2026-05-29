@@ -306,7 +306,7 @@ const PreciosOfertasInner = () => {
       >
         <div className="container mx-auto px-4 text-center">
           <p className="font-bold text-sm" style={{ color: "#1C1917" }}>
-            🎁 Consulta nuestras promociones vigentes · Descuento familiar 10 % a partir del 4.º asegurado
+            🎁 Ahora hasta 3 meses gratis + 250 puntos por asegurado
           </p>
         </div>
       </section>
