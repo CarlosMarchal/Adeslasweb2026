@@ -697,46 +697,75 @@ export async function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): 
   y += totH + 5;
 
   /* ════════════════════════════════════════════════════════════
-     § 7a · OFERTA PÚBLICA CAMPAÑA (franja magenta — visible al cliente)
-     Muestra el mensaje exacto que ve el cliente:
-     · GO y Pymes: sin sección.
-     · Plena Total / Vital Total con ≥3 aseg: 25% de descuento.
-     · Seniors: se omite (ya tiene su sección de abono).
-     · Resto: hasta 3 meses gratis + pts exactos por asegurado.
+     § 7a · OFERTA PÚBLICA CAMPAÑA (franja — visible al cliente)
+     · GO: sin sección.
+     · Negocios NIF: hasta 10% dto en prima (azul).
+     · Pymes Total: hasta 15% dto en prima (azul).
+     · Plena Total / Vital Total con ≥3 aseg: 25% de descuento (magenta).
+     · Seniors: omitida (tiene su sección de abono).
+     · Resto: hasta 3 meses gratis + pts exactos (magenta).
   ════════════════════════════════════════════════════════════ */
   {
     const nAsegPub    = quote.preciosPorPersona.length;
     const es25pct     = (quote.id === "completa" || quote.id === "completaPlus") && nAsegPub >= 3;
-    const sinPromo    = quote.id === "ya" || quote.id === "pymes-total" || quote.isSeniors;
+    const esDtoNegocios = quote.id === "negocios-nif";
+    const esDtoPymes    = quote.id === "pymes-total";
+    const sinPromo    = quote.id === "ya" || quote.isSeniors;
 
     if (!sinPromo && cliente.includePuntos !== false) {
       ensureSpace(20);
       const pH = 18;
-      const MAGENTA_BG: [number,number,number] = [255, 230, 242];
 
-      fillRect(doc, ML, y, CW, pH, MAGENTA_BG, 4);
-      outlineRect(doc, ML, y, CW, pH, MAGENTA, 4, 0.4);
-      fillRect(doc, ML, y, 4, pH, MAGENTA, 4);
-      fillRect(doc, ML, y + 4, 4, pH - 4, MAGENTA);
+      if (esDtoNegocios || esDtoPymes) {
+        // Franja azul para descuento en prima (autónomos / pymes)
+        const BLUE_BG:  [number,number,number] = [219, 234, 254];
+        const BLUE:     [number,number,number] = [29,  78,  216];
+        fillRect(doc, ML, y, CW, pH, BLUE_BG, 4);
+        outlineRect(doc, ML, y, CW, pH, BLUE, 4, 0.4);
+        fillRect(doc, ML, y, 4, pH, BLUE, 4);
+        fillRect(doc, ML, y + 4, 4, pH - 4, BLUE);
 
-      doc.setFont("helvetica", "bold"); doc.setFontSize(6); doc.setTextColor(160, 10, 80);
-      doc.text("OFERTA PUBLICA · CAMPAÑA JUN-DIC 2026", ML + 8, y + 5);
-      doc.setDrawColor(...MAGENTA); doc.setLineWidth(0.15);
-      doc.line(ML + 8, y + 6.5, ML + CW - 6, y + 6.5);
+        doc.setFont("helvetica", "bold"); doc.setFontSize(6); doc.setTextColor(29, 78, 216);
+        doc.text("OFERTA PUBLICA · CAMPANA JUN-DIC 2026", ML + 8, y + 5);
+        doc.setDrawColor(...BLUE); doc.setLineWidth(0.15);
+        doc.line(ML + 8, y + 6.5, ML + CW - 6, y + 6.5);
 
-      if (es25pct) {
-        doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...MAGENTA);
-        doc.text("25% DE DESCUENTO", ML + 8, y + 13.5);
-        doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(160, 10, 80);
-        doc.text("por contratar con 3 o mas asegurados", RX, y + 13.5, { align: "right" });
-      } else {
-        doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...MAGENTA);
-        doc.text("HASTA 3 MESES GRATIS", ML + 8, y + 13.5);
-        doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(160, 10, 80);
+        doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(29, 78, 216);
+        doc.text(esDtoNegocios ? "HASTA 10% DE DESCUENTO" : "HASTA 15% DE DESCUENTO", ML + 8, y + 13.5);
+        doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(29, 78, 216);
         doc.text(
-          `+ ${quote.puntosXAseg.toLocaleString("es-ES")} puntos x ${nAsegPub} aseg. = ${quote.totalPuntos.toLocaleString("es-ES")} puntos`,
+          esDtoNegocios
+            ? "5% (1-3 aseg.) · 10% (4 o mas aseg.) sobre la prima"
+            : "5% (1-3 aseg.) · 15% (4 o mas aseg.) sobre la prima",
           RX, y + 13.5, { align: "right" }
         );
+      } else {
+        // Franja magenta para meses gratis / 25% descuento (particulares)
+        const MAGENTA_BG: [number,number,number] = [255, 230, 242];
+        fillRect(doc, ML, y, CW, pH, MAGENTA_BG, 4);
+        outlineRect(doc, ML, y, CW, pH, MAGENTA, 4, 0.4);
+        fillRect(doc, ML, y, 4, pH, MAGENTA, 4);
+        fillRect(doc, ML, y + 4, 4, pH - 4, MAGENTA);
+
+        doc.setFont("helvetica", "bold"); doc.setFontSize(6); doc.setTextColor(160, 10, 80);
+        doc.text("OFERTA PUBLICA · CAMPANA JUN-DIC 2026", ML + 8, y + 5);
+        doc.setDrawColor(...MAGENTA); doc.setLineWidth(0.15);
+        doc.line(ML + 8, y + 6.5, ML + CW - 6, y + 6.5);
+
+        if (es25pct) {
+          doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...MAGENTA);
+          doc.text("25% DE DESCUENTO", ML + 8, y + 13.5);
+          doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(160, 10, 80);
+          doc.text("por contratar con 3 o mas asegurados", RX, y + 13.5, { align: "right" });
+        } else {
+          doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...MAGENTA);
+          doc.text("HASTA 3 MESES GRATIS", ML + 8, y + 13.5);
+          doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(160, 10, 80);
+          doc.text(
+            `+ ${quote.puntosXAseg.toLocaleString("es-ES")} puntos x ${nAsegPub} aseg. = ${quote.totalPuntos.toLocaleString("es-ES")} puntos`,
+            RX, y + 13.5, { align: "right" }
+          );
+        }
       }
 
       y += pH + 3;

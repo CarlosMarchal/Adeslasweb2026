@@ -63,7 +63,7 @@ const CAMPAIGN_CAT: Record<string, CampaignCat> = {
   "reembolso":        "salud_sin",   // Plena Extra
   "plena":            "salud_sin",   // Plena
   "pymes-total":      "sin_puntos",  // Pymes Total → no acumula puntos, dto comercial hasta 10%
-  "negocios-nif":     "salud_sin",   // Negocios NIF
+  "negocios-nif":     "sin_puntos",  // Negocios NIF → dto en prima, no puntos
   "seniors":          "seniors_sin", // Seniors → abono en cuenta
   "seniors-total":    "seniors_con", // Seniors Total (con dental) → abono en cuenta
 };
@@ -73,10 +73,16 @@ const CAMPAIGN_CAT: Record<string, CampaignCat> = {
    · GO y Pymes: sin oferta pública en esta campaña.
    · Plena Total / Vital Total con ≥3 aseg: 25% de descuento.
    · Seniors: abono en cuenta.
+   · Negocios NIF: hasta 10% de descuento en prima.
+   · Pymes Total: hasta 15% de descuento en prima.
    · Resto: hasta 3 meses gratis + 250 pts/aseg.
 ────────────────────────────────────────────────────────────── */
 function getMensajePublico(productId: string, n: number): { text: string; color: string; bg: string } | null {
-  if (productId === "ya" || productId === "pymes-total") return null;
+  if (productId === "ya") return null;
+  if (productId === "negocios-nif")
+    return { text: "🏷️ Oferta pública: Hasta 10% de descuento en la prima", color: "#1D4ED8", bg: "#EFF6FF" };
+  if (productId === "pymes-total")
+    return { text: "🏷️ Oferta pública: Hasta 15% de descuento en la prima", color: "#1D4ED8", bg: "#EFF6FF" };
   if (productId === "seniors" || productId === "seniors-total")
     return { text: "💶 Abono en cuenta (oferta pública)", color: "#15803D", bg: "#F0FDF4" };
   if ((productId === "completa" || productId === "completaPlus") && n >= 3)
@@ -703,25 +709,33 @@ export default function TarificadorInterno() {
                       if (!mp) return null;
                       const es25 = mp.text.includes("25%");
                       const esAbono = mp.text.includes("Abono");
+                      const esDtoPrima = mp.text.includes("dto. en prima") || mp.text.includes("descuento en la prima");
                       return (
                         <div
                           className="flex items-center gap-2 mt-1.5 px-3 py-1.5 rounded-lg"
-                          style={{ backgroundColor: mp.bg, border: `1px solid ${es25 ? "#F9A8D4" : esAbono ? "#86EFAC" : "#FDE68A"}` }}
+                          style={{ backgroundColor: mp.bg, border: `1px solid ${es25 ? "#F9A8D4" : esAbono ? "#86EFAC" : esDtoPrima ? "#BFDBFE" : "#FDE68A"}` }}
                         >
-                          <span className="text-base">{es25 ? "🎁" : esAbono ? "💶" : "🎁"}</span>
+                          <span className="text-base">{es25 ? "🎁" : esAbono ? "💶" : esDtoPrima ? "🏷️" : "🎁"}</span>
                           <div>
                             <p className="text-[11px] font-black leading-tight" style={{ color: mp.color }}>
                               {es25
                                 ? "25% de descuento"
                                 : esAbono
                                   ? `${abonoXAseg} € abono · ${totalAbono} € total`
-                                  : `${asegurados.length >= 3 ? "3 meses gratis" : "Hasta 3 meses gratis"}`}
+                                  : esDtoPrima
+                                    ? (product.id === "negocios-nif" ? "Hasta 10% dto. en prima" : "Hasta 15% dto. en prima")
+                                    : `${asegurados.length >= 3 ? "3 meses gratis" : "Hasta 3 meses gratis"}`}
                             </p>
-                            {!esAbono && (
+                            {!esAbono && !esDtoPrima && (
                               <p className="text-[10px] font-semibold leading-tight" style={{ color: mp.color, opacity: 0.75 }}>
                                 {es25
                                   ? "con 3+ asegurados"
                                   : `+ ${puntosXAseg.toLocaleString()} pts × ${asegurados.length} aseg. = ${totalPuntos.toLocaleString()} puntos`}
+                              </p>
+                            )}
+                            {esDtoPrima && (
+                              <p className="text-[10px] font-semibold leading-tight" style={{ color: mp.color, opacity: 0.75 }}>
+                                {product.id === "negocios-nif" ? "5% (1-3 aseg.) · 10% (4+ aseg.)" : "5% (1-3 aseg.) · 15% (4+ aseg.)"}
                               </p>
                             )}
                           </div>
@@ -889,19 +903,38 @@ export default function TarificadorInterno() {
                                       <p className="text-[10px] font-bold uppercase tracking-wide text-amber-600 mb-1">
                                         Lo que ve el cliente
                                       </p>
-                                      <p className="text-sm font-black" style={{ color: mp.color }}>
-                                        🎁 {es25
-                                          ? "25% de descuento (3+ asegurados)"
-                                          : `Hasta 3 meses gratis + ${puntosXAseg.toLocaleString()} puntos/asegurado`}
-                                      </p>
-                                      {!es25 && (
-                                        <p className="text-xs font-semibold mt-0.5" style={{ color: mp.color, opacity: 0.8 }}>
-                                          Total puntos: {totalPuntos.toLocaleString()} · Equivale a tarjeta prepago{" "}
-                                          {(Math.floor(totalPuntos / (useDentalTarjetaFormula ? 750 : 500)) * (useDentalTarjetaFormula ? 75 : 50)) > 0
-                                            ? `${Math.floor(totalPuntos / (useDentalTarjetaFormula ? 750 : 500)) * (useDentalTarjetaFormula ? 75 : 50)} €`
-                                            : "disponible"}
-                                        </p>
-                                      )}
+                                      {(() => {
+                                        const esDtoPrimaExp = mp.text.includes("dto. en prima") || mp.text.includes("descuento en la prima");
+                                        return (
+                                          <>
+                                            <p className="text-sm font-black" style={{ color: mp.color }}>
+                                              {esDtoPrimaExp ? "🏷️" : "🎁"}{" "}
+                                              {es25
+                                                ? "25% de descuento (3+ asegurados)"
+                                                : esDtoPrimaExp
+                                                  ? (product.id === "negocios-nif"
+                                                      ? "Hasta 10% de descuento en la prima"
+                                                      : "Hasta 15% de descuento en la prima")
+                                                  : `Hasta 3 meses gratis + ${puntosXAseg.toLocaleString()} puntos/asegurado`}
+                                            </p>
+                                            {esDtoPrimaExp && (
+                                              <p className="text-xs font-semibold mt-0.5" style={{ color: mp.color, opacity: 0.8 }}>
+                                                {product.id === "negocios-nif"
+                                                  ? "5% con 1-3 aseg. · 10% con 4+ aseg."
+                                                  : "5% con 1-3 aseg. · 15% con 4+ aseg."}
+                                              </p>
+                                            )}
+                                            {!es25 && !esDtoPrimaExp && (
+                                              <p className="text-xs font-semibold mt-0.5" style={{ color: mp.color, opacity: 0.8 }}>
+                                                Total puntos: {totalPuntos.toLocaleString()} · Equivale a tarjeta prepago{" "}
+                                                {(Math.floor(totalPuntos / (useDentalTarjetaFormula ? 750 : 500)) * (useDentalTarjetaFormula ? 75 : 50)) > 0
+                                                  ? `${Math.floor(totalPuntos / (useDentalTarjetaFormula ? 750 : 500)) * (useDentalTarjetaFormula ? 75 : 50)} €`
+                                                  : "disponible"}
+                                              </p>
+                                            )}
+                                          </>
+                                        );
+                                      })()}
                                     </div>
                                   );
                                 })()}
