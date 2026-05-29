@@ -51,6 +51,8 @@ export interface SegmentPageData {
   heroSubtitle: string;
   heroPromo?: string;
   heroPromoPill?: PromoPillData;
+  /** Barra de promoción amarilla (#F59E0B) que aparece entre el hero y las tarjetas de productos */
+  promoBar?: string;
   contentTitle: string;
   contentDescription: string;
   contentFeatures: SegmentFeature[];
@@ -248,6 +250,17 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
             </div>
           </div>
         </section>
+
+        {/* ── Promo bar (opcional) — entre hero y tarjetas ── */}
+        {data.promoBar && (
+          <section className="py-4" style={{ backgroundColor: "#F59E0B" }}>
+            <div className="container mx-auto px-4 text-center">
+              <p className="font-bold text-sm" style={{ color: "#1C1917" }}>
+                {data.promoBar}
+              </p>
+            </div>
+          </section>
+        )}
 
         {/* ── Recommended Products — right after hero ── */}
         <section className="section-pad bg-blanco">

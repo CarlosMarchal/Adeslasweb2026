@@ -19,6 +19,7 @@ const data: SegmentPageData = {
   heroSubtitle: "Cubre a toda la familia con un seguro Adeslas: pediatría, ginecología, urgencias 24h y +51.000 médicos. Descuento del 10% a partir del 4.º asegurado.",
   heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
   heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
+  promoBar: "🏷️ Solo este mes: 25% de descuento con 3 o más asegurados · Oferta válida hasta agotar cupo",
   contentTitle: "La salud de tu familia en buenas manos",
   contentDescription: "Como padre o madre, tu prioridad es la salud y bienestar de tu familia. Adeslas te ofrece planes familiares integrales que cubren todas las necesidades médicas de padres e hijos, con especial atención a la pediatría y el cuidado de los menores. Con más de 51.000 médicos y 1.400 centros en toda España, tienes acceso inmediato sin listas de espera.",
   contentFeatures: [
