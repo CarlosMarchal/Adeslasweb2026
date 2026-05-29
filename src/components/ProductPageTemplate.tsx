@@ -633,8 +633,8 @@ const PromoPill = ({
   const badgeDia = "clamp(18px, 3vw, 32px)";
   const plusFont = "clamp(11px, 1.4vw, 16px)";
 
-  type SectionProps = { bg: string; number: string; text: string; curved?: boolean };
-  const Section = ({ bg, number, text, curved }: SectionProps) => (
+  type SectionProps = { bg: string; number: string; text: string; curved?: boolean; hasNext?: boolean };
+  const Section = ({ bg, number, text, curved, hasNext }: SectionProps) => (
     <div style={{
       position: "relative" as const,
       background: bg,
@@ -643,9 +643,10 @@ const PromoPill = ({
       gap,
       paddingTop: padV,
       paddingBottom: padV,
-      /* Secciones curvadas: padH extra para compensar el margen negativo */
+      /* Secciones curvadas: padH extra izquierda para compensar el margen negativo */
       paddingLeft: curved ? `calc(${padH} + ${curveH})` : padH,
-      paddingRight: padH,
+      /* Secciones con siguiente curvada: padH extra derecha para que la curva no tape el texto */
+      paddingRight: hasNext ? `calc(${padH} + ${curveH})` : padH,
       flexShrink: 0,
       /* Curva izquierda: border-radius forma el arco + margen negativo lo solapa */
       ...(curved && {
@@ -700,8 +701,8 @@ const PromoPill = ({
       boxShadow: "0 6px 24px rgba(0,0,0,0.28)",
       isolation: "isolate" as React.CSSProperties["isolation"],
     }}>
-      <Section bg="#E4097D" number={pill.left.number}  text={pill.left.text} />
-      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} curved />
+      <Section bg="#E4097D" number={pill.left.number}  text={pill.left.text} hasNext />
+      <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} curved hasNext={!!pill.extra} />
       {pill.extra && (
         <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} curved />
       )}
