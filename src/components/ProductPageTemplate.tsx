@@ -623,15 +623,15 @@ const PromoPill = ({
    * Responsive: clamp() mobile 390px → desktop 1440px.
    * Con 3 secciones a 390px: ancho efectivo ≈ 340-370px → cabe de un vistazo.
    */
-  const numFont  = "clamp(26px, 4.8vw, 58px)";
-  const txtFont  = "clamp(8px, 1.1vw, 13px)";
-  const padV     = "clamp(12px, 2vw, 20px)";
-  const padH     = "clamp(14px, 2.4vw, 28px)";
-  const gap      = "clamp(5px, 0.7vw, 9px)";
+  const numFont  = "clamp(20px, 4.8vw, 58px)";
+  const txtFont  = "clamp(7.5px, 1.1vw, 13px)";
+  const padV     = "clamp(10px, 2vw, 20px)";
+  const padH     = "clamp(10px, 2.4vw, 28px)";
+  const gap      = "clamp(4px, 0.7vw, 9px)";
   /* curveH: radio horizontal del arco entre secciones (profundidad del "mordisco") */
-  const curveH   = "clamp(16px, 2.5vw, 26px)";
-  const badgeDia = "clamp(22px, 3vw, 32px)";
-  const plusFont = "clamp(12px, 1.4vw, 16px)";
+  const curveH   = "clamp(12px, 2.5vw, 26px)";
+  const badgeDia = "clamp(18px, 3vw, 32px)";
+  const plusFont = "clamp(11px, 1.4vw, 16px)";
 
   type SectionProps = { bg: string; number: string; text: string; curved?: boolean };
   const Section = ({ bg, number, text, curved }: SectionProps) => (
@@ -690,8 +690,12 @@ const PromoPill = ({
     <div style={{
       display: "inline-flex",
       alignItems: "stretch",
-      /* Borde exterior: esquinas redondeadas suaves, NO semicírculo */
-      borderRadius: "clamp(8px, 1.2vw, 14px)",
+      /* Borde izquierdo = mismo arco que los separadores internos (curveH 50%)
+         Borde derecho   = suave (sin semicírculo) */
+      borderTopLeftRadius:    `${curveH} 50%`,
+      borderBottomLeftRadius: `${curveH} 50%`,
+      borderTopRightRadius:    "clamp(8px, 1.2vw, 14px)",
+      borderBottomRightRadius: "clamp(8px, 1.2vw, 14px)",
       overflow: "hidden",
       boxShadow: "0 6px 24px rgba(0,0,0,0.28)",
       isolation: "isolate" as React.CSSProperties["isolation"],
