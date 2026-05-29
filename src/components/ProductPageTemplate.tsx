@@ -604,19 +604,33 @@ const PromoPill = ({
   pill: { left: { number: string; text: string }; right: { number: string; text: string }; extra?: { number: string; text: string } };
   size?: "sm" | "md" | "lg";
 }) => {
-  /* Totalmente responsive con clamp():
-     mobile 390px → valores mínimos  |  desktop 1440px → valores máximos  */
-  const numFont  = "clamp(32px, 5vw, 58px)";
-  const txtFont  = "clamp(8.5px, 1.15vw, 13px)";
-  const padV     = "clamp(10px, 1.8vw, 16px)";
-  const padH     = "clamp(14px, 2.2vw, 24px)";
-  const gap      = "clamp(5px, 0.7vw, 10px)";
-  /* arcDia: diámetro del círculo de transición entre secciones.
-     Debe ser ≥ altura del pill (padV*2 + numFont) para cubrir todo el borde.
-     Su mitad izquierda "muerde" la sección anterior → crea la curva cóncava. */
-  const arcDia   = "clamp(56px, 9vw, 96px)";
-  const badgeDia = "clamp(20px, 2.5vw, 30px)";
-  const plusFont = "clamp(11px, 1.3vw, 15px)";
+  /*
+   * DISEÑO: cápsula única con curva circular entre secciones, fiel a imagen Adeslas.
+   *
+   * Técnica del separador (Sep):
+   *   - El Sep tiene ancho = arcRad (= arcDia/2).
+   *   - El círculo (arcDia × arcDia, color rc) se centra en el BORDE IZQUIERDO del Sep
+   *     (= borde derecho de la sección anterior).
+   *   - Mitad izquierda del círculo → "muerde" la sección anterior → curva cóncava.
+   *   - Mitad derecha del círculo → queda dentro del Sep → no tapa la sección siguiente.
+   *   - Fondo degradado (lc → rc) en el Sep cubre los gaps arriba/abajo del círculo.
+   *   - INVARIANTE: padH > arcRad en todos los viewports → el contenido nunca queda tapado.
+   *
+   * Responsive: clamp() adapta todo de mobile 390px a desktop 1440px.
+   *   - mobile 390: numFont=26px, padH=22px, arcRad=20px → 3 secciones ≈ 375px ✓
+   *   - desktop 1440: numFont=54px, padH=50px, arcRad=45px → pill completo ✓
+   */
+  const numFont  = "clamp(26px, 4.5vw, 54px)";
+  const txtFont  = "clamp(7.5px, 1.1vw, 12px)";
+  const padV     = "clamp(10px, 1.8vw, 18px)";
+  /* padH DEBE ser siempre > arcRad para que el número no quede tapado por el arco */
+  const padH     = "clamp(22px, 4.5vw, 50px)";
+  const gap      = "clamp(5px, 0.7vw, 9px)";
+  /* arcDia ≥ altura del pill a desktop (90px) para que el arco cubra de arriba a abajo */
+  const arcDia   = "clamp(40px, 8vw, 90px)";
+  const arcRad   = "clamp(20px, 4vw, 45px)";   /* = arcDia / 2 — ancho del Sep */
+  const badgeDia = "clamp(20px, 2.5vw, 28px)";
+  const plusFont = "clamp(11px, 1.2vw, 14px)";
 
   type SectionProps = { bg: string; number: string; text: string };
   const Section = ({ bg, number, text }: SectionProps) => (
@@ -633,16 +647,21 @@ const PromoPill = ({
     </div>
   );
 
-  /* Sep: divisor entre secciones con curva circular.
-     - Ancho 0 → se posiciona exactamente en la frontera entre colores.
-     - Un gran círculo (rc color) centrado en esa frontera: su mitad izquierda
-       cubre la sección anterior (lc) creando la curva cóncava de la referencia.
-     - El badge blanco "+" se superpone encima con z-index mayor.
-     - El outer pill container (overflow:hidden) recorta todo al borde de la cápsula. */
-  type SepProps = { rc: string };
-  const Sep = ({ rc }: SepProps) => (
-    <div style={{ position: "relative" as const, width: "0px", flexShrink: 0, alignSelf: "stretch", zIndex: 1 }}>
-      {/* Círculo de transición: rc color biting into left section */}
+  /* Sep: genera la curva circular entre dos secciones de color.
+     - Ancho = arcRad (reserva espacio para la mitad derecha del círculo).
+     - Círculo (arcDia) centrado en el borde izquierdo → borde derecho de sección anterior.
+     - Fondo split lc/rc: cubre los gaps que el círculo no alcanza arriba/abajo. */
+  type SepProps = { lc: string; rc: string };
+  const Sep = ({ lc, rc }: SepProps) => (
+    <div style={{
+      position: "relative" as const,
+      width: arcRad,
+      flexShrink: 0,
+      alignSelf: "stretch",
+      background: `linear-gradient(to right, ${lc} 50%, ${rc} 50%)`,
+      zIndex: 1,
+    }}>
+      {/* Círculo (rc) centrado en borde izquierdo — su mitad izq bites into sección lc */}
       <div style={{
         position: "absolute" as const,
         top: "50%", left: "0",
@@ -652,7 +671,7 @@ const PromoPill = ({
         background: rc,
         zIndex: 0,
       }} />
-      {/* Badge "+" */}
+      {/* Badge "+" blanco centrado sobre el círculo */}
       <div style={{
         position: "absolute" as const,
         top: "50%", left: "0",
@@ -675,11 +694,11 @@ const PromoPill = ({
       boxShadow: "0 6px 24px rgba(0,0,0,0.28)",
     }}>
       <Section bg="#E4097D" number={pill.left.number}  text={pill.left.text} />
-      <Sep rc="#009FE3" />
+      <Sep lc="#E4097D" rc="#009FE3" />
       <Section bg="#009FE3" number={pill.right.number} text={pill.right.text} />
       {pill.extra && (
         <>
-          <Sep rc="#003087" />
+          <Sep lc="#009FE3" rc="#003087" />
           <Section bg="#003087" number={pill.extra.number} text={pill.extra.text} />
         </>
       )}
