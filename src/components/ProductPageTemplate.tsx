@@ -613,7 +613,7 @@ const PromoBanner = ({ onCalcClick }: { onCalcClick?: () => void }) => (
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-3"
             style={{ backgroundColor: "#E4097D", color: "#fff", letterSpacing: "0.04em" }}
           >
-            ⏰ Solo este mes
+            ⏰ Además
           </div>
           <h2 className="text-white font-bold mb-2" style={{ fontSize: "clamp(1.3rem, 3vw, 2rem)", lineHeight: 1.2 }}>
             Hasta{" "}
