@@ -603,109 +603,84 @@ const PromoPill = PromoPillShared;
 /* ───────── Promo Banner ───────── */
 
 const PromoBanner = ({ onCalcClick }: { onCalcClick?: () => void }) => (
-  <section className="section-pad" style={{ background: "linear-gradient(150deg, #002470 0%, #003087 40%, #005BA6 75%, #009FE3 100%)" }}>
-    <div className="container mx-auto max-w-5xl">
+  <section className="py-8" style={{ background: "linear-gradient(150deg, #002470 0%, #003087 40%, #005BA6 75%, #009FE3 100%)" }}>
+    <div className="container mx-auto max-w-5xl px-4">
       <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
 
         {/* Cabecera */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-5">
           <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-5"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-3"
             style={{ backgroundColor: "#E4097D", color: "#fff", letterSpacing: "0.04em" }}
           >
-            ⏰ Promoción vigente · Hasta el 31 de diciembre de 2026
+            ⏰ Solo este mes
           </div>
-          <h2 className="text-white font-bold mb-3" style={{ fontSize: "clamp(1.6rem, 4vw, 2.5rem)", lineHeight: 1.2 }}>
+          <h2 className="text-white font-bold mb-2" style={{ fontSize: "clamp(1.3rem, 3vw, 2rem)", lineHeight: 1.2 }}>
             Hasta{" "}
-            <span style={{ color: "#FFD600" }}>3 meses gratis</span>{" "}
+            <span style={{ color: "#E4097D" }}>3 meses gratis</span>{" "}
             al contratar tu seguro Adeslas
           </h2>
-          <p className="text-base max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.8)" }}>
+          <p className="text-sm max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.8)" }}>
             Cuantos más asegurados, mayor ventaja. Y además acumula{" "}
-            <strong style={{ color: "#FFD600" }}>250 puntos por asegurado</strong> para canjear por regalos exclusivos.
+            <strong style={{ color: "#E4097D" }}>250 puntos por asegurado</strong> para canjear por regalos exclusivos.
           </p>
         </div>
 
-        {/* Tiers de meses gratis */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        {/* Tiers — 3 columnas desde móvil para reducir altura */}
+        <div className="grid grid-cols-3 gap-3 mb-4">
           {[
-            {
-              icon: "👤",
-              label: "1 asegurado",
-              premio: "1 mes gratis",
-              highlight: false,
-            },
-            {
-              icon: "👥",
-              label: "2 asegurados",
-              premio: "2 meses gratis",
-              highlight: false,
-            },
-            {
-              icon: "👨‍👩‍👧",
-              label: "3 o más asegurados",
-              premio: "3 meses gratis",
-              highlight: true,
-            },
+            { icon: "👤", label: "1 asegurado",       premio: "1 mes gratis",   highlight: false },
+            { icon: "👥", label: "2 asegurados",      premio: "2 meses gratis", highlight: false },
+            { icon: "👨‍👩‍👧", label: "3 o más asegurados", premio: "3 meses gratis", highlight: true  },
           ].map((tier, i) => (
             <div
               key={i}
-              className="rounded-2xl p-5 text-center flex flex-col items-center gap-2"
+              className="rounded-xl p-3 text-center flex flex-col items-center gap-1"
               style={{
                 background: tier.highlight ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.09)",
-                border: tier.highlight ? "2px solid #FFD600" : "1px solid rgba(255,255,255,0.15)",
+                border: tier.highlight ? "2px solid #E4097D" : "1px solid rgba(255,255,255,0.15)",
                 position: "relative",
               }}
             >
               {tier.highlight && (
                 <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-xs font-bold"
-                  style={{ backgroundColor: "#FFD600", color: "#003087", whiteSpace: "nowrap" }}
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap"
+                  style={{ backgroundColor: "#E4097D", color: "#fff" }}
                 >
                   ✦ Máxima ventaja
                 </div>
               )}
-              <span style={{ fontSize: 30 }}>{tier.icon}</span>
-              <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>{tier.label}</span>
-              <span
-                className="font-bold text-xl leading-tight"
-                style={{ color: tier.highlight ? "#FFD600" : "#fff" }}
-              >
+              <span style={{ fontSize: 22 }}>{tier.icon}</span>
+              <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>{tier.label}</span>
+              <span className="font-bold text-base leading-tight" style={{ color: tier.highlight ? "#E4097D" : "#fff" }}>
                 {tier.premio}
               </span>
             </div>
           ))}
         </div>
 
-        {/* Puntos Segurisimos */}
+        {/* Puntos Segurisimos — fila compacta */}
         <div
-          className="rounded-2xl p-5 mb-8"
-          style={{
-            background: "rgba(255,255,255,0.08)",
-            border: "1px solid rgba(255,255,255,0.15)",
-          }}
+          className="rounded-xl px-4 py-3 mb-5"
+          style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
         >
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <div className="flex-shrink-0 text-center">
-              <div className="text-3xl mb-1">🎁</div>
-              <div className="font-bold text-white text-sm">Programa</div>
-              <div className="font-bold text-white text-sm">Segurisimos</div>
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3">
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <span style={{ fontSize: 24 }}>🎁</span>
+              <div>
+                <div className="font-bold text-white text-xs leading-tight">Programa</div>
+                <div className="font-bold text-white text-xs leading-tight">Segurisimos</div>
+              </div>
             </div>
-            <div className="flex-1 text-center sm:text-left">
-              <p className="font-bold text-white mb-2">
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-white text-xs mb-1.5">
                 250 puntos por asegurado contratado — acumulables
               </p>
-              <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                {[
-                  "🎬 Netflix",
-                  "⚽ DAZN",
-                  "🏰 Disney+",
-                  "📺 Movistar",
-                  "💳 Tarjeta prepago",
-                ].map((item) => (
+              <div className="flex flex-wrap gap-1.5">
+                {["🎬 Netflix", "⚽ DAZN", "🏰 Disney+", "📺 Movistar", "💳 Tarjeta prepago"].map((item) => (
                   <span
                     key={item}
-                    className="px-3 py-1 rounded-full text-xs font-semibold text-white"
+                    className="px-2 py-0.5 rounded-full text-[10px] font-semibold text-white"
                     style={{ background: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.2)" }}
                   >
                     {item}
@@ -714,11 +689,10 @@ const PromoBanner = ({ onCalcClick }: { onCalcClick?: () => void }) => (
               </div>
             </div>
             <div className="flex-shrink-0 text-center hidden sm:block">
-              <div className="font-bold text-white text-xs mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>Ejemplo</div>
-              <div className="rounded-xl px-4 py-3" style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                <div className="text-xs" style={{ color: "rgba(255,255,255,0.7)" }}>4 asegurados</div>
-                <div className="font-bold text-white text-lg">1.000 pts</div>
-                <div className="text-xs" style={{ color: "#FFD600" }}>= 100€ Netflix</div>
+              <div className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>Ejemplo · 4 asegurados</div>
+              <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)" }}>
+                <div className="font-bold text-white text-base">1.000 pts</div>
+                <div className="text-xs" style={{ color: "#E4097D" }}>= 100€ Netflix</div>
               </div>
             </div>
           </div>
@@ -730,33 +704,19 @@ const PromoBanner = ({ onCalcClick }: { onCalcClick?: () => void }) => (
             <button
               onClick={onCalcClick}
               className="btn-cta-magenta font-bold cursor-pointer"
-              style={{
-                backgroundColor: "#E4097D",
-                color: "#fff",
-                padding: "14px 36px",
-                borderRadius: "10px",
-                fontSize: "1rem",
-                border: "none",
-              }}
+              style={{ backgroundColor: "#E4097D", color: "#fff", padding: "12px 32px", borderRadius: "10px", fontSize: "0.95rem", border: "none" }}
             >
               Calcular mi precio y activar oferta →
             </button>
           ) : (
             <CalcButton
               className="btn-cta-magenta font-bold cursor-pointer"
-              style={{
-                backgroundColor: "#E4097D",
-                color: "#fff",
-                padding: "14px 36px",
-                borderRadius: "10px",
-                fontSize: "1rem",
-                border: "none",
-              }}
+              style={{ backgroundColor: "#E4097D", color: "#fff", padding: "12px 32px", borderRadius: "10px", fontSize: "0.95rem", border: "none" }}
             >
               Calcular mi precio y activar oferta →
             </CalcButton>
           )}
-          <p className="text-xs mt-3" style={{ color: "rgba(255,255,255,0.5)" }}>
+          <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.5)" }}>
             Oferta válida del 1 jun. al 31 dic. 2026. Condiciones en adeslas.es.
           </p>
         </div>
