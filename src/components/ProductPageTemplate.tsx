@@ -87,6 +87,7 @@ export interface ProductPageData {
 
   /* Promo (optional) */
   showPromo?: boolean;
+  promoFamiliaVariant?: boolean;
 
   /* Schema.org structured data */
   schemaFaq?: boolean;
@@ -602,7 +603,7 @@ const PromoPill = PromoPillShared;
 
 /* ───────── Promo Banner ───────── */
 
-const PromoBanner = ({ onCalcClick }: { onCalcClick?: () => void }) => (
+const PromoBanner = ({ onCalcClick, familiaVariant }: { onCalcClick?: () => void; familiaVariant?: boolean }) => (
   <section className="py-8" style={{ background: "linear-gradient(150deg, #002470 0%, #003087 40%, #005BA6 75%, #009FE3 100%)" }}>
     <div className="container mx-auto max-w-5xl px-4">
       <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
@@ -617,28 +618,29 @@ const PromoBanner = ({ onCalcClick }: { onCalcClick?: () => void }) => (
           </div>
           <h2 className="text-white font-bold mb-2" style={{ fontSize: "clamp(1.3rem, 3vw, 2rem)", lineHeight: 1.2 }}>
             Hasta{" "}
-            <span style={{ color: "#E4097D" }}>3 meses gratis</span>{" "}
+            <span style={{ color: "#fff", textDecoration: "underline", textDecorationColor: "#E4097D", textUnderlineOffset: "4px" }}>3 meses gratis</span>{" "}
             al contratar tu seguro Adeslas
           </h2>
           <p className="text-sm max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.8)" }}>
             Cuantos más asegurados, mayor ventaja. Y además acumula{" "}
-            <strong style={{ color: "#E4097D" }}>250 puntos por asegurado</strong> para canjear por regalos exclusivos.
+            <strong style={{ color: "#FFD600" }}>250 puntos por asegurado</strong> para canjear por regalos exclusivos.
           </p>
         </div>
 
         {/* Tiers — 3 columnas desde móvil para reducir altura */}
         <div className="grid grid-cols-3 gap-3 mb-4">
           {[
-            { icon: "👤", label: "1 asegurado",       premio: "1 mes gratis",   highlight: false },
-            { icon: "👥", label: "2 asegurados",      premio: "2 meses gratis", highlight: false },
-            { icon: "👨‍👩‍👧", label: "3 o más asegurados", premio: "3 meses gratis", highlight: true  },
+            { icon: "👤", label: "1 asegurado",        premio: "1 mes gratis",                              highlight: false },
+            { icon: "👥", label: "2 asegurados",       premio: "2 meses gratis",                            highlight: false },
+            { icon: "👨‍👩‍👧", label: "3 o más asegurados", premio: familiaVariant ? "25% de descuento" : "3 meses gratis", highlight: true  },
           ].map((tier, i) => (
             <div
               key={i}
               className="rounded-xl p-3 text-center flex flex-col items-center gap-1"
               style={{
-                background: tier.highlight ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.09)",
-                border: tier.highlight ? "2px solid #E4097D" : "1px solid rgba(255,255,255,0.15)",
+                background: tier.highlight ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.09)",
+                border: tier.highlight ? "2px solid rgba(255,255,255,0.55)" : "1px solid rgba(255,255,255,0.15)",
+                boxShadow: tier.highlight ? "0 0 18px rgba(228,9,125,0.35)" : "none",
                 position: "relative",
               }}
             >
@@ -652,7 +654,7 @@ const PromoBanner = ({ onCalcClick }: { onCalcClick?: () => void }) => (
               )}
               <span style={{ fontSize: 22 }}>{tier.icon}</span>
               <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>{tier.label}</span>
-              <span className="font-bold text-base leading-tight" style={{ color: tier.highlight ? "#E4097D" : "#fff" }}>
+              <span className="font-bold text-base leading-tight" style={{ color: "#fff" }}>
                 {tier.premio}
               </span>
             </div>
@@ -692,7 +694,7 @@ const PromoBanner = ({ onCalcClick }: { onCalcClick?: () => void }) => (
               <div className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.7)" }}>Ejemplo · 4 asegurados</div>
               <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)" }}>
                 <div className="font-bold text-white text-base">1.000 pts</div>
-                <div className="text-xs" style={{ color: "#E4097D" }}>= 100€ Netflix</div>
+                <div className="text-xs" style={{ color: "#FFD600" }}>= 100€ Netflix</div>
               </div>
             </div>
           </div>
@@ -785,7 +787,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
         <ProductDetail data={data} />
         <GoogleReviewsSection />
         <ProductFaqSection faqs={data.faqs} productName={data.cardName} />
-        {data.showPromo !== false && <PromoBanner onCalcClick={openCustom} />}
+        {data.showPromo !== false && <PromoBanner onCalcClick={openCustom} familiaVariant={data.promoFamiliaVariant} />}
         <CtaSection onCalcClick={openCustom} />
         <Footer />
         {/* Global modal for customTarificador (mobile + desktop CTA) */}

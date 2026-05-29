@@ -204,6 +204,7 @@ const data: ProductPageData = {
     }
   ],
   showPromo: true,
+  promoFamiliaVariant: true,
   schemaFaq: true
 };
 
