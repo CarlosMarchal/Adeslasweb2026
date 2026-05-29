@@ -17,7 +17,8 @@ const data: SegmentPageData = {
   },
   heroTitle: "Seguro Médico Adeslas con Ginecología Completa",
   heroSubtitle: "Accede a ginecología completa con Adeslas: especialistas, mamografía, citología, ecografías y cribados sin límites. +51.000 médicos y sin listas de espera.",
-  heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
+  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
+  heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   contentTitle: "Toda la salud femenina cubierta con Adeslas",
   contentDescription: "La salud de la mujer requiere una atención ginecológica continua a lo largo de toda la vida: revisiones preventivas, control hormonal, diagnóstico precoz de cáncer de mama y cérvix, y atención especializada en fertilidad. Adeslas ofrece la cobertura ginecológica más completa del mercado, con acceso directo a ginecólogos expertos en toda España, mamografía sin límite de frecuencia y sin necesidad de derivación previa.",
   contentFeatures: [
@@ -36,7 +37,7 @@ const data: SegmentPageData = {
       badge: "Económico",
       features: ["Ginecología ambulatoria completa", "Citología y ecografía incluidas", "Mamografía según prescripción", "Urgencias ginecológicas 24h", "Sin hospitalización programada"],
       highlighted: false,
-      promoBadge: "🎁 Promoción puntos",
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
     {
       name: "Adeslas Plena Total",
@@ -45,7 +46,7 @@ const data: SegmentPageData = {
       badge: "Recomendado",
       features: ["Sin copagos en ginecología", "Hospitalización y cirugía incluidas", "Mamografía y pruebas diagnósticas sin límite", "Parto y cesárea cubiertos", "3 años sin subida de precio"],
       highlighted: true,
-      promoBadge: "🎁 Promoción puntos",
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
     {
       name: "Adeslas Extra 150",

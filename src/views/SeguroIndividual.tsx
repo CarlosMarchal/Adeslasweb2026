@@ -17,7 +17,8 @@ const data: SegmentPageData = {
   },
   heroTitle: "Seguro Médico Privado Adeslas Individual",
   heroSubtitle: "Compara los planes Adeslas y elige el que mejor se adapta a ti. GO desde 21€, Plena Vital desde 38€ o Plena Total sin copagos. +51.000 médicos, sin listas de espera.",
-  heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
+  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
+  heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   contentTitle: "Un seguro médico pensado para ti",
   contentDescription: "Si buscas un seguro médico privado individual en España, Adeslas ofrece la gama más completa del mercado: desde el plan más económico (Adeslas Go desde 21€/mes) hasta cobertura total sin copagos con Adeslas Plena Total. Sin listas de espera y con acceso inmediato a más de 51.000 médicos en toda España.",
   contentFeatures: [
@@ -36,7 +37,7 @@ const data: SegmentPageData = {
       badge: "Económico",
       features: ["Atención ambulatoria completa", "Acceso a +51.000 médicos", "Urgencias 24h sin lista de espera", "Diagnóstico avanzado incluido", "Sin hospitalización programada"],
       highlighted: false,
-      promoBadge: "🎁 Promoción puntos",
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
     {
       name: "Adeslas Plena Total",
@@ -45,7 +46,7 @@ const data: SegmentPageData = {
       badge: "Recomendado",
       features: ["Sin copagos en todos los servicios", "Hospitalización ilimitada incluida", "Dental: 46 actos incluidos", "3 años sin subida de precio", "Asistencia viajes 100.000€"],
       highlighted: true,
-      promoBadge: "🎁 Promoción puntos",
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
     {
       name: "Adeslas Extra 150",

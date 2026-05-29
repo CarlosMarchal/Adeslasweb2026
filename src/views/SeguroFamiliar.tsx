@@ -17,7 +17,8 @@ const data: SegmentPageData = {
   },
   heroTitle: "Seguro Médico Adeslas para Familias",
   heroSubtitle: "Cubre a toda la familia con un seguro Adeslas: pediatría, ginecología, urgencias 24h y +51.000 médicos. Descuento del 10% a partir del 4.º asegurado.",
-  heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
+  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
+  heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   contentTitle: "La salud de tu familia en buenas manos",
   contentDescription: "Como padre o madre, tu prioridad es la salud y bienestar de tu familia. Adeslas te ofrece planes familiares integrales que cubren todas las necesidades médicas de padres e hijos, con especial atención a la pediatría y el cuidado de los menores. Con más de 51.000 médicos y 1.400 centros en toda España, tienes acceso inmediato sin listas de espera.",
   contentFeatures: [
@@ -37,7 +38,7 @@ const data: SegmentPageData = {
       badge: "Económico",
       features: ["Atención ambulatoria para toda la familia", "Pediatría sin lista de espera", "Urgencias 24h en toda España", "Diagnóstico completo incluido", "Precio por miembro desde 38€/mes"],
       highlighted: false,
-      promoBadge: "🎁 Promoción puntos",
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
     {
       name: "Adeslas Plena Total",
@@ -46,7 +47,7 @@ const data: SegmentPageData = {
       badge: "Recomendado",
       features: ["Sin copagos para toda la familia", "Hospitalización ilimitada y parto cubierto", "Dental: 46 actos incluidos", "3 años sin subida de precio", "Descuento familiar desde el 4º asegurado"],
       highlighted: true,
-      promoBadge: "🎁 Promoción puntos",
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
     {
       name: "Adeslas Extra 150",

@@ -17,7 +17,8 @@ const data: SegmentPageData = {
   },
   heroTitle: "Seguro de Salud Adeslas para Personas Mayores",
   heroSubtitle: "Seguros médicos diseñados específicamente para personas de 55 a 84 años: asesor de salud personal, más de 40 especialidades, hospitalización completa y precios garantizados.",
-  heroPromo: "Consigue puntos al contratar tu seguro ahora y conviértelos en regalos exclusivos",
+  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
+  heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   contentTitle: "Cobertura médica especializada para mayores de 55",
   contentDescription: "Adeslas dispone de dos seguros médicos diseñados exclusivamente para personas de 55 a 84 años: Adeslas Seniors (55-84 años) y Adeslas Seniors Total (63-84 años). Ambos incluyen asesor de salud personal, todas las especialidades médicas, hospitalización en habitación individual con cama para acompañante y los medios de diagnóstico más avanzados.",
   contentFeatures: [
@@ -36,7 +37,7 @@ const data: SegmentPageData = {
       badge: "Para 55-84 años",
       features: ["Acceso a +40 especialidades médicas", "Hospitalización en habitación individual", "Asesor Médico de Salud personal", "Copago ambulatorio máx. 250€/año (vía asesor)", "Asistencia internacional 12.000€/año"],
       highlighted: false,
-      promoBadge: "🎁 Promoción puntos",
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
     {
       name: "Adeslas Seniors Total",
@@ -45,7 +46,7 @@ const data: SegmentPageData = {
       badge: "Recomendado · 63-84 años",
       features: ["Todo lo de Seniors más:", "Dental: 46 actos incluidos + 50% primer implante", "Chequeo médico anual preventivo", "Asistencia viajes hasta 100.000€", "3 años sin subida de prima garantizados"],
       highlighted: true,
-      promoBadge: "🎁 Promoción puntos",
+      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
     },
   ],
   tarificadorTitle: "Calcula tu precio personalizado",

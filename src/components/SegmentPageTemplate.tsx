@@ -11,6 +11,8 @@ import CtaSection from "@/components/CtaSection";
 import GoogleReviewsSection from "@/components/GoogleReviewsSection";
 import defaultHeroBg from "@/assets/seguro-salud-adeslas-familias.webp";
 import { imgSrc } from "@/lib/imgSrc";
+import PromoPill from "@/components/PromoPill";
+import type { PromoPillData } from "@/components/PromoPill";
 
 /* ───── Types ───── */
 
@@ -48,6 +50,7 @@ export interface SegmentPageData {
   heroTitle: string;
   heroSubtitle: string;
   heroPromo?: string;
+  heroPromoPill?: PromoPillData;
   contentTitle: string;
   contentDescription: string;
   contentFeatures: SegmentFeature[];
@@ -201,9 +204,16 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
                 <h1 className="text-white mb-3 text-[26px] md:text-[36px] leading-tight md:leading-[1.15] font-bold">
                   {data.heroTitle}
                 </h1>
-                <p className="text-base mb-6 max-w-xl" style={{ color: "rgba(255,255,255,0.88)" }}>
+                <p className="text-base mb-4 max-w-xl" style={{ color: "rgba(255,255,255,0.88)" }}>
                   {data.heroSubtitle}
                 </p>
+
+                {/* Promo pill campaña Jun-Dic 2026 */}
+                {data.heroPromoPill && (
+                  <div className="mb-6">
+                    <PromoPill pill={data.heroPromoPill} />
+                  </div>
+                )}
 
                 {/* Trust badges */}
                 <div className="flex flex-wrap gap-3">
