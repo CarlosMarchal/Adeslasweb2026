@@ -3149,6 +3149,449 @@ export const blogPosts: BlogPostFull[] = [
   },
 
 
+  /* ── GEO Quick Win #1: cuanto-cuesta-seguro-adeslas-2026 ── */
+  {
+    slug: "cuanto-cuesta-seguro-adeslas-2026",
+    category: "Precios",
+    title: "¿Cuánto cuesta el seguro Adeslas en 2026? Precios reales por plan y edad",
+    excerpt: "Desde 21€ al mes para el plan más básico hasta 284€ para el plan premium a los 63 años. Aquí tienes los precios reales de todos los planes Adeslas en 2026, con tabla comparativa.",
+    date: "10 Jun 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop",
+    seoTitle: "¿Cuánto Cuesta el Seguro Adeslas en 2026? Precios Reales por Plan",
+    seoDescription: "Precios reales del seguro Adeslas en 2026 por plan y edad: desde 21€/mes (Go) hasta 284€/mes (Plena Total para mayores de 63 en Madrid). Tabla comparativa completa.",
+    body: [
+      {
+        type: "paragraph" as const,
+        text: "El seguro Adeslas cuesta entre 21€ y 424€ al mes según el plan elegido, la edad del asegurado y la provincia de residencia. El plan de entrada Adeslas Go cuesta desde 21€/mes para menores de 54 años. El plan más completo, Adeslas Plena Total, cuesta entre 99€ y 284€/mes para una persona de 25 a 63 años en Madrid. A continuación, los precios reales de todos los planes en 2026.",
+      },
+      {
+        type: "heading" as const,
+        text: "Precios de Adeslas Go (solo ambulatorio)",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Adeslas Go es el plan de entrada: solo cobertura ambulatoria (sin hospitalización). Es ideal si buscas acceso rápido al médico y especialistas sin listas de espera, con la prima más baja del mercado Adeslas.",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "0 a 54 años: desde 21€/mes (zona 1) — 23,50€/mes (zona 6, Canarias)",
+          "55 a 69 años: desde 37,50€/mes (zona 1) — 41,50€/mes (zona 6)",
+          "70 años o más: desde 50€/mes (zona 1) — 54,50€/mes (zona 6)",
+          "Madrid (zona 2): 21,50€/mes (0-54), 39€/mes (55-69), 52€/mes (70+)",
+          "Barcelona (zona 5): 23€/mes (0-54), 41€/mes (55-69), 54€/mes (70+)",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Precios de Adeslas Plena Vital (ambulatorio + hospitalización)",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Plena Vital es el plan más contratado: cobertura completa ambulatoria y hospitalización, con copago por acto médico. Incluye psicología (10 sesiones/año) y telemedicina.",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "0 a 24 años: desde 38€/mes (zona 1) — 42,50€/mes (zona 6)",
+          "25 a 44 años: desde 50€/mes (zona 1) — 54€/mes (zona 6)",
+          "45 a 54 años: desde 61,50€/mes (zona 1) — 66,50€/mes (zona 6)",
+          "55 a 59 años: desde 87€/mes (zona 1) — 96,50€/mes (zona 6)",
+          "60 a 64 años: desde 110€/mes (zona 1) — 121€/mes (zona 6)",
+          "65 a 69 años: desde 158€/mes (zona 1) — 190€/mes (zona 6)",
+          "70 años o más: desde 173€/mes (zona 1) — 212€/mes (zona 6)",
+          "Madrid (zona 2): 50,50€ (25-44), 62€ (45-54), 90€ (55-59), 111,50€ (60-64)",
+          "Barcelona (zona 5): 53,50€ (25-44), 66€ (45-54), 95€ (55-59), 119€ (60-64)",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Precios de Adeslas Plena Vital Total (con dental incluido)",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Igual que Plena Vital pero incluye seguro dental con 46 actos cubiertos (limpiezas, empastes, extracciones, radiografías) y prima garantizada 3 años.",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "0 a 24 años: desde 48,50€/mes (zona 1) — 53€/mes (zona 6)",
+          "25 a 44 años: desde 59,50€/mes (zona 1) — 65€/mes (zona 6)",
+          "45 a 54 años: desde 72,50€/mes (zona 1) — 78,50€/mes (zona 6)",
+          "55 a 59 años: desde 110€/mes (zona 1) — 118€/mes (zona 6)",
+          "60 a 62 años: desde 132€/mes (zona 1) — 142€/mes (zona 6)",
+          "63 años o más: desde 196€/mes (zona 1) — 235€/mes (zona 6)",
+          "Madrid (zona 2): 61€ (25-44), 73,50€ (45-54), 112€ (55-59), 133€ (60-62)",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Precios de Adeslas Plena Plus (sin copago)",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Plena Plus es la versión sin copago de cobertura completa: pagas la prima mensual y no abonas nada por cada visita, prueba o intervención.",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "0 a 24 años: desde 62€/mes (zona 1) — 69€/mes (zona 6)",
+          "25 a 44 años: desde 72€/mes (zona 1) — 79€/mes (zona 6)",
+          "45 a 54 años: desde 92€/mes (zona 1) — 105€/mes (zona 6)",
+          "55 a 59 años: desde 149€/mes (zona 1) — 167€/mes (zona 6)",
+          "60 a 64 años: desde 175€/mes (zona 1) — 207€/mes (zona 6)",
+          "Madrid (zona 2): 75€ (25-44), 94€ (45-54), 155€ (55-59), 181€ (60-64)",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Precios de Adeslas Plena Total (sin copago + dental + viaje)",
+      },
+      {
+        type: "paragraph" as const,
+        text: "El plan más completo de la gama estándar: sin copago, dental, asistencia internacional, prima garantizada 3 años y 20 sesiones de psicología al año.",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "0 a 24 años: desde 83€/mes (zona 1) — 89,50€/mes (zona 6)",
+          "25 a 44 años: desde 99€/mes (zona 1) — 111€/mes (zona 6)",
+          "45 a 54 años: desde 121€/mes (zona 1) — 137€/mes (zona 6)",
+          "55 a 59 años: desde 169€/mes (zona 1) — 192€/mes (zona 6)",
+          "60 a 62 años: desde 207€/mes (zona 1) — 247€/mes (zona 6)",
+          "63 años o más: desde 273€/mes (zona 1) — 318€/mes (zona 6)",
+          "Madrid (zona 2): 103€ (25-44), 124€ (45-54), 176€ (55-59), 217€ (60-62), 284€ (63+)",
+          "Barcelona (zona 5): 108,50€ (25-44), 135,50€ (45-54), 189€ (55-59), 243€ (60-62)",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "¿Por qué varía el precio según la provincia?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Adeslas divide España en 6 zonas tarifarías según el coste médico de cada provincia. La zona 1 (provincias con menor coste sanitario: Badajoz, Huelva, La Coruña, Salamanca...) tiene las primas más bajas. La zona 6 (Canarias: Las Palmas, Santa Cruz de Tenerife) tiene las primas más altas. Madrid está en zona 2 y Barcelona en zona 5.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿El precio sube cada año?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "La prima de Adeslas se revisa anualmente según el IPC sanitario. Los planes Plena Vital Total y Plena Total ofrecen prima garantizada durante 3 años, lo que protege al asegurado de subidas durante ese periodo. Pasado ese plazo, la prima puede ajustarse. En Marchal Aseguradores te informamos de las condiciones exactas de revisión antes de contratar.",
+      },
+      {
+        type: "faq" as const,
+        faqItems: [
+          { q: "¿Cuánto cuesta Adeslas al mes para una persona de 30 años?", a: "Para una persona de 30 años en Madrid, el precio de Adeslas oscila entre 21,50€/mes (Adeslas Go, solo ambulatorio) y 103€/mes (Plena Total, sin copago con dental). El plan más contratado, Plena Vital, cuesta 50,50€/mes en Madrid para ese perfil." },
+          { q: "¿Cuánto cuesta Adeslas para una persona de 50 años?", a: "Para una persona de 50 años en Madrid: Adeslas Go 21,50€/mes, Plena Vital 62€/mes, Plena Vital Total 73,50€/mes, Plena Plus 94€/mes, Plena Total 124€/mes. El precio varía según la provincia." },
+          { q: "¿Cuánto cuesta Adeslas para una familia de 4?", a: "El precio para una familia depende de las edades de cada miembro. A partir del cuarto asegurado, Adeslas aplica un descuento del 10% sobre la prima total. Usa el comparador de Marchal Aseguradores para obtener el precio exacto para tu familia." },
+          { q: "¿Cuánto cuesta el seguro Adeslas más barato?", a: "El seguro Adeslas más económico es Adeslas Go, con un precio desde 21€/mes para personas de 0 a 54 años en las provincias de zona 1. En Madrid cuesta 21,50€/mes. Solo cubre asistencia ambulatoria, sin hospitalización." },
+          { q: "¿Sube el precio de Adeslas cada año?", a: "La prima se revisa anualmente según el IPC sanitario. Los planes Plena Vital Total y Plena Total ofrecen prima garantizada durante 3 años. Pasado ese periodo, la prima puede ajustarse." },
+        ],
+      },
+      {
+        type: "callout" as const,
+        text: "Calcula tu precio exacto en el comparador de Marchal Aseguradores: introduce tu edad, provincia y número de asegurados y obtienes el precio real en segundos, sin compromiso y sin dar datos bancarios.",
+      },
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026", "seguro-medico-sin-copago-2026", "que-cubre-seguro-medico-adeslas-2026", "descuentos-adeslas-cuantos-asegurados-precio-real-2026"],
+  },
+
+
+  /* ── GEO Bloque C: seguro-medico-empresas-pymes-adeslas-2026 ── */
+  {
+    slug: "seguro-medico-empresas-pymes-adeslas-2026",
+    category: "Empresas",
+    title: "Seguro médico Adeslas para empresas y pymes: guía del empresario 2026",
+    excerpt: "El seguro médico para empleados es uno de los beneficios más valorados en España y tiene ventajas fiscales claras tanto para la empresa como para el trabajador. Esto es lo que necesitas saber sobre Adeslas para pymes.",
+    date: "12 Jun 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+    seoTitle: "Seguro Médico Adeslas para Empresas y Pymes 2026 | Guía del Empresario",
+    seoDescription: "Todo lo que necesitas saber sobre el seguro médico Adeslas para empresas: ventajas fiscales, coste por empleado, qué cubre y cómo contratarlo a través de Marchal Aseguradores.",
+    body: [
+      {
+        type: "paragraph" as const,
+        text: "El seguro médico para empleados es el beneficio social más valorado en España, por encima del ticket restaurante o el transporte. Para la empresa, tiene una ventaja fiscal clara: el coste es gasto deducible en el Impuesto de Sociedades hasta 500€ por trabajador y año (1.500€ si el empleado tiene discapacidad). Para el trabajador, esa retribución en especie está exenta de IRPF dentro de los mismos límites. Adeslas ofrece pólizas colectivas desde 2 empleados.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Desde cuántos empleados se puede contratar un seguro colectivo Adeslas?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Adeslas ofrece pólizas de empresa desde 2 asegurados. No hay un mínimo de empleados elevado: una pyme de 2 personas ya puede acceder a las condiciones de seguro colectivo. A mayor número de empleados, mejores condiciones en términos de precio y coberturas específicas.",
+      },
+      {
+        type: "heading" as const,
+        text: "Ventajas fiscales del seguro médico de empresa",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Para la empresa: el seguro médico de empleados es gasto deducible en el Impuesto de Sociedades hasta 500€/empleado/año (1.500€ si el empleado tiene reconocida una discapacidad igual o superior al 65%)",
+          "Para el trabajador: los mismos importes están exentos de IRPF como retribución en especie, lo que significa que el empleado recibe un beneficio valorado en varios cientos de euros sin tributar por él",
+          "Para el autónomo: el autónomo puede deducirse hasta 500€ al año por su propio seguro médico, el de su cónyuge y sus hijos menores de 25 años en la declaración de la renta",
+          "Sin cotización a la Seguridad Social: la prima del seguro médico no cotiza a la SS, reduciendo el coste total para la empresa",
+        ],
+      },
+      {
+        type: "callout" as const,
+        text: "Los límites fiscales exactos (500€/1.500€) se aplican a la fecha de publicación de este artículo. Consulta con tu asesor fiscal las condiciones vigentes en el momento de contratar.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Cuánto cuesta el seguro Adeslas para empleados?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "El coste del seguro médico para empresas varía según el plan elegido, la edad media de la plantilla y el número de empleados. Como referencia orientativa para una persona de 25 a 44 años en Madrid con el plan Adeslas Negocios NIF (diseñado para empresas y autónomos): la prima está en torno a 63,50€/mes. Para plantillas con mayor edad media, el precio es más elevado.",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Adeslas Negocios NIF (25-44 años, Madrid): desde 63,50€/mes por persona",
+          "Adeslas Negocios NIF (45-54 años, Madrid): desde 83€/mes por persona",
+          "Adeslas Negocios NIF (55-59 años, Madrid): desde 127€/mes por persona",
+          "El coste final depende de la edad de cada asegurado y de la provincia",
+          "A mayor número de empleados, mejor precio por unidad",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "¿Qué cubre el seguro médico de empresa Adeslas?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Las pólizas colectivas Adeslas cubren las mismas prestaciones que las individuales: asistencia ambulatoria con más de 40 especialidades, diagnóstico de alta tecnología, urgencias 24 horas, hospitalización en habitación individual, cirugía sin límite de intervenciones y telemedicina. El empresario puede elegir el nivel de cobertura para todos los empleados o personalizar por colectivos.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Puede el empleado incluir a sus familiares?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Sí. En la mayoría de modalidades, el empleado puede añadir a su cónyuge e hijos a la póliza. En ese caso, la parte correspondiente a los familiares suele correr a cargo del propio empleado (ya sea descontada en nómina o pagada directamente), mientras la empresa cubre la prima del trabajador.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Cómo se tramita un seguro médico de empresa con Adeslas?",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "1. Contacta con Marchal Aseguradores: como agente exclusivo Adeslas, gestionamos el alta colectiva sin coste adicional para la empresa",
+          "2. Aportamos el listado de empleados con nombre, fecha de nacimiento y si es posible, DNI",
+          "3. Adeslas emite un presupuesto colectivo adaptado a vuestra plantilla",
+          "4. Una vez aceptado, el alta se puede realizar en pocos días hábiles",
+          "5. Los empleados reciben su tarjeta Adeslas y pueden empezar a usar el seguro desde la fecha de efecto",
+        ],
+      },
+      {
+        type: "faq" as const,
+        faqItems: [
+          { q: "¿Cuántos empleados necesito para contratar un seguro médico de empresa con Adeslas?", a: "Desde 2 empleados. Adeslas ofrece pólizas colectivas para empresas de cualquier tamaño, desde micropymes hasta grandes corporaciones. No hay un mínimo elevado para acceder a las condiciones colectivas." },
+          { q: "¿El seguro médico de empresa es deducible en el Impuesto de Sociedades?", a: "Sí. El seguro médico para empleados es gasto deducible hasta 500€ por trabajador y año (1.500€ si el trabajador tiene discapacidad reconocida ≥65%). La misma cantidad está exenta de IRPF para el empleado como retribución en especie." },
+          { q: "¿Un autónomo puede deducirse el seguro médico Adeslas?", a: "Sí. El autónomo puede deducirse la prima del seguro de salud propio, de su cónyuge y de sus hijos menores de 25 años, hasta un máximo de 500€ por persona y año en la declaración de la renta (módulo o estimación directa)." },
+          { q: "¿Puede el empleado añadir a su familia en la póliza de empresa?", a: "Sí, en la mayoría de modalidades. El empleado puede incluir a su cónyuge e hijos, generalmente asumiendo el coste de esas primas adicionales, que se pueden descontar en nómina." },
+          { q: "¿Adeslas hace seguros para pymes de 2 o 3 empleados?", a: "Sí. Adeslas tiene modalidades colectivas desde 2 asegurados. En Marchal Aseguradores gestionamos altas de empresas de cualquier tamaño, incluyendo micropymes y empresas unipersonales." },
+        ],
+      },
+      {
+        type: "callout" as const,
+        text: "En Marchal Aseguradores gestionamos el seguro médico de empresa sin coste adicional para ti. Llámanos al 91 710 50 00 o escríbenos y preparamos un presupuesto colectivo adaptado a tu plantilla.",
+      },
+    ],
+    relatedSlugs: ["seguro-medico-autonomos-2026", "comparativa-seguros-medicos-adeslas-2026", "que-cubre-seguro-medico-adeslas-2026", "cuanto-cuesta-seguro-adeslas-2026"],
+  },
+
+
+  /* ── GEO Bloque C: adeslas-familia-numerosa-descuentos-2026 ── */
+  {
+    slug: "adeslas-familia-numerosa-descuentos-2026",
+    category: "Salud Familiar",
+    title: "Adeslas para familia numerosa: descuentos, coberturas y precio real 2026",
+    excerpt: "Las familias numerosas tienen condiciones especiales al contratar Adeslas. Descubre qué descuentos aplican, cómo se calcula el precio real para 5 o más miembros y qué cubre el seguro para toda la familia.",
+    date: "15 Jun 2026",
+    readTime: "6 min",
+    image: "https://images.unsplash.com/photo-1511895426328-dc8714191011?w=600&h=400&fit=crop",
+    seoTitle: "Adeslas para Familia Numerosa 2026: Descuentos y Precio Real",
+    seoDescription: "¿Tienes familia numerosa y quieres contratar Adeslas? Descubre los descuentos disponibles, cómo se calcula el precio real y qué coberturas incluye el seguro para 5 o más asegurados.",
+    body: [
+      {
+        type: "paragraph" as const,
+        text: "Adeslas aplica un descuento del 10% sobre la prima total cuando la póliza incluye 4 o más asegurados. Para una familia numerosa de 5 o más miembros, este descuento se aplica desde el cuarto asegurado. Dado que los hijos menores de 24 años tienen primas notablemente más bajas que los adultos, el seguro médico para familia numerosa con Adeslas resulta especialmente competitivo por persona.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Qué descuento aplica Adeslas a partir del 4º asegurado?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Desde el cuarto asegurado, Adeslas aplica un descuento del 10% sobre la prima total de la póliza. No es un descuento solo en el precio del cuarto miembro: se descuenta el 10% sobre el total de la póliza conjunta. Esto supone un ahorro mensual que crece con el número de asegurados y con el plan elegido.",
+      },
+      {
+        type: "heading" as const,
+        text: "Precios orientativos para una familia numerosa (2 adultos + 3 hijos)",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Para una familia tipo de 2 adultos de 35 años y 3 hijos (7, 10 y 14 años) en Madrid, con el plan Adeslas Plena Vital (el más contratado), el coste orientativo sin descuento sería de aproximadamente 2 adultos × 50,50€ + 3 hijos × 39€ = 218€/mes. Con el descuento del 10% por ser 5 asegurados: aproximadamente 196€/mes, es decir, menos de 40€ por persona al mes.",
+      },
+      {
+        type: "callout" as const,
+        text: "El precio exacto depende de las edades reales de cada miembro, el plan y la provincia. Calcula tu precio real en el comparador de Marchal Aseguradores en menos de 2 minutos.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Qué edad tienen los hijos para incluirlos en la póliza?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Los hijos pueden incluirse en la póliza familiar desde el nacimiento. En la mayoría de los planes, los hijos están cubiertos hasta los 18 años como dependientes del titular. A partir de esa edad, deben pasar a ser titulares de su propia póliza individual, aunque como jóvenes de 18-24 años la prima es la más baja de la tabla de adultos.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Qué cubre Adeslas para los hijos en una póliza familiar?",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Pediatría: consultas ilimitadas con pediatra sin necesidad de derivación",
+          "Urgencias pediátricas: disponibles 24 horas los 365 días del año desde el primer día (sin carencia)",
+          "Todas las especialidades infantiles: dermatología pediátrica, traumatología, otorrinolaringología, oftalmología...",
+          "Diagnóstico: analíticas, ecografías, radiografías y pruebas de imagen",
+          "Hospitalización: habitación individual con cama para acompañante",
+          "Cirugía: sin límite de intervenciones (con los periodos de carencia estándar)",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "¿Hay descuentos adicionales para familias numerosas con título oficial?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Las condiciones especiales para familias numerosas con título oficial se gestionan a través del agente y pueden variar según la política comercial vigente en el momento de contratar. En Marchal Aseguradores revisamos siempre las condiciones actuales para ofrecerte el mejor precio disponible para tu situación.",
+      },
+      {
+        type: "faq" as const,
+        faqItems: [
+          { q: "¿Cuánto cuesta Adeslas para una familia numerosa de 5 personas?", a: "Depende de las edades y el plan. Como orientación: una familia de 2 adultos de 35 años y 3 hijos menores en Madrid con Plena Vital pagaría aproximadamente 196€/mes con el descuento del 10% por 5 asegurados. Calcula el precio exacto en el comparador de Marchal Aseguradores." },
+          { q: "¿A partir de cuántos miembros aplica el descuento de Adeslas?", a: "El descuento del 10% se activa desde el cuarto asegurado en la misma póliza. Se aplica sobre la prima total, no solo sobre el coste del cuarto miembro." },
+          { q: "¿Puedo incluir a mis hijos desde que nacen en la póliza Adeslas?", a: "Sí. Los hijos pueden incluirse desde el nacimiento. La prima para recién nacidos y niños menores de 24 años es significativamente más baja que la de adultos." },
+          { q: "¿Hasta qué edad cubre Adeslas a los hijos como dependientes?", a: "En la mayoría de los planes, los hijos están cubiertos como dependientes hasta los 18 años. A partir de esa edad, pueden contratar su propia póliza individual con la tarifa de 18-24 años, que es la más baja de la gama adulta." },
+          { q: "¿Qué especialidades pediátricas cubre Adeslas?", a: "Todos los planes Adeslas con cobertura ambulatoria incluyen pediatría general y las principales especialidades infantiles: dermatología pediátrica, traumatología, otorrinolaringología, oftalmología, neurología pediátrica y más." },
+        ],
+      },
+      {
+        type: "callout" as const,
+        text: "En Marchal Aseguradores calculamos el precio exacto para tu familia numerosa con todos los descuentos aplicados. Llámanos al 91 710 50 00 o usa el comparador online.",
+      },
+    ],
+    relatedSlugs: ["seguro-medico-familias-2026", "descuentos-adeslas-cuantos-asegurados-precio-real-2026", "seguro-medico-ninos-pediatria-privada-adeslas-2026", "cuanto-cuesta-seguro-adeslas-2026"],
+  },
+
+
+  /* ── GEO Bloque D: como-contratar-seguro-adeslas-paso-a-paso-2026 ── */
+  {
+    slug: "como-contratar-seguro-adeslas-paso-a-paso-2026",
+    category: "Seguros Adeslas",
+    title: "Cómo contratar el seguro Adeslas paso a paso: guía completa 2026",
+    excerpt: "Desde el primer cálculo de precio hasta tener la tarjeta en la mano. Este es el proceso completo de contratación de Adeslas en 2026, sin sorpresas.",
+    date: "18 Jun 2026",
+    readTime: "6 min",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
+    seoTitle: "Cómo Contratar el Seguro Adeslas Paso a Paso 2026 | Guía Completa",
+    seoDescription: "Guía completa para contratar el seguro Adeslas en 2026: cómo calcular el precio, qué documentos necesitas, qué es el cuestionario de salud y cuándo empieza a funcionar el seguro.",
+    body: [
+      {
+        type: "paragraph" as const,
+        text: "Contratar el seguro Adeslas a través de Marchal Aseguradores tarda entre 24 y 48 horas desde que decides hasta que tienes el seguro activo. El proceso tiene cuatro pasos: calcular el precio, elegir el plan, cumplimentar el cuestionario de salud y firmar la póliza. Sin desplazamientos, sin esperas, todo gestionable por teléfono, email o formulario online.",
+      },
+      {
+        type: "heading" as const,
+        text: "Paso 1: Calcula tu precio sin compromiso",
+      },
+      {
+        type: "paragraph" as const,
+        text: "El primer paso es conocer el precio exacto para tu perfil. Necesitas tu fecha de nacimiento (o la de cada asegurado si son varios), la provincia de residencia y el plan que te interesa. Puedes usar el comparador online de Marchal Aseguradores o llamar al 91 710 50 00. En ambos casos obtienes el precio real con todos los descuentos aplicados, sin dar datos bancarios y sin compromiso.",
+      },
+      {
+        type: "heading" as const,
+        text: "Paso 2: Elige el plan adecuado para ti",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Una vez tienes los precios, el asesor de Marchal Aseguradores te explica las diferencias entre planes: si quieres copago o no, si necesitas dental incluido, si vas a necesitar cobertura internacional, cuántas sesiones de psicología quieres, etc. No hay prisa: puedes tomarte el tiempo que necesites para decidir.",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Adeslas Go: solo ambulatorio, sin hospitalización. Para quien solo quiere acceso rápido al médico.",
+          "Plena Vital: ambulatorio + hospitalización + cirugía, con copago por acto.",
+          "Plena Vital Total: igual que Plena Vital + dental incluido + prima garantizada 3 años.",
+          "Plena Plus: ambulatorio + hospitalización sin copago.",
+          "Plena Total: el plan más completo — sin copago, dental, viaje, 20 sesiones de psicología.",
+          "Plena Extra 150: sin copago + libre elección médica con reembolso del 80%.",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Paso 3: El cuestionario de salud",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Antes de formalizar la póliza, Adeslas pide que cada asegurado cumplimente un cuestionario de salud. Son preguntas sobre antecedentes médicos, enfermedades actuales, intervenciones previas y medicación habitual. Es fundamental responder con sinceridad: ocultar información puede derivar en la nulidad del contrato cuando más se necesita. En Marchal Aseguradores te ayudamos a entender cada pregunta del cuestionario.",
+      },
+      {
+        type: "callout" as const,
+        text: "El cuestionario de salud no es un examen médico. No hace falta pasar ninguna revisión ni análisis previos. Se rellena online o en papel en 10-15 minutos.",
+      },
+      {
+        type: "heading" as const,
+        text: "Paso 4: Firma de la póliza y fecha de efecto",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Una vez aprobado el cuestionario de salud, Adeslas emite la póliza y la envía por email para su firma digital. La fecha de efecto es la que acuerdes al contratar: puede ser el mismo día o una fecha futura. A partir de esa fecha, el seguro está activo y los periodos de carencia empiezan a contar.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Cuándo llega la tarjeta Adeslas?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Adeslas emite la tarjeta física en un plazo de 7 a 15 días hábiles. Antes de recibirla, ya puedes usar el seguro: en el momento de contratar recibes el número de póliza y puedes pedir cita en cualquier centro de la red Adeslas identificándote con tu DNI y el número de póliza. También puedes descargarte la app Adeslas para tener acceso inmediato al cuadro médico y pedir cita online.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Qué pasa si quiero cancelar?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "El seguro Adeslas tiene una vigencia anual. Se puede cancelar con un preaviso de 1 mes antes del vencimiento de la póliza. Durante el primer año, la cancelación anticipada puede tener condiciones específicas. En Marchal Aseguradores te informamos de todas las condiciones antes de firmar.",
+      },
+      {
+        type: "faq" as const,
+        faqItems: [
+          { q: "¿Cuánto tarda en activarse el seguro Adeslas?", a: "El seguro se activa en la fecha de efecto que elijas al contratar, que puede ser el mismo día. El proceso de alta desde que decides hasta que el seguro está activo tarda entre 24 y 48 horas habitualmente." },
+          { q: "¿Qué documentos necesito para contratar Adeslas?", a: "Necesitas el DNI de cada asegurado, la fecha de nacimiento, la dirección de residencia y el IBAN para la domiciliación del recibo. No se necesita historial médico ni informes previos: el cuestionario de salud lo rellenas en el momento." },
+          { q: "¿Puedo contratar Adeslas online?", a: "Sí. Puedes calcular el precio y gestionar la contratación completamente online a través de Marchal Aseguradores: comparador online, cuestionario de salud digital y firma electrónica de la póliza." },
+          { q: "¿Cuándo puedo usar el seguro Adeslas por primera vez?", a: "Desde la fecha de efecto de la póliza. Para urgencias y accidentes, desde el primer día. Para el médico de cabecera y especialistas ambulatorios, desde el primer día en la mayoría de los casos. Para hospitalizaciones programadas, tras 6 meses de carencia." },
+          { q: "¿Puedo cancelar el seguro Adeslas cuando quiera?", a: "El seguro tiene vigencia anual. Se cancela con preaviso de 1 mes antes del vencimiento. En Marchal Aseguradores te informamos de las condiciones exactas de cancelación antes de contratar." },
+        ],
+      },
+      {
+        type: "callout" as const,
+        text: "Llámanos al 91 710 50 00 o usa el comparador online y en menos de 48 horas tienes tu seguro Adeslas activo. Sin papeleo, sin desplazamientos.",
+      },
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026", "cuanto-cuesta-seguro-adeslas-2026", "carencias-seguros-medicos-adeslas", "enfermedades-preexistentes-seguro-medico-adeslas-2026"],
+  },
+
+
 ];
 
 export const getPostBySlug = (slug: string) =>
