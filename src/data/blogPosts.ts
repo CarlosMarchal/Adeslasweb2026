@@ -52,6 +52,7 @@ export const categories = [
   "Nutrición",
   "Dental",
   // ── Nivel 4: Verticales secundarios ──
+  "Empresas",
   "Mascotas",
   "Extranjeros",
   "Decesos",
@@ -3279,7 +3280,7 @@ export const blogPosts: BlogPostFull[] = [
       },
       {
         type: "paragraph" as const,
-        text: "La prima de Adeslas se revisa anualmente según el IPC sanitario. Los planes Plena Vital Total y Plena Total ofrecen prima garantizada durante 3 años, lo que protege al asegurado de subidas durante ese periodo. Pasado ese plazo, la prima puede ajustarse. En Marchal Aseguradores te informamos de las condiciones exactas de revisión antes de contratar.",
+        text: "La prima de Adeslas se revisa anualmente. Los planes Plena Vital Total y Plena Total ofrecen prima garantizada durante 3 años, protegiendo al asegurado de revisiones durante ese periodo. Pasado ese plazo, la prima puede ajustarse según las condiciones de la póliza. En Marchal Aseguradores te informamos de las condiciones exactas de revisión antes de contratar.",
       },
       {
         type: "faq" as const,
@@ -3288,7 +3289,7 @@ export const blogPosts: BlogPostFull[] = [
           { q: "¿Cuánto cuesta Adeslas para una persona de 50 años?", a: "Para una persona de 50 años en Madrid: Adeslas Go 21,50€/mes, Plena Vital 62€/mes, Plena Vital Total 73,50€/mes, Plena Plus 94€/mes, Plena Total 124€/mes. El precio varía según la provincia." },
           { q: "¿Cuánto cuesta Adeslas para una familia de 4?", a: "El precio para una familia depende de las edades de cada miembro. A partir del cuarto asegurado, Adeslas aplica un descuento del 10% sobre la prima total. Usa el comparador de Marchal Aseguradores para obtener el precio exacto para tu familia." },
           { q: "¿Cuánto cuesta el seguro Adeslas más barato?", a: "El seguro Adeslas más económico es Adeslas Go, con un precio desde 21€/mes para personas de 0 a 54 años en las provincias de zona 1. En Madrid cuesta 21,50€/mes. Solo cubre asistencia ambulatoria, sin hospitalización." },
-          { q: "¿Sube el precio de Adeslas cada año?", a: "La prima se revisa anualmente según el IPC sanitario. Los planes Plena Vital Total y Plena Total ofrecen prima garantizada durante 3 años. Pasado ese periodo, la prima puede ajustarse." },
+          { q: "¿Sube el precio de Adeslas cada año?", a: "La prima se revisa anualmente. Los planes Plena Vital Total y Plena Total ofrecen prima garantizada durante 3 años. Pasado ese periodo, la prima puede ajustarse según las condiciones de la póliza." },
         ],
       },
       {
@@ -3314,7 +3315,7 @@ export const blogPosts: BlogPostFull[] = [
     body: [
       {
         type: "paragraph" as const,
-        text: "El seguro médico para empleados es el beneficio social más valorado en España, por encima del ticket restaurante o el transporte. Para la empresa, tiene una ventaja fiscal clara: el coste es gasto deducible en el Impuesto de Sociedades hasta 500€ por trabajador y año (1.500€ si el empleado tiene discapacidad). Para el trabajador, esa retribución en especie está exenta de IRPF dentro de los mismos límites. Adeslas ofrece pólizas colectivas desde 2 empleados.",
+        text: "El seguro médico para empleados es el beneficio social más valorado en España, por encima del ticket restaurante o el transporte. Para la empresa, las primas del seguro médico de empleados son deducibles al 100% en el Impuesto de Sociedades como gasto de personal. Para el trabajador, esa retribución en especie está exenta de IRPF hasta 500€ por asegurado y año (titular, cónyuge e hijos dependientes). Adeslas ofrece pólizas colectivas desde 2 empleados.",
       },
       {
         type: "heading" as const,
@@ -3331,7 +3332,7 @@ export const blogPosts: BlogPostFull[] = [
       {
         type: "list" as const,
         items: [
-          "Para la empresa: el seguro médico de empleados es gasto deducible en el Impuesto de Sociedades hasta 500€/empleado/año (1.500€ si el empleado tiene reconocida una discapacidad igual o superior al 65%)",
+          "Para la empresa: las primas del seguro médico de empleados son deducibles al 100% en el Impuesto de Sociedades como gasto de personal",
           "Para el trabajador: los mismos importes están exentos de IRPF como retribución en especie, lo que significa que el empleado recibe un beneficio valorado en varios cientos de euros sin tributar por él",
           "Para el autónomo: el autónomo puede deducirse hasta 500€ al año por su propio seguro médico, el de su cónyuge y sus hijos menores de 25 años en la declaración de la renta",
           "Sin cotización a la Seguridad Social: la prima del seguro médico no cotiza a la SS, reduciendo el coste total para la empresa",
@@ -3393,8 +3394,8 @@ export const blogPosts: BlogPostFull[] = [
         type: "faq" as const,
         faqItems: [
           { q: "¿Cuántos empleados necesito para contratar un seguro médico de empresa con Adeslas?", a: "Desde 2 empleados. Adeslas ofrece pólizas colectivas para empresas de cualquier tamaño, desde micropymes hasta grandes corporaciones. No hay un mínimo elevado para acceder a las condiciones colectivas." },
-          { q: "¿El seguro médico de empresa es deducible en el Impuesto de Sociedades?", a: "Sí. El seguro médico para empleados es gasto deducible hasta 500€ por trabajador y año (1.500€ si el trabajador tiene discapacidad reconocida ≥65%). La misma cantidad está exenta de IRPF para el empleado como retribución en especie." },
-          { q: "¿Un autónomo puede deducirse el seguro médico Adeslas?", a: "Sí. El autónomo puede deducirse la prima del seguro de salud propio, de su cónyuge y de sus hijos menores de 25 años, hasta un máximo de 500€ por persona y año en la declaración de la renta (módulo o estimación directa)." },
+          { q: "¿El seguro médico de empresa es deducible en el Impuesto de Sociedades?", a: "Sí. Las primas del seguro médico de empleados son deducibles al 100% en el Impuesto de Sociedades como gasto de personal. Para el trabajador, el seguro médico de empresa está exento de IRPF hasta 500€/año por asegurado (titular, cónyuge e hijos)." },
+          { q: "¿Un autónomo puede deducirse el seguro médico Adeslas?", a: "Sí. El autónomo en estimación directa puede deducirse la prima del seguro de salud propio, de su cónyuge y de sus hijos menores de 25 años dependientes, hasta 500€ por persona y año en el IRPF. Consulta con tu asesor fiscal las condiciones vigentes." },
           { q: "¿Puede el empleado añadir a su familia en la póliza de empresa?", a: "Sí, en la mayoría de modalidades. El empleado puede incluir a su cónyuge e hijos, generalmente asumiendo el coste de esas primas adicionales, que se pueden descontar en nómina." },
           { q: "¿Adeslas hace seguros para pymes de 2 o 3 empleados?", a: "Sí. Adeslas tiene modalidades colectivas desde 2 asegurados. En Marchal Aseguradores gestionamos altas de empresas de cualquier tamaño, incluyendo micropymes y empresas unipersonales." },
         ],
@@ -3508,7 +3509,7 @@ export const blogPosts: BlogPostFull[] = [
     body: [
       {
         type: "paragraph" as const,
-        text: "Contratar el seguro Adeslas a través de Marchal Aseguradores tarda entre 24 y 48 horas desde que decides hasta que tienes el seguro activo. El proceso tiene cuatro pasos: calcular el precio, elegir el plan, cumplimentar el cuestionario de salud y firmar la póliza. Sin desplazamientos, sin esperas, todo gestionable por teléfono, email o formulario online.",
+        text: "Contratar el seguro Adeslas a través de Marchal Aseguradores puede hacerse en el mismo día: el alta suele completarse en 24 horas desde que decides. El proceso tiene cuatro pasos: calcular el precio, elegir el plan, cumplimentar el cuestionario de salud y firmar la póliza. Sin desplazamientos, sin esperas, todo gestionable por teléfono, email o formulario online.",
       },
       {
         type: "heading" as const,
@@ -3563,7 +3564,7 @@ export const blogPosts: BlogPostFull[] = [
       },
       {
         type: "paragraph" as const,
-        text: "Adeslas emite la tarjeta física en un plazo de 7 a 15 días hábiles. Antes de recibirla, ya puedes usar el seguro: en el momento de contratar recibes el número de póliza y puedes pedir cita en cualquier centro de la red Adeslas identificándote con tu DNI y el número de póliza. También puedes descargarte la app Adeslas para tener acceso inmediato al cuadro médico y pedir cita online.",
+        text: "Adeslas emite la tarjeta física en los días posteriores a la contratación. Antes de recibirla, ya puedes usar el seguro: desde el alta recibes el número de póliza y puedes pedir cita en cualquier centro de la red identificándote con tu DNI y el número de póliza. También puedes descargarte la app Adeslas para tener acceso inmediato al cuadro médico y pedir cita online.",
       },
       {
         type: "heading" as const,
@@ -3571,7 +3572,7 @@ export const blogPosts: BlogPostFull[] = [
       },
       {
         type: "paragraph" as const,
-        text: "El seguro Adeslas tiene una vigencia anual. Se puede cancelar con un preaviso de 1 mes antes del vencimiento de la póliza. Durante el primer año, la cancelación anticipada puede tener condiciones específicas. En Marchal Aseguradores te informamos de todas las condiciones antes de firmar.",
+        text: "El seguro Adeslas tiene una vigencia anual. La cancelación se gestiona según las condiciones generales de la póliza. En Marchal Aseguradores te informamos de todos los plazos y condiciones antes de firmar.",
       },
       {
         type: "faq" as const,
@@ -3580,7 +3581,7 @@ export const blogPosts: BlogPostFull[] = [
           { q: "¿Qué documentos necesito para contratar Adeslas?", a: "Necesitas el DNI de cada asegurado, la fecha de nacimiento, la dirección de residencia y el IBAN para la domiciliación del recibo. No se necesita historial médico ni informes previos: el cuestionario de salud lo rellenas en el momento." },
           { q: "¿Puedo contratar Adeslas online?", a: "Sí. Puedes calcular el precio y gestionar la contratación completamente online a través de Marchal Aseguradores: comparador online, cuestionario de salud digital y firma electrónica de la póliza." },
           { q: "¿Cuándo puedo usar el seguro Adeslas por primera vez?", a: "Desde la fecha de efecto de la póliza. Para urgencias y accidentes, desde el primer día. Para el médico de cabecera y especialistas ambulatorios, desde el primer día en la mayoría de los casos. Para hospitalizaciones programadas, tras 6 meses de carencia." },
-          { q: "¿Puedo cancelar el seguro Adeslas cuando quiera?", a: "El seguro tiene vigencia anual. Se cancela con preaviso de 1 mes antes del vencimiento. En Marchal Aseguradores te informamos de las condiciones exactas de cancelación antes de contratar." },
+          { q: "¿Puedo cancelar el seguro Adeslas cuando quiera?", a: "El seguro tiene vigencia anual. La cancelación se gestiona conforme a las condiciones generales de la póliza. En Marchal Aseguradores te informamos de los plazos exactos antes de contratar." },
         ],
       },
       {
