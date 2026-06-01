@@ -2494,6 +2494,99 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["que-cubre-seguro-medico-adeslas-2026","comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026","merece-la-pena-seguro-medico-privado-espana-2026"],
   },
 
+
+  /* ── Coberturas: embarazo-maternidad-seguro-medico-privado-2026 ── */
+  {
+    slug: "embarazo-maternidad-seguro-medico-privado-2026",
+    category: "Coberturas",
+    title: "Embarazo y maternidad en el seguro médico privado: guía completa 2026",
+    excerpt: "¿Cubre el seguro médico privado el embarazo y el parto? Sí, pero con la carencia de 8 meses. Te explicamos qué incluye exactamente, desde las primeras ecografías hasta el alta tras el parto.",
+    date: "4 Jun 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=600&h=400&fit=crop",
+    seoTitle: "Embarazo y Maternidad en Seguro Médico Privado 2026: Guía Completa",
+    seoDescription: "Qué cubre el seguro médico Adeslas en embarazo: ecografías, seguimiento prenatal, parto, cesárea, postparto y recién nacido. Carencia de 8 meses explicada.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "Los seguros médicos Adeslas cubren el embarazo y el parto en todos los planes que incluyen hospitalización (Plena Vital, Plena Plus, Plena Vital Total, Plena Total y Extra 150). La cobertura incluye el seguimiento completo del embarazo, el parto —natural o por cesárea—, el postparto y el seguimiento del recién nacido. Existe una carencia de 8 meses para la cobertura de maternidad: debes contratar el seguro al menos 8 meses antes de la fecha prevista de parto para que este quede cubierto."
+        },
+        {
+            "type": "callout",
+            "text": "La regla práctica: si estás pensando en quedarte embarazada, contrata el seguro ahora. Si ya estás embarazada, los controles prenatales ambulatorios (ginecología, ecografías, analíticas) se pueden usar desde el primer día. Solo el parto y la hospitalización tienen la carencia de 8 meses."
+        },
+        {
+            "type": "heading",
+            "text": "Qué cubre el seguro Adeslas durante el embarazo"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Consultas de obstetricia: seguimiento mensual con el ginecólogo elegido",
+                "Ecografías obstétricas: primer trimestre (semana 11-13), morfológica del segundo trimestre (semana 20) y control del tercer trimestre",
+                "Analíticas de embarazo: hemograma, bioquímica, serologías, test de O'Sullivan, cultivos",
+                "Amniocentesis y biopsia corial: cubiertas cuando están indicadas médicamente",
+                "Test prenatal no invasivo (TPNI): incluido cuando hay indicación clínica",
+                "Cardiotocografía (monitorización fetal): en el tercer trimestre",
+                "Consultas con matrona: preparación al parto y educación maternal",
+                "Derivación a endocrinología: si hay diabetes gestacional"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "La carencia de 8 meses para maternidad: ejemplos prácticos"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Contratas el seguro el 1 de enero: el parto queda cubierto a partir del 1 de septiembre del mismo año",
+                "Si el parto está previsto para noviembre y contratas en febrero, estarás dentro del período de cobertura",
+                "Si ya estás embarazada con 3 meses cuando contratas, el parto NO estará cubierto (aunque los controles prenatales sí)",
+                "La carencia no afecta a urgencias: una complicación urgente del embarazo está cubierta desde el día 1"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Cobertura del parto: natural y cesárea"
+        },
+        {
+            "type": "paragraph",
+            "text": "Una vez cumplida la carencia, el parto está cubierto en su totalidad. La cobertura incluye habitación individual con cama para el acompañante, honorarios del ginecólogo y anestesista, quirófano en caso de cesárea, y la estancia postparto habitual (24-48 horas para parto natural, 48-72 horas para cesárea)."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Parto natural: hospitalización completa, comadrona, ginecólogo, pediatra para el recién nacido",
+                "Cesárea programada: honorarios de cirujano, anestesista, enfermería, quirófano y estancia",
+                "Cesárea urgente: cubierta como urgencia desde el día 1, incluso antes de cumplir la carencia",
+                "Epidural: incluida en la cobertura del parto",
+                "Ingreso del recién nacido en neonatología: cubierto si hay complicaciones"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "El recién nacido: cómo añadirlo al seguro"
+        },
+        {
+            "type": "paragraph",
+            "text": "Desde los 30 días de vida, el bebé puede ser asegurado con Adeslas. Si se añade al seguro familiar en los primeros 30-60 días tras el nacimiento, se incorpora sin ningún periodo de carencia: tiene acceso completo a todas las coberturas desde el primer día. Pasada esa ventana, se aplican las carencias estándar."
+        },
+        {
+            "type": "heading",
+            "text": "Diferencia entre maternidad pública y privada"
+        },
+        {
+            "type": "paragraph",
+            "text": "La diferencia no es tanto de resultado clínico como de experiencia: habitación individual garantizada, posibilidad de que el mismo ginecólogo que lleva el embarazo asista al parto, mayor disponibilidad de cita con el especialista durante el seguimiento, y acceso más rápido a ecografías y pruebas complementarias adicionales."
+        },
+        {
+            "type": "callout",
+            "text": "¿Estás pensando en ampliar la familia? Es el mejor momento para contratar el seguro. En Marchal Aseguradores te ayudamos a elegir el plan más adecuado para cubrir tu embarazo desde el principio. Llámanos al 91 710 50 00."
+        }
+    ],
+    relatedSlugs: ["que-cubre-seguro-medico-adeslas-2026","carencias-seguros-medicos-adeslas","seguro-medico-familias-2026","seguro-medico-ninos-pediatria-privada-adeslas-2026"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
