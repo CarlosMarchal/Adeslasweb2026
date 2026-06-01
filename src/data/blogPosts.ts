@@ -13,10 +13,16 @@ export interface BlogPostMeta {
   image: string;
 }
 
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
 export interface ContentBlock {
-  type: "paragraph" | "heading" | "list" | "callout" | "quote";
+  type: "paragraph" | "heading" | "list" | "callout" | "quote" | "faq";
   text?: string;
   items?: string[];
+  faqItems?: FaqItem[];
 }
 
 export interface BlogPostFull extends BlogPostMeta {
@@ -52,6 +58,324 @@ export const categories = [
 ];
 
 export const blogPosts: BlogPostFull[] = [
+
+
+  /* ── Artículos nuevos Junio 2026 ── */
+  {
+    slug: "seguro-dental-adeslas-coberturas-precios-2026",
+    category: "Dental",
+    title: "Seguro dental Adeslas 2026: qué cubre, qué no cubre y cuánto cuesta",
+    excerpt:
+      "¿Qué incluye el dental de Adeslas? ¿Vale la pena contratarlo? Te explicamos exactamente qué 46 actos dentales están cubiertos y qué tratamientos tendrás que pagar aparte.",
+    date: "8 Jun 2026",
+    readTime: "7 min",
+    image:
+      "https://images.unsplash.com/photo-1588776814546-1ffedbe93e2d?w=600&h=400&fit=crop",
+    seoTitle:
+      "Seguro Dental Adeslas 2026: Qué Cubre, Precios y Si Vale la Pena | Guía",
+    seoDescription:
+      "Guía completa del seguro dental Adeslas 2026: 46 actos cubiertos, qué no incluye (ortodoncia, implantes), qué planes lo tienen y si compensa frente a no tenerlo.",
+    body: [
+      {
+        type: "paragraph" as const,
+        text: "El seguro dental de Adeslas forma parte de los planes Plena Vital Total y Plena Total, los únicos de la gama Adeslas que incluyen cobertura dental en la prima. Cubre 46 actos dentales al año —revisiones, diagnóstico, limpiezas, empastes, extracciones simples y más— en la red de clínicas dentales de Adeslas, sin coste adicional más allá de la prima mensual del plan.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Qué planes Adeslas incluyen cobertura dental?",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Adeslas Plena Vital Total: ambulatoria + hospitalización + dental + chequeo + viaje + 3 años prima garantizada (con copago y LMA 500 €/año)",
+          "Adeslas Plena Total: igual que Plena Vital Total pero sin copago. La opción más completa de Adeslas",
+          "Resto de planes (Go, Plena Vital, Plena Plus, Extra 150): NO incluyen dental básico en la prima estándar",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Qué cubre el dental de Adeslas: los 46 actos",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Revisión dental completa y diagnóstico: exploración y plan de tratamiento",
+          "Ortopantomografía (radiografía panorámica dental)",
+          "Radiografías periapicales: series completas",
+          "Limpieza dental profesional (tartrectomía): incluida una al año",
+          "Empastes o obturaciones: en piezas con caries, con composite o amalgama",
+          "Extracciones simples: dientes con indicación de extracción no quirúrgica",
+          "Tratamiento del nervio (endodoncia): en dientes con infección o necrosis pulpar",
+          "Reconstrucciones dentales: piezas fracturadas",
+          "Tratamiento básico de encías (periodoncia inicial): raspado y alisado radicular",
+          "Urgencias dentales: atención por dolor agudo, absceso, fractura traumática",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Qué NO cubre el dental de Adeslas",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Implantes dentales: no están cubiertos. Un implante completo (implante + corona) cuesta entre 1.200 y 2.500 € por pieza",
+          "Ortodoncia (brackets, alineadores): no cubierta. Un tratamiento completo cuesta entre 2.500 y 5.000 €",
+          "Prótesis dentales removibles o fijas (puentes): no incluidas",
+          "Blanqueamiento dental: estético, no cubierto",
+          "Periodoncia avanzada (enfermedad periodontal grave): los casos complejos pueden quedar fuera",
+          "Más de 46 actos al año: al agotarse el límite, el resto del año queda sin cobertura dental",
+        ],
+      },
+      {
+        type: "callout" as const,
+        text: "Para implantes y ortodoncia necesitas un seguro dental específico o pagarlos de tu bolsillo. Los seguros dentales independientes tienen primas desde 10-20 €/mes pero con periodos de carencia de 6-12 meses antes de usar las coberturas más costosas.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Vale la pena el dental incluido en Adeslas?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "La diferencia de precio entre Plena Vital Total (con dental) y Plena Vital (sin dental) suele estar entre 10 y 20 € al mes. Una revisión + limpieza dental en una clínica privada cuesta entre 80 y 150 €. Si acudes al dentista al menos una vez al año, el dental ya se amortiza con creces antes de contar empastes o endodoncias. Si nunca vas al dentista porque el coste te frena, tener el dental cubierto mejora notablemente tu salud bucodental preventiva.",
+      },
+      {
+        type: "heading" as const,
+        text: "Cuadro dental de Adeslas: cómo acceder",
+      },
+      {
+        type: "paragraph" as const,
+        text: "La red de clínicas dentales de Adeslas incluye más de 6.000 dentistas concertados en España. Localiza la clínica más cercana desde la app Mi Adeslas o en el buscador de cuadro médico filtrando por 'Odontología'. No necesitas derivación previa: llamas directamente a la clínica y pides cita presentando tu tarjeta de asegurado.",
+      },
+      {
+        type: "callout" as const,
+        text: "En Marchal Aseguradores te ayudamos a elegir entre Plena Vital Total (con copago + dental) y Plena Total (sin copago + dental) según cuánto usas el seguro. Llámanos al 91 710 50 00 o calcula tu precio online.",
+      },
+    ],
+    relatedSlugs: [
+      "comparativa-seguros-medicos-adeslas-2026",
+      "seguro-medico-sin-copago-2026",
+      "que-cubre-seguro-medico-adeslas-2026",
+      "salud-bucodental-guia-completa",
+    ],
+  },
+
+  {
+    slug: "seguro-medico-ninos-pediatria-privada-adeslas-2026",
+    category: "Salud Familiar",
+    title: "Seguro médico para niños: pediatría privada con Adeslas en 2026",
+    excerpt:
+      "Con un seguro médico privado, tu hijo tiene cita con el pediatra en 24-48 horas, acceso inmediato a pruebas diagnósticas y urgencias pediátricas sin colas. Desde los 30 días de vida.",
+    date: "11 Jun 2026",
+    readTime: "7 min",
+    image:
+      "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=600&h=400&fit=crop",
+    seoTitle:
+      "Seguro Médico para Niños 2026: Pediatría Privada con Adeslas | Guía",
+    seoDescription:
+      "Guía completa sobre seguro médico para niños con Adeslas 2026: coberturas pediátricas, edad mínima (30 días), precios por edad, urgencias infantiles y cómo añadirlo al seguro familiar.",
+    body: [
+      {
+        type: "paragraph" as const,
+        text: "El seguro médico es especialmente valioso para los niños por una razón concreta: los menores de 12 años son el grupo de edad que más usa el sistema sanitario, con una media de 6 a 10 visitas al médico al año. Con un seguro Adeslas, tu hijo tiene cita con el pediatra en 24-48 horas, acceso inmediato a pruebas diagnósticas, y atención de urgencias sin colas las 24 horas del día. Desde los 30 días de vida.",
+      },
+      {
+        type: "heading" as const,
+        text: "Desde qué edad se puede asegurar a un bebé con Adeslas",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Los recién nacidos pueden incorporarse al seguro Adeslas a partir de los 30 días de vida. Si se añaden en los primeros 30-60 días tras el nacimiento, se incorporan sin período de carencia: tienen acceso completo a todas las coberturas desde el primer día. Esta ventana es especialmente importante porque los primeros meses son cuando más urgencias y controles pediátricos se producen.",
+      },
+      {
+        type: "callout" as const,
+        text: "Si acabas de ser padre o madre, tienes 30-60 días para añadir al bebé al seguro familiar sin carencias. Pasado ese plazo, el niño se incorpora con las carencias estándar.",
+      },
+      {
+        type: "heading" as const,
+        text: "Coberturas pediátricas incluidas en los planes Adeslas",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Pediatría de atención primaria: médico de referencia, seguimiento del desarrollo, revisiones del niño sano",
+          "Pediatría especializada: cardiología, neurología, neumología, gastroenterología pediátrica",
+          "Urgencias pediátricas 24 h: atención inmediata en la red, sin esperas",
+          "Diagnóstico pediátrico: analíticas, radiografías, ecografías, sin esperas",
+          "Dermatología pediátrica: eccemas, dermatitis atópica, verrugas",
+          "Otorrinolaringología pediátrica: otitis, amigdalitis, adenoides, rinitis",
+          "Oftalmología pediátrica: estrabismo, ojo vago (ambliopía), revisión de la visión",
+          "Traumatología pediátrica: fracturas, luxaciones, escoliosis",
+          "Psicología infantil: TDAH, ansiedad escolar, trastornos del aprendizaje",
+          "Logopedia: trastornos del habla y lenguaje",
+          "Cirugía pediátrica: hernias, fimosis, apendicitis, corrección de malformaciones menores",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "¿Cuánto cuesta asegurar a un niño con Adeslas en 2026?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "La prima para niños es la más baja de todos los tramos de edad. Precios orientativos para 2026 en Madrid (varían por provincia y plan):",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Recién nacido hasta 4 años: entre 25 y 55 € al mes según el plan",
+          "5 a 14 años: entre 30 y 65 € al mes",
+          "15 a 18 años: entre 35 y 75 € al mes",
+          "Descuento familiar: al asegurar a varios hijos o a toda la familia se aplican descuentos que pueden superar el 10 %",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Ventajas reales frente al pediatra público",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Cita en 24-48 horas frente a 2-5 días en el centro de salud",
+          "Mismo pediatra en cada visita: continuidad asistencial real",
+          "Acceso directo al especialista pediátrico: sin derivación lenta",
+          "Urgencias pediátricas privadas: menos espera, entorno más tranquilo",
+          "Pruebas diagnósticas en el mismo día: analítica o radiografía inmediata",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Vacunas: qué cubre el seguro",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Las vacunas del calendario oficial de vacunación están cubiertas por la sanidad pública y no es necesario el seguro privado para acceder a ellas. Algunos planes Adeslas incluyen vacunas fuera del calendario oficial (como la del meningococo B o del rotavirus) según el plan contratado.",
+      },
+      {
+        type: "heading" as const,
+        text: "Cómo añadir a tu hijo al seguro familiar Adeslas",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Si ya tienes un seguro Adeslas, añadir a un hijo es simple: contacta con tu asesor en Marchal Aseguradores con los datos del menor (nombre, apellidos, fecha de nacimiento) y el alta se tramita en 24-48 horas. La prima del niño se añade a la factura familiar a partir del siguiente período de facturación.",
+      },
+      {
+        type: "callout" as const,
+        text: "¿Quieres asegurar a tu hijo? En Marchal Aseguradores gestionamos el alta de nuevos asegurados menores en 24 horas. Llámanos al 91 710 50 00 o escríbenos para calcular tu precio familiar sin compromiso.",
+      },
+    ],
+    relatedSlugs: [
+      "seguro-medico-familias-2026",
+      "que-cubre-seguro-medico-adeslas-2026",
+      "embarazo-maternidad-seguro-medico-privado-2026",
+      "seguro-medico-familia-coste-real-2026",
+    ],
+  },
+
+  {
+    slug: "reembolso-libre-eleccion-medico-adeslas-extra-150-2026",
+    category: "Seguros Adeslas",
+    title: "Reembolso de gastos médicos y libre elección de médico con Adeslas Extra 150",
+    excerpt:
+      "Con Adeslas Plena Extra 150 puedes ir a cualquier médico u hospital de España —fuera de la red— y Adeslas te reembolsa el 80 % del gasto. Así funciona la modalidad de reembolso.",
+    date: "15 Jun 2026",
+    readTime: "7 min",
+    image:
+      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
+    seoTitle:
+      "Reembolso Gastos Médicos y Libre Elección Médico con Adeslas Extra 150 | 2026",
+    seoDescription:
+      "Cómo funciona el reembolso de gastos médicos y la libre elección de médico con Adeslas Plena Extra 150: 80 % de reembolso, proceso paso a paso, documentación y para quién compensa.",
+    body: [
+      {
+        type: "paragraph" as const,
+        text: "Adeslas Plena Extra 150 combina dos modalidades: el acceso sin copago a toda la red concertada de Adeslas (más de 51.000 médicos y 1.400 centros) y la libertad de elegir cualquier médico u hospital de España —esté o no en la red— con reembolso del 80 % del gasto, hasta un límite máximo de 150.000 € anuales. Es el plan más flexible de la gama Adeslas.",
+      },
+      {
+        type: "heading" as const,
+        text: "Qué es la modalidad de reembolso en seguros médicos",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Un seguro con reembolso funciona así: tú pagas la consulta, prueba o intervención directamente al médico o centro que elijas, y después presentas la factura al seguro, que te devuelve un porcentaje de lo pagado. En el Extra 150, ese porcentaje es el 80 % de los honorarios. Sin restricción de especialidad ni de médico: puedes ir al mejor cirujano de columna de España aunque no esté en el cuadro de Adeslas.",
+      },
+      {
+        type: "callout" as const,
+        text: "Ejemplo real: pagas 500 € por una consulta con un especialista de referencia nacional fuera de la red. Adeslas te reembolsa 400 € (el 80 %). Tu coste real fue de 100 €. Acceder a los mejores especialistas del país tiene un coste marginal muy reducido.",
+      },
+      {
+        type: "heading" as const,
+        text: "Cómo funciona el proceso de reembolso paso a paso",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Paso 1 — Ve al médico o centro que elijas: no hay autorización previa en la mayoría de casos. Consulta con Adeslas antes en tratamientos de alto coste",
+          "Paso 2 — Paga la consulta y guarda SIEMPRE la factura original con los datos fiscales del profesional o centro",
+          "Paso 3 — Accede al área de clientes Mi Adeslas Online o la app y localiza la sección de reembolso de gastos",
+          "Paso 4 — Sube la factura digitalizada junto al informe médico o resumen del tratamiento",
+          "Paso 5 — Adeslas revisa la solicitud: el plazo habitual de resolución es de 10 a 15 días hábiles",
+          "Paso 6 — Recibes el reembolso del 80 % por transferencia bancaria en la cuenta registrada",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Documentación necesaria para el reembolso",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Factura original: nombre del profesional o razón social del centro, NIF/CIF, fecha, descripción del servicio y precio desglosado",
+          "Informe médico o resumen de la consulta: justifica la necesidad médica del servicio",
+          "DNI del asegurado: para verificar que el servicio fue para el titular de la póliza",
+          "IBAN de la cuenta bancaria: donde Adeslas realizará la transferencia",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Qué gastos NO se reembolsan",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Medicación ambulatoria: los medicamentos recetados para tomar en casa no se reembolsan",
+          "Tratamientos estéticos sin finalidad médica",
+          "Implantes dentales y ortodoncia: excluidos salvo cobertura dental adicional",
+          "Facturas sin NIF o sin descripción del servicio: los tickets informales no son válidos",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Para quién compensa el Extra 150",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Personas con condiciones médicas complejas que necesitan acceder a especialistas de referencia nacional fuera de la red",
+          "Pacientes oncológicos o con enfermedades crónicas que quieren elegir a su equipo médico sin restricciones",
+          "Ejecutivos que viajan con frecuencia y necesitan acceso médico en cualquier ciudad",
+          "Personas que ya tienen un médico de confianza fuera de la red y no quieren renunciar a él",
+          "Familias que usan la red Adeslas para lo cotidiano y el reembolso para lo especializado",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Diferencia entre Extra 150 y el resto de planes Adeslas",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Los otros planes de Adeslas (Go, Plena Vital, Plena Plus, Plena Total) solo cubren los servicios prestados dentro de la red concertada. Si vas a un médico fuera del cuadro, pagas íntegramente de tu bolsillo. El Extra 150 es la única excepción: da acceso a toda la red Adeslas y además permite ir fuera de ella con el 80 % de reembolso.",
+      },
+      {
+        type: "callout" as const,
+        text: "¿Quieres saber si el Extra 150 compensa para tu caso? En Marchal Aseguradores analizamos contigo el uso previsto de médicos fuera de la red para ver si el reembolso justifica la diferencia de prima. Llámanos al 91 710 50 00.",
+      },
+    ],
+    relatedSlugs: [
+      "comparativa-seguros-medicos-adeslas-2026",
+      "seguro-medico-sin-copago-2026",
+      "que-cubre-seguro-medico-adeslas-2026",
+      "cuadro-medico-adeslas-como-funciona",
+    ],
+  },
 
   /* ── 1. Bienestar ── */
   {
@@ -891,6 +1215,16 @@ export const blogPosts: BlogPostFull[] = [
         type: "paragraph",
         text: "Todos los planes Adeslas dan acceso a más de 51.000 médicos y 1.400 centros médicos en España sin listas de espera. La diferencia entre planes está en la extensión de la cobertura, la existencia o no de copago y las prestaciones adicionales, no en la calidad de la red médica.",
       },
+      {
+        type: "faq" as const,
+        faqItems: [
+          { q: "¿Cuántos planes tiene Adeslas?", a: "Adeslas tiene 6 planes principales: Adeslas Go (solo ambulatorio), Plena Vital, Plena Vital Total, Plena Plus, Plena Total y Plena Extra 150. Se diferencian por la cobertura hospitalaria, el copago, la inclusión del dental y la libre elección médica." },
+          { q: "¿Cuál es la diferencia entre Adeslas Plena Vital y Plena Plus?", a: "Plena Vital incluye copago por acto médico; Plena Plus no tiene copago. Ambos cubren ambulatorio y hospitalización completos. La diferencia principal es el modelo de pago: Plena Plus tiene una prima más alta pero sin coste adicional por cada consulta o prueba." },
+          { q: "¿Qué plan Adeslas incluye el dentista?", a: "Los planes Adeslas Plena Vital Total y Plena Total incluyen seguro dental con 46 actos cubiertos, incluyendo limpiezas, empastes, extracciones y radiografías." },
+          { q: "¿Qué plan Adeslas permite elegir médico fuera de la red?", a: "Adeslas Plena Extra 150 incluye libre elección médica con reembolso del 80% de los gastos (hasta 150€ por acto). Permite acudir a cualquier médico de España, esté o no en la red Adeslas." },
+          { q: "¿Cuánto cuesta Adeslas Go?", a: "Adeslas Go es el plan de entrada de Adeslas, orientado a cobertura ambulatoria. El precio varía por edad y provincia, pero es la opción más económica de la gama. Consulta el precio exacto en el comparador de Marchal Aseguradores." }
+        ]
+      },
     ],
     relatedSlugs: [
       "revisiones-medicas-por-edad",
@@ -992,6 +1326,16 @@ export const blogPosts: BlogPostFull[] = [
         {
             "type": "paragraph",
             "text": "Puedes calcular el precio exacto de un seguro Adeslas sin copago según tu edad, provincia y número de asegurados en el comparador de Marchal Aseguradores, sin compromiso. Como agente exclusivo Adeslas, te asesoramos sin coste para encontrar el plan que mejor se adapta a tu situación real."
+        },
+        {
+            type: "faq" as const,
+            faqItems: [
+                { q: "¿Qué es un seguro médico sin copago?", a: "Un seguro médico sin copago es aquel en el que pagas solo la prima mensual y no abonas nada adicional cada vez que acudes al médico, a urgencias o te operan. Es diferente a los planes con copago, donde se paga un importe fijo por cada acto médico." },
+                { q: "¿Qué planes Adeslas no tienen copago?", a: "Adeslas ofrece planes sin copago en la gama Plena: Plena Plus, Plena Total y Plena Extra 150. También existen opciones de copago reducido. Consulta con tu asesor de Marchal Aseguradores para comparar según tu caso." },
+                { q: "¿Un seguro sin copago tiene carencias?", a: "Sí. Los seguros sin copago tienen los mismos periodos de carencia que los planes con copago: 6 meses para hospitalización programada, 8 meses para maternidad, y acceso inmediato a urgencias y accidentes." },
+                { q: "¿Merece la pena pagar más por un seguro sin copago?", a: "Depende del uso que hagas del seguro. Si acudes al médico con frecuencia o tienes familia con hijos, el ahorro en copagos puede compensar la diferencia de prima. Para usuarios ocasionales, un plan con copago puede ser más económico en total." },
+                { q: "¿El seguro sin copago cubre también el dentista?", a: "Solo si el plan incluye cobertura dental específica. Los planes Adeslas Plena Vital Total y Plena Total incluyen seguro dental con 46 actos cubiertos. El dentista no está incluido en el resto de planes sin copago básicos." }
+            ]
         },
         {
             "type": "callout",
@@ -1182,6 +1526,16 @@ export const blogPosts: BlogPostFull[] = [
         {
             "type": "paragraph",
             "text": "Las carencias afectan a todos los asegurados por igual, independientemente de su estado de salud. Las preexistencias son enfermedades o condiciones que ya tienes en el momento de contratar. Adeslas puede excluirlas de la cobertura o incluirlas con condiciones especiales dependiendo del caso. Por eso es importante ser honesto en el cuestionario de salud: ocultar preexistencias puede derivar en la nulidad del contrato."
+        },
+        {
+            type: "faq" as const,
+            faqItems: [
+                { q: "¿Cuánto tiempo de carencia tiene Adeslas?", a: "La carencia general de Adeslas es de 3 meses para la mayoría de especialidades ambulatorias. La hospitalización programada tiene 6 meses de carencia, y la maternidad 8 meses. Las urgencias y los accidentes no tienen ninguna carencia." },
+                { q: "¿Qué tiene carencia cero en Adeslas?", a: "Las urgencias y los accidentes están cubiertos desde el primer día, sin ningún periodo de espera. El médico de cabecera también suele estar disponible desde el inicio según el plan." },
+                { q: "¿Puedo eliminar las carencias si vengo de otro seguro?", a: "Sí. Si cambias de aseguradora sin interrupción de cobertura, Adeslas puede reconocer el tiempo cumplido en la póliza anterior. Esto se llama portabilidad de carencias y requiere documentación de la póliza previa." },
+                { q: "¿Cuánto tiempo de carencia tiene la psicología en Adeslas?", a: "La psicología clínica tiene una carencia de 3 meses en todos los planes Adeslas que la incluyen." },
+                { q: "¿Qué diferencia hay entre carencia y preexistencia en Adeslas?", a: "La carencia es un periodo de espera que afecta a todos los asegurados por igual. Una preexistencia es una enfermedad que ya tenías al contratar y que puede quedar excluida de la cobertura. Son conceptos distintos." }
+            ]
         },
         {
             "type": "callout",
@@ -1754,6 +2108,16 @@ export const blogPosts: BlogPostFull[] = [
         text: "Para una persona activa de entre 25 y 65 años en España, con familia o sin ella, el seguro médico privado tiene un retorno claro si se usa aunque sea moderadamente: dos o tres visitas al especialista al año, una prueba diagnóstica, o simplemente el valor de saber que mañana por la mañana puedes pedir cita con el cardiólogo si lo necesitas. El coste de la tranquilidad, en este caso, se puede calcular: desde 21€ al mes.",
       },
       {
+        type: "faq" as const,
+        faqItems: [
+          { q: "¿Merece la pena un seguro médico privado en España?", a: "Sí, para la mayoría de personas activas. Las listas de espera de la sanidad pública superan los 3 meses para especialistas en muchas comunidades. Con un seguro médico privado, la espera media es de días. A partir de 2 o 3 visitas al especialista al año, el coste del seguro ya está amortizado." },
+          { q: "¿Cuánto cuesta de media un seguro médico privado en España?", a: "Un seguro médico individual completo en España cuesta entre 50€ y 120€ al mes, según la edad, el plan y la provincia. Los planes sin hospitalización son más económicos. En Marchal Aseguradores puedes calcular el precio exacto para tu perfil." },
+          { q: "¿Un seguro médico privado sustituye a la Seguridad Social?", a: "No. El seguro privado es un complemento, no un sustituto. La Seguridad Social sigue cubriendo la baja laboral, prestaciones económicas por enfermedad y tratamientos de alta complejidad. El seguro privado ofrece acceso rápido, libre elección de médico y más confort." },
+          { q: "¿Para quién tiene más sentido contratar un seguro médico privado?", a: "Para personas de 25 a 65 años con vida activa que valoran el acceso rápido a especialistas; familias con hijos que usan pediatría frecuentemente; autónomos sin baja laboral complementaria; y personas en espera de una prueba o intervención en la sanidad pública." },
+          { q: "¿Puedo tener seguro privado y seguir usando la sanidad pública?", a: "Sí, son compatibles. Puedes elegir en cada caso qué sistema usar. Muchas personas usan la sanidad pública para procesos crónicos y el seguro privado para acceder rápido a especialistas o pruebas diagnósticas." }
+        ]
+      },
+      {
         type: "callout",
         text: "¿Quieres saber cuánto costaría un seguro Adeslas para ti exactamente? Calcula tu precio en menos de 2 minutos, sin compromiso y sin dar datos bancarios.",
       },
@@ -2202,6 +2566,16 @@ export const blogPosts: BlogPostFull[] = [
             ]
         },
         {
+            type: "faq" as const,
+            faqItems: [
+                { q: "¿Qué cubre el seguro Adeslas Integral?", a: "El seguro Adeslas Integral (Plena Vital) cubre asistencia ambulatoria con más de 40 especialidades, diagnóstico de alta tecnología (resonancias, TAC, ecografías), urgencias 24 horas sin carencia, hospitalización en habitación individual, cirugía sin límite, psicología clínica (10 sesiones/año) y telemedicina." },
+                { q: "¿Desde qué día está cubierto con Adeslas en caso de urgencia?", a: "Las urgencias están cubiertas desde el primer día, sin periodo de carencia. Es válido para todos los planes Adeslas." },
+                { q: "¿Adeslas cubre la medicación ambulatoria?", a: "No. Los medicamentos recetados para tomar en casa no están cubiertos por ningún plan estándar de Adeslas. La medicación hospitalaria durante un ingreso sí está incluida." },
+                { q: "¿Cuántas sesiones de psicología cubre Adeslas?", a: "Depende del plan: Plena Vital incluye 10 sesiones al año; Plena Vital Total y Plena Total incluyen 20 sesiones al año. La psicología tiene una carencia de 3 meses." },
+                { q: "¿Adeslas cubre la cirugía estética?", a: "No. Los tratamientos estéticos sin finalidad médica ni los procedimientos de rejuvenecimiento están excluidos de las coberturas estándar de Adeslas." }
+            ]
+        },
+        {
             "type": "callout",
             "text": "Como agente exclusivo Adeslas, en Marchal Aseguradores te explicamos exactamente qué cubre cada plan para tu situación concreta. Llámanos al 91 710 50 00 o calcula tu precio sin compromiso en el comparador online."
         }
@@ -2586,6 +2960,194 @@ export const blogPosts: BlogPostFull[] = [
     ],
     relatedSlugs: ["que-cubre-seguro-medico-adeslas-2026","carencias-seguros-medicos-adeslas","seguro-medico-familias-2026","seguro-medico-ninos-pediatria-privada-adeslas-2026"],
   },
+
+  /* ── GEO Nuevo: enfermedades-preexistentes-seguro-medico-adeslas-2026 ── */
+  {
+    slug: "enfermedades-preexistentes-seguro-medico-adeslas-2026",
+    category: "Coberturas",
+    title: "¿Qué pasa si tengo una enfermedad preexistente con Adeslas? Guía 2026",
+    excerpt: "Tener una enfermedad antes de contratar el seguro no significa que no puedas asegurarte. Esto es exactamente lo que ocurre con las preexistencias en Adeslas y qué opciones tienes.",
+    date: "5 Jun 2026",
+    readTime: "7 min",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop",
+    seoTitle: "Enfermedad Preexistente con Adeslas: Qué Cubre y Qué No en 2026",
+    seoDescription: "¿Tienes una enfermedad crónica o preexistente y quieres contratar Adeslas? Te explicamos qué son las preexistencias, cómo las gestiona Adeslas y qué opciones reales tienes para asegurarte.",
+    body: [
+      {
+        type: "paragraph" as const,
+        text: "Una enfermedad preexistente es cualquier condición de salud que ya existe en el momento de contratar el seguro médico. Tener una preexistencia no te impide contratar Adeslas, pero puede afectar a cómo se cubre esa condición concreta. Lo más habitual es que Adeslas excluya temporalmente o de forma permanente la cobertura de esa patología específica, mientras el resto de coberturas funcionan con normalidad desde el primer día.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Qué es exactamente una preexistencia para Adeslas?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Adeslas considera preexistencia cualquier enfermedad, lesión, síntoma o condición de salud que el asegurado ya padecía, había sido diagnosticado o tratado antes de la fecha de efecto de la póliza. Esto incluye enfermedades crónicas como diabetes, hipertensión o artritis; condiciones diagnosticadas como hernias, quistes o tumores benignos; y procedimientos quirúrgicos previos pendientes de revisión.",
+      },
+      {
+        type: "heading" as const,
+        text: "El cuestionario de salud: por qué es fundamental ser honesto",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Al contratar cualquier seguro médico, incluyendo Adeslas, deberás cumplimentar un cuestionario de salud. Este formulario recoge tus antecedentes médicos y es la base sobre la que la aseguradora decide las condiciones de tu póliza. La honestidad aquí es imprescindible: ocultar una preexistencia no solo puede llevar a la nulidad del contrato, sino también a la anulación de la cobertura precisamente cuando más la necesitas.",
+      },
+      {
+        type: "callout" as const,
+        text: "Como agente exclusivo Adeslas, en Marchal Aseguradores te ayudamos a rellenar el cuestionario de salud correctamente y a entender exactamente cómo quedarán reflejadas tus condiciones de salud en la póliza antes de firmarla.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Qué puede pasar con una preexistencia?",
+      },
+      {
+        type: "list" as const,
+        items: [
+          "Exclusión permanente: la patología concreta queda excluida de la cobertura. El seguro cubre todo lo demás con normalidad.",
+          "Exclusión temporal: la preexistencia queda excluida durante un periodo determinado y luego se incorpora a la cobertura.",
+          "Sobreprecio: en algunos casos Adeslas puede ofrecer cobertura de la preexistencia con una prima adicional.",
+          "Aceptación sin condiciones: para preexistencias leves o muy antiguas sin tratamiento activo, Adeslas puede aceptarlas sin restricciones.",
+          "Exclusión con revisión: se excluye inicialmente y se puede solicitar revisión tras un periodo sin síntomas ni tratamiento.",
+        ],
+      },
+      {
+        type: "heading" as const,
+        text: "Enfermedades crónicas frecuentes y cómo las gestiona Adeslas",
+      },
+      {
+        type: "paragraph" as const,
+        text: "La hipertensión arterial controlada con medicación suele aceptarse sin grandes restricciones, dado que es una condición muy extendida y bien manejable. La diabetes tipo 2 controlada puede aceptarse, aunque las complicaciones derivadas de la diabetes pueden quedar excluidas inicialmente. Las enfermedades autoinmunes, como el lupus o la artritis reumatoide, suelen evaluarse caso por caso. Las hernias y los quistes benignos detectados antes de contratar pueden quedar excluidos para cirugía planificada, aunque las urgencias relacionadas sí estarían cubiertas.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Puedo asegurarme si tengo cáncer o una enfermedad grave?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Las enfermedades oncológicas activas o recientes son el caso más complejo. En general, Adeslas excluirá el cáncer preexistente de la cobertura, pero el seguro seguirá siendo útil para todo lo demás: otras especialidades, urgencias, diagnóstico de otras patologías, etc. Pasados varios años en remisión, en algunos casos es posible solicitar la revisión de la exclusión.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Qué diferencia hay entre carencia y preexistencia?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Son conceptos distintos que se confunden frecuentemente. La carencia es un periodo de espera que afecta a todos los asegurados por igual, independientemente de su estado de salud: por ejemplo, 6 meses de carencia para hospitalización programada. La preexistencia, en cambio, es específica de tu historial médico y puede generar una exclusión permanente o condicionada solo para esa patología concreta.",
+      },
+      {
+        type: "heading" as const,
+        text: "Cambiar de aseguradora con preexistencias: la portabilidad",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Si ya tienes un seguro médico con otra aseguradora y quieres pasarte a Adeslas, existe el concepto de portabilidad. Si llevas tiempo asegurado con cobertura de tu preexistencia en la póliza anterior, Adeslas puede reconocer ese historial y ofrecer condiciones similares o equivalentes. Es una negociación caso por caso que conviene gestionar con un agente especializado.",
+      },
+      {
+        type: "faq" as const,
+        faqItems: [
+          { q: "¿Puedo contratar Adeslas si tengo diabetes?", a: "Sí. La diabetes tipo 2 controlada con medicación generalmente se acepta. Las complicaciones específicas derivadas de la diabetes pueden quedar excluidas inicialmente. En Marchal Aseguradores evaluamos tu caso concreto antes de contratar para que sepas exactamente qué quedará cubierto." },
+          { q: "¿Qué pasa si oculto una enfermedad al contratar Adeslas?", a: "Si se descubre que ocultaste una preexistencia relevante, Adeslas puede anular la póliza o denegar la cobertura de la reclamación afectada. Por eso es fundamental ser honesto en el cuestionario de salud: el riesgo no vale la pena." },
+          { q: "¿Adeslas puede excluir mi enfermedad para siempre?", a: "Puede excluirla de forma permanente, pero en muchos casos la exclusión es revisable. Tras un periodo sin tratamiento activo o en remisión, puedes solicitar a Adeslas que revise las condiciones de tu póliza y levante la exclusión." },
+          { q: "¿Las urgencias relacionadas con mi preexistencia están cubiertas?", a: "En general, sí. Las urgencias vitales suelen estar cubiertas incluso para preexistencias excluidas, ya que las urgencias tienen cobertura desde el primer día. Consulta las condiciones específicas de tu póliza." },
+          { q: "¿Puedo cambiarme a Adeslas desde otra aseguradora si tengo preexistencias cubiertas?", a: "Sí, a través de la portabilidad de coberturas. Si tu aseguradora actual ya cubre tu preexistencia, Adeslas puede reconocer ese historial. Es importante gestionar el cambio sin interrupción de cobertura y con el apoyo de un agente especializado." },
+        ],
+      },
+      {
+        type: "callout" as const,
+        text: "En Marchal Aseguradores estudiamos tu situación médica antes de contratar para que no haya sorpresas. Llámanos al 91 710 50 00 y te explicamos exactamente cómo quedarían cubiertas tus condiciones de salud en Adeslas.",
+      },
+    ],
+    relatedSlugs: ["carencias-seguros-medicos-adeslas", "que-cubre-seguro-medico-adeslas-2026", "como-cambiar-seguro-medico-sin-carencias-2026", "comparativa-seguros-medicos-adeslas-2026"],
+  },
+
+
+  /* ── GEO Nuevo: descuentos-adeslas-cuantos-asegurados-precio-real-2026 ── */
+  {
+    slug: "descuentos-adeslas-cuantos-asegurados-precio-real-2026",
+    category: "Precios",
+    title: "Descuentos en Adeslas: cuánto ahorras asegurando a más personas en 2026",
+    excerpt: "Adeslas aplica descuentos por volumen cuando aseguras a más personas en la misma póliza. Te explicamos cómo funciona, a partir de cuántos asegurados se activa y cuánto ahorras realmente.",
+    date: "8 Jun 2026",
+    readTime: "6 min",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop",
+    seoTitle: "Descuentos Adeslas por Número de Asegurados: Cuánto Ahorras en 2026",
+    seoDescription: "¿Cuánto descuento hace Adeslas si aseguras a más personas? Te explicamos los descuentos por volumen de Adeslas en 2026, a partir de cuántos asegurados se aplican y cómo calcular el precio real.",
+    body: [
+      {
+        type: "paragraph" as const,
+        text: "Adeslas aplica descuentos progresivos cuando se incluyen varios asegurados en la misma póliza. A partir del cuarto asegurado, se activa un descuento del 10% sobre la prima total. Este descuento está pensado especialmente para familias, parejas con hijos o grupos familiares donde se quiere cubrir a toda la unidad familiar bajo un solo contrato.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿A partir de cuántos asegurados hay descuento en Adeslas?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "El descuento estándar por volumen en Adeslas se activa a partir del cuarto asegurado en la misma póliza. Desde ese momento, se aplica un descuento del 10% sobre la prima conjunta. Esto significa que una familia de cuatro miembros paga proporcionalmente menos por persona que una póliza individual o una de dos o tres personas.",
+      },
+      {
+        type: "callout" as const,
+        text: "En Marchal Aseguradores trabajamos con las tarifas actualizadas de Adeslas. Calcula en nuestro comparador el precio exacto para tu número de asegurados: en segundos tienes el precio real con los descuentos aplicados.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Cómo funciona el descuento en la práctica?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "El descuento se aplica automáticamente al calcular la prima de la póliza cuando se superan los umbrales establecidos. No es necesario solicitarlo expresamente: al incluir el cuarto asegurado, el sistema de tarificación de Adeslas calcula la prima ya con el descuento incluido. Como agente exclusivo Adeslas, en Marchal Aseguradores calculamos siempre el precio final con todos los descuentos aplicados para que veas exactamente cuánto pagarás.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿El descuento se aplica a todos los planes Adeslas?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "El descuento por volumen aplica a los planes de la gama Plena (Plena Vital, Plena Vital Total, Plena Plus, Plena Total y Plena Extra 150). Las condiciones exactas pueden variar según el plan y la provincia, por lo que es recomendable verificar el precio final con el tarificador actualizado antes de contratar.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Cuánto ahorra realmente una familia de 4 con el descuento?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "El ahorro concreto depende de las edades de los asegurados y del plan elegido, ya que la prima de Adeslas varía significativamente por edad. Una familia típica con dos adultos de 35-40 años y dos hijos menores puede ahorrar entre 15€ y 40€ al mes gracias al descuento por volumen, en comparación con contratar cuatro pólizas individuales separadas. Para ver el ahorro exacto en tu caso, usa el comparador de Marchal Aseguradores con tu composición familiar real.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Los hijos tienen el mismo precio que los adultos?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "No. Las primas de Adeslas para niños y adolescentes son significativamente más bajas que para adultos. A menor edad, menor prima. Esto hace que incluir a los hijos en la póliza familiar sea especialmente rentable: se benefician del descuento por volumen y parten de una prima base más baja.",
+      },
+      {
+        type: "heading" as const,
+        text: "¿Hay otros descuentos o promociones en Adeslas?",
+      },
+      {
+        type: "paragraph" as const,
+        text: "Además del descuento por volumen de asegurados, Adeslas puede aplicar condiciones especiales en determinados colectivos: empleados de empresas con convenio, familias numerosas o clientes con antigüedad. Estas condiciones se gestionan a través del agente y no siempre están disponibles en los canales directos. En Marchal Aseguradores gestionamos todas las condiciones disponibles para que obtengas el mejor precio.",
+      },
+      {
+        type: "faq" as const,
+        faqItems: [
+          { q: "¿A partir de cuántas personas hace descuento Adeslas?", a: "Adeslas aplica un descuento del 10% a partir del cuarto asegurado en la misma póliza. Para pólizas de 1, 2 o 3 asegurados, no se aplica este descuento de volumen estándar." },
+          { q: "¿Cuánto descuento hace Adeslas por familia?", a: "El descuento estándar por volumen es del 10% sobre la prima total a partir del cuarto asegurado. El ahorro mensual concreto depende de las edades y el plan elegido, y se calcula automáticamente en el tarificador." },
+          { q: "¿Puedo añadir a mis padres o suegros en mi póliza Adeslas para obtener descuento?", a: "En general, las pólizas de Adeslas están pensadas para la unidad familiar conviviente. La inclusión de ascendientes puede tener condiciones específicas. Consúltalo con tu asesor de Marchal Aseguradores antes de contratar." },
+          { q: "¿Los hijos menores tienen el mismo precio que los adultos en Adeslas?", a: "No. La prima de Adeslas para niños es considerablemente más baja que para adultos. Además, los menores de 14 años tienen acceso a pediatría en todos los planes que incluyen esa cobertura." },
+          { q: "¿Cómo calculo el precio real de Adeslas para mi familia?", a: "En el comparador online de Marchal Aseguradores puedes introducir la edad y datos de cada asegurado y obtienes el precio final con todos los descuentos aplicados en menos de 2 minutos, sin compromiso." },
+        ],
+      },
+      {
+        type: "callout" as const,
+        text: "Calcula el precio exacto de Adeslas para toda tu familia en el comparador de Marchal Aseguradores. En menos de 2 minutos ves el precio real con el descuento por volumen ya aplicado.",
+      },
+    ],
+    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026", "seguro-medico-familias-2026", "que-cubre-seguro-medico-adeslas-2026", "carencias-seguros-medicos-adeslas"],
+  },
+
 
 ];
 

@@ -11,6 +11,7 @@ import {
   getRelatedPosts,
   type ContentBlock,
   type BlogPostFull,
+  type FaqItem,
 } from "@/data/blogPosts";
 
 /* ───────── Content block renderer ───────── */
@@ -77,6 +78,30 @@ const RenderBlock = ({ block, index }: { block: ContentBlock; index: number }) =
         >
           <p className="text-lg leading-relaxed">{block.text}</p>
         </blockquote>
+      );
+
+    case "faq":
+      return (
+        <div className="mb-8 space-y-3">
+          {block.faqItems?.map((item, i) => (
+            <details
+              key={i}
+              className="border overflow-hidden"
+              style={{ borderColor: "#E2E8F0", borderRadius: "12px" }}
+            >
+              <summary
+                className="px-5 py-4 font-semibold cursor-pointer flex justify-between items-center"
+                style={{ color: "#003087", backgroundColor: "#F7FAFC", listStyle: "none" }}
+              >
+                <span>{item.q}</span>
+                <span className="ml-4 text-lg flex-shrink-0" style={{ color: "#009FE3" }}>+</span>
+              </summary>
+              <p className="px-5 py-4 text-base leading-relaxed m-0" style={{ color: "#4A5568" }}>
+                {item.a}
+              </p>
+            </details>
+          ))}
+        </div>
       );
 
     default:
@@ -185,6 +210,20 @@ const BlogArticle = () => {
     }
   });
 
+  // FAQPage JSON-LD — mejora elegibilidad para AI Overviews y People Also Ask
+  const faqBlocks = post.body.filter(b => b.type === "faq" && b.faqItems?.length);
+  const faqJsonLd = faqBlocks.length > 0 ? JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqBlocks.flatMap(b =>
+      (b.faqItems ?? []).map(item => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": { "@type": "Answer", "text": item.a }
+      }))
+    )
+  }) : null;
+
   return (
     <TarificadorProvider>
       {_seo}
@@ -193,6 +232,13 @@ const BlogArticle = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: articleJsonLd }}
       />
+      {/* FAQPage schema — solo si el artículo tiene bloques FAQ */}
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: faqJsonLd }}
+        />
+      )}
       <Header />
 
       {/* Hero image */}
