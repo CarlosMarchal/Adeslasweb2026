@@ -204,6 +204,18 @@ const nextConfig = {
         permanent: true,
       },
 
+      // ── Backlink recovery: PDF León recibe 1 backlink externo (GSC) ────────
+      // El archivo puede existir o no, pero el backlink apunta a esta URL.
+      // El 301 transfiere el link equity a /cuadro-medico/ (página canónica).
+      // Next.js compara contra el path URL-decoded, por lo que el source debe
+      // incluir la tilde y espacios en su forma decodificada — o bien la forma
+      // encodificada %20/%C3%B3 para cubrir ambos casos del crawler.
+      {
+        source: '/cuadros-medicos/Adeslas%20Cuadro%20Medico%20Le%C3%B3n%202026.pdf',
+        destination: '/cuadro-medico/',
+        permanent: true,
+      },
+
       // ── Soft 404: /seguro-salud/adeslas-one/ ───────────────────────────────
       // Devuelve HTTP 200 con contenido genérico (sin H1, meta vacíos).
       // Google la rastrea como página real vacía → daña autoridad del dominio.

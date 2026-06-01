@@ -99,9 +99,31 @@ const ORGANIZATION_SCHEMA = {
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Adeslas Seniors", "description": "Seguro médico para mayores de 55 años con asesor personal desde 67,50€/mes" } }
     ]
   },
+  // sameAs — señales de entidad verificable para LLMs (GEO)
+  // ─────────────────────────────────────────────────────────────────────────
+  // Cada URL que añadas aquí debe apuntar a un perfil REAL y activo.
+  // Los LLMs (ChatGPT, Perplexity, Gemini) cruzan estas señales para decidir
+  // si la entidad es confiable y qué información es canónica sobre ella.
+  //
+  // TODO — rellenar antes del próximo deploy:
+  //   • LinkedIn Marchal Aseguradores: "https://www.linkedin.com/company/SLUG/"
+  //     (busca en linkedin.com/company/ el slug exacto de tu empresa)
+  //   • Google My Business: "https://maps.app.goo.gl/TU_ID"
+  //     (copia la URL corta desde el botón "Compartir" de tu ficha de GMB)
+  //   • Registro DGS mediadores: construye la URL así —
+  //     https://www.registromediadores.dgsfp.mineco.es/consultas/detalleMediador.aspx?cod=TU_CODIGO
+  //     (tu código de mediador está en el NIF + letra de control del Registro de la DGSFP)
+  //   • Wikidata Adeslas (SegurCaixa Adeslas): busca en wikidata.org el QID
+  //     exacto de "SegurCaixa Adeslas" para añadir "https://www.wikidata.org/wiki/QXXXXXX"
+  // ─────────────────────────────────────────────────────────────────────────
   "sameAs": [
+    // Perfiles oficiales Adeslas (marca representada) — verificados
     "https://www.instagram.com/adeslasseguros/",
-    "https://www.facebook.com/adeslasseguros/"
+    "https://www.facebook.com/adeslasseguros/",
+    // Añadir aquí los TODOs de arriba cuando estén verificados:
+    // "https://www.linkedin.com/company/TU_SLUG/",  ← TODO: LinkedIn Marchal Aseguradores
+    "https://www.registromediadores.dgsfp.mineco.es/consultas/detalleMediador.aspx?cod=28101259",
+    // "https://www.wikidata.org/wiki/QXXXXXX"
   ]
 };
 
