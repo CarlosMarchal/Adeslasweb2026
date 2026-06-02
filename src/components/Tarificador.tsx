@@ -241,10 +241,26 @@ const Tarificador = ({ compact = false, productSlug, onClose }: TarificadorProps
     }
   }, [step]);
 
+  // Mapa explícito productSlug (URL canónica de página) → id de producto en pricing.ts
+  // Necesario porque pricing.ts usa slugs cortos (/adeslas-plena-total) pero las páginas
+  // pasan la ruta canónica completa (/seguro-salud/adeslas-plena-total/).
+  // Sin este mapa, singleProduct=undefined → source=302 en HubSpot y modal muestra todos los productos.
+  const SLUG_TO_PRODUCT_ID: Record<string, string> = {
+    "/seguro-salud/adeslas-go/":                                                          "ya",
+    "/seguro-salud/adeslas-plena-vital/":                                                 "esencial",
+    "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/": "completaPlus",
+    "/seguro-salud/adeslas-plena-plus/":                                                  "completaPlusPlus",
+    "/seguro-salud/adeslas-plena-total/":                                                 "completa",
+    "/seguro-salud/adeslas-extra-150/":                                                   "reembolso",
+    "/adeslas-body-factory/":                                                             "ya",    // sin tarificador propio, fallback GO
+  };
   const singleProduct = productSlug
-    ? products.find(
-        (p) => p.slug === `/${productSlug}` || p.slug === productSlug
-      )
+    ? products.find((p) => {
+        const mappedId = SLUG_TO_PRODUCT_ID[productSlug];
+        if (mappedId) return p.id === mappedId;
+        // Fallback: coincidencia directa (cubre seniors, pymes, autónomos, extranjeros, etc.)
+        return p.slug === `/${productSlug}` || p.slug === productSlug;
+      })
     : undefined;
 
   const zone = useMemo(() => {
