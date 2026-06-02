@@ -10,7 +10,7 @@ const HERO_BG = "/images/adeslas-cuadro-medico.webp";
 
 const stats = [
   { value: "+51.000", label: "Profesionales médicos" },
-  { value: "+1.200", label: "Centros concertados" },
+  { value: "+1.400", label: "Centros concertados" },
   { value: "52", label: "Provincias con cobertura" },
 ];
 
@@ -69,7 +69,7 @@ const CuadroMedico = () => {
       },
       {
         q: "¿El cuadro médico Adeslas incluye hospitales?",
-        a: "Sí. Adeslas dispone de más de 1.200 centros concertados en España, incluyendo clínicas, centros de diagnóstico y hospitales de referencia en todas las provincias.",
+        a: "Sí. Adeslas dispone de más de 1.400 centros concertados en España, incluyendo clínicas, centros de diagnóstico y hospitales de referencia en todas las provincias.",
       },
     ],
   });
@@ -123,8 +123,8 @@ const CuadroMedico = () => {
               className="text-lg max-w-2xl"
               style={{ color: "rgba(255,255,255,0.82)" }}
             >
-              Accede a la red médica más amplia: más de 51.000 médicos,
-              1.400 centros y 1.200+ centros médicos en toda España. Descarga el
+              Accede a la red médica más amplia: más de 51.000 médicos y
+              1.400+ centros médicos en toda España. Descarga el
               cuadro médico de tu provincia.
             </p>
           </div>

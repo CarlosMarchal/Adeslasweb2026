@@ -262,7 +262,7 @@ const PreciosOfertasInner = () => {
               <div className="flex flex-wrap gap-4">
                 {[
                   { icon: "⭐", text: "+30 años de experiencia" },
-                  { icon: "🏥", text: "1.200+ centros médicos" },
+                  { icon: "🏥", text: "1.400+ centros médicos" },
                   { icon: "👨‍⚕️", text: "+51.000 médicos" },
                 ].map((b) => (
                   <div
