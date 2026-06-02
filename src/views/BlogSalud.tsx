@@ -32,10 +32,20 @@ const BlogSalud = () => {
     ],
   });
 
-  const filtered =
+  const MONTH_ES: Record<string, number> = {
+    Ene: 0, Feb: 1, Mar: 2, Abr: 3, May: 4, Jun: 5,
+    Jul: 6, Ago: 7, Sep: 8, Oct: 9, Nov: 10, Dic: 11,
+  };
+  const parseDate = (d: string) => {
+    const [day, mon, year] = d.split(" ");
+    return new Date(Number(year), MONTH_ES[mon] ?? 0, Number(day)).getTime();
+  };
+
+  const filtered = (
     activeCategory === "Todos"
       ? blogPosts
-      : blogPosts.filter((p) => p.category === activeCategory);
+      : blogPosts.filter((p) => p.category === activeCategory)
+  ).slice().sort((a, b) => parseDate(b.date) - parseDate(a.date));
 
   return (
     <TarificadorProvider>

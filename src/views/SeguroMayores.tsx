@@ -17,7 +17,6 @@ const data: SegmentPageData = {
   },
   heroTitle: "Seguro de Salud Adeslas para Personas Mayores",
   heroSubtitle: "Seguros médicos diseñados específicamente para personas de 55 a 84 años: asesor de salud personal, más de 40 especialidades, hospitalización completa y precios garantizados.",
-  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
   heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   contentTitle: "Cobertura médica especializada para mayores de 55",
   contentDescription: "Adeslas dispone de dos seguros médicos diseñados exclusivamente para personas de 55 a 84 años: Adeslas Seniors (55-84 años) y Adeslas Seniors Total (63-84 años). Ambos incluyen asesor de salud personal, todas las especialidades médicas, hospitalización en habitación individual con cama para acompañante y los medios de diagnóstico más avanzados.",

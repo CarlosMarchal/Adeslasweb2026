@@ -17,7 +17,6 @@ const data: SegmentPageData = {
   },
   heroTitle: "Seguro Médico Privado Adeslas Individual",
   heroSubtitle: "Compara los planes Adeslas y elige el que mejor se adapta a ti. GO desde 21€, Plena Vital desde 38€ o Plena Total sin copagos. +51.000 médicos, sin listas de espera.",
-  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
   heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   contentTitle: "Un seguro médico pensado para ti",
   contentDescription: "Si buscas un seguro médico privado individual en España, Adeslas ofrece la gama más completa del mercado: desde el plan más económico (Adeslas Go desde 21€/mes) hasta cobertura total sin copagos con Adeslas Plena Total. Sin listas de espera y con acceso inmediato a más de 51.000 médicos en toda España.",

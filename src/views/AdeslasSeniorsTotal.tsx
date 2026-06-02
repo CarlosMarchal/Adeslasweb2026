@@ -23,7 +23,6 @@ const data: ProductPageData = {
     { name: "Adeslas Seniors Total", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/" },
   ],
   customTarificador: <ContactCtaCard />,
-  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado + 3 años sin subida de precio · Oferta hasta 31 dic. 2026",
   heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" }, extra: { number: "3", text: "AÑOS\nSIN SUBIDA\nDE PRECIO" } },
   badge: "3 años sin subidas de prima",
   heroTitle: "Adeslas Seniors Total",

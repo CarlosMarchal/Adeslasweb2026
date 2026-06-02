@@ -23,7 +23,6 @@ const data: ProductPageData = {
   ],
   productSlug: "/seguro-salud/adeslas-extra-150/",
   hubspotSource: 306,
-  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
   heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   cardPromoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts/asegurado",
   badge: "Libre elección · Reembolso 80% · Máx. 150.000€/año",

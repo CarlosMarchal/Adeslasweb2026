@@ -17,7 +17,6 @@ const data: SegmentPageData = {
   },
   heroTitle: "Seguro Médico Adeslas para el Embarazo y el Parto",
   heroSubtitle: "Seguro Adeslas con cobertura completa en embarazo, parto y neonatología. Seguimiento prenatal sin límites de visitas y la mejor atención en el momento que más importa.",
-  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
   heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   contentTitle: "Protege tu embarazo y a tu bebé desde el primer día",
   contentDescription: "El embarazo es uno de los momentos más importantes de tu vida y requiere la mejor atención médica. Adeslas cubre todo el proceso: consultas con ginecólogo, ecografías sin límite, análisis prenatales, parto hospitalario (vaginal o cesárea), habitación individual, neonatología para el recién nacido y seguimiento postparto. Sin copagos, sin sorpresas, con los mejores hospitales privados de España.",

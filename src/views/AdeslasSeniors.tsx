@@ -23,7 +23,6 @@ const data: ProductPageData = {
     { name: "Adeslas Seniors", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors/" },
   ],
   customTarificador: <ContactCtaCard />,
-  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
   heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   badge: "Para personas de 55 a 84 años",
   heroTitle: "Adeslas Seniors",

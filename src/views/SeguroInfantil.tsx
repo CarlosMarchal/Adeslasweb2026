@@ -17,7 +17,6 @@ const data: SegmentPageData = {
   },
   heroTitle: "Seguro Médico Adeslas para Niños",
   heroSubtitle: "Seguro médico Adeslas infantil con pediatría especializada, urgencias 24h y acceso a +51.000 médicos. Cobertura desde el primer día de vida sin periodos de carencia.",
-  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado · Oferta hasta 31 dic. 2026",
   heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   contentTitle: "Cuidado médico integral para tus hijos, desde el nacimiento",
   contentDescription: "Los niños tienen necesidades médicas específicas que requieren especialistas pediátricos, vacunas, revisiones del desarrollo y atención urgente disponible a cualquier hora. Adeslas ofrece seguros médicos infantiles que cubren todo el crecimiento de tus hijos desde el nacimiento hasta los 18 años, con la red de pediatras más amplia de España y sin listas de espera.",

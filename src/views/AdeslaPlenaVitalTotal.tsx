@@ -22,7 +22,6 @@ const data: ProductPageData = {
   ],
   productSlug: "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/",
   hubspotSource: 313,
-  heroPromo: "🎁 Hasta 3 meses gratis + 250 puntos/asegurado + 3 años sin subida de precio · Oferta hasta 31 dic. 2026",
   heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" }, extra: { number: "3", text: "AÑOS\nSIN SUBIDA\nDE PRECIO" } },
   cardPromoBadge: "🎁 Hasta 3 meses GRATIS + 3 años sin subida",
   cardPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" }, extra: { number: "3", text: "AÑOS\nSIN SUBIDA\nDE PRECIO" } },
