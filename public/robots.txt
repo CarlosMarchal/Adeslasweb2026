@@ -52,6 +52,10 @@ Allow: /
 # los usuarios que lleguen a ellas, pero indicamos aquí a los crawlers que
 # no pierdan tiempo rastreándolas.
 User-agent: *
+Disallow: /solicitud-alta
+Disallow: /solicitud-alta-ingles
+Disallow: /solicitud-alta.pdf
+Disallow: /solicitud-alta-ingles.pdf
 Disallow: /wp-admin/
 Disallow: /wp-login.php
 Disallow: /wp-includes/
