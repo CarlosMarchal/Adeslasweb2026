@@ -16,12 +16,6 @@ export default function SolicitudAltaInglesPage() {
         <h1 className="text-2xl font-bold text-gray-800 mb-2">
           Application Form &amp; Health Questionnaire
         </h1>
-        <p className="text-gray-500 mb-6 text-sm">
-          Please fill in the form, sign it, and send it to{" "}
-          <a href="mailto:cmarchal@marchalconsultores.com" className="text-blue-600 underline">
-            cmarchal@marchalconsultores.com
-          </a>
-        </p>
         <div className="w-full rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-white">
           <iframe
             src="/solicitud-alta-ingles.pdf"

@@ -16,12 +16,6 @@ export default function SolicitudAltaPage() {
         <h1 className="text-2xl font-bold text-gray-800 mb-2">
           Solicitud y Cuestionario de Salud
         </h1>
-        <p className="text-gray-500 mb-6 text-sm">
-          Rellena el formulario, fírmalo y envíanoslo a{" "}
-          <a href="mailto:cmarchal@marchalconsultores.com" className="text-blue-600 underline">
-            cmarchal@marchalconsultores.com
-          </a>
-        </p>
         <div className="w-full rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-white">
           <iframe
             src="/solicitud-alta.pdf"
