@@ -3,7 +3,7 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-viaje-adeslas.webp";
 
-const data: ProductPageData = {
+export const data: ProductPageData = {
   seoTitle: "Adeslas Accidentes | Seguro de Accidentes con Cobertura 24h desde 5,89€/mes",
   seoDescription: "Seguro de accidentes Adeslas con cobertura 24h en todo el mundo. Fallecimiento, invalidez, asistencia médica y hospitalización por accidente. Desde 5,89€/mes.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-accidentes/",

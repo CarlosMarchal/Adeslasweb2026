@@ -20,16 +20,30 @@ import type { Metadata } from 'next';
 import nextDynamic from 'next/dynamic';
 import { getPageMeta, PAGE_META } from '@/data/pageMeta';
 import { FAQ_SCHEMAS } from '@/data/faqSchemas';
+import migratedRoutes from '../../tests/migrated-routes.json';
 
 // ── ISR: cachear en edge durante 1 hora; revalidar en background ─────────────
 export const revalidate = 3600;
 
-// ── Pre-renderizar en build todas las rutas del mapa de metadatos ─────────────
+// Rutas ya migradas a Server Components SSG (tienen ruta explícita en /app).
+// El catch-all NO debe pre-generarlas: si una clave de PAGE_META coincide con
+// una canónica migrada (p. ej. /adeslas-adif-renfe/), generarla aquí entra en
+// conflicto con la ruta explícita y puede ganar de forma no determinista,
+// sirviendo el SPA (BAILOUT) en vez del HTML SSG. Excluirlas lo hace determinista.
+const MIGRATED = new Set<string>(migratedRoutes.migrated);
+const toPath = (key: string) => {
+  const clean = key.replace(/^\//, '').replace(/\/$/, '');
+  return clean ? `/${clean}/` : '/';
+};
+
+// ── Pre-renderizar en build las rutas del mapa de metadatos AÚN no migradas ───
 export async function generateStaticParams() {
-  return Object.keys(PAGE_META).map((path) => {
-    const clean = path.replace(/^\//, '').replace(/\/$/, '');
-    return { slug: clean ? clean.split('/') : [] };
-  });
+  return Object.keys(PAGE_META)
+    .filter((path) => !MIGRATED.has(toPath(path)))
+    .map((path) => {
+      const clean = path.replace(/^\//, '').replace(/\/$/, '');
+      return { slug: clean ? clean.split('/') : [] };
+    });
 }
 
 // ── Tipos ────────────────────────────────────────────────────────────────────

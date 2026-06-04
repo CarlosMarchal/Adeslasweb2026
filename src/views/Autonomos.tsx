@@ -9,7 +9,7 @@ const MedicalIcon = () => (
   </svg>
 );
 
-const data: ProductPageData = {
+export const data: ProductPageData = {
   seoTitle: "Seguro Médico Adeslas para Autónomos | Deducible IRPF · Sin Copago",
   seoDescription: "Seguro médico Adeslas para autónomos: sin copagos, deducible en IRPF hasta 500€/asegurado/año, +51.000 médicos y 1.400 centros. El seguro que cuida tu salud y te ahorra en impuestos.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/autonomos/",

@@ -4,7 +4,7 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-dental-adeslas.webp";
 
-const data: ProductPageData = {
+export const data: ProductPageData = {
   seoTitle: "Seguro Dental Adeslas | Sin Carencias desde Día 1 · Desde 9,45€/mes",
   seoDescription: "Seguro dental Adeslas desde 9,45€/mes: limpiezas y revisiones desde el día 1 sin coste. Implantes, endodoncia y ortodoncia con franquicias reducidas. Niños hasta 8 años gratis. +1.700 dentistas.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-dental/",

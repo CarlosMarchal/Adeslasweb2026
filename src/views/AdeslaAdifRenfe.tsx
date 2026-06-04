@@ -6,7 +6,7 @@ import heroImg from "@/assets/seguro-medico-adeslas-empresas.webp";
 const WA_NUMBER  = "34615568486";
 const WA_MESSAGE = "Hola, estoy interesado en el seguro de Adeslas para el colectivo de empleados y familiares de Adif-Renfe.";
 
-const data: ProductPageData = {
+export const data: ProductPageData = {
   seoTitle:
     "Adeslas ADIF Renfe | Seguro Médico para Empleados · Precios 2026",
   seoDescription:
