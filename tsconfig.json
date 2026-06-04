@@ -42,11 +42,9 @@
   ],
   "exclude": [
     "node_modules",
-    "vite.config.ts",
-    "vite.config.js",
+    "legacy",
     "vitest.config.ts",
     "vitest.config.js",
-    "src/main.tsx",
     "src/test"
   ]
 }

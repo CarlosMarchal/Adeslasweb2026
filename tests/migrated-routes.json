@@ -1,0 +1,4 @@
+{
+  "_comment": "Rutas YA migradas a Server Components SSG. En modo enforce se les exige un <h1> real visible (no sr-only) y contenido real en el HTML inicial. Las rutas ausentes de esta lista se verifican en modo baseline (solo presencia de title/description/canonical/JSON-LD). Se irán añadiendo en Fase 1 y 2.",
+  "migrated": []
+}

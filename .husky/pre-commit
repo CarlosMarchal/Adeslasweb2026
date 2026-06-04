@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# Guardarraíles P0 rápidos antes de cada commit (Fase 0 — Adeslas).
+# Bloquean: contrato de analítica (forma + sincronía de generate_lead),
+# uso de crypto.subtle en src/lib, y await antes de track* en handlers de form.
+# Los guards que requieren build (URLs, SEO) corren en CI sobre el build.
+#
+# No usar --no-verify para saltarse esto. Si falla, se arregla la causa.
+
+echo "▶ Guardarraíles P0 (contrato de analítica)…"
+npm run guardrailes

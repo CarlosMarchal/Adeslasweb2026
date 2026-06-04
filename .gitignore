@@ -33,3 +33,9 @@ node_modules 2
 # Next.js
 .next/
 out/
+
+# Artefactos de build heredados de Vite (legacy, pendientes de retirada en Fase 2)
+.vite-react-ssg-temp/
+
+# Línea base de snapshots SEO generada en local
+tests/.seo-baseline/

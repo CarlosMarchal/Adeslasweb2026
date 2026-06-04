@@ -2,12 +2,23 @@
   "name": "adeslasweb2026",
   "version": "1.0.0",
   "description": "Web Adeslas / Marchal Aseguradores 2026",
+  "author": "Juan Carlos Díaz <contacto@convertiam.com> (https://convertiam.com)",
+  "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:contract": "vitest run tests/tracking-contract.spec.ts tests/handlers-order.spec.ts tests/source-guards.spec.ts",
+    "build:lockfile": "node scripts/build-lockfile.mjs",
+    "test:routes": "node scripts/check-routes.mjs",
+    "test:seo": "node scripts/check-seo.mjs",
+    "crawl:prod": "node scripts/crawl-prod.mjs",
+    "guardrailes": "npm run test:contract",
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -82,6 +93,11 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3",
     "vite": "^7.3.2",
-    "vite-react-ssg": "^0.9.1-beta.1"
+    "vite-react-ssg": "^0.9.1-beta.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "cheerio": "^1.0.0",
+    "husky": "^9.1.7",
+    "jsdom": "^25.0.1",
+    "vitest": "^3.2.4"
   }
 }

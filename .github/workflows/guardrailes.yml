@@ -1,0 +1,67 @@
+name: Guardarraíles
+
+# Protege los invariantes P0 (URLs inmutables, contrato de tracking, SEO) en cada
+# PR a main y en cada push de rama. Sin estos checks en verde no se mergea.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches-ignore: [main]
+
+concurrency:
+  group: guardrailes-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  guards-rapidos:
+    name: Contrato de analítica + typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Contrato de analítica (P0-2)
+        run: npm run test:contract
+      - name: Typecheck (informativo — deuda TS preexistente conocida)
+        run: npm run typecheck
+        continue-on-error: true
+
+  guards-build:
+    name: URLs inmutables + SEO (sobre build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      - name: Regenerar lockfile desde el código
+        run: npm run build:lockfile
+
+      - name: Build de producción
+        run: npm run build
+
+      - name: Arrancar servidor
+        run: |
+          npm run start &
+          echo "Esperando a http://localhost:3000 …"
+          for i in $(seq 1 60); do
+            if curl -sfo /dev/null http://localhost:3000/; then echo "listo"; break; fi
+            sleep 2
+          done
+
+      - name: URLs inmutables (P0-1) contra el build
+        run: npm run test:routes
+        env:
+          BASE_URL: http://localhost:3000
+
+      - name: Snapshots SEO contra el build
+        run: npm run test:seo
+        env:
+          BASE_URL: http://localhost:3000
