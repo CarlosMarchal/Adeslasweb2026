@@ -19,6 +19,12 @@
     "/adeslas-extranjeros/",
     "/adeslas-body-factory/",
     "/adeslas-adif-renfe/",
-    "/adeslas-asistencia-en-viaje/"
+    "/adeslas-asistencia-en-viaje/",
+    "/seguro-salud/adeslas-individual/",
+    "/seguro-salud/seguro-familia/",
+    "/seguro-salud/adeslas-infantil/",
+    "/seguro-salud/adeslas-ginecologia/",
+    "/seguro-salud/embarazo/",
+    "/seguro-salud/seguro-para-personas-mayores/"
   ]
 }

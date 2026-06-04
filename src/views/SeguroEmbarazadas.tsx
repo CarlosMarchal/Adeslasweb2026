@@ -2,7 +2,7 @@ import SegmentPageTemplate from "@/components/SegmentPageTemplate";
 import type { SegmentPageData } from "@/components/SegmentPageTemplate";
 import heroBg from "@/assets/seguro-salud-adeslas-embarazo.webp";
 
-const data: SegmentPageData = {
+export const data: SegmentPageData = {
   heroBg,
   seo: {
     title: "Adeslas Embarazo | Seguro Médico para Embarazadas con Parto y Neonatología",

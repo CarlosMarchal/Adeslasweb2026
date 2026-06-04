@@ -2,7 +2,7 @@ import SegmentPageTemplate from "@/components/SegmentPageTemplate";
 import type { SegmentPageData } from "@/components/SegmentPageTemplate";
 import heroBg from "@/assets/seguro-salud-adeslas-familias.webp";
 
-const data: SegmentPageData = {
+export const data: SegmentPageData = {
   heroBg,
   seo: {
     title: "Adeslas Seguro Médico Familiar | Pediatría, Especialistas y Sin Copagos",

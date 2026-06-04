@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, AnimatePresence } from "@/lib/motion";
 import { useState, memo, useCallback } from "react";
 import { Link } from "react-router-dom";
@@ -154,8 +156,10 @@ FaqSection.displayName = "FaqSection";
 
 /* ───── Template ───── */
 
-const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
-
+/* SEO del SPA (react-helmet). En las rutas SSG (renderSeo={false}) los metadatos
+   los aporta generateMetadata nativo de Next, así que no se monta este componente
+   y no se requiere HelmetProvider. */
+const SpaSeo = ({ data }: { data: SegmentPageData }) => {
   const _seo = useSeo({
     title: data.seo.title,
     description: data.seo.description,
@@ -166,10 +170,13 @@ const SegmentPageTemplate = ({ data }: { data: SegmentPageData }) => {
       ? data.faqs.map((f) => ({ q: f.question, a: f.answer }))
       : undefined,
   });
+  return <>{_seo}</>;
+};
 
+const SegmentPageTemplate = ({ data, renderSeo = true }: { data: SegmentPageData; renderSeo?: boolean }) => {
   return (
     <TarificadorProvider>
-      {_seo}
+      {renderSeo && <SpaSeo data={data} />}
       <Header />
       <main>
         {/* ── Hero with 2 columns — full photo + dark overlay, same as home ── */}
