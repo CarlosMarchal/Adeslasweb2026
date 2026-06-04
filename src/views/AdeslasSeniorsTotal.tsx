@@ -4,7 +4,7 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-medico-adeslas-seniors-total.webp";
 
-const data: ProductPageData = {
+export const data: ProductPageData = {
   seoTitle: "Adeslas Seniors Total | Cobertura Completa para Mayores de 63 años desde 101€",
   seoDescription: "Adeslas Seniors Total: seguro médico para personas de 63 a 84 años sin subida de prima garantizada 3 años. Hospitalización, oncología, asistencia viajes 100.000€ y asesor personal. Desde 101€/mes.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/",
