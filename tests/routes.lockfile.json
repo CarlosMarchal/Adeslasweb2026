@@ -1,0 +1,1185 @@
+[
+  {
+    "url": "/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/adesla-decesos-prima-unica",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adesla-decesos-prima-unica/"
+  },
+  {
+    "url": "/adesla-decesos-prima-unica/",
+    "expect": 200,
+    "canonical": "/seguro-decesos-prima-unica/"
+  },
+  {
+    "url": "/adeslas-accidentes",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-accidentes/"
+  },
+  {
+    "url": "/adeslas-accidentes/",
+    "expect": 200,
+    "canonical": "/seguro-accidentes/"
+  },
+  {
+    "url": "/adeslas-adif-renfe",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-adif-renfe/"
+  },
+  {
+    "url": "/adeslas-adif-renfe/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/adeslas-asistencia-en-viaje/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/adeslas-asistencia-viaje",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-asistencia-viaje/"
+  },
+  {
+    "url": "/adeslas-asistencia-viaje/",
+    "expect": 200,
+    "canonical": "/adeslas-asistencia-en-viaje/"
+  },
+  {
+    "url": "/adeslas-blog/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/adeslas-blog/muestra/fichero",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-blog/",
+    "wordpress": true
+  },
+  {
+    "url": "/adeslas-body-factory",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-body-factory/"
+  },
+  {
+    "url": "/adeslas-body-factory/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/adeslas-decesos",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-decesos/"
+  },
+  {
+    "url": "/adeslas-decesos/",
+    "expect": 200,
+    "canonical": "/seguro-decesos/"
+  },
+  {
+    "url": "/adeslas-dental",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-dental/"
+  },
+  {
+    "url": "/adeslas-dental/",
+    "expect": 200,
+    "canonical": "/seguro-dental/"
+  },
+  {
+    "url": "/adeslas-extra-150",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-extra-150/"
+  },
+  {
+    "url": "/adeslas-extra-150/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-extra-150/"
+  },
+  {
+    "url": "/adeslas-extranjeros",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-extranjeros/"
+  },
+  {
+    "url": "/adeslas-extranjeros/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/adeslas-go",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-go/"
+  },
+  {
+    "url": "/adeslas-go/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-go/"
+  },
+  {
+    "url": "/adeslas-mascotas",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-mascotas/"
+  },
+  {
+    "url": "/adeslas-mascotas/",
+    "expect": 200,
+    "canonical": "/seguro-mascotas/"
+  },
+  {
+    "url": "/adeslas-plena-plus",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-plena-plus/"
+  },
+  {
+    "url": "/adeslas-plena-plus/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-plena-plus/"
+  },
+  {
+    "url": "/adeslas-plena-total",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-plena-total/"
+  },
+  {
+    "url": "/adeslas-plena-total/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-plena-total/"
+  },
+  {
+    "url": "/adeslas-plena-vital",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-plena-vital/"
+  },
+  {
+    "url": "/adeslas-plena-vital-total",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-plena-vital-total/"
+  },
+  {
+    "url": "/adeslas-plena-vital-total/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/"
+  },
+  {
+    "url": "/adeslas-plena-vital/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-plena-vital/"
+  },
+  {
+    "url": "/adeslas-seniors",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-seniors/"
+  },
+  {
+    "url": "/adeslas-seniors-total",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-seniors-total/"
+  },
+  {
+    "url": "/adeslas-seniors-total/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/"
+  },
+  {
+    "url": "/adeslas-seniors/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-seniors/"
+  },
+  {
+    "url": "/alta-adeslas",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/alta-adeslas/"
+  },
+  {
+    "url": "/alta-adeslas/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/autonomos",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/autonomos/"
+  },
+  {
+    "url": "/autonomos/",
+    "expect": 200,
+    "canonical": "/seguro-salud/autonomos/"
+  },
+  {
+    "url": "/blog",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/"
+  },
+  {
+    "url": "/blog/",
+    "expect": 200,
+    "canonical": "/adeslas-blog/"
+  },
+  {
+    "url": "/blog/adeslas-familia-numerosa-descuentos-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/adeslas-vs-dkv-comparativa-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/",
+    "wordpress": true
+  },
+  {
+    "url": "/blog/caminar-beneficios-reales",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/caminar-beneficios-reales/"
+  },
+  {
+    "url": "/blog/caminar-beneficios-reales/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/carencias-seguros-medicos-adeslas",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/carencias-seguros-medicos-adeslas/"
+  },
+  {
+    "url": "/blog/carencias-seguros-medicos-adeslas/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/como-cambiar-seguro-medico-sin-carencias-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/como-cambiar-seguro-medico-sin-carencias-2026/"
+  },
+  {
+    "url": "/blog/como-cambiar-seguro-medico-sin-carencias-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/como-contratar-seguro-adeslas-paso-a-paso-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/como-mejorar-tu-energia-diaria",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/como-mejorar-tu-energia-diaria/"
+  },
+  {
+    "url": "/blog/como-mejorar-tu-energia-diaria/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/comparativa-seguros-medicos-adeslas-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/comparativa-seguros-medicos-adeslas-2026/"
+  },
+  {
+    "url": "/blog/comparativa-seguros-medicos-adeslas-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/cuadro-medico-adeslas-como-funciona",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/cuadro-medico-adeslas-como-funciona/"
+  },
+  {
+    "url": "/blog/cuadro-medico-adeslas-como-funciona/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/cuanto-cuesta-operacion-privada-espana-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/cuanto-cuesta-operacion-privada-espana-2026/"
+  },
+  {
+    "url": "/blog/cuanto-cuesta-operacion-privada-espana-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/cuanto-cuesta-seguro-adeslas-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/descuentos-adeslas-cuantos-asegurados-precio-real-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/dieta-mediterranea-en-casa",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/dieta-mediterranea-en-casa/"
+  },
+  {
+    "url": "/blog/dieta-mediterranea-en-casa/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/embarazo-maternidad-seguro-medico-privado-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/enfermedades-preexistentes-seguro-medico-adeslas-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/gestion-emocional-dia-a-dia",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/gestion-emocional-dia-a-dia/"
+  },
+  {
+    "url": "/blog/gestion-emocional-dia-a-dia/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/higiene-sueno-adultos",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/higiene-sueno-adultos/"
+  },
+  {
+    "url": "/blog/higiene-sueno-adultos/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/hospitalizacion-privada-vs-publica",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/hospitalizacion-privada-vs-publica/"
+  },
+  {
+    "url": "/blog/hospitalizacion-privada-vs-publica/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/listas-de-espera-sanidad-publica-espana-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/listas-de-espera-sanidad-publica-espana-2026/"
+  },
+  {
+    "url": "/blog/listas-de-espera-sanidad-publica-espana-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/merece-la-pena-seguro-medico-privado-espana-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/merece-la-pena-seguro-medico-privado-espana-2026/"
+  },
+  {
+    "url": "/blog/merece-la-pena-seguro-medico-privado-espana-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/que-cubre-seguro-medico-adeslas-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/que-cubre-seguro-medico-adeslas-2026/"
+  },
+  {
+    "url": "/blog/que-cubre-seguro-medico-adeslas-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/reembolso-libre-eleccion-medico-adeslas-extra-150-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/revisiones-medicas-por-edad",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/revisiones-medicas-por-edad/"
+  },
+  {
+    "url": "/blog/revisiones-medicas-por-edad/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/salud-bucodental-guia-completa",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/salud-bucodental-guia-completa/"
+  },
+  {
+    "url": "/blog/salud-bucodental-guia-completa/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/salud-familiar-estilo-de-vida",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/salud-familiar-estilo-de-vida/"
+  },
+  {
+    "url": "/blog/salud-familiar-estilo-de-vida/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/salud-mental-psicologia-seguro-medico-privado-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/sanidad-privada-sin-seguro-costes-reales-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/sanidad-privada-sin-seguro-costes-reales-2026/"
+  },
+  {
+    "url": "/blog/sanidad-privada-sin-seguro-costes-reales-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/seguro-dental-adeslas-coberturas-precios-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/seguro-medico-autonomos-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/seguro-medico-autonomos-2026/"
+  },
+  {
+    "url": "/blog/seguro-medico-autonomos-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/seguro-medico-empresas-pymes-adeslas-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/seguro-medico-familia-coste-real-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/seguro-medico-familia-coste-real-2026/"
+  },
+  {
+    "url": "/blog/seguro-medico-familia-coste-real-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/seguro-medico-familias-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/seguro-medico-familias-2026/"
+  },
+  {
+    "url": "/blog/seguro-medico-familias-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/seguro-medico-mayores-60-anos-adeslas-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/seguro-medico-mayores-60-anos-adeslas-2026/"
+  },
+  {
+    "url": "/blog/seguro-medico-mayores-60-anos-adeslas-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/seguro-medico-ninos-pediatria-privada-adeslas-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/seguro-medico-sin-copago-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/seguro-medico-sin-copago-2026/"
+  },
+  {
+    "url": "/blog/seguro-medico-sin-copago-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/superalimentos-que-incorporar",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/superalimentos-que-incorporar/"
+  },
+  {
+    "url": "/blog/superalimentos-que-incorporar/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/urgencias-seguro-medico-privado-como-funciona-2026",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/blog/urgencias-seguro-medico-privado-como-funciona-2026/"
+  },
+  {
+    "url": "/blog/urgencias-seguro-medico-privado-como-funciona-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/como-contratar-adeslas",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/como-contratar-adeslas/"
+  },
+  {
+    "url": "/como-contratar-adeslas/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/contacto",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/contacto/"
+  },
+  {
+    "url": "/contacto/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/contratar",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/contratar/"
+  },
+  {
+    "url": "/contratar/",
+    "expect": 200,
+    "indexable": false
+  },
+  {
+    "url": "/cuadro-medico",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/cuadro-medico/"
+  },
+  {
+    "url": "/cuadro-medico/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/cuadros-medicos/Adeslas%20Cuadro%20Medico%20Le%C3%B3n%202026.pdf",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/cuadro-medico/",
+    "wordpress": true
+  },
+  {
+    "url": "/Documentos/muestra/fichero",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/cuadro-medico/",
+    "wordpress": true
+  },
+  {
+    "url": "/feed/",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-blog/",
+    "wordpress": true
+  },
+  {
+    "url": "/mas-seguros",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/",
+    "wordpress": true
+  },
+  {
+    "url": "/oferta-plena-vital",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/oferta-plena-vital/"
+  },
+  {
+    "url": "/oferta-plena-vital/",
+    "expect": 200,
+    "indexable": false
+  },
+  {
+    "url": "/politica-de-privacidad",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/politica-de-privacidad/"
+  },
+  {
+    "url": "/politica-de-privacidad/",
+    "expect": 200,
+    "indexable": false
+  },
+  {
+    "url": "/precios-adeslas",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/precios-adeslas/"
+  },
+  {
+    "url": "/precios-adeslas/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/precios-ofertas",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/precios-ofertas/"
+  },
+  {
+    "url": "/precios-ofertas/",
+    "expect": 200,
+    "canonical": "/precios-y-ofertas/"
+  },
+  {
+    "url": "/precios-y-ofertas/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/pymes-empresas",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/pymes-empresas/"
+  },
+  {
+    "url": "/pymes-empresas/",
+    "expect": 200,
+    "canonical": "/seguro-salud/pymes/"
+  },
+  {
+    "url": "/renfe/muestra/fichero",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/adeslas-adif-renfe/",
+    "wordpress": true
+  },
+  {
+    "url": "/salud/adeslasplenaextra.html",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-salud/adeslas-extra-150/",
+    "wordpress": true
+  },
+  {
+    "url": "/salud/autonomos.html",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-salud/autonomos/",
+    "wordpress": true
+  },
+  {
+    "url": "/salud/aviso-legal.php",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/politica-de-privacidad/",
+    "wordpress": true
+  },
+  {
+    "url": "/salud/muestra/fichero",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/",
+    "wordpress": true
+  },
+  {
+    "url": "/salud/pymes.html",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-salud/pymes/",
+    "wordpress": true
+  },
+  {
+    "url": "/seguro-accidentes/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-adeslas-decesos-prima-unica/",
+    "expect": 200
+  },
+  {
+    "url": "/seguro-decesos-prima-unica/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-decesos/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-dental/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-mascotas/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-medico-embarazadas",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-medico-embarazadas/"
+  },
+  {
+    "url": "/seguro-medico-embarazadas/",
+    "expect": 200,
+    "canonical": "/seguro-salud/embarazo/"
+  },
+  {
+    "url": "/seguro-medico-familiar",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-medico-familiar/"
+  },
+  {
+    "url": "/seguro-medico-familiar/",
+    "expect": 200,
+    "canonical": "/seguro-salud/seguro-familia/"
+  },
+  {
+    "url": "/seguro-medico-ginecologia",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-medico-ginecologia/"
+  },
+  {
+    "url": "/seguro-medico-ginecologia/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-ginecologia/"
+  },
+  {
+    "url": "/seguro-medico-individual",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-medico-individual/"
+  },
+  {
+    "url": "/seguro-medico-individual/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-individual/"
+  },
+  {
+    "url": "/seguro-medico-infantil",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-medico-infantil/"
+  },
+  {
+    "url": "/seguro-medico-infantil/",
+    "expect": 200,
+    "canonical": "/seguro-salud/adeslas-infantil/"
+  },
+  {
+    "url": "/seguro-medico-mayores",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-medico-mayores/"
+  },
+  {
+    "url": "/seguro-medico-mayores/",
+    "expect": 200,
+    "canonical": "/seguro-salud/seguro-para-personas-mayores/"
+  },
+  {
+    "url": "/seguro-salud/adeslas-extra-150/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-formulario-de-alta",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-salud/adeslas-formulario-de-alta/"
+  },
+  {
+    "url": "/seguro-salud/adeslas-formulario-de-alta/",
+    "expect": 200,
+    "indexable": false
+  },
+  {
+    "url": "/seguro-salud/adeslas-ginecologia/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-go/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-individual/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-infantil/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-one",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-salud/adeslas-go/",
+    "wordpress": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-plena-plus/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-plena-total/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-plena-vital/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-seniors-total-seguro-medico-para-la-tercera-edad/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/adeslas-seniors/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/autonomos/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/embarazo/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/empresas/",
+    "expect": 200
+  },
+  {
+    "url": "/seguro-salud/ofertas-adeslas-precios/",
+    "expect": 200
+  },
+  {
+    "url": "/seguro-salud/pymes/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/seguro-familia/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/seguro-salud/seguro-para-personas-mayores/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/segurosalud/decesos",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-decesos/",
+    "wordpress": true
+  },
+  {
+    "url": "/segurosalud/muestra/fichero",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/",
+    "wordpress": true
+  },
+  {
+    "url": "/segurosalud/seguromascotas",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/seguro-mascotas/",
+    "wordpress": true
+  },
+  {
+    "url": "/sitemap.xml",
+    "expect": 200,
+    "contract": true
+  },
+  {
+    "url": "/tarificador-interno",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/tarificador-interno/"
+  },
+  {
+    "url": "/tarificador-interno/",
+    "expect": 200,
+    "indexable": false
+  },
+  {
+    "url": "/wordpress",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/",
+    "wordpress": true
+  },
+  {
+    "url": "/wp-admin/muestra/fichero",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/",
+    "wordpress": true
+  },
+  {
+    "url": "/wp-content/muestra/fichero",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/cuadro-medico/",
+    "wordpress": true
+  },
+  {
+    "url": "/wp-login.php",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/",
+    "wordpress": true
+  }
+]

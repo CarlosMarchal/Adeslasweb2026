@@ -1,224 +1,229 @@
-# CLAUDE.md — Contexto para agentes IA que trabajen en este repo
+# CLAUDE.md — Contexto y reglas para trabajar en este repo
 
-> **Lee este documento completo antes de tocar nada relacionado con tracking, formularios, GTM, HubSpot o performance (`app/layout.tsx`, `src/lib/tracking.ts`, `src/lib/hubspot.ts`, handlers de `<form>`).**
+> **Lee este documento completo antes de tocar tracking, formularios, GTM, HubSpot, rutas/URLs,
+> render SSR/SSG o performance** (`app/layout.tsx`, `src/lib/tracking.ts`, `src/lib/hubspot.ts`,
+> `app/[[...slug]]/page.tsx`, `next.config.js`, handlers de `<form>`).
 >
-> **Para reglas formales con prioridades P0/P1/P2 → ver [`docs/SOP-TRACKING.md`](./docs/SOP-TRACKING.md).** Ese documento es autoritativo para cualquier cambio en el tracking. Este `CLAUDE.md` es el resumen operativo.
+> **Jerarquía documental:**
+> - [`PLAN-MIGRACION-NEXT16.md`](./PLAN-MIGRACION-NEXT16.md) — el contrato de la migración a Next.js 16 SSG. **Manda el invariante P0 más restrictivo ante cualquier conflicto.**
+> - [`docs/SOP-OPENSPEC.md`](./docs/SOP-OPENSPEC.md) — cómo se trabaja (spec-driven, una tarea por vez).
+> - [`docs/SOP-TRACKING.md`](./docs/SOP-TRACKING.md) — autoritativo para cualquier cambio de tracking.
+> - [`docs/CHECKLIST-DEPLOY.md`](./docs/CHECKLIST-DEPLOY.md) — despliegue por tandas con rollback.
+> - Este `CLAUDE.md` es el resumen operativo.
 >
-> Autor original: Juan Carlos Díaz — Convertiam.com (`jcarlos@convertiam.com`)
-> Co-mantenedor: Carlos Marchal — Marchal Aseguradores
-> Producto: web Adeslas para Marchal Aseguradores — `numero1salud.es`
+> Autor y mantenedor: **Juan Carlos Díaz — Convertiam** (`contacto@convertiam.com` · https://convertiam.com).
+> Producto: web Adeslas para Marchal Aseguradores — `adeslas.numero1salud.es`.
 
 ---
 
-## 1. Stack y contexto del proyecto
+## 0. Prioridades del producto (SEO · GEO · WPO)
 
-- **Framework**: Next.js 14 (`app/` router) — NO App Router puro, híbrido con componentes SPA bajo `src/`.
-- **Build**: `next build`. Despliegue en Vercel (`vercel.json` → `{"framework": "nextjs"}`).
-- **Lenguaje**: TypeScript. El proyecto ignora errores TS en build (`next.config.js`), pero **nunca dependas de eso** — escribe TS correcto.
-- **CSS**: Tailwind + CSS puro. `app/globals.css` + `src/App.css`.
-- **Formularios**: `react-hook-form` no se usa sistemáticamente; la mayoría de handlers son `useState` + validación manual.
+El objetivo del proyecto es que la web rinda al máximo en, **por este orden**:
 
-### Archivos heredados de Vite (NO tocar)
-- `index.html`, `vite.config.ts`, `src/main.tsx`, `.vite-react-ssg-temp/`. Son de la versión previa. Existen porque no se han limpiado. **El runtime activo es Next.js.** Si ves cambios ahí en un diff, pregunta antes de hacer cualquier modificación.
+1. **SEO** — Google recibe el contenido íntegro en el HTML inicial (sin depender de JS).
+2. **GEO/AEO** — los rastreadores de IA (ChatGPT, Perplexity, Gemini), que en su mayoría **no
+   ejecutan JS**, pueden leer y citar el contenido.
+3. **WPO / velocidad** — HTML estático servido desde CDN, Core Web Vitals óptimos, TBT mínimo.
+
+> **Estas prioridades NUNCA justifican violar un invariante P0.** El rendimiento no se compra a costa
+> de perder eventos de tracking ni de romper una URL. En abril de 2026, optimizar PageSpeed por encima
+> del tracking costó **12 días de pérdida de leads** (ver §6, post-mortem). SEO/WPO y telemetría se
+> consiguen **a la vez**, no a cambio.
 
 ---
 
-## 2. Tracking — Contrato crítico
+## 1. Stack y contexto
 
-### 2.1. Utilidades oficiales (`src/lib/tracking.ts`)
+- **Framework**: Next.js (`app/` router). Hoy es un **híbrido**: una capa Next genera el `<head>`
+  (metadatos, JSON-LD) y un `<h1>` **oculto (`sr-only`)**, y monta debajo un **SPA de React + React
+  Router** que carga en cliente (`nextDynamic(..., { ssr: false })`). El HTML inicial llega **sin
+  cuerpo visible** → el `sr-only` es un **parche** SEO.
+- **Destino (migración en curso)**: Next.js 16, App Router, **Server Components como SSG** (HTML
+  completo en build), `<h1>` real visible, sin React Router ni `react-helmet-async`.
+- **Build**: `next build` → Vercel (auto-deploy desde `main`).
+- **Lenguaje**: TypeScript. El build ignora errores TS (`next.config.js`), pero **escribe TS
+  correcto**. Hay **deuda TS preexistente conocida** (p. ej. `heroPromoPill` sin `right` en
+  `Autonomos.tsx`/`PymesEmpresas.tsx`) pendiente de limpieza en Fase 2 para poder quitar
+  `ignoreBuildErrors`.
+- **CSS**: Tailwind + CSS puro (`app/globals.css` + `src/App.css`).
+- **Código heredado de Vite**: vive en [`legacy/`](./legacy/) (no es runtime activo, se retira en
+  Fase 2). El build-temp `/.vite-react-ssg-temp/` está fuera del control de versiones.
 
-Todas son **síncronas**. Si encuentras una `async`, es un bug: arréglalo.
+---
 
-| Función | Evento dataLayer | Cuándo se dispara |
+## 2. Invariantes P0 — bloqueantes (no negociables)
+
+### P0-1 · Las URLs son inmutables
+- **Ninguna URL publicada cambia de slug.** Reorganizar = crear la nueva + **301/308** desde la
+  antigua. **Ninguna URL puede degradar a `404`/`500`.**
+- Verdad versionada: **`tests/routes.lockfile.json`** (184 entradas, conciliado contra producción).
+- Guardarraíl: `npm run test:routes` (build local) · `npm run crawl:prod` (producción).
+
+### P0-2 · El contrato de tracking es sagrado
+- El evento `generate_lead` mantiene **exactamente** esta forma (la leen los tags de `GTM-M6ZDN42`):
+  ```js
+  {
+    event: "generate_lead",
+    lead_source: "header_desktop_te_llamamos", // string, snake_case
+    hubspot_source: 301,                        // number 300-399, opcional
+    user_data: {
+      phone_number: "666123456",                // sin espacios, sin +34
+      sha256_phone_number: "6359bfed…"          // 64 hex, SHA-256 minúsculas
+    }
+  }
+  ```
+- Hash con **`js-sha256` (síncrono)**. **Prohibido `crypto.subtle.digest`** (async).
+- En los handlers: `trackGenerateLead(...)` **síncrono y PRIMERO**, antes de cualquier `await`/`fetch`.
+  HubSpot va **fire-and-forget**.
+- GTM se carga con **`afterInteractive`**. **Prohibido** diferir `gtm.js` a "primer evento" o `setTimeout`.
+- Guardarraíl: `npm run test:contract` (forma + sincronía + lint anti-`crypto.subtle` + orden de handlers).
+
+### P0-3 · Branding y autoría
+- En **ningún archivo del producto** (código, comentarios, metadatos, `package.json`, footer, commits)
+  puede aparecer rastro de herramientas de IA.
+- `package.json → author`: Juan Carlos Díaz · contacto@convertiam.com · https://convertiam.com.
+- **Commits firmados solo por el desarrollador. Sin `Co-Authored-By` de IA.**
+
+---
+
+## 3. Utilidades de tracking (`src/lib/tracking.ts`)
+
+Todas **síncronas**. Si encuentras una `async`, es un bug: arréglalo.
+
+| Función | Evento dataLayer | Cuándo |
 |---|---|---|
-| `trackGenerateLead(phone, source, hubspotSource?)` | `generate_lead` | Usuario deja el teléfono en cualquier formulario |
-| `trackTarificadorSubmit(phone, source, hubspotSource?)` | `generate_lead` | Envío del tarificador (alias de `trackGenerateLead`) |
+| `trackGenerateLead(phone, source, hubspotSource?)` | `generate_lead` | Teléfono en cualquier formulario |
+| `trackTarificadorSubmit(phone, source, hubspotSource?)` | `generate_lead` | Envío del tarificador (alias) |
 | `trackClickToCallContratacion(location)` | `click_to_call_contratacion` | Click en `tel:917105000` |
 | `trackClickToCallAsistencia(location)` | `click_to_call_asistencia` | Click en `tel:919191898` |
 | `trackPageView(pathname)` | `page_view` | Cambio de ruta SPA (en `App.tsx`) |
 
-### 2.2. Forma del evento `generate_lead` (contrato con GTM)
-
-```js
-{
-  event: "generate_lead",
-  lead_source: "header_desktop_te_llamamos",  // string identificador de origen
-  hubspot_source: 301,                         // number 301-323, opcional
-  user_data: {
-    phone_number: "666123456",                 // sin espacios, sin +34
-    sha256_phone_number: "6359bfed...",        // 64 hex chars (SHA-256 en minúsculas)
-  }
-}
-```
-
-**NO cambies esta estructura** sin coordinación previa con quien mantiene el contenedor GTM (`GTM-M6ZDN42`). Los triggers y tags del contenedor están configurados para leer exactamente estos campos.
-
-### 2.3. Hash sha256
-
-Se hace con **`js-sha256` (síncrono, JS puro)**. **Nunca** vuelvas a usar `crypto.subtle.digest` — es asíncrono y ha provocado 12 días de pérdida de eventos (ver sección 5: Post-mortem).
-
----
-
-## 3. Reglas duras (no-negociables)
-
-### 3.1. Handlers de formulario — orden correcto
+### 3.1 Handlers de formulario — orden correcto
 
 ```ts
 // ✅ CORRECTO
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   if (!validate()) return;
-  // 1. TRACKING SÍNCRONO PRIMERO — antes de cualquier await
-  trackGenerateLead(phone, "mi_formulario", 301);
-  // 2. Fetch fire-and-forget (no bloquea UI ni tracking)
-  submitToHubSpot({...}).catch(e => console.error("[HubSpot]", e));
-  // 3. UX
-  setSent(true);
+  trackGenerateLead(phone, "mi_formulario", 301);          // 1. TRACKING SÍNCRONO PRIMERO
+  submitToHubSpot({...}).catch(e => console.error("[HubSpot]", e)); // 2. fire-and-forget
+  setSent(true);                                           // 3. UX
 };
 ```
-
 ```ts
-// ❌ PROHIBIDO — esto rompió el tracking durante 12 días
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  await submitToHubSpot({...});  // ← BLOQUEA 500-5000ms
-  trackGenerateLead(phone, ...);  // ← puede no ejecutarse nunca
-};
+// ❌ PROHIBIDO — rompió el tracking 12 días
+await submitToHubSpot({...});      // ← BLOQUEA 500-5000 ms
+trackGenerateLead(phone, ...);     // ← puede no ejecutarse nunca
 ```
 
-### 3.2. GTM en `app/layout.tsx` — configuración correcta
+### 3.2 GTM en `app/layout.tsx`
+- `<head>`: init inline del array (`window.dataLayer=window.dataLayer||[]; …{event:'gtm.js'}`).
+- Fin de `<body>`: loader con `strategy="afterInteractive"` simple.
+- **Prohibido** el patrón IIFE que espera scroll/click/touch con fallback `setTimeout`.
+- **Nota (no tocar sin permiso):** hoy el script de **analítica de HubSpot** (`hs-scripts.com`) sí se
+  difiere a primer evento con fallback `setTimeout`. No rompe `generate_lead` porque los leads se
+  envían por `fetch` directo a `api.hsforms.com`; queda **documentado en la línea base**.
 
-```tsx
-// ✅ CORRECTO
-// En <head>: init inline del array
-<script dangerouslySetInnerHTML={{ __html:
-  `window.dataLayer=window.dataLayer||[];
-   window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`
-}} />
+### 3.3 Nuevos formularios — checklist
+1. Importar `trackGenerateLead` de `@/lib/tracking`.
+2. Llamarlo al INICIO del handler (tras validar), antes de cualquier `fetch`.
+3. `lead_source` descriptivo único (snake_case) + `hubspot_source` (300-399).
+4. Añadir la source al enum de `src/lib/hubspot.ts` si no existe.
 
-// Al final de <body>: loader con afterInteractive simple
-<Script id="gtm-loader" strategy="afterInteractive"
-  src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`} />
-```
-
-```tsx
-// ❌ PROHIBIDO — este patrón rompe tracking en visitas sin interacción
-<Script strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
-  // IIFE que espera scroll/click/touch/keydown/mousemove
-  // con fallback a setTimeout(load, 8000)
-`}} />
-```
-
-**Razonamiento:** los eventos se encolan en `window.dataLayer` hasta que GTM carga. Si GTM no carga (usuario rebota sin interactuar), los eventos se pierden al cerrar la pestaña. `afterInteractive` es el mínimo aceptable: carga tras hidratación, siempre, independientemente de la interacción.
-
-### 3.3. Nuevos formularios — checklist obligatorio
-
-Cada `<form>` nuevo DEBE:
-1. Importar `trackGenerateLead` de `@/lib/tracking`
-2. Llamarlo al INICIO del handler (después de validación), antes de cualquier `fetch`
-3. Pasar un `lead_source` descriptivo único (snake_case) y el `hubspot_source` (300-399)
-4. Añadir la nueva source al enum en `src/lib/hubspot.ts` si no existe
-
-### 3.4. Performance vs telemetría
-
-**Performance NUNCA justifica pérdida de eventos.** Si PageSpeed TBT sube por GTM:
-- ❌ NO diferir la carga de `gtm.js`
-- ❌ NO mover tracking después de fetches
-- ✅ Optimizar tags DENTRO de GTM (triggers en `Window Loaded`, server-side GTM, pausar tags lentos)
-- ✅ Si tocas `gtm.js` / `hs-scripts.com`, validar GA4 DebugView 48 h antes/después
+### 3.4 Performance vs telemetría
+Si PageSpeed/TBT sube por GTM: **NO** diferir `gtm.js`, **NO** mover tracking tras fetches. **SÍ**
+optimizar tags dentro de GTM (triggers en `Window Loaded`, server-side, pausar tags lentos). Si tocas
+`gtm.js`/`hs-scripts.com`, validar GA4 DebugView 48 h antes/después.
 
 ---
 
-## 4. Debugging protocol
+## 4. Guardarraíles (la batería que bloquea)
+
+Construidos en Fase 0. Corren en **pre-commit** (rápidos) y **CI** (con build).
+
+| Comando | Protege | Qué hace |
+|---|---|---|
+| `npm run test:contract` | P0-2 | Forma de `generate_lead`, sincronía, anti-`crypto.subtle`, orden de handlers |
+| `npm run build:lockfile` | P0-1 | Regenera `tests/routes.lockfile.json` desde `pageMeta`+`blogPosts`+`next.config` |
+| `npm run test:routes` | P0-1 | Verifica el lockfile contra el build local (`BASE_URL`). Ninguna URL a 404/500 |
+| `npm run crawl:prod` | P0-1 | Concilia el lockfile contra producción en vivo |
+| `npm run test:seo` | SEO/GEO | `title`/`description`/`canonical`/JSON-LD; enforce de `<h1>` real en rutas migradas |
+| `npm run typecheck` | calidad | `tsc --noEmit` (informativo: arrastra deuda TS preexistente) |
+
+- **Pre-commit** (`.husky/pre-commit`): `npm run guardrailes` (= `test:contract`). **No usar
+  `--no-verify`.** Si falla, se arregla la causa, no se desactiva el test.
+- **CI** (`.github/workflows/guardrailes.yml`): contrato + build + `test:routes` + `test:seo`.
+- **Rutas migradas**: se anotan en `tests/migrated-routes.json` para activar el modo *enforce* SEO.
+- **Línea base SEO**: `tests/seo-baseline.json` (referencia para detectar regresiones tras migrar).
+
+---
+
+## 5. Metodología (OpenSpec) — una tarea por vez
+
+Cada unidad de trabajo: **propuesta → revisión humana → implementar en rama → validar → PR → merge →
+deploy de la tanda → archivar**. Detalle en [`docs/SOP-OPENSPEC.md`](./docs/SOP-OPENSPEC.md).
+- Estructura en `openspec/` (`config.yaml`, `specs/`, `changes/`). Comandos: `openspec new change`,
+  `openspec validate`, `openspec archive`, `openspec list`.
+- **El agente no auto-aprueba** cambios de arquitectura, tracking ni URLs.
+
+---
+
+## 6. Debugging de tracking + post-mortem
 
 Si reportan que "no llegan eventos":
+1. Consola con la página cargada: `window.dataLayer.filter(e => e.event === 'generate_lead')`.
+   - Aparece → problema en GTM (trigger/tag/consent). No aparece → problema en el código cliente.
+2. **GTM Preview** sobre la URL real. `gtm.formInteract` es built-in, NO es nuestro; el nuestro es
+   `generate_lead` (o `click_to_call_*`, `page_view`).
+3. Si el push no aparece: buscar `await` antes de `track*` → moverlo; verificar que `track*` no sea
+   `async`; probar `sha256("test")` en consola → hex.
+4. Si el push aparece pero GA4 no: revisar `consent_state` (Consentiam), GTM Preview (¿dispara el tag?),
+   stream de GA4.
+5. **Nunca** asumir causa sin evidencia directa del dataLayer.
 
-1. **DevTools → Console** con la página cargada:
-   ```js
-   window.dataLayer.filter(e => e.event === 'generate_lead')
-   ```
-   - Si aparece → el push funciona, problema en GTM (trigger/tag/consent)
-   - Si no aparece → problema en el código cliente
-
-2. **GTM Preview mode** apuntando a la URL real:
-   - Panel izquierdo muestra TODOS los eventos del dataLayer
-   - `gtm.formInteract` aparece automáticamente con cualquier `<form>` → ese evento NO es nuestro, es built-in de GTM
-   - Nuestro evento custom es `generate_lead` (o `click_to_call_*`, `page_view`)
-
-3. **Si el push no aparece:**
-   - Abrir el handler, buscar `await` antes de `trackGenerateLead` → mover tracking antes
-   - Verificar que la función de tracking no sea `async` (sería el bug que nos pasó)
-   - Probar sha256: `import { sha256 } from "js-sha256"; sha256("test")` en consola → debe devolver hex
-
-4. **Si el push aparece pero GA4 no lo registra:**
-   - Consentiam puede estar bloqueando (revisar `consent_state` en el dataLayer)
-   - GTM Preview → ver si el tag dispara
-   - Si el tag dispara pero GA4 DebugView no lo ve → problema en el stream de GA4
-
-5. **NUNCA** asumir causa sin validar con evidencia directa del dataLayer.
+**Post-mortem (9–21 abr 2026):** un commit movió `trackGenerateLead` a DESPUÉS de `await
+submitToHubSpot` y, siendo la función `async` (usaba `crypto.subtle`), los pushes se perdían al cerrar
+la pestaña. Agravado por diferir `gtm.js` a primer evento. **Lecciones:** (1) el tracking es código de
+negocio crítico, todo cambio se valida en GTM Preview; (2) `async` + `await crypto.subtle` + llamada
+sin `await` = pérdida silenciosa; (3) los títulos de commit pueden engañar — describe el cambio REAL.
 
 ---
 
-## 5. Post-mortem: Pérdida de eventos 9–21 Abril 2026
+## 7. Datos de referencia
 
-### Qué pasó
-El commit `1744e9e` (9 Apr, Carlos Marchal + Claude Sonnet 4.6) movió `trackGenerateLead` a DESPUÉS de `await submitToHubSpot` en los 4 handlers principales. Combinado con el hecho de que `trackGenerateLead` era `async` (usaba `await crypto.subtle.digest`), los pushes se perdían silenciosamente cuando el usuario cerraba la pestaña antes de que HubSpot respondiera, o cuando `crypto.subtle` rechazaba (Safari ITP, extensiones de privacidad).
-
-Agravado por commits posteriores del mismo autor:
-- `59a85a3` (18 Apr): GTM pasó de `beforeInteractive` a `afterInteractive` — ok, aceptable.
-- `bf438ce` (20 Apr): GTM pasó a diferirse hasta primer evento de usuario — **esto fue el problema adicional** en usuarios pasivos.
-
-### Por qué se coló en producción
-- El autor priorizó PageSpeed mobile TBT sin validar GA4 post-deploy.
-- Claude Sonnet 4.6 co-firmó los commits sin flaggear el impacto en tracking.
-- Nadie corrió el protocolo de debugging (sección 4) durante esos 12 días.
-
-### Fixes aplicados (commits correctivos)
-- `66f07e2` — Invertir orden: tracking antes de fetch; añadir tracking en FormularioAlta y FormularioContratacion.
-- `c8f475e` — `trackGenerateLead` síncrono (primer intento, cambió estructura del dataLayer).
-- `d5bd49d` — Usar `js-sha256` sync en lugar de `crypto.subtle`, restaurar estructura original del dataLayer.
-- `eb310de` — Añadir `user_data.phone_number` (sin hash) junto al hash.
-
-### Lecciones
-1. Código de tracking es código de negocio crítico. Cualquier cambio requiere validación en GTM Preview.
-2. `async` + `await crypto.subtle` + llamada sin `await` = pérdida silenciosa garantizada en algún porcentaje de usuarios.
-3. Títulos de commit pueden ser engañosos ("await antes de GTM" sonaba positivo, era justo lo que rompió todo).
-
----
-
-## 6. Fuentes de datos útiles
-
-| Qué | Dónde |
+| Qué | Valor |
 |---|---|
-| GTM container | `GTM-M6ZDN42` (declarado en `app/layout.tsx`) |
-| HubSpot Portal | `6596944` (declarado en `src/lib/hubspot.ts`) |
-| HubSpot Form GUID | `cd3fb712-acc6-42f7-8843-e42f1360c3c4` |
-| HubSpot sources (300-399) | Enum en `src/lib/hubspot.ts` |
-| Consent management | Consentiam.eu (gestionado vía GTM, NO desde código) |
-| GA4 DebugView | Acceso a través de la cuenta de GA del portal |
-| Vercel deploys | Auto-deploy desde `main` |
+| GTM | `GTM-M6ZDN42` (en `app/layout.tsx`) |
+| HubSpot Portal / Form GUID | `6596944` / `cd3fb712-acc6-42f7-8843-e42f1360c3c4` (`src/lib/hubspot.ts`) |
+| HubSpot sources | Enum 300-399 en `src/lib/hubspot.ts` |
+| Teléfonos | Contratación `917105000` · Asistencia `919191898` |
+| Consent | Consentiam.eu (vía GTM, no desde código) |
+| Fuentes de verdad de rutas | `src/data/pageMeta.ts`, `src/data/blogPosts.ts`, `app/sitemap.ts` |
+| Deploy | Vercel, auto-deploy desde `main` |
 
 ---
 
-## 7. Reglas de commits para agentes IA
+## 8. Convenciones de git y commits
 
-1. **Título descriptivo del cambio REAL**, no de la intención. "Mover X antes de Y" ≠ "await antes de X".
-2. **Commits de performance tocando tracking/GTM/HubSpot → marcar `[PERF-REVIEW]` en el título** y pedir validación humana explícita antes de merge.
-3. **Nunca** `git add -A` ni `git add .` — stagear solo los archivos intencionales para evitar incluir artefactos de build (`.vite-react-ssg-temp/`), secretos o cambios ruidosos de CRLF.
-4. El repo tiene ruido crónico de CRLF (Windows line endings). Usa `git diff --ignore-cr-at-eol` para ver cambios reales.
-5. Nunca pushear a `main` sin consentimiento explícito — es rama de producción con auto-deploy a Vercel.
-6. Co-firmar commits con `Co-Authored-By: Claude <modelo> <noreply@anthropic.com>`.
+1. **Rama por tarea; PR a `main`; nunca push directo a `main`** (producción con auto-deploy).
+2. **Commits firmados solo por Juan Carlos Díaz. Sin co-autoría de IA** (P0-3). Sin rastro de IA en
+   ningún archivo del producto.
+3. Título = cambio **real**, no la intención. Performance + tracking → prefijo `[PERF-REVIEW]` +
+   validación humana con evidencia.
+4. **Nunca** `git add -A`/`git add .` — stagear archivos intencionales (evita `.vite-react-ssg-temp/`,
+   secretos, ruido CRLF). Usa `git diff --ignore-cr-at-eol`.
+5. Nunca saltar hooks (`--no-verify`) ni `--amend`/firmar sin petición explícita.
 
 ---
 
-## 8. No hacer sin preguntar
+## 9. No hacer sin preguntar (requiere propuesta OpenSpec + permiso)
 
-- Modificar `app/layout.tsx` (GTM, HubSpot, preloads)
-- Modificar `src/lib/tracking.ts` (utilidades de tracking)
-- Modificar `src/lib/hubspot.ts` (submisión y enum de sources)
-- Añadir/quitar llamadas a `trackGenerateLead`, `trackTarificadorSubmit`, `trackClickToCall*`, `trackPageView`
-- Tocar configuración de Vercel (`vercel.json`, `next.config.js`)
-- Modificar el `package.json` (dependencias nuevas sin justificación)
-- Borrar archivos `.vite-react-ssg-temp/` o `index.html` (legacy pero no verificado aún)
+- Modificar `app/layout.tsx` (GTM, HubSpot, preloads).
+- Modificar `src/lib/tracking.ts` o `src/lib/hubspot.ts`.
+- Añadir/quitar llamadas a `trackGenerateLead`, `trackTarificadorSubmit`, `trackClickToCall*`, `trackPageView`.
+- Tocar `vercel.json` o `next.config.js` (incluidos redirects/headers).
+- Cambiar cualquier slug existente o el contrato del lockfile de URLs.
+- Modificar `package.json` (dependencias nuevas sin justificación).
+- Reactivar o editar nada de `legacy/`.
 
-Ante la duda: preguntar al usuario antes de actuar.
+Ante la duda: **preguntar antes de actuar.**

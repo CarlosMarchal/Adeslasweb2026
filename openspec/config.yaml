@@ -1,0 +1,32 @@
+schema: spec-driven
+
+context: |
+  Proyecto: web Adeslas para Marchal Aseguradores (adeslas.numero1salud.es).
+  Mantenedor/autor: Juan Carlos Díaz — Convertiam (contacto@convertiam.com · https://convertiam.com).
+  Objetivo del programa: migrar de un híbrido Next.js 14 + SPA React Router (ssr:false)
+  a Next.js 16 con Server Components renderizados como SSG, para ganar en SEO, GEO/AEO y WPO.
+
+  Prioridades de producto (en este orden, siempre acotadas por los invariantes P0):
+    1. SEO — Google recibe el contenido íntegro en el HTML inicial.
+    2. GEO/AEO — los rastreadores de IA (sin JS) pueden leer y citar el contenido.
+    3. WPO / velocidad — HTML estático desde CDN, Core Web Vitals óptimos.
+  Estas prioridades NUNCA justifican violar un invariante P0 (ver post-mortem de abril 2026:
+  optimizar PageSpeed por encima del tracking causó 12 días de pérdida de leads).
+
+  Stack: Next.js (app/), TypeScript, Tailwind + CSS, react-hook-form puntual.
+  Build: next build -> Vercel (auto-deploy desde main). Tracking: GTM-M6ZDN42 + HubSpot 6596944.
+
+  INVARIANTES P0 (bloqueantes - ver PLAN-MIGRACION-NEXT16.md):
+    P0-1 URLs inmutables: ninguna URL publicada cambia de slug; reorganizar = nueva URL + 301.
+         Ninguna URL puede degradar a 404/500. Verdad: tests/routes.lockfile.json.
+    P0-2 Contrato de tracking sagrado: evento generate_lead con forma exacta; js-sha256 sincrono
+         (prohibido crypto.subtle); track* sincrono ANTES de cualquier await/fetch; GTM afterInteractive.
+    P0-3 Autoria limpia: cero rastro de herramientas de IA en producto ni commits; autor Juan Carlos Diaz.
+
+rules:
+  proposal:
+    - "Toda change debe declarar que guardarrailes (URLs, analitica, SEO) deben quedar en verde."
+    - "Cambios en tracking, URLs o arquitectura no se auto-aprueban: requieren revision humana."
+    - "Incluir siempre una seccion de Impacto sobre SEO/GEO/WPO y sobre los invariantes P0."
+  tasks:
+    - "La ultima tarea de toda change es validar: lockfile + contrato analitica + snapshots SEO + tsc + build."
