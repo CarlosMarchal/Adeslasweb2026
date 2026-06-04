@@ -362,6 +362,60 @@ export default function CatchAllPage({ params }: PageProps) {
         />
       )}
 
+      {/*
+       * H1 SERVER-RENDERED para SEO — CRÍTICO para indexación.
+       *
+       * PROBLEMA: AppSPA carga con ssr:false, así que Google ve el body vacío
+       * (BAILOUT_TO_CLIENT_SIDE_RENDERING). Sin este H1, ninguna página tiene
+       * heading en el HTML inicial que rastrea Googlebot.
+       *
+       * SOLUCIÓN: Renderizar el H1 aquí, en el Server Component, ANTES de que
+       * cargue el SPA. El estilo sr-only (posición absoluta fuera de pantalla)
+       * lo hace invisible para los usuarios pero Google lo lee en el HTML inicial.
+       * NO es cloaking: el contenido es idéntico al H1 visual que renderiza el SPA.
+       *
+       * NOINDEX: páginas con noindex no necesitan H1 para SEO → se omite.
+       *
+       * FASE B (pendiente): cuando se active SSR en AppSPA, eliminar este H1
+       * y asegurarse de que cada componente de página tiene su propio <h1> visible.
+       */}
+      {!meta.noindex && (
+        <h1
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            padding: 0,
+            margin: '-1px',
+            overflow: 'hidden',
+            clip: 'rect(0, 0, 0, 0)',
+            whiteSpace: 'nowrap',
+            borderWidth: 0,
+          }}
+        >
+          {meta.h1 ?? meta.title.split(' | ')[0]}
+        </h1>
+      )}
+
+      {/* H2 server-rendered para SEO — mismo mecanismo que el H1 de arriba */}
+      {!meta.noindex && meta.h2 && (
+        <h2
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            padding: 0,
+            margin: '-1px',
+            overflow: 'hidden',
+            clip: 'rect(0, 0, 0, 0)',
+            whiteSpace: 'nowrap',
+            borderWidth: 0,
+          }}
+        >
+          {meta.h2}
+        </h2>
+      )}
+
       {/* SPA de React Router — se hidrata en el cliente */}
       <AppSPA />
     </>
