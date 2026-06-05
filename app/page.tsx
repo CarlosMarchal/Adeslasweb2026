@@ -1,0 +1,32 @@
+import type { Metadata } from "next";
+import { getPageMeta } from "@/data/pageMeta";
+import { JsonLd } from "@/components/ssg/JsonLd";
+import { SrOnlyHeadings } from "@/components/ssg/SrOnlyHeadings";
+import { ORGANIZATION_SCHEMA, WEBSITE_SCHEMA, buildMetadata } from "@/lib/seoSchemas";
+import IndexClient from "./IndexClient";
+
+const PATHNAME = "/";
+
+export const dynamic = "force-static";
+
+const meta = getPageMeta(PATHNAME);
+
+export function generateMetadata(): Metadata {
+  return buildMetadata({
+    title: meta.title,
+    description: meta.description,
+    canonical: meta.canonical,
+    ogImage: meta.ogImage,
+    noindex: meta.noindex,
+  });
+}
+
+export default function Page() {
+  return (
+    <>
+      <JsonLd schemas={[ORGANIZATION_SCHEMA, WEBSITE_SCHEMA]} />
+      <SrOnlyHeadings pathname={PATHNAME} />
+      <IndexClient />
+    </>
+  );
+}
