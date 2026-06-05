@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "@/lib/motion";
 import { Phone, CheckCircle2, ArrowLeft, Shield, Star, Award, X, Clock } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
@@ -192,9 +194,21 @@ const CallConfirmPopup = ({ nombre, onClose }: { nombre: string; onClose: () => 
 );
 
 /* ─── Component ─── */
-const MiPrecio = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const [searchParams] = useSearchParams();
+const MiPrecioSpaSeo = ({ producto, nombre, provincia }: { producto: { name: string } | null; nombre: string; provincia: string }) =>
+  useSeo({
+    title: producto
+      ? `Tu cotización ${producto.name}${nombre ? ` · ${nombre}` : ""} | Adeslas`
+      : "Tu cotización Adeslas",
+    description: `Cotización personalizada para ${producto?.name || "Adeslas"}. Precio calculado para ${provincia}.`,
+    canonical: "",
+  });
+
+const MiPrecio = ({ slug: slugProp, renderSeo = true }: { slug?: string; renderSeo?: boolean } = {}) => {
+  const params = useParams<{ slug: string }>();
+  const slug = slugProp ?? params.slug;
+  // Lee los query params de la URL REAL en cliente (SsgShell da location fija).
+  const [searchParams, setSearchParams] = useState<URLSearchParams>(new URLSearchParams());
+  useEffect(() => { setSearchParams(new URLSearchParams(window.location.search)); }, []);
   const [showCallPopup, setShowCallPopup] = useState(false);
 
   const nombre = searchParams.get("nombre") || "";
@@ -224,18 +238,10 @@ const MiPrecio = () => {
     return () => { if (meta) meta.content = "index, follow"; };
   }, []);
 
-  const _seo = useSeo({
-    title: producto
-      ? `Tu cotización ${producto.name}${nombre ? ` · ${nombre}` : ""} | Adeslas`
-      : "Tu cotización Adeslas",
-    description: `Cotización personalizada para ${producto?.name || "Adeslas"}. Precio calculado para ${provincia}.`,
-    canonical: "",
-  });
-
   if (!producto) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        {_seo}
+        {renderSeo && <MiPrecioSpaSeo producto={producto} nombre={nombre} provincia={provincia} />}
         <div className="text-center">
           <p className="text-gris-medio mb-4">Producto no encontrado</p>
           <Link to="/" className="text-azul-medio hover:underline">← Volver al inicio</Link>
@@ -246,7 +252,7 @@ const MiPrecio = () => {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      {_seo}
+      {renderSeo && <MiPrecioSpaSeo producto={producto} nombre={nombre} provincia={provincia} />}
 
       {/* ── Call confirmation popup ── */}
       <AnimatePresence>

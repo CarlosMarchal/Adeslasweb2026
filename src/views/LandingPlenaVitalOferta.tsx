@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
 import { motion, AnimatePresence } from "@/lib/motion";
@@ -6,15 +8,8 @@ import { usePhonePopup } from "@/components/PhonePopupContext";
 import logo from "@/assets/Logo-adeslas-Marchal-color.webp";
 import { imgSrc } from "@/lib/imgSrc";
 
-const LandingPlenaVitalOferta = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const { openPhonePopup } = usePhonePopup();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const _seo = useSeo({
+const LandingPlenaVitalOfertaSpaSeo = () =>
+  useSeo({
     title:
       "Adeslas Plena Vital | Oferta Exclusiva · Cobertura Completa desde 38€/mes",
     description:
@@ -23,6 +18,14 @@ const LandingPlenaVitalOferta = () => {
       "https://adeslas.numero1salud.es/adeslasplenavitaloferta/",
     robots: "noindex, nofollow",
   });
+
+const LandingPlenaVitalOferta = ({ renderSeo = true }: { renderSeo?: boolean } = {}) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { openPhonePopup } = usePhonePopup();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const coverages = [
     "Hospitalización completa",
@@ -57,7 +60,7 @@ const LandingPlenaVitalOferta = () => {
 
   return (
     <>
-      {_seo}
+      {renderSeo && <LandingPlenaVitalOfertaSpaSeo />}
       {/* Header mínimo */}
       <header className="sticky top-0 z-50 bg-white border-b border-borde">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
