@@ -139,7 +139,10 @@ const FaqItem = ({ q, a, open, onToggle }: { q: string; a: string; open: boolean
 
 /* ─── Main page ─── */
 const AltaAdeslasSEO = () => {
-  useSeo({
+  // SSG: el SEO lo aporta el Server Component (generateMetadata). Este useSeo es
+  // inerte (su retorno no se renderiza); se llama solo en cliente para no construir
+  // el <Helmet> en el prerender (causaba BAILOUT_TO_CLIENT_SIDE_RENDERING).
+  if (typeof window !== "undefined") useSeo({
     title: "Alta en Adeslas 2026 | Cómo Darse de Alta Online · Sin Esperas",
     description: "Guía completa para darse de alta en Adeslas en 2026: documentación necesaria, pasos del proceso, cuándo empieza la cobertura y todos los planes disponibles. Alta online en 2 minutos.",
     canonical: `${BASE}/alta-adeslas/`,

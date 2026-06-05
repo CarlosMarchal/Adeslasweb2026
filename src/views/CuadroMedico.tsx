@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useDeferredValue } from "react";
 import { motion } from "@/lib/motion";
 import { useSeo } from "@/hooks/use-seo";
@@ -36,14 +38,8 @@ const provincias = [
   "Valladolid", "Vizcaya", "Zamora", "Zaragoza",
 ];
 
-const CuadroMedico = () => {
-  const [search, setSearch] = useState("");
-  // useDeferredValue: el input se actualiza inmediatamente (sin lag visual),
-  // pero el filtrado de las 52 provincias se difiere al siguiente frame idle.
-  // Esto elimina el bloqueo del main thread en cada keystroke en móvil.
-  const deferredSearch = useDeferredValue(search);
-
-  const _seo = useSeo({
+const CuadroMedicoSpaSeo = () =>
+  useSeo({
     title: "Cuadro Médico Adeslas 2026 | +51.000 Médicos y 1.400 Centros en España",
     description:
       "Consulta y descarga el cuadro médico Adeslas 2026 por provincia. Más de 51.000 profesionales y 1.400 centros médicos en toda España. Sin listas de espera.",
@@ -74,13 +70,20 @@ const CuadroMedico = () => {
     ],
   });
 
+const CuadroMedico = ({ renderSeo = true }: { renderSeo?: boolean } = {}) => {
+  const [search, setSearch] = useState("");
+  // useDeferredValue: el input se actualiza inmediatamente (sin lag visual),
+  // pero el filtrado de las 52 provincias se difiere al siguiente frame idle.
+  // Esto elimina el bloqueo del main thread en cada keystroke en móvil.
+  const deferredSearch = useDeferredValue(search);
+
   const filtered = provincias.filter((p) =>
     p.toLowerCase().includes(deferredSearch.toLowerCase())
   );
 
   return (
     <TarificadorProvider>
-      {_seo}
+      {renderSeo && <CuadroMedicoSpaSeo />}
       <Header />
 
       {/* Hero */}
