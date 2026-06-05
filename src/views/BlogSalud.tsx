@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { motion } from "@/lib/motion";
 import { Link } from "react-router-dom";
@@ -10,15 +12,10 @@ import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
 import { imgSrc } from "@/lib/imgSrc";
 import { blogPosts, categories } from "@/data/blogPosts";
 
-/* ───────── Component ───────── */
-
-const BlogSalud = () => {
-  const [activeCategory, setActiveCategory] = useState("Todos");
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+/* ───────── SEO solo-SPA ─────────
+   En las rutas SSG (renderSeo={false}) los metadatos los inyecta el Server
+   Component (app/blog/page.tsx y app/adeslas-blog/page.tsx). */
+const BlogHubSpaSeo = () => {
   const _seo = useSeo({
     title: "Blog Salud Adeslas | Bienestar, Nutrición, Prevención y Seguros Médicos",
     description:
@@ -31,6 +28,17 @@ const BlogSalud = () => {
       { name: "Blog Salud", url: "https://adeslas.numero1salud.es/adeslas-blog/" },
     ],
   });
+  return <>{_seo}</>;
+};
+
+/* ───────── Component ───────── */
+
+const BlogSalud = ({ renderSeo = true }: { renderSeo?: boolean } = {}) => {
+  const [activeCategory, setActiveCategory] = useState("Todos");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const MONTH_ES: Record<string, number> = {
     Ene: 0, Feb: 1, Mar: 2, Abr: 3, May: 4, Jun: 5,
@@ -49,7 +57,7 @@ const BlogSalud = () => {
 
   return (
     <TarificadorProvider>
-      {_seo}
+      {renderSeo && <BlogHubSpaSeo />}
       <Header />
 
       {/* Hero */}

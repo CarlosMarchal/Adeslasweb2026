@@ -108,6 +108,60 @@ export function buildProductSchema(p: ProductSchemaInput, url: string, image?: s
   };
 }
 
+export interface ArticleSchemaInput {
+  title: string;
+  seoDescription: string;
+  image: string;
+  date: string;
+  category: string;
+}
+
+/**
+ * Article schema server-side para los posts del blog. Equivalente al que el SPA
+ * (BlogArticle.tsx) inyectaba en cliente, para que el HTML inicial lo incluya.
+ */
+export function buildArticleSchema(post: ArticleSchemaInput, url: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.seoDescription,
+    image: post.image,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      "@type": "Organization",
+      name: "Marchal Aseguradores",
+      url: BASE_URL,
+      description:
+        "Agente exclusivo Adeslas con más de 15 años de experiencia en el sector del seguro médico privado en España.",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Marchal Aseguradores — Agente Exclusivo Adeslas",
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/logo-adeslas.webp` },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    articleSection: post.category,
+    inLanguage: "es-ES",
+    about: { "@type": "Thing", name: "Seguros médicos Adeslas en España" },
+  };
+}
+
+/** FAQPage schema desde una lista de pares pregunta/respuesta (bloques faq del post). */
+export function buildBlogFaqSchema(faqItems: Array<{ q: string; a: string }>) {
+  if (!faqItems || faqItems.length === 0) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
 /** FAQPage schema desde FAQ_SCHEMAS (claves cortas, p.ej. "/adeslas-go"). */
 export function buildFaqSchema(faqKey: string) {
   const faqs = FAQ_SCHEMAS[faqKey] ?? FAQ_SCHEMAS[faqKey.replace(/\/$/, "")];
