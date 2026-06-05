@@ -91,13 +91,15 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://js.hs-banner.com" />
         <link rel="dns-prefetch" href="https://js.hsadspixel.net" />
 
-        {/* ── Google Tag Manager — dataLayer init (inline, no bloquea render) ─
-            Solo inicializa el array; el script gtm.js se carga afterInteractive
-            para no penalizar LCP/FCP. Los eventos previos a la carga de GTM
-            se encolan en dataLayer y se procesan cuando GTM está listo. ─────── */}
+        {/* ── [PERF-REVIEW] Google Tag Manager — snippet clásico de Google ─────
+            Experimento: cargar gtm.js de forma ASÍNCRONA lo más ALTO posible en
+            <head> (init dataLayer + inyección async de gtm.js en la misma
+            operación), tal como recomienda Google. Minimiza la ventana en que se
+            encolan eventos antes de que GTM esté listo, frente a afterInteractive.
+            NO mergear sin validación GTM Preview + GA4 DebugView (CLAUDE.md §3). ── */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`,
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
           }}
         />
       </head>
@@ -115,16 +117,10 @@ export default function RootLayout({
 
         {children}
 
-        {/* ── GTM loader — afterInteractive: carga tras hidratación, SIEMPRE,
-            independientemente de si el usuario interactúa o no.
-            Los eventos encolados en window.dataLayer (generate_lead, click_to_call…)
-            se procesan en cuanto GTM carga. NO usar IIFE con espera de interacción:
-            ese patrón pierde eventos de usuarios que rebotan sin interactuar (ver CLAUDE.md §3.2). ─ */}
-        <Script
-          id="gtm-loader"
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
-        />
+        {/* ── [PERF-REVIEW] GTM ahora se carga desde el snippet clásico en <head>
+            (async, alta prioridad). Se elimina el loader afterInteractive en este
+            experimento para que gtm.js cargue lo antes posible (práctica Google).
+            Comparar TBT/LCP vs baseline antes de decidir. ──────────────────────── */}
 
         {/* ── HubSpot tracking pixel — se carga en primer evento de usuario ──────
             hs-analytics genera 619 ms de TBT incluso con lazyOnload (carga en idle
