@@ -3,7 +3,7 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-decesos-adeslas.webp";
 
-const data: ProductPageData = {
+export const data: ProductPageData = {
   seoTitle:
     "Adeslas Decesos Prima Única | Pago Único · Cobertura Vitalicia",
   seoDescription:

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "@/lib/motion";
 import { X } from "lucide-react";
@@ -730,9 +732,30 @@ const PromoBanner = ({ onCalcClick, familiaVariant }: { onCalcClick?: () => void
   </section>
 );
 
+/* ───────── SEO del SPA (react-helmet) ─────────
+   Solo se usa en el SPA. En las rutas SSG (renderSeo={false}) los metadatos los
+   aporta generateMetadata nativo de Next, así que NO se monta este componente y
+   no se requiere HelmetProvider. */
+const SpaSeo = ({ data }: { data: ProductPageData }) => {
+  const _seo = useSeo({
+    title: data.seoTitle,
+    description: data.seoDescription,
+    canonical: data.seoCanonical,
+    faqSchema: data.schemaFaq !== false ? data.faqs : undefined,
+    ogImage: data.seoOgImage,
+    ogType: "product",
+    productSchema: data.seoProductSchema
+      ? { ...data.seoProductSchema, url: data.seoCanonical, image: data.seoOgImage }
+      : undefined,
+    breadcrumbs: data.seoBreadcrumbs,
+    noindex: data.seoNoindex,
+  });
+  return <>{_seo}</>;
+};
+
 /* ───────── Main Template ───────── */
 
-const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
+const ProductPageTemplate = ({ data, renderSeo = true }: { data: ProductPageData; renderSeo?: boolean }) => {
   const [customTarificadorOpen, setCustomTarificadorOpen] = useState(false);
   const openCustom = data.customTarificador ? () => setCustomTarificadorOpen(true) : undefined;
   const { openPhonePopup } = usePhonePopup();
@@ -759,23 +782,9 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const _seo = useSeo({
-    title: data.seoTitle,
-    description: data.seoDescription,
-    canonical: data.seoCanonical,
-    faqSchema: data.schemaFaq !== false ? data.faqs : undefined,
-    ogImage: data.seoOgImage,
-    ogType: "product",
-    productSchema: data.seoProductSchema
-      ? { ...data.seoProductSchema, url: data.seoCanonical, image: data.seoOgImage }
-      : undefined,
-    breadcrumbs: data.seoBreadcrumbs,
-    noindex: data.seoNoindex,
-  });
-
   return (
     <TarificadorProvider>
-      {_seo}
+      {renderSeo && <SpaSeo data={data} />}
       <PageCalcProvider value={{ onCalcClick: mobileCalcAction, calcLabel: mobileCalcLabel }}>
         <Header />
         <ProductHero data={data} onMobileCalc={openCustom} />

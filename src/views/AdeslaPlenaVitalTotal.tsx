@@ -3,7 +3,7 @@ import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import heroImg from "@/assets/seguro-medico-adeslas-plena-vital-total.webp";
 
-const data: ProductPageData = {
+export const data: ProductPageData = {
   seoTitle: "Adeslas Plena Vital Total | Cobertura Total · 3 Años Sin Subida de Prima",
   seoDescription: "Adeslas Plena Vital Total: cobertura completa con dental incluido, sin carencias y prima garantizada 3 años sin subidas. Copago reducido, +51.000 médicos y urgencias 24h. Desde 48,50€/mes.",
   seoCanonical: "https://adeslas.numero1salud.es/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/",

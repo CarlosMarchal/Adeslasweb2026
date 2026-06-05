@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "@/lib/motion";
@@ -144,38 +146,17 @@ const RelatedCard = ({ post }: { post: BlogPostFull }) => (
   </Link>
 );
 
-/* ───────── Main component ───────── */
-
-const BlogArticle = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
-  const post = slug ? getPostBySlug(slug) : undefined;
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [slug]);
-
-  // If post not found, redirect to blog listing
-  useEffect(() => {
-    if (!post && slug) {
-      navigate("/adeslas-blog/", { replace: true });
-    }
-  }, [post, slug, navigate]);
-
-  // SEO (call hook unconditionally to avoid rules-of-hooks violation)
+/* ───────── SEO solo-SPA ─────────
+   Solo se usa en el SPA (renderSeo). En las rutas SSG (renderSeo={false}) los
+   metadatos y el JSON-LD (Article/FAQ) los inyecta el Server Component
+   (app/blog/[slug]/page.tsx) en el HTML inicial. */
+const BlogSpaSeo = ({ post }: { post: BlogPostFull }) => {
   const _seo = useSeo({
-    title: post?.seoTitle ?? "Blog Salud Adeslas",
-    description: post?.seoDescription ?? "",
-    canonical: `https://adeslas.numero1salud.es/blog/${slug ?? ""}`,
+    title: post.seoTitle,
+    description: post.seoDescription,
+    canonical: `https://adeslas.numero1salud.es/blog/${post.slug}`,
   });
 
-  if (!post) return null;
-
-  const related = getRelatedPosts(post.relatedSlugs);
-
-  // Article JSON-LD — ayuda a Google y LLMs a identificar el artículo como
-  // contenido original de autor, mejora la elegibilidad para AI Overviews y
-  // permite que Perplexity/ChatGPT citen la fuente correctamente.
   const articleJsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
@@ -193,24 +174,14 @@ const BlogArticle = () => {
     "publisher": {
       "@type": "Organization",
       "name": "Marchal Aseguradores — Agente Exclusivo Adeslas",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://adeslas.numero1salud.es/logo-adeslas.webp"
-      }
+      "logo": { "@type": "ImageObject", "url": "https://adeslas.numero1salud.es/logo-adeslas.webp" }
     },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://adeslas.numero1salud.es/blog/${slug}`
-    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://adeslas.numero1salud.es/blog/${post.slug}` },
     "articleSection": post.category,
     "inLanguage": "es-ES",
-    "about": {
-      "@type": "Thing",
-      "name": "Seguros médicos Adeslas en España"
-    }
+    "about": { "@type": "Thing", "name": "Seguros médicos Adeslas en España" }
   });
 
-  // FAQPage JSON-LD — mejora elegibilidad para AI Overviews y People Also Ask
   const faqBlocks = post.body.filter(b => b.type === "faq" && b.faqItems?.length);
   const faqJsonLd = faqBlocks.length > 0 ? JSON.stringify({
     "@context": "https://schema.org",
@@ -225,20 +196,42 @@ const BlogArticle = () => {
   }) : null;
 
   return (
-    <TarificadorProvider>
+    <>
       {_seo}
-      {/* Article schema — server-render no disponible en SPA, se inyecta aquí como fallback */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: articleJsonLd }}
-      />
-      {/* FAQPage schema — solo si el artículo tiene bloques FAQ */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: articleJsonLd }} />
       {faqJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: faqJsonLd }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd }} />
       )}
+    </>
+  );
+};
+
+/* ───────── Main component ───────── */
+
+const BlogArticle = ({ slug: slugProp, renderSeo = true }: { slug?: string; renderSeo?: boolean } = {}) => {
+  const params = useParams<{ slug: string }>();
+  const slug = slugProp ?? params.slug;
+  const navigate = useNavigate();
+  const post = slug ? getPostBySlug(slug) : undefined;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
+  // If post not found, redirect to blog listing
+  useEffect(() => {
+    if (!post && slug) {
+      navigate("/adeslas-blog/", { replace: true });
+    }
+  }, [post, slug, navigate]);
+
+  if (!post) return null;
+
+  const related = getRelatedPosts(post.relatedSlugs);
+
+  return (
+    <TarificadorProvider>
+      {renderSeo && <BlogSpaSeo post={post} />}
       <Header />
 
       {/* Hero image */}

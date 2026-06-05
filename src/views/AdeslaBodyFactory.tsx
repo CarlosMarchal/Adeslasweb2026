@@ -3,7 +3,7 @@ import type { ProductPageData } from "@/components/ProductPageTemplate";
 import ContactCtaCard from "@/components/ContactCtaCard";
 import heroImg from "@/assets/seguro-medico-adeslas-plena-total.webp";
 
-const data: ProductPageData = {
+export const data: ProductPageData = {
   seoTitle: "Adeslas Body Factory | Seguro Médico para Socios · Cobertura Completa",
   seoDescription:
     "Seguro médico Adeslas exclusivo para socios y familiares de Body Factory. Cobertura completa sin copagos, dental incluido, videoconsultas 24h y seguimiento del embarazo. Llama al 91 710 50 00.",

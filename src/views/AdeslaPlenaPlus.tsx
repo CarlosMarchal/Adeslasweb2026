@@ -3,7 +3,7 @@ import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import heroImg from "@/assets/seguro-medico-adeslas-plena-plus.webp";
 
-const data: ProductPageData = {
+export const data: ProductPageData = {
   seoTitle: "Adeslas Plena Plus | Seguro Médico Sin Copagos · Cobertura Completa",
   seoDescription:
     "Adeslas Plena Plus: seguro médico sin copagos con cobertura completa (hospitalización, todas las especialidades, cirugía). Acceso +51.000 médicos. Desde 62,55€/mes.",

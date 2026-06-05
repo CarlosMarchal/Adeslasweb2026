@@ -182,7 +182,10 @@ const FaqItem = ({ q, a, open, onToggle }: { q: string; a: string; open: boolean
 
 /* ─── Main page ─── */
 const PreciosAdeslasSEO = () => {
-  useSeo({
+  // SSG: el SEO lo aporta el Server Component (generateMetadata). Este useSeo es
+  // inerte (su retorno no se renderiza); se llama solo en cliente para no construir
+  // el <Helmet> en el prerender (causaba BAILOUT_TO_CLIENT_SIDE_RENDERING).
+  if (typeof window !== "undefined") useSeo({
     title: "Precios Adeslas 2026 | Tarifas Actualizadas · Desde 21€/mes",
     description: "Todos los precios de los seguros Adeslas en 2026: GO desde 21€, Plena Vital desde 38€, Plena Plus desde 50,92€ y Plena Total desde 83€/mes. Tabla de precios por edad y factores que afectan a tu tarifa.",
     canonical: `${BASE}/precios-adeslas/`,

@@ -2,7 +2,7 @@ import SegmentPageTemplate from "@/components/SegmentPageTemplate";
 import type { SegmentPageData } from "@/components/SegmentPageTemplate";
 import heroBg from "@/assets/seguro-salud-adeslas-ginecologia.webp";
 
-const data: SegmentPageData = {
+export const data: SegmentPageData = {
   heroBg,
   seo: {
     title: "Adeslas Ginecología | Seguro Médico con Cobertura Ginecológica Completa",

@@ -301,6 +301,9 @@ const dataBase: Omit<ProductPageData, "seoTitle" | "seoDescription" | "seoCanoni
   showPromo: false,
 };
 
+/* Variante PYMES (canónica /seguro-salud/pymes/) — consumida por la ruta SSG. */
+export const data: ProductPageData = { ...dataBase, ...seoPymes } as ProductPageData;
+
 const PymesEmpresas = () => {
   const { pathname } = useLocation();
   const seoOverride = pathname.startsWith("/seguro-salud/pymes") ? seoPymes : seoEmpresas;

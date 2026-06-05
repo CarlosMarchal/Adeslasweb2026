@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { motion } from "@/lib/motion";
 import { useSeo } from "@/hooks/use-seo";
@@ -38,10 +40,8 @@ const contactMethods = [
 ];
 
 
-const Contacto = () => {
-  useEffect(() => { window.scrollTo(0, 0); }, []);
-
-  const _seo = useSeo({
+const ContactoSpaSeo = () =>
+  useSeo({
     title: "Contacto Adeslas | Solicita tu Seguro Médico — Atención Personalizada",
     description: "Contacta con Adeslas Seguros Médicos. Solicita información sobre tu seguro, compara planes o pide una llamada gratuita. Tel. 91 710 50 00.",
     canonical: "https://adeslas.numero1salud.es/contacto/",
@@ -75,9 +75,12 @@ const Contacto = () => {
     ],
   });
 
+const Contacto = ({ renderSeo = true }: { renderSeo?: boolean } = {}) => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   return (
     <TarificadorProvider>
-      {_seo}
+      {renderSeo && <ContactoSpaSeo />}
       <Header />
 
       {/* Hero */}

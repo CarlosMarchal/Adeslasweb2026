@@ -3,7 +3,7 @@ import ProductPageTemplate from "@/components/ProductPageTemplate";
 import type { ProductPageData } from "@/components/ProductPageTemplate";
 import heroImg from "@/assets/seguro-medico-adeslas-extra-150.webp";
 
-const data: ProductPageData = {
+export const data: ProductPageData = {
   seoTitle: "Adeslas Extra 150 | Seguro Médico Libre Elección · Reembolso 80% · Cobertura Mundial",
   seoDescription:
     "Adeslas Plena Extra 150: seguro médico con libre elección de médico, cobertura mundial y reembolso del 80% fuera de red. Máximo 150.000€/año de cobertura. Desde 90€/mes.",

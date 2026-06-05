@@ -2,7 +2,7 @@ import SegmentPageTemplate from "@/components/SegmentPageTemplate";
 import type { SegmentPageData } from "@/components/SegmentPageTemplate";
 import heroBg from "@/assets/seguro-salud-adeslas-mayores.webp";
 
-const data: SegmentPageData = {
+export const data: SegmentPageData = {
   heroBg,
   seo: {
     title: "Adeslas Seniors | Seguro Médico para Personas Mayores de 55 años desde 67,50€/mes",

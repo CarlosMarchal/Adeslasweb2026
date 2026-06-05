@@ -2,7 +2,7 @@ import SegmentPageTemplate from "@/components/SegmentPageTemplate";
 import type { SegmentPageData } from "@/components/SegmentPageTemplate";
 import heroBg from "@/assets/seguro-salud-adeslas-infantil.webp";
 
-const data: SegmentPageData = {
+export const data: SegmentPageData = {
   heroBg,
   seo: {
     title: "Adeslas Seguro Médico Infantil | Pediatría Sin Esperas para Niños desde 21€/mes",

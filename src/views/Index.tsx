@@ -1,3 +1,5 @@
+"use client";
+
 import { lazy, Suspense } from "react";
 import { useSeo } from "@/hooks/use-seo";
 import { TarificadorProvider } from "@/components/TarificadorContext";
@@ -15,8 +17,8 @@ const FaqSection        = lazy(() => import("@/components/FaqSection"));
 const CtaSection        = lazy(() => import("@/components/CtaSection"));
 const Footer            = lazy(() => import("@/components/Footer"));
 
-const Index = () => {
-  const _seo = useSeo({
+const IndexSpaSeo = () =>
+  useSeo({
     title: "Adeslas Seguros Médicos | Salud Privada · +51.000 Médicos · Sin Listas de Espera",
     description:
       "Adeslas: seguro médico privado líder en España. GO desde 21€, Plena Vital desde 38€, Plena Vital Total desde 48,50€ (3 años sin subidas de prima), Plena Total sin copagos desde 83€. Más de 51.000 médicos y 1.400 centros. Calcula tu precio en 2 minutos.",
@@ -78,9 +80,10 @@ const Index = () => {
     ],
   });
 
+const Index = ({ renderSeo = true }: { renderSeo?: boolean } = {}) => {
   return (
     <TarificadorProvider>
-      {_seo}
+      {renderSeo && <IndexSpaSeo />}
       <Header />
       {/* Above-fold: eager — crítico para LCP y FCP */}
       <HeroSection />
