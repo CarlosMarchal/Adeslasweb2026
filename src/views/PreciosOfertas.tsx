@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "@/lib/motion";
@@ -184,15 +186,8 @@ const faqs = [
 
 /* ─────────── Component ─────────── */
 
-const PreciosOfertasInner = () => {
-  const { openTarificador } = useTarificador();
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const _seo = useSeo({
+const PreciosOfertasSpaSeo = () =>
+  useSeo({
     title: "Precios y Ofertas Adeslas 2026 | Seguros Médicos desde 21 €/mes",
     description:
       "Precios y ofertas de los seguros médicos Adeslas 2026. Desde 21€/mes (Adeslas Go). Sin copagos desde 50€/mes (Adeslas Plena Plus). Cobertura total desde 83€/mes (Adeslas Plena Total). Compara planes y calcula en 2 minutos.",
@@ -206,9 +201,17 @@ const PreciosOfertasInner = () => {
     preloadImage: HERO_BG,
   });
 
+const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
+  const { openTarificador } = useTarificador();
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
-      {_seo}
+      {renderSeo && <PreciosOfertasSpaSeo />}
       <Header />
 
       {/* ────── Hero ────── */}
@@ -490,9 +493,9 @@ const PreciosOfertasInner = () => {
   );
 };
 
-const PreciosOfertas = () => (
+const PreciosOfertas = ({ renderSeo = true }: { renderSeo?: boolean } = {}) => (
   <TarificadorProvider>
-    <PreciosOfertasInner />
+    <PreciosOfertasInner renderSeo={renderSeo} />
   </TarificadorProvider>
 );
 
