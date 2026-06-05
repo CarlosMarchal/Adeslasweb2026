@@ -232,7 +232,10 @@ const FormaCard = ({ forma }: { forma: typeof FORMAS[number] }) => {
 
 /* ─── Main page ─── */
 const ComoContratarAdeslasSEO = () => {
-  useSeo({
+  // SSG: el SEO lo aporta el Server Component (generateMetadata). Este useSeo es
+  // inerte (su retorno no se renderiza); se llama solo en cliente para no construir
+  // el <Helmet> en el prerender (causaba BAILOUT_TO_CLIENT_SIDE_RENDERING).
+  if (typeof window !== "undefined") useSeo({
     title: "Cómo Contratar Adeslas 2026 | Guía Paso a Paso · Alta Online en 2 min",
     description: "Guía completa para contratar un seguro Adeslas en 2026: 3 formas de contratación, paso a paso, qué plan elegir y precios actualizados. Contrata online, por teléfono o solicita que te llamemos.",
     canonical: `${BASE}/como-contratar-adeslas/`,
