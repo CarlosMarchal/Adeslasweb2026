@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import dynamic from 'next/dynamic';
 import GclidCapture from '@/components/GclidCapture';
+
+const StickyCtaBanner = dynamic(() => import('@/components/StickyCtaBanner'), { ssr: false });
 import './globals.css';
 import '../src/App.css';
 
@@ -118,6 +121,10 @@ export default function RootLayout({
         <GclidCapture />
 
         {children}
+
+        {/* Banner sticky desktop — CRO, solo ≥1024px, aparece tras scroll > 400px.
+            ssr:false porque depende de window (scroll listener). */}
+        <StickyCtaBanner />
 
         {/* ── GTM loader — afterInteractive: carga tras hidratación, SIEMPRE,
             independientemente de si el usuario interactúa o no.

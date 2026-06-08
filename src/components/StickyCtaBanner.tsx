@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { X, Phone } from "lucide-react";
 import { submitToHubSpot } from "@/lib/hubspot";
