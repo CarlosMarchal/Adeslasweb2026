@@ -30,9 +30,9 @@
 
 ## 5. 🟢 Limpieza / WPO
 
-- [ ] 5.1 Crear `app/not-found.tsx` (404 propio) a partir de `NotFound.tsx`.
+- [x] 5.1 Crear `app/not-found.tsx` (404 propio) a partir de `NotFound.tsx`.
 - [ ] 5.2 WPO: evaluar volver a `LazyMotion`/`m` en `motion.ts` (~18KB vs ~60KB) — medir TBT antes/después.
-- [ ] 5.3 Retirar vistas muertas: `ContratarPage`, `FormularioDeAlta`, `NotFound`, `PlaceholderPage`,
+- [x] 5.3 Retirar vistas muertas: `ContratarPage`, `FormularioDeAlta`, `NotFound`, `PlaceholderPage`,
       `views/TarificadorInterno` (tras swap), `components/TarificadorInterno` (simplificado) — verificar imports antes.
 - [ ] 5.4 Actualizar `CLAUDE.md` (texto LazyMotion/`m` desactualizado).
 
