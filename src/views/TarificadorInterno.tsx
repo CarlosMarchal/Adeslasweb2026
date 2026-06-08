@@ -1,5 +1,6 @@
+"use client";
+
 import { useState, useMemo } from "react";
-import { Helmet } from "react-helmet-async";
 import { Trash2, Plus, ChevronDown, ChevronUp, Gift } from "lucide-react";
 import { products, provinces, getPrice, getZoneFromProvince } from "@/data/pricing";
 import { generateQuotePdf, type QuoteData } from "@/lib/generateQuotePdf";
@@ -339,11 +340,6 @@ export default function TarificadorInterno() {
   /* ══════════════ RENDER ══════════════ */
   return (
     <>
-      <Helmet>
-        <title>Tarificador Interno · Adeslas 2026 — Marchal Aseguradores</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
-
       <div className="min-h-screen bg-[#f4f7fb]">
 
         {/* ── Header ── */}

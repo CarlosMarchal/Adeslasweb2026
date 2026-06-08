@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import TarificadorInterno from '@/components/TarificadorInterno';
+import TarificadorInterno from '@/views/TarificadorInterno';
 
 export const metadata: Metadata = {
   title: 'Tarificador - Adeslas (Uso Interno)',
