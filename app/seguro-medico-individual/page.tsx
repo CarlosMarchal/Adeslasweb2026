@@ -5,12 +5,14 @@ import {
   ORGANIZATION_SCHEMA,
   WEBSITE_SCHEMA,
   buildBreadcrumbSchema,
+  buildFaqSchema,
   buildMetadata,
 } from "@/lib/seoSchemas";
 import Client from "../seguro-salud/adeslas-individual/PlanClient";
 
 // Alias servido en SSG (200) — canonical apunta a su canónica (getPageMeta lo resuelve).
 const PATHNAME = "/seguro-medico-individual/";
+const FAQ_KEY = "/seguro-medico-individual";
 
 export const dynamic = "force-static";
 
@@ -29,7 +31,14 @@ export function generateMetadata(): Metadata {
 export default function Page() {
   return (
     <>
-      <JsonLd schemas={[ORGANIZATION_SCHEMA, WEBSITE_SCHEMA, buildBreadcrumbSchema(PATHNAME, meta.title)]} />
+      <JsonLd
+        schemas={[
+          ORGANIZATION_SCHEMA,
+          WEBSITE_SCHEMA,
+          buildBreadcrumbSchema(PATHNAME, meta.title),
+          FAQ_KEY ? buildFaqSchema(FAQ_KEY) : null,
+        ]}
+      />
       <Client />
     </>
   );
