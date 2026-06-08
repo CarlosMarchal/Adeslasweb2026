@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import TarificadorInterno from "@/components/TarificadorInterno";
+import TarificadorInterno from "@/views/TarificadorInterno";
 
 // /tarificador-interno/ — herramienta interna (noindex). Misma que /internal/tarificador.
 export const dynamic = "force-static";

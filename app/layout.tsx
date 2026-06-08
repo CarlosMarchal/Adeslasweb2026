@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import GclidCapture from '@/components/GclidCapture';
 import './globals.css';
 import '../src/App.css';
 
@@ -112,6 +113,9 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
+
+        {/* Captura el gclid de Google Ads en cada carga y lo persiste (atribución). */}
+        <GclidCapture />
 
         {children}
 
