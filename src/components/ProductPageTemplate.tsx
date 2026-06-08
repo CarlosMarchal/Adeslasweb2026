@@ -761,9 +761,9 @@ const ProductPageTemplate = ({ data, renderSeo = true }: { data: ProductPageData
   const { openPhonePopup } = usePhonePopup();
 
   // Mobile sticky CTA routing:
-  // - WhatsApp pages         → open WhatsApp in new tab
-  // - customTarificador pages → phone popup (no calculator)
-  // - regular product pages  → scroll to the inline tarificador below the hero
+  // - WhatsApp pages          → open WhatsApp in new tab
+  // - customTarificador pages → phone popup ("Solicitar llamada")
+  // - regular product pages   → undefined → Header falls back to openTarificador() popup
   const waPhone = data.whatsAppPhone ?? "34611394319";
   const waMsg   = data.whatsAppMessage ?? "";
   const waUrl   = `https://wa.me/${waPhone}${waMsg ? `?text=${encodeURIComponent(waMsg)}` : ""}`;
@@ -771,7 +771,7 @@ const ProductPageTemplate = ({ data, renderSeo = true }: { data: ProductPageData
     ? () => window.open(waUrl, "_blank", "noopener,noreferrer")
     : data.customTarificador
       ? () => openPhonePopup(data.hubspotSource ?? 301)
-      : () => document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth" });
+      : undefined; // Header usa openTarificador() popup — igual que la home
   const mobileCalcLabel = data.useWhatsAppCta
     ? "WhatsApp"
     : data.customTarificador
