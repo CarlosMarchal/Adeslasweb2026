@@ -13,7 +13,7 @@ import {
 import PlanClient from "./PlanClient";
 
 const PATHNAME = "/seguro-accidentes/";
-const FAQ_KEY: string | null = null;
+const FAQ_KEY: string | null = "/seguro-accidentes/";
 const PRODUCT = {
   name: "Adeslas Accidentes",
   description: "Seguro de accidentes Adeslas con indemnización por invalidez y fallecimiento. Desde 5,89€/mes.",

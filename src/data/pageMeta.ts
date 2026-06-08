@@ -33,6 +33,16 @@ export interface PageMeta {
    * No rellenar en páginas noindex.
    */
   h2?: string;
+  /**
+   * Fecha de publicación original del contenido (ISO 8601: YYYY-MM-DD).
+   * Usado en el JSON-LD Article de artículos de blog.
+   */
+  publishedAt?: string;
+  /**
+   * Fecha de última modificación relevante del contenido (ISO 8601: YYYY-MM-DD).
+   * Usado en dateModified del JSON-LD Article.
+   */
+  updatedAt?: string;
 }
 
 const BASE = "https://adeslas.numero1salud.es";
@@ -368,150 +378,200 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Adeslas Go, Plena Vital, Plena Total o Plena Plus: diferencias reales entre todos los seguros Adeslas 2026 para elegir el que más te conviene.",
     canonical: `${BASE}/blog/comparativa-seguros-medicos-adeslas-2026/`,
+    publishedAt: "2026-01-10",
+    updatedAt: "2026-04-16",
   },
   "/blog/higiene-sueno-adultos": {
     title: "Higiene del Sueño: Dormir Mejor sin Pastillas | Blog Adeslas",
     description:
       "El insomnio afecta a 1 de cada 3 adultos en España. Estrategias basadas en evidencia para recuperar un sueño reparador sin medicación.",
     canonical: `${BASE}/blog/higiene-sueno-adultos/`,
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-04-16",
   },
   "/blog/como-mejorar-tu-energia-diaria": {
     title: "Cómo Mejorar tu Energía Diaria: Hábitos que Funcionan",
     description:
       "Si llegas agotado a media mañana o te cuesta arrancar, estos hábitos sencillos pueden marcar la diferencia en tu vitalidad y rendimiento diario.",
     canonical: `${BASE}/blog/como-mejorar-tu-energia-diaria/`,
+    publishedAt: "2026-01-20",
+    updatedAt: "2026-04-16",
   },
   "/blog/superalimentos-que-incorporar": {
     title: "Superalimentos: Cuáles Merecen la Pena y Cuáles son Marketing",
     description:
       "Distingue qué superalimentos tienen respaldo científico real de los que son solo tendencias de marketing. Guía práctica para tomar mejores decisiones.",
     canonical: `${BASE}/blog/superalimentos-que-incorporar/`,
+    publishedAt: "2026-01-25",
+    updatedAt: "2026-04-16",
   },
   "/blog/gestion-emocional-dia-a-dia": {
     title: "Gestión Emocional: Herramientas para el Día a Día | Adeslas",
     description:
       "Técnicas concretas de inteligencia emocional que puedes practicar hoy mismo para gestionar el estrés y las emociones difíciles del día a día.",
     canonical: `${BASE}/blog/gestion-emocional-dia-a-dia/`,
+    publishedAt: "2026-02-01",
+    updatedAt: "2026-04-16",
   },
   "/blog/salud-familiar-estilo-de-vida": {
     title: "Salud en Familia: Claves para un Estilo de Vida Saludable",
     description:
       "Los hábitos saludables que se instauran en la infancia duran toda la vida. Claves para crear un entorno familiar que favorezca la salud de todos.",
     canonical: `${BASE}/blog/salud-familiar-estilo-de-vida/`,
+    publishedAt: "2026-02-05",
+    updatedAt: "2026-04-16",
   },
   "/blog/caminar-beneficios-reales": {
     title: "Caminar 30 Minutos al Día: Beneficios que Confirma la Ciencia",
     description:
       "Sin equipamiento ni cuota de gimnasio. Caminar es uno de los hábitos más accesibles con mayor impacto en la salud cardiovascular, mental y física.",
     canonical: `${BASE}/blog/caminar-beneficios-reales/`,
+    publishedAt: "2026-02-10",
+    updatedAt: "2026-04-16",
   },
   "/blog/revisiones-medicas-por-edad": {
     title: "Revisiones Médicas por Edad: Guía Práctica | Blog Adeslas",
     description:
       "Las revisiones preventivas detectan problemas antes de que den síntomas. Qué pruebas son recomendables a los 30, 40, 50 años o más.",
     canonical: `${BASE}/blog/revisiones-medicas-por-edad/`,
+    publishedAt: "2026-02-15",
+    updatedAt: "2026-04-16",
   },
   "/blog/dieta-mediterranea-en-casa": {
     title: "Dieta Mediterránea: Beneficios y Cómo Adoptarla en Casa",
     description:
       "Uno de los patrones alimentarios con mayor respaldo científico. Aprende sus beneficios probados y cómo incorporarlo a tu rutina sin complicaciones.",
     canonical: `${BASE}/blog/dieta-mediterranea-en-casa/`,
+    publishedAt: "2026-02-20",
+    updatedAt: "2026-04-16",
   },
   "/blog/salud-bucodental-guia-completa": {
     title: "Salud Bucodental: Guía Completa para Cuidar tu Boca",
     description:
       "El cepillado es solo el principio. Todo lo que necesitas para mantener una boca sana y evitar problemas que afectan a tu salud general.",
     canonical: `${BASE}/blog/salud-bucodental-guia-completa/`,
+    publishedAt: "2026-02-25",
+    updatedAt: "2026-04-16",
   },
   "/blog/cuanto-cuesta-operacion-privada-espana-2026": {
     title: "Cuánto Cuesta una Operación Privada en España en 2026",
     description:
       "Precios reales de operaciones privadas en España: apendicitis, rodilla, cataratas y más. Descubre cuánto cuesta la sanidad privada sin seguro médico.",
     canonical: `${BASE}/blog/cuanto-cuesta-operacion-privada-espana-2026/`,
+    publishedAt: "2026-03-01",
+    updatedAt: "2026-04-16",
   },
   "/blog/seguro-medico-sin-copago-2026": {
     title: "Seguro Médico sin Copago: Qué es y Cuánto Cuesta en 2026",
     description:
       "Sin copago: pagas la prima mensual y no abonas nada más en cada visita. Descubre cómo funciona y qué planes sin copago ofrece Adeslas en 2026.",
     canonical: `${BASE}/blog/seguro-medico-sin-copago-2026/`,
+    publishedAt: "2026-03-05",
+    updatedAt: "2026-04-16",
   },
   "/blog/carencias-seguros-medicos-adeslas": {
     title: "Carencias en Seguros Médicos Adeslas: Qué Son y Cuánto Duran",
     description:
       "Las carencias son el período de espera desde que contratas hasta que puedes usar ciertas coberturas. Guía completa sobre todos los períodos de carencia de Adeslas 2026.",
     canonical: `${BASE}/blog/carencias-seguros-medicos-adeslas/`,
+    publishedAt: "2026-03-10",
+    updatedAt: "2026-04-16",
   },
   "/blog/seguro-medico-familias-2026": {
     title: "Seguro Médico para Familias en 2026: Guía Completa para Elegir Bien",
     description:
       "Cómo elegir el mejor seguro médico familiar en 2026. Coberturas, precios, descuentos desde el 4º asegurado y qué plan Adeslas se adapta mejor a tu familia.",
     canonical: `${BASE}/blog/seguro-medico-familias-2026/`,
+    publishedAt: "2026-03-12",
+    updatedAt: "2026-04-16",
   },
   "/blog/hospitalizacion-privada-vs-publica": {
     title: "Hospitalización Privada vs Pública en España 2026: Diferencias Reales",
     description:
       "Tiempos de espera, habitación individual, acceso al médico y pruebas diagnósticas. Diferencias reales entre ingresar en la sanidad pública o privada en España en 2026.",
     canonical: `${BASE}/blog/hospitalizacion-privada-vs-publica/`,
+    publishedAt: "2026-03-15",
+    updatedAt: "2026-04-16",
   },
   "/blog/seguro-medico-autonomos-2026": {
     title: "Seguro Médico para Autónomos en 2026: Deducciones IRPF y Mejores Planes",
     description:
       "Autónomos: deduce hasta 500€/año en IRPF por el seguro de salud. Qué plan Adeslas elegir, cómo funciona la deducción y todo lo que necesitas saber antes de contratar.",
     canonical: `${BASE}/blog/seguro-medico-autonomos-2026/`,
+    publishedAt: "2026-03-18",
+    updatedAt: "2026-04-16",
   },
   "/blog/listas-de-espera-sanidad-publica-espana-2026": {
     title: "Listas de Espera Sanidad Pública España 2026: Datos Reales y Alternativas",
     description:
       "Datos del Ministerio de Sanidad: cuánto se espera para ver un especialista o para operarse en la sanidad pública española en 2026. Y qué alternativa ofrece el seguro privado.",
     canonical: `${BASE}/blog/listas-de-espera-sanidad-publica-espana-2026/`,
+    publishedAt: "2026-03-20",
+    updatedAt: "2026-04-16",
   },
   "/blog/cuadro-medico-adeslas-como-funciona": {
     title: "Cuadro Médico Adeslas 2026: Cómo Funciona y Qué Especialidades Incluye",
     description:
       "Más de 51.000 médicos en toda España. Cómo consultar el cuadro médico Adeslas, qué especialidades incluye y cómo pedir cita sin necesidad de derivación ni autorización previa.",
     canonical: `${BASE}/blog/cuadro-medico-adeslas-como-funciona/`,
+    publishedAt: "2026-03-22",
+    updatedAt: "2026-04-16",
   },
   "/blog/merece-la-pena-seguro-medico-privado-espana-2026": {
     title: "¿Merece la Pena un Seguro Médico Privado en España en 2026?",
     description:
       "Análisis honesto con datos reales del Ministerio de Sanidad: listas de espera, costes reales y para quién tiene sentido contratar un seguro médico privado en España.",
     canonical: `${BASE}/blog/merece-la-pena-seguro-medico-privado-espana-2026/`,
+    publishedAt: "2026-03-25",
+    updatedAt: "2026-04-16",
   },
   "/blog/seguro-medico-familia-coste-real-2026": {
     title: "Seguro Médico Familiar: Coste Real para 2, 3 o 4 Personas en 2026",
     description:
       "Ejemplos de precio reales para familias de 2, 3 y 4 personas con Adeslas en 2026. Descuento del 4º asegurado, qué plan elegir y cuánto se paga realmente al mes.",
     canonical: `${BASE}/blog/seguro-medico-familia-coste-real-2026/`,
+    publishedAt: "2026-03-28",
+    updatedAt: "2026-04-16",
   },
   "/blog/como-cambiar-seguro-medico-sin-carencias-2026": {
     title: "Cómo Cambiar de Seguro Médico a Adeslas sin Carencias en 2026",
     description:
       "Guía paso a paso para cambiar de aseguradora a Adeslas sin perder coberturas. Qué es el reconocimiento de antigüedad, qué documentos necesitas y cuándo hacer el cambio.",
     canonical: `${BASE}/blog/como-cambiar-seguro-medico-sin-carencias-2026/`,
+    publishedAt: "2026-04-01",
+    updatedAt: "2026-04-16",
   },
   "/blog/sanidad-privada-sin-seguro-costes-reales-2026": {
     title: "Sanidad Privada sin Seguro en España: Precios Reales 2026",
     description:
       "Cuánto cuesta ir al médico privado pagando directamente en España en 2026. Precios de consultas, pruebas diagnósticas, operaciones y hospitalización sin seguro médico.",
     canonical: `${BASE}/blog/sanidad-privada-sin-seguro-costes-reales-2026/`,
+    publishedAt: "2026-04-05",
+    updatedAt: "2026-04-16",
   },
   "/blog/que-cubre-seguro-medico-adeslas-2026": {
     title: "¿Qué Cubre un Seguro Médico Adeslas? Coberturas Completas 2026",
     description:
       "Guía completa de coberturas del seguro médico Adeslas 2026: ambulatorio, hospitalización, urgencias, diagnóstico, salud mental, maternidad y más.",
     canonical: `${BASE}/blog/que-cubre-seguro-medico-adeslas-2026/`,
+    publishedAt: "2026-04-08",
+    updatedAt: "2026-04-16",
   },
   "/blog/seguro-medico-mayores-60-anos-adeslas-2026": {
     title: "Seguro Médico para Mayores de 60 Años: Guía Adeslas 2026",
     description:
       "Seguro médico para mayores de 60 años con Adeslas: planes Seniors (55-84), coberturas más usadas, precios orientativos por edad y cuándo conviene contratar.",
     canonical: `${BASE}/blog/seguro-medico-mayores-60-anos-adeslas-2026/`,
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-16",
   },
   "/blog/urgencias-seguro-medico-privado-como-funciona-2026": {
     title: "Urgencias con Seguro Médico Privado: Cómo Funciona en 2026 | Adeslas",
     description:
       "Urgencias con seguro médico privado Adeslas: qué hacer, cómo acceder, copago por plan, cobertura en el extranjero y cuándo es mejor usar la sanidad pública.",
     canonical: `${BASE}/blog/urgencias-seguro-medico-privado-como-funciona-2026/`,
+    publishedAt: "2026-04-12",
+    updatedAt: "2026-04-16",
   },
 
   // ── SEO TRANSACCIONAL — alta, contratar, precios ─────────────────

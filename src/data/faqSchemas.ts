@@ -479,6 +479,107 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     },
   ],
 
+
+  // ── ADESLAS BODY FACTORY ─────────────────────────────────────────────
+  "/adeslas-body-factory/": [
+    {
+      q: "¿Qué es Adeslas Body Factory?",
+      a: "Adeslas Body Factory es el seguro médico de Adeslas orientado a personas activas que combinan cobertura sanitaria completa con servicios de salud deportiva: fisioterapia, medicina del deporte, nutrición y acceso a instalaciones deportivas incluidas en la red. Mantiene las mismas garantías médicas que los planes estándar Adeslas.",
+    },
+    {
+      q: "¿Qué coberturas incluye Adeslas Body Factory?",
+      a: "Adeslas Body Factory incluye: medicina general y especialidades, hospitalización y cirugía, urgencias 24h, diagnóstico completo, fisioterapia (sesiones incluidas), medicina deportiva, nutrición clínica y acceso a gimnasios y centros deportivos de la red. Todas las coberturas médicas habituales de Adeslas más el componente deportivo.",
+    },
+    {
+      q: "¿Quién puede contratar Adeslas Body Factory?",
+      a: "Adeslas Body Factory puede contratarse como seguro individual o familiar para personas que deseen combinar cobertura médica completa con servicios de salud y bienestar deportivo. Es especialmente recomendado para personas activas, deportistas o familias con hábitos saludables.",
+    },
+    {
+      q: "¿Cómo se contrata Adeslas Body Factory?",
+      a: "Puedes contratar Adeslas Body Factory de forma online en esta web, por teléfono llamando al 91 710 50 00 o solicitando que te llamemos. El alta es inmediata o en 24 horas, sin necesidad de desplazarte.",
+    },
+  ],
+
+  // ── ADESLAS ADIF / RENFE ─────────────────────────────────────────────
+  "/adeslas-adif-renfe/": [
+    {
+      q: "¿Qué es el seguro Adeslas para trabajadores de ADIF y Renfe?",
+      a: "Es el seguro médico colectivo de Adeslas diseñado específicamente para empleados de ADIF, Renfe y sus empresas filiales. Ofrece condiciones especiales negociadas (tarifas, coberturas y servicios adicionales) accesibles exclusivamente para los trabajadores del grupo ferroviario y sus familias.",
+    },
+    {
+      q: "¿Quién puede contratar el seguro Adeslas ADIF/Renfe?",
+      a: "El seguro Adeslas ADIF/Renfe está disponible para empleados en activo de ADIF y Renfe, sus familias directas (cónyuge e hijos) y, en algunos casos, jubilados del grupo. Las condiciones exactas de elegibilidad dependen del convenio colectivo vigente.",
+    },
+    {
+      q: "¿Qué ventajas tiene el seguro Adeslas para trabajadores de ADIF/Renfe frente a un plan estándar?",
+      a: "El seguro Adeslas para ADIF/Renfe ofrece tarifas negociadas más económicas, coberturas específicas adaptadas al convenio colectivo, posibilidad de incluir a la familia con condiciones especiales y acceso prioritario a servicios. Es una versión del seguro médico Adeslas con ventajas por pertenecer al colectivo.",
+    },
+    {
+      q: "¿Cómo se gestiona el alta del seguro Adeslas ADIF/Renfe?",
+      a: "El alta puede realizarse online o mediante el formulario de contacto de esta web. Nuestro equipo especializado en seguros de colectivos te guiará en el proceso, verificará tu elegibilidad y gestionará el alta en el menor tiempo posible.",
+    },
+  ],
+
+  // ── ADESLAS DECESOS PRIMA ÚNICA ──────────────────────────────────────
+  "/seguro-decesos-prima-unica/": [
+    {
+      q: "¿Qué es el seguro de decesos de prima única de Adeslas?",
+      a: "El seguro de decesos de prima única de Adeslas es una modalidad en la que el asegurado realiza un único pago al contratar la póliza (en lugar de cuotas mensuales o anuales). Con ese pago único queda asegurado de por vida, sin necesidad de seguir abonando primas. Cubre el sepelio completo, repatriación y todos los servicios del seguro de decesos.",
+    },
+    {
+      q: "¿Qué ventajas tiene el seguro de decesos de prima única frente al de prima periódica?",
+      a: "Las principales ventajas son: (1) Pago único sin cuotas recurrentes. (2) La prima no sube con la edad. (3) Mayor tranquilidad al saber que el seguro está pagado de por vida. (4) En algunos casos puede ser más económico a largo plazo que acumular años de primas periódicas. Es especialmente recomendado para personas mayores.",
+    },
+    {
+      q: "¿Cuánto cuesta el seguro de decesos de prima única Adeslas?",
+      a: "El importe de la prima única depende principalmente de la edad del asegurado en el momento de la contratación. A mayor edad, mayor prima única. El seguro cubre todos los gastos del sepelio, la repatriación y los servicios complementarios incluidos en el seguro de decesos estándar.",
+    },
+    {
+      q: "¿Se puede contratar el seguro de decesos de prima única sin cuestionario de salud?",
+      a: "Sí. Al igual que el seguro de decesos de prima periódica, la modalidad de prima única no requiere cuestionario de salud previo. Se puede contratar a cualquier edad, independientemente del estado de salud.",
+    },
+  ],
+
+  // ── ADESLAS ASISTENCIA EN VIAJE ──────────────────────────────────────
+  "/adeslas-asistencia-en-viaje/": [
+    {
+      q: "¿Qué cubre el seguro de asistencia en viaje Adeslas?",
+      a: "El seguro de asistencia en viaje Adeslas cubre gastos médicos de urgencia en el extranjero (hasta el límite de cobertura del plan), repatriación médica o por fallecimiento, rescate en montaña, asistencia jurídica en el extranjero, pérdida de equipaje y cancelación de viaje. Las coberturas exactas varían según el plan contratado.",
+    },
+    {
+      q: "¿El seguro de asistencia en viaje está incluido en los planes Adeslas?",
+      a: "Sí. Algunos planes Adeslas incluyen asistencia en viaje: Adeslas Plena Total (hasta 100.000€), Adeslas Plena Vital Total (hasta 30.000€) y Adeslas Seniors Total (hasta 30.000€). Para viajes frecuentes o coberturas más amplias, puede contratarse un seguro específico de asistencia en viaje.",
+    },
+    {
+      q: "¿Cubre Adeslas asistencia médica en el extranjero?",
+      a: "Sí. La asistencia en viaje Adeslas cubre la atención médica de urgencia fuera de España hasta el límite del plan (30.000€ o 100.000€ según la modalidad). Si el gasto supera el límite, el asegurado puede solicitar el reembolso de los gastos adicionales cubiertos según las condiciones de la póliza.",
+    },
+    {
+      q: "¿Qué debo hacer si necesito asistencia médica en el extranjero con mi seguro Adeslas?",
+      a: "Llama al teléfono de asistencia internacional incluido en tu tarjeta de asegurado Adeslas (disponible 24 horas, 365 días). La central de asistencia te indicará el centro médico más cercano de la red, gestionará la garantía de pago directamente con el centro y coordinará la repatriación si fuera necesaria.",
+    },
+  ],
+
+  // ── ADESLAS ACCIDENTES ───────────────────────────────────────────────
+  "/seguro-accidentes/": [
+    {
+      q: "¿Qué cubre el seguro de accidentes Adeslas?",
+      a: "El seguro de accidentes Adeslas cubre: fallecimiento por accidente (capital asegurado a los beneficiarios), invalidez permanente total o parcial derivada de accidente, incapacidad temporal, asistencia sanitaria por accidente 24 horas y asistencia en viaje. Las coberturas y capitales exactos dependen del plan contratado.",
+    },
+    {
+      q: "¿Cuánto cuesta el seguro de accidentes Adeslas?",
+      a: "El precio del seguro de accidentes Adeslas depende del capital asegurado en caso de fallecimiento o invalidez, la edad del asegurado y las coberturas elegidas. Es un seguro complementario al médico y puede contratarse de forma independiente o junto con cualquier plan médico Adeslas.",
+    },
+    {
+      q: "¿Qué diferencia hay entre el seguro de accidentes y el seguro médico Adeslas?",
+      a: "El seguro médico cubre cualquier necesidad sanitaria (enfermedad y accidente), mientras que el seguro de accidentes cubre exclusivamente los eventos derivados de un accidente fortuito. El seguro de accidentes añade protección económica (indemnización por muerte o invalidez) que el seguro médico no incluye. Son productos complementarios.",
+    },
+    {
+      q: "¿Tiene carencias el seguro de accidentes Adeslas?",
+      a: "No. El seguro de accidentes Adeslas no tiene períodos de carencia. La cobertura es efectiva desde el primer día de vigencia de la póliza para todos los eventos cubiertos, tanto la asistencia sanitaria por accidente como el capital por fallecimiento o invalidez.",
+    },
+  ],
+
   // ── GINECOLOGÍA ──────────────────────────────────────────────────────
   "/seguro-medico-ginecologia": [
     {

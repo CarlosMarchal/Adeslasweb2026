@@ -13,7 +13,7 @@ import {
 import PlanClient from "./PlanClient";
 
 const PATHNAME = "/adeslas-adif-renfe/";
-const FAQ_KEY: string | null = null;
+const FAQ_KEY: string | null = "/adeslas-adif-renfe/";
 const PRODUCT = {
   name: "Adeslas Renfe y ADIF",
   description: "Seguro de salud Adeslas con condiciones especiales para empleados de Renfe y ADIF. Desde 49€/mes.",

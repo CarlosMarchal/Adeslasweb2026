@@ -13,7 +13,7 @@ import {
 import PlanClient from "./PlanClient";
 
 const PATHNAME = "/adeslas-asistencia-en-viaje/";
-const FAQ_KEY: string | null = null;
+const FAQ_KEY: string | null = "/adeslas-asistencia-en-viaje/";
 const PRODUCT = {
   name: "Adeslas Asistencia en Viaje",
   description: "Seguro de asistencia en viaje Adeslas con cobertura médica, equipaje y repatriación. Desde 8,50€/día.",

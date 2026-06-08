@@ -7,7 +7,8 @@ import { generateQuotePdf, type QuoteData } from "@/lib/generateQuotePdf";
 
 /* ─── Constantes ────────────────────────────────────────────── */
 const MAX_COMMERCIAL_DISCOUNT       = 5;  // % máximo para productos generales
-const MAX_COMMERCIAL_DISCOUNT_PYMES = 10; // % máximo exclusivo Pymes Total
+const MAX_COMMERCIAL_DISCOUNT_PYMES         = 15; // % máximo exclusivo Pymes Total (barra principal)
+const MAX_COMMERCIAL_DISCOUNT_PYMES_ADICIONAL = 5;  // % adicional Pymes Total (segunda barra)
 
 /**
  * Descuento automático por volumen según producto y nº de asegurados.
@@ -207,7 +208,8 @@ export default function TarificadorInterno() {
   });
   const [expandido, setExpandido] = useState<string | null>(null);
   const [descuentoComercial, setDescuentoComercial] = useState<number>(0);
-  const [descuentoPymes, setDescuentoPymes]         = useState<number>(0);
+  const [descuentoPymes, setDescuentoPymes]               = useState<number>(0);
+  const [descuentoPymesAdicional, setDescuentoPymesAdicional] = useState<number>(0);
   const [mostrarPremios, setMostrarPremios] = useState(false);
   const [grupo, setGrupo] = useState<"general" | "seniors" | "pymes">("general");
   const [includeDental, setIncludeDental] = useState(false);
@@ -222,7 +224,9 @@ export default function TarificadorInterno() {
 
   const zona        = getZoneFromProvince(provincia);
   const pctGeneral  = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
-  const pctPymes    = Math.min(Math.max(descuentoPymes, 0), MAX_COMMERCIAL_DISCOUNT_PYMES);
+  const pctPymes    = Math.min(
+    Math.max(descuentoPymes, 0), MAX_COMMERCIAL_DISCOUNT_PYMES
+  ) + Math.min(Math.max(descuentoPymesAdicional, 0), MAX_COMMERCIAL_DISCOUNT_PYMES_ADICIONAL);
 
   /* ── Reglas de elegibilidad por edad ──────────────────────────
      · Productos NO Seniors (maxAge 70):
@@ -539,36 +543,69 @@ export default function TarificadorInterno() {
                 <label className="block text-sm font-semibold text-pink-700 mb-1">
                   Descuento comercial — Pymes Total
                 </label>
-                <p className="text-xs text-pink-500 mb-3">Máx. 10% (5% agente + 5% compañía) · Va contra tu comisión</p>
-                <div className="flex items-center gap-3">
+                <p className="text-xs text-pink-500 mb-2">Descuento principal · Máx. 15% · Va contra tu comisión</p>
+                <div className="flex items-center gap-3 mb-3">
                   <input
                     type="range"
                     min={0}
-                    max={10}
+                    max={15}
                     step={0.5}
                     value={descuentoPymes}
                     onChange={(e) => setDescuentoPymes(parseFloat(e.target.value))}
-                    className="flex-1 accent-pink-500"
+                    className="flex-1 accent-pink-400"
                   />
                   <div className="flex items-center gap-1">
                     <input
                       type="number"
                       min={0}
-                      max={10}
+                      max={15}
                       step={0.5}
                       value={descuentoPymes}
                       onChange={(e) => {
                         const v = parseFloat(e.target.value);
-                        if (!isNaN(v)) setDescuentoPymes(Math.min(10, Math.max(0, v)));
+                        if (!isNaN(v)) setDescuentoPymes(Math.min(15, Math.max(0, v)));
                       }}
                       className="w-14 px-2 py-2 border border-pink-200 rounded-lg text-center font-bold text-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white"
                     />
                     <span className="font-bold text-pink-600">%</span>
                   </div>
                 </div>
-                {descuentoPymes > 0 && (
+
+                {/* Barra adicional: hasta 5% extra */}
+                <p className="text-xs text-pink-500 mb-2">Descuento adicional · Máx. 5% extra</p>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="range"
+                    min={0}
+                    max={5}
+                    step={0.5}
+                    value={descuentoPymesAdicional}
+                    onChange={(e) => setDescuentoPymesAdicional(parseFloat(e.target.value))}
+                    className="flex-1 accent-pink-400"
+                  />
+                  <div className="flex items-center gap-1">
+                    <input
+                      type="number"
+                      min={0}
+                      max={5}
+                      step={0.5}
+                      value={descuentoPymesAdicional}
+                      onChange={(e) => {
+                        const v = parseFloat(e.target.value);
+                        if (!isNaN(v)) setDescuentoPymesAdicional(Math.min(5, Math.max(0, v)));
+                      }}
+                      className="w-14 px-2 py-2 border border-pink-200 rounded-lg text-center font-bold text-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white"
+                    />
+                    <span className="font-bold text-pink-600">%</span>
+                  </div>
+                </div>
+
+                {(descuentoPymes > 0 || descuentoPymesAdicional > 0) && (
                   <p className="text-xs font-semibold text-pink-600 mt-1.5">
-                    ✓ Aplicando {descuentoPymes}% a Pymes Total
+                    ✓ Aplicando {(descuentoPymes + descuentoPymesAdicional).toFixed(1)}% a Pymes Total
+                    {descuentoPymes > 0 && descuentoPymesAdicional > 0 && (
+                      <span className="font-normal text-pink-500"> ({descuentoPymes}% + {descuentoPymesAdicional}% adicional)</span>
+                    )}
                   </p>
                 )}
               </div>

@@ -13,7 +13,7 @@ import {
 import PlanClient from "./PlanClient";
 
 const PATHNAME = "/seguro-decesos-prima-unica/";
-const FAQ_KEY: string | null = null;
+const FAQ_KEY: string | null = "/seguro-decesos-prima-unica/";
 const PRODUCT = {
   name: "Adeslas Decesos Prima Única",
   description: "Seguro de decesos Adeslas de pago único, sin cuotas anuales y con cobertura vitalicia.",

@@ -13,7 +13,7 @@ import {
 import PlanClient from "./PlanClient";
 
 const PATHNAME = "/adeslas-body-factory/";
-const FAQ_KEY: string | null = null;
+const FAQ_KEY: string | null = "/adeslas-body-factory/";
 const PRODUCT = {
   name: "Adeslas Body Factory",
   description: "Seguro de salud Adeslas con condiciones especiales para socios de Body Factory. Desde 68€/mes.",
