@@ -56,24 +56,65 @@
     .section-pad{padding:64px 16px}
     @media(min-width:768px){.section-pad{padding:96px 32px}}
 
-    /* ── Header strip (solo logo) ── */
+    /* ── Header blanco (igual que la home, sin nav ni teléfonos) ── */
     .lp-header{
-      background:var(--azul-navy);
-      padding:14px 16px;
+      background:#fff;
+      position:sticky;top:0;z-index:50;
+      border-bottom:1px solid #E8EFF4;
+      transition:box-shadow 0.2s;
     }
-    .lp-header-inner{
-      max-width:1100px;margin:0 auto;
+    .lp-header.scrolled{box-shadow:0 2px 12px rgba(0,48,135,0.1)}
+    .lp-header-row1{
+      max-width:1280px;margin:0 auto;
       display:flex;align-items:center;justify-content:space-between;
+      padding:0 24px;height:84px;
     }
-    .lp-header img{height:38px}
-    .lp-badge{
+    @media(min-width:1024px){.lp-header-row1{padding:0 80px}}
+    .lp-logo-wrap{display:flex;align-items:center;gap:12px;flex-shrink:0}
+    .lp-logo-wrap img{height:40px;object-fit:contain}
+    .lp-logo-sep{
+      display:none;
+      padding-left:12px;border-left:1px solid #D5E3F0;
+    }
+    @media(min-width:1280px){.lp-logo-sep{display:flex;align-items:center}}
+    .lp-logo-sep span{font-size:11px;color:#C0D0DC;line-height:1.3}
+    .lp-header-cta{
       background:#E4097D;color:#fff;
-      font-size:13px;font-weight:700;
-      padding:6px 16px;border-radius:20px;
-      display:inline-flex;align-items:center;gap:6px;
+      border:none;cursor:pointer;
+      padding:12px 24px;border-radius:8px;
+      font-size:14px;font-weight:700;
+      font-family:'Lato',sans-serif;
+      transition:background-color 0.18s ease-out,transform 0.18s ease-out,box-shadow 0.18s ease-out;
     }
+    .lp-header-cta:hover{background:#C5076A;transform:translateY(-2px);box-shadow:0 6px 16px rgba(228,9,125,0.35)}
+    .lp-header-cta:active{transform:translateY(0)}
+    /* Mobile promo strip */
+    .lp-mobile-strip{
+      display:block;
+      background:#E4097D;color:#fff;
+      text-align:center;padding:10px 16px;
+      font-size:12px;font-weight:700;letter-spacing:0.01em;
+    }
+    @media(min-width:1024px){.lp-mobile-strip{display:none}}
+    /* Mobile sticky bottom bar */
+    .lp-sticky-mobile{
+      display:none;
+      position:fixed;left:0;right:0;bottom:0;z-index:500;
+      background:#fff;border-top:1px solid var(--borde);
+      padding:10px 16px max(10px, env(safe-area-inset-bottom));
+      box-shadow:0 -4px 20px rgba(0,48,135,0.10);
+    }
+    @media(max-width:1023px){.lp-sticky-mobile{display:flex;gap:10px}}
+    .lp-sticky-mobile button{
+      flex:1;padding:13px;border-radius:12px;
+      font-size:14px;font-weight:700;font-family:'Lato',sans-serif;
+      cursor:pointer;border:none;
+    }
+    .sticky-btn-sol{background:#009FE3;color:#fff}
+    /* reserve bottom space on mobile */
+    @media(max-width:1023px){body{padding-bottom:72px}}
 
-    /* ── HERO ── */
+    /* ── HERO — igual que ProductHero ── */
     .hero-section{
       position:relative;overflow:hidden;
       display:flex;align-items:center;
@@ -89,24 +130,34 @@
     }
     .hero-inner{
       position:relative;z-index:2;
-      width:100%;max-width:1100px;margin:0 auto;
-      padding:48px 16px 40px;
+      width:100%;max-width:1280px;margin:0 auto;
+      padding:48px 16px 0;
+    }
+    .hero-grid{
       display:grid;
       grid-template-columns:1fr 370px;
-      gap:32px;align-items:center;
+      gap:32px 40px;align-items:center;
     }
-    @media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-form-col{display:none}}
+    @media(min-width:1024px){.hero-inner{padding:40px 80px 0}.hero-grid{gap:40px}}
+    @media(max-width:1023px){.hero-grid{grid-template-columns:1fr}.hero-form-col{display:none}}
+    /* Left col indent (lg:pl-14 xl:pl-24) */
+    @media(min-width:1024px){.hero-left{padding-left:56px}}
+    @media(min-width:1280px){.hero-left{padding-left:96px}}
+
     .hero-badge-pill{
       display:inline-flex;align-items:center;gap:8px;
-      padding:8px 14px;border-radius:9999px;
+      padding:8px 12px;border-radius:9999px;
       border:1px solid rgba(255,255,255,0.4);
       font-size:13px;font-weight:700;color:#fff;
       margin-bottom:16px;background:transparent;
     }
     .hero-badge-dot{width:8px;height:8px;border-radius:50%;background:#009FE3;flex-shrink:0}
-    .hero-h1{color:#fff;margin-bottom:12px}
+    .hero-h1{
+      color:#fff;margin-bottom:12px;
+      font-size:clamp(26px,4vw,36px);font-weight:700;line-height:1.15;
+    }
     .hero-h1 .highlight{color:#009FE3}
-    .hero-sub{font-size:16px;color:rgba(255,255,255,0.92);max-width:560px;margin-bottom:12px}
+    .hero-sub{font-size:16px;color:rgba(255,255,255,0.92);max-width:600px;margin-bottom:12px}
     .hero-price{
       display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;
       margin-bottom:24px;
@@ -117,7 +168,7 @@
     .hero-trust{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
     .trust-item{
       display:flex;align-items:center;gap:8px;
-      color:#fff;font-size:13px;
+      color:#fff;font-size:clamp(12px,1.5vw,14px);
     }
     .trust-icon{
       width:32px;height:32px;border-radius:50%;
@@ -126,11 +177,23 @@
       font-size:14px;flex-shrink:0;
     }
 
-    /* Form card en hero */
+    /* Form card en hero (desktop) */
     .hero-form-card{
       background:#fff;border-radius:16px;
-      overflow:hidden;max-width:370px;margin-left:auto;
+      overflow:hidden;
       box-shadow:0 20px 56px rgba(0,0,0,0.22);
+      height:390px; /* igual que el tarificador en desktop */
+    }
+    /* Mobile: form card debajo del hero */
+    .hero-form-mobile{display:none}
+    @media(max-width:1023px){.hero-form-mobile{display:block;background:#fff;border-radius:0}}
+
+    /* Promo pill row — dentro del hero, al final */
+    .hero-pill-row{
+      display:flex;justify-content:center;
+      padding:24px 16px 40px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
     }
 
     /* Promo pill tricolor (magenta + cyan + navy) */
@@ -511,142 +574,214 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6ZDN42" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══════════════════════════════════════════
-     HEADER — solo logo, sin navegación
+     HEADER — blanco, igual a la home (sin nav ni teléfonos)
 ══════════════════════════════════════════ -->
-<header class="lp-header">
-  <div class="lp-header-inner">
-    <img
-      src="https://adeslas.numero1salud.es/_next/static/media/Logo-adeslas-Marchal-blanco.5ebc3bc7.webp"
-      alt="Adeslas Seguros Médicos — Marchal Aseguradores"
-      loading="eager" width="200" height="38"
-    >
-    <span class="lp-badge">🎁 Hasta 3 meses GRATIS al contratar</span>
+<header class="lp-header" id="lp-header">
+  <div class="lp-header-row1">
+    <!-- Logo + claim -->
+    <div class="lp-logo-wrap">
+      <img
+        src="/lp/febboo/logo-color.webp"
+        alt="Adeslas Seguros Médicos — Marchal Aseguradores"
+        loading="eager" width="105" height="44"
+      >
+      <div class="lp-logo-sep">
+        <span>Marchal Aseguradores · Agente exclusivo Adeslas</span>
+      </div>
+    </div>
+    <!-- CTA único (sin teléfonos) -->
+    <button class="lp-header-cta" onclick="document.getElementById('solicitar').scrollIntoView({behavior:'smooth'})">
+      Solicitar información →
+    </button>
   </div>
 </header>
 
+<!-- Tira promo mobile -->
+<div class="lp-mobile-strip">
+  🎁 Ahora, hasta 3 meses gratis en tu seguro + 250 puntos por asegurado
+</div>
+
+<!-- Sticky bottom bar mobile -->
+<div class="lp-sticky-mobile">
+  <button class="sticky-btn-sol" onclick="document.getElementById('solicitar').scrollIntoView({behavior:'smooth'})">
+    Solicitar información →
+  </button>
+</div>
+
 
 <!-- ══════════════════════════════════════════
-     HERO
+     HERO — idéntico a ProductHero, sin tarificador
 ══════════════════════════════════════════ -->
-<section class="hero-section" role="img" aria-label="Adeslas Plena Vital Total — Seguro médico privado">
+<section class="hero-section" role="img" aria-label="Adeslas Plena Vital Total · Cobertura Total · 3 Años Sin Subida de Prima — Adeslas seguros médicos privados">
+  <!-- LCP: imagen de fondo igual que ProductHero -->
   <img
     class="hero-bg"
     src="https://adeslas.numero1salud.es/_next/static/media/seguro-medico-adeslas-plena-vital-total.8a4b5cc4.webp"
     alt="" aria-hidden="true"
     fetchpriority="high" loading="eager" decoding="async"
+    sizes="(max-width: 768px) 100vw, 1440px"
   >
   <div class="hero-overlay"></div>
 
   <div class="hero-inner">
-    <!-- Copy -->
-    <div>
-      <div class="hero-badge-pill">
-        <span class="hero-badge-dot"></span>
-        3 años sin subidas de prima
-      </div>
+    <div class="hero-grid">
 
-      <h1 class="hero-h1">
-        Seguro Médico Adeslas Plena Vital Total<br>
-        <span class="highlight">Cobertura Total · 3 Años Sin Subida de Prima</span>
-      </h1>
-
-      <p class="hero-sub">
-        El único seguro Adeslas con hospitalización completa, copago reducido y precio garantizado durante 3 años. Más de 51.000 médicos y 1.400 centros sin listas de espera.
-      </p>
-
-      <div class="hero-price">
-        <span class="desde">Desde</span>
-        <span class="amount">48,50€</span>
-        <span class="periodo">/mes</span>
-      </div>
-
-      <div class="hero-trust">
-        <div class="trust-item"><span class="trust-icon">⭐</span>+30 años de experiencia</div>
-        <div class="trust-item"><span class="trust-icon">🏥</span>Sin listas de espera</div>
-        <div class="trust-item"><span class="trust-icon">👨‍⚕️</span>+51.000 médicos</div>
-        <div class="trust-item"><span class="trust-icon">🏨</span>+1.400 centros</div>
-      </div>
-    </div>
-
-    <!-- Form card inline (desktop) -->
-    <div class="hero-form-col">
-      <div class="hero-form-card">
-        <div class="inline-form-header">
-          <p>Solicitar Información — Sin Compromiso</p>
+      <!-- Columna izquierda: igual al ProductHero -->
+      <div class="hero-left">
+        <div class="hero-badge-pill">
+          <span class="hero-badge-dot"></span>
+          3 años sin subidas de prima
         </div>
-        <div class="inline-form-body">
-          <form id="heroForm" novalidate>
-            <div class="form-group">
-              <label for="h-nombre">Nombre completo *</label>
-              <input type="text" id="h-nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
-              <div class="field-err" id="h-err-nombre">Introduce tu nombre</div>
+
+        <h1 class="hero-h1">
+          Seguro Médico Adeslas Plena Vital Total<br>
+          <span class="highlight">Cobertura Total · 3 Años Sin Subida de Prima</span>
+        </h1>
+
+        <p class="hero-sub">
+          El único seguro Adeslas con hospitalización completa, copago reducido y precio garantizado durante 3 años. Más de 51.000 médicos y 1.400 centros sin listas de espera.
+        </p>
+
+        <div class="hero-price">
+          <span class="desde">Desde</span>
+          <span class="amount">48,50€</span>
+          <span class="periodo">/mes</span>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-item"><span class="trust-icon">⭐</span>+30 años de experiencia</div>
+          <div class="trust-item"><span class="trust-icon">🏥</span>Sin listas de espera</div>
+          <div class="trust-item"><span class="trust-icon">👨‍⚕️</span>+51.000 médicos</div>
+          <div class="trust-item"><span class="trust-icon">🏨</span>+1.400 centros</div>
+        </div>
+      </div>
+
+      <!-- Columna derecha: form card (solo desktop, donde iría el tarificador) -->
+      <div class="hero-form-col">
+        <div class="hero-form-card" style="margin-left:32px;max-width:370px">
+          <div class="inline-form-header">
+            <p>Solicitar Información — Sin Compromiso</p>
+          </div>
+          <div class="inline-form-body" style="overflow-y:auto;flex:1">
+            <form id="heroForm" novalidate>
+              <div class="form-group">
+                <label for="h-nombre">Nombre completo *</label>
+                <input type="text" id="h-nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+                <div class="field-err" id="h-err-nombre">Introduce tu nombre</div>
+              </div>
+              <div class="form-group">
+                <label for="h-email">Correo electrónico *</label>
+                <input type="email" id="h-email" name="email" placeholder="tu@email.com" autocomplete="email" required>
+                <div class="field-err" id="h-err-email">Introduce un email válido</div>
+              </div>
+              <div class="form-group">
+                <label for="h-tel">Teléfono *</label>
+                <input type="tel" id="h-tel" name="telefono" placeholder="6XX XXX XXX" autocomplete="tel" required>
+                <div class="field-err" id="h-err-tel">Introduce un teléfono de 9 dígitos</div>
+              </div>
+              <div class="form-group">
+                <label for="h-aseg">¿Para cuántas personas?</label>
+                <select id="h-aseg" name="asegurados">
+                  <option value="1">Solo para mí (1 asegurado)</option>
+                  <option value="2">Mi pareja y yo (2 asegurados)</option>
+                  <option value="3">Familia con hijos (3+ asegurados)</option>
+                  <option value="hijos">Solo mis hijos</option>
+                </select>
+              </div>
+              <div class="checkbox-row">
+                <input type="checkbox" id="h-privacidad" name="privacidad" required>
+                <label for="h-privacidad">
+                  Acepto la <a href="https://adeslas.numero1salud.es/politica-de-privacidad" target="_blank" rel="noopener">política de privacidad</a> *
+                </label>
+              </div>
+              <div class="field-err" id="h-err-privacidad" style="margin-top:-10px;margin-bottom:10px">Debes aceptar la política de privacidad</div>
+              <button type="submit" class="btn-form-submit" id="h-submit">Solicitar información →</button>
+              <p class="form-micro" style="margin-top:8px"><strong>✓ Sin compromiso</strong> · Respuesta en &lt;24h</p>
+            </form>
+            <div class="success-state" id="h-success">
+              <div class="success-check">✓</div>
+              <h3>¡Recibido!</h3>
+              <p>Te contactaremos en menos de 24h con toda la información.</p>
             </div>
-            <div class="form-group">
-              <label for="h-email">Correo electrónico *</label>
-              <input type="email" id="h-email" name="email" placeholder="tu@email.com" autocomplete="email" required>
-              <div class="field-err" id="h-err-email">Introduce un email válido</div>
-            </div>
-            <div class="form-group">
-              <label for="h-tel">Teléfono *</label>
-              <input type="tel" id="h-tel" name="telefono" placeholder="6XX XXX XXX" autocomplete="tel" required>
-              <div class="field-err" id="h-err-tel">Introduce un teléfono de 9 dígitos</div>
-            </div>
-            <div class="form-group">
-              <label for="h-aseg">¿Para cuántas personas?</label>
-              <select id="h-aseg" name="asegurados">
-                <option value="1">Solo para mí (1 asegurado)</option>
-                <option value="2">Mi pareja y yo (2 asegurados)</option>
-                <option value="3">Familia con hijos (3+ asegurados)</option>
-                <option value="hijos">Solo mis hijos</option>
-              </select>
-            </div>
-            <div class="checkbox-row">
-              <input type="checkbox" id="h-privacidad" name="privacidad" required>
-              <label for="h-privacidad">
-                Acepto la <a href="https://adeslas.numero1salud.es/politica-de-privacidad" target="_blank" rel="noopener">política de privacidad</a> *
-              </label>
-            </div>
-            <div class="field-err" id="h-err-privacidad" style="margin-top:-14px;margin-bottom:10px">Debes aceptar la política de privacidad</div>
-            <button type="submit" class="btn-form-submit" id="h-submit">Solicitar información →</button>
-            <p class="form-micro" style="margin-top:8px"><strong>✓ Sin compromiso</strong> · Respuesta en &lt;24h</p>
-          </form>
-          <div class="success-state" id="h-success">
-            <div class="success-check">✓</div>
-            <h3>¡Recibido!</h3>
-            <p>Te contactaremos en menos de 24h con toda la información.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /hero-grid -->
+
+    <!-- Promo pill tricolor — igual que el componente original, centrado al fondo del hero -->
+    <div class="hero-pill-row">
+      <div class="promo-pill">
+        <div class="pill-seg pill-seg-magenta">
+          <span class="pill-num">3</span>
+          <div class="pill-text-wrap">
+            <span class="pill-prefix">hasta</span>
+            <span class="pill-text">MESES&#10;GRATIS*</span>
+          </div>
+        </div>
+        <div class="pill-seg pill-seg-cyan">
+          <span class="pill-badge">+</span>
+          <span class="pill-num-sm">250</span>
+          <div class="pill-text-wrap">
+            <span class="pill-text-sm">PUNTOS&#10;POR&#10;ASEGURADO</span>
+          </div>
+        </div>
+        <div class="pill-seg pill-seg-navy">
+          <span class="pill-badge">+</span>
+          <span class="pill-num-sm">3</span>
+          <div class="pill-text-wrap">
+            <span class="pill-text-sm">AÑOS&#10;SIN SUBIDA&#10;DE PRECIO</span>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div><!-- /hero-inner -->
+</section>
 
-  <!-- Promo pill tricolor -->
-  <div class="promo-pill-wrap" style="position:relative;z-index:2;padding-bottom:40px">
-    <div class="promo-pill">
-      <div class="pill-seg pill-seg-magenta">
-        <span class="pill-num">3</span>
-        <div class="pill-text-wrap">
-          <span class="pill-prefix">hasta</span>
-          <span class="pill-text">MESES&#10;GRATIS*</span>
-        </div>
+<!-- Form visible en mobile (debajo del hero, igual que el tarificador mobile en la web) -->
+<div class="hero-form-mobile">
+  <div style="padding:24px 16px;background:#fff">
+    <p style="font-size:15px;font-weight:700;color:var(--azul-navy);text-align:center;margin-bottom:16px">Solicitar Información — Sin Compromiso</p>
+    <form id="mobileHeroForm" novalidate>
+      <div class="form-group">
+        <label for="mh-nombre">Nombre completo *</label>
+        <input type="text" id="mh-nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+        <div class="field-err" id="mh-err-nombre">Introduce tu nombre</div>
       </div>
-      <div class="pill-seg pill-seg-cyan">
-        <span class="pill-badge">+</span>
-        <span class="pill-num-sm">250</span>
-        <div class="pill-text-wrap">
-          <span class="pill-text-sm">PUNTOS&#10;POR&#10;ASEGURADO</span>
-        </div>
+      <div class="form-group">
+        <label for="mh-email">Correo electrónico *</label>
+        <input type="email" id="mh-email" name="email" placeholder="tu@email.com" autocomplete="email" required>
+        <div class="field-err" id="mh-err-email">Email no válido</div>
       </div>
-      <div class="pill-seg pill-seg-navy">
-        <span class="pill-badge">+</span>
-        <span class="pill-num-sm">3</span>
-        <div class="pill-text-wrap">
-          <span class="pill-text-sm">AÑOS&#10;SIN SUBIDA&#10;DE PRECIO</span>
-        </div>
+      <div class="form-group">
+        <label for="mh-tel">Teléfono *</label>
+        <input type="tel" id="mh-tel" name="telefono" placeholder="6XX XXX XXX" autocomplete="tel" required>
+        <div class="field-err" id="mh-err-tel">Introduce un teléfono de 9 dígitos</div>
       </div>
+      <div class="form-group">
+        <label for="mh-aseg">¿Para cuántas personas?</label>
+        <select id="mh-aseg" name="asegurados">
+          <option value="1">Solo para mí</option>
+          <option value="2">Mi pareja y yo</option>
+          <option value="3">Familia con hijos</option>
+          <option value="hijos">Solo mis hijos</option>
+        </select>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="mh-privacidad" required>
+        <label for="mh-privacidad">Acepto la <a href="https://adeslas.numero1salud.es/politica-de-privacidad" target="_blank" rel="noopener">política de privacidad</a> *</label>
+      </div>
+      <div class="field-err" id="mh-err-privacidad" style="margin-top:-10px;margin-bottom:10px">Debes aceptar la política de privacidad</div>
+      <button type="submit" class="btn-form-submit" id="mh-submit">Solicitar información →</button>
+      <p class="form-micro" style="margin-top:8px"><strong>✓ Sin compromiso</strong> · Respuesta en &lt;24h</p>
+    </form>
+    <div class="success-state" id="mh-success">
+      <div class="success-check">✓</div>
+      <h3>¡Recibido!</h3>
+      <p>Te contactaremos en menos de 24h con toda la información.</p>
     </div>
   </div>
-</section>
+</div>
 
 
 <!-- ══════════════════════════════════════════
@@ -1187,8 +1322,9 @@ function processForm(prefix, formId, submitId, successId) {
   if(cb) cb.addEventListener('change', function(){ showErr(prefix+'-err-privacidad',false); });
 }
 
-processForm('h', 'heroForm',  'h-submit',  'h-success');
-processForm('m', 'mainForm',  'm-submit',  'm-success');
+processForm('h',  'heroForm',       'h-submit',  'h-success');
+processForm('mh', 'mobileHeroForm', 'mh-submit', 'mh-success');
+processForm('m',  'mainForm',       'm-submit',  'm-success');
 </script>
 
 </body>
