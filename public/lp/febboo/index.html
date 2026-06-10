@@ -195,15 +195,23 @@
       -webkit-overflow-scrolling:touch;
     }
 
-    /* Promo pill tricolor (magenta + cyan + navy) */
+    /* Promo pill tricolor — fiel a PromoPill.tsx ─────────────────────────────
+     * Técnica: cada sección "curved" aplica borderTopLeftRadius+borderBottomLeftRadius
+     * con curveH 50% (elipse) + marginLeft:-curveH para el solapamiento.
+     * padH (primaria)  = clamp(13px,2.4vw,28px)
+     * padHSm (secundaria) = clamp(10px,1.8vw,20px)
+     * curveH = clamp(14px,2.5vw,26px)
+     * ──────────────────────────────────────────────────────────────────────── */
     .promo-pill-wrap{
       display:flex;justify-content:center;
       margin-top:24px;padding:4px;overflow-x:auto;
     }
     .promo-pill{
       display:inline-flex;align-items:stretch;
-      border-radius:calc(clamp(14px,2.5vw,26px) * 1) 50% / calc(clamp(14px,2.5vw,26px)) 50%;
-      border-top-right-radius:clamp(8px,1.2vw,14px);
+      /* outer left = elipse igual que el primer segmento */
+      border-top-left-radius:   clamp(14px,2.5vw,26px) 50%;
+      border-bottom-left-radius:clamp(14px,2.5vw,26px) 50%;
+      border-top-right-radius:   clamp(8px,1.2vw,14px);
       border-bottom-right-radius:clamp(8px,1.2vw,14px);
       overflow:hidden;
       box-shadow:0 6px 24px rgba(0,0,0,0.28);
@@ -213,18 +221,31 @@
       padding:clamp(13px,2vw,20px) clamp(13px,2.4vw,28px);
       flex-shrink:0;position:relative;
     }
-    .pill-seg-magenta{background:#E4097D}
+    /* Magenta: NOT secondary, NOT curved, HAS next
+       paddingLeft=padH  paddingRight=padH+curveH */
+    .pill-seg-magenta{
+      background:#E4097D;
+      padding-right:calc(clamp(13px,2.4vw,28px) + clamp(14px,2.5vw,26px));
+    }
+    /* Cyan: secondary, curved, HAS next
+       paddingLeft=padHSm+curveH  paddingRight=padHSm+curveH */
     .pill-seg-cyan{
       background:#009FE3;
-      padding-left:calc(clamp(13px,2.4vw,28px) + clamp(14px,2.5vw,26px));
-      border-radius:clamp(14px,2.5vw,26px) 50% 50% clamp(14px,2.5vw,26px);
+      padding-left: calc(clamp(10px,1.8vw,20px) + clamp(14px,2.5vw,26px));
+      padding-right:calc(clamp(10px,1.8vw,20px) + clamp(14px,2.5vw,26px));
+      border-top-left-radius:   clamp(14px,2.5vw,26px) 50%;
+      border-bottom-left-radius:clamp(14px,2.5vw,26px) 50%;
       margin-left:calc(-1 * clamp(14px,2.5vw,26px));
       z-index:1;
     }
+    /* Navy: secondary, curved, NO next
+       paddingLeft=padHSm+curveH  paddingRight=padHSm */
     .pill-seg-navy{
       background:#003087;
-      padding-left:calc(clamp(10px,1.8vw,20px) + clamp(14px,2.5vw,26px));
-      border-radius:clamp(14px,2.5vw,26px) 50% 50% clamp(14px,2.5vw,26px);
+      padding-left: calc(clamp(10px,1.8vw,20px) + clamp(14px,2.5vw,26px));
+      padding-right:clamp(10px,1.8vw,20px);
+      border-top-left-radius:   clamp(14px,2.5vw,26px) 50%;
+      border-bottom-left-radius:clamp(14px,2.5vw,26px) 50%;
       margin-left:calc(-1 * clamp(14px,2.5vw,26px));
       z-index:2;
     }
@@ -558,6 +579,9 @@
     .inline-form-body .form-group input:focus,
     .inline-form-body .form-group select:focus{border-color:var(--azul-medio)}
     .inline-form-body .form-group{margin-bottom:12px}
+
+    /* Ocultar sección coberturas/tabs en mobile */
+    @media(max-width:767px){.detail-section{display:none}}
 
     @media(max-width:600px){
       .features-grid{grid-template-columns:1fr}
