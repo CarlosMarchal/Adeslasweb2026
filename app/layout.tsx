@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import dynamic from 'next/dynamic';
 import GclidCapture from '@/components/GclidCapture';
-
-const StickyCtaBanner = dynamic(() => import('@/components/StickyCtaBanner'), { ssr: false });
+import StickyCtaBanner from '@/components/StickyCtaBanner';
 import './globals.css';
 import '../src/App.css';
 
@@ -123,7 +121,11 @@ export default function RootLayout({
         {children}
 
         {/* Banner sticky desktop — CRO, solo ≥1024px, aparece tras scroll > 400px.
-            ssr:false porque depende de window (scroll listener). */}
+            Componente cliente ("use client") renderizado en servidor: su estado inicial
+            es visible=false (sin banner) y NO accede a window en el render — todos los
+            accesos a window/document viven en useEffect, que no corre en servidor. Por eso
+            NO necesita dynamic(ssr:false): ese flag inyectaba un BAILOUT_TO_CLIENT_SIDE_RENDERING
+            en el HTML de las ~110 páginas estáticas (vía root layout) y tiñe de rojo test:seo. */}
         <StickyCtaBanner />
 
         {/* ── GTM loader — afterInteractive: carga tras hidratación, SIEMPRE,

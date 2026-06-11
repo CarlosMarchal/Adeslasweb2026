@@ -1401,6 +1401,7 @@ function trackGenerateLead(phone, source, hubspotSource) {
 function submitHubSpot(data) {
   fetch('https://api.hsforms.com/submissions/v3/integration/submit/6596944/cd3fb712-acc6-42f7-8843-e42f1360c3c4', {
     method: 'POST',
+    keepalive: true,
     headers: {'Content-Type':'application/json'},
     body: JSON.stringify({
       fields: [
@@ -1475,10 +1476,8 @@ function processForm(prefix, formId, submitId, successId) {
     /* 2. HubSpot fire-and-forget */
     submitHubSpot({nombre:nombre, email:email, telefono:tel, asegurados:aseg});
 
-    /* 3. UX */
-    form.style.display = 'none';
-    var suc = document.getElementById(successId);
-    if(suc) suc.style.display = 'block';
+    /* 3. Redirect a la página de agradecimiento con el pixel de conversión */
+    setTimeout(function(){ window.location.href = '/lp/febboo/gracias/'; }, 200);
   });
   /* Live clearing */
   [prefix+'-nombre', prefix+'-email', prefix+'-tel'].forEach(function(id){
