@@ -10,19 +10,6 @@
   <script>window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});</script>
   <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-M6ZDN42"></script>
 
-  <!-- Pixel de conversión Feebbo — cid generado dinámicamente -->
-  <script>
-    (function(){
-      var cid = 'fb-' + Date.now() + '-' + Math.random().toString(36).slice(2,9);
-      var img = new Image(1,1);
-      img.src = 'https://feebbo.uinterbox.com/tracking/cnv?org=6903&evt=13190&cid=' + encodeURIComponent(cid);
-      img.alt = '';
-      img.width = 1;
-      img.height = 1;
-      img.style.cssText = 'position:absolute;left:-9999px';
-      document.head.appendChild(img);
-    })();
-  </script>
 
   <style>
     @font-face{font-family:'Lato';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/lato-latin-400-normal.woff2') format('woff2')}
@@ -172,6 +159,23 @@
 <footer class="legal-footer">
   <strong>© 2026 Marchal Aseguradores S.L.U.</strong> · CIF B-86792017 · Agencia Exclusiva de Adeslas S.A. · DGS 28101259
 </footer>
+
+<!-- ── Pixel de conversión Feebbo ── -->
+<script>
+  (function(){
+    var cid = 'fb-' + Date.now() + '-' + Math.random().toString(36).slice(2,9);
+    var url = 'https://feebbo.uinterbox.com/tracking/cnv?org=6903&evt=13190&cid=' + encodeURIComponent(cid);
+    var img = document.createElement('img');
+    img.src = url;
+    img.width = 1; img.height = 1;
+    img.alt = '';
+    img.style.cssText = 'position:absolute;left:-9999px;top:-9999px';
+    document.body.appendChild(img);
+  })();
+</script>
+<noscript>
+  <img src="https://feebbo.uinterbox.com/tracking/cnv?org=6903&evt=13190" width="1" height="1" alt="" style="position:absolute;left:-9999px;top:-9999px">
+</noscript>
 
 </body>
 </html>
