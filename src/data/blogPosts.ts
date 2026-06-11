@@ -3684,6 +3684,110 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026","que-cubre-seguro-medico-adeslas-2026","salud-bucodental-guia-completa"],
   },
 
+
+  /* ── Salud Familiar: seguro-medico-ninos-pediatria-privada-adeslas-2026 ── */
+  {
+    slug: "seguro-medico-ninos-pediatria-privada-adeslas-2026",
+    category: "Salud Familiar",
+    title: "Seguro médico para niños: pediatría privada con Adeslas en 2026",
+    excerpt: "Con un seguro médico privado, tu hijo tiene cita con el pediatra en 24-48 horas, acceso inmediato a pruebas diagnósticas y urgencias pediátricas sin colas. Desde los 30 días de vida.",
+    date: "11 Jun 2026",
+    readTime: "7 min",
+    image: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=600&h=400&fit=crop",
+    seoTitle: "Seguro Médico para Niños 2026: Pediatría Privada con Adeslas | Guía",
+    seoDescription: "Guía completa sobre seguro médico para niños con Adeslas 2026: coberturas pediátricas, edad mínima (30 días), precios por edad, urgencias infantiles y cómo añadirlo al seguro familiar.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "El seguro médico es especialmente valioso para los niños por una razón concreta: los menores de 12 años son el grupo de edad que más usa el sistema sanitario, con una media de 6 a 10 visitas al médico al año. Con un seguro Adeslas, tu hijo tiene cita con el pediatra en 24-48 horas, acceso inmediato a pruebas diagnósticas, y atención de urgencias sin colas las 24 horas del día. Desde los 30 días de vida."
+        },
+        {
+            "type": "heading",
+            "text": "Desde qué edad se puede asegurar a un bebé con Adeslas"
+        },
+        {
+            "type": "paragraph",
+            "text": "Los recién nacidos pueden incorporarse al seguro Adeslas a partir de los 30 días de vida. Si se añaden en los primeros 30-60 días tras el nacimiento, se incorporan sin período de carencia: tienen acceso completo a todas las coberturas desde el primer día. Esta ventana es especialmente importante porque los primeros meses son cuando más urgencias y controles pediátricos se producen."
+        },
+        {
+            "type": "callout",
+            "text": "Si acabas de ser padre o madre, tienes 30-60 días para añadir al bebé al seguro familiar sin carencias. Pasado ese plazo, el niño se incorpora con las carencias estándar."
+        },
+        {
+            "type": "heading",
+            "text": "Coberturas pediátricas incluidas en los planes Adeslas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Pediatría de atención primaria: médico de referencia, seguimiento del desarrollo, revisiones del niño sano",
+                "Pediatría especializada: cardiología, neurología, neumología, gastroenterología pediátrica",
+                "Urgencias pediátricas 24 h: atención inmediata en la red, sin esperas",
+                "Diagnóstico pediátrico: analíticas, radiografías, ecografías, sin esperas",
+                "Dermatología pediátrica: eccemas, dermatitis atópica, verrugas",
+                "Otorrinolaringología pediátrica: otitis, amigdalitis, adenoides, rinitis",
+                "Oftalmología pediátrica: estrabismo, ojo vago (ambliopía), revisión de la visión",
+                "Traumatología pediátrica: fracturas, luxaciones, escoliosis",
+                "Psicología infantil: TDAH, ansiedad escolar, trastornos del aprendizaje",
+                "Logopedia: trastornos del habla y lenguaje",
+                "Cirugía pediátrica: hernias, fimosis, apendicitis, corrección de malformaciones menores"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "¿Cuánto cuesta asegurar a un niño con Adeslas en 2026?"
+        },
+        {
+            "type": "paragraph",
+            "text": "La prima para niños es la más baja de todos los tramos de edad. Precios orientativos para 2026 en Madrid (varían por provincia y plan):"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Recién nacido hasta 4 años: entre 25 y 55 € al mes según el plan",
+                "5 a 14 años: entre 30 y 65 € al mes",
+                "15 a 18 años: entre 35 y 75 € al mes",
+                "Descuento familiar: al asegurar a varios hijos o a toda la familia se aplican descuentos que pueden superar el 10 %"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Ventajas reales frente al pediatra público"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Cita en 24-48 horas frente a 2-5 días en el centro de salud",
+                "Mismo pediatra en cada visita: continuidad asistencial real",
+                "Acceso directo al especialista pediátrico: sin derivación lenta",
+                "Urgencias pediátricas privadas: menos espera, entorno más tranquilo",
+                "Pruebas diagnósticas en el mismo día: analítica o radiografía inmediata"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Vacunas: qué cubre el seguro"
+        },
+        {
+            "type": "paragraph",
+            "text": "Las vacunas del calendario oficial de vacunación están cubiertas por la sanidad pública y no es necesario el seguro privado para acceder a ellas. Algunos planes Adeslas incluyen vacunas fuera del calendario oficial (como la del meningococo B o del rotavirus) según el plan contratado."
+        },
+        {
+            "type": "heading",
+            "text": "Cómo añadir a tu hijo al seguro familiar Adeslas"
+        },
+        {
+            "type": "paragraph",
+            "text": "Si ya tienes un seguro Adeslas, añadir a un hijo es simple: contacta con tu asesor en Marchal Aseguradores con los datos del menor (nombre, apellidos, fecha de nacimiento) y el alta se tramita en 24-48 horas. La prima del niño se añade a la factura familiar a partir del siguiente período de facturación."
+        },
+        {
+            "type": "callout",
+            "text": "¿Quieres asegurar a tu hijo? En Marchal Aseguradores gestionamos el alta de nuevos asegurados menores en 24 horas. Llámanos al 91 710 50 00 o escríbenos para calcular tu precio familiar sin compromiso."
+        }
+    ],
+    relatedSlugs: ["seguro-medico-familias-2026","que-cubre-seguro-medico-adeslas-2026","embarazo-maternidad-seguro-medico-privado-2026","seguro-medico-familia-coste-real-2026"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>

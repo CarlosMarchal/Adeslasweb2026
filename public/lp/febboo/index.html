@@ -639,12 +639,9 @@
         alt="Adeslas Seguros Médicos — Marchal Aseguradores"
         loading="eager" width="105" height="44"
       >
-      <div class="lp-logo-sep">
-        <span>Marchal Aseguradores · Agente exclusivo Adeslas</span>
-      </div>
     </div>
     <!-- CTA único (sin teléfonos) -->
-    <button class="lp-header-cta" onclick="document.getElementById('solicitar').scrollIntoView({behavior:'smooth'})">
+    <button class="lp-header-cta" onclick="openFormPopup()">
       Solicitar información →
     </button>
   </div>
@@ -736,10 +733,12 @@
               <div class="form-group">
                 <label for="h-aseg">¿Para cuántas personas?</label>
                 <select id="h-aseg" name="asegurados">
-                  <option value="1">Solo para mí (1 asegurado)</option>
-                  <option value="2">Mi pareja y yo (2 asegurados)</option>
-                  <option value="3">Familia con hijos (3+ asegurados)</option>
-                  <option value="hijos">Solo mis hijos</option>
+                  <option value="1">1 persona</option>
+                  <option value="2">2 personas</option>
+                  <option value="3">3 personas</option>
+                  <option value="4">4 personas</option>
+                  <option value="5">5 personas</option>
+                  <option value="6">6 personas</option>
                 </select>
               </div>
               <div class="checkbox-row">
@@ -815,10 +814,12 @@
       <div class="form-group">
         <label for="mh-aseg">¿Para cuántas personas?</label>
         <select id="mh-aseg" name="asegurados">
-          <option value="1">Solo para mí</option>
-          <option value="2">Mi pareja y yo</option>
-          <option value="3">Familia con hijos</option>
-          <option value="hijos">Solo mis hijos</option>
+          <option value="1">1 persona</option>
+          <option value="2">2 personas</option>
+          <option value="3">3 personas</option>
+          <option value="4">4 personas</option>
+          <option value="5">5 personas</option>
+          <option value="6">6 personas</option>
         </select>
       </div>
       <div class="checkbox-row">
@@ -1281,6 +1282,60 @@
 
 
 <!-- ══════════════════════════════════════════
+     MODAL POPUP — FORMULARIO (desde CTA header)
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="formPopupModal" role="dialog" aria-modal="true" aria-labelledby="formPopupTitle" onclick="closeFormPopup(event)">
+  <div class="modal-box" style="max-width:460px;padding:0;overflow:hidden" onclick="event.stopPropagation()">
+    <div class="inline-form-header" style="padding:18px 24px;display:flex;align-items:center;justify-content:space-between">
+      <p id="formPopupTitle" style="margin:0;font-size:14px;font-weight:700;color:#fff">Solicitar Información — Sin Compromiso</p>
+      <button class="modal-close" onclick="closeFormPopup()" aria-label="Cerrar" style="color:rgba(255,255,255,0.8);background:transparent;top:auto;right:auto;position:static">×</button>
+    </div>
+    <div class="inline-form-body" style="padding:24px 24px 28px">
+      <form id="popupForm" novalidate>
+        <div class="form-group">
+          <label for="p-nombre">Nombre completo *</label>
+          <input type="text" id="p-nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+          <div class="field-err" id="p-err-nombre">Introduce tu nombre</div>
+        </div>
+        <div class="form-group">
+          <label for="p-email">Correo electrónico *</label>
+          <input type="email" id="p-email" name="email" placeholder="tu@email.com" autocomplete="email" required>
+          <div class="field-err" id="p-err-email">Introduce un email válido</div>
+        </div>
+        <div class="form-group">
+          <label for="p-tel">Teléfono *</label>
+          <input type="tel" id="p-tel" name="telefono" placeholder="6XX XXX XXX" autocomplete="tel" required>
+          <div class="field-err" id="p-err-tel">Introduce un teléfono de 9 dígitos</div>
+        </div>
+        <div class="form-group">
+          <label for="p-aseg">¿Para cuántas personas?</label>
+          <select id="p-aseg" name="asegurados">
+            <option value="1">1 persona</option>
+            <option value="2">2 personas</option>
+            <option value="3">3 personas</option>
+            <option value="4">4 personas</option>
+            <option value="5">5 personas</option>
+            <option value="6">6 personas</option>
+          </select>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="p-privacidad" required>
+          <label for="p-privacidad">Acepto la <a href="#" onclick="openLegalModal(event)" style="color:var(--azul-medio);text-decoration:underline">política de privacidad</a> *</label>
+        </div>
+        <div class="field-err" id="p-err-privacidad" style="margin-top:-10px;margin-bottom:10px">Debes aceptar la política de privacidad</div>
+        <button type="submit" class="btn-form-submit" id="p-submit">Solicitar información →</button>
+        <p class="form-micro" style="margin-top:8px"><strong>✓ Sin compromiso</strong> · Respuesta en &lt;24h</p>
+      </form>
+      <div class="success-state" id="p-success">
+        <div class="success-check">✓</div>
+        <h3>¡Recibido!</h3>
+        <p>Te contactaremos en menos de 24h con toda la información.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
      MODAL AVISO LEGAL
 ══════════════════════════════════════════ -->
 <div class="modal-overlay" id="legalModal" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle" onclick="closeLegalModal(event)">
@@ -1407,6 +1462,19 @@ function processForm(prefix, formId, submitId, successId) {
 processForm('h',  'heroForm',       'h-submit',  'h-success');
 processForm('mh', 'mobileHeroForm', 'mh-submit', 'mh-success');
 processForm('m',  'mainForm',       'm-submit',  'm-success');
+processForm('p',  'popupForm',      'p-submit',  'p-success');
+
+/* ── Modal popup formulario (CTA header) ── */
+function openFormPopup() {
+  document.getElementById('formPopupModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function(){ var el=document.getElementById('p-nombre'); if(el) el.focus(); }, 80);
+}
+function closeFormPopup(e) {
+  if(e && e.target !== document.getElementById('formPopupModal')) return;
+  document.getElementById('formPopupModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 /* ── Modal aviso legal ── */
 function openLegalModal(e) {
@@ -1419,7 +1487,9 @@ function closeLegalModal(e) {
   document.getElementById('legalModal').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLegalModal(); });
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape'){ closeLegalModal(); closeFormPopup(); }
+});
 </script>
 
 </body>
