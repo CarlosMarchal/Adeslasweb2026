@@ -232,7 +232,9 @@ const Header = () => {
   const [mobilePhoneError, setMobilePhoneError] = useState(false);
   const [showThankYouModal, setShowThankYouModal] = useState(false);
   const [stickyBottom, setStickyBottom] = useState(0);
+  const [promoBannerHeight, setPromoBannerHeight] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
+  const promoBannerRef = useRef<HTMLDivElement>(null);
   const megaTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const { openTarificador } = useTarificador();
   const { onCalcClick, calcLabel } = usePageCalc();
@@ -277,6 +279,13 @@ const Header = () => {
       vv.removeEventListener("resize", update);
       vv.removeEventListener("scroll", update);
     };
+  }, []);
+
+  /* ── Mide el alto del banner promo mobile para el spacer anti-salto ── */
+  useEffect(() => {
+    if (promoBannerRef.current) {
+      setPromoBannerHeight(promoBannerRef.current.offsetHeight);
+    }
   }, []);
 
   useEffect(() => {
@@ -502,10 +511,25 @@ const Header = () => {
         </div>
       </header>
 
-      {/* ── Banner promocional mobile-only — campaña Jun-Dic 2026 ── */}
+      {/* ── Banner promocional mobile-only — campaña Jun-Dic 2026 — */}
+      {/* Spacer para evitar salto de layout cuando el banner pasa a fixed */}
+      {scrolled && promoBannerHeight > 0 && (
+        <div className="lg:hidden" style={{ height: promoBannerHeight }} aria-hidden="true" />
+      )}
       <div
+        ref={promoBannerRef}
         className="lg:hidden w-full py-2.5 px-4 text-center text-xs font-bold text-white"
-        style={{ backgroundColor: "#E4097D", letterSpacing: "0.01em" }}
+        style={{
+          backgroundColor: "#E4097D",
+          letterSpacing: "0.01em",
+          ...(scrolled ? {
+            position: "fixed" as const,
+            top: headerBottom,
+            left: 0,
+            right: 0,
+            zIndex: 51,
+          } : {}),
+        }}
       >
         {pathname.includes("/autonomos")
           ? "\ud83c\udff7\ufe0f Ahora, hasta 10% de descuento en tu seguro de aut\u00f3nomo"
