@@ -409,7 +409,7 @@ const SegmentPageTemplate = ({ data, renderSeo = true }: { data: SegmentPageData
 
         {/* ── Banner servicios digitales (opcional por página) ── */}
         {data.showServiciosDigitales && (
-          <section className="section-pad bg-white">
+          <section className="section-pad" style={{ background: "#003087" }}>
             <div className="container mx-auto px-4 max-w-5xl">
               <BannerServiciosDigitales />
             </div>
