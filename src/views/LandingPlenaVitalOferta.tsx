@@ -37,6 +37,7 @@ const LandingPlenaVitalOferta = ({ renderSeo = true }: { renderSeo?: boolean } =
     "Videoconsultas incluidas",
     "Copagos limitados a 300€/año",
     "+51.000 médicos en toda España",
+    "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología",
   ];
 
   const faqs = [

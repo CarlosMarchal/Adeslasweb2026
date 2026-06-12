@@ -93,7 +93,8 @@ export const data: ProductPageData = {
     "Podología (12 sesiones/año)",
     "Dental incluido",
     "Chequeo médico anual",
-    "Sin subida de prima durante 3 años"
+    "Sin subida de prima durante 3 años",
+    "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"
   ],
   tabs: [
     {

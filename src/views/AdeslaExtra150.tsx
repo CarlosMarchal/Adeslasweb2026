@@ -46,7 +46,8 @@ export const data: ProductPageData = {
     "Trasplantes: pulmón, hígado, corazón, médula ósea, riñón",
     "Diagnóstico de alta tecnología sin limitación",
     "Pago dentro de 15 días hábiles si usa reembolso",
-    "Máximo garantizado 150.000€/año"
+    "Máximo garantizado 150.000€/año",
+    "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"
   ],
   features: [
     {

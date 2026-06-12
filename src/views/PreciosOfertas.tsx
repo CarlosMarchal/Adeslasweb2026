@@ -77,6 +77,7 @@ const plans: Plan[] = [
       "Diagnósticos completos (TAC, eco…)",
       "Ginecología y pediatría",
       "Fisioterapia y rehabilitación",
+      "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología",
     ],
   },
   {
@@ -95,6 +96,7 @@ const plans: Plan[] = [
       "Urgencias nacionales 24 h",
       "Diagnósticos de alta tecnología",
       "Videoconsultas Adeslas Live",
+      "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología",
     ],
   },
   {
@@ -111,6 +113,7 @@ const plans: Plan[] = [
       "Parto vaginal y cesárea cubiertos",
       "Urgencias nacionales 24 h",
       "Videoconsultas Adeslas Live",
+      "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología",
     ],
   },
   {
@@ -127,6 +130,7 @@ const plans: Plan[] = [
       "Psicología: 20 sesiones/año",
       "Asistencia viaje hasta 30.000€",
       "Reembolso farmacia 50% hasta 200€",
+      "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología",
     ],
   },
   {
@@ -143,6 +147,7 @@ const plans: Plan[] = [
       "Cobertura internacional completa",
       "Sin autorización previa",
       "Segunda opinión médica internacional",
+      "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología",
     ],
   },
 ];

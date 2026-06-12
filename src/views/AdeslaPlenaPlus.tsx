@@ -48,7 +48,8 @@ export const data: ProductPageData = {
     "Psicología clínica y psiquiatría (máx. 20 sesiones/año)",
     "Rehabilitación y fisioterapia sin límite de sesiones",
     "Medicina preventiva incluida",
-    "Libre elección: +51.000 médicos y +1.400 centros"
+    "Libre elección: +51.000 médicos y +1.400 centros",
+    "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"
   ],
   features: [
     {

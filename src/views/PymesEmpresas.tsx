@@ -103,6 +103,7 @@ const dataBase: Omit<ProductPageData, "seoTitle" | "seoDescription" | "seoCanoni
     "Chequeo médico anual por edades (PYMES TOTAL)",
     "Dental incluido con 46 actos gratuitos (PYMES TOTAL)",
     "3 años sin incremento de prima (PYMES TOTAL)",
+    "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología",
   ],
   features: [
     {
@@ -193,6 +194,7 @@ const dataBase: Omit<ProductPageData, "seoTitle" | "seoDescription" | "seoCanoni
         "Sin copago en todas las consultas",
         "+51.000 médicos y 1.400 centros",
         "Módulos complementarios disponibles",
+        "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología",
       ],
     },
     {
@@ -227,6 +229,7 @@ const dataBase: Omit<ProductPageData, "seoTitle" | "seoDescription" | "seoCanoni
         "Asistencia en viaje extranjero 30.000€",
         "3 años sin incremento de prima",
         "Compromisos de servicio garantizados",
+        "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología",
       ],
     },
     {

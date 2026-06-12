@@ -98,7 +98,8 @@ export const data: ProductPageData = {
     "Asistencia viajes: hasta 100.000€",
     "Cobertura de accidente: fallecimiento y incapacidad",
     "Medicina preventiva: chequeos anuales adaptados",
-    "Contrato de 3 años sin aumento de prima"
+    "Contrato de 3 años sin aumento de prima",
+    "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"
   ],
   cardPill: "Sin copagos · Protección total",
   cardPillDark: true,

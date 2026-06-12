@@ -97,7 +97,8 @@ export const data: ProductPageData = {
     "Cirugía ambulatoria y hospitalaria",
     "Psicología clínica (máx. 20 sesiones/año)",
     "Rehabilitación y fisioterapia",
-    "Copagos limitados a 300€/año"
+    "Copagos limitados a 300€/año",
+    "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"
   ],
   cardPill: "Copagos LMA 300€ · Cobertura total",
   cardPillDark: true,

@@ -91,6 +91,7 @@ export const data: ProductPageData = {
     "Sin copago en todas las consultas",
     "Deducible en IRPF hasta 500€/persona/año",
     "+51.000 médicos y 1.400 centros Adeslas",
+    "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología",
   ],
   features: [
     {
