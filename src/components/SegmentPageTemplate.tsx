@@ -15,6 +15,7 @@ import defaultHeroBg from "@/assets/seguro-salud-adeslas-familias.webp";
 import { imgSrc } from "@/lib/imgSrc";
 import PromoPill from "@/components/PromoPill";
 import type { PromoPillData } from "@/components/PromoPill";
+import BannerServiciosDigitales from "@/components/BannerServiciosDigitales";
 
 /* ───── Types ───── */
 
@@ -65,6 +66,8 @@ export interface SegmentPageData {
   tarificadorSubtitle: string;
   faqs: SegmentFaq[];
   schemaFaq?: boolean;
+  /** Muestra el banner de servicios digitales (videollamada, autorizaciones, chat 24h) antes de las reseñas */
+  showServiciosDigitales?: boolean;
 }
 
 /* ───── FAQ Section (componente aislado) ─────────────────────────────────────
@@ -403,6 +406,15 @@ const SegmentPageTemplate = ({ data, renderSeo = true }: { data: SegmentPageData
 
         {/* ── Tarificador Section ── */}
         <Tarificador />
+
+        {/* ── Banner servicios digitales (opcional por página) ── */}
+        {data.showServiciosDigitales && (
+          <section className="section-pad bg-white">
+            <div className="container mx-auto px-4 max-w-5xl">
+              <BannerServiciosDigitales />
+            </div>
+          </section>
+        )}
 
         {/* ── Reseñas reales de Google — antes de FAQ para reforzar social proof ── */}
         <GoogleReviewsSection />

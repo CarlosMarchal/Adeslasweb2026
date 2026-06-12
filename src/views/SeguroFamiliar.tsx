@@ -76,6 +76,7 @@ export const data: SegmentPageData = {
     { question: "¿Cuánto cuesta un seguro médico familiar con Adeslas?", answer: "El precio depende del número de miembros y sus edades. Un seguro familiar tipo (2 adultos y 2 hijos menores) con Adeslas Plena Plus parte desde aproximadamente 145€/mes. Usa el calculador para obtener un presupuesto exacto y sin compromiso." },
   ],
   schemaFaq: true,
+  showServiciosDigitales: true,
 };
 
 export default function SeguroFamiliar() {
