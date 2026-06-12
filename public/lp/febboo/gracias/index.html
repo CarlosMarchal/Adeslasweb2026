@@ -165,12 +165,13 @@
   (function(){
     var cid = 'fb-' + Date.now() + '-' + Math.random().toString(36).slice(2,9);
     var url = 'https://feebbo.uinterbox.com/tracking/cnv?org=6903&evt=13190&cid=' + encodeURIComponent(cid);
-    var img = document.createElement('img');
+    /* Método primario: fetch con keepalive (garantiza disparo aunque el usuario navegue) */
+    if (typeof fetch !== 'undefined') {
+      fetch(url, { method: 'GET', keepalive: true, mode: 'no-cors' }).catch(function(){});
+    }
+    /* Fallback: pixel imagen */
+    var img = new Image(1, 1);
     img.src = url;
-    img.width = 1; img.height = 1;
-    img.alt = '';
-    img.style.cssText = 'position:absolute;left:-9999px;top:-9999px';
-    document.body.appendChild(img);
   })();
 </script>
 <noscript>
