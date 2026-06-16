@@ -12,11 +12,24 @@ declare global {
   }
 }
 
+/* ── Normalización E.164 — convierte cualquier formato de teléfono español
+   al estándar internacional +34XXXXXXXXX antes de hashear.
+   Requerido por Google Enhanced Conversions para hacer match correcto. ── */
+function normalizeE164(phone: string): string {
+  let normalized = phone.replace(/[\s\-().]/g, "");
+  if (normalized.startsWith("0034")) {
+    normalized = "+34" + normalized.slice(4);
+  } else if (!normalized.startsWith("+")) {
+    normalized = "+34" + normalized;
+  }
+  return normalized;
+}
+
 /* ── SHA-256 sync hash — js-sha256 es JS puro, no depende de crypto.subtle
    (que es async y rechazaba silenciosamente en Safari ITP/extensiones).
    Hashing en <1 ms para un número de teléfono. ── */
 function hashPhone(phone: string): string {
-  return sha256(phone.replace(/\s/g, "").toLowerCase());
+  return sha256(normalizeE164(phone));
 }
 
 /* ── Generic dataLayer push ── */
@@ -34,7 +47,7 @@ export function trackGenerateLead(phone: string, source: string, hubspotSource?:
     lead_source: source,
     ...(hubspotSource !== undefined && { hubspot_source: hubspotSource }),
     user_data: {
-      phone_number: phone.replace(/\s/g, ""),
+      phone_number: normalizeE164(phone),
       sha256_phone_number: hashPhone(phone),
     },
   });
@@ -71,7 +84,7 @@ export function trackTarificadorSubmit(phone: string, source: string, hubspotSou
     lead_source: source,
     ...(hubspotSource !== undefined && { hubspot_source: hubspotSource }),
     user_data: {
-      phone_number: phone.replace(/\s/g, ""),
+      phone_number: normalizeE164(phone),
       sha256_phone_number: hashPhone(phone),
     },
   });

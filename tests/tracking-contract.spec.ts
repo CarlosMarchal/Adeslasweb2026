@@ -42,9 +42,9 @@ describe("generate_lead — forma exacta del contrato GTM", () => {
     expect(e.hubspot_source).toBe(301);
 
     const ud = e.user_data as Record<string, string>;
-    expect(ud.phone_number).toBe("666123456"); // sin espacios, sin +34
+    expect(ud.phone_number).toBe("+34666123456"); // E.164 España (normalizado)
     expect(ud.sha256_phone_number).toMatch(HEX64);
-    expect(ud.sha256_phone_number).toBe(sha256("666123456"));
+    expect(ud.sha256_phone_number).toBe(sha256("+34666123456"));
   });
 
   it("omite hubspot_source cuando no se pasa", () => {
@@ -70,6 +70,17 @@ describe("generate_lead — forma exacta del contrato GTM", () => {
     expect(e.hubspot_source).toBe(320);
     const ud = e.user_data as Record<string, string>;
     expect(ud.sha256_phone_number).toMatch(HEX64);
+  });
+
+  it("normaliza a E.164 independientemente del formato de entrada", () => {
+    const variantes = ["666 123 456", "+34 666 123 456", "0034666123456", "+34666123456"];
+    for (const raw of variantes) {
+      window.dataLayer = [];
+      trackGenerateLead(raw, "test_source");
+      const ud = lastEvent().user_data as Record<string, string>;
+      expect(ud.phone_number).toBe("+34666123456");
+      expect(ud.sha256_phone_number).toBe(sha256("+34666123456"));
+    }
   });
 });
 

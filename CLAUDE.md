@@ -67,8 +67,8 @@ El objetivo del proyecto es que la web rinda al máximo en, **por este orden**:
     lead_source: "header_desktop_te_llamamos", // string, snake_case
     hubspot_source: 301,                        // number 300-399, opcional
     user_data: {
-      phone_number: "666123456",                // sin espacios, sin +34
-      sha256_phone_number: "6359bfed…"          // 64 hex, SHA-256 minúsculas
+      phone_number: "+34666123456",             // E.164 España (normalizado antes del hash)
+      sha256_phone_number: "…"                  // 64 hex, SHA-256 del E.164
     }
   }
   ```
