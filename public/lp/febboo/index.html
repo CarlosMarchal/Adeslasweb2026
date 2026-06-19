@@ -1386,14 +1386,15 @@ function toggleFaq(btn) {
 
 /* ── Tracking P0-2 (síncrono, primero) ── */
 function trackGenerateLead(phone, source, hubspotSource) {
-  var clean = phone.replace(/\s+/g,'').replace(/^\+34/,'');
-  var hash = sha256(clean);
+  var digits = phone.replace(/\s+/g,'').replace(/^\+34/,'');
+  var e164   = '+34' + digits;
+  var hash   = sha256(e164);
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     event: 'generate_lead',
     lead_source: source,
     hubspot_source: hubspotSource,
-    user_data: { phone_number: clean, sha256_phone_number: hash }
+    user_data: { phone_number: e164, sha256_phone_number: hash }
   });
 }
 
@@ -1473,8 +1474,9 @@ function processForm(prefix, formId, submitId, successId) {
     /* 1. TRACKING SÍNCRONO PRIMERO (P0-2) */
     trackGenerateLead(tel, 'lp_febboo_plena_vital_total_email', 313);
 
-    /* 2. HubSpot fire-and-forget */
-    submitHubSpot({nombre:nombre, email:email, telefono:tel, asegurados:aseg});
+    /* 2. HubSpot fire-and-forget — teléfono en E.164 */
+    var telE164 = '+34' + tel.replace(/\s+/g,'').replace(/^\+34/,'');
+    submitHubSpot({nombre:nombre, email:email, telefono:telE164, asegurados:aseg});
 
     /* 3. Redirect a la página de agradecimiento con el pixel de conversión */
     setTimeout(function(){ window.location.href = '/lp/febboo/gracias/'; }, 200);
