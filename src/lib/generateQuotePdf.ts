@@ -78,10 +78,9 @@ function cov(title: string, icon?: string): CoverageItem {
 const PRODUCTS: Record<string, ProductInfo> = {
   "Adeslas GO": {
     badge: "Seguro Ambulatorio · Copago máx. 260 €/año",
-    desc:  "Accede a más de 51.000 médicos y especialistas sin listas de espera, sin necesidad de derivación. Medicina general, diagnóstico completo y urgencias 24 h incluidos. Tu copago anual nunca supera los 260 €, sea cual sea el uso del seguro.",
+    desc:  "Accede a más de 51.000 médicos y especialistas sin listas de espera, sin necesidad de derivación. Medicina general, diagnóstico completo y atención médica inmediata incluidos. Tu copago anual nunca supera los 260 €, sea cual sea el uso del seguro.",
     coverages: [
       cov("Medicina general y pediatría", "M"),
-      cov("Urgencias 24 h en toda España", "U"),
       cov("Más de 40 especialidades médicas", "E"),
       cov("Telemedicina: tlf, chat y vídeo", "T"),
       cov("Pruebas diagnósticas incluidas", "P"),
