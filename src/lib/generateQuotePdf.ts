@@ -776,11 +776,11 @@ export async function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): 
   }
 
   /* ════════════════════════════════════════════════════════════
-     § 7 · CAMPAÑA SEGURÍSIMOS (puntos, 250/asegurado, particulares)
+     § 7 · CAMPAÑA SEGURÍSIMOS (meses gratis / 25% dto. + puntos, particulares)
   ════════════════════════════════════════════════════════════ */
   if (quote.totalPuntos > 0 && cliente.includePuntos !== false) {
-    ensureSpace(26);
-    const camH = 22;
+    ensureSpace(32);
+    const camH = 28;
 
     fillRect(doc, ML, y, CW, camH, AMBER_BG, 4);
     fillRect(doc, ML, y, CW, 8, [248, 235, 185], 4);
@@ -794,17 +794,26 @@ export async function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): 
     doc.setDrawColor(200, 145, 20); doc.setLineWidth(0.2);
     doc.line(ML + 10, y + 7, ML + CW - 8, y + 7);
 
+    // Línea de meses gratis / 25% descuento — misma cifra que la franja de campaña
+    const mesesTexto = quote.mesesGratis === "descuento25"
+      ? "25% DE DESCUENTO (3 o mas asegurados)"
+      : typeof quote.mesesGratis === "number" && quote.mesesGratis > 0
+        ? `${quote.mesesGratis} ${quote.mesesGratis === 1 ? "MES GRATIS" : "MESES GRATIS"}`
+        : "Sin meses gratis en este tramo";
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(140, 90, 10);
+    doc.text(mesesTexto, ML + 10, y + 12.5);
+
     const nAseg = quote.preciosPorPersona.length;
     doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(95, 60, 0);
     doc.text(
       `${quote.puntosXAseg.toLocaleString("es-ES")} pts/asegurado  x  ${nAseg} asegurado${nAseg > 1 ? "s" : ""}`,
-      ML + 10, y + 13,
+      ML + 10, y + 19,
     );
 
     doc.setFont("helvetica", "bold"); doc.setFontSize(6); doc.setTextColor(160, 110, 30);
-    doc.text("PUNTOS CONSEGUIDOS", RX, y + 13, { align: "right" });
+    doc.text("PUNTOS CONSEGUIDOS", RX, y + 19, { align: "right" });
     doc.setFont("helvetica", "bold"); doc.setFontSize(15); doc.setTextColor(120, 68, 0);
-    doc.text(`${quote.totalPuntos.toLocaleString("es-ES")} puntos`, RX, y + 20, { align: "right" });
+    doc.text(`${quote.totalPuntos.toLocaleString("es-ES")} puntos`, RX, y + 26, { align: "right" });
 
     y += camH + 5;
   }
