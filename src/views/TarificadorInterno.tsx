@@ -15,7 +15,6 @@ import {
   CAMPAIGN_PYMES_TOTAL_RENOVACION_TEXT,
   CAMPAIGN_MAX_COMISION_PCT,
   CAMPAIGN_AUTONOMOS_IDS,
-  CAMPAIGN_GAMA_PLENA_DENTAL_INCLUIDO,
   getAutonomosDiscountTier,
   getMesesGratisParticulares,
   getPuntosPorAseguradoCampaign,
@@ -94,9 +93,11 @@ const CAMPAIGN_CAT: Record<string, CampaignCat> = {
   "seniors-total":    "seniors_con", // Plena Total Seniors: meses gratis + puntos (propio, sin descuento)
 };
 
-/** ¿El producto ya incluye cobertura dental de serie a efectos de campaña? */
+/** ¿El producto ya incluye cobertura dental de serie (a efectos de la fórmula
+    tarjeta prepago 750pts=75€)? Nota: no afecta a los meses gratis de campaña,
+    que son iguales con o sin dental (ver @/data/campanaSalud2026). */
 function tieneDentalDeSerie(productId: string): boolean {
-  return CAMPAIGN_GAMA_PLENA_DENTAL_INCLUIDO.has(productId) || productId === "completa" || productId === "completaPlus" || productId === "seniors-total";
+  return productId === "seniors" || productId === "completa" || productId === "completaPlus" || productId === "seniors-total";
 }
 
 /* ─── Mensaje público de la campaña por producto ───────────────

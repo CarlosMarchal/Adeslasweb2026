@@ -38,7 +38,7 @@ export const data: SegmentPageData = {
       badge: "Económico",
       features: ["Atención ambulatoria para toda la familia", "Pediatría sin lista de espera", "Urgencias 24h en toda España", "Diagnóstico completo incluido", "Precio por miembro desde 38€/mes", "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"],
       highlighted: false,
-      promoBadge: "🎁 Hasta 1 mes gratis + 250 pts",
+      promoBadge: "🎁 Hasta 2 meses gratis + 250 pts",
     },
     {
       name: "Adeslas Plena Total",
@@ -56,7 +56,7 @@ export const data: SegmentPageData = {
       badge: "Máxima Cobertura",
       features: ["Libre elección de médico y hospital", "Reembolso hasta 90% del gasto", "Válido en centros públicos y privados", "Cobertura internacional ilimitada", "Ideal para familias con necesidades especiales", "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"],
       highlighted: false,
-      promoBadge: "🎁 Hasta 1 mes gratis + 250 pts",
+      promoBadge: "🎁 Hasta 2 meses gratis + 250 pts",
     },
   ],
   tarificadorTitle: "Calcula el precio para tu familia",

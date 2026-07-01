@@ -43,7 +43,7 @@ const featuredProducts = [
     price: "48,00",
     pill: "Cobertura total · Copago reducido",
     pillDark: false,
-    promoBadge: "🎁 1 mes gratis + 250 pts",
+    promoBadge: "🎁 2 meses gratis + 250 pts",
     coverages: ["Hospitalización completa", "Cirugía sin límites", "Especialistas con copago", "Urgencias nacionales", "Videoconsultas 24h"],
   },
 ];

@@ -51,12 +51,11 @@ export const CAMPAIGN_FAMILIA_TOTAL_IDS = new Set(["completa", "completaPlus"]);
 export const CAMPAIGN_SENIORS_TOTAL_ID = "seniors-total";
 
 /* "Gama Plena" (Plena, Plena Vital, Plena Plus, Plena Extra) + Adeslas Seniors:
-   1 / 2 / 2 meses gratis cuando incluyen cobertura dental (módulo o Dental Max);
-   sin dental, un mes menos en cada tramo (0 / 1 / 1). Confirmado con el equipo:
-   "siempre que se incluye módulo o cobertura dental se incluye un mes más". */
+   1 / 2 / 2 meses gratis, según las filas "Gama Plena + Adeslas Seniors +
+   cobertura Dental" y "Gama Plena, Adeslas Seniors y Adeslas Dental Max" del
+   documento de campaña — ambas filas dan la MISMA cifra (1/2/2), así que se
+   aplica siempre a todo este grupo, tenga o no módulo dental activado. */
 export const CAMPAIGN_GAMA_PLENA_IDS = new Set(["plena", "esencial", "completaPlusPlus", "reembolso", "seniors"]);
-/* De ese grupo, los que ya incluyen cobertura dental de serie (sin necesitar módulo aparte) */
-export const CAMPAIGN_GAMA_PLENA_DENTAL_INCLUIDO = new Set(["seniors"]);
 
 /* ── Autónomos y personas jurídicas ──────────────────────────────
    Descuento en prima (sin meses gratis ni puntos). Solo pólizas nuevas. */
@@ -81,7 +80,9 @@ export const CAMPAIGN_PYMES_TOTAL_RENOVACION_TEXT =
 export function getMesesGratisParticulares(
   productId: string,
   numAsegurados: number,
-  dentalModuloActivo = false,
+  // Parámetro conservado por compatibilidad de firma (ya no afecta al resultado):
+  // el documento de campaña da la misma cifra de meses gratis con o sin dental.
+  _dentalModuloActivo = false,
 ): number | "descuento25" | null {
   if (CAMPAIGN_NO_PROMO_IDS.has(productId) || CAMPAIGN_AUTONOMOS_IDS.has(productId)) return null;
 
@@ -96,9 +97,7 @@ export function getMesesGratisParticulares(
   }
 
   if (CAMPAIGN_GAMA_PLENA_IDS.has(productId)) {
-    const conDental = CAMPAIGN_GAMA_PLENA_DENTAL_INCLUIDO.has(productId) || dentalModuloActivo;
-    if (conDental) return numAsegurados === 1 ? 1 : 2;
-    return numAsegurados === 1 ? 0 : 1;
+    return numAsegurados === 1 ? 1 : 2;
   }
 
   return null;
