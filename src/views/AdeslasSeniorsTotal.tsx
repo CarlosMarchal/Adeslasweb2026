@@ -172,6 +172,7 @@ export const data: ProductPageData = {
     }
   ],
   showPromo: true,
+  promoProductId: "seniors-total",
   schemaFaq: true
 };
 

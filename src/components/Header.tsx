@@ -511,33 +511,44 @@ const Header = () => {
         </div>
       </header>
 
-      {/* ── Banner promocional mobile-only — campaña Jun-Dic 2026 — */}
-      {/* Spacer para evitar salto de layout cuando el banner pasa a fixed */}
-      {scrolled && promoBannerHeight > 0 && (
-        <div className="lg:hidden" style={{ height: promoBannerHeight }} aria-hidden="true" />
-      )}
-      <div
-        ref={promoBannerRef}
-        className="lg:hidden w-full py-2.5 px-4 text-center text-xs font-bold text-white"
-        style={{
-          backgroundColor: "#E4097D",
-          letterSpacing: "0.01em",
-          ...(scrolled ? {
-            position: "fixed" as const,
-            top: headerBottom,
-            left: 0,
-            right: 0,
-            zIndex: 51,
-          } : {}),
-        }}
-      >
-        {pathname.includes("/autonomos")
+      {/* ── Banner promocional mobile-only — Campaña Salud 2026 — */}
+      {/* Fuera de campaña: mascotas, decesos, accidentes, dental (standalone), GO y asistencia en viaje */}
+      {(() => {
+        const fueraDeCampana = pathname.includes("/mascota") || pathname.includes("/decesos") ||
+          pathname.includes("/accidentes") || pathname.includes("/seguro-dental") ||
+          pathname.includes("/adeslas-go") || pathname.includes("asistencia");
+        if (fueraDeCampana) return null;
+        const bannerText = pathname.includes("/autonomos")
           ? "\ud83c\udff7\ufe0f Ahora, hasta 10% de descuento en tu seguro de aut\u00f3nomo"
           : (pathname.includes("/pymes") || pathname.includes("/empresas"))
           ? "\ud83c\udff7\ufe0f Ahora, hasta 15% de descuento en tu seguro de empresa"
-          : "\ud83c\udf81 Ahora, hasta 3 meses gratis en tu seguro + 250 puntos por asegurado"
-        }
-      </div>
+          : "\ud83c\udf81 Ahora, hasta 3 meses gratis en tu seguro + 250 puntos por asegurado";
+        return (
+          <>
+            {/* Spacer para evitar salto de layout cuando el banner pasa a fixed */}
+            {scrolled && promoBannerHeight > 0 && (
+              <div className="lg:hidden" style={{ height: promoBannerHeight }} aria-hidden="true" />
+            )}
+            <div
+              ref={promoBannerRef}
+              className="lg:hidden w-full py-2.5 px-4 text-center text-xs font-bold text-white"
+              style={{
+                backgroundColor: "#E4097D",
+                letterSpacing: "0.01em",
+                ...(scrolled ? {
+                  position: "fixed" as const,
+                  top: headerBottom,
+                  left: 0,
+                  right: 0,
+                  zIndex: 51,
+                } : {}),
+              }}
+            >
+              {bannerText}
+            </div>
+          </>
+        );
+      })()}
 
       {/* ── Mega menu ── */}
       <AnimatePresence>

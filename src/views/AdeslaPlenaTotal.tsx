@@ -204,7 +204,7 @@ export const data: ProductPageData = {
     }
   ],
   showPromo: true,
-  promoFamiliaVariant: true,
+  promoProductId: "completa",
   schemaFaq: true
 };
 

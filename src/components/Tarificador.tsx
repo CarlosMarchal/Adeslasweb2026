@@ -20,6 +20,7 @@ import {
   getZoneFromProvince,
   type ProductPricing,
 } from "@/data/pricing";
+import { getCampaignBadgeText } from "@/data/campanaSalud2026";
 
 /* ───────── Props ───────── */
 
@@ -48,22 +49,11 @@ const INDIVIDUAL_PRODUCT_IDS = new Set([
   "ya", "plena", "esencial", "completaPlus", "completaPlusPlus", "completa", "reembolso",
 ]);
 
-/* ── Campaña: badge de promo por producto ────────────────────────────────────
-   GO ("ya") y Pymes no tienen oferta pública en esta campaña.
-   Plena Total ("completa") y Plena Vital Total ("completaPlus") con ≥3 aseg.
-   muestran "25% de descuento"; el resto "Hasta 3 meses gratis + 250 pts".
-   Seniors acumulan abono en cuenta.
+/* ── Campaña Salud 2026: badge de promo por producto ──────────────────────────
+   Lógica y cifras centralizadas en @/data/campanaSalud2026 (fuente única).
 ─────────────────────────────────────────────────────────────────────────── */
-const CAMPAIGN_NO_PROMO   = new Set(["ya", "pymes-total"]);
-const CAMPAIGN_FAMILIA_V  = new Set(["completa", "completaPlus"]);
-const CAMPAIGN_SENIORS    = new Set(["seniors", "seniors-total"]);
-
-function getCampaignBadge(productId: string, numAsegurados: number): { text: string; bg: string; color: string } | null {
-  if (CAMPAIGN_NO_PROMO.has(productId)) return null;
-  if (CAMPAIGN_SENIORS.has(productId))  return { text: "💶 Abono en cuenta",                   bg: "#F0FDF4", color: "#15803D" };
-  if (CAMPAIGN_FAMILIA_V.has(productId) && numAsegurados >= 3)
-                                         return { text: "🎁 25% de descuento",                   bg: "#FDF2F8", color: "#9D174D" };
-  return                                        { text: "🎁 Hasta 3 meses gratis · 250 pts/aseg.", bg: "#FDF2F8", color: "#9D174D" };
+function getCampaignBadge(productId: string, numAsegurados: number) {
+  return getCampaignBadgeText(productId, numAsegurados);
 }
 
 const productLabels: Record<string, { tag: string; color: string }> = {

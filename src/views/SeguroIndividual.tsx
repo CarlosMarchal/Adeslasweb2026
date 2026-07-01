@@ -36,7 +36,7 @@ export const data: SegmentPageData = {
       badge: "Económico",
       features: ["Atención ambulatoria completa", "Acceso a +51.000 médicos", "Urgencias 24h sin lista de espera", "Diagnóstico avanzado incluido", "Sin hospitalización programada", "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"],
       highlighted: false,
-      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
+      promoBadge: "🎁 Hasta 1 mes gratis + 250 pts",
     },
     {
       name: "Adeslas Plena Total",
@@ -54,7 +54,7 @@ export const data: SegmentPageData = {
       badge: "Máxima Cobertura",
       features: ["Libre elección de médico y hospital", "Reembolso 80% cualquier profesional", "Válido en España y en el extranjero", "Red Adeslas sin copago + reembolso combinados", "Máximo garantizado 150.000€/año", "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"],
       highlighted: false,
-      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
+      promoBadge: "🎁 Hasta 1 mes gratis + 250 pts",
     },
   ],
   tarificadorTitle: "Calcula tu precio personalizado",

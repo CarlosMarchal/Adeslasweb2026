@@ -23,7 +23,7 @@ export const data: ProductPageData = {
     { name: "Adeslas Seniors", url: "https://adeslas.numero1salud.es/seguro-salud/adeslas-seniors/" },
   ],
   customTarificador: <ContactCtaCard />,
-  heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
+  heroPromoPill: { left: { number: "2", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   badge: "Para personas de 55 a 84 años",
   heroTitle: "Adeslas Seniors",
   heroImage: heroImg,
@@ -90,7 +90,7 @@ export const data: ProductPageData = {
   cardName: "Adeslas Seniors",
   cardDescription: "Diseñado específicamente para personas de 55 a 84 años con necesidades médicas más frecuentes. Incluye asesor de salud personal y copago reducido.",
   cardPill: "55-84 años · Asesor personal",
-  cardPromoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts/asegurado",
+  cardPromoBadge: "🎁 Hasta 2 meses gratis + 250 pts/asegurado",
   cardPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   cardCoverages: [
     "Medicina general y especialidades (+40 especialidades)",
@@ -166,6 +166,7 @@ export const data: ProductPageData = {
     }
   ],
   showPromo: true,
+  promoProductId: "seniors",
   schemaFaq: true
 };
 

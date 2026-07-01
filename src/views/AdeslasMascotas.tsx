@@ -167,7 +167,7 @@ export const data: ProductPageData = {
     },
   ],
   schemaFaq: true,
-  showPromo: true,
+  showPromo: false, // Adeslas Mascotas no forma parte de la Campaña Salud 2026
 };
 
 const AdeslasMascotas = () => <ProductPageTemplate data={data} />;

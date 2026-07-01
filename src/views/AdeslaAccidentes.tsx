@@ -139,7 +139,7 @@ export const data: ProductPageData = {
     },
   ],
   schemaFaq: true,
-  showPromo: true,
+  showPromo: false, // Adeslas Accidentes no forma parte de la Campaña Salud 2026
 };
 
 const AdeslaAccidentes = () => <ProductPageTemplate data={data} />;

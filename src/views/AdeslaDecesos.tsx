@@ -190,7 +190,7 @@ export const data: ProductPageData = {
     },
   ],
   schemaFaq: true,
-  showPromo: true,
+  showPromo: false, // Adeslas Decesos no forma parte de la Campaña Salud 2026
 };
 
 const AdeslaDecesos = () => <ProductPageTemplate data={data} />;

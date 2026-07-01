@@ -22,7 +22,7 @@ export const data: ProductPageData = {
   ],
   productSlug: "/seguro-salud/adeslas-plena-vital/",
   hubspotSource: 304,
-  heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
+  heroPromoPill: { left: { number: "1", text: "MES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   badge: "Cobertura completa · Copago máx. 300€/año",
   heroTitle: "Seguro Médico Adeslas Plena Vital",
   heroImage: heroImg,
@@ -102,7 +102,7 @@ export const data: ProductPageData = {
   ],
   cardPill: "Copagos LMA 300€ · Cobertura total",
   cardPillDark: true,
-  cardPromoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts/asegurado",
+  cardPromoBadge: "🎁 Hasta 1 mes gratis + 250 pts/asegurado",
   cardPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   tabs: [
     {
@@ -215,6 +215,7 @@ export const data: ProductPageData = {
     }
   ],
   showPromo: true,
+  promoProductId: "esencial",
   schemaFaq: true
 };
 

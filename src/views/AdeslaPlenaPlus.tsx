@@ -24,7 +24,7 @@ export const data: ProductPageData = {
   ],
   productSlug: "/seguro-salud/adeslas-plena-plus/",
   hubspotSource: 307,
-  heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
+  heroPromoPill: { left: { number: "1", text: "MES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   badge: "Sin copagos · Hospitalización incluida",
   heroTitle: "Seguro Médico Adeslas Plena Plus",
   heroImage: heroImg,
@@ -37,7 +37,7 @@ export const data: ProductPageData = {
     "Seguro médico sin copagos con cobertura médica completa. La opción más equilibrada entre precio y protección.",
   cardPill: "Sin copagos · Cobertura completa",
   cardPillDark: false,
-  cardPromoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts/asegurado",
+  cardPromoBadge: "🎁 Hasta 1 mes gratis + 250 pts/asegurado",
   cardPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
   cardCoverages: [
     "Hospitalización ilimitada (médica, quirúrgica, pediátrica, psiquiátrica)",
@@ -226,6 +226,7 @@ export const data: ProductPageData = {
   ],
   schemaFaq: true,
   showPromo: true,
+  promoProductId: "completaPlusPlus",
 };
 
 const AdeslaPlenaPlus = () => <ProductPageTemplate data={data} />;

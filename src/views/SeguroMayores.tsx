@@ -36,7 +36,7 @@ export const data: SegmentPageData = {
       badge: "Para 55-84 años",
       features: ["Acceso a +40 especialidades médicas", "Hospitalización en habitación individual", "Asesor Médico de Salud personal", "Copago ambulatorio máx. 250€/año (vía asesor)", "Asistencia internacional 12.000€/año"],
       highlighted: false,
-      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
+      promoBadge: "🎁 Hasta 2 meses gratis + 250 pts",
     },
     {
       name: "Adeslas Seniors Total",

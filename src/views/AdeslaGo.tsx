@@ -168,7 +168,7 @@ export const data: ProductPageData = {
       a: "Los asegurados pueden contratar hasta los 70 años. Se admiten mayores de 70 años si el grupo tiene mínimo 3 asegurados menores de 60 años. El tomador debe ser persona física con ≥18 años."
     }
   ],
-  showPromo: true,
+  showPromo: false, // Adeslas GO no tiene oferta pública en la Campaña Salud 2026
   schemaFaq: true
 };
 

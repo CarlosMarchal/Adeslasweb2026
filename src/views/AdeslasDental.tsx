@@ -233,7 +233,7 @@ export const data: ProductPageData = {
     },
   ],
   schemaFaq: true,
-  showPromo: true,
+  showPromo: false, // Adeslas Dental (standalone) no forma parte de la Campaña Salud 2026
 };
 
 const AdeslasDental = () => <ProductPageTemplate data={data} />;

@@ -36,7 +36,7 @@ export const data: SegmentPageData = {
       badge: "Económico",
       features: ["Seguimiento prenatal ambulatorio", "Ginecólogo sin lista de espera", "Ecografías y analíticas incluidas", "Urgencias obstétricas 24h", "Sin hospitalización programada", "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"],
       highlighted: false,
-      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
+      promoBadge: "🎁 Hasta 1 mes gratis + 250 pts",
     },
     {
       name: "Adeslas Plena Total",
@@ -54,7 +54,7 @@ export const data: SegmentPageData = {
       badge: "Máxima Cobertura",
       features: ["Libre elección de ginecólogo y hospital", "Reembolso hasta 90% del gasto", "Válido en centros públicos y privados", "Cobertura psicológica perinatal", "Cobertura internacional ilimitada", "Videollamadas con especialistas: Medicina general, pediatría, dermatología, ginecología, psiquiatría y traumatología"],
       highlighted: false,
-      promoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts",
+      promoBadge: "🎁 Hasta 1 mes gratis + 250 pts",
     },
   ],
   tarificadorTitle: "Calcula tu precio personalizado",

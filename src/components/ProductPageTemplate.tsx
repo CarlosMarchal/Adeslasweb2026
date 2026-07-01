@@ -16,6 +16,7 @@ import { usePhonePopup } from "@/components/PhonePopupContext";
 import heroBg from "@/assets/seguro-salud-adeslas-individual.webp";
 import { imgSrc } from "@/lib/imgSrc";
 import PromoPillShared from "@/components/PromoPill";
+import { getMesesGratisParticulares, getPuntosPorAseguradoCampaign } from "@/data/campanaSalud2026";
 
 /* ───────── Types ───────── */
 
@@ -88,9 +89,11 @@ export interface ProductPageData {
   /* FAQ */
   faqs: ProductFaq[];
 
-  /* Promo (optional) */
+  /* Promo (optional). Campaña Salud 2026: solo productos de salud Adeslas.
+     promoProductId = id del producto en @/data/pricing (ver @/data/campanaSalud2026
+     para saber qué recibe cada uno). Sin este id, el banner no se muestra. */
   showPromo?: boolean;
-  promoFamiliaVariant?: boolean;
+  promoProductId?: string;
 
   /* Schema.org structured data */
   schemaFaq?: boolean;
@@ -607,7 +610,22 @@ const PromoPill = PromoPillShared;
 
 /* ───────── Promo Banner ───────── */
 
-const PromoBanner = ({ onCalcClick, familiaVariant }: { onCalcClick?: () => void; familiaVariant?: boolean }) => (
+const PromoBanner = ({ onCalcClick, productId }: { onCalcClick?: () => void; productId?: string }) => {
+  const puntos = productId ? getPuntosPorAseguradoCampaign(productId) : 0;
+  const meses  = productId
+    ? ([1, 2, 3] as const).map((n) => getMesesGratisParticulares(productId, n))
+    : [null, null, null];
+
+  const tierLabel = (m: number | "descuento25" | null): string => {
+    if (m === "descuento25") return "25% de descuento";
+    if (typeof m === "number" && m > 0) return `${m} ${m === 1 ? "mes gratis" : "meses gratis"}`;
+    return puntos > 0 ? `${puntos} pts/aseg.` : "Consulta condiciones";
+  };
+
+  const mesesNumericos = meses.filter((m): m is number => typeof m === "number" && m > 0);
+  const maxMeses = mesesNumericos.length > 0 ? Math.max(...mesesNumericos) : 0;
+
+  return (
   <section className="py-8" style={{ background: "linear-gradient(150deg, #002470 0%, #003087 40%, #005BA6 75%, #009FE3 100%)" }}>
     <div className="container mx-auto max-w-5xl px-4">
       <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
@@ -621,22 +639,35 @@ const PromoBanner = ({ onCalcClick, familiaVariant }: { onCalcClick?: () => void
             ⏰ Además
           </div>
           <h2 className="text-white font-bold mb-2" style={{ fontSize: "clamp(1.3rem, 3vw, 2rem)", lineHeight: 1.2 }}>
-            Hasta{" "}
-            <span style={{ color: "#fff", textDecoration: "underline", textDecorationColor: "#E4097D", textUnderlineOffset: "4px" }}>3 meses gratis</span>{" "}
-            al contratar tu seguro Adeslas
+            {maxMeses > 0 ? (
+              <>
+                Hasta{" "}
+                <span style={{ color: "#fff", textDecoration: "underline", textDecorationColor: "#E4097D", textUnderlineOffset: "4px" }}>
+                  {maxMeses} {maxMeses === 1 ? "mes gratis" : "meses gratis"}
+                </span>{" "}
+                al contratar tu seguro Adeslas
+              </>
+            ) : (
+              "Ventajas de la Campaña Salud 2026 al contratar tu seguro Adeslas"
+            )}
           </h2>
           <p className="text-sm max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.8)" }}>
-            Cuantos más asegurados, mayor ventaja. Y además acumula{" "}
-            <strong style={{ color: "#FFD600" }}>250 puntos por asegurado</strong> para canjear por regalos exclusivos.
+            Cuantos más asegurados, mayor ventaja.
+            {puntos > 0 && (
+              <>
+                {" "}Y además acumula{" "}
+                <strong style={{ color: "#FFD600" }}>{puntos} puntos por asegurado</strong> para canjear por regalos exclusivos.
+              </>
+            )}
           </p>
         </div>
 
         {/* Tiers — 3 columnas desde móvil para reducir altura */}
         <div className="grid grid-cols-3 gap-3 mb-4">
           {[
-            { icon: "👤", label: "1 asegurado",        premio: "1 mes gratis",                              highlight: false },
-            { icon: "👥", label: "2 asegurados",       premio: "2 meses gratis",                            highlight: false },
-            { icon: "👨‍👩‍👧", label: "3 o más asegurados", premio: familiaVariant ? "25% de descuento" : "3 meses gratis", highlight: true  },
+            { icon: "👤", label: "1 asegurado",        premio: tierLabel(meses[0]), highlight: false },
+            { icon: "👥", label: "2 asegurados",       premio: tierLabel(meses[1]), highlight: false },
+            { icon: "👨‍👩‍👧", label: "3 o más asegurados", premio: tierLabel(meses[2]), highlight: true  },
           ].map((tier, i) => (
             <div
               key={i}
@@ -730,7 +761,8 @@ const PromoBanner = ({ onCalcClick, familiaVariant }: { onCalcClick?: () => void
       </motion.div>
     </div>
   </section>
-);
+  );
+};
 
 /* ───────── SEO del SPA (react-helmet) ─────────
    Solo se usa en el SPA. En las rutas SSG (renderSeo={false}) los metadatos los
@@ -798,7 +830,7 @@ const ProductPageTemplate = ({ data, renderSeo = true }: { data: ProductPageData
         <ProductDetail data={data} />
         <GoogleReviewsSection />
         <ProductFaqSection faqs={data.faqs} productName={data.cardName} />
-        {data.showPromo !== false && <PromoBanner onCalcClick={openCustom} familiaVariant={data.promoFamiliaVariant} />}
+        {data.showPromo !== false && data.promoProductId && <PromoBanner onCalcClick={openCustom} productId={data.promoProductId} />}
         <CtaSection onCalcClick={openCustom} />
         <Footer />
         {/* Global modal for customTarificador (mobile + desktop CTA) */}

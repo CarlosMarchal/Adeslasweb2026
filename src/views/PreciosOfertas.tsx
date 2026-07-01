@@ -70,7 +70,7 @@ const plans: Plan[] = [
     price: "38",
     pill: "Hospitalización · Copago LMA 300€",
     pillDark: false,
-    promoBadge: "🎁 3 meses GRATIS + 250 pts",
+    promoBadge: "🎁 1 mes gratis + 250 pts",
     coverages: [
       "Todo lo de Adeslas Go sin copago",
       "Hospitalización por accidente",
@@ -106,7 +106,7 @@ const plans: Plan[] = [
     price: "50,92",
     pill: "Sin copago · Cobertura completa",
     pillDark: false,
-    promoBadge: "🎁 3 meses GRATIS + 250 pts",
+    promoBadge: "🎁 1 mes gratis + 250 pts",
     coverages: [
       "Hospitalización y cirugía sin copago",
       "Especialistas sin copago ni derivación",
@@ -140,7 +140,7 @@ const plans: Plan[] = [
     price: "90",
     pill: "Libre elección · Reembolso 80 %",
     pillDark: false,
-    promoBadge: "🎁 3 meses GRATIS + 250 pts",
+    promoBadge: "🎁 1 mes gratis + 250 pts",
     coverages: [
       "Elige cualquier médico o clínica",
       "Reembolso hasta el 80 % del gasto",

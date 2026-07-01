@@ -139,7 +139,7 @@ export const data: ProductPageData = {
     },
   ],
   schemaFaq: true,
-  showPromo: true,
+  showPromo: false, // Adeslas Asistencia en Viaje no forma parte de la Campaña Salud 2026
 };
 
 const AdeslaAsistenciaViaje = () => <ProductPageTemplate data={data} />;

@@ -23,8 +23,8 @@ export const data: ProductPageData = {
   ],
   productSlug: "/seguro-salud/adeslas-extra-150/",
   hubspotSource: 306,
-  heroPromoPill: { left: { number: "3", text: "MESES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
-  cardPromoBadge: "🎁 Hasta 3 meses GRATIS + 250 pts/asegurado",
+  heroPromoPill: { left: { number: "1", text: "MES\nGRATIS*" }, right: { number: "250", text: "PUNTOS\nPOR\nASEGURADO" } },
+  cardPromoBadge: "🎁 Hasta 1 mes gratis + 250 pts/asegurado",
   badge: "Libre elección · Reembolso 80% · Máx. 150.000€/año",
   heroTitle: "Seguro Médico Adeslas Extra 150",
   heroImage: heroImg,
@@ -252,6 +252,7 @@ export const data: ProductPageData = {
   ],
   schemaFaq: true,
   showPromo: true,
+  promoProductId: "reembolso",
 };
 
 const AdeslaExtra150 = () => <ProductPageTemplate data={data} />;

@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Phone, Shield, CheckCircle2, ChevronRight } from 'lucide-react';
+import { getCampaignBadgeText } from '@/data/campanaSalud2026';
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 interface ProductSpec {
@@ -98,28 +99,18 @@ const HIGHLIGHTED_IDS = new Set(['completa', 'completaPlus']);
 // Columnas que muestran la pill "3 años sin subidas"
 const PROMO_IDS       = new Set(['completa', 'completaPlus']);
 
-// ─── Campaña: promo pública por producto ─────────────────────────────────────
-// GO y Pymes no tienen oferta pública en esta campaña
-const NO_CAMPAIGN_IDS = new Set(['ya', 'pymes-total']);
-// Plena Total y Plena Vital Total con ≥3 asegurados muestran "25% de descuento"
-const FAMILIA_VARIANT_IDS = new Set(['completa', 'completaPlus']);
-// Seniors acumulan abono en cuenta en lugar de meses gratis
-const SENIORS_CAMPAIGN_IDS = new Set(['seniors', 'seniors-total']);
+// ─── Campaña Salud 2026: promo pública por producto ──────────────────────────
+// Lógica y cifras centralizadas en @/data/campanaSalud2026 (fuente única).
+const PILL_BORDER: Record<string, string> = {
+  '#FDF2F8': '#F9A8D4',
+  '#EFF6FF': '#BFDBFE',
+  '#F0FDF4': '#86EFAC',
+};
 
 function getCampaignPill(productId: string, numAsegurados: number): { text: string; bg: string; color: string; border: string } | null {
-  if (NO_CAMPAIGN_IDS.has(productId)) return null;
-  if (SENIORS_CAMPAIGN_IDS.has(productId)) return {
-    text: '💶 Abono en cuenta',
-    bg: '#F0FDF4', color: '#15803D', border: '#86EFAC',
-  };
-  if (FAMILIA_VARIANT_IDS.has(productId) && numAsegurados >= 3) return {
-    text: '🎁 25 % de descuento',
-    bg: '#FDF2F8', color: '#9D174D', border: '#F9A8D4',
-  };
-  return {
-    text: '🎁 Hasta 3 meses gratis · 250 pts/aseg.',
-    bg: '#FDF2F8', color: '#9D174D', border: '#F9A8D4',
-  };
+  const badge = getCampaignBadgeText(productId, numAsegurados);
+  if (!badge) return null;
+  return { ...badge, border: PILL_BORDER[badge.bg] ?? '#F9A8D4' };
 }
 
 // ─── Categorías de producto (para cabecera agrupada) ─────────────────────────
@@ -609,7 +600,7 @@ export default function ModalResultados({
                                   </span>
                                 )}
 
-                                {/* Pill campaña: 3 meses gratis / 25% dto / abono en cuenta
+                                {/* Pill campaña: meses gratis / 25% dto / % dto. prima (ver @/data/campanaSalud2026)
                                     whiteSpace:normal permite que el texto rompa línea dentro
                                     del ancho de columna (138 px) sin desbordar */}
                                 {(() => {
