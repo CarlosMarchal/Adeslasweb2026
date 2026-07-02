@@ -275,7 +275,7 @@ const ComoContratarAdeslasSEO = () => {
             >
               Guía actualizada 2026
             </div>
-            <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-5">
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-5">
               Cómo Contratar<br />
               <span style={{ color: "#5EC6F1" }}>Adeslas</span> en 2026:<br />
               Guía Paso a Paso

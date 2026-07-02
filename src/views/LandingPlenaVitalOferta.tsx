@@ -103,7 +103,7 @@ const LandingPlenaVitalOferta = ({ renderSeo = true }: { renderSeo?: boolean } =
                 <span className="text-sm font-bold">OFERTA EXCLUSIVA</span>
               </div>
 
-              <h1 className="text-white text-3xl md:text-5xl font-black mb-4 leading-tight">
+              <h1 className="text-white text-3xl md:text-5xl font-bold mb-4 leading-tight">
                 Seguro Médico <span className="block text-2xl md:text-4xl mt-2">Adeslas Plena Vital</span>
               </h1>
 

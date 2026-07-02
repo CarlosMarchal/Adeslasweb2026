@@ -225,7 +225,7 @@ const PreciosAdeslasSEO = () => {
             >
               Tarifas actualizadas 2026
             </div>
-            <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-5">
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-5">
               Precios <span style={{ color: "#5EC6F1" }}>Adeslas</span> 2026:<br />
               Todas las Tarifas<br />
               Actualizadas
