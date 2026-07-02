@@ -81,7 +81,7 @@ const ContactCtaCard = () => {
       <div className="flex flex-col gap-2">
         <button
           onClick={() => openPhonePopup(source)}
-          className="w-full py-3 rounded-xl font-bold text-sm text-primary-foreground cursor-pointer btn-cta-magenta"
+          className="w-full py-3 rounded-xl font-extrabold text-sm text-primary-foreground cursor-pointer btn-cta-magenta"
           style={{ backgroundColor: "#E4097D" }}
         >
           Te llamamos ahora — gratis
@@ -89,7 +89,7 @@ const ContactCtaCard = () => {
         <a
           href="tel:917105000"
           onClick={() => trackClickToCallContratacion("contact_cta_card")}
-          className="w-full py-3 rounded-xl font-bold text-sm text-center border-2 btn-cta-light"
+          className="w-full py-3 rounded-xl font-extrabold text-sm text-center border-2 btn-cta-light"
           style={{ borderColor: "#009FE3", color: "#009FE3", backgroundColor: "transparent" }}
         >
           <Phone className="w-4 h-4 inline mr-1.5 mb-0.5" />

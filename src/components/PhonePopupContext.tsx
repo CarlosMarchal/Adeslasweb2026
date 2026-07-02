@@ -134,7 +134,7 @@ export const PhonePopupProvider = ({ children }: { children: ReactNode }) => {
                     />
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-xl text-white font-bold text-base btn-cta-magenta"
+                      className="w-full py-3.5 rounded-xl text-white font-extrabold text-base btn-cta-magenta"
                       style={{ backgroundColor: "#E4097D" }}
                     >
                       Te llamamos ahora

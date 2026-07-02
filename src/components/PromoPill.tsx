@@ -95,7 +95,7 @@ const PromoPill = ({ pill, size: _size = "md" }: PromoPillProps) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontWeight: 700,
+          fontWeight: 600,
           fontSize: plusFont,
           color: "#003087",
           boxShadow: "0 1px 6px rgba(0,0,0,0.20)",
@@ -103,16 +103,16 @@ const PromoPill = ({ pill, size: _size = "md" }: PromoPillProps) => {
           flexShrink: 0,
         }}>+</div>
       )}
-      <span style={{ fontSize: nf, fontWeight: 700, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
+      <span style={{ fontSize: nf, fontWeight: 600, lineHeight: 1, color: "#fff", flexShrink: 0, letterSpacing: "-0.02em" }}>
         {number}
       </span>
       <div style={{ display: "flex", flexDirection: "column" as const, alignItems: "flex-start" }}>
         {prefix && (
-          <span style={{ fontSize: prefixFont, fontWeight: 600, lineHeight: 1, color: "rgba(255,255,255,0.85)", textTransform: "lowercase" as const, letterSpacing: "0.04em", marginBottom: "2px" }}>
+          <span style={{ fontSize: prefixFont, fontWeight: 500, lineHeight: 1, color: "rgba(255,255,255,0.85)", textTransform: "lowercase" as const, letterSpacing: "0.04em", marginBottom: "2px" }}>
             {prefix}
           </span>
         )}
-        <span style={{ fontSize: tf, fontWeight: 600, lineHeight: 1.25, color: "#fff", textTransform: "uppercase" as const, whiteSpace: "pre-line" as const }}>
+        <span style={{ fontSize: tf, fontWeight: 500, lineHeight: 1.25, color: "#fff", textTransform: "uppercase" as const, whiteSpace: "pre-line" as const }}>
           {text}
         </span>
       </div>

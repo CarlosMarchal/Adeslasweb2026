@@ -16,6 +16,20 @@ export default {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
       },
+      /* ── Escala de pesos "aligerada" para Poppins ──────────────────────
+         Poppins es más geométrica y se ve más pesada que Lato al mismo
+         font-weight numérico. Se remapean los nombres de Tailwind un
+         escalón hacia abajo para que TODO el texto en negrita de la web
+         (contenido, precios, banners, header, footer...) se vea más ligero,
+         sin tener que tocar cada className uno a uno.
+         Los CTA (botones) usan explícitamente 'font-extrabold' para
+         mantener su peso original de 700 y no perder protagonismo. ── */
+      fontWeight: {
+        semibold: '500',
+        bold: '600',
+        extrabold: '700',
+        black: '700',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

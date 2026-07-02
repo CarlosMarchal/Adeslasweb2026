@@ -234,7 +234,7 @@ const ProductsSection = () => (
             <div className="space-y-2">
               <CalcButton
                 productSlug={p.slug}
-                className="block w-full text-center py-2.5 rounded-lg text-primary-foreground font-bold text-sm cursor-pointer btn-cta-magenta"
+                className="block w-full text-center py-2.5 rounded-lg text-primary-foreground font-extrabold text-sm cursor-pointer btn-cta-magenta"
                 style={{ backgroundColor: "#E4097D", borderRadius: "7px" }}
               >
                 Calcular mi precio

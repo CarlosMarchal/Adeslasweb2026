@@ -183,7 +183,7 @@ const CallConfirmPopup = ({ nombre, onClose }: { nombre: string; onClose: () => 
       <a
         href="tel:917105000"
         onClick={() => trackClickToCallContratacion("mi_precio")}
-        className="inline-flex items-center gap-2 font-bold text-sm px-5 py-2.5 rounded-xl text-white btn-cta-magenta"
+        className="inline-flex items-center gap-2 font-extrabold text-sm px-5 py-2.5 rounded-xl text-white btn-cta-magenta"
         style={{ backgroundColor: "#E4097D" }}
       >
         <Phone className="w-4 h-4" />
@@ -371,7 +371,7 @@ const MiPrecio = ({ slug: slugProp, renderSeo = true }: { slug?: string; renderS
             >
               <button
                 onClick={() => setShowCallPopup(true)}
-                className="w-full py-3.5 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 btn-cta-magenta active:scale-[0.98]"
+                className="w-full py-3.5 rounded-xl font-extrabold text-sm text-white flex items-center justify-center gap-2 btn-cta-magenta active:scale-[0.98]"
                 style={{ backgroundColor: "#E4097D" }}
               >
                 <Phone className="w-4 h-4" />
@@ -465,7 +465,7 @@ const MiPrecio = ({ slug: slugProp, renderSeo = true }: { slug?: string; renderS
               </div>
               <Link
                 to="/"
-                className="flex-shrink-0 px-5 py-2.5 rounded-xl font-bold text-sm text-white btn-cta-dark"
+                className="flex-shrink-0 px-5 py-2.5 rounded-xl font-extrabold text-sm text-white btn-cta-dark"
                 style={{ backgroundColor: "#003087" }}
               >
                 Ver comparativa
@@ -476,7 +476,7 @@ const MiPrecio = ({ slug: slugProp, renderSeo = true }: { slug?: string; renderS
             <div className="lg:hidden">
               <button
                 onClick={() => setShowCallPopup(true)}
-                className="w-full py-3.5 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 btn-cta-magenta"
+                className="w-full py-3.5 rounded-xl font-extrabold text-sm text-white flex items-center justify-center gap-2 btn-cta-magenta"
                 style={{ backgroundColor: "#E4097D" }}
               >
                 <Phone className="w-4 h-4" />

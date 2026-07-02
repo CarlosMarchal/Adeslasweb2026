@@ -200,7 +200,7 @@ function ValueCell({ value, isHL }: { value: string | boolean | false; isHL: boo
       <span style={{
         display: 'inline-block',
         fontSize: 10,
-        fontWeight: 700,
+        fontWeight: 600,
         padding: '3px 8px',
         borderRadius: 20,
         backgroundColor: isHL ? '#FFFFFF' : '#DBEAFE',
@@ -393,7 +393,7 @@ export default function ModalResultados({
               {canScrollRight && (
                 <div
                   className="sm:hidden flex items-center justify-center gap-1.5 mb-2"
-                  style={{ color: '#009FE3', fontSize: 11, fontWeight: 600 }}
+                  style={{ color: '#009FE3', fontSize: 11, fontWeight: 500 }}
                 >
                   <ChevronRight className="w-3.5 h-3.5 opacity-70" />
                   <span>Desliza para ver todos los planes</span>
@@ -477,7 +477,7 @@ export default function ModalResultados({
                             }}
                           >
                             <span style={{
-                              fontSize: 10, fontWeight: 800, letterSpacing: '0.1em',
+                              fontSize: 10, fontWeight: 700, letterSpacing: '0.1em',
                               textTransform: 'uppercase', color: s.color,
                             }}>
                               {group.label}
@@ -528,7 +528,7 @@ export default function ModalResultados({
                             }}>
                               {/* Nombre producto */}
                               <p style={{
-                                fontSize: 12, fontWeight: 800, lineHeight: 1.3,
+                                fontSize: 12, fontWeight: 700, lineHeight: 1.3,
                                 textAlign: 'center', margin: 0,
                                 color: isHL ? '#FFFFFF' : '#003087',
                                 overflowWrap: 'break-word',
@@ -551,10 +551,10 @@ export default function ModalResultados({
                                   </p>
                                 )}
                                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 1, justifyContent: 'center' }}>
-                                  <span style={{ fontSize: 24, fontWeight: 900, lineHeight: 1, color: isHL ? '#FFFFFF' : '#003087' }}>
+                                  <span style={{ fontSize: 24, fontWeight: 700, lineHeight: 1, color: isHL ? '#FFFFFF' : '#003087' }}>
                                     {int}
                                   </span>
-                                  <span style={{ fontSize: 12, fontWeight: 700, color: isHL ? '#FFFFFF' : '#003087' }}>
+                                  <span style={{ fontSize: 12, fontWeight: 600, color: isHL ? '#FFFFFF' : '#003087' }}>
                                     ,{dec}€
                                   </span>
                                   <span style={{ fontSize: 9, color: isHL ? 'rgba(255,255,255,0.55)' : '#94A3B8', marginLeft: 2 }}>
@@ -562,7 +562,7 @@ export default function ModalResultados({
                                   </span>
                                 </div>
                                 {hasDisc && (
-                                  <p style={{ fontSize: 9, fontWeight: 700, color: '#4ADE80', textAlign: 'center', margin: 0, lineHeight: 1.6 }}>
+                                  <p style={{ fontSize: 9, fontWeight: 600, color: '#4ADE80', textAlign: 'center', margin: 0, lineHeight: 1.6 }}>
                                     🎉 −10 %
                                   </p>
                                 )}
@@ -572,7 +572,7 @@ export default function ModalResultados({
                               <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 5, alignItems: 'center', width: '100%' }}>
                                 {/* Pill copago */}
                                 <span style={{
-                                  display: 'inline-block', fontSize: 10, fontWeight: 700,
+                                  display: 'inline-block', fontSize: 10, fontWeight: 600,
                                   padding: '3px 9px', borderRadius: 20, lineHeight: 1.5,
                                   whiteSpace: 'nowrap',
                                   backgroundColor: isHL ? 'rgba(255,255,255,0.18)' : copago.bg,
@@ -586,7 +586,7 @@ export default function ModalResultados({
                                 {PROMO_IDS.has(result.product.id) && (
                                   <span style={{
                                     display: 'inline-flex', alignItems: 'center', gap: 4,
-                                    fontSize: 10, fontWeight: 800,
+                                    fontSize: 10, fontWeight: 700,
                                     padding: '3px 9px', borderRadius: 20, lineHeight: 1.5,
                                     whiteSpace: 'nowrap',
                                     backgroundColor: isHL ? '#FFFFFF' : '#003087',
@@ -609,7 +609,7 @@ export default function ModalResultados({
                                   return (
                                     <span style={{
                                       display: 'inline-block',
-                                      fontSize: 8.5, fontWeight: 800,
+                                      fontSize: 8.5, fontWeight: 700,
                                       padding: '3px 7px', borderRadius: 10, lineHeight: 1.4,
                                       whiteSpace: 'normal',
                                       textAlign: 'center',
@@ -650,7 +650,7 @@ export default function ModalResultados({
                             transition: 'box-shadow 0.2s',
                           }}>
                             <span style={{
-                              fontSize: 9, fontWeight: 800, color: '#64748B',
+                              fontSize: 9, fontWeight: 700, color: '#64748B',
                               textTransform: 'uppercase', letterSpacing: '0.1em',
                             }}>
                               {group.label}

@@ -78,7 +78,7 @@ const ContactCtaCardWhatsApp = ({
           href={waHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm text-white cursor-pointer"
+          className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-extrabold text-sm text-white cursor-pointer"
           style={{ backgroundColor: "#25D366" }}
         >
           <WhatsAppIcon />
@@ -86,7 +86,7 @@ const ContactCtaCardWhatsApp = ({
         </a>
         <a
           href={`tel:${phoneDisplay}`}
-          className="w-full py-3 rounded-xl font-bold text-sm text-center border-2 btn-cta-light"
+          className="w-full py-3 rounded-xl font-extrabold text-sm text-center border-2 btn-cta-light"
           style={{ borderColor: "#009FE3", color: "#009FE3", backgroundColor: "transparent" }}
         >
           <Phone className="w-4 h-4 inline mr-1.5 mb-0.5" />

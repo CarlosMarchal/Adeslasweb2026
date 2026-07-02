@@ -353,7 +353,7 @@ const SegmentPageTemplate = ({ data, renderSeo = true }: { data: SegmentPageData
 
                     <Link
                       to={product.slug}
-                      className={`w-full py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 ${product.highlighted ? "btn-cta-blue" : "btn-cta-light"}`}
+                      className={`w-full py-3 rounded-lg font-extrabold text-sm flex items-center justify-center gap-2 ${product.highlighted ? "btn-cta-blue" : "btn-cta-light"}`}
                       style={{
                         backgroundColor: product.highlighted ? "#009FE3" : "#F4F6FA",
                         color: product.highlighted ? "#fff" : "#003087",

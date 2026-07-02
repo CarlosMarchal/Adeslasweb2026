@@ -258,7 +258,7 @@ const CuadroMedico = ({ renderSeo = true }: { renderSeo?: boolean } = {}) => {
               href="https://www.segurcaixaadeslas.es/es/cuadro-medico"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-4 rounded-lg text-primary-foreground font-bold text-base btn-cta-magenta"
+              className="inline-block px-8 py-4 rounded-lg text-primary-foreground font-extrabold text-base btn-cta-magenta"
               style={{ backgroundColor: "#E4097D", borderRadius: "7px" }}
             >
               Buscador online de Adeslas →

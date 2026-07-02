@@ -410,7 +410,7 @@ const Header = () => {
               {/* CTA principal — desktop always opens tarificador modal */}
               <button
                 onClick={() => openTarificador()}
-                className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm text-white btn-cta-magenta active:scale-[0.98] cursor-pointer ml-1"
+                className="flex items-center gap-2 px-6 py-3 rounded-lg font-extrabold text-sm text-white btn-cta-magenta active:scale-[0.98] cursor-pointer ml-1"
                 style={{ backgroundColor: "#E4097D" }}
               >
                 Calcular mi precio
@@ -499,7 +499,7 @@ const Header = () => {
               </div>
               <button
                 type="submit"
-                className="flex items-center gap-1.5 px-4 text-sm font-bold text-white rounded-r-lg btn-cta-dark active:scale-[0.98] cursor-pointer whitespace-nowrap"
+                className="flex items-center gap-1.5 px-4 text-sm font-extrabold text-white rounded-r-lg btn-cta-dark active:scale-[0.98] cursor-pointer whitespace-nowrap"
                 style={{ backgroundColor: "#003087", height: 36 }}
               >
                 <Phone className="w-3.5 h-3.5" />
@@ -637,13 +637,13 @@ const Header = () => {
         }}
       >
         <button onClick={() => openPhonePopup()}
-            className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm border-2 active:scale-[0.98] btn-cta-light"
+            className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-extrabold text-sm border-2 active:scale-[0.98] btn-cta-light"
             style={{ borderColor: "#009FE3", color: "#009FE3" }}>
             <Phone className="w-4 h-4" />
             Te llamamos
           </button>
         <button onClick={onCalcClick ?? (() => openTarificador())}
-          className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-bold text-sm text-white active:scale-[0.98] btn-cta-blue"
+          className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl font-extrabold text-sm text-white active:scale-[0.98] btn-cta-blue"
           style={{ backgroundColor: "#009FE3" }}>
           {calcLabel ?? "Calcular mi precio"}
         </button>
@@ -723,7 +723,7 @@ const Header = () => {
                     style={{ color: "#1A3A5C" }}
                   />
                 </div>
-                <button type="submit" className="w-full py-3.5 rounded-xl text-white font-bold text-base btn-cta-magenta" style={{ backgroundColor: "#E4097D" }}>
+                <button type="submit" className="w-full py-3.5 rounded-xl text-white font-extrabold text-base btn-cta-magenta" style={{ backgroundColor: "#E4097D" }}>
                   Te llamamos ahora
                 </button>
               </form>
@@ -764,7 +764,7 @@ const MegaSegurosContent = ({ onNavigate }: { onNavigate: () => void }) => {
         <div className="mt-4">
           <div className="font-black text-[28px]">desde 48,50€ <span className="text-[13px] font-normal" style={{ color: "rgba(255,255,255,0.60)" }}>/mes</span></div>
           <button onClick={() => openTarificador("/seguro-salud/adeslas-plena-vital-total-cobertura-completa-con-copagos-sin-subidas/")}
-            className="block w-full text-center py-2.5 rounded-[7px] font-bold text-sm mt-3 btn-cta-magenta cursor-pointer"
+            className="block w-full text-center py-2.5 rounded-[7px] font-extrabold text-sm mt-3 btn-cta-magenta cursor-pointer"
             style={{ backgroundColor: "#E4097D", color: "#fff" }}>
             Calcular mi precio →
           </button>
@@ -793,7 +793,7 @@ const MegaPlanesContent = ({ onNavigate, onOpenPhonePopup }: { onNavigate: () =>
       </div>
       <button
         onClick={() => { onNavigate(); onOpenPhonePopup(); }}
-        className="block w-full text-center py-2.5 rounded-[7px] font-bold text-sm mt-4 btn-cta-magenta cursor-pointer"
+        className="block w-full text-center py-2.5 rounded-[7px] font-extrabold text-sm mt-4 btn-cta-magenta cursor-pointer"
         style={{ backgroundColor: "#E4097D", color: "#fff" }}
       >
         Hablar con un asesor →

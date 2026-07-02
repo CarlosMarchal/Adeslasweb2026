@@ -26,14 +26,14 @@ const CtaSection = ({ onCalcClick }: CtaSectionProps = {}) => {
             {onCalcClick ? (
               <button
                 onClick={onCalcClick}
-                className="px-6 py-3 rounded-lg font-bold text-sm cursor-pointer btn-cta-white"
+                className="px-6 py-3 rounded-lg font-extrabold text-sm cursor-pointer btn-cta-white"
                 style={{ backgroundColor: "#fff", color: "#003087", borderRadius: "7px" }}
               >
                 Calcular mi precio →
               </button>
             ) : (
               <CalcButton
-                className="px-6 py-3 rounded-lg font-bold text-sm cursor-pointer btn-cta-white"
+                className="px-6 py-3 rounded-lg font-extrabold text-sm cursor-pointer btn-cta-white"
                 style={{ backgroundColor: "#fff", color: "#003087", borderRadius: "7px" }}
               >
                 Calcular mi precio →
@@ -41,7 +41,7 @@ const CtaSection = ({ onCalcClick }: CtaSectionProps = {}) => {
             )}
             <button
               onClick={() => openPhonePopup()}
-              className="px-6 py-3 rounded-lg font-bold text-sm border cursor-pointer btn-cta-ghost"
+              className="px-6 py-3 rounded-lg font-extrabold text-sm border cursor-pointer btn-cta-ghost"
               style={{ borderColor: "rgba(255,255,255,0.4)", color: "#fff", borderRadius: "7px" }}
             >
               📞 Te llamamos gratis

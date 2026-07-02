@@ -419,7 +419,7 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
                 </ul>
 
                 <CalcButton
-                  className="w-full py-3 rounded-xl font-bold text-sm text-primary-foreground cursor-pointer btn-cta-magenta"
+                  className="w-full py-3 rounded-xl font-extrabold text-sm text-primary-foreground cursor-pointer btn-cta-magenta"
                   style={{ backgroundColor: "#E4097D", borderRadius: "10px" }}
                   productSlug={p.slug}
                 >
