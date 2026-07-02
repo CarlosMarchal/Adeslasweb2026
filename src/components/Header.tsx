@@ -384,11 +384,11 @@ const Header = () => {
                 className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-colors hover:border-white group"
                 style={{ borderColor: "rgba(255,255,255,0.35)" }}
               >
-                <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#EEF5FF" }}>
-                  <Phone className="w-4 h-4" style={{ color: "#009FE3" }} />
+                <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#009FE3" }}>
+                  <Phone className="w-4 h-4 text-white" />
                 </div>
                 <div className="leading-tight">
-                  <div className="text-[10px] font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>Nuevas contrataciones</div>
+                  <div className="text-[10px] font-bold text-white">Nuevas contrataciones</div>
                   <div className="text-sm font-bold text-white">91 710 50 00</div>
                 </div>
               </a>
@@ -399,8 +399,8 @@ const Header = () => {
                 className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-colors hover:border-white group"
                 style={{ borderColor: "rgba(255,255,255,0.35)" }}
               >
-                <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#EEF5FF" }}>
-                  <Phone className="w-4 h-4" style={{ color: "#009FE3" }} />
+                <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#009FE3" }}>
+                  <Phone className="w-4 h-4 text-white" />
                 </div>
                 <div className="leading-tight">
                   <div className="text-[10px] font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>Atención al cliente</div>
