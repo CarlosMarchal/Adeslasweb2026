@@ -70,11 +70,11 @@ export default function RootLayout({
           type="image/webp"
         />
 
-        {/* ── Fuentes Lato (self-hosted, sin petición externa) ─────────────── */}
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-300-normal.woff2" crossOrigin="anonymous" />
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-400-normal.woff2" crossOrigin="anonymous" />
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-700-normal.woff2" crossOrigin="anonymous" />
-        <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-900-normal.woff2" crossOrigin="anonymous" />
+        {/* ── Fuentes Poppins (self-hosted, sin petición externa) ─────────────── */}
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-latin-300-normal.woff2" crossOrigin="anonymous" />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-latin-400-normal.woff2" crossOrigin="anonymous" />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-latin-700-normal.woff2" crossOrigin="anonymous" />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-latin-900-normal.woff2" crossOrigin="anonymous" />
 
         {/* ── GTM / Google — preconnect (GTM carga afterInteractive, tras hidratación) ─
             afterInteractive garantiza carga siempre, independientemente de interacción.
