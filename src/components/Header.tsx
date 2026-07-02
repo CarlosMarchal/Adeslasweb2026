@@ -360,7 +360,7 @@ const Header = () => {
         {/* ══════════════════════════════════
             FILA 1 — Logo · Teléfonos · CTA
         ══════════════════════════════════ */}
-        <div className="border-b" style={{ borderColor: "#E8EFF4" }}>
+        <div className="border-b border-[#E8EFF4] lg:border-none lg:bg-[#003087]">
           <div className="max-w-[1280px] mx-auto flex items-center justify-between px-12 lg:px-20" style={{ height: 84 }}>
 
             {/* Logo + claim */}
@@ -381,30 +381,30 @@ const Header = () => {
               <a
                 href="tel:917105000"
                 onClick={() => trackClickToCallContratacion("header_desktop")}
-                className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-colors hover:border-[#009FE3] group"
-                style={{ borderColor: "#D5E3F0" }}
+                className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-colors hover:border-white group"
+                style={{ borderColor: "rgba(255,255,255,0.35)" }}
               >
                 <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#EEF5FF" }}>
                   <Phone className="w-4 h-4" style={{ color: "#009FE3" }} />
                 </div>
                 <div className="leading-tight">
-                  <div className="text-[10px] font-medium" style={{ color: "#6B8296" }}>Nuevas contrataciones</div>
-                  <div className="text-sm font-bold" style={{ color: "#003087" }}>91 710 50 00</div>
+                  <div className="text-[10px] font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>Nuevas contrataciones</div>
+                  <div className="text-sm font-bold text-white">91 710 50 00</div>
                 </div>
               </a>
               {/* Teléfono 2 */}
               <a
                 href="tel:919191898"
                 onClick={() => trackClickToCallAsistencia("header_desktop")}
-                className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-colors hover:border-[#009FE3] group"
-                style={{ borderColor: "#D5E3F0" }}
+                className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-colors hover:border-white group"
+                style={{ borderColor: "rgba(255,255,255,0.35)" }}
               >
                 <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#EEF5FF" }}>
                   <Phone className="w-4 h-4" style={{ color: "#009FE3" }} />
                 </div>
                 <div className="leading-tight">
-                  <div className="text-[10px] font-medium" style={{ color: "#6B8296" }}>Atención al cliente</div>
-                  <div className="text-sm font-bold" style={{ color: "#003087" }}>91 91 91 898</div>
+                  <div className="text-[10px] font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>Atención al cliente</div>
+                  <div className="text-sm font-bold text-white">91 91 91 898</div>
                 </div>
               </a>
               {/* CTA principal — desktop always opens tarificador modal */}
