@@ -71,7 +71,7 @@ export const blogPosts: BlogPostFull[] = [
     date: "8 Jun 2026",
     readTime: "7 min",
     image:
-      "https://images.unsplash.com/photo-1588776814546-1ffedbe93e2d?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1683349370055-7eba66a404c6?w=600&h=400&fit=crop",
     seoTitle:
       "Seguro Dental Adeslas 2026: Qué Cubre, Precios y Si Vale la Pena | Guía",
     seoDescription:
@@ -169,7 +169,7 @@ export const blogPosts: BlogPostFull[] = [
     date: "11 Jun 2026",
     readTime: "7 min",
     image:
-      "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1632053002928-1919605ee6f7?w=600&h=400&fit=crop",
     seoTitle:
       "Seguro Médico para Niños 2026: Pediatría Privada con Adeslas | Guía",
     seoDescription:
@@ -280,7 +280,7 @@ export const blogPosts: BlogPostFull[] = [
     date: "15 Jun 2026",
     readTime: "7 min",
     image:
-      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1710922962986-a9e8de6dbb68?w=600&h=400&fit=crop",
     seoTitle:
       "Reembolso Gastos Médicos y Libre Elección Médico con Adeslas Extra 150 | 2026",
     seoDescription:
@@ -973,7 +973,7 @@ export const blogPosts: BlogPostFull[] = [
     date: "5 Feb 2026",
     readTime: "6 min",
     image:
-      "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1686828752370-c0398d724e82?w=600&h=400&fit=crop",
     seoTitle: "Higiene del Sueño: Cómo Dormir Mejor | Blog Salud Mental",
     seoDescription:
       "Descubre las claves de la higiene del sueño para adultos: rutinas, entorno, alimentación y hábitos que mejoran la calidad del sueño de forma natural.",
@@ -1555,7 +1555,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "Contratar un seguro médico para toda la familia es una decisión que afecta a tu tranquilidad durante años. Esta guía te ayuda a elegir el plan correcto sin dejarte nada importante.",
     date: "5 May 2026",
     readTime: "9 min",
-    image: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1663316265639-d336fec1461f?w=600&h=400&fit=crop",
     seoTitle: "Seguro Médico para Familias 2026: Guía Completa | Adeslas",
     seoDescription: "Guía completa para contratar un seguro médico familiar en 2026: qué cubrir, cómo comparar, cuánto cuesta y qué plan Adeslas se adapta mejor a tu familia.",
     body: [
@@ -1756,7 +1756,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "Como autónomo, tu salud es tu negocio. Un día de baja sin cobertura adecuada puede costarte más que meses de prima. Esta guía te ayuda a elegir bien.",
     date: "14 May 2026",
     readTime: "8 min",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1758874573402-d0b928c95dd2?w=600&h=400&fit=crop",
     seoTitle: "Seguro Médico para Autónomos 2026: Guía Completa | Adeslas",
     seoDescription: "Guía completa para autónomos sobre cómo elegir el mejor seguro médico en 2026: cobertura, precio, deducción fiscal y qué plan Adeslas se adapta mejor.",
     body: [
@@ -1929,7 +1929,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "El cuadro médico es uno de los factores más importantes al elegir un seguro. Adeslas cuenta con más de 51.000 médicos en España. Aquí te explicamos cómo sacarle partido.",
     date: "20 May 2026",
     readTime: "6 min",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1620928269189-dc4ee9d981c0?w=600&h=400&fit=crop",
     seoTitle: "Cuadro Médico Adeslas 2026: Cómo Funciona y Cómo Consultarlo",
     seoDescription: "Todo sobre el cuadro médico Adeslas: cómo consultarlo, qué especialidades incluye, cómo pedir cita y cómo funciona la app de Adeslas. Guía completa 2026.",
     body: [
@@ -2029,7 +2029,7 @@ export const blogPosts: BlogPostFull[] = [
       "El 39% de los españoles ya tiene seguro privado. Pero, ¿de verdad merece la pena pagarlo si ya cotizamos a la Seguridad Social? Analizamos los datos reales sin eufemismos.",
     date: "22 May 2026",
     readTime: "9 min",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1708676293001-d02f8515624c?w=600&h=400&fit=crop",
     seoTitle: "¿Merece la Pena un Seguro Médico Privado en España en 2026?",
     seoDescription:
       "Análisis honesto con datos reales: listas de espera, costes, coberturas y para quién tiene más sentido contratar un seguro médico privado en España en 2026.",
@@ -2139,7 +2139,7 @@ export const blogPosts: BlogPostFull[] = [
       "¿Cuánto cuesta realmente asegurar a toda la familia con Adeslas? Ejemplos de precio con edades reales, el descuento del 4º asegurado y qué plan conviene según tu situación.",
     date: "23 May 2026",
     readTime: "7 min",
-    image: "https://images.unsplash.com/photo-1511895426328-dc8714191011?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1648201637025-1c77b9be3013?w=600&h=400&fit=crop",
     seoTitle: "Seguro Médico Familiar: Coste Real para 2, 3 o 4 Personas en 2026",
     seoDescription:
       "Ejemplos de precio reales para familias de 2, 3 y 4 personas con seguro médico Adeslas 2026. Qué plan elegir, cómo funciona el descuento familiar y cuánto se ahorra.",
@@ -2319,7 +2319,7 @@ export const blogPosts: BlogPostFull[] = [
       "¿Cuánto cuesta ir al médico privado pagando directamente? Precios reales de consultas, pruebas diagnósticas y operaciones en España en 2026, sin pasar por ningún seguro.",
     date: "25 May 2026",
     readTime: "8 min",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1710504782149-f0139f6092a1?w=600&h=400&fit=crop",
     seoTitle: "Sanidad Privada sin Seguro: Precios Reales en España 2026",
     seoDescription:
       "Precios reales de consultas, pruebas diagnósticas, operaciones y hospitalización en la sanidad privada española en 2026. Cuánto cuesta sin seguro médico y qué ahorra tener uno.",
@@ -2438,7 +2438,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "Desde la primera consulta hasta una hospitalización compleja: esto es exactamente lo que incluye un seguro médico Adeslas en 2026, cobertura por cobertura.",
     date: "30 May 2026",
     readTime: "9 min",
-    image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1690784261287-f32b7b79b29f?w=600&h=400&fit=crop",
     seoTitle: "¿Qué Cubre un Seguro Médico Adeslas? Coberturas Completas 2026",
     seoDescription: "Guía completa de coberturas del seguro médico Adeslas 2026: ambulatorio, hospitalización, urgencias, diagnóstico, salud mental, dental, maternidad y más. Todo lo que incluye tu póliza.",
     body: [
@@ -2593,7 +2593,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "A partir de los 60, el acceso rápido a especialistas y la ausencia de listas de espera marcan la diferencia. Te explicamos qué cubre Adeslas, cuánto cuesta y por qué conviene contratar antes de necesitarlo.",
     date: "2 Jun 2026",
     readTime: "8 min",
-    image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1770574656934-32f29150e535?w=600&h=400&fit=crop",
     seoTitle: "Seguro Médico para Mayores de 60 Años: Guía Adeslas 2026",
     seoDescription: "Todo sobre el seguro médico para mayores de 60 y 65 años con Adeslas: coberturas más usadas, precios orientativos por edad, preexistencias y por qué conviene contratar cuanto antes.",
     body: [
@@ -2791,7 +2791,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "Cada vez más personas buscan apoyo psicológico a través de su seguro médico. Te explicamos qué cubre realmente un seguro privado Adeslas en salud mental y cómo acceder sin derivación.",
     date: "1 Jun 2026",
     readTime: "7 min",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1573878409120-f66dcde676f6?w=600&h=400&fit=crop",
     seoTitle: "Psicología y Salud Mental en Seguro Médico Privado 2026 | Adeslas",
     seoDescription: "¿Qué cubre el seguro médico en salud mental? Psicólogo, psiquiatra, sesiones incluidas por plan, telepsicología y precio real sin seguro. Guía completa Adeslas 2026.",
     body: [
@@ -3071,7 +3071,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "Adeslas aplica descuentos por volumen cuando aseguras a más personas en la misma póliza. Te explicamos cómo funciona, a partir de cuántos asegurados se activa y cuánto ahorras realmente.",
     date: "8 Jun 2026",
     readTime: "6 min",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1668930185267-1f3c19851b5b?w=600&h=400&fit=crop",
     seoTitle: "Descuentos Adeslas por Número de Asegurados: Cuánto Ahorras en 2026",
     seoDescription: "¿Cuánto descuento hace Adeslas si aseguras a más personas? Te explicamos los descuentos por volumen de Adeslas en 2026, a partir de cuántos asegurados se aplican y cómo calcular el precio real.",
     body: [
@@ -3158,7 +3158,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "Desde 21€ al mes para el plan más básico hasta 284€ para el plan premium a los 63 años. Aquí tienes los precios reales de todos los planes Adeslas en 2026, con tabla comparativa.",
     date: "10 Jun 2026",
     readTime: "8 min",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1653074281018-c08f358059ab?w=600&h=400&fit=crop",
     seoTitle: "¿Cuánto Cuesta el Seguro Adeslas en 2026? Precios Reales por Plan",
     seoDescription: "Precios reales del seguro Adeslas en 2026 por plan y edad: desde 21€/mes (Go) hasta 284€/mes (Plena Total para mayores de 63 en Madrid). Tabla comparativa completa.",
     body: [
@@ -3309,7 +3309,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "El seguro médico para empleados es uno de los beneficios más valorados en España y tiene ventajas fiscales claras tanto para la empresa como para el trabajador. Esto es lo que necesitas saber sobre Adeslas para pymes.",
     date: "12 Jun 2026",
     readTime: "8 min",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=600&h=400&fit=crop",
     seoTitle: "Seguro Médico Adeslas para Empresas y Pymes 2026 | Guía del Empresario",
     seoDescription: "Todo lo que necesitas saber sobre el seguro médico Adeslas para empresas: ventajas fiscales, coste por empleado, qué cubre y cómo contratarlo a través de Marchal Aseguradores.",
     body: [
@@ -3417,7 +3417,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "Las familias numerosas tienen condiciones especiales al contratar Adeslas. Descubre qué descuentos aplican, cómo se calcula el precio real para 5 o más miembros y qué cubre el seguro para toda la familia.",
     date: "15 Jun 2026",
     readTime: "6 min",
-    image: "https://images.unsplash.com/photo-1511895426328-dc8714191011?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1756526511266-00ddcf925418?w=600&h=400&fit=crop",
     seoTitle: "Adeslas para Familia Numerosa 2026: Descuentos y Precio Real",
     seoDescription: "¿Tienes familia numerosa y quieres contratar Adeslas? Descubre los descuentos disponibles, cómo se calcula el precio real y qué coberturas incluye el seguro para 5 o más asegurados.",
     body: [
@@ -3503,7 +3503,7 @@ export const blogPosts: BlogPostFull[] = [
     excerpt: "Desde el primer cálculo de precio hasta tener la tarjeta en la mano. Este es el proceso completo de contratación de Adeslas en 2026, sin sorpresas.",
     date: "18 Jun 2026",
     readTime: "6 min",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1554672408-17407e0322ce?w=600&h=400&fit=crop",
     seoTitle: "Cómo Contratar el Seguro Adeslas Paso a Paso 2026 | Guía Completa",
     seoDescription: "Guía completa para contratar el seguro Adeslas en 2026: cómo calcular el precio, qué documentos necesitas, qué es el cuestionario de salud y cuándo empieza a funcionar el seguro.",
     body: [
@@ -3590,302 +3590,6 @@ export const blogPosts: BlogPostFull[] = [
       },
     ],
     relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026", "cuanto-cuesta-seguro-adeslas-2026", "carencias-seguros-medicos-adeslas", "enfermedades-preexistentes-seguro-medico-adeslas-2026"],
-  },
-
-
-
-  /* ── Dental: seguro-dental-adeslas-coberturas-precios-2026 ── */
-  {
-    slug: "seguro-dental-adeslas-coberturas-precios-2026",
-    category: "Dental",
-    title: "Seguro dental Adeslas 2026: qué cubre, qué no cubre y cuánto cuesta",
-    excerpt: "¿Qué incluye el dental de Adeslas? ¿Vale la pena contratarlo? Te explicamos exactamente qué 46 actos dentales están cubiertos y qué tratamientos tendrás que pagar aparte.",
-    date: "8 Jun 2026",
-    readTime: "7 min",
-    image: "https://images.unsplash.com/photo-1588776814546-1ffedbe93e2d?w=600&h=400&fit=crop",
-    seoTitle: "Seguro Dental Adeslas 2026: Qué Cubre, Precios y Si Vale la Pena | Guía",
-    seoDescription: "Guía completa del seguro dental Adeslas 2026: 46 actos cubiertos, qué no incluye (ortodoncia, implantes), qué planes lo tienen y si compensa frente a no tenerlo.",
-    body: [
-        {
-            "type": "paragraph",
-            "text": "El seguro dental de Adeslas forma parte de los planes Plena Vital Total y Plena Total, los únicos de la gama Adeslas que incluyen cobertura dental en la prima. Cubre 46 actos dentales al año —revisiones, diagnóstico, limpiezas, empastes, extracciones simples y más— en la red de clínicas dentales de Adeslas, sin coste adicional más allá de la prima mensual del plan."
-        },
-        {
-            "type": "heading",
-            "text": "¿Qué planes Adeslas incluyen cobertura dental?"
-        },
-        {
-            "type": "list",
-            "items": [
-                "Adeslas Plena Vital Total: ambulatoria + hospitalización + dental + chequeo + viaje + 3 años prima garantizada (con copago y LMA 500 €/año)",
-                "Adeslas Plena Total: igual que Plena Vital Total pero sin copago. La opción más completa de Adeslas",
-                "Resto de planes (Go, Plena Vital, Plena Plus, Extra 150): NO incluyen dental básico en la prima estándar"
-            ]
-        },
-        {
-            "type": "heading",
-            "text": "Qué cubre el dental de Adeslas: los 46 actos"
-        },
-        {
-            "type": "list",
-            "items": [
-                "Revisión dental completa y diagnóstico: exploración y plan de tratamiento",
-                "Ortopantomografía (radiografía panorámica dental)",
-                "Radiografías periapicales: series completas",
-                "Limpieza dental profesional (tartrectomía): incluida una al año",
-                "Empastes o obturaciones: en piezas con caries, con composite o amalgama",
-                "Extracciones simples: dientes con indicación de extracción no quirúrgica",
-                "Tratamiento del nervio (endodoncia): en dientes con infección o necrosis pulpar",
-                "Reconstrucciones dentales: piezas fracturadas",
-                "Tratamiento básico de encías (periodoncia inicial): raspado y alisado radicular",
-                "Urgencias dentales: atención por dolor agudo, absceso, fractura traumática"
-            ]
-        },
-        {
-            "type": "heading",
-            "text": "Qué NO cubre el dental de Adeslas"
-        },
-        {
-            "type": "list",
-            "items": [
-                "Implantes dentales: no están cubiertos. Un implante completo (implante + corona) cuesta entre 1.200 y 2.500 € por pieza",
-                "Ortodoncia (brackets, alineadores): no cubierta. Un tratamiento completo cuesta entre 2.500 y 5.000 €",
-                "Prótesis dentales removibles o fijas (puentes): no incluidas",
-                "Blanqueamiento dental: estético, no cubierto",
-                "Periodoncia avanzada (enfermedad periodontal grave): los casos complejos pueden quedar fuera",
-                "Más de 46 actos al año: al agotarse el límite, el resto del año queda sin cobertura dental"
-            ]
-        },
-        {
-            "type": "callout",
-            "text": "Para implantes y ortodoncia necesitas un seguro dental específico o pagarlos de tu bolsillo. Los seguros dentales independientes tienen primas desde 10-20 €/mes pero con periodos de carencia de 6-12 meses antes de usar las coberturas más costosas."
-        },
-        {
-            "type": "heading",
-            "text": "¿Vale la pena el dental incluido en Adeslas?"
-        },
-        {
-            "type": "paragraph",
-            "text": "La diferencia de precio entre Plena Vital Total (con dental) y Plena Vital (sin dental) suele estar entre 10 y 20 € al mes. Una revisión + limpieza dental en una clínica privada cuesta entre 80 y 150 €. Si acudes al dentista al menos una vez al año, el dental ya se amortiza con creces antes de contar empastes o endodoncias. Si nunca vas al dentista porque el coste te frena, tener el dental cubierto mejora notablemente tu salud bucodental preventiva."
-        },
-        {
-            "type": "heading",
-            "text": "Cuadro dental de Adeslas: cómo acceder"
-        },
-        {
-            "type": "paragraph",
-            "text": "La red de clínicas dentales de Adeslas incluye más de 6.000 dentistas concertados en España. Localiza la clínica más cercana desde la app Mi Adeslas o en el buscador de cuadro médico filtrando por 'Odontología'. No necesitas derivación previa: llamas directamente a la clínica y pides cita presentando tu tarjeta de asegurado."
-        },
-        {
-            "type": "callout",
-            "text": "En Marchal Aseguradores te ayudamos a elegir entre Plena Vital Total (con copago + dental) y Plena Total (sin copago + dental) según cuánto usas el seguro. Llámanos al 91 710 50 00 o calcula tu precio online."
-        }
-    ],
-    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026","que-cubre-seguro-medico-adeslas-2026","salud-bucodental-guia-completa"],
-  },
-
-
-  /* ── Salud Familiar: seguro-medico-ninos-pediatria-privada-adeslas-2026 ── */
-  {
-    slug: "seguro-medico-ninos-pediatria-privada-adeslas-2026",
-    category: "Salud Familiar",
-    title: "Seguro médico para niños: pediatría privada con Adeslas en 2026",
-    excerpt: "Con un seguro médico privado, tu hijo tiene cita con el pediatra en 24-48 horas, acceso inmediato a pruebas diagnósticas y urgencias pediátricas sin colas. Desde los 30 días de vida.",
-    date: "11 Jun 2026",
-    readTime: "7 min",
-    image: "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=600&h=400&fit=crop",
-    seoTitle: "Seguro Médico para Niños 2026: Pediatría Privada con Adeslas | Guía",
-    seoDescription: "Guía completa sobre seguro médico para niños con Adeslas 2026: coberturas pediátricas, edad mínima (30 días), precios por edad, urgencias infantiles y cómo añadirlo al seguro familiar.",
-    body: [
-        {
-            "type": "paragraph",
-            "text": "El seguro médico es especialmente valioso para los niños por una razón concreta: los menores de 12 años son el grupo de edad que más usa el sistema sanitario, con una media de 6 a 10 visitas al médico al año. Con un seguro Adeslas, tu hijo tiene cita con el pediatra en 24-48 horas, acceso inmediato a pruebas diagnósticas, y atención de urgencias sin colas las 24 horas del día. Desde los 30 días de vida."
-        },
-        {
-            "type": "heading",
-            "text": "Desde qué edad se puede asegurar a un bebé con Adeslas"
-        },
-        {
-            "type": "paragraph",
-            "text": "Los recién nacidos pueden incorporarse al seguro Adeslas a partir de los 30 días de vida. Si se añaden en los primeros 30-60 días tras el nacimiento, se incorporan sin período de carencia: tienen acceso completo a todas las coberturas desde el primer día. Esta ventana es especialmente importante porque los primeros meses son cuando más urgencias y controles pediátricos se producen."
-        },
-        {
-            "type": "callout",
-            "text": "Si acabas de ser padre o madre, tienes 30-60 días para añadir al bebé al seguro familiar sin carencias. Pasado ese plazo, el niño se incorpora con las carencias estándar."
-        },
-        {
-            "type": "heading",
-            "text": "Coberturas pediátricas incluidas en los planes Adeslas"
-        },
-        {
-            "type": "list",
-            "items": [
-                "Pediatría de atención primaria: médico de referencia, seguimiento del desarrollo, revisiones del niño sano",
-                "Pediatría especializada: cardiología, neurología, neumología, gastroenterología pediátrica",
-                "Urgencias pediátricas 24 h: atención inmediata en la red, sin esperas",
-                "Diagnóstico pediátrico: analíticas, radiografías, ecografías, sin esperas",
-                "Dermatología pediátrica: eccemas, dermatitis atópica, verrugas",
-                "Otorrinolaringología pediátrica: otitis, amigdalitis, adenoides, rinitis",
-                "Oftalmología pediátrica: estrabismo, ojo vago (ambliopía), revisión de la visión",
-                "Traumatología pediátrica: fracturas, luxaciones, escoliosis",
-                "Psicología infantil: TDAH, ansiedad escolar, trastornos del aprendizaje",
-                "Logopedia: trastornos del habla y lenguaje",
-                "Cirugía pediátrica: hernias, fimosis, apendicitis, corrección de malformaciones menores"
-            ]
-        },
-        {
-            "type": "heading",
-            "text": "¿Cuánto cuesta asegurar a un niño con Adeslas en 2026?"
-        },
-        {
-            "type": "paragraph",
-            "text": "La prima para niños es la más baja de todos los tramos de edad. Precios orientativos para 2026 en Madrid (varían por provincia y plan):"
-        },
-        {
-            "type": "list",
-            "items": [
-                "Recién nacido hasta 4 años: entre 25 y 55 € al mes según el plan",
-                "5 a 14 años: entre 30 y 65 € al mes",
-                "15 a 18 años: entre 35 y 75 € al mes",
-                "Descuento familiar: al asegurar a varios hijos o a toda la familia se aplican descuentos que pueden superar el 10 %"
-            ]
-        },
-        {
-            "type": "heading",
-            "text": "Ventajas reales frente al pediatra público"
-        },
-        {
-            "type": "list",
-            "items": [
-                "Cita en 24-48 horas frente a 2-5 días en el centro de salud",
-                "Mismo pediatra en cada visita: continuidad asistencial real",
-                "Acceso directo al especialista pediátrico: sin derivación lenta",
-                "Urgencias pediátricas privadas: menos espera, entorno más tranquilo",
-                "Pruebas diagnósticas en el mismo día: analítica o radiografía inmediata"
-            ]
-        },
-        {
-            "type": "heading",
-            "text": "Vacunas: qué cubre el seguro"
-        },
-        {
-            "type": "paragraph",
-            "text": "Las vacunas del calendario oficial de vacunación están cubiertas por la sanidad pública y no es necesario el seguro privado para acceder a ellas. Algunos planes Adeslas incluyen vacunas fuera del calendario oficial (como la del meningococo B o del rotavirus) según el plan contratado."
-        },
-        {
-            "type": "heading",
-            "text": "Cómo añadir a tu hijo al seguro familiar Adeslas"
-        },
-        {
-            "type": "paragraph",
-            "text": "Si ya tienes un seguro Adeslas, añadir a un hijo es simple: contacta con tu asesor en Marchal Aseguradores con los datos del menor (nombre, apellidos, fecha de nacimiento) y el alta se tramita en 24-48 horas. La prima del niño se añade a la factura familiar a partir del siguiente período de facturación."
-        },
-        {
-            "type": "callout",
-            "text": "¿Quieres asegurar a tu hijo? En Marchal Aseguradores gestionamos el alta de nuevos asegurados menores en 24 horas. Llámanos al 91 710 50 00 o escríbenos para calcular tu precio familiar sin compromiso."
-        }
-    ],
-    relatedSlugs: ["seguro-medico-familias-2026","que-cubre-seguro-medico-adeslas-2026","embarazo-maternidad-seguro-medico-privado-2026","seguro-medico-familia-coste-real-2026"],
-  },
-
-
-  /* ── Seguros Adeslas: reembolso-libre-eleccion-medico-adeslas-extra-150-2026 ── */
-  {
-    slug: "reembolso-libre-eleccion-medico-adeslas-extra-150-2026",
-    category: "Seguros Adeslas",
-    title: "Reembolso de gastos médicos y libre elección de médico con Adeslas Extra 150",
-    excerpt: "Con Adeslas Plena Extra 150 puedes ir a cualquier médico u hospital de España —fuera de la red— y Adeslas te reembolsa el 80 % del gasto. Así funciona la modalidad de reembolso.",
-    date: "15 Jun 2026",
-    readTime: "7 min",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
-    seoTitle: "Reembolso Gastos Médicos y Libre Elección Médico con Adeslas Extra 150 | 2026",
-    seoDescription: "Cómo funciona el reembolso de gastos médicos y la libre elección de médico con Adeslas Plena Extra 150: 80 % de reembolso, proceso paso a paso, documentación y para quién compensa.",
-    body: [
-        {
-            "type": "paragraph",
-            "text": "Adeslas Plena Extra 150 combina dos modalidades: el acceso sin copago a toda la red concertada de Adeslas (más de 51.000 médicos y 1.400 centros) y la libertad de elegir cualquier médico u hospital de España —esté o no en la red— con reembolso del 80 % del gasto, hasta un límite máximo de 150.000 € anuales. Es el plan más flexible de la gama Adeslas."
-        },
-        {
-            "type": "heading",
-            "text": "Qué es la modalidad de reembolso en seguros médicos"
-        },
-        {
-            "type": "paragraph",
-            "text": "Un seguro con reembolso funciona así: tú pagas la consulta, prueba o intervención directamente al médico o centro que elijas, y después presentas la factura al seguro, que te devuelve un porcentaje de lo pagado. En el Extra 150, ese porcentaje es el 80 % de los honorarios. Sin restricción de especialidad ni de médico: puedes ir al mejor cirujano de columna de España aunque no esté en el cuadro de Adeslas."
-        },
-        {
-            "type": "callout",
-            "text": "Ejemplo real: pagas 500 € por una consulta con un especialista de referencia nacional fuera de la red. Adeslas te reembolsa 400 € (el 80 %). Tu coste real fue de 100 €. Acceder a los mejores especialistas del país tiene un coste marginal muy reducido."
-        },
-        {
-            "type": "heading",
-            "text": "Cómo funciona el proceso de reembolso paso a paso"
-        },
-        {
-            "type": "list",
-            "items": [
-                "Paso 1 — Ve al médico o centro que elijas: no hay autorización previa en la mayoría de casos. Consulta con Adeslas antes en tratamientos de alto coste",
-                "Paso 2 — Paga la consulta y guarda SIEMPRE la factura original con los datos fiscales del profesional o centro",
-                "Paso 3 — Accede al área de clientes Mi Adeslas Online o la app y localiza la sección de reembolso de gastos",
-                "Paso 4 — Sube la factura digitalizada junto al informe médico o resumen del tratamiento",
-                "Paso 5 — Adeslas revisa la solicitud: el plazo habitual de resolución es de 10 a 15 días hábiles",
-                "Paso 6 — Recibes el reembolso del 80 % por transferencia bancaria en la cuenta registrada"
-            ]
-        },
-        {
-            "type": "heading",
-            "text": "Documentación necesaria para el reembolso"
-        },
-        {
-            "type": "list",
-            "items": [
-                "Factura original: nombre del profesional o razón social del centro, NIF/CIF, fecha, descripción del servicio y precio desglosado",
-                "Informe médico o resumen de la consulta: justifica la necesidad médica del servicio",
-                "DNI del asegurado: para verificar que el servicio fue para el titular de la póliza",
-                "IBAN de la cuenta bancaria: donde Adeslas realizará la transferencia"
-            ]
-        },
-        {
-            "type": "heading",
-            "text": "Qué gastos NO se reembolsan"
-        },
-        {
-            "type": "list",
-            "items": [
-                "Medicación ambulatoria: los medicamentos recetados para tomar en casa no se reembolsan",
-                "Tratamientos estéticos sin finalidad médica",
-                "Implantes dentales y ortodoncia: excluidos salvo cobertura dental adicional",
-                "Facturas sin NIF o sin descripción del servicio: los tickets informales no son válidos"
-            ]
-        },
-        {
-            "type": "heading",
-            "text": "Para quién compensa el Extra 150"
-        },
-        {
-            "type": "list",
-            "items": [
-                "Personas con condiciones médicas complejas que necesitan acceder a especialistas de referencia nacional fuera de la red",
-                "Pacientes oncológicos o con enfermedades crónicas que quieren elegir a su equipo médico sin restricciones",
-                "Ejecutivos que viajan con frecuencia y necesitan acceso médico en cualquier ciudad",
-                "Personas que ya tienen un médico de confianza fuera de la red y no quieren renunciar a él",
-                "Familias que usan la red Adeslas para lo cotidiano y el reembolso para lo especializado"
-            ]
-        },
-        {
-            "type": "heading",
-            "text": "Diferencia entre Extra 150 y el resto de planes Adeslas"
-        },
-        {
-            "type": "paragraph",
-            "text": "Los otros planes de Adeslas (Go, Plena Vital, Plena Plus, Plena Total) solo cubren los servicios prestados dentro de la red concertada. Si vas a un médico fuera del cuadro, pagas íntegramente de tu bolsillo. El Extra 150 es la única excepción: da acceso a toda la red Adeslas y además permite ir fuera de ella con el 80 % de reembolso."
-        },
-        {
-            "type": "callout",
-            "text": "¿Quieres saber si el Extra 150 compensa para tu caso? En Marchal Aseguradores analizamos contigo el uso previsto de médicos fuera de la red para ver si el reembolso justifica la diferencia de prima. Llámanos al 91 710 50 00."
-        }
-    ],
-    relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026","seguro-medico-sin-copago-2026","que-cubre-seguro-medico-adeslas-2026","cuadro-medico-adeslas-como-funciona"],
   },
 
 ];
