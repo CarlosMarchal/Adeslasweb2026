@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import CalcButton from "@/components/CalcButton";
 
 const CheckIcon = () => (
-  <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#E8F4FC" }}>
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 4" stroke="#009FE3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+  <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#E8F4FC" }}>
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 4" stroke="#009FE3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
   </div>
 );
 
@@ -164,7 +164,7 @@ const ProductsSection = () => (
       </motion.div>
 
       {/* Featured 3 cards */}
-      <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
         {featuredProducts.map((p, i) => (
           <motion.div
             key={p.name}
@@ -172,7 +172,7 @@ const ProductsSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="relative bg-blanco rounded-2xl p-6 card-shadow transition-all duration-[250ms] hover:-translate-y-1 hover:card-shadow-hover"
+            className="relative bg-blanco rounded-2xl p-5 card-shadow transition-all duration-[250ms] hover:-translate-y-1 hover:card-shadow-hover"
             style={{
               borderRadius: "16px",
               border: p.featured ? "2px solid #009FE3" : "1px solid #D5E3F0",
@@ -205,17 +205,17 @@ const ProductsSection = () => (
               </div>
             )}
             <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4"
+              className="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-3"
               style={{ backgroundColor: p.featured ? "#003087" : "#E8F4FC" }}
             >
               {p.icon}
             </div>
-            <h3 className="text-gris-texto mb-1">{p.name}</h3>
-            <div className="price-style mb-2">
-              desde {p.price}€<span className="text-base font-normal text-gris-medio">/mes</span>
+            <h3 className="text-gris-texto text-lg mb-1">{p.name}</h3>
+            <div className="price-style mb-1" style={{ fontSize: "26px" }}>
+              desde {p.price}€<span className="text-sm font-normal text-gris-medio">/mes</span>
             </div>
             <div
-              className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-5"
+              className="inline-block px-3 py-0.5 rounded-full text-xs font-bold mb-3"
               style={{
                 backgroundColor: p.pillDark ? "#003087" : "#E8F4FC",
                 color: p.pillDark ? "#fff" : "#009FE3",
@@ -223,9 +223,9 @@ const ProductsSection = () => (
             >
               {p.pill}
             </div>
-            <div className="space-y-2.5 mb-6">
+            <div className="space-y-1.5 mb-4">
               {p.coverages.map((c) => (
-                <div key={c} className="flex items-center gap-2 text-sm text-gris-texto">
+                <div key={c} className="flex items-center gap-2 text-sm leading-snug text-gris-texto">
                   <CheckIcon />
                   {c}
                 </div>
@@ -234,14 +234,14 @@ const ProductsSection = () => (
             <div className="space-y-2">
               <CalcButton
                 productSlug={p.slug}
-                className="block w-full text-center py-2.5 rounded-lg text-primary-foreground font-extrabold text-sm cursor-pointer btn-cta-magenta"
+                className="block w-full text-center py-2 rounded-lg text-primary-foreground font-extrabold text-sm cursor-pointer btn-cta-magenta"
                 style={{ backgroundColor: "#E4097D", borderRadius: "7px" }}
               >
                 Calcular mi precio
               </CalcButton>
               <Link
                 to={p.href}
-                className="block w-full py-2.5 rounded-lg text-azul-medio font-bold text-sm border border-borde transition-colors hover:bg-azul-suave text-center"
+                className="block w-full py-2 rounded-lg text-azul-medio font-bold text-sm border border-borde transition-colors hover:bg-azul-suave text-center"
                 style={{ borderRadius: "7px" }}
               >
                 Ver coberturas completas

@@ -20,10 +20,10 @@ const HERO_BG = "/images/adeslas-seguro-medico-ofertas.webp";
 
 const CheckIcon = () => (
   <div
-    className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+    className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
     style={{ backgroundColor: "#E8F4FC" }}
   >
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
       <path
         d="M2.5 6L5 8.5L9.5 4"
         stroke="#009FE3"
@@ -329,7 +329,7 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
             Compara todos los planes: desde Adeslas GO (desde 21€/mes) hasta Adeslas Plena Total sin copagos (desde 83€/mes). Elige la cobertura que necesitas.
           </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
             {plans.map((p, i) => (
               <motion.div
                 key={p.name}
@@ -337,7 +337,7 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="bg-blanco border p-6 flex flex-col relative"
+                className="bg-blanco border p-5 flex flex-col relative"
                 style={{
                   borderRadius: "16px",
                   borderColor: p.featured ? "#009FE3" : "#D5E3F0",
@@ -378,29 +378,29 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
                   </div>
                 )}
 
-                <div className="flex items-center gap-3 mb-3 mt-1">
+                <div className="flex items-center gap-3 mb-2 mt-1">
                   <span
-                    className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
+                    className="w-9 h-9 rounded-xl flex items-center justify-center text-lg"
                     style={{ backgroundColor: "#E8F4FC" }}
                   >
                     {p.icon}
                   </span>
                 </div>
 
-                <h3 className="text-gris-texto text-lg font-bold mb-1">
+                <h3 className="text-gris-texto text-base font-bold mb-1">
                   {p.name}
                 </h3>
 
-                <div className="flex items-baseline gap-1 mb-3">
+                <div className="flex items-baseline gap-1 mb-2">
                   <span className="text-sm text-gris-medio">desde</span>
-                  <span className="text-3xl font-black" style={{ color: "#003087" }}>
+                  <span className="text-2xl font-black" style={{ color: "#003087" }}>
                     {p.price}€
                   </span>
                   <span className="text-sm text-gris-medio">/mes</span>
                 </div>
 
                 <span
-                  className="inline-block px-3 py-1 rounded-full text-[11px] font-bold mb-4 self-start"
+                  className="inline-block px-3 py-0.5 rounded-full text-[11px] font-bold mb-3 self-start"
                   style={{
                     backgroundColor: p.pillDark ? "#003087" : "#E8F4FC",
                     color: p.pillDark ? "#fff" : "#009FE3",
@@ -409,9 +409,9 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
                   {p.pill}
                 </span>
 
-                <ul className="space-y-2.5 mb-6 flex-1">
+                <ul className="space-y-1.5 mb-4 flex-1">
                   {p.coverages.map((c, j) => (
-                    <li key={j} className="flex items-start gap-2.5 text-sm text-gris-texto">
+                    <li key={j} className="flex items-start gap-2 text-sm leading-snug text-gris-texto">
                       <CheckIcon />
                       <span>{c}</span>
                     </li>
@@ -419,7 +419,7 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
                 </ul>
 
                 <CalcButton
-                  className="w-full py-3 rounded-xl font-extrabold text-sm text-primary-foreground cursor-pointer btn-cta-magenta"
+                  className="w-full py-2.5 rounded-xl font-extrabold text-sm text-primary-foreground cursor-pointer btn-cta-magenta"
                   style={{ backgroundColor: "#E4097D", borderRadius: "10px" }}
                   productSlug={p.slug}
                 >
@@ -428,7 +428,7 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
 
                 <Link
                   to={p.slug}
-                  className="block text-center mt-2 py-2.5 rounded-xl text-sm font-bold transition-colors hover:bg-gris-claro"
+                  className="block text-center mt-2 py-2 rounded-xl text-sm font-bold transition-colors hover:bg-gris-claro"
                   style={{ color: "#009FE3", border: "1px solid #D5E3F0", borderRadius: "10px" }}
                 >
                   Ver coberturas completas
