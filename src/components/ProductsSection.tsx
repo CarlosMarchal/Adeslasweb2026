@@ -164,7 +164,7 @@ const ProductsSection = () => (
       </motion.div>
 
       {/* Featured 3 cards */}
-      <div className="grid md:grid-cols-3 gap-3 max-w-5xl mx-auto items-start">
+      <div className="grid gap-5 md:grid-cols-3 md:gap-3 max-w-5xl mx-auto items-start">
         {featuredProducts.map((p, i) => (
           <motion.div
             key={p.name}
