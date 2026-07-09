@@ -164,7 +164,7 @@ const ProductsSection = () => (
       </motion.div>
 
       {/* Featured 3 cards */}
-      <div className="grid md:grid-cols-3 gap-3 max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-3 gap-3 max-w-5xl mx-auto items-start">
         {featuredProducts.map((p, i) => (
           <motion.div
             key={p.name}
@@ -225,9 +225,9 @@ const ProductsSection = () => (
             </div>
             <div className="space-y-1 mb-3">
               {p.coverages.map((c) => (
-                <div key={c} className="flex items-center gap-1.5 text-xs leading-tight text-gris-texto">
+                <div key={c} className="flex items-start gap-1.5 text-xs leading-tight text-gris-texto">
                   <CheckIcon />
-                  {c}
+                  <span className="line-clamp-2">{c}</span>
                 </div>
               ))}
             </div>

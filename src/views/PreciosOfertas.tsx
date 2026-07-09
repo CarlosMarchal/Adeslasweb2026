@@ -329,7 +329,7 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
             Compara todos los planes: desde Adeslas GO (desde 21€/mes) hasta Adeslas Plena Total sin copagos (desde 83€/mes). Elige la cobertura que necesitas.
           </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-6xl mx-auto items-start">
             {plans.map((p, i) => (
               <motion.div
                 key={p.name}
@@ -413,7 +413,7 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
                   {p.coverages.map((c, j) => (
                     <li key={j} className="flex items-start gap-1.5 text-xs leading-tight text-gris-texto">
                       <CheckIcon />
-                      <span>{c}</span>
+                      <span className="line-clamp-2">{c}</span>
                     </li>
                   ))}
                 </ul>
