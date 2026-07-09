@@ -20,10 +20,10 @@ const HERO_BG = "/images/adeslas-seguro-medico-ofertas.webp";
 
 const CheckIcon = () => (
   <div
-    className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+    className="w-3.5 h-3.5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
     style={{ backgroundColor: "#E8F4FC" }}
   >
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
       <path
         d="M2.5 6L5 8.5L9.5 4"
         stroke="#009FE3"
@@ -325,11 +325,11 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
           <h2 className="text-gris-texto text-2xl md:text-3xl mb-3 text-center">
             Precios y Coberturas de los Seguros de Salud Adeslas 2026
           </h2>
-          <p className="text-gris-medio text-center mb-10 max-w-2xl mx-auto">
+          <p className="text-gris-medio text-center mb-6 max-w-2xl mx-auto">
             Compara todos los planes: desde Adeslas GO (desde 21€/mes) hasta Adeslas Plena Total sin copagos (desde 83€/mes). Elige la cobertura que necesitas.
           </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-6xl mx-auto items-start">
             {plans.map((p, i) => (
               <motion.div
                 key={p.name}
@@ -337,7 +337,7 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="bg-blanco border p-6 flex flex-col relative"
+                className="bg-blanco border p-4 flex flex-col relative"
                 style={{
                   borderRadius: "16px",
                   borderColor: p.featured ? "#009FE3" : "#D5E3F0",
@@ -378,29 +378,29 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
                   </div>
                 )}
 
-                <div className="flex items-center gap-3 mb-3 mt-1">
+                <div className="flex items-center gap-2 mb-1.5 mt-0.5">
                   <span
-                    className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
+                    className="w-7 h-7 rounded-lg flex items-center justify-center text-base"
                     style={{ backgroundColor: "#E8F4FC" }}
                   >
                     {p.icon}
                   </span>
                 </div>
 
-                <h3 className="text-gris-texto text-lg font-bold mb-1">
+                <h3 className="text-gris-texto text-sm font-bold mb-0.5">
                   {p.name}
                 </h3>
 
-                <div className="flex items-baseline gap-1 mb-3">
-                  <span className="text-sm text-gris-medio">desde</span>
-                  <span className="text-3xl font-black" style={{ color: "#003087" }}>
+                <div className="flex items-baseline gap-1 mb-1.5">
+                  <span className="text-xs text-gris-medio">desde</span>
+                  <span className="text-xl font-black" style={{ color: "#003087" }}>
                     {p.price}€
                   </span>
-                  <span className="text-sm text-gris-medio">/mes</span>
+                  <span className="text-xs text-gris-medio">/mes</span>
                 </div>
 
                 <span
-                  className="inline-block px-3 py-1 rounded-full text-[11px] font-bold mb-4 self-start"
+                  className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold mb-2 self-start"
                   style={{
                     backgroundColor: p.pillDark ? "#003087" : "#E8F4FC",
                     color: p.pillDark ? "#fff" : "#009FE3",
@@ -409,17 +409,17 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
                   {p.pill}
                 </span>
 
-                <ul className="space-y-2.5 mb-6 flex-1">
+                <ul className="space-y-1 mb-3 flex-1">
                   {p.coverages.map((c, j) => (
-                    <li key={j} className="flex items-start gap-2.5 text-sm text-gris-texto">
+                    <li key={j} className="flex items-start gap-1.5 text-xs leading-tight text-gris-texto">
                       <CheckIcon />
-                      <span>{c}</span>
+                      <span className="line-clamp-2">{c}</span>
                     </li>
                   ))}
                 </ul>
 
                 <CalcButton
-                  className="w-full py-3 rounded-xl font-extrabold text-sm text-primary-foreground cursor-pointer btn-cta-magenta"
+                  className="w-full py-2 rounded-xl font-extrabold text-sm text-primary-foreground cursor-pointer btn-cta-magenta"
                   style={{ backgroundColor: "#E4097D", borderRadius: "10px" }}
                   productSlug={p.slug}
                 >
@@ -428,7 +428,7 @@ const PreciosOfertasInner = ({ renderSeo = true }: { renderSeo?: boolean }) => {
 
                 <Link
                   to={p.slug}
-                  className="block text-center mt-2 py-2.5 rounded-xl text-sm font-bold transition-colors hover:bg-gris-claro"
+                  className="block text-center mt-1.5 py-1.5 rounded-xl text-xs font-bold transition-colors hover:bg-gris-claro"
                   style={{ color: "#009FE3", border: "1px solid #D5E3F0", borderRadius: "10px" }}
                 >
                   Ver coberturas completas
