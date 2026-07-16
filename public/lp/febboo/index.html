@@ -184,9 +184,13 @@
       box-shadow:0 20px 56px rgba(0,0,0,0.22);
       height:auto;
     }
-    /* Mobile: form mobile del hero — visible solo en mobile, justo debajo del hero */
+    /* Mobile: form del hero — visible DENTRO del hero, bajo el h1/precio/trust,
+       para que el usuario lo vea sin hacer scroll hasta el final de la página */
     .hero-form-mobile{display:none}
-    @media(max-width:1023px){.hero-form-mobile{display:block}}
+    @media(max-width:1023px){
+      .hero-form-mobile{display:block;margin-top:20px}
+      .hero-form-mobile .hero-form-card{max-width:100%}
+    }
 
     /* Promo pill row — dentro del hero, al final */
     .hero-pill-row{
@@ -708,6 +712,58 @@
         </div>
       </div>
 
+      <!-- Form card mobile: visible dentro del propio hero, justo bajo el texto, para que
+           el usuario vea el formulario sin tener que hacer scroll hasta el final -->
+      <div class="hero-form-mobile">
+        <div class="hero-form-card">
+          <div class="inline-form-header">
+            <p>Solicitar Información — Sin Compromiso</p>
+          </div>
+          <div class="inline-form-body">
+            <form id="mobileHeroForm" novalidate>
+              <div class="form-group">
+                <label for="mh-nombre">Nombre completo *</label>
+                <input type="text" id="mh-nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+                <div class="field-err" id="mh-err-nombre">Introduce tu nombre</div>
+              </div>
+              <div class="form-group">
+                <label for="mh-email">Correo electrónico *</label>
+                <input type="email" id="mh-email" name="email" placeholder="tu@email.com" autocomplete="email" required>
+                <div class="field-err" id="mh-err-email">Email no válido</div>
+              </div>
+              <div class="form-group">
+                <label for="mh-tel">Teléfono *</label>
+                <input type="tel" id="mh-tel" name="telefono" placeholder="6XX XXX XXX" autocomplete="tel" inputmode="numeric" maxlength="11" required>
+                <div class="field-err" id="mh-err-tel">Introduce un móvil español (empieza por 6 o 7)</div>
+              </div>
+              <div class="form-group">
+                <label for="mh-aseg">¿Para cuántas personas?</label>
+                <select id="mh-aseg" name="asegurados">
+                  <option value="1">1 persona</option>
+                  <option value="2">2 personas</option>
+                  <option value="3">3 personas</option>
+                  <option value="4">4 personas</option>
+                  <option value="5">5 personas</option>
+                  <option value="6">6 personas</option>
+                </select>
+              </div>
+              <div class="checkbox-row">
+                <input type="checkbox" id="mh-privacidad" required>
+                <label for="mh-privacidad">He leído y acepto la <a href="#" onclick="openLegalModal(event)">política de privacidad</a> *</label>
+              </div>
+              <div class="field-err" id="mh-err-privacidad" style="margin-top:-10px;margin-bottom:10px">Debes aceptar la política de privacidad</div>
+              <button type="submit" class="btn-form-submit" id="mh-submit">Solicitar información <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;flex-shrink:0"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg></button>
+              <p class="form-micro" style="margin-top:8px"><strong>✓ Sin compromiso</strong></p>
+            </form>
+            <div class="success-state" id="mh-success">
+              <div class="success-check">✓</div>
+              <h3>¡Recibido!</h3>
+              <p>Te contactaremos en menos de 24h con toda la información.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Columna derecha: form card (solo desktop, donde iría el tarificador) -->
       <div class="hero-form-col">
         <div class="hero-form-card" style="margin-left:32px;max-width:370px">
@@ -791,53 +847,6 @@
     </div>
   </div><!-- /hero-inner -->
 </section>
-
-<!-- Form visible en mobile (debajo del hero, igual que el tarificador mobile en la web) -->
-<div class="hero-form-mobile">
-  <div style="padding:24px 16px;background:#fff">
-    <p style="font-size:15px;font-weight:700;color:var(--azul-navy);text-align:center;margin-bottom:16px">Solicitar Información — Sin Compromiso</p>
-    <form id="mobileHeroForm" novalidate>
-      <div class="form-group">
-        <label for="mh-nombre">Nombre completo *</label>
-        <input type="text" id="mh-nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
-        <div class="field-err" id="mh-err-nombre">Introduce tu nombre</div>
-      </div>
-      <div class="form-group">
-        <label for="mh-email">Correo electrónico *</label>
-        <input type="email" id="mh-email" name="email" placeholder="tu@email.com" autocomplete="email" required>
-        <div class="field-err" id="mh-err-email">Email no válido</div>
-      </div>
-      <div class="form-group">
-        <label for="mh-tel">Teléfono *</label>
-        <input type="tel" id="mh-tel" name="telefono" placeholder="6XX XXX XXX" autocomplete="tel" inputmode="numeric" maxlength="11" required>
-        <div class="field-err" id="mh-err-tel">Introduce un móvil español (empieza por 6 o 7)</div>
-      </div>
-      <div class="form-group">
-        <label for="mh-aseg">¿Para cuántas personas?</label>
-        <select id="mh-aseg" name="asegurados">
-          <option value="1">1 persona</option>
-          <option value="2">2 personas</option>
-          <option value="3">3 personas</option>
-          <option value="4">4 personas</option>
-          <option value="5">5 personas</option>
-          <option value="6">6 personas</option>
-        </select>
-      </div>
-      <div class="checkbox-row">
-        <input type="checkbox" id="mh-privacidad" required>
-        <label for="mh-privacidad">He leído y acepto la <a href="#" onclick="openLegalModal(event)">política de privacidad</a> *</label>
-      </div>
-      <div class="field-err" id="mh-err-privacidad" style="margin-top:-10px;margin-bottom:10px">Debes aceptar la política de privacidad</div>
-      <button type="submit" class="btn-form-submit" id="mh-submit">Solicitar información <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;flex-shrink:0"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg></button>
-      <p class="form-micro" style="margin-top:8px"><strong>✓ Sin compromiso</strong></p>
-    </form>
-    <div class="success-state" id="mh-success">
-      <div class="success-check">✓</div>
-      <h3>¡Recibido!</h3>
-      <p>Te contactaremos en menos de 24h con toda la información.</p>
-    </div>
-  </div>
-</div>
 
 
 <!-- ══════════════════════════════════════════
