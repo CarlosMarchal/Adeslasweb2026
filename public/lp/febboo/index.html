@@ -184,8 +184,9 @@
       box-shadow:0 20px 56px rgba(0,0,0,0.22);
       height:auto;
     }
-    /* Mobile: form mobile del hero — oculto siempre */
-    .hero-form-mobile{display:none!important}
+    /* Mobile: form mobile del hero — visible solo en mobile, justo debajo del hero */
+    .hero-form-mobile{display:none}
+    @media(max-width:1023px){.hero-form-mobile{display:block}}
 
     /* Promo pill row — dentro del hero, al final */
     .hero-pill-row{
