@@ -128,6 +128,9 @@ export interface ProductPageData {
   /* Optional custom content rendered in the hero below the subtitle/promobar (e.g. pricing cards) */
   heroContent?: React.ReactNode;
 
+  /* Optional legal/disclaimer footnote rendered small at the bottom of the hero (e.g. "* Seguro completo hasta los 12 años de edad") */
+  heroFootnote?: string;
+
   /* Hide the medical trust badges in the hero (use for non-health products) */
   hideHeroBadges?: boolean;
 
@@ -345,6 +348,12 @@ const ProductHero = ({
             </div>
           )}
         </motion.div>
+      )}
+
+      {data.heroFootnote && (
+        <p className="text-xs mt-6 text-center lg:text-left" style={{ color: "rgba(255,255,255,0.6)" }}>
+          {data.heroFootnote}
+        </p>
       )}
     </div>
   </section>
