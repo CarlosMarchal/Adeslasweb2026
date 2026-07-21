@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {
   Check, ChevronRight, ChevronLeft, Plus, User, Users,
   Heart, FileText, CreditCard, CheckCircle, Shield, Lock, X,
+  Upload, Paperclip, CalendarDays,
 } from 'lucide-react';
 import { trackGenerateLead } from '@/lib/tracking';
 
@@ -63,11 +64,18 @@ interface SaludAsegurado {
   otras: boolean;
 }
 
+interface DocsAdjuntos {
+  tarjetas: File[];      // Tarjeta(s) sanitaria(s) de la aseguradora anterior
+  recibo: File | null;   // Recibo bancario del último pago del seguro anterior
+}
+
 interface FormState {
   tomador: Tomador;
   asegurados: Asegurado[];
   salud: SaludAsegurado[];
   otraAseguradora: boolean;
+  docs: DocsAdjuntos;
+  fechaAlta: string;     // Fecha deseada de entrada en vigor del seguro
   pago: { titular: string; iban: string };
   aceptaCondiciones: boolean;
 }
@@ -93,11 +101,25 @@ const initialForm: FormState = {
   asegurados: [{ ...personaVacia(), mismoQueTomador: false, parentesco: '' }],
   salud: [saludVacia()],
   otraAseguradora: false,
+  docs: { tarjetas: [], recibo: null },
+  fechaAlta: '',
   pago: { titular: '', iban: '' },
   aceptaCondiciones: false,
 };
 
 const TOTAL_STEPS = 6;
+
+// Límites de adjuntos (Vercel limita el body a ~4,5 MB)
+const MAX_FILE_MB = 3;
+const MAX_TOTAL_MB = 4;
+const ACCEPTED_TYPES = 'image/jpeg,image/png,image/webp,image/heic,application/pdf';
+
+/** Mañana en formato YYYY-MM-DD (mínimo para la fecha de alta) */
+const minFechaAlta = (): string => {
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  return d.toISOString().split('T')[0];
+};
 
 // ================================================================
 // MAIN COMPONENT
@@ -168,6 +190,48 @@ export default function FormularioAlta() {
     }));
   };
 
+  // -------------------- Adjuntos ----------------------
+  const totalDocsMB = (docs: DocsAdjuntos): number => {
+    const bytes = docs.tarjetas.reduce((acc, f) => acc + f.size, 0) + (docs.recibo?.size ?? 0);
+    return bytes / (1024 * 1024);
+  };
+
+  /** Valida tamaño individual y total antes de aceptar un archivo */
+  const validaArchivo = (file: File, docs: DocsAdjuntos): string | null => {
+    if (file.size > MAX_FILE_MB * 1024 * 1024) {
+      return `"${file.name}" supera los ${MAX_FILE_MB} MB. Reduce su tamaño o haz una foto con menos resolución.`;
+    }
+    if (totalDocsMB(docs) + file.size / (1024 * 1024) > MAX_TOTAL_MB) {
+      return `El conjunto de archivos supera los ${MAX_TOTAL_MB} MB. Elimina alguno o usa archivos más ligeros.`;
+    }
+    return null;
+  };
+
+  const addTarjetas = (files: FileList | null) => {
+    if (!files) return;
+    setError('');
+    for (const file of Array.from(files)) {
+      const err = validaArchivo(file, form.docs);
+      if (err) { setError(err); return; }
+    }
+    setForm(f => ({ ...f, docs: { ...f.docs, tarjetas: [...f.docs.tarjetas, ...Array.from(files)] } }));
+  };
+
+  const removeTarjeta = (idx: number) =>
+    setForm(f => ({ ...f, docs: { ...f.docs, tarjetas: f.docs.tarjetas.filter((_, i) => i !== idx) } }));
+
+  const setRecibo = (files: FileList | null) => {
+    const file = files?.[0];
+    if (!file) return;
+    setError('');
+    const err = validaArchivo(file, { ...form.docs, recibo: null });
+    if (err) { setError(err); return; }
+    setForm(f => ({ ...f, docs: { ...f.docs, recibo: file } }));
+  };
+
+  const removeRecibo = () =>
+    setForm(f => ({ ...f, docs: { ...f.docs, recibo: null } }));
+
   // -------------------- Validation --------------------
   /** Móvil español válido: 9 dígitos empezando por 6 o 7 */
   const isValidSpanishMobile = (tel: string) => /^[67]\d{8}$/.test(tel.replace(/\s/g, ''));
@@ -206,9 +270,19 @@ export default function FormularioAlta() {
       setError('Por favor, introduce el titular y el IBAN de la cuenta bancaria.');
       return false;
     }
-    if (step === 6 && !form.aceptaCondiciones) {
-      setError('Debes aceptar las condiciones generales para confirmar la solicitud.');
-      return false;
+    if (step === 6) {
+      if (!form.fechaAlta) {
+        setError('Indica la fecha en la que quieres que tu seguro entre en vigor.');
+        return false;
+      }
+      if (form.fechaAlta < minFechaAlta()) {
+        setError('La fecha de alta debe ser una fecha futura.');
+        return false;
+      }
+      if (!form.aceptaCondiciones) {
+        setError('Debes aceptar las condiciones generales para confirmar la solicitud.');
+        return false;
+      }
     }
     return true;
   };
@@ -284,8 +358,24 @@ export default function FormularioAlta() {
           <tr><th colspan="2" style="${thStyle}">ASEGURADOS (${form.asegurados.length})</th></tr>
           ${aseguradosRows}
 
+          <tr><th colspan="2" style="${thStyle}">FECHA DE ALTA</th></tr>
+          <tr><td style="${tdStyle}">Fecha de alta deseada</td><td style="${tdStyle}font-weight:600;">${
+            form.fechaAlta
+              ? new Date(form.fechaAlta + 'T00:00:00').toLocaleDateString('es-ES', { dateStyle: 'full' })
+              : '—'
+          }</td></tr>
+
           <tr><th colspan="2" style="${thStyle}">DOCUMENTACIÓN</th></tr>
           <tr><td style="${tdStyle}">¿Viene de otra aseguradora?</td><td style="${tdStyle}">${form.otraAseguradora ? '✅ Sí' : '❌ No'}</td></tr>
+          ${form.otraAseguradora ? `
+          <tr><td style="${tdStyle}">Tarjeta sanitaria</td><td style="${tdStyle}">${
+            form.docs.tarjetas.length
+              ? `📎 ${form.docs.tarjetas.length} archivo(s) adjunto(s): ${form.docs.tarjetas.map(f => f.name).join(', ')}`
+              : 'No aportada'
+          }</td></tr>
+          <tr><td style="${tdStyle}">Recibo bancario último pago</td><td style="${tdStyle}">${
+            form.docs.recibo ? `📎 Adjunto: ${form.docs.recibo.name}` : 'No aportado'
+          }</td></tr>` : ''}
 
           <tr><th colspan="2" style="${thStyle}">PAGO</th></tr>
           <tr><td style="${tdStyle}">Titular de la cuenta</td><td style="${tdStyle}">${form.pago.titular}</td></tr>
@@ -308,15 +398,20 @@ export default function FormularioAlta() {
     trackGenerateLead(form.tomador.telefono, "formulario_alta_completo");
     setSending(true);
     try {
+      // FormData (multipart) para poder adjuntar la documentación al email
+      const fd = new FormData();
+      fd.append('subject',  `Alta Adeslas — ${form.tomador.nombre} ${form.tomador.apellidos}`);
+      fd.append('html',     formatEmailBody());
+      fd.append('fromName', `${form.tomador.nombre} ${form.tomador.apellidos}`);
+      fd.append('replyTo',  form.tomador.email);
+      if (form.otraAseguradora) {
+        form.docs.tarjetas.forEach(file => fd.append('tarjeta_sanitaria', file, file.name));
+        if (form.docs.recibo) fd.append('recibo_bancario', form.docs.recibo, form.docs.recibo.name);
+      }
+
       const res = await fetch('/api/enviar-alta', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          subject:  `Alta Adeslas — ${form.tomador.nombre} ${form.tomador.apellidos}`,
-          html:     formatEmailBody(),
-          fromName: `${form.tomador.nombre} ${form.tomador.apellidos}`,
-          replyTo:  form.tomador.email,
-        }),
+        body: fd, // sin Content-Type manual: el navegador añade el boundary multipart
       });
 
       if (!res.ok) {
@@ -621,6 +716,39 @@ export default function FormularioAlta() {
                     </button>
                   ))}
                 </div>
+
+                {/* Documentación de la aseguradora anterior */}
+                {form.otraAseguradora && (
+                  <div className="mt-6 space-y-5">
+                    <div className="p-4 bg-cyan-50 border border-cyan-200 rounded-xl text-sm text-cyan-800 leading-relaxed">
+                      <strong>Agiliza tu alta:</strong> adjunta una imagen, documento o fotografía de la{' '}
+                      <strong>tarjeta sanitaria</strong> de tu aseguradora actual y el{' '}
+                      <strong>recibo bancario del último pago</strong>. Los recibiremos junto a tu solicitud.
+                      Si no los tienes a mano, puedes continuar sin adjuntarlos.
+                    </div>
+
+                    <FileUploadField
+                      label="Tarjeta sanitaria de tu aseguradora actual"
+                      hint="Imagen, foto o PDF · puedes subir varias tarjetas (una por asegurado)"
+                      multiple
+                      files={form.docs.tarjetas}
+                      onAdd={addTarjetas}
+                      onRemove={removeTarjeta}
+                    />
+
+                    <FileUploadField
+                      label="Recibo bancario del último pago de tu seguro anterior"
+                      hint="Imagen, foto o PDF"
+                      files={form.docs.recibo ? [form.docs.recibo] : []}
+                      onAdd={setRecibo}
+                      onRemove={removeRecibo}
+                    />
+
+                    <p className="text-xs text-gray-400">
+                      Máx. {MAX_FILE_MB} MB por archivo · {MAX_TOTAL_MB} MB en total · Formatos: JPG, PNG, WEBP, HEIC, PDF
+                    </p>
+                  </div>
+                )}
               </section>
             )}
 
@@ -664,6 +792,22 @@ export default function FormularioAlta() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-1">Confirma tu solicitud</h2>
                 <p className="text-sm text-gray-500 mb-6">Revisa y acepta las condiciones</p>
 
+                {/* Fecha de alta deseada */}
+                <div className="mb-5 p-4 border border-cyan-200 bg-cyan-50/50 rounded-xl">
+                  <label className="flex items-center gap-2 text-sm font-semibold text-gray-800 mb-1">
+                    <CalendarDays className="w-4 h-4 text-cyan-600" />
+                    ¿Cuándo quieres que empiece tu seguro? *
+                  </label>
+                  <p className="text-xs text-gray-500 mb-2">Fecha en la que deseas que tu póliza entre en vigor</p>
+                  <input
+                    type="date"
+                    min={minFechaAlta()}
+                    value={form.fechaAlta}
+                    onChange={e => setForm(f => ({ ...f, fechaAlta: e.target.value }))}
+                    className="w-full sm:w-64 border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  />
+                </div>
+
                 {/* Resumen */}
                 <div className="bg-gray-50 rounded-xl p-5 mb-5 text-sm space-y-3 divide-y divide-gray-200">
                   <div>
@@ -688,6 +832,17 @@ export default function FormularioAlta() {
                     <p className="font-mono font-medium text-gray-800 mt-1 text-sm">{form.pago.iban}</p>
                     <p className="text-gray-500 text-xs">{form.pago.titular}</p>
                   </div>
+                  {form.otraAseguradora && (
+                    <div className="pt-3">
+                      <span className="text-gray-500 text-xs uppercase tracking-wide font-medium">Documentación adjunta</span>
+                      <p className="text-gray-700 text-xs mt-1 flex items-center gap-1.5">
+                        <Paperclip className="w-3 h-3 text-gray-400" />
+                        {form.docs.tarjetas.length + (form.docs.recibo ? 1 : 0) > 0
+                          ? `${form.docs.tarjetas.length} tarjeta(s) sanitaria(s)${form.docs.recibo ? ' · 1 recibo bancario' : ''}`
+                          : 'Sin documentos adjuntos'}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Consentimiento */}
@@ -867,6 +1022,59 @@ function PersonaForm({ data, id, onChange }: PersonaFormProps) {
             onChange={e => onChange('cp', e.target.value)} className={inputClass} />
         </div>
       </div>
+    </div>
+  );
+}
+
+interface FileUploadFieldProps {
+  label: string;
+  hint: string;
+  files: File[];
+  multiple?: boolean;
+  onAdd: (files: FileList | null) => void;
+  onRemove: (idx: number) => void;
+}
+
+function FileUploadField({ label, hint, files, multiple = false, onAdd, onRemove }: FileUploadFieldProps) {
+  const formatSize = (bytes: number) =>
+    bytes >= 1024 * 1024 ? `${(bytes / (1024 * 1024)).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
+
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <p className="text-xs text-gray-400 mb-2">{hint}</p>
+
+      {(multiple || files.length === 0) && (
+        <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-cyan-300 rounded-xl py-6 px-4 cursor-pointer text-cyan-600 hover:border-cyan-400 hover:bg-cyan-50 transition text-sm font-medium">
+          <Upload className="w-5 h-5" />
+          Pulsa para subir o hacer una foto
+          <input
+            type="file"
+            accept={ACCEPTED_TYPES}
+            multiple={multiple}
+            className="hidden"
+            onChange={e => { onAdd(e.target.files); e.target.value = ''; }}
+          />
+        </label>
+      )}
+
+      {files.length > 0 && (
+        <ul className="mt-2 space-y-2">
+          {files.map((f, i) => (
+            <li key={`${f.name}-${i}`} className="flex items-center justify-between gap-3 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+              <span className="flex items-center gap-2 text-sm text-gray-700 min-w-0">
+                <Paperclip className="w-4 h-4 text-cyan-500 shrink-0" />
+                <span className="truncate">{f.name}</span>
+                <span className="text-xs text-gray-400 shrink-0">({formatSize(f.size)})</span>
+              </span>
+              <button type="button" onClick={() => onRemove(i)}
+                className="text-red-400 hover:text-red-600 transition p-1 rounded-full hover:bg-red-50 shrink-0">
+                <X className="w-4 h-4" />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
