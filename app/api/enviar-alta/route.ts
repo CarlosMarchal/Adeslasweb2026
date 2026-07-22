@@ -51,6 +51,7 @@ export async function POST(req: NextRequest) {
 
       const tarjetas = fd.getAll('tarjeta_sanitaria').filter((v): v is File => v instanceof File && v.size > 0);
       const recibos  = fd.getAll('recibo_bancario').filter((v): v is File => v instanceof File && v.size > 0);
+      const cifs     = fd.getAll('documento_cif').filter((v): v is File => v instanceof File && v.size > 0);
 
       let totalBytes = 0;
       const procesar = async (files: File[], prefijo: string) => {
@@ -76,6 +77,7 @@ export async function POST(req: NextRequest) {
 
       await procesar(tarjetas, 'Tarjeta-sanitaria');
       await procesar(recibos, 'Recibo-bancario-ultimo-pago');
+      await procesar(cifs, 'Documento-CIF-empresa');
     } else {
       // Retrocompatibilidad: cuerpo JSON sin adjuntos
       const body = await req.json() as { subject?: string; html?: string; replyTo?: string };

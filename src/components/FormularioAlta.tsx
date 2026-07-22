@@ -65,8 +65,9 @@ interface SaludAsegurado {
 }
 
 interface DocsAdjuntos {
-  tarjetas: File[];      // Tarjeta(s) sanitaria(s) de la aseguradora anterior
-  recibo: File | null;   // Recibo bancario del último pago del seguro anterior
+  tarjetas: File[];        // Tarjeta(s) sanitaria(s) de la aseguradora anterior
+  recibo: File | null;     // Recibo bancario del último pago del seguro anterior
+  cifEmpresa: File | null; // Documento CIF (solo cuando el tomador es empresa)
 }
 
 interface FormState {
@@ -101,7 +102,7 @@ const initialForm: FormState = {
   asegurados: [{ ...personaVacia(), mismoQueTomador: false, parentesco: '' }],
   salud: [saludVacia()],
   otraAseguradora: false,
-  docs: { tarjetas: [], recibo: null },
+  docs: { tarjetas: [], recibo: null, cifEmpresa: null },
   fechaAlta: '',
   pago: { titular: '', iban: '' },
   aceptaCondiciones: false,
@@ -253,9 +254,27 @@ export default function FormularioAlta() {
   const removeRecibo = () =>
     setForm(f => ({ ...f, docs: { ...f.docs, recibo: null } }));
 
+  const setCifEmpresa = (files: FileList | null) => {
+    const file = files?.[0];
+    if (!file) return;
+    setError('');
+    const err = validaArchivo(file, { ...form.docs, cifEmpresa: null });
+    if (err) { setError(err); return; }
+    setForm(f => ({ ...f, docs: { ...f.docs, cifEmpresa: file } }));
+  };
+
+  const removeCifEmpresa = () =>
+    setForm(f => ({ ...f, docs: { ...f.docs, cifEmpresa: null } }));
+
   // -------------------- Validation --------------------
   /** Móvil español válido: 9 dígitos empezando por 6 o 7 */
   const isValidSpanishMobile = (tel: string) => /^[67]\d{8}$/.test(tel.replace(/\s/g, ''));
+
+  /** Teléfono español (fijo o móvil): 9 dígitos empezando por 6, 7, 8 o 9 */
+  const isValidSpanishPhone = (tel: string) => /^[6789]\d{8}$/.test(tel.replace(/\s/g, ''));
+
+  /** CIF español: letra de entidad + 7 dígitos + carácter de control */
+  const isValidCifFormat = (cif: string) => /^[A-HJNP-SUVW]\d{7}[0-9A-J]$/.test(cif.trim().toUpperCase());
 
   const validatePersona = (p: PersonaBase) => {
     if (!p.nombre || !p.apellidos || !p.docNum || !p.fechaNacimiento || !p.email || !p.direccion || !p.poblacion || !p.cp) return false;
@@ -265,14 +284,30 @@ export default function FormularioAlta() {
 
   const validate = (): boolean => {
     setError('');
-    if (step === 1 && !validatePersona(form.tomador)) {
-      const phoneOk = isValidSpanishMobile(form.tomador.telefono);
-      setError(
-        !phoneOk && form.tomador.telefono
-          ? 'El teléfono del tomador debe ser un móvil español (9 dígitos, empieza por 6 o 7).'
-          : 'Por favor, rellena todos los campos obligatorios antes de continuar.'
-      );
-      return false;
+    if (step === 1) {
+      if (form.tomador.tipo === 'Juridica') {
+        const t = form.tomador;
+        if (!t.nombre || !t.docNum || !t.email || !t.direccion || !t.poblacion || !t.cp || !t.telefono) {
+          setError('Por favor, rellena todos los campos obligatorios de la empresa antes de continuar.');
+          return false;
+        }
+        if (!isValidCifFormat(t.docNum)) {
+          setError('El CIF no es válido. Formato: letra + 7 dígitos + carácter de control (ej: B12345678).');
+          return false;
+        }
+        if (!isValidSpanishPhone(t.telefono)) {
+          setError('El teléfono de la empresa debe ser un número español de 9 dígitos (empieza por 6, 7, 8 o 9).');
+          return false;
+        }
+      } else if (!validatePersona(form.tomador)) {
+        const phoneOk = isValidSpanishMobile(form.tomador.telefono);
+        setError(
+          !phoneOk && form.tomador.telefono
+            ? 'El teléfono del tomador debe ser un móvil español (9 dígitos, empieza por 6 o 7).'
+            : 'Por favor, rellena todos los campos obligatorios antes de continuar.'
+        );
+        return false;
+      }
     }
     if (step === 2) {
       for (const a of form.asegurados) {
@@ -373,6 +408,16 @@ export default function FormularioAlta() {
         </div>
         <table style="width:100%;border-collapse:collapse;font-size:14px;margin-top:0;">
           <tr><th colspan="2" style="${thStyle}">TOMADOR</th></tr>
+          ${t.tipo === 'Juridica' ? `
+          <tr><td style="${tdStyle}width:35%">Tipo</td><td style="${tdStyle}">Empresa (persona jurídica)</td></tr>
+          <tr><td style="${tdStyle}">Nombre de la empresa</td><td style="${tdStyle}">${t.nombre}</td></tr>
+          <tr><td style="${tdStyle}">CIF</td><td style="${tdStyle}font-family:monospace;">${t.docNum}</td></tr>
+          <tr><td style="${tdStyle}">Teléfono</td><td style="${tdStyle}">${t.telefono}</td></tr>
+          <tr><td style="${tdStyle}">Email</td><td style="${tdStyle}">${t.email}</td></tr>
+          <tr><td style="${tdStyle}">Dirección</td><td style="${tdStyle}">${t.direccion}, ${t.poblacion} ${t.cp}</td></tr>
+          <tr><td style="${tdStyle}">Documento CIF</td><td style="${tdStyle}">${
+            form.docs.cifEmpresa ? `📎 Adjunto: ${form.docs.cifEmpresa.name}` : 'No aportado'
+          }</td></tr>` : `
           <tr><td style="${tdStyle}width:35%">Tipo</td><td style="${tdStyle}">${t.tipo}</td></tr>
           <tr><td style="${tdStyle}">Nombre completo</td><td style="${tdStyle}">${t.nombre} ${t.apellidos}</td></tr>
           <tr><td style="${tdStyle}">Documento</td><td style="${tdStyle}">${t.docType}: ${t.docNum}</td></tr>
@@ -380,7 +425,7 @@ export default function FormularioAlta() {
           <tr><td style="${tdStyle}">Género</td><td style="${tdStyle}">${t.genero}</td></tr>
           <tr><td style="${tdStyle}">Teléfono</td><td style="${tdStyle}">${t.telefono}</td></tr>
           <tr><td style="${tdStyle}">Email</td><td style="${tdStyle}">${t.email}</td></tr>
-          <tr><td style="${tdStyle}">Dirección</td><td style="${tdStyle}">${t.direccion}, ${t.poblacion} ${t.cp}</td></tr>
+          <tr><td style="${tdStyle}">Dirección</td><td style="${tdStyle}">${t.direccion}, ${t.poblacion} ${t.cp}</td></tr>`}
 
           <tr><th colspan="2" style="${thStyle}">ASEGURADOS (${form.asegurados.length})</th></tr>
           ${aseguradosRows}
@@ -434,6 +479,9 @@ export default function FormularioAlta() {
       if (form.otraAseguradora) {
         form.docs.tarjetas.forEach(file => fd.append('tarjeta_sanitaria', file, file.name));
         if (form.docs.recibo) fd.append('recibo_bancario', form.docs.recibo, form.docs.recibo.name);
+      }
+      if (form.tomador.tipo === 'Juridica' && form.docs.cifEmpresa) {
+        fd.append('documento_cif', form.docs.cifEmpresa, form.docs.cifEmpresa.name);
       }
 
       const res = await fetch('/api/enviar-alta', {
@@ -558,7 +606,10 @@ export default function FormularioAlta() {
                   {(['Particular', 'Autonomo', 'Juridica'] as TipoContratante[]).map(tipo => (
                     <button
                       key={tipo} type="button"
-                      onClick={() => updateTomador('tipo', tipo)}
+                      onClick={() => {
+                        updateTomador('tipo', tipo);
+                        if (tipo === 'Juridica') updateTomador('docType', 'CIF');
+                      }}
                       className={`py-2.5 px-4 rounded-lg border-2 font-medium text-sm transition-all ${
                         form.tomador.tipo === tipo
                           ? 'border-cyan-500 bg-cyan-50 text-cyan-700'
@@ -570,7 +621,69 @@ export default function FormularioAlta() {
                   ))}
                 </div>
 
-                <PersonaForm data={form.tomador} id="tomador" onChange={(f, v) => updateTomador(f as keyof Tomador, v)} />
+                {form.tomador.tipo === 'Juridica' ? (
+                  /* ------ Datos de la empresa ------ */
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Nombre de la empresa *</label>
+                      <input type="text" placeholder="Mi Empresa, S.L." value={form.tomador.nombre}
+                        onChange={e => updateTomador('nombre', e.target.value)}
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">CIF de la empresa *</label>
+                      <input type="text" placeholder="B12345678" maxLength={9} value={form.tomador.docNum}
+                        onChange={e => updateTomador('docNum', e.target.value.toUpperCase())}
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Teléfono *</label>
+                        <input type="tel" placeholder="912 345 678" value={form.tomador.telefono}
+                          onChange={e => updateTomador('telefono', e.target.value)}
+                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                        <input type="email" placeholder="contacto@miempresa.com" value={form.tomador.email}
+                          onChange={e => updateTomador('email', e.target.value)}
+                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Dirección de la empresa *</label>
+                      <input type="text" placeholder="Calle, número, piso…" value={form.tomador.direccion}
+                        onChange={e => updateTomador('direccion', e.target.value)}
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+                    </div>
+                    <div className="grid grid-cols-3 gap-3">
+                      <div className="col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Población *</label>
+                        <input type="text" placeholder="Madrid" value={form.tomador.poblacion}
+                          onChange={e => updateTomador('poblacion', e.target.value)}
+                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">C.P. *</label>
+                        <input type="text" placeholder="28001" maxLength={5} value={form.tomador.cp}
+                          onChange={e => updateTomador('cp', e.target.value)}
+                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+                      </div>
+                    </div>
+
+                    <div className="pt-2">
+                      <FileUploadField
+                        label="Documento CIF de la empresa"
+                        hint="Imagen, foto o PDF · se adjuntará a tu solicitud"
+                        files={form.docs.cifEmpresa ? [form.docs.cifEmpresa] : []}
+                        onAdd={setCifEmpresa}
+                        onRemove={removeCifEmpresa}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <PersonaForm data={form.tomador} id="tomador" onChange={(f, v) => updateTomador(f as keyof Tomador, v)} />
+                )}
               </section>
             )}
 
@@ -595,19 +708,21 @@ export default function FormularioAlta() {
                         )}
                       </div>
 
-                      {/* Checkbox mismo que tomador */}
-                      <label className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg mb-5 cursor-pointer hover:bg-gray-100 transition select-none">
-                        <input
-                          type="checkbox"
-                          checked={a.mismoQueTomador}
-                          onChange={e => {
-                            updateAsegurado(i, 'mismoQueTomador', e.target.checked);
-                            if (e.target.checked) copiarDatosTomador(i);
-                          }}
-                          className="w-4 h-4 accent-cyan-500 shrink-0"
-                        />
-                        <span className="text-sm font-medium text-gray-700">Mismo que tomador</span>
-                      </label>
+                      {/* Checkbox mismo que tomador (no aplica si el tomador es una empresa) */}
+                      {form.tomador.tipo !== 'Juridica' && (
+                        <label className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg mb-5 cursor-pointer hover:bg-gray-100 transition select-none">
+                          <input
+                            type="checkbox"
+                            checked={a.mismoQueTomador}
+                            onChange={e => {
+                              updateAsegurado(i, 'mismoQueTomador', e.target.checked);
+                              if (e.target.checked) copiarDatosTomador(i);
+                            }}
+                            className="w-4 h-4 accent-cyan-500 shrink-0"
+                          />
+                          <span className="text-sm font-medium text-gray-700">Mismo que tomador</span>
+                        </label>
+                      )}
 
                       <PersonaForm data={a} id={`aseg-${i}`} onChange={(f, v) => updateAsegurado(i, f as keyof Asegurado, v)} />
 
