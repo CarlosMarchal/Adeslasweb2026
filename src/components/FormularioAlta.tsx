@@ -121,6 +121,27 @@ const minFechaAlta = (): string => {
   return d.toISOString().split('T')[0];
 };
 
+// -------------------- IBAN --------------------------
+/** Compacta el IBAN: mayúsculas, sin espacios ni caracteres extraños */
+const compactIban = (v: string): string => v.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+
+/** Agrupa el IBAN de 4 en 4 para facilitar la lectura al teclearlo */
+const formatIban = (v: string): string =>
+  compactIban(v).slice(0, 24).replace(/(.{4})/g, '$1 ').trim();
+
+/** IBAN español válido: ES + 22 dígitos + dígitos de control (módulo 97) */
+const isValidSpanishIban = (v: string): boolean => {
+  const iban = compactIban(v);
+  if (!/^ES\d{22}$/.test(iban)) return false;
+  // Algoritmo estándar ISO 13616: mover los 4 primeros caracteres al final
+  // y sustituir letras por números (A=10 … Z=35); el resto de dividir por 97 debe ser 1
+  const reordenado = iban.slice(4) + iban.slice(0, 4);
+  const numerico = reordenado.replace(/[A-Z]/g, ch => String(ch.charCodeAt(0) - 55));
+  let resto = 0;
+  for (const digito of numerico) resto = (resto * 10 + Number(digito)) % 97;
+  return resto === 1;
+};
+
 // ================================================================
 // MAIN COMPONENT
 // ================================================================
@@ -266,9 +287,15 @@ export default function FormularioAlta() {
         }
       }
     }
-    if (step === 5 && (!form.pago.titular || !form.pago.iban)) {
-      setError('Por favor, introduce el titular y el IBAN de la cuenta bancaria.');
-      return false;
+    if (step === 5) {
+      if (!form.pago.titular || !form.pago.iban) {
+        setError('Por favor, introduce el titular y el IBAN de la cuenta bancaria.');
+        return false;
+      }
+      if (!isValidSpanishIban(form.pago.iban)) {
+        setError('El IBAN no es válido. Debe ser un IBAN español: ES + 22 dígitos (comprueba los dígitos de control).');
+        return false;
+      }
     }
     if (step === 6) {
       if (!form.fechaAlta) {
@@ -774,11 +801,29 @@ export default function FormularioAlta() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">IBAN *</label>
                     <input
                       type="text" placeholder="ES00 0000 0000 0000 0000 0000"
+                      inputMode="text" autoComplete="off" spellCheck={false}
+                      maxLength={29}
                       value={form.pago.iban}
-                      onChange={e => setForm(f => ({ ...f, pago: { ...f.pago, iban: e.target.value.toUpperCase() } }))}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                      onChange={e => setForm(f => ({ ...f, pago: { ...f.pago, iban: formatIban(e.target.value) } }))}
+                      className={`w-full border rounded-lg px-3 py-2.5 text-sm font-mono tracking-wide focus:outline-none focus:ring-2 ${
+                        form.pago.iban.length === 0
+                          ? 'border-gray-300 focus:ring-cyan-400'
+                          : isValidSpanishIban(form.pago.iban)
+                            ? 'border-green-400 bg-green-50/50 focus:ring-green-400'
+                            : 'border-gray-300 focus:ring-cyan-400'
+                      }`}
                     />
-                    <p className="text-xs text-gray-400 mt-1">24 caracteres · ej: ES12 3456 7890 1234 5678 9012</p>
+                    {form.pago.iban.length > 0 && isValidSpanishIban(form.pago.iban) ? (
+                      <p className="text-xs text-green-600 mt-1 flex items-center gap-1">
+                        <Check className="w-3 h-3" /> IBAN español válido
+                      </p>
+                    ) : compactIban(form.pago.iban).length === 24 && !isValidSpanishIban(form.pago.iban) ? (
+                      <p className="text-xs text-red-500 mt-1">
+                        Este IBAN no es válido: revisa que empiece por ES y que los dígitos sean correctos.
+                      </p>
+                    ) : (
+                      <p className="text-xs text-gray-400 mt-1">IBAN español: ES + 22 dígitos · ej: ES12 3456 7890 1234 5678 9012</p>
+                    )}
                   </div>
                 </div>
               </section>
