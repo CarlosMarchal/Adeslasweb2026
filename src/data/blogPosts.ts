@@ -3592,6 +3592,79 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["comparativa-seguros-medicos-adeslas-2026", "cuanto-cuesta-seguro-adeslas-2026", "carencias-seguros-medicos-adeslas", "enfermedades-preexistentes-seguro-medico-adeslas-2026"],
   },
 
+
+  /* ── Mascotas: seguro-mascotas-adeslas-2026 ── */
+  {
+    slug: "seguro-mascotas-adeslas-2026",
+    category: "Mascotas",
+    title: "Seguro de mascotas Adeslas 2026: coberturas, planes y precios",
+    excerpt: "Adeslas Mascotas protege a tu perro o gato con responsabilidad civil, asistencia veterinaria y opciones sin cuestionario de salud. Te explicamos qué incluye cada plan y cuál te conviene.",
+    date: "31 Jul 2026",
+    readTime: "6 min",
+    image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600&h=400&fit=crop",
+    seoTitle: "Seguro de Mascotas Adeslas 2026: Planes, Coberturas y Precios | Guía",
+    seoDescription: "Guía completa de Adeslas Mascotas 2026: diferencias entre el plan Básica y Completa, qué cubre cada uno, precios orientativos y cómo contratarlo.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "Adeslas Mascotas es el seguro para perros y gatos de SegurCaixa Adeslas, pensado para cubrir tanto los daños que tu animal pueda causar a terceros como su propia atención veterinaria. Se contrata de forma independiente al seguro médico familiar y tiene dos niveles de cobertura claramente diferenciados."
+        },
+        {
+            "type": "heading",
+            "text": "Los dos planes de Adeslas Mascotas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Adeslas Mascotas Básica: responsabilidad civil por daños causados por el animal, orientación veterinaria telefónica 24 horas e indemnización en caso de robo o muerte accidental. No exige cuestionario de salud previo ni excluye razas consideradas potencialmente peligrosas.",
+                "Adeslas Mascotas Completa: incluye todo lo anterior y añade acceso a una amplia red de clínicas veterinarias concertadas, consultas, vacunación, pruebas diagnósticas y cirugías con copagos reducidos, además de videoconsulta veterinaria online. Disponible para mascotas hasta determinada edad de contratación."
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "¿Qué cubre exactamente cada plan?"
+        },
+        {
+            "type": "paragraph",
+            "text": "La Básica está orientada a la protección legal y económica frente a imprevistos graves: si tu perro muerde a alguien o causa un daño material, la responsabilidad civil te cubre la indemnización correspondiente. La Completa va un paso más allá y convierte el seguro en un apoyo real para el día a día veterinario: consultas por enfermedad, vacunas del calendario, análisis y cirugías programadas dentro de la red concertada."
+        },
+        {
+            "type": "callout",
+            "text": "El precio exacto depende de la especie, la raza, la edad de la mascota y el plan elegido. Como referencia orientativa, la Básica suele rondar los 6 €/mes y la Completa los 25 €/mes, aunque estas cifras pueden variar según las condiciones vigentes en el momento de la contratación."
+        },
+        {
+            "type": "heading",
+            "text": "¿Merece la pena asegurar a tu mascota?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Una consulta veterinaria de urgencia o una cirugía menor pueden costar varios cientos de euros de un día para otro. Si ya tienes un seguro médico Adeslas para tu familia, añadir la mascota te permite gestionar todo con la misma compañía y beneficiarte de su red de centros veterinarios concertados, evitando sustos económicos inesperados."
+        },
+        {
+            "type": "faq",
+            "faqItems": [
+                {
+                    "q": "¿Adeslas Mascotas exige cuestionario de salud?",
+                    "a": "El plan Básica no exige cuestionario de salud previo. Para el plan Completa, las condiciones de admisión pueden variar según la edad y el estado de salud del animal en el momento de contratar."
+                },
+                {
+                    "q": "¿Cubre razas potencialmente peligrosas?",
+                    "a": "El plan Básica no excluye razas PPP en la cobertura de responsabilidad civil, que es precisamente la cobertura legalmente exigida para este tipo de razas en España."
+                },
+                {
+                    "q": "¿Puedo tener el seguro médico familiar y el de mascotas con Adeslas a la vez?",
+                    "a": "Sí, son productos independientes que se contratan y gestionan por separado, aunque ambos con la misma compañía y, si lo prefieres, a través del mismo mediador."
+                }
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "En Marchal Aseguradores te ayudamos a comparar el plan Básica y Completa de Adeslas Mascotas según las necesidades de tu perro o gato. Llámanos al 91 710 50 00 o pide tu presupuesto sin compromiso."
+        }
+    ],
+    relatedSlugs: ["cuanto-cuesta-seguro-adeslas-2026","adeslas-familia-numerosa-descuentos-2026","que-cubre-seguro-medico-adeslas-2026"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
