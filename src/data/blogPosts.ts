@@ -3744,6 +3744,82 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["seguro-medico-mayores-60-anos-adeslas-2026","seguro-medico-familias-2026","adeslas-familia-numerosa-descuentos-2026"],
   },
 
+
+  /* ── Extranjeros: adeslas-welcome-seguro-extranjeros-espana-2026 ── */
+  {
+    slug: "adeslas-welcome-seguro-extranjeros-espana-2026",
+    category: "Extranjeros",
+    title: "Adeslas Welcome: el seguro médico para extranjeros residentes en España (2026)",
+    excerpt: "Adeslas Welcome es el seguro médico sin copagos ni carencias pensado para extranjeros que solicitan residencia en España, con certificado válido para trámites de extranjería.",
+    date: "6 Ago 2026",
+    readTime: "7 min",
+    image: "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=600&h=400&fit=crop",
+    seoTitle: "Adeslas Welcome 2026: Seguro Médico para Extranjeros en España",
+    seoDescription: "Qué es Adeslas Welcome, el seguro médico sin copago ni carencias para extranjeros residentes en España: coberturas, certificado de extranjería y a quién va dirigido.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "Adeslas Welcome es el seguro médico privado de Adeslas diseñado específicamente para extranjeros que fijan su residencia en España. Su rasgo distintivo frente al resto de la gama es que no aplica copagos ni periodos de carencia desde el primer día, y emite un certificado válido para presentar en los trámites de extranjería."
+        },
+        {
+            "type": "heading",
+            "text": "¿Para quién está pensado Adeslas Welcome?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Está orientado a personas no comunitarias que necesitan acreditar un seguro médico privado sin copago para solicitar o renovar un permiso de residencia en España —por ejemplo, en procesos de visado de residencia no lucrativa, reagrupación familiar o Golden Visa—, ya que la normativa de extranjería exige que la cobertura no tenga copagos ni carencias."
+        },
+        {
+            "type": "heading",
+            "text": "Qué incluye Adeslas Welcome"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Cobertura médica completa sin copagos: consultas, pruebas diagnósticas y hospitalización sin coste adicional por acto médico",
+                "Sin periodos de carencia: acceso a las coberturas desde el primer día de la póliza",
+                "Certificado de seguro válido para extranjería, que se entrega junto con la póliza",
+                "Acceso al cuadro médico de Adeslas, con más de 51.000 médicos y 1.400 centros en toda España",
+                "Reembolso parcial en caso de acudir a un especialista fuera del cuadro médico, con un límite anual por asegurado"
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "Antes de presentar cualquier seguro para un trámite de extranjería, confirma con tu gestoría o abogado de inmigración que la póliza concreta cumple los requisitos vigentes de la Oficina de Extranjería, ya que estos pueden variar según el tipo de visado."
+        },
+        {
+            "type": "heading",
+            "text": "Adeslas Welcome frente a los planes Plena estándar"
+        },
+        {
+            "type": "paragraph",
+            "text": "La diferencia principal frente a planes como Plena Plus o Plena Total —que también carecen de copago— es que Welcome está calibrado específicamente para el requisito legal de extranjería, con el certificado correspondiente incluido de forma directa, sin gestiones adicionales."
+        },
+        {
+            "type": "faq",
+            "faqItems": [
+                {
+                    "q": "¿Adeslas Welcome sirve para el visado de residencia no lucrativa?",
+                    "a": "Es uno de los usos habituales de este producto, ya que exige un seguro sin copago ni carencias, condición que cumple Adeslas Welcome. Conviene confirmarlo con tu gestoría según el trámite concreto."
+                },
+                {
+                    "q": "¿Tiene periodo de carencia?",
+                    "a": "No, Adeslas Welcome está diseñado sin periodos de carencia, por lo que puedes usar las coberturas desde el primer día de la póliza."
+                },
+                {
+                    "q": "¿Puedo acudir a cualquier médico con Adeslas Welcome?",
+                    "a": "Tienes acceso al amplio cuadro médico de Adeslas en toda España, y en caso de acudir fuera de la red existe reembolso parcial con un límite anual."
+                }
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "En Marchal Aseguradores tramitamos tu seguro Adeslas Welcome y te orientamos sobre la documentación que necesitas para tu trámite de residencia. Llámanos al 91 710 50 00 o solicita información sin compromiso."
+        }
+    ],
+    relatedSlugs: ["seguro-medico-sin-copago-2026","que-cubre-seguro-medico-adeslas-2026","carencias-seguros-medicos-adeslas"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
