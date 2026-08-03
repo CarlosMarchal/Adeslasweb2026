@@ -3665,6 +3665,85 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["cuanto-cuesta-seguro-adeslas-2026","adeslas-familia-numerosa-descuentos-2026","que-cubre-seguro-medico-adeslas-2026"],
   },
 
+
+  /* ── Decesos: seguro-decesos-adeslas-2026 ── */
+  {
+    slug: "seguro-decesos-adeslas-2026",
+    category: "Decesos",
+    title: "Seguro de decesos Adeslas 2026: planes, coberturas y precios",
+    excerpt: "Adeslas ofrece tres modalidades de seguro de decesos según edad y necesidades: Prima Única, Completo y Plus. Te explicamos las diferencias y qué incluye cada una.",
+    date: "3 Ago 2026",
+    readTime: "6 min",
+    image: "https://images.unsplash.com/photo-1522205408450-add114ad53fe?w=600&h=400&fit=crop",
+    seoTitle: "Seguro de Decesos Adeslas 2026: Planes Prima Única, Completo y Plus",
+    seoDescription: "Guía del seguro de decesos Adeslas 2026: diferencias entre Prima Única, Completo y Plus, a qué edades se puede contratar cada uno y qué coberturas incluyen.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "El seguro de decesos de Adeslas cubre los gastos del sepelio y ofrece asistencia a la familia en el momento del fallecimiento del asegurado. Adeslas comercializa tres modalidades pensadas para distintas edades y presupuestos: Prima Única, Completo y Plus."
+        },
+        {
+            "type": "heading",
+            "text": "Las tres modalidades de decesos Adeslas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Prima Única: pensado para personas de 60 años en adelante. Se paga una sola vez y la cobertura queda garantizada de forma vitalicia, sin cuotas periódicas posteriores.",
+                "Completo: dirigido a menores de 70 años, con prima nivelada (cuota estable) y posibilidad de incluir hasta 15 asegurados en la misma póliza familiar, con descuentos progresivos a partir del tercer asegurado.",
+                "Plus: la modalidad más contratada, para menores de 65 años. Añade coberturas de repatriación en cualquier parte del mundo y asistencia médica en viaje, además de las prestaciones propias del servicio funerario."
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "¿Qué incluye habitualmente un seguro de decesos?"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Gestión completa del sepelio: traslado del fallecido, féretro, sala de velatorio, ceremonia e inhumación o incineración",
+                "Asistencia telefónica 24 horas para gestionar los trámites en el momento del fallecimiento",
+                "Servicio jurídico y de gestión de la herencia en muchos casos",
+                "En el plan Plus, repatriación internacional si el fallecimiento ocurre durante un viaje"
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "La modalidad y el precio dependen de la edad de contratación, el número de asegurados en la póliza y si se opta por prima única o cuota periódica. Te recomendamos pedir un presupuesto personalizado antes de decidir."
+        },
+        {
+            "type": "heading",
+            "text": "¿Por qué contratar el decesos con la misma aseguradora que el médico?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Muchas familias que ya tienen su seguro médico con Adeslas optan por añadir el decesos con la misma compañía para simplificar la gestión y aprovechar las condiciones que ofrece un mediador que conoce ya su situación familiar completa."
+        },
+        {
+            "type": "faq",
+            "faqItems": [
+                {
+                    "q": "¿A qué edad puedo contratar el seguro de decesos Prima Única de Adeslas?",
+                    "a": "Está pensado para personas a partir de 60 años, que pagan una sola prima y quedan cubiertas de forma vitalicia."
+                },
+                {
+                    "q": "¿Cuántos asegurados puede incluir la póliza Completo?",
+                    "a": "Hasta 15 asegurados en la misma póliza familiar, con descuentos progresivos a partir del tercer asegurado."
+                },
+                {
+                    "q": "¿Qué diferencia al plan Plus del resto?",
+                    "a": "El plan Plus, para menores de 65 años, incluye repatriación en cualquier parte del mundo y asistencia médica en viaje, además de la cobertura funeraria estándar."
+                }
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "En Marchal Aseguradores te asesoramos sobre qué modalidad de decesos Adeslas se ajusta mejor a tu situación familiar. Llámanos al 91 710 50 00 o solicita información sin compromiso."
+        }
+    ],
+    relatedSlugs: ["seguro-medico-mayores-60-anos-adeslas-2026","seguro-medico-familias-2026","adeslas-familia-numerosa-descuentos-2026"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
