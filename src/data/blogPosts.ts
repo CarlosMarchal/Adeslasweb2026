@@ -3820,6 +3820,81 @@ export const blogPosts: BlogPostFull[] = [
     relatedSlugs: ["seguro-medico-sin-copago-2026","que-cubre-seguro-medico-adeslas-2026","carencias-seguros-medicos-adeslas"],
   },
 
+
+  /* ── Coberturas: fisioterapia-seguro-medico-privado-adeslas-2026 ── */
+  {
+    slug: "fisioterapia-seguro-medico-privado-adeslas-2026",
+    category: "Coberturas",
+    title: "Fisioterapia con seguro médico privado: cómo funciona con Adeslas en 2026",
+    excerpt: "¿Cubre Adeslas la fisioterapia? Te explicamos qué necesitas para acceder a esta cobertura, qué planes tienen menos copago y cómo funciona el reembolso fuera del cuadro médico.",
+    date: "9 Ago 2026",
+    readTime: "6 min",
+    image: "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=600&h=400&fit=crop",
+    seoTitle: "Fisioterapia con Adeslas 2026: Cómo Funciona la Cobertura | Guía",
+    seoDescription: "Guía sobre la cobertura de fisioterapia en los seguros médicos Adeslas 2026: requisitos de prescripción, diferencias entre planes y reembolso fuera del cuadro médico.",
+    body: [
+        {
+            "type": "paragraph",
+            "text": "La fisioterapia está cubierta en los seguros médicos de Adeslas, pero con un requisito clave: no es una cobertura de acceso directo, sino que necesita prescripción de un especialista —habitualmente Rehabilitación, Traumatología o Reumatología— y, en algunos casos, autorización previa de la compañía."
+        },
+        {
+            "type": "heading",
+            "text": "Cómo acceder a fisioterapia con tu seguro Adeslas"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Consulta con el especialista correspondiente (Rehabilitación, Traumatología o Reumatología) dentro del cuadro médico",
+                "El especialista prescribe el tratamiento de fisioterapia indicando el número de sesiones y la patología",
+                "Según el plan y el centro, puede ser necesaria una autorización previa de Adeslas antes de iniciar las sesiones",
+                "Las sesiones se realizan en centros de fisioterapia concertados de la red Adeslas"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Diferencias entre planes: copago en fisioterapia"
+        },
+        {
+            "type": "paragraph",
+            "text": "Como en el resto de actos médicos, el tratamiento de fisioterapia está sujeto al mismo modelo de copago o ausencia de copago que tenga contratado el asegurado. En los planes con copago (como Plena Vital) cada sesión puede tener un coste adicional reducido; en los planes sin copago (Plena Plus, Plena Total, Adeslas Welcome) las sesiones prescritas y autorizadas no generan coste adicional por acto."
+        },
+        {
+            "type": "callout",
+            "text": "Los importes exactos de copago por sesión y el número de sesiones cubiertas dependen del plan concreto y pueden actualizarse anualmente. Te recomendamos confirmar las condiciones vigentes de tu póliza antes de iniciar un tratamiento largo."
+        },
+        {
+            "type": "heading",
+            "text": "¿Y si acudo a un fisioterapeuta fuera del cuadro médico?"
+        },
+        {
+            "type": "paragraph",
+            "text": "Los planes que incluyen libre elección o reembolso —como Adeslas Plena Extra 150— permiten acudir a un fisioterapeuta fuera de la red y solicitar el reembolso de una parte del gasto, generalmente con un porcentaje de reembolso y un límite máximo anual por asegurado. Fuera de estos planes, acudir fuera de la red implica asumir el coste completo."
+        },
+        {
+            "type": "faq",
+            "faqItems": [
+                {
+                    "q": "¿Necesito receta para hacer fisioterapia con Adeslas?",
+                    "a": "Sí, necesitas la prescripción de un especialista (Rehabilitación, Traumatología o Reumatología) y, en algunos casos, autorización previa de la compañía antes de iniciar el tratamiento."
+                },
+                {
+                    "q": "¿Qué plan Adeslas tiene menos copago en fisioterapia?",
+                    "a": "Los planes sin copago, como Plena Plus y Plena Total, no generan coste adicional por sesión una vez prescrita y autorizada la fisioterapia."
+                },
+                {
+                    "q": "¿Puedo elegir mi propio fisioterapeuta?",
+                    "a": "Con planes de libre elección como Plena Extra 150 puedes acudir fuera del cuadro médico y solicitar reembolso parcial, con un límite anual. En el resto de planes, la fisioterapia se realiza en centros concertados."
+                }
+            ]
+        },
+        {
+            "type": "callout",
+            "text": "En Marchal Aseguradores te explicamos qué plan Adeslas te conviene según tu necesidad de rehabilitación o fisioterapia. Llámanos al 91 710 50 00 o calcula tu precio online."
+        }
+    ],
+    relatedSlugs: ["que-cubre-seguro-medico-adeslas-2026","hospitalizacion-privada-vs-publica","seguro-medico-sin-copago-2026"],
+  },
+
 ];
 
 export const getPostBySlug = (slug: string) =>
