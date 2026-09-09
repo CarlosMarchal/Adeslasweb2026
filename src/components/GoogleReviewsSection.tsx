@@ -180,7 +180,7 @@ const GoogleReviewsSection = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch("/api/reviews")
+    fetch("/api/reviews/")
       .then((r) => {
         if (!r.ok) throw new Error("HTTP " + r.status);
         return r.json();
