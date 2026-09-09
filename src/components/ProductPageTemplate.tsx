@@ -521,13 +521,13 @@ const ProductDetail = ({ data }: { data: ProductPageData }) => {
           </motion.div>
 
           {/* Tabs content */}
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="flex gap-1 mb-6 bg-blanco border border-borde p-1" style={{ borderRadius: "12px" }}>
+          <motion.div className="min-w-0" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className="flex flex-wrap justify-center lg:flex-nowrap gap-1 mb-6 bg-blanco border border-borde p-1" style={{ borderRadius: "12px" }}>
               {data.tabs.map((tab, i) => (
                 <button
                   key={tab.label}
                   onClick={() => setActiveTab(i)}
-                  className={`flex-1 py-2.5 px-4 text-sm font-bold transition-colors cursor-pointer${activeTab !== i ? " hover:bg-[#EBF7FD]" : ""}`}
+                  className={`flex-1 min-w-[72px] lg:min-w-0 py-2.5 px-2 sm:px-4 text-xs sm:text-sm font-bold leading-tight text-center transition-colors cursor-pointer${activeTab !== i ? " hover:bg-[#EBF7FD]" : ""}`}
                   style={{
                     borderRadius: "8px",
                     backgroundColor: activeTab === i ? "#009FE3" : "transparent",
