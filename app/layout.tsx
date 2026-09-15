@@ -35,6 +35,7 @@ export const metadata: Metadata = {
 
 const GTM_ID = 'GTM-M6ZDN42';
 const HS_PORTAL = '6596944';
+const OAI_PIXEL_ID = 'Vhb3HDL2swo8Yqqcb9Z5Y6'; // Adeslas CHATGPT Pixel (OpenAI Ads Measurement Pixel)
 
 export default function RootLayout({
   children,
@@ -93,6 +94,9 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://js.hs-banner.com" />
         <link rel="dns-prefetch" href="https://js.hsadspixel.net" />
 
+        {/* ── OpenAI (ChatGPT) Ads — dns-prefetch (el SDK carga afterInteractive) */}
+        <link rel="dns-prefetch" href="https://bzrcdn.openai.com" />
+
         {/* ── Google Tag Manager — dataLayer init (inline, no bloquea render) ─
             Solo inicializa el array; el script gtm.js se carga afterInteractive
             para no penalizar LCP/FCP. Los eventos previos a la carga de GTM
@@ -100,6 +104,15 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`,
+          }}
+        />
+        {/* ── OpenAI (ChatGPT) Ads — init del Measurement Pixel (inline, no bloquea) ─
+            Define el stub window.oaiq y encola "init" + "measure(page_viewed)"
+            antes de que cargue el SDK; el evento "page_viewed" es la conversión
+            creada en OpenAI Ads Manager para el píxel Adeslas CHATGPT. ─────────── */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.oaiq=window.oaiq||function(){(window.oaiq.q=window.oaiq.q||[]).push(arguments)};oaiq("init",{pixelId:"${OAI_PIXEL_ID}"});oaiq("measure","page_viewed",{type:"contents"});`,
           }}
         />
       </head>
@@ -165,6 +178,12 @@ export default function RootLayout({
 })();
 `,
           }}
+        />
+        {/* ── OpenAI (ChatGPT) Ads — loader del SDK (afterInteractive, no penaliza LCP) ── */}
+        <Script
+          id="oai-pixel"
+          strategy="afterInteractive"
+          src="https://bzrcdn.openai.com/sdk/oaiq.min.js"
         />
       </body>
     </html>
