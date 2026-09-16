@@ -107,12 +107,12 @@ export default function RootLayout({
           }}
         />
         {/* ── OpenAI (ChatGPT) Ads — init del Measurement Pixel (inline, no bloquea) ─
-            Define el stub window.oaiq y encola "init" + "measure(page_viewed)"
-            antes de que cargue el SDK; el evento "page_viewed" es la conversión
-            creada en OpenAI Ads Manager para el píxel Adeslas CHATGPT. ─────────── */}
+            Define el stub window.oaiq y encola "init" antes de que cargue el SDK.
+            La conversión de lead ("registration_completed") se dispara en
+            src/lib/tracking.ts al enviarse el formulario. ─────────────────────── */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.oaiq=window.oaiq||function(){(window.oaiq.q=window.oaiq.q||[]).push(arguments)};oaiq("init",{pixelId:"${OAI_PIXEL_ID}"});oaiq("measure","page_viewed",{type:"contents"});`,
+            __html: `window.oaiq=window.oaiq||function(){(window.oaiq.q=window.oaiq.q||[]).push(arguments)};oaiq("init",{pixelId:"${OAI_PIXEL_ID}"});`,
           }}
         />
       </head>
