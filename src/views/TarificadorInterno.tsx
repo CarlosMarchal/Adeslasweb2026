@@ -27,7 +27,7 @@ const MAX_COMMERCIAL_DISCOUNT = CAMPAIGN_MAX_COMISION_PCT; // % máximo, cesión
  * Descuento automático por volumen / campaña según producto y nº de asegurados.
  * Reglas:
  *   · Adeslas GO                          → 2+ aseg: 10% (dto. estructural, no es de campaña)
- *   · Adeslas Plena Vital / Plena Plus    → 4+ aseg: 10% (dto. estructural, no es de campaña)
+ *   · Adeslas Plena / Plena Vital / Plena Plus → 4+ aseg: 10% (dto. estructural, no es de campaña)
  *   · Plena Vital Total / Plena Total
  *     / Seniors Total                     → 3 aseg: 5% | 4 aseg: 10% | 5+: 15% (dto. estructural)
  *   · Negocios NIF / Pymes Total          → descuento en prima de la campaña: 5% (1-3 aseg.)
@@ -39,6 +39,7 @@ function getAutoDiscount(productId: string, n: number): number {
   switch (productId) {
     case "ya":                // Adeslas GO
       return n >= 2 ? 0.10 : 0;
+    case "plena":             // Adeslas Plena
     case "esencial":          // Adeslas Plena Vital
     case "completaPlusPlus":  // Adeslas Plena Plus
       return n >= 4 ? 0.10 : 0;
@@ -63,6 +64,7 @@ function labelAutoDiscount(productId: string, n: number): string {
   }
   const trigger: Record<string, string> = {
     "ya":               "≥2 asegurados",
+    "plena":            "≥4 asegurados",
     "esencial":         "≥4 asegurados",
     "completaPlusPlus": "≥4 asegurados",
     "completaPlus":     n >= 5 ? "≥5 asegurados" : n >= 4 ? "≥4 asegurados" : "≥3 asegurados",
@@ -458,7 +460,7 @@ export default function TarificadorInterno() {
                 </button>
                 {grupo === "general" && (
                   <p className="mt-2 text-xs text-slate-400">
-                    💡 Descuentos automáticos: GO ≥2 · Plena/Plus ≥4 · Totales 3/4/5+ aseg. · Negocios NIF 5%/10% · Pymes Total 5%/15%
+                    💡 Descuentos automáticos: GO ≥2 · Plena/Plena Vital/Plus ≥4 · Totales 3/4/5+ aseg. · Negocios NIF 5%/10% · Pymes Total 5%/15%
                   </p>
                 )}
                 {grupo === "pymes" && (
@@ -691,11 +693,9 @@ export default function TarificadorInterno() {
                                     ? `${mesesGratis} ${mesesGratis === 1 ? "mes gratis" : "meses gratis"}`
                                     : "Sin meses gratis en este tramo"}
                             </p>
-                            {!esAutonomos && (
+                            {es25 && (
                               <p className="text-[10px] font-semibold leading-tight" style={{ color: mp.color, opacity: 0.75 }}>
-                                {es25
-                                  ? "con 3+ asegurados"
-                                  : `+ ${puntosXAseg.toLocaleString()} pts × ${asegurados.length} aseg. = ${totalPuntos.toLocaleString()} puntos`}
+                                con 3+ asegurados
                               </p>
                             )}
                             {esAutonomos && (
@@ -884,14 +884,6 @@ export default function TarificadorInterno() {
                                           {product.id === "negocios-nif"
                                             ? "5% con 1-3 aseg. · 10% con 4+ aseg."
                                             : "5% con 1-3 aseg. · 15% con 4+ aseg. (7,5% en 1ª renovación, 0% en la 2ª)"}
-                                        </p>
-                                      )}
-                                      {!es25 && !esAutonomos && (
-                                        <p className="text-xs font-semibold mt-0.5" style={{ color: mp.color, opacity: 0.8 }}>
-                                          Total puntos: {totalPuntos.toLocaleString()} · Equivale a tarjeta prepago{" "}
-                                          {(Math.floor(totalPuntos / (useDentalTarjetaFormula ? 750 : 500)) * (useDentalTarjetaFormula ? 75 : 50)) > 0
-                                            ? `${Math.floor(totalPuntos / (useDentalTarjetaFormula ? 750 : 500)) * (useDentalTarjetaFormula ? 75 : 50)} €`
-                                            : "disponible"}
                                         </p>
                                       )}
                                     </div>

@@ -710,7 +710,11 @@ export async function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): 
     const esAutonomos   = CAMPAIGN_AUTONOMOS_IDS.has(quote.id);
     const sinPromo      = quote.id === "ya" || quote.mesesGratis === null;
 
-    if (!sinPromo && cliente.includePuntos !== false) {
+    // Particulares con puntos: la § 7 ya muestra meses gratis / 25% + puntos,
+    // así que la franja magenta solo se pinta si no hay § 7 (evita duplicado).
+    const cubiertoPorSeccion7 = !esAutonomos && quote.totalPuntos > 0;
+
+    if (!sinPromo && !cubiertoPorSeccion7 && cliente.includePuntos !== false) {
       ensureSpace(20);
       const pH = 18;
 
