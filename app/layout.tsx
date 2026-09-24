@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import GclidCapture from '@/components/GclidCapture';
+import UtmCapture from '@/components/UtmCapture';
 import StickyCtaBanner from '@/components/StickyCtaBanner';
 import './globals.css';
 import '../src/App.css';
@@ -130,6 +131,9 @@ export default function RootLayout({
 
         {/* Captura el gclid de Google Ads en cada carga y lo persiste (atribución). */}
         <GclidCapture />
+
+        {/* Captura los UTM (first touch) en cada carga y los persiste para el submit. */}
+        <UtmCapture />
 
         {children}
 

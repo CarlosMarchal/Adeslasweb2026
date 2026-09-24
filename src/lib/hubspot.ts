@@ -1,3 +1,5 @@
+import { getUtmHubSpotFields } from "@/lib/utm-tracking";
+
 /* ─────────────────────────────────────────────
    HubSpot Forms Submissions API
    Portal:  6596944
@@ -111,6 +113,9 @@ function buildFields(payload: HubSpotPayload) {
   // Funciona correctamente cuando el hutk se incluye en el contexto (el pixel
   // de HubSpot debe estar instalado para que se genere la cookie hubspotutk).
   if (gclid)             fields.push(field("hs_google_click_id", gclid));
+  // UTM (first touch, persistidos en sessionStorage). Solo se envían los que
+  // tienen valor; las propiedades ya existen en el CRM (portal 6596944).
+  fields.push(...getUtmHubSpotFields());
   return fields;
 }
 
