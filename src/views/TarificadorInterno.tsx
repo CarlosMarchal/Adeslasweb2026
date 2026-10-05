@@ -18,6 +18,9 @@ import {
   getAutonomosDiscountTier,
   getMesesGratisParticulares,
   getPuntosPorAseguradoCampaign,
+  getTrianualDiscount,
+  CAMPAIGN_TRIANUAL_IDS,
+  CAMPAIGN_TRIANUAL_MIN_ASEGURADOS,
 } from "@/data/campanaSalud2026";
 
 /* ─── Constantes ────────────────────────────────────────────── */
@@ -27,9 +30,11 @@ const MAX_COMMERCIAL_DISCOUNT = CAMPAIGN_MAX_COMISION_PCT; // % máximo, cesión
  * Descuento automático por volumen / campaña según producto y nº de asegurados.
  * Reglas:
  *   · Adeslas GO                          → 2+ aseg: 10% (dto. estructural, no es de campaña)
- *   · Adeslas Plena Vital / Plena Plus    → 4+ aseg: 10% (dto. estructural, no es de campaña)
+ *   · Adeslas Plena / Plena Vital / Plena Plus → 4+ aseg: 10% (dto. estructural, no es de campaña)
  *   · Plena Vital Total / Plena Total
- *     / Seniors Total                     → 3 aseg: 5% | 4 aseg: 10% | 5+: 15% (dto. estructural)
+ *     / Seniors Total (TRIANUALES)        → 3+ aseg: 25% sobre la prima base (excluyente,
+ *                                            sustituye a la antigua escala 5/10/15% y no
+ *                                            acumula meses gratis). 1-2 aseg: sin descuento.
  *   · Negocios NIF / Pymes Total          → descuento en prima de la campaña: 5% (1-3 aseg.)
  *                                            10%/15% (4+ aseg., ver getAutonomosDiscountTier)
  *   · Resto de productos                  → sin descuento automático
@@ -39,16 +44,14 @@ function getAutoDiscount(productId: string, n: number): number {
   switch (productId) {
     case "ya":                // Adeslas GO
       return n >= 2 ? 0.10 : 0;
+    case "plena":             // Adeslas Plena
     case "esencial":          // Adeslas Plena Vital
     case "completaPlusPlus":  // Adeslas Plena Plus
       return n >= 4 ? 0.10 : 0;
-    case "completaPlus":      // Adeslas Plena Vital Total
-    case "completa":          // Adeslas Plena Total
-    case "seniors-total":     // Adeslas Seniors Total
-      if (n >= 5) return 0.15;
-      if (n >= 4) return 0.10;
-      if (n >= 3) return 0.05;
-      return 0;
+    case "completaPlus":      // Adeslas Plena Vital Total  (trianual)
+    case "completa":          // Adeslas Plena Total         (trianual)
+    case "seniors-total":     // Adeslas Seniors Total       (trianual)
+      return getTrianualDiscount(productId, n);
     default:
       return 0;
   }
@@ -61,13 +64,14 @@ function labelAutoDiscount(productId: string, n: number): string {
   if (productId === "negocios-nif" || productId === "pymes-total") {
     return `Dto. campaña ${pct}% (${n >= 4 ? "≥4 asegurados" : "1-3 asegurados"})`;
   }
+  if (CAMPAIGN_TRIANUAL_IDS.has(productId)) {
+    return `Dto. trianual ${pct}% (≥${CAMPAIGN_TRIANUAL_MIN_ASEGURADOS} asegurados)`;
+  }
   const trigger: Record<string, string> = {
     "ya":               "≥2 asegurados",
+    "plena":            "≥4 asegurados",
     "esencial":         "≥4 asegurados",
     "completaPlusPlus": "≥4 asegurados",
-    "completaPlus":     n >= 5 ? "≥5 asegurados" : n >= 4 ? "≥4 asegurados" : "≥3 asegurados",
-    "completa":         n >= 5 ? "≥5 asegurados" : n >= 4 ? "≥4 asegurados" : "≥3 asegurados",
-    "seniors-total":    n >= 5 ? "≥5 asegurados" : n >= 4 ? "≥4 asegurados" : "≥3 asegurados",
   };
   return `Dto. ${pct}% (${trigger[productId] ?? ""})`;
 }
@@ -120,18 +124,24 @@ function getMensajePublico(
     return { text: "🎁 Oferta pública: 25% de descuento (≥3 asegurados)", color: "#9D174D", bg: "#FDF2F8" };
   if (meses === null) return null;
   if (meses === 0)
-    return { text: `🎁 Oferta pública: ${getPuntosPorAseguradoCampaign(productId)} pts/aseg.`, color: "#92400E", bg: "#FFFBEB" };
+    return { text: `🎁 Oferta pública: ${getPuntosPorAseguradoCampaign(productId, dentalModuloActivo)} pts/aseg.`, color: "#92400E", bg: "#FFFBEB" };
   return {
-    text: `🎁 Oferta pública: ${meses} ${meses === 1 ? "mes gratis" : "meses gratis"} + ${getPuntosPorAseguradoCampaign(productId)} pts/aseg.`,
+    text: `🎁 Oferta pública: ${meses} ${meses === 1 ? "mes gratis" : "meses gratis"} + ${getPuntosPorAseguradoCampaign(productId, dentalModuloActivo)} pts/aseg.`,
     color: "#92400E",
     bg: "#FFFBEB",
   };
 }
 
-/* ─── Puntos Segurísimos por asegurado: fijo, 250 pts/aseg. en toda
-   contratación en promoción (particulares). Autónomos/Pymes: 0. ── */
-function puntosXAsegurado(_cat: CampaignCat, _totalAsegurados: number, productId: string): number {
-  return getPuntosPorAseguradoCampaign(productId);
+/* ─── Puntos Segurísimos por asegurado: 250 pts/aseg. en salud sin dental y
+   500 pts/aseg. si la póliza lleva dental (módulo contratado o dental de
+   serie). Autónomos/Pymes: 0. ── */
+function puntosXAsegurado(
+  _cat: CampaignCat,
+  _totalAsegurados: number,
+  productId: string,
+  dentalModuloActivo = false,
+): number {
+  return getPuntosPorAseguradoCampaign(productId, dentalModuloActivo);
 }
 
 /* ─── Catálogo de premios ───────────────────────────────────── */
@@ -300,7 +310,7 @@ export default function TarificadorInterno() {
         // Campaña (particulares): puntos fijos por asegurado + meses gratis / 25% dto.
         // según producto y nº de asegurados. Cifras únicas en @/data/campanaSalud2026.
         const dentalActivoParaCampana = includeDental && !dentalYaIncluido;
-        const puntosXAseg = puntosXAsegurado(cat, asegurados.length, product.id);
+        const puntosXAseg = puntosXAsegurado(cat, asegurados.length, product.id, dentalActivoParaCampana);
         const totalPuntos = puntosXAseg * validCount;
         const mesesGratis = getMesesGratisParticulares(product.id, asegurados.length, dentalActivoParaCampana);
         // Fórmula tarjeta 750 pts = 75 €: dental de serie o módulo dental activo; si no, 500 pts = 50 €.
@@ -458,7 +468,7 @@ export default function TarificadorInterno() {
                 </button>
                 {grupo === "general" && (
                   <p className="mt-2 text-xs text-slate-400">
-                    💡 Descuentos automáticos: GO ≥2 · Plena/Plus ≥4 · Totales 3/4/5+ aseg. · Negocios NIF 5%/10% · Pymes Total 5%/15%
+                    💡 Descuentos automáticos: GO ≥2 · Plena/Plena Vital/Plus ≥4 · Trianuales (Totales) 25% desde 3 aseg. · Negocios NIF 5%/10% · Pymes Total 5%/15%
                   </p>
                 )}
                 {grupo === "pymes" && (
@@ -670,7 +680,7 @@ export default function TarificadorInterno() {
 
                     {/* Oferta pública campaña — bloque destacado en fila compacta */}
                     {(() => {
-                      const mp = getMensajePublico(product.id, asegurados.length);
+                      const mp = getMensajePublico(product.id, asegurados.length, useDentalTarjetaFormula);
                       if (!mp) return null;
                       const esAutonomos = CAMPAIGN_AUTONOMOS_IDS.has(product.id);
                       const es25 = mesesGratis === "descuento25";
@@ -691,11 +701,9 @@ export default function TarificadorInterno() {
                                     ? `${mesesGratis} ${mesesGratis === 1 ? "mes gratis" : "meses gratis"}`
                                     : "Sin meses gratis en este tramo"}
                             </p>
-                            {!esAutonomos && (
+                            {es25 && (
                               <p className="text-[10px] font-semibold leading-tight" style={{ color: mp.color, opacity: 0.75 }}>
-                                {es25
-                                  ? "con 3+ asegurados"
-                                  : `+ ${puntosXAseg.toLocaleString()} pts × ${asegurados.length} aseg. = ${totalPuntos.toLocaleString()} puntos`}
+                                con 3+ asegurados · ya aplicado en el precio
                               </p>
                             )}
                             {esAutonomos && (
@@ -856,11 +864,11 @@ export default function TarificadorInterno() {
                                 )}
                                 <p className="text-xs text-amber-600 mt-1">
                                   {labelDental(cat)} ·{" "}
-                                  250 pts/asegurado (fijo) · se acreditan al 4º mes, caducan a los 12 meses
+                                  {puntosXAseg.toLocaleString()} pts/asegurado ({useDentalTarjetaFormula ? "con dental" : "sin dental"}) · se acreditan al 4º mes, caducan a los 12 meses
                                 </p>
                                 {/* Oferta pública campaña — en el desglose expandido */}
                                 {(() => {
-                                  const mp = getMensajePublico(product.id, asegurados.length);
+                                  const mp = getMensajePublico(product.id, asegurados.length, useDentalTarjetaFormula);
                                   if (!mp) return null;
                                   const esAutonomos = CAMPAIGN_AUTONOMOS_IDS.has(product.id);
                                   const es25 = mesesGratis === "descuento25";
@@ -884,14 +892,6 @@ export default function TarificadorInterno() {
                                           {product.id === "negocios-nif"
                                             ? "5% con 1-3 aseg. · 10% con 4+ aseg."
                                             : "5% con 1-3 aseg. · 15% con 4+ aseg. (7,5% en 1ª renovación, 0% en la 2ª)"}
-                                        </p>
-                                      )}
-                                      {!es25 && !esAutonomos && (
-                                        <p className="text-xs font-semibold mt-0.5" style={{ color: mp.color, opacity: 0.8 }}>
-                                          Total puntos: {totalPuntos.toLocaleString()} · Equivale a tarjeta prepago{" "}
-                                          {(Math.floor(totalPuntos / (useDentalTarjetaFormula ? 750 : 500)) * (useDentalTarjetaFormula ? 75 : 50)) > 0
-                                            ? `${Math.floor(totalPuntos / (useDentalTarjetaFormula ? 750 : 500)) * (useDentalTarjetaFormula ? 75 : 50)} €`
-                                            : "disponible"}
                                         </p>
                                       )}
                                     </div>

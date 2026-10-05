@@ -18,7 +18,11 @@ export const CAMPAIGN_END_DATE = "2026-12-31";
 export const CAMPAIGN_DEFERRAL_DATE = "2027-01-01";
 export const CAMPAIGN_EXCLUDED_PROVINCE = "Ibiza";
 
+/* Puntos Segurísimos por asegurado (particulares en promoción):
+   250 pts si la póliza es de salud sin dental · 500 pts si lleva dental
+   (módulo dental contratado o cobertura dental incluida de serie). */
 export const CAMPAIGN_PUNTOS_POR_ASEGURADO = 250;
+export const CAMPAIGN_PUNTOS_POR_ASEGURADO_DENTAL = 500;
 export const CAMPAIGN_PUNTOS_ACREDITAN_MES = 4; // se acreditan al 4º mes de vigencia, al corriente de pago
 export const CAMPAIGN_PUNTOS_CADUCAN_MESES = 12;
 
@@ -47,8 +51,35 @@ export const CAMPAIGN_NO_PROMO_IDS = new Set(["ya"]);
    25% descuento excluyente a partir de 3 asegurados. */
 export const CAMPAIGN_FAMILIA_TOTAL_IDS = new Set(["completa", "completaPlus"]);
 
-/* Plena Total Seniors: 2 / 3 / 3 meses gratis (sin descuento ni abono en cuenta). */
+/* Plena Total Seniors: 2 / 3 meses gratis (1 / 2 aseg.); a partir de 3, 25%. */
 export const CAMPAIGN_SENIORS_TOTAL_ID = "seniors-total";
+
+/* ── Productos trianuales (prima garantizada a 3 años) ─────────
+   Plena Total, Plena Vital Total y Plena Total Seniors.
+   A partir de 3 asegurados: 25% de descuento sobre la prima base, EXCLUYENTE
+   (sustituye al descuento automático por tramos y no acumula meses gratis).
+   Con 1 o 2 asegurados mantienen sus meses gratis (2 / 3). */
+export const CAMPAIGN_TRIANUAL_IDS = new Set(["completa", "completaPlus", "seniors-total"]);
+export const CAMPAIGN_TRIANUAL_DESCUENTO = 0.25;
+export const CAMPAIGN_TRIANUAL_MIN_ASEGURADOS = 3;
+
+/** Descuento trianual aplicable sobre la prima base (0 si no procede). */
+export function getTrianualDiscount(productId: string, numAsegurados: number): number {
+  return CAMPAIGN_TRIANUAL_IDS.has(productId) && numAsegurados >= CAMPAIGN_TRIANUAL_MIN_ASEGURADOS
+    ? CAMPAIGN_TRIANUAL_DESCUENTO
+    : 0;
+}
+
+/* Productos con cobertura dental incluida de serie (a efectos de puntos y de
+   la fórmula de tarjeta prepago). */
+export const CAMPAIGN_DENTAL_DE_SERIE_IDS = new Set([
+  "completa", "completaPlus", "seniors", "seniors-total",
+]);
+
+/** ¿La póliza lleva dental? (de serie o con el módulo dental contratado) */
+export function tieneDentalCampaign(productId: string, dentalModuloActivo = false): boolean {
+  return dentalModuloActivo || CAMPAIGN_DENTAL_DE_SERIE_IDS.has(productId);
+}
 
 /* "Gama Plena" (Plena, Plena Vital, Plena Plus, Plena Extra) + Adeslas Seniors:
    1 / 2 / 2 meses gratis, según las filas "Gama Plena + Adeslas Seniors +
@@ -86,13 +117,10 @@ export function getMesesGratisParticulares(
 ): number | "descuento25" | null {
   if (CAMPAIGN_NO_PROMO_IDS.has(productId) || CAMPAIGN_AUTONOMOS_IDS.has(productId)) return null;
 
-  if (CAMPAIGN_FAMILIA_TOTAL_IDS.has(productId)) {
-    if (numAsegurados >= 3) return "descuento25";
-    return numAsegurados === 2 ? 3 : 2;
-  }
-
-  if (productId === CAMPAIGN_SENIORS_TOTAL_ID) {
-    if (numAsegurados >= 3) return 3;
+  // Trianuales (Plena Total, Plena Vital Total, Plena Total Seniors):
+  // a partir de 3 asegurados el 25% es excluyente, sin meses gratis.
+  if (CAMPAIGN_TRIANUAL_IDS.has(productId)) {
+    if (numAsegurados >= CAMPAIGN_TRIANUAL_MIN_ASEGURADOS) return "descuento25";
     return numAsegurados === 2 ? 3 : 2;
   }
 
@@ -103,10 +131,15 @@ export function getMesesGratisParticulares(
   return null;
 }
 
-/** Puntos Segurísimos por asegurado (fijo, particulares en promoción). */
-export function getPuntosPorAseguradoCampaign(productId: string): number {
+/**
+ * Puntos Segurísimos por asegurado (particulares en promoción):
+ * 250 pts sin dental · 500 pts con dental (módulo contratado o dental de serie).
+ */
+export function getPuntosPorAseguradoCampaign(productId: string, dentalModuloActivo = false): number {
   if (CAMPAIGN_NO_PROMO_IDS.has(productId) || CAMPAIGN_AUTONOMOS_IDS.has(productId)) return 0;
-  return CAMPAIGN_PUNTOS_POR_ASEGURADO;
+  return tieneDentalCampaign(productId, dentalModuloActivo)
+    ? CAMPAIGN_PUNTOS_POR_ASEGURADO_DENTAL
+    : CAMPAIGN_PUNTOS_POR_ASEGURADO;
 }
 
 export interface CampaignBadge {
@@ -132,7 +165,7 @@ export function getCampaignBadgeText(
   if (meses === "descuento25") return { text: "🎁 25% de descuento", bg: "#FDF2F8", color: "#9D174D" };
   if (meses === null) return null;
 
-  const puntos = getPuntosPorAseguradoCampaign(productId);
+  const puntos = getPuntosPorAseguradoCampaign(productId, dentalModuloActivo);
   if (meses === 0) return { text: `🎁 ${puntos} pts/aseg.`, bg: "#FDF2F8", color: "#9D174D" };
   return {
     text: `🎁 ${meses} ${meses === 1 ? "mes gratis" : "meses gratis"} · ${puntos} pts/aseg.`,
