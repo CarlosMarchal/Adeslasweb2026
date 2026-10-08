@@ -21,6 +21,11 @@ export interface ProductPricing {
   ageType: "individual" | "range";
   /** key = age band (string), value = [Z1,Z2,Z3,Z4,Z5,Z6] monthly prices */
   prices: Record<string, ZonePrices>;
+  /** Tabla alternativa de primas a partir de `tier2MinAsegurados` asegurados
+      (productos con tarifa por tramo de grupo, p. ej. Adeslas Pymes Total). */
+  pricesTier2?: Record<string, ZonePrices>;
+  /** Nº de asegurados a partir del cual se usa `pricesTier2`. */
+  tier2MinAsegurados?: number;
 }
 
 /* ── Province → Zone mapping ── */
@@ -285,13 +290,24 @@ export const products: ProductPricing[] = [
     slug: "/seguro-salud/pymes/",
     maxAge: 99,
     ageType: "range",
+    /* Tarifa agosto 2026 — primas NETAS, con el descuento de campaña ya aplicado.
+       `prices` = tramo de 1 a 3 asegurados · `pricesTier2` = 4 o más asegurados.
+       No se les aplica ningún descuento automático adicional; solo admite la
+       cesión de comisión del agente (máx. 5%). */
+    tier2MinAsegurados: 4,
     prices: {
-      /* Nueva tarifa agosto 2026 (primas base, antes de descuento de campaña) */
-      "0-44":  [ 61,  63,  64,  66,  67,  69],
-      "45-54": [ 74,  75,  77,  79,  82,  83],
-      "55-59": [ 92,  98, 102, 104, 109, 114],
-      "60-67": [135, 140, 145, 150, 155, 160],
-      "≥68":   [200, 210, 220, 230, 240, 250],
+      "0-44":  [ 57.95,  59.85,  60.80,  62.70,  63.65,  65.55],
+      "45-54": [ 70.30,  71.25,  73.15,  75.05,  77.90,  78.85],
+      "55-59": [ 87.40,  93.10,  96.90,  98.80, 103.55, 108.30],
+      "60-67": [128.25, 133.00, 137.75, 142.50, 147.25, 152.00],
+      "≥68":   [190.00, 199.50, 209.00, 218.50, 228.00, 237.50],
+    },
+    pricesTier2: {
+      "0-44":  [ 51.85,  53.55,  54.40,  56.10,  56.95,  58.65],
+      "45-54": [ 62.90,  63.75,  65.45,  67.15,  69.70,  70.55],
+      "55-59": [ 78.20,  83.30,  86.70,  88.40,  92.65,  96.90],
+      "60-67": [114.75, 119.00, 123.25, 127.50, 131.75, 136.00],
+      "≥68":   [170.00, 178.50, 187.00, 195.50, 204.00, 212.50],
     },
   },
 
@@ -388,27 +404,40 @@ export const extStudentsPricing: Record<string, [number, number, number, number]
   "70": [675.68, 236.49, 211.15, 196.37],
 };
 
-/** Get the price for a product given age and zone (1-6) */
-export function getPrice(product: ProductPricing, age: number, zone: number): number | null {
+/** Get the price for a product given age and zone (1-6).
+    `numAsegurados` solo se usa en productos con tarifa por tramo de grupo
+    (`pricesTier2`); en el resto es irrelevante. */
+export function getPrice(
+  product: ProductPricing,
+  age: number,
+  zone: number,
+  numAsegurados?: number,
+): number | null {
   const zoneIdx = zone - 1;
   if (zoneIdx < 0 || zoneIdx > 5) return null;
+
+  const usaTier2 =
+    product.pricesTier2 != null &&
+    numAsegurados != null &&
+    numAsegurados >= (product.tier2MinAsegurados ?? Infinity);
+  const tabla = usaTier2 ? product.pricesTier2! : product.prices;
 
   if (product.ageType === "individual") {
     // Individual age lookup: exact age or ≥71
     const key = age >= 71 ? "≥71" : String(age);
-    const row = product.prices[key];
+    const row = tabla[key];
     return row ? row[zoneIdx] : null;
   }
 
   // Range-based lookup
-  const ranges = Object.keys(product.prices);
+  const ranges = Object.keys(tabla);
   for (const rangeKey of ranges) {
     if (rangeKey.startsWith("≥")) {
       const minAge = parseInt(rangeKey.replace("≥", ""), 10);
-      if (age >= minAge) return product.prices[rangeKey][zoneIdx];
+      if (age >= minAge) return tabla[rangeKey][zoneIdx];
     } else if (rangeKey.includes("-")) {
       const [lo, hi] = rangeKey.split("-").map(Number);
-      if (age >= lo && age <= hi) return product.prices[rangeKey][zoneIdx];
+      if (age >= lo && age <= hi) return tabla[rangeKey][zoneIdx];
     }
   }
   return null;
