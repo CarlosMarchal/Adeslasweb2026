@@ -298,6 +298,11 @@
     "wordpress": true
   },
   {
+    "url": "/blog/adeslas-welcome-seguro-extranjeros-espana-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
     "url": "/blog/caminar-beneficios-reales",
     "expect": [
       301,
@@ -423,6 +428,11 @@
   },
   {
     "url": "/blog/enfermedades-preexistentes-seguro-medico-adeslas-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/fisioterapia-seguro-medico-privado-adeslas-2026/",
     "expect": 200,
     "indexable": true
   },
@@ -567,7 +577,17 @@
     "indexable": true
   },
   {
+    "url": "/blog/seguro-decesos-adeslas-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
     "url": "/blog/seguro-dental-adeslas-coberturas-precios-2026/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/blog/seguro-mascotas-adeslas-2026/",
     "expect": 200,
     "indexable": true
   },
@@ -721,6 +741,19 @@
   },
   {
     "url": "/cuadro-medico/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
+    "url": "/cuadro-medico/seniors",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/cuadro-medico/seniors/"
+  },
+  {
+    "url": "/cuadro-medico/seniors/",
     "expect": 200,
     "indexable": true
   },

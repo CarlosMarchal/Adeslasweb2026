@@ -317,6 +317,15 @@ export const PAGE_META: Record<string, PageMeta> = {
     h1: "Cuadro Médico Adeslas 2026 — Más de 51.000 Médicos y 1.400 Centros en España",
     h2: "Busca tu médico Adeslas por especialidad y provincia",
   },
+  "/cuadro-medico/seniors": {
+    title: "Cuadro Médico Adeslas Seniors 2026 | PDF por Provincia",
+    description:
+      "Descarga el cuadro médico Adeslas Seniors 2026 en PDF: Madrid, Barcelona, Sevilla, Málaga, Alicante, Zaragoza y más. Hospitales de urgencias, especialistas y pruebas.",
+    canonical: `${BASE}/cuadro-medico/seniors/`,
+    ogImage: `${BASE}/og-seniors.jpg`,
+    h1: "Cuadro Médico Adeslas Seniors 2026 — Médicos, Hospitales y Urgencias por Provincia",
+    h2: "Descarga el cuadro médico del seguro Adeslas Seniors para mayores de 55 años",
+  },
   "/contacto": {
     title: "Contacto | Adeslas — Asesoramiento Gratuito Sin Compromiso",
     description:

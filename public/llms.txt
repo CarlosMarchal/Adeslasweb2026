@@ -271,6 +271,7 @@ Si tienes un seguro médico en vigor y cambias a Adeslas sin interrupción, Ades
 
 - Calculador de precios Adeslas: https://adeslas.numero1salud.es/precios-y-ofertas/
 - Cuadro médico Adeslas por provincia: https://adeslas.numero1salud.es/cuadro-medico/
+- Cuadro médico Adeslas Seniors 2026 por provincia (PDF, hospitales con urgencias, autorizaciones): https://adeslas.numero1salud.es/cuadro-medico/seniors/
 - Contacto y alta Adeslas: https://adeslas.numero1salud.es/contacto/
 - Blog de salud Adeslas: https://adeslas.numero1salud.es/adeslas-blog/
 
@@ -359,5 +360,6 @@ Si tienes un seguro médico en vigor y cambias a Adeslas sin interrupción, Ades
 - https://adeslas.numero1salud.es/alta-adeslas/ — Guía alta en Adeslas
 - https://adeslas.numero1salud.es/como-contratar-adeslas/ — Cómo contratar paso a paso
 - https://adeslas.numero1salud.es/cuadro-medico/ — Cuadro médico por provincia
+- https://adeslas.numero1salud.es/cuadro-medico/seniors/ — Cuadro médico Adeslas Seniors 2026 por provincia
 - https://adeslas.numero1salud.es/contacto/ — Contacto y asesoramiento gratuito
 - https://adeslas.numero1salud.es/adeslas-blog/ — Blog de salud

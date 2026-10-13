@@ -236,6 +236,25 @@ const CuadroMedico = ({ renderSeo = true }: { renderSeo?: boolean } = {}) => {
               No se encontraron provincias con ese nombre.
             </p>
           )}
+
+          {/* Enlace interno al cuadro específico de la póliza Seniors */}
+          <a
+            href="/cuadro-medico/seniors/"
+            className="group mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border border-azul-medio p-5 transition-colors duration-200 hover:bg-[#E8F4FC]"
+            style={{ borderRadius: "12px", backgroundColor: "#F5FAFE" }}
+          >
+            <span>
+              <span className="block text-gris-texto font-bold">
+                ¿Tienes Adeslas Seniors? Descarga el cuadro médico Seniors 2026
+              </span>
+              <span className="block text-sm text-gris-medio">
+                Cuadro específico de la póliza para mayores de 55 años, por provincia.
+              </span>
+            </span>
+            <span className="text-sm font-semibold text-azul-medio whitespace-nowrap group-hover:underline">
+              Ver cuadro médico Seniors →
+            </span>
+          </a>
         </div>
       </section>
 
