@@ -127,6 +127,34 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     },
   ],
 
+  // ── CUADRO MÉDICO ADESLAS SENIORS ───────────────────────────────────
+  "/cuadro-medico/seniors": [
+    {
+      q: "¿Qué es el cuadro médico Adeslas Seniors 2026?",
+      a: "Es la guía oficial de médicos, centros y hospitales concertados para los asegurados de Adeslas Seniors, el seguro de salud de Adeslas para mayores de 55 años. Se publica por provincia e incluye oficinas de atención, médicos asesores de salud, servicios de urgencia, especialistas de la capital, pruebas diagnósticas, tratamientos especiales, centros hospitalarios, médicos por población y asistencia en el resto de España.",
+    },
+    {
+      q: "¿En qué provincias puedo descargar el cuadro médico Adeslas Seniors 2026?",
+      a: "En esta página puedes descargar en PDF el cuadro médico Adeslas Seniors 2026 de Albacete, Alicante, Ávila, Barcelona, Girona, Islas Baleares, León, Madrid, Málaga, Sevilla, Valladolid y Zaragoza. Si tu provincia no aparece, puedes consultar el cuadro médico general de Adeslas o pedirnos el de tu provincia sin compromiso.",
+    },
+    {
+      q: "¿Qué servicios del seguro Adeslas Seniors necesitan autorización previa?",
+      a: "Según el cuadro médico Adeslas Seniors 2026, necesitan autorización previa, entre otros: hospitalización, intervenciones quirúrgicas, TAC y resonancia magnética, medicina nuclear, endoscopias, pruebas cardiológicas como ergometría u Holter, rehabilitación y fisioterapia, oncología y la unidad del dolor. La autorización se puede pedir on-line desde el Área Cliente de Adeslas y se recibe por e-mail en menos de 48 horas laborables.",
+    },
+    {
+      q: "¿Dónde acudo en caso de urgencia con Adeslas Seniors?",
+      a: "Cada cuadro médico provincial incluye los hospitales y clínicas concertados con urgencias generales (la mayoría abiertos 24 horas), las urgencias por especialidad, las urgencias ambulatorias y el servicio de urgencias médicas y de enfermería a domicilio y ambulancias, disponible las 24 horas en el teléfono que figura en tu tarjeta de asegurado.",
+    },
+    {
+      q: "¿Tengo cobertura con Adeslas Seniors fuera de mi provincia?",
+      a: "Sí. El cuadro médico Adeslas Seniors incluye un apartado de Asistencia Nacional con los centros hospitalarios concertados en el resto de provincias. En el extranjero, Adeslas presta asistencia en desplazamientos a través del teléfono que aparece en el reverso de la tarjeta, disponible las 24 horas.",
+    },
+    {
+      q: "¿El PDF del cuadro médico Seniors está siempre actualizado?",
+      a: "El PDF corresponde a la edición 2026 del cuadro médico Adeslas Seniors. La versión siempre actualizada está en el Área Cliente de adeslas.es y en la app de Adeslas, donde además puedes filtrar médicos por cercanía, cita on-line, videoconsulta y receta electrónica.",
+    },
+  ],
+
   // ── AUTÓNOMOS ────────────────────────────────────────────────────────
   "/autonomos": [
     {

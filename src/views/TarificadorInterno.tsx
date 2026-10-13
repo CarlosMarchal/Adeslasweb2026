@@ -35,11 +35,16 @@ const MAX_COMMERCIAL_DISCOUNT = CAMPAIGN_MAX_COMISION_PCT; // % máximo, cesión
  *     / Seniors Total (TRIANUALES)        → 3+ aseg: 25% sobre la prima base (excluyente,
  *                                            sustituye a la antigua escala 5/10/15% y no
  *                                            acumula meses gratis). 1-2 aseg: sin descuento.
- *   · Negocios NIF / Pymes Total          → descuento en prima de la campaña: 5% (1-3 aseg.)
- *                                            10%/15% (4+ aseg., ver getAutonomosDiscountTier)
+ *   · Negocios NIF                        → descuento en prima de la campaña: 5% (1-3 aseg.)
+ *                                            10% (4+ aseg., ver getAutonomosDiscountTier)
+ *   · Pymes Total                         → sin descuento automático: la tarifa ya es neta
+ *                                            (tabla 1-3 aseg. y tabla 4+ aseg. en pricing.ts)
  *   · Resto de productos                  → sin descuento automático
  */
 function getAutoDiscount(productId: string, n: number): number {
+  // Adeslas Pymes Total: las primas de pricing.ts ya son netas (tarifa de
+  // campaña por tramo 1-3 / 4+), así que no lleva descuento automático.
+  if (productId === "pymes-total") return 0;
   if (CAMPAIGN_AUTONOMOS_IDS.has(productId)) return getAutonomosDiscountTier(productId, n);
   switch (productId) {
     case "ya":                // Adeslas GO
@@ -113,6 +118,14 @@ function getMensajePublico(
   dentalModuloActivo = false,
 ): { text: string; color: string; bg: string } | null {
   if (productId === "ya") return null;
+
+  if (productId === "pymes-total") {
+    return {
+      text: `🏷️ Tarifa de campaña ya aplicada (${n >= 4 ? "4+ asegurados" : "1-3 asegurados"})`,
+      color: "#1D4ED8",
+      bg: "#EFF6FF",
+    };
+  }
 
   if (CAMPAIGN_AUTONOMOS_IDS.has(productId)) {
     const pct = getAutonomosDiscountTier(productId, n) * 100;
@@ -280,7 +293,7 @@ export default function TarificadorInterno() {
 
         const preciosPorPersona = asegurados.map((edad) => ({
           edad,
-          precio: getPrice(product, edad, zona),
+          precio: getPrice(product, edad, zona, asegurados.length),
           banda: getBandLabel(edad),
         }));
 
@@ -468,12 +481,12 @@ export default function TarificadorInterno() {
                 </button>
                 {grupo === "general" && (
                   <p className="mt-2 text-xs text-slate-400">
-                    💡 Descuentos automáticos: GO ≥2 · Plena/Plena Vital/Plus ≥4 · Trianuales (Totales) 25% desde 3 aseg. · Negocios NIF 5%/10% · Pymes Total 5%/15%
+                    💡 Descuentos automáticos: GO ≥2 · Plena/Plena Vital/Plus ≥4 · Trianuales (Totales) 25% desde 3 aseg. · Negocios NIF 5%/10% · Pymes Total: tarifa neta por tramo (1-3 / 4+)
                   </p>
                 )}
                 {grupo === "pymes" && (
                   <p className="mt-2 text-xs text-slate-400">
-                    💡 Descuento de campaña automático: 5% (1-3 aseg.) · 15% (4+ aseg.)
+                    💡 Pymes Total: tarifa ya neta por tramo (1-3 / 4+ aseg.) · Negocios NIF: 5% (1-3 aseg.) · 10% (4+ aseg.)
                   </p>
                 )}
               </div>
@@ -695,7 +708,9 @@ export default function TarificadorInterno() {
                             <p className="text-[11px] font-black leading-tight" style={{ color: mp.color }}>
                               {es25
                                 ? "25% de descuento"
-                                : esAutonomos
+                                : product.id === "pymes-total"
+                                  ? "Tarifa de campaña ya aplicada"
+                                  : esAutonomos
                                   ? `${pctAutonomos}% dto. en prima`
                                   : typeof mesesGratis === "number" && mesesGratis > 0
                                     ? `${mesesGratis} ${mesesGratis === 1 ? "mes gratis" : "meses gratis"}`
@@ -708,7 +723,9 @@ export default function TarificadorInterno() {
                             )}
                             {esAutonomos && (
                               <p className="text-[10px] font-semibold leading-tight" style={{ color: mp.color, opacity: 0.75 }}>
-                                {product.id === "negocios-nif" ? "5% (1-3 aseg.) · 10% (4+ aseg.)" : "5% (1-3 aseg.) · 15% (4+ aseg., 7,5% en 1ª renov.)"}
+                                {product.id === "negocios-nif"
+                                  ? "5% (1-3 aseg.) · 10% (4+ aseg.)"
+                                  : `tarifa ${asegurados.length >= 4 ? "4+ asegurados" : "1-3 asegurados"} · 15% en 4+ (7,5% en 1ª renov.)`}
                               </p>
                             )}
                           </div>
@@ -908,12 +925,14 @@ export default function TarificadorInterno() {
                               <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3">
                                 <p className="text-sm font-bold text-blue-800">🏷️ Campaña · Descuento en prima</p>
                                 <p className="text-xs text-blue-700 mt-0.5">
-                                  {getAutonomosDiscountTier(product.id, asegurados.length) * 100}% aplicado en este presupuesto
+                                  {product.id === "pymes-total"
+                                    ? `Tarifa de campaña ${asegurados.length >= 4 ? "de 4 o más asegurados" : "de 1 a 3 asegurados"} — el descuento ya está incluido en las primas`
+                                    : `${getAutonomosDiscountTier(product.id, asegurados.length) * 100}% aplicado en este presupuesto`}
                                 </p>
                                 <p className="text-xs text-blue-600 mt-1">
                                   {product.id === "negocios-nif"
                                     ? "5% con 1-3 aseg. · 10% con 4+ aseg."
-                                    : "5% con 1-3 aseg. · 15% con 4+ aseg. (7,5% en 1ª renovación, 0% en la 2ª)"}
+                                    : "Tarifa agosto 2026 · el 15% de 4+ aseg. baja a 7,5% en la 1ª renovación y desaparece en la 2ª"}
                                   {" · Sin meses gratis ni puntos · Solo pólizas nuevas"}
                                 </p>
                               </div>
