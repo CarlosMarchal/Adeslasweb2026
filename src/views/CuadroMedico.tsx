@@ -255,6 +255,25 @@ const CuadroMedico = ({ renderSeo = true }: { renderSeo?: boolean } = {}) => {
               Ver cuadro médico Seniors →
             </span>
           </a>
+
+          {/* Enlace interno al cuadro específico de la póliza Adeslas GO */}
+          <a
+            href="/cuadro-medico/go/"
+            className="group mt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border border-azul-medio p-5 transition-colors duration-200 hover:bg-[#E8F4FC]"
+            style={{ borderRadius: "12px", backgroundColor: "#F5FAFE" }}
+          >
+            <span>
+              <span className="block text-gris-texto font-bold">
+                ¿Tienes Adeslas GO? Descarga el cuadro médico GO 2026
+              </span>
+              <span className="block text-sm text-gris-medio">
+                Cuadro del seguro ambulatorio Adeslas GO (y Adeslas Básico), por provincia.
+              </span>
+            </span>
+            <span className="text-sm font-semibold text-azul-medio whitespace-nowrap group-hover:underline">
+              Ver cuadro médico GO →
+            </span>
+          </a>
         </div>
       </section>
 
