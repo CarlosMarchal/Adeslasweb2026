@@ -18,8 +18,13 @@ export interface ProvinciaSeniors {
   slug: string;
   paginas: number;
   sizeMb: string;
+  /** Municipios (no exhaustivo) con médicos en el apartado "Poblaciones" del PDF, verificados contra el texto. */
+  poblaciones: string[];
   urgencias: string[];
 }
+
+/** Fechas de la página (ISO). Actualizar `modificado` al publicar una nueva edición o revisar datos. */
+export const SENIORS_FECHAS = { publicado: "2026-10-13", modificado: "2026-10-14" };
 
 export const SENIORS_PDF_DIR = "/cuadros-medicos/seniors";
 
@@ -30,6 +35,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Albacete",
     slug: "albacete",
+    poblaciones: ["Hellín", "Villarrobledo", "Almansa", "La Roda"],
     paginas: 92,
     sizeMb: "0,6",
     urgencias: ["Hospital Quirónsalud Santa Cristina", "Hospital Quirónsalud (Pl. Madroño)"],
@@ -37,6 +43,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Alicante",
     slug: "alicante",
+    poblaciones: ["Elche", "Torrevieja", "Orihuela", "Benidorm", "San Vicente del Raspeig", "Elda", "Dénia", "Villena", "Petrer", "Altea"],
     paginas: 142,
     sizeMb: "0,7",
     urgencias: [
@@ -54,6 +61,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Ávila",
     slug: "avila",
+    poblaciones: ["Arévalo"],
     paginas: 76,
     sizeMb: "0,5",
     urgencias: ["Hospital Santa Teresa"],
@@ -61,6 +69,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Barcelona",
     slug: "barcelona",
+    poblaciones: ["Badalona", "Terrassa", "Sabadell", "Mataró", "Santa Coloma de Gramenet", "Cornellà de Llobregat", "Sant Cugat del Vallès", "Granollers", "Manresa", "Vilanova i la Geltrú", "Castelldefels"],
     paginas: 346,
     sizeMb: "1,6",
     urgencias: [
@@ -77,6 +86,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Girona",
     slug: "girona",
+    poblaciones: ["Figueres", "Blanes", "Lloret de Mar", "Olot", "Salt", "Palafrugell", "Banyoles", "Sant Feliu de Guíxols"],
     paginas: 134,
     sizeMb: "0,7",
     urgencias: [
@@ -89,6 +99,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Islas Baleares",
     slug: "islas-baleares",
+    poblaciones: ["Manacor", "Inca", "Llucmajor", "Calvià", "Maó", "Ciutadella"],
     paginas: 128,
     sizeMb: "0,7",
     urgencias: [
@@ -106,6 +117,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "León",
     slug: "leon",
+    poblaciones: ["Ponferrada", "Astorga", "La Bañeza"],
     paginas: 82,
     sizeMb: "0,6",
     urgencias: [
@@ -118,6 +130,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Madrid",
     slug: "madrid",
+    poblaciones: ["Móstoles", "Alcalá de Henares", "Fuenlabrada", "Leganés", "Getafe", "Alcorcón", "Torrejón de Ardoz", "Parla", "Alcobendas", "Las Rozas de Madrid", "Pozuelo de Alarcón", "Majadahonda", "Rivas-Vaciamadrid", "Collado Villalba", "Aranjuez", "Boadilla del Monte", "Tres Cantos", "Valdemoro", "Arganda del Rey"],
     paginas: 362,
     sizeMb: "1,5",
     urgencias: [
@@ -137,6 +150,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Málaga",
     slug: "malaga",
+    poblaciones: ["Marbella", "Vélez-Málaga", "Mijas", "Fuengirola", "Torremolinos", "Benalmádena", "Estepona", "Rincón de la Victoria", "Antequera", "Alhaurín de la Torre", "Ronda", "Nerja"],
     paginas: 170,
     sizeMb: "0,8",
     urgencias: ["Hospital Quirónsalud Málaga", "Hospital Recoletas Salud Marbella"],
@@ -144,6 +158,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Sevilla",
     slug: "sevilla",
+    poblaciones: ["Dos Hermanas", "Alcalá de Guadaíra", "Utrera", "Mairena del Aljarafe", "Écija", "La Rinconada", "Los Palacios y Villafranca", "Carmona", "Lebrija", "Morón de la Frontera", "Tomares", "Bormujos"],
     paginas: 142,
     sizeMb: "0,8",
     urgencias: [
@@ -157,6 +172,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Valladolid",
     slug: "valladolid",
+    poblaciones: ["Medina del Campo", "Laguna de Duero", "Arroyo de la Encomienda", "Tordesillas"],
     paginas: 94,
     sizeMb: "0,6",
     urgencias: [
@@ -168,6 +184,7 @@ export const PROVINCIAS_SENIORS: ProvinciaSeniors[] = [
   {
     nombre: "Zaragoza",
     slug: "zaragoza",
+    poblaciones: ["Calatayud", "Utebo", "Ejea de los Caballeros", "Cuarte de Huerva", "Caspe"],
     paginas: 98,
     sizeMb: "0,6",
     urgencias: [

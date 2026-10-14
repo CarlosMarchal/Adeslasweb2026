@@ -150,6 +150,10 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
       a: "Sí. El cuadro médico Adeslas Seniors incluye un apartado de Asistencia Nacional con los centros hospitalarios concertados en el resto de provincias. En el extranjero, Adeslas presta asistencia en desplazamientos a través del teléfono que aparece en el reverso de la tarjeta, disponible las 24 horas.",
     },
     {
+      q: "¿Cómo pido cita con un médico del cuadro Adeslas Seniors?",
+      a: "Busca al especialista en el cuadro médico Adeslas Seniors de tu provincia y llama al teléfono de su consulta, o pide cita on-line desde la app o el Área Cliente de Adeslas cuando el médico la ofrezca. En la consulta te identificas con la tarjeta de asegurado, también disponible en formato digital en la app. En la mayoría de especialidades no necesitas volante del médico de familia; solo algunas pruebas y tratamientos requieren autorización previa.",
+    },
+    {
       q: "¿El PDF del cuadro médico Seniors está siempre actualizado?",
       a: "El PDF corresponde a la edición 2026 del cuadro médico Adeslas Seniors. La versión siempre actualizada está en el Área Cliente de adeslas.es y en la app de Adeslas, donde además puedes filtrar médicos por cercanía, cita on-line, videoconsulta y receta electrónica.",
     },
@@ -172,6 +176,14 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     {
       q: "¿Qué pruebas del seguro Adeslas GO necesitan autorización previa?",
       a: "Según el cuadro médico Adeslas GO 2026, necesitan autorización previa, entre otras: TAC y resonancia magnética, medicina nuclear, endoscopias, estudios neurofisiológicos, pruebas genéticas, ergometría y Holter, rehabilitación, fisioterapia y logopedia, y psicoterapia. Se puede pedir on-line desde el Área Cliente de Adeslas y se recibe por e-mail en menos de 48 horas laborables.",
+    },
+    {
+      q: "¿El cuadro médico de Adeslas GO sirve también para Adeslas Básico?",
+      a: "Sí. SegurCaixa Adeslas publica un único cuadro médico para las pólizas Adeslas Básico y Adeslas GO: los PDF de esta página llevan las dos marcas en la portada, así que puedes usarlos con cualquiera de las dos.",
+    },
+    {
+      q: "¿Cómo pido cita con un médico del cuadro Adeslas GO?",
+      a: "Busca al médico o especialista en el cuadro médico Adeslas GO de tu provincia y llama al teléfono de su consulta, o pide cita on-line desde la app o el Área Cliente de Adeslas cuando el médico la ofrezca. En la consulta te identificas con la tarjeta de asegurado, también disponible en formato digital en la app. Algunas pruebas y tratamientos requieren autorización previa.",
     },
     {
       q: "¿El PDF del cuadro médico Adeslas GO está siempre actualizado?",

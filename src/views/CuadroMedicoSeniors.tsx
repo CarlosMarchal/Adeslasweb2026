@@ -21,11 +21,17 @@ import {
   PROVINCIAS_SENIORS,
   SECCIONES_CUADRO_SENIORS,
   AUTORIZACION_PREVIA,
+  SENIORS_FECHAS,
   seniorsPdfUrl,
 } from "@/data/cuadroMedicoSeniors";
+import { ResumenCuadro, ComoUsarCuadro, OtrosCuadros } from "@/components/cuadro/CuadroSeoBlocks";
 
 const HERO_BG = "/images/seguro-medico-adeslas-seniors.webp";
 const FAQS = FAQ_SCHEMAS["/cuadro-medico/seniors"] ?? [];
+
+const POR_PAGINAS = [...PROVINCIAS_SENIORS].sort((a, b) => b.paginas - a.paginas);
+const MAS_HOSPITALES = [...PROVINCIAS_SENIORS].sort((a, b) => b.urgencias.length - a.urgencias.length)[0];
+const TOTAL_URGENCIAS = PROVINCIAS_SENIORS.reduce((n, p) => n + p.urgencias.length, 0);
 
 const normalize = (s: string) =>
   s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
@@ -148,6 +154,30 @@ const CuadroMedicoSeniors = () => {
         </div>
       </section>
 
+      <ResumenCuadro
+        titulo="El cuadro médico Adeslas Seniors 2026, en resumen"
+        modificado={SENIORS_FECHAS.modificado}
+        puntos={[
+          <>
+            El <strong>cuadro médico Adeslas Seniors 2026</strong> es la guía oficial de médicos,
+            centros y hospitales del seguro Adeslas Senior para mayores de 55 años. Aquí puedes
+            descargarlo gratis en PDF para <strong>{PROVINCIAS_SENIORS.length} provincias</strong>.
+          </>,
+          <>
+            Reúne <strong>{TOTAL_URGENCIAS} hospitales y clínicas con urgencias generales</strong> entre
+            todas las provincias; {MAS_HOSPITALES.nombre} es la que más tiene ({MAS_HOSPITALES.urgencias.length}).
+          </>,
+          <>
+            Los cuadros más extensos son los de {POR_PAGINAS[0].nombre} ({POR_PAGINAS[0].paginas} páginas) y{" "}
+            {POR_PAGINAS[1].nombre} ({POR_PAGINAS[1].paginas} páginas).
+          </>,
+          <>
+            Algunos ingresos, cirugías y pruebas necesitan <strong>autorización previa</strong>: se pide
+            on-line y llega por e-mail en menos de 48 horas laborables.
+          </>,
+        ]}
+      />
+
       {/* Descarga por provincia */}
       <section id="provincias" className="section-pad bg-blanco scroll-mt-24">
         <div className="container mx-auto max-w-5xl">
@@ -246,6 +276,52 @@ const CuadroMedicoSeniors = () => {
         </div>
       </section>
 
+      {/* Tabla resumen por provincia (dato citable para buscadores y LLMs) */}
+      <section className="section-pad bg-blanco">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-8">
+            <h2 className="text-gris-texto mb-3">Cuadro Médico Adeslas Seniors por Provincia: Datos Clave</h2>
+            <p className="text-gris-medio max-w-2xl mx-auto">
+              Hospitales con urgencias generales, algunos municipios con médicos concertados y
+              extensión de cada cuadro médico Adeslas Seniors 2026.
+            </p>
+          </div>
+          <div className="overflow-x-auto border border-borde" style={{ borderRadius: "12px" }}>
+            <table className="w-full text-sm text-left border-collapse min-w-[640px]">
+              <caption className="sr-only">Cuadro médico Adeslas Seniors 2026 por provincia</caption>
+              <thead className="bg-gris-claro text-gris-texto">
+                <tr>
+                  <th scope="col" className="px-4 py-3 font-bold">Provincia</th>
+                  <th scope="col" className="px-4 py-3 font-bold">Hospitales con urgencias</th>
+                  <th scope="col" className="px-4 py-3 font-bold">Algunas poblaciones con médicos</th>
+                  <th scope="col" className="px-4 py-3 font-bold">PDF</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PROVINCIAS_SENIORS.map((p) => (
+                  <tr key={p.slug} className="border-t border-borde align-top">
+                    <th scope="row" className="px-4 py-3 font-semibold text-gris-texto">
+                      <a href={`#urgencias-${p.slug}`} className="hover:text-azul-medio hover:underline">
+                        {p.nombre}
+                      </a>
+                    </th>
+                    <td className="px-4 py-3 text-gris-medio">{p.urgencias.length}</td>
+                    <td className="px-4 py-3 text-gris-medio">
+                      {p.poblaciones.length ? p.poblaciones.slice(0, 5).join(", ") : "Capital de provincia"}
+                    </td>
+                    <td className="px-4 py-3 whitespace-nowrap">
+                      <a href={seniorsPdfUrl(p.slug)} target="_blank" rel="noopener" className="text-azul-medio font-semibold hover:underline">
+                        {p.paginas} págs.
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       {/* Hospitales con urgencias */}
       <section className="section-pad bg-blanco">
         <div className="container mx-auto max-w-4xl">
@@ -261,7 +337,8 @@ const CuadroMedicoSeniors = () => {
             {PROVINCIAS_SENIORS.map((p) => (
               <details
                 key={p.slug}
-                className="group bg-blanco border border-borde open:border-azul-medio"
+                id={`urgencias-${p.slug}`}
+                className="group bg-blanco border border-borde open:border-azul-medio scroll-mt-28"
                 style={{ borderRadius: "12px" }}
               >
                 <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-5 py-4 [&::-webkit-details-marker]:hidden">
@@ -282,6 +359,12 @@ const CuadroMedicoSeniors = () => {
                       </li>
                     ))}
                   </ul>
+                  {p.poblaciones.length > 0 && (
+                    <p className="text-sm text-gris-medio mb-4">
+                      <strong className="text-gris-texto">Médicos también en:</strong>{" "}
+                      {p.poblaciones.join(", ")} y otros municipios de la provincia.
+                    </p>
+                  )}
                   <a
                     href={seniorsPdfUrl(p.slug)}
                     target="_blank"
@@ -296,6 +379,8 @@ const CuadroMedicoSeniors = () => {
           </div>
         </div>
       </section>
+
+      <ComoUsarCuadro poliza="Adeslas Seniors" />
 
       {/* Autorizaciones */}
       <section className="section-pad bg-gris-claro">
@@ -377,6 +462,8 @@ const CuadroMedicoSeniors = () => {
           </p>
         </div>
       </section>
+
+      <OtrosCuadros actual="/cuadro-medico/seniors/" />
 
       <CtaSection />
       <Footer />
