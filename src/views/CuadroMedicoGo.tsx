@@ -22,12 +22,16 @@ import {
   PROVINCIAS_GO_PENDIENTES,
   SECCIONES_CUADRO_GO,
   AUTORIZACION_PREVIA_GO,
+  GO_FECHAS,
   goPdfUrl,
 } from "@/data/cuadroMedicoGo";
+import { ResumenCuadro, ComoUsarCuadro, OtrosCuadros } from "@/components/cuadro/CuadroSeoBlocks";
 
 const HERO_BG = "/images/seguro-medico-adeslas-go.webp";
 const FAQS = FAQ_SCHEMAS["/cuadro-medico/go"] ?? [];
 const MAX_ESPECIALIDADES = Math.max(...PROVINCIAS_GO.map((p) => p.especialidades.length));
+
+const POR_ESPECIALIDADES = [...PROVINCIAS_GO].sort((a, b) => b.especialidades.length - a.especialidades.length);
 
 const normalize = (s: string) =>
   s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
@@ -148,6 +152,33 @@ const CuadroMedicoGo = () => {
         </div>
       </section>
 
+      <ResumenCuadro
+        titulo="El cuadro médico Adeslas GO 2026, en resumen"
+        modificado={GO_FECHAS.modificado}
+        puntos={[
+          <>
+            El <strong>cuadro médico Adeslas GO 2026</strong> es la guía oficial de médicos y centros
+            del seguro ambulatorio Adeslas GO. Es el mismo cuadro que el de{" "}
+            <strong>Adeslas Básico</strong> y aquí lo tienes en PDF para{" "}
+            <strong>{PROVINCIAS_GO.length} provincias</strong>.
+          </>,
+          <>
+            Incluye medicina familiar, pediatría, enfermería, especialistas y pruebas diagnósticas.{" "}
+            {POR_ESPECIALIDADES[0].nombre} es la provincia con más especialidades en la capital (
+            {POR_ESPECIALIDADES[0].especialidades.length}), seguida de {POR_ESPECIALIDADES[1].nombre} (
+            {POR_ESPECIALIDADES[1].especialidades.length}).
+          </>,
+          <>
+            Es un cuadro <strong>ambulatorio</strong>: Adeslas GO no cubre la hospitalización
+            programada, así que no recoge hospitales para ingresos.
+          </>,
+          <>
+            Algunas pruebas y tratamientos necesitan <strong>autorización previa</strong>: se pide
+            on-line y llega por e-mail en menos de 48 horas laborables.
+          </>,
+        ]}
+      />
+
       {/* Descarga por provincia */}
       <section id="provincias" className="section-pad bg-blanco scroll-mt-24">
         <div className="container mx-auto max-w-5xl">
@@ -244,6 +275,54 @@ const CuadroMedicoGo = () => {
         </div>
       </section>
 
+      {/* Tabla resumen por provincia (dato citable para buscadores y LLMs) */}
+      <section className="section-pad bg-blanco">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-8">
+            <h2 className="text-gris-texto mb-3">Cuadro Médico Adeslas GO por Provincia: Datos Clave</h2>
+            <p className="text-gris-medio max-w-2xl mx-auto">
+              Especialidades en la capital, apartados de pruebas diagnósticas, algunos municipios con
+              médicos concertados y extensión de cada cuadro médico Adeslas GO 2026.
+            </p>
+          </div>
+          <div className="overflow-x-auto border border-borde" style={{ borderRadius: "12px" }}>
+            <table className="w-full text-sm text-left border-collapse min-w-[640px]">
+              <caption className="sr-only">Cuadro médico Adeslas GO 2026 por provincia</caption>
+              <thead className="bg-gris-claro text-gris-texto">
+                <tr>
+                  <th scope="col" className="px-4 py-3 font-bold">Provincia</th>
+                  <th scope="col" className="px-4 py-3 font-bold">Especialidades</th>
+                  <th scope="col" className="px-4 py-3 font-bold">Pruebas</th>
+                  <th scope="col" className="px-4 py-3 font-bold">Algunas poblaciones con médicos</th>
+                  <th scope="col" className="px-4 py-3 font-bold">PDF</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PROVINCIAS_GO.map((p) => (
+                  <tr key={p.slug} className="border-t border-borde align-top">
+                    <th scope="row" className="px-4 py-3 font-semibold text-gris-texto">
+                      <a href={`#medicos-${p.slug}`} className="hover:text-azul-medio hover:underline">
+                        {p.nombre}
+                      </a>
+                    </th>
+                    <td className="px-4 py-3 text-gris-medio">{p.especialidades.length}</td>
+                    <td className="px-4 py-3 text-gris-medio">{p.pruebas}</td>
+                    <td className="px-4 py-3 text-gris-medio">
+                      {p.poblaciones.length ? p.poblaciones.slice(0, 4).join(", ") : "Capital"}
+                    </td>
+                    <td className="px-4 py-3 whitespace-nowrap">
+                      <a href={goPdfUrl(p.slug)} target="_blank" rel="noopener" className="text-azul-medio font-semibold hover:underline">
+                        {p.paginas} págs.
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       {/* Especialidades por provincia */}
       <section className="section-pad bg-blanco">
         <div className="container mx-auto max-w-4xl">
@@ -259,7 +338,8 @@ const CuadroMedicoGo = () => {
             {PROVINCIAS_GO.map((p) => (
               <details
                 key={p.slug}
-                className="group bg-blanco border border-borde open:border-azul-medio"
+                id={`medicos-${p.slug}`}
+                className="group bg-blanco border border-borde open:border-azul-medio scroll-mt-28"
                 style={{ borderRadius: "12px" }}
               >
                 <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-5 py-4 [&::-webkit-details-marker]:hidden">
@@ -285,6 +365,12 @@ const CuadroMedicoGo = () => {
                     )}
                     .
                   </p>
+                  {p.poblaciones.length > 0 && (
+                    <p className="mb-4">
+                      <strong className="text-gris-texto">Médicos también en:</strong>{" "}
+                      {p.poblaciones.join(", ")} y otros municipios de la provincia.
+                    </p>
+                  )}
                   <a
                     href={goPdfUrl(p.slug)}
                     target="_blank"
@@ -299,6 +385,8 @@ const CuadroMedicoGo = () => {
           </div>
         </div>
       </section>
+
+      <ComoUsarCuadro poliza="Adeslas GO" />
 
       {/* Ambulatorio + autorizaciones */}
       <section className="section-pad bg-gris-claro">
@@ -392,6 +480,8 @@ const CuadroMedicoGo = () => {
           </p>
         </div>
       </section>
+
+      <OtrosCuadros actual="/cuadro-medico/go/" />
 
       <CtaSection />
       <Footer />

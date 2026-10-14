@@ -18,10 +18,15 @@ export interface ProvinciaGo {
   slug: string;
   paginas: number;
   sizeMb: string;
+  /** Municipios (no exhaustivo) con médicos en el apartado "Poblaciones" del PDF, verificados contra el texto. */
+  poblaciones: string[];
   especialidades: string[];
   pruebas: number;
   tratamientos: string[];
 }
+
+/** Fechas de la página (ISO). Actualizar `modificado` al publicar una nueva edición o revisar datos. */
+export const GO_FECHAS = { publicado: "2026-10-14", modificado: "2026-10-14" };
 
 export const GO_PDF_DIR = "/cuadros-medicos/go";
 
@@ -38,6 +43,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "A Coruña",
     slug: "a-coruna",
+    poblaciones: ["Santiago de Compostela", "Ferrol", "Oleiros", "Arteixo", "Carballo", "Culleredo", "Ribeira"],
     paginas: 70,
     sizeMb: "0,9",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
@@ -47,6 +53,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Albacete",
     slug: "albacete",
+    poblaciones: ["Hellín", "Villarrobledo", "Almansa", "La Roda"],
     paginas: 42,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Estomatologia infantil", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -56,6 +63,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Alicante",
     slug: "alicante",
+    poblaciones: ["Elche", "Torrevieja", "Orihuela", "Benidorm", "San Vicente del Raspeig", "Elda", "Dénia", "Villena", "Petrer", "Altea"],
     paginas: 86,
     sizeMb: "1,0",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -65,6 +73,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Almería",
     slug: "almeria",
+    poblaciones: ["Roquetas de Mar", "El Ejido", "Vícar", "Níjar", "Huércal-Overa"],
     paginas: 44,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neurocirugía", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
@@ -74,6 +83,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Ávila",
     slug: "avila",
+    poblaciones: ["Arévalo"],
     paginas: 26,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Neurología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Traumatología y ortopedia", "Urología"],
@@ -83,6 +93,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Badajoz",
     slug: "badajoz",
+    poblaciones: ["Mérida", "Don Benito", "Almendralejo", "Villanueva de la Serena", "Zafra"],
     paginas: 64,
     sizeMb: "0,9",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -92,6 +103,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Barcelona",
     slug: "barcelona",
+    poblaciones: ["Badalona", "Terrassa", "Sabadell", "Mataró", "Santa Coloma de Gramenet", "Cornellà de Llobregat", "Sant Cugat del Vallès", "Granollers", "Manresa", "Vilanova i la Geltrú", "Castelldefels"],
     paginas: 320,
     sizeMb: "1,7",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Estomatología infantil", "Fisioterapeutas", "Ondas de choque", "Rehabilitación suelo pélvico", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía maxilofacial infantil", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía plástica y reparadora infantil", "Cirugía torácica", "Dermatología", "Dermatología infantil", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Nefrología infantil", "Neumología", "Neumología infantil", "Neurocirugía", "Neurocirugía infantil", "Neurología", "Neurología infantil", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Oncología médica", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Reumatología infantil", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Cirugía de la columna", "Urología", "Urología infantil"],
@@ -101,6 +113,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Burgos",
     slug: "burgos",
+    poblaciones: ["Miranda de Ebro", "Aranda de Duero"],
     paginas: 32,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -110,6 +123,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Cáceres",
     slug: "caceres",
+    poblaciones: ["Plasencia", "Navalmoral de la Mata", "Coria", "Trujillo"],
     paginas: 36,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -119,6 +133,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Cádiz",
     slug: "cadiz",
+    poblaciones: ["Jerez de la Frontera", "Algeciras", "San Fernando", "El Puerto de Santa María", "Chiclana de la Frontera", "Sanlúcar de Barrameda", "La Línea de la Concepción", "Puerto Real", "Rota"],
     paginas: 84,
     sizeMb: "1,0",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -128,6 +143,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Cantabria",
     slug: "cantabria",
+    poblaciones: ["Torrelavega", "Castro Urdiales", "Laredo", "Santoña"],
     paginas: 40,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -137,6 +153,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Castellón",
     slug: "castellon",
+    poblaciones: ["Burriana", "Vinaròs", "Benicarló", "Onda", "Benicàssim"],
     paginas: 42,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Rehabilitación suelo pélvico", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía mamaria", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Geriatría", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -146,6 +163,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Ceuta",
     slug: "ceuta",
+    poblaciones: [],
     paginas: 20,
     sizeMb: "0,7",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Fisioterapeutas", "Alergología", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía general y del aparato digestivo", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Traumatología y ortopedia", "Urología"],
@@ -155,6 +173,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Ciudad Real",
     slug: "ciudad-real",
+    poblaciones: ["Puertollano", "Tomelloso", "Alcázar de San Juan", "Valdepeñas", "Manzanares", "Daimiel"],
     paginas: 50,
     sizeMb: "0,9",
     especialidades: ["Centros médicos de referencia", "Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Rehabilitación suelo pélvico", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía mamaria", "Cirugía maxilofacial", "Dermatología", "Endocrinología y nutrición", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Cirugía de la columna", "Urología"],
@@ -164,6 +183,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Córdoba",
     slug: "cordoba",
+    poblaciones: ["Lucena", "Puente Genil", "Montilla", "Priego de Córdoba", "Cabra", "Palma del Río"],
     paginas: 62,
     sizeMb: "0,9",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía mamaria", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
@@ -173,6 +193,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Cuenca",
     slug: "cuenca",
+    poblaciones: ["Tarancón", "San Clemente", "Motilla del Palancar"],
     paginas: 24,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Dermatología", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmologia", "Otorrinolaringología", "Psiquiatría", "Traumatología y ortopedia", "Urología", "Estudios preoperatorios"],
@@ -182,6 +203,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Girona",
     slug: "girona",
+    poblaciones: ["Figueres", "Blanes", "Lloret de Mar", "Olot", "Salt", "Palafrugell", "Banyoles", "Sant Feliu de Guíxols"],
     paginas: 82,
     sizeMb: "0,9",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía mamaria", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Dermatología infantil", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
@@ -191,6 +213,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Granada",
     slug: "granada",
+    poblaciones: ["Motril", "Almuñécar", "Armilla", "Maracena", "Loja", "Baza", "Guadix"],
     paginas: 54,
     sizeMb: "0,9",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía maxilofacial infantil", "Cirugía pediátrica", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -200,6 +223,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Guadalajara",
     slug: "guadalajara",
+    poblaciones: ["Azuqueca de Henares", "Alovera", "Cabanillas del Campo", "Sigüenza"],
     paginas: 28,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -209,6 +233,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Huelva",
     slug: "huelva",
+    poblaciones: ["Lepe", "Almonte", "Moguer", "Ayamonte", "Isla Cristina", "Punta Umbría"],
     paginas: 36,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía mamaria", "Cirugía maxilofacial", "Dermatología", "Endocrinología y nutrición", "Medicina interna", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -218,6 +243,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Huesca",
     slug: "huesca",
+    poblaciones: ["Monzón", "Barbastro", "Fraga", "Jaca", "Sabiñánigo", "Binéfar"],
     paginas: 38,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -227,6 +253,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Islas Baleares",
     slug: "islas-baleares",
+    poblaciones: ["Manacor", "Inca", "Llucmajor", "Calvià", "Eivissa", "Maó", "Ciutadella", "Sant Antoni de Portmany"],
     paginas: 82,
     sizeMb: "0,9",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -236,6 +263,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Jaén",
     slug: "jaen",
+    poblaciones: ["Linares", "Andújar", "Úbeda", "Martos", "Alcalá la Real", "Baeza"],
     paginas: 38,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -245,6 +273,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "La Rioja",
     slug: "la-rioja",
+    poblaciones: ["Calahorra", "Arnedo", "Haro", "Alfaro"],
     paginas: 32,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -254,6 +283,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Las Palmas",
     slug: "las-palmas",
+    poblaciones: ["Telde", "Santa Lucía de Tirajana", "Arrecife", "San Bartolomé de Tirajana", "Puerto del Rosario", "Arucas", "Agüimes", "Ingenio", "Mogán"],
     paginas: 70,
     sizeMb: "0,9",
     especialidades: ["Centros médicos de referencia", "Diagnóstico por la imagen", "Radiología intervencionista", "Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
@@ -263,6 +293,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "León",
     slug: "leon",
+    poblaciones: ["Ponferrada", "Astorga", "La Bañeza"],
     paginas: 36,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía mamaria", "Cirugía maxilofacial", "Cirugía pediátrica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -272,6 +303,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Lleida",
     slug: "lleida",
+    poblaciones: ["Balaguer", "Tàrrega", "Mollerussa", "Cervera"],
     paginas: 48,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía mamaria", "Cirugía maxilofacial", "Cirugía pediátrica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Cirugía de la columna", "Urología", "Urología infantil"],
@@ -281,6 +313,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Lugo",
     slug: "lugo",
+    poblaciones: ["Monforte de Lemos", "Viveiro", "Vilalba", "Sarria", "Burela", "Foz", "Ribadeo"],
     paginas: 36,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -290,6 +323,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Madrid",
     slug: "madrid",
+    poblaciones: ["Móstoles", "Alcalá de Henares", "Fuenlabrada", "Leganés", "Getafe", "Alcorcón", "Torrejón de Ardoz", "Parla", "Alcobendas", "Las Rozas de Madrid", "San Sebastián de los Reyes", "Pozuelo de Alarcón", "Majadahonda", "Rivas-Vaciamadrid", "Collado Villalba", "Aranjuez", "Boadilla del Monte", "Tres Cantos", "Valdemoro", "Arganda del Rey"],
     paginas: 368,
     sizeMb: "1,9",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Estomatología infantil", "Fisioterapeutas", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía plástica y reparadora infantil", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Geriatría", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neonatología", "Neumología", "Neurocirugía", "Neurología", "Neurología infantil", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología", "Urología infantil"],
@@ -299,6 +333,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Málaga",
     slug: "malaga",
+    poblaciones: ["Marbella", "Vélez-Málaga", "Mijas", "Fuengirola", "Torremolinos", "Benalmádena", "Estepona", "Rincón de la Victoria", "Antequera", "Alhaurín de la Torre", "Ronda", "Nerja"],
     paginas: 120,
     sizeMb: "1,1",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Dermatología infantil", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Geriatría", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Neurología infantil", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología", "Psicología", "Psicología infantil"],
@@ -308,6 +343,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Melilla",
     slug: "melilla",
+    poblaciones: [],
     paginas: 20,
     sizeMb: "0,7",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Psiquiatría", "Traumatología y ortopedia", "Urología"],
@@ -317,6 +353,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Murcia",
     slug: "murcia",
+    poblaciones: ["Cartagena", "Lorca", "Molina de Segura", "Alcantarilla", "Mazarrón", "Cieza", "Yecla", "Águilas", "San Javier", "Torre-Pacheco", "Totana", "Caravaca de la Cruz", "Jumilla"],
     paginas: 84,
     sizeMb: "1,0",
     especialidades: ["Centros médicos de referencia", "Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Electrofisiología cardiaca", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Hemodinámica vascular", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Cirugía de la columna", "Urología", "Urología infantil", "Estudios preoperatorios"],
@@ -326,6 +363,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Ourense",
     slug: "ourense",
+    poblaciones: ["Verín", "Xinzo de Limia", "Celanova"],
     paginas: 32,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía pediátrica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Traumatología y ortopedia", "Urología"],
@@ -335,6 +373,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Palencia",
     slug: "palencia",
+    poblaciones: ["Guardo", "Aguilar de Campoo", "Venta de Baños"],
     paginas: 28,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía laparoscópica", "Dermatología", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -344,6 +383,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Pontevedra",
     slug: "pontevedra",
+    poblaciones: ["Vigo", "O Porriño", "Vilagarcía de Arousa", "Redondela", "Cangas", "Marín", "Lalín", "Ponteareas", "Sanxenxo", "Baiona", "Cambados"],
     paginas: 58,
     sizeMb: "0,9",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -353,6 +393,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Salamanca",
     slug: "salamanca",
+    poblaciones: ["Béjar", "Santa Marta de Tormes", "Peñaranda de Bracamonte"],
     paginas: 34,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -362,6 +403,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Santa Cruz de Tenerife",
     slug: "santa-cruz-de-tenerife",
+    poblaciones: ["San Cristóbal de La Laguna", "Arona", "Adeje", "La Orotava", "Granadilla de Abona", "Los Realejos", "Puerto de la Cruz", "Santa Cruz de La Palma", "Candelaria", "Icod de los Vinos"],
     paginas: 94,
     sizeMb: "1,0",
     especialidades: ["Centros médicos de referencia", "Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Oncología radioterápica", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
@@ -371,6 +413,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Segovia",
     slug: "segovia",
+    poblaciones: ["Cuéllar", "El Espinar"],
     paginas: 26,
     sizeMb: "0,8",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Dermatología", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -380,6 +423,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Sevilla",
     slug: "sevilla",
+    poblaciones: ["Dos Hermanas", "Alcalá de Guadaíra", "Utrera", "Mairena del Aljarafe", "Écija", "La Rinconada", "Los Palacios y Villafranca", "Carmona", "Lebrija", "Morón de la Frontera", "Tomares", "Bormujos"],
     paginas: 124,
     sizeMb: "1,1",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -389,6 +433,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Soria",
     slug: "soria",
+    poblaciones: [],
     paginas: 20,
     sizeMb: "0,7",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Cirugía general y del aparato digestivo", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Obstetricia y ginecología", "Oftalmología", "Reumatología", "Traumatología y ortopedia", "Urología"],
@@ -398,6 +443,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Tarragona",
     slug: "tarragona",
+    poblaciones: ["Reus", "Tortosa", "Cambrils", "Salou", "El Vendrell", "Valls", "Amposta", "Calafell", "Vila-seca"],
     paginas: 74,
     sizeMb: "0,9",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Rehabilitación suelo pélvico", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía maxilofacial", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neumología infantil", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Cirugía de la columna", "Urología"],
@@ -407,6 +453,7 @@ export const PROVINCIAS_GO: ProvinciaGo[] = [
   {
     nombre: "Teruel",
     slug: "teruel",
+    poblaciones: ["Alcañiz", "Andorra", "Calamocha"],
     paginas: 24,
     sizeMb: "0,7",
     especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Zona ensanche", "Podología", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Traumatología y ortopedia"],

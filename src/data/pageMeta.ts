@@ -320,7 +320,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/cuadro-medico/seniors": {
     title: "Cuadro Médico Adeslas Seniors 2026 | PDF por Provincia",
     description:
-      "Descarga el cuadro médico Adeslas Seniors 2026 en PDF: Madrid, Barcelona, Sevilla, Málaga, Alicante, Zaragoza y más. Hospitales de urgencias, especialistas y pruebas.",
+      "Cuadro médico Adeslas Senior 2026 en PDF oficial: Madrid, Barcelona, Sevilla, Málaga, Alicante, Zaragoza y 6 provincias más. Hospitales con urgencias 24 h, especialistas y pruebas.",
     canonical: `${BASE}/cuadro-medico/seniors/`,
     ogImage: `${BASE}/og-seniors.jpg`,
     h1: "Cuadro Médico Adeslas Seniors 2026 — Médicos, Hospitales y Urgencias por Provincia",
@@ -329,7 +329,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   "/cuadro-medico/go": {
     title: "Cuadro Médico Adeslas GO 2026 | PDF por Provincia",
     description:
-      "Descarga el cuadro médico Adeslas GO 2026 en PDF de 42 provincias: médicos de familia, pediatras, especialistas y pruebas diagnósticas. Madrid, Barcelona, Sevilla y más.",
+      "Cuadro médico Adeslas GO y Adeslas Básico 2026 en PDF oficial de 42 provincias: médicos de familia, pediatras, especialistas y pruebas. Madrid, Barcelona, Sevilla y más.",
     canonical: `${BASE}/cuadro-medico/go/`,
     ogImage: `${BASE}/og-go.jpg`,
     h1: "Cuadro Médico Adeslas GO 2026 — Médicos, Especialistas y Pruebas por Provincia",

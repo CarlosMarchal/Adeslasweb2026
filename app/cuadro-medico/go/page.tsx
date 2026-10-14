@@ -9,7 +9,7 @@ import {
   buildFaqSchema,
   buildMetadata,
 } from "@/lib/seoSchemas";
-import { PROVINCIAS_GO, goPdfUrl } from "@/data/cuadroMedicoGo";
+import { PROVINCIAS_GO, goPdfUrl, GO_FECHAS } from "@/data/cuadroMedicoGo";
 import CuadroMedicoGoClient from "./CuadroMedicoGoClient";
 
 const PATHNAME = "/cuadro-medico/go/";
@@ -21,13 +21,16 @@ export const dynamic = "force-static";
 const meta = getPageMeta(PATHNAME);
 
 export function generateMetadata(): Metadata {
-  return buildMetadata({
+  const base = buildMetadata({
     title: meta.title,
     description: meta.description,
     canonical: meta.canonical,
     ogImage: meta.ogImage,
     noindex: meta.noindex,
   });
+  // Título absoluto: sin el sufijo del template (" | Adeslas Seguros Médicos"),
+  // que lo llevaba a ~80 caracteres y Google lo truncaba en la SERP.
+  return { ...base, title: { absolute: meta.title } };
 }
 
 /** Breadcrumb con etiquetas legibles (el genérico usaría "cuadro medico"). */
@@ -46,6 +49,15 @@ const COLLECTION_SCHEMA = {
   name: "Cuadro Médico Adeslas GO 2026",
   url: meta.canonical,
   inLanguage: "es-ES",
+  datePublished: GO_FECHAS.publicado,
+  dateModified: GO_FECHAS.modificado,
+  isPartOf: { "@type": "WebSite", name: "Adeslas Seguros Médicos", url: `${BASE_URL}/` },
+  publisher: {
+    "@type": "InsuranceAgency",
+    name: "Marchal Aseguradores — Agente Exclusivo Adeslas",
+    url: `${BASE_URL}/`,
+  },
+  citation: { "@type": "Organization", name: "SegurCaixa Adeslas", url: "https://www.segurcaixaadeslas.es/" },
   about: { "@type": "Product", name: "Adeslas GO", brand: { "@type": "Brand", name: "Adeslas" } },
   hasPart: PROVINCIAS_GO.map((p) => ({
     "@type": "DigitalDocument",
