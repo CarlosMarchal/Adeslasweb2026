@@ -155,6 +155,30 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
     },
   ],
 
+  // ── CUADRO MÉDICO ADESLAS GO ────────────────────────────────────────
+  "/cuadro-medico/go": [
+    {
+      q: "¿Qué es el cuadro médico Adeslas GO 2026?",
+      a: "Es la guía oficial de médicos y centros concertados para los asegurados de Adeslas GO, el seguro ambulatorio de Adeslas. Se publica por provincia e incluye las oficinas de Adeslas, medicina familiar, pediatría, enfermería, especialistas, pruebas diagnósticas, tratamientos especiales y los médicos del resto de municipios. El mismo cuadro sirve también para la póliza Adeslas Básico.",
+    },
+    {
+      q: "¿En qué provincias puedo descargar el cuadro médico Adeslas GO 2026?",
+      a: "En esta página puedes descargar en PDF el cuadro médico Adeslas GO 2026 de 42 provincias, entre ellas Madrid, Barcelona, Sevilla, Málaga, Alicante, Murcia, Islas Baleares, Las Palmas y Santa Cruz de Tenerife. Si tu provincia no aparece, puedes consultar el cuadro médico general de Adeslas o pedirnos el de tu provincia sin compromiso.",
+    },
+    {
+      q: "¿Por qué el cuadro médico Adeslas GO no incluye hospitales para ingresos?",
+      a: "Adeslas GO es un seguro ambulatorio: cubre consultas de medicina general, pediatría, especialistas y pruebas diagnósticas, pero no la hospitalización programada. Por eso su cuadro médico se centra en consultas y centros de diagnóstico. Si necesitas hospitalización y cirugía, las pólizas Adeslas Plena incluyen el cuadro médico completo.",
+    },
+    {
+      q: "¿Qué pruebas del seguro Adeslas GO necesitan autorización previa?",
+      a: "Según el cuadro médico Adeslas GO 2026, necesitan autorización previa, entre otras: TAC y resonancia magnética, medicina nuclear, endoscopias, estudios neurofisiológicos, pruebas genéticas, ergometría y Holter, rehabilitación, fisioterapia y logopedia, y psicoterapia. Se puede pedir on-line desde el Área Cliente de Adeslas y se recibe por e-mail en menos de 48 horas laborables.",
+    },
+    {
+      q: "¿El PDF del cuadro médico Adeslas GO está siempre actualizado?",
+      a: "El PDF corresponde a la edición 2026 del cuadro médico Adeslas GO. La versión siempre actualizada está en el Área Cliente de adeslas.es y en la app de Adeslas, donde además puedes filtrar médicos por cercanía, cita on-line, videoconsulta y receta electrónica.",
+    },
+  ],
+
   // ── AUTÓNOMOS ────────────────────────────────────────────────────────
   "/autonomos": [
     {

@@ -745,6 +745,19 @@
     "indexable": true
   },
   {
+    "url": "/cuadro-medico/go",
+    "expect": [
+      301,
+      308
+    ],
+    "redirectsTo": "/cuadro-medico/go/"
+  },
+  {
+    "url": "/cuadro-medico/go/",
+    "expect": 200,
+    "indexable": true
+  },
+  {
     "url": "/cuadro-medico/seniors",
     "expect": [
       301,

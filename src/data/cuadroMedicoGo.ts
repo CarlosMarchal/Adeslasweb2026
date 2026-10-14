@@ -1,0 +1,438 @@
+/**
+ * Cuadro médico Adeslas GO 2026 — datos por provincia.
+ *
+ * Fuente: cuadros médicos oficiales "Adeslas BÁSICO · Adeslas GO" 2026 (PDF por
+ * provincia; el mismo cuadro sirve a ambas pólizas). Los PDF viven en
+ * /public/cuadros-medicos/go/ y heredan `X-Robots-Tag: noindex` de la regla
+ * `/cuadros-medicos/:file*` (next.config.js): la página indexable es /cuadro-medico/go/.
+ *
+ * `especialidades`, `pruebas` (nº de apartados) y `tratamientos` se extraen del
+ * índice general de cada PDF (cuadro de la capital de provincia). Al publicar una
+ * nueva edición, regenerar esta lista desde los PDF.
+ *
+ * Autor: Juan Carlos Díaz — Convertiam.
+ */
+
+export interface ProvinciaGo {
+  nombre: string;
+  slug: string;
+  paginas: number;
+  sizeMb: string;
+  especialidades: string[];
+  pruebas: number;
+  tratamientos: string[];
+}
+
+export const GO_PDF_DIR = "/cuadros-medicos/go";
+
+export const goPdfUrl = (slug: string) =>
+  `${GO_PDF_DIR}/cuadro-medico-adeslas-go-${slug}-2026.pdf`;
+
+/** Provincias del catálogo general sin cuadro GO en PDF todavía. */
+export const PROVINCIAS_GO_PENDIENTES = [
+  "Álava", "Asturias", "Guipúzcoa", "Navarra", "Toledo",
+  "Valencia", "Valladolid", "Vizcaya", "Zamora", "Zaragoza",
+];
+
+export const PROVINCIAS_GO: ProvinciaGo[] = [
+  {
+    nombre: "A Coruña",
+    slug: "a-coruna",
+    paginas: 70,
+    sizeMb: "0,9",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
+    pruebas: 23,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Albacete",
+    slug: "albacete",
+    paginas: 42,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Estomatologia infantil", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 25,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Alicante",
+    slug: "alicante",
+    paginas: 86,
+    sizeMb: "1,0",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 22,
+    tratamientos: ["Litotricia", "Médico rehabilitador", "Psicología", "Psicología infantil", "Logopedia"],
+  },
+  {
+    nombre: "Almería",
+    slug: "almeria",
+    paginas: 44,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neurocirugía", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
+    pruebas: 17,
+    tratamientos: ["Aerosolterapia y ventiloterapia", "Cuidados paliativos", "Oxigenoterapia", "Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Ávila",
+    slug: "avila",
+    paginas: 26,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Neurología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Traumatología y ortopedia", "Urología"],
+    pruebas: 20,
+    tratamientos: ["Psicología"],
+  },
+  {
+    nombre: "Badajoz",
+    slug: "badajoz",
+    paginas: 64,
+    sizeMb: "0,9",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 15,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Barcelona",
+    slug: "barcelona",
+    paginas: 320,
+    sizeMb: "1,7",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Estomatología infantil", "Fisioterapeutas", "Ondas de choque", "Rehabilitación suelo pélvico", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía maxilofacial infantil", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía plástica y reparadora infantil", "Cirugía torácica", "Dermatología", "Dermatología infantil", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Nefrología infantil", "Neumología", "Neumología infantil", "Neurocirugía", "Neurocirugía infantil", "Neurología", "Neurología infantil", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Oncología médica", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Reumatología infantil", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Cirugía de la columna", "Urología", "Urología infantil"],
+    pruebas: 26,
+    tratamientos: ["Litotricia", "Psicología", "Psicología infantil", "Logopedia"],
+  },
+  {
+    nombre: "Burgos",
+    slug: "burgos",
+    paginas: 32,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 19,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Cáceres",
+    slug: "caceres",
+    paginas: 36,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 18,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Cádiz",
+    slug: "cadiz",
+    paginas: 84,
+    sizeMb: "1,0",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 17,
+    tratamientos: ["Médico rehabilitador", "Psicología"],
+  },
+  {
+    nombre: "Cantabria",
+    slug: "cantabria",
+    paginas: 40,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 15,
+    tratamientos: ["Aerosolterapia y ventiloterapia", "Oxigenoterapia", "Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Castellón",
+    slug: "castellon",
+    paginas: 42,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Rehabilitación suelo pélvico", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía mamaria", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Geriatría", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 11,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Ceuta",
+    slug: "ceuta",
+    paginas: 20,
+    sizeMb: "0,7",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Fisioterapeutas", "Alergología", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía general y del aparato digestivo", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Traumatología y ortopedia", "Urología"],
+    pruebas: 9,
+    tratamientos: ["Aerosolterapia y ventiloterapia", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Ciudad Real",
+    slug: "ciudad-real",
+    paginas: 50,
+    sizeMb: "0,9",
+    especialidades: ["Centros médicos de referencia", "Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Rehabilitación suelo pélvico", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía mamaria", "Cirugía maxilofacial", "Dermatología", "Endocrinología y nutrición", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Cirugía de la columna", "Urología"],
+    pruebas: 23,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Córdoba",
+    slug: "cordoba",
+    paginas: 62,
+    sizeMb: "0,9",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía mamaria", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
+    pruebas: 22,
+    tratamientos: ["Aerosolterapia y ventiloterapia", "Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Cuenca",
+    slug: "cuenca",
+    paginas: 24,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Dermatología", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmologia", "Otorrinolaringología", "Psiquiatría", "Traumatología y ortopedia", "Urología", "Estudios preoperatorios"],
+    pruebas: 9,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Girona",
+    slug: "girona",
+    paginas: 82,
+    sizeMb: "0,9",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía mamaria", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Dermatología infantil", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
+    pruebas: 25,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Psicología infantil", "Logopedia"],
+  },
+  {
+    nombre: "Granada",
+    slug: "granada",
+    paginas: 54,
+    sizeMb: "0,9",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía maxilofacial infantil", "Cirugía pediátrica", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 25,
+    tratamientos: ["Aerosolterapia y ventiloterapia", "Oxigenoterapia", "Médico rehabilitador", "Psicología", "Psicología infantil", "Logopedia"],
+  },
+  {
+    nombre: "Guadalajara",
+    slug: "guadalajara",
+    paginas: 28,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 22,
+    tratamientos: ["Médico rehabilitador", "Psicología"],
+  },
+  {
+    nombre: "Huelva",
+    slug: "huelva",
+    paginas: 36,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía mamaria", "Cirugía maxilofacial", "Dermatología", "Endocrinología y nutrición", "Medicina interna", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 22,
+    tratamientos: ["Médico rehabilitador", "Logopedia"],
+  },
+  {
+    nombre: "Huesca",
+    slug: "huesca",
+    paginas: 38,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 21,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Islas Baleares",
+    slug: "islas-baleares",
+    paginas: 82,
+    sizeMb: "0,9",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 14,
+    tratamientos: ["Médico rehabilitador", "Unidad del tratamiento del dolor", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Jaén",
+    slug: "jaen",
+    paginas: 38,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 11,
+    tratamientos: ["Psicología"],
+  },
+  {
+    nombre: "La Rioja",
+    slug: "la-rioja",
+    paginas: 32,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 16,
+    tratamientos: ["Psicología", "Psicoterapia", "Logopedia"],
+  },
+  {
+    nombre: "Las Palmas",
+    slug: "las-palmas",
+    paginas: 70,
+    sizeMb: "0,9",
+    especialidades: ["Centros médicos de referencia", "Diagnóstico por la imagen", "Radiología intervencionista", "Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
+    pruebas: 22,
+    tratamientos: ["Aerosolterapia y ventiloterapia", "Médico rehabilitador", "Psicología", "Psicología infantil", "Logopedia"],
+  },
+  {
+    nombre: "León",
+    slug: "leon",
+    paginas: 36,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía mamaria", "Cirugía maxilofacial", "Cirugía pediátrica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 10,
+    tratamientos: ["Aerosolterapia y ventiloterapia", "Oxigenoterapia", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Lleida",
+    slug: "lleida",
+    paginas: 48,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía mamaria", "Cirugía maxilofacial", "Cirugía pediátrica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Cirugía de la columna", "Urología", "Urología infantil"],
+    pruebas: 21,
+    tratamientos: ["Psicología", "Psicología infantil", "Logopedia"],
+  },
+  {
+    nombre: "Lugo",
+    slug: "lugo",
+    paginas: 36,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 17,
+    tratamientos: ["Aerosolterapia y ventiloterapia", "Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Madrid",
+    slug: "madrid",
+    paginas: 368,
+    sizeMb: "1,9",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Estomatología infantil", "Fisioterapeutas", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía plástica y reparadora infantil", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Geriatría", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neonatología", "Neumología", "Neurocirugía", "Neurología", "Neurología infantil", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología", "Urología infantil"],
+    pruebas: 33,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Málaga",
+    slug: "malaga",
+    paginas: 120,
+    sizeMb: "1,1",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Dermatología infantil", "Endocrinología y nutrición", "Endocrinología y nutrición infantil", "Geriatría", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Neurología infantil", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología", "Psicología", "Psicología infantil"],
+    pruebas: 26,
+    tratamientos: ["Oxigenoterapia", "Médico rehabilitador", "Unidad de reproducción asistida", "Psicología", "Psicología infantil"],
+  },
+  {
+    nombre: "Melilla",
+    slug: "melilla",
+    paginas: 20,
+    sizeMb: "0,7",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Psiquiatría", "Traumatología y ortopedia", "Urología"],
+    pruebas: 16,
+    tratamientos: ["Unidad de reproducción asistida", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Murcia",
+    slug: "murcia",
+    paginas: 84,
+    sizeMb: "1,0",
+    especialidades: ["Centros médicos de referencia", "Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Alergología infantil", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Electrofisiología cardiaca", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Hemodinámica vascular", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Cirugía de la columna", "Urología", "Urología infantil", "Estudios preoperatorios"],
+    pruebas: 27,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Psicología infantil", "Logopedia"],
+  },
+  {
+    nombre: "Ourense",
+    slug: "ourense",
+    paginas: 32,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Medicina preventiva (SALUD BUCO-DENTAL)", "Fisioterapeutas", "Ondas de choque", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía pediátrica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Traumatología y ortopedia", "Urología"],
+    pruebas: 15,
+    tratamientos: ["Aerosolterapia y ventiloterapia", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Palencia",
+    slug: "palencia",
+    paginas: 28,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía laparoscópica", "Dermatología", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 18,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Pontevedra",
+    slug: "pontevedra",
+    paginas: 58,
+    sizeMb: "0,9",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Neumología", "Neurología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 16,
+    tratamientos: ["Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Salamanca",
+    slug: "salamanca",
+    paginas: 34,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 23,
+    tratamientos: ["Psicología"],
+  },
+  {
+    nombre: "Santa Cruz de Tenerife",
+    slug: "santa-cruz-de-tenerife",
+    paginas: 94,
+    sizeMb: "1,0",
+    especialidades: ["Centros médicos de referencia", "Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oncología médica", "Oncología radioterápica", "Otorrinolaringología", "Otorrinolaringología infantil", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Traumatología y ortopedia infantil", "Urología"],
+    pruebas: 27,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Psicología infantil", "Logopedia"],
+  },
+  {
+    nombre: "Segovia",
+    slug: "segovia",
+    paginas: 26,
+    sizeMb: "0,8",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía maxilofacial", "Dermatología", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Psiquiatría", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 15,
+    tratamientos: ["Aerosolterapia y ventiloterapia", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Sevilla",
+    slug: "sevilla",
+    paginas: 124,
+    sizeMb: "1,1",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Aparato digestivo infantil", "Cardiología", "Cirugía cardiovascular", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía maxilofacial", "Cirugía pediátrica", "Cirugía plástica y reparadora", "Cirugía torácica", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neurocirugía", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 18,
+    tratamientos: ["Litotricia", "Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Soria",
+    slug: "soria",
+    paginas: 20,
+    sizeMb: "0,7",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Podología", "Alergología", "Cirugía general y del aparato digestivo", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Medicina interna", "Obstetricia y ginecología", "Oftalmología", "Reumatología", "Traumatología y ortopedia", "Urología"],
+    pruebas: 5,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Logopedia"],
+  },
+  {
+    nombre: "Tarragona",
+    slug: "tarragona",
+    paginas: 74,
+    sizeMb: "0,9",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Ondas de choque", "Rehabilitación suelo pélvico", "Podología", "Alergología", "Angiología y cirugía vascular", "Aparato digestivo", "Cardiología", "Cardiología infantil", "Cirugía general y del aparato digestivo", "Cirugía colorrectal - proctología", "Cirugía maxilofacial", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Hematología y hemoterapia", "Medicina interna", "Nefrología", "Neumología", "Neumología infantil", "Neurología", "Obstetricia y ginecología", "Oftalmología", "Oftalmología infantil", "Otorrinolaringología", "Preparación al parto", "Psiquiatría", "Psiquiatría infantil", "Reumatología", "Traumatología y ortopedia", "Cirugía de la columna", "Urología"],
+    pruebas: 27,
+    tratamientos: ["Médico rehabilitador", "Psicología", "Psicología infantil"],
+  },
+  {
+    nombre: "Teruel",
+    slug: "teruel",
+    paginas: 24,
+    sizeMb: "0,7",
+    especialidades: ["Medicina familiar", "Pediatría y puericultura", "Enfermería", "Odontología - estomatología", "Fisioterapeutas", "Zona ensanche", "Podología", "Cardiología", "Cirugía general y del aparato digestivo", "Cirugía plástica y reparadora", "Dermatología", "Endocrinología y nutrición", "Ginecología", "Obstetricia y ginecología", "Oftalmología", "Otorrinolaringología", "Preparación al parto", "Traumatología y ortopedia"],
+    pruebas: 12,
+    tratamientos: ["Psicología"],
+  },
+];
+
+/** Contenido común de cada PDF (índice general del cuadro GO 2026). */
+export const SECCIONES_CUADRO_GO = [
+  { titulo: "Oficinas y teléfonos", texto: "Delegación de Adeslas en tu provincia, horarios y teléfonos de atención al cliente, autorizaciones y urgencias 24 h." },
+  { titulo: "Medicina familiar y pediatría", texto: "Médicos de familia, pediatras y enfermería de la capital de provincia, con dirección y teléfono de consulta." },
+  { titulo: "Especialistas", texto: "Cardiología, dermatología, ginecología, traumatología, oftalmología y el resto de especialidades, ordenadas alfabéticamente." },
+  { titulo: "Pruebas diagnósticas", texto: "Análisis clínicos, radiología, ecografías, mamografías, resonancia magnética, TAC y pruebas cardiovasculares." },
+  { titulo: "Tratamientos especiales", texto: "Médico rehabilitador, psicología o logopedia, según la provincia." },
+  { titulo: "Poblaciones", texto: "Médicos y centros del resto de municipios de la provincia, por orden alfabético." },
+];
+
+/** Servicios que precisan autorización previa (según el cuadro GO 2026). */
+export const AUTORIZACION_PREVIA_GO = [
+  "TAC, resonancia magnética y Doppler transcraneal",
+  "Medicina nuclear, incluidos PET-TAC y PET-RMN",
+  "Estudios endoscópicos y neurofisiológicos",
+  "Amniocentesis, cariotipos y pruebas genéticas",
+  "Ergometría y Holter",
+  "Rehabilitación, fisioterapia y logopedia",
+  "Psicoterapia",
+  "Tomografía de coherencia óptica (OCT)",
+];

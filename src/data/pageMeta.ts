@@ -326,6 +326,15 @@ export const PAGE_META: Record<string, PageMeta> = {
     h1: "Cuadro Médico Adeslas Seniors 2026 — Médicos, Hospitales y Urgencias por Provincia",
     h2: "Descarga el cuadro médico del seguro Adeslas Seniors para mayores de 55 años",
   },
+  "/cuadro-medico/go": {
+    title: "Cuadro Médico Adeslas GO 2026 | PDF por Provincia",
+    description:
+      "Descarga el cuadro médico Adeslas GO 2026 en PDF de 42 provincias: médicos de familia, pediatras, especialistas y pruebas diagnósticas. Madrid, Barcelona, Sevilla y más.",
+    canonical: `${BASE}/cuadro-medico/go/`,
+    ogImage: `${BASE}/og-go.jpg`,
+    h1: "Cuadro Médico Adeslas GO 2026 — Médicos, Especialistas y Pruebas por Provincia",
+    h2: "Descarga el cuadro médico del seguro ambulatorio Adeslas GO en PDF",
+  },
   "/contacto": {
     title: "Contacto | Adeslas — Asesoramiento Gratuito Sin Compromiso",
     description:
