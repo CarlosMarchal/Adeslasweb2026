@@ -251,6 +251,50 @@ export function getTarjetaPrepagoEuros(totalPuntos: number): number {
     : 0;
 }
 
+/* ── Catálogo de regalos Segurísimos ─────────────────────────────
+   Argumentario SegurCaixa Adeslas (oct. 2026), sujeto a disponibilidad.
+   La tarjeta prepago (getTarjetaPrepagoEuros) es el premio prioritario y
+   NO va en esta lista: se muestra siempre primero, con su importe. */
+export interface NivelPremio {
+  pts: number;
+  items: { icon: string; text: string }[];
+}
+export const PREMIOS_SEGURISIMOS: NivelPremio[] = [
+  { pts: 500, items: [
+    { icon: "📺", text: "Netflix 50 € de saldo" },
+    { icon: "🎬", text: "Disney+ o Movistar+ 3 meses" },
+    { icon: "⚽", text: "DAZN Fútbol 2 meses" },
+    { icon: "🏎️", text: "DAZN Motor 2 meses" },
+    { icon: "🚨", text: "Baliza de emergencia homologada" },
+    { icon: "🌍", text: "Holafly 50 € de datos en destinos internacionales" },
+  ] },
+  { pts: 1000, items: [
+    { icon: "📺", text: "Netflix 100 € de saldo" },
+    { icon: "🏀", text: "DAZN Baloncesto 12 meses" },
+    { icon: "🏆", text: "DAZN Premium 3 meses" },
+  ] },
+  { pts: 1500, items: [
+    { icon: "📺", text: "Netflix 150 € de saldo" },
+    { icon: "🎬", text: "Disney+ o Movistar+ 12 meses" },
+    { icon: "🎧", text: "Samsung Galaxy Buds3" },
+  ] },
+  { pts: 2000,  items: [{ icon: "🎧", text: "AirPods 4" }] },
+  { pts: 3000,  items: [{ icon: "⌚", text: "Apple Watch SE 3" }, { icon: "📱", text: "Tablet Samsung Galaxy A11 WiFi 128 GB" }] },
+  { pts: 5000,  items: [{ icon: "💻", text: "iPad WiFi 256 GB" }] },
+  { pts: 7000,  items: [{ icon: "⌚", text: "Samsung Galaxy Watch Ultra" }] },
+  { pts: 10000, items: [{ icon: "📱", text: "iPhone 17 256 GB" }, { icon: "📱", text: "Samsung Galaxy Z Flip7 256 GB" }] },
+];
+
+/** Niveles del catálogo alcanzables con unos puntos (de menor a mayor). */
+export function getPremiosAlcanzables(totalPuntos: number): NivelPremio[] {
+  return PREMIOS_SEGURISIMOS.filter((n) => n.pts <= totalPuntos);
+}
+
+/** Primer nivel del catálogo aún no alcanzado (o null si ya están todos). */
+export function getSiguientePremio(totalPuntos: number): NivelPremio | null {
+  return PREMIOS_SEGURISIMOS.find((n) => n.pts > totalPuntos) ?? null;
+}
+
 export interface CampaignBadge {
   text: string;
   bg: string;

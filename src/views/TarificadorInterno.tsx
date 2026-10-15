@@ -22,6 +22,7 @@ import {
   getMesesGratisParticulares,
   getPremioSegurisimos,
   getTarjetaPrepagoEuros,
+  PREMIOS_SEGURISIMOS,
   SEGURISIMOS_MIN_ASEGURADOS_X2,
   getTrianualDiscount,
   CAMPAIGN_TRIANUAL_IDS,
@@ -159,45 +160,13 @@ function validCountOf(precios: { precio: number | null }[]): number {
   return precios.filter((p) => p.precio !== null).length;
 }
 
-/* ─── Catálogo de premios ─────────────────────────────────────
-   Argumentario Segurísimos (SegurCaixa Adeslas, oct. 2026). Sujeto a
-   disponibilidad. La TARJETA PREPAGO (Visa MoneyToPay, 10 pts = 1 €, desde
-   500 pts) es el premio prioritario: se muestra siempre primero en cada nivel
-   con su importe (getTarjetaPrepagoEuros); aquí solo van los regalos. */
-const PREMIOS = [
-  {
-    pts: 500,
-    items: [
-      "📺 Netflix 50 € de saldo",
-      "🎬 Disney+ o Movistar+ 3 meses",
-      "⚽ DAZN Fútbol 2 meses",
-      "🏎️ DAZN Motor 2 meses",
-      "🚨 Baliza de emergencia homologada",
-      "🌍 Holafly 50 € de datos en destinos internacionales",
-    ],
-  },
-  {
-    pts: 1000,
-    items: [
-      "📺 Netflix 100 € de saldo",
-      "🏀 DAZN Baloncesto 12 meses",
-      "🏆 DAZN Premium 3 meses",
-    ],
-  },
-  {
-    pts: 1500,
-    items: [
-      "📺 Netflix 150 € de saldo",
-      "🎬 Disney+ o Movistar+ 12 meses",
-      "🎧 Samsung Galaxy Buds3",
-    ],
-  },
-  { pts: 2000,  items: ["🎧 AirPods 4"] },
-  { pts: 3000,  items: ["⌚ Apple Watch SE 3", "📱 Tablet Samsung Galaxy A11 WiFi 128 GB"] },
-  { pts: 5000,  items: ["💻 iPad WiFi 256 GB"] },
-  { pts: 7000,  items: ["⌚ Samsung Galaxy Watch Ultra"] },
-  { pts: 10000, items: ["📱 iPhone 17 256 GB", "📱 Samsung Galaxy Z Flip7 256 GB"] },
-];
+/* ─── Catálogo de premios: fuente única en @/data/campanaSalud2026
+   (PREMIOS_SEGURISIMOS, compartido con el PDF). La tarjeta prepago es el
+   premio prioritario y se pinta siempre primero, con su importe. */
+const PREMIOS = PREMIOS_SEGURISIMOS.map((n) => ({
+  pts: n.pts,
+  items: n.items.map((i) => `${i.icon} ${i.text}`),
+}));
 
 /* ─── Helper: etiqueta tramo de edad ───────────────────────── */
 function getBandLabel(age: number): string {
@@ -687,36 +656,62 @@ export default function TarificadorInterno() {
                       </p>
                     )}
 
-                    {/* Incentivo campaña: puntos Segurísimos (particulares) */}
-                    <div className="mt-1.5 flex flex-wrap gap-2">
-                      {abonoTotal > 0 && (
-                        <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full">
-                          💶 {abonoTotal.toLocaleString()} € abono en cuenta
-                          <span className="font-normal text-emerald-500">
-                            ({abonoXAseg} € × {validCountOf(preciosPorPersona)} aseg.{multiplicadorPremio === 2 ? " · x2 por 3+ aseg." : ""})
-                          </span>
-                        </span>
-                      )}
-                      {totalPuntos > 0 && (() => {
-                        const tarjeta = getTarjetaPrepagoEuros(totalPuntos);
-                        const nAsegPremio = validCountOf(preciosPorPersona);
-                        return (
-                          <>
-                            <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full">
-                              ⭐ {totalPuntos.toLocaleString()} puntos
-                              <span className="font-normal text-amber-500">
-                                ({puntosXAseg.toLocaleString()} × {nAsegPremio} aseg.{multiplicadorPremio === 2 ? " · x2 por 3+ aseg." : ""})
-                              </span>
-                            </span>
-                            {tarjeta > 0 && (
-                              <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-slate-800 text-white rounded-full">
-                                🎴 Tarjeta prepago {tarjeta} €
-                              </span>
-                            )}
-                          </>
-                        );
-                      })()}
-                    </div>
+                    {/* Barra de incentivos: meses gratis + puntos = tarjeta prepago (y abono Seniors) */}
+                    {(() => {
+                      const meses = typeof mesesGratis === "number" ? mesesGratis : 0;
+                      const tarjeta = getTarjetaPrepagoEuros(totalPuntos);
+                      const nAsegPremio = validCountOf(preciosPorPersona);
+                      if (meses === 0 && totalPuntos === 0 && abonoTotal === 0) return null;
+                      const sep = (c: string) => (
+                        <span className="self-center text-xl font-black text-slate-400 px-0.5">{c}</span>
+                      );
+                      return (
+                        <div className="mt-2 flex flex-wrap items-stretch gap-1.5">
+                          {meses > 0 && (
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#E4097D] text-white shadow-sm">
+                              <span className="text-xl">🎁</span>
+                              <div className="leading-tight">
+                                <p className="text-base font-black">{meses} {meses === 1 ? "mes gratis" : "meses gratis"}</p>
+                                <p className="text-[10px] opacity-90">de cuota · campaña</p>
+                              </div>
+                            </div>
+                          )}
+                          {meses > 0 && (totalPuntos > 0 || abonoTotal > 0) && sep("+")}
+                          {totalPuntos > 0 && (
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-400 text-amber-950 shadow-sm">
+                              <span className="text-xl">⭐</span>
+                              <div className="leading-tight">
+                                <p className="text-base font-black">{totalPuntos.toLocaleString()} puntos</p>
+                                <p className="text-[10px] opacity-80">
+                                  {puntosXAseg.toLocaleString()} × {nAsegPremio} aseg.{multiplicadorPremio === 2 ? " · x2 por 3+ aseg." : ""}
+                                </p>
+                              </div>
+                            </div>
+                          )}
+                          {tarjeta > 0 && sep("=")}
+                          {tarjeta > 0 && (
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-800 text-white shadow-sm">
+                              <span className="text-xl">🎴</span>
+                              <div className="leading-tight">
+                                <p className="text-base font-black text-green-400">{tarjeta.toLocaleString()} €</p>
+                                <p className="text-[10px] text-slate-300">en tarjeta prepago Visa</p>
+                              </div>
+                            </div>
+                          )}
+                          {abonoTotal > 0 && (
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-600 text-white shadow-sm">
+                              <span className="text-xl">💶</span>
+                              <div className="leading-tight">
+                                <p className="text-base font-black">{abonoTotal.toLocaleString()} € abono</p>
+                                <p className="text-[10px] opacity-90">
+                                  {abonoXAseg} € × {nAsegPremio} aseg. en cuenta{multiplicadorPremio === 2 ? " · x2 por 3+ aseg." : ""}
+                                </p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })()}
 
                     {/* Oferta pública campaña — bloque destacado en fila compacta */}
                     {(() => {
@@ -725,6 +720,8 @@ export default function TarificadorInterno() {
                       const esAutonomos = CAMPAIGN_AUTONOMOS_IDS.has(product.id);
                       const es25 = mesesGratis === "descuento25";
                       const pctAutonomos = esAutonomos ? getAutonomosDiscountTier(product.id, asegurados.length) * 100 : 0;
+                      // Meses gratis y puntos ya se destacan en la barra de incentivos
+                      if (!es25 && !esAutonomos) return null;
                       return (
                         <div
                           className="flex items-center gap-2 mt-1.5 px-3 py-1.5 rounded-lg"
@@ -893,6 +890,11 @@ export default function TarificadorInterno() {
                           <tr>
                             <td colSpan={4} className="pt-3">
                               <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
+                                {typeof mesesGratis === "number" && mesesGratis > 0 && (
+                                  <p className="inline-block mb-2 px-3 py-1 rounded-lg bg-[#E4097D] text-white text-base font-black">
+                                    🎁 {mesesGratis} {mesesGratis === 1 ? "mes gratis" : "meses gratis"}
+                                  </p>
+                                )}
                                 <p className="text-sm font-bold text-amber-800">
                                   ⭐ Campaña Segurísimos · Puntos
                                 </p>
@@ -960,6 +962,11 @@ export default function TarificadorInterno() {
                           <tr>
                             <td colSpan={4} className="pt-3">
                               <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
+                                {typeof mesesGratis === "number" && mesesGratis > 0 && (
+                                  <p className="inline-block mb-2 px-3 py-1 rounded-lg bg-[#E4097D] text-white text-base font-black">
+                                    🎁 {mesesGratis} {mesesGratis === 1 ? "mes gratis" : "meses gratis"}
+                                  </p>
+                                )}
                                 <p className="text-sm font-bold text-emerald-800">
                                   💶 Campaña Segurísimos · Abono en cuenta
                                 </p>
