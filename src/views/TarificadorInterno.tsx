@@ -159,19 +159,21 @@ function validCountOf(precios: { precio: number | null }[]): number {
   return precios.filter((p) => p.precio !== null).length;
 }
 
-/* ─── Catálogo de premios ───────────────────────────────────── */
+/* ─── Catálogo de premios ─────────────────────────────────────
+   Argumentario Segurísimos (SegurCaixa Adeslas, oct. 2026). Sujeto a
+   disponibilidad. La TARJETA PREPAGO (Visa MoneyToPay, 10 pts = 1 €, desde
+   500 pts) es el premio prioritario: se muestra siempre primero en cada nivel
+   con su importe (getTarjetaPrepagoEuros); aquí solo van los regalos. */
 const PREMIOS = [
   {
     pts: 500,
     items: [
-      "🎴 Tarjeta prepago 50 €",
       "📺 Netflix 50 € de saldo",
-      "🎬 Disney+ 3 meses",
-      "📡 Movistar+ 3 meses",
+      "🎬 Disney+ o Movistar+ 3 meses",
       "⚽ DAZN Fútbol 2 meses",
       "🏎️ DAZN Motor 2 meses",
-      "🚨 Baliza emergencia V16",
-      "🌍 Holafly 50 € de datos internacionales",
+      "🚨 Baliza de emergencia homologada",
+      "🌍 Holafly 50 € de datos en destinos internacionales",
     ],
   },
   {
@@ -186,15 +188,14 @@ const PREMIOS = [
     pts: 1500,
     items: [
       "📺 Netflix 150 € de saldo",
-      "🎬 Disney+ 12 meses",
-      "📡 Movistar+ 12 meses",
-      "🎧 Galaxy Buds3",
+      "🎬 Disney+ o Movistar+ 12 meses",
+      "🎧 Samsung Galaxy Buds3",
     ],
   },
   { pts: 2000,  items: ["🎧 AirPods 4"] },
-  { pts: 3000,  items: ["⌚ Apple Watch SE 3 GPS 44 mm", "📱 Tablet Samsung Galaxy A11 WiFi 128 GB"] },
+  { pts: 3000,  items: ["⌚ Apple Watch SE 3", "📱 Tablet Samsung Galaxy A11 WiFi 128 GB"] },
   { pts: 5000,  items: ["💻 iPad WiFi 256 GB"] },
-  { pts: 7000,  items: ["⌚ Galaxy Watch Ultra LTE 47 mm"] },
+  { pts: 7000,  items: ["⌚ Samsung Galaxy Watch Ultra"] },
   { pts: 10000, items: ["📱 iPhone 17 256 GB", "📱 Samsung Galaxy Z Flip7 256 GB"] },
 ];
 
@@ -1085,9 +1086,9 @@ export default function TarificadorInterno() {
                     <p className="font-bold text-slate-800">Catálogo de premios · Segurísimos</p>
                     <p className="text-xs text-slate-500">
                       Con {maxPuntos.toLocaleString()} puntos máx. ·{" "}
-                      {premiosAlcanzables.length > 0
-                        ? `Hasta ${premiosAlcanzables.at(-1)?.items.join(", ")}`
-                        : "Aún no se alcanzan premios"}
+                      {getTarjetaPrepagoEuros(maxPuntos) > 0
+                        ? `🎴 ${getTarjetaPrepagoEuros(maxPuntos).toLocaleString()} € en tarjeta prepago${premiosAlcanzables.length > 0 ? ` o ${premiosAlcanzables.at(-1)?.items.join(", ")}` : ""}`
+                        : "Aún no se alcanzan premios (mínimo 500 puntos)"}
                     </p>
                   </div>
                 </div>
@@ -1099,13 +1100,21 @@ export default function TarificadorInterno() {
 
               {mostrarPremios && (
                 <div className="border-t border-slate-100 px-6 py-5">
-                  {/* Tarjeta prepago – siempre visible */}
-                  <div className="mb-4 p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-600">
-                    🎴 <strong>Tarjeta prepago MoneyToPay</strong> · A partir de 500 puntos, cada 10 puntos = 1 € de saldo
+                  {/* Tarjeta prepago — premio prioritario, siempre primero */}
+                  <div className="mb-4 p-4 bg-slate-800 rounded-xl text-white flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wide text-amber-300">⭐ Premio recomendado</p>
+                      <p className="text-base font-bold">🎴 Tarjeta prepago Visa Segurísimos (MoneyToPay)</p>
+                      <p className="text-xs text-slate-300 mt-0.5">
+                        A partir de 500 puntos · cada 10 puntos = 1 € de saldo · se usa en cualquier comercio
+                        físico u online, sin cuenta bancaria
+                      </p>
+                    </div>
                     {getTarjetaPrepagoEuros(maxPuntos) > 0 && (
-                      <span className="ml-2 font-bold text-green-600">
-                        → {getTarjetaPrepagoEuros(maxPuntos)} € disponibles
-                      </span>
+                      <div className="text-right">
+                        <p className="text-[10px] uppercase tracking-wide text-slate-300">Con {maxPuntos.toLocaleString()} pts</p>
+                        <p className="text-2xl font-black text-green-400">{getTarjetaPrepagoEuros(maxPuntos).toLocaleString()} €</p>
+                      </div>
                     )}
                   </div>
 
@@ -1125,6 +1134,14 @@ export default function TarificadorInterno() {
                             alcanzado ? "text-amber-700" : "text-slate-500"
                           }`}>
                             {alcanzado ? "✓" : "🔒"} {nivel.pts.toLocaleString()} puntos
+                          </p>
+                          <p className={`text-xs font-bold mb-1.5 px-2 py-1 rounded-md inline-block ${
+                            alcanzado ? "bg-slate-800 text-white" : "bg-slate-200 text-slate-500"
+                          }`}>
+                            🎴 Tarjeta prepago {getTarjetaPrepagoEuros(nivel.pts).toLocaleString()} €
+                          </p>
+                          <p className={`text-[10px] uppercase tracking-wide mb-1 ${alcanzado ? "text-amber-600" : "text-slate-400"}`}>
+                            o bien
                           </p>
                           <ul className="space-y-1">
                             {nivel.items.map((item, i) => (

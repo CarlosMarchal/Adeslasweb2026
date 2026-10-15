@@ -828,6 +828,16 @@ export async function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): 
     doc.setFont("helvetica", "bold"); doc.setFontSize(15); doc.setTextColor(120, 68, 0);
     doc.text(`${quote.totalPuntos.toLocaleString("es-ES")} puntos`, RX, y + 26, { align: "right" });
 
+    // Prioridad: tarjeta prepago (10 pts = 1 EUR a partir de 500 pts)
+    const tarjetaEur = quote.totalPuntos >= 500 ? Math.floor(quote.totalPuntos / 10) : 0;
+    if (tarjetaEur > 0) {
+      doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(30, 41, 59);
+      doc.text(
+        `= ${tarjetaEur.toLocaleString("es-ES")} EUR en tarjeta prepago (10 pts = 1 EUR)`,
+        ML + 10, y + 25.5,
+      );
+    }
+
     y += camH + 5;
   }
 
