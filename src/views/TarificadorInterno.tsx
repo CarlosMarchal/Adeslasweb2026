@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Trash2, Plus, ChevronDown, ChevronUp, Gift } from "lucide-react";
+import {
+  Trash2, Plus, ChevronDown, ChevronUp, Gift,
+  Popcorn, MonitorPlay, Goal, Flag, Dribbble, Trophy, Siren, Globe,
+  Headphones, Watch, Tablet, Smartphone, CreditCard, Lock,
+  type LucideIcon,
+} from "lucide-react";
 import { products, provinces, getPrice, getZoneFromProvince } from "@/data/pricing";
 import { generateQuotePdf, type QuoteData } from "@/lib/generateQuotePdf";
 import {
@@ -23,6 +28,7 @@ import {
   getPremioSegurisimos,
   getTarjetaPrepagoEuros,
   PREMIOS_SEGURISIMOS,
+  type TipoPremio,
   SEGURISIMOS_MIN_ASEGURADOS_X2,
   getTrianualDiscount,
   CAMPAIGN_TRIANUAL_IDS,
@@ -167,6 +173,22 @@ const PREMIOS = PREMIOS_SEGURISIMOS.map((n) => ({
   pts: n.pts,
   items: n.items.map((i) => `${i.icon} ${i.text}`),
 }));
+
+/* ─── Catálogo visual: icono y color por tipo de regalo ──────── */
+const ICONO_PREMIO: Record<TipoPremio, { Icon: LucideIcon; bg: string }> = {
+  netflix:     { Icon: Popcorn,     bg: "bg-red-600" },
+  streaming:   { Icon: MonitorPlay, bg: "bg-indigo-600" },
+  futbol:      { Icon: Goal,        bg: "bg-slate-900" },
+  motor:       { Icon: Flag,        bg: "bg-slate-900" },
+  baloncesto:  { Icon: Dribbble,    bg: "bg-slate-900" },
+  premium:     { Icon: Trophy,      bg: "bg-slate-900" },
+  baliza:      { Icon: Siren,       bg: "bg-orange-500" },
+  datos:       { Icon: Globe,       bg: "bg-pink-500" },
+  auriculares: { Icon: Headphones,  bg: "bg-slate-500" },
+  reloj:       { Icon: Watch,       bg: "bg-orange-400" },
+  tablet:      { Icon: Tablet,      bg: "bg-sky-500" },
+  movil:       { Icon: Smartphone,  bg: "bg-blue-500" },
+};
 
 /* ─── Helper: etiqueta tramo de edad ───────────────────────── */
 function getBandLabel(age: number): string {
@@ -1125,38 +1147,47 @@ export default function TarificadorInterno() {
                     )}
                   </div>
 
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {PREMIOS.map((nivel) => {
+                  {/* Catálogo visual por niveles (estilo folleto Segurísimos):
+                      tarjeta prepago siempre primero, luego los regalos con icono. */}
+                  <div className="flex flex-wrap gap-x-4 gap-y-5">
+                    {PREMIOS_SEGURISIMOS.map((nivel) => {
                       const alcanzado = maxPuntos >= nivel.pts;
+                      const tarjeta = getTarjetaPrepagoEuros(nivel.pts);
                       return (
                         <div
                           key={nivel.pts}
-                          className={`rounded-xl border p-4 ${
-                            alcanzado
-                              ? "border-amber-300 bg-amber-50"
-                              : "border-slate-200 bg-slate-50 opacity-50"
-                          }`}
+                          className={`flex-auto min-w-[200px] transition ${alcanzado ? "" : "opacity-50 grayscale"}`}
                         >
-                          <p className={`text-xs font-bold mb-2 ${
-                            alcanzado ? "text-amber-700" : "text-slate-500"
+                          <div className={`inline-flex items-center gap-1.5 px-4 py-1 rounded-t-lg text-xs font-black tracking-wide text-white ${
+                            alcanzado ? "bg-[#3A9AD9]" : "bg-slate-400"
                           }`}>
-                            {alcanzado ? "✓" : "🔒"} {nivel.pts.toLocaleString()} puntos
-                          </p>
-                          <p className={`text-xs font-bold mb-1.5 px-2 py-1 rounded-md inline-block ${
-                            alcanzado ? "bg-slate-800 text-white" : "bg-slate-200 text-slate-500"
+                            {alcanzado ? "✓" : <Lock size={11} />}
+                            {nivel.pts.toLocaleString()} PUNTOS
+                          </div>
+                          <div className={`flex items-stretch divide-x rounded-b-xl rounded-tr-xl ${
+                            alcanzado ? "bg-sky-50 divide-sky-300 ring-1 ring-sky-200" : "bg-slate-100 divide-slate-300"
                           }`}>
-                            🎴 Tarjeta prepago {getTarjetaPrepagoEuros(nivel.pts).toLocaleString()} €
-                          </p>
-                          <p className={`text-[10px] uppercase tracking-wide mb-1 ${alcanzado ? "text-amber-600" : "text-slate-400"}`}>
-                            o bien
-                          </p>
-                          <ul className="space-y-1">
-                            {nivel.items.map((item, i) => (
-                              <li key={i} className={`text-xs ${alcanzado ? "text-amber-800" : "text-slate-500"}`}>
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
+                            {/* Tarjeta prepago — premio prioritario */}
+                            <div className="flex flex-col items-center text-center px-3 py-3 min-w-[96px] bg-slate-800 text-white rounded-bl-xl">
+                              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-blue-700 flex items-center justify-center shadow">
+                                <CreditCard size={24} />
+                              </div>
+                              <p className="mt-2 text-lg font-black leading-tight text-green-400">{tarjeta.toLocaleString()} €</p>
+                              <p className="text-[11px] leading-tight text-slate-300">tarjeta prepago</p>
+                            </div>
+                            {nivel.items.map((item, i) => {
+                              const { Icon, bg } = ICONO_PREMIO[item.tipo];
+                              return (
+                                <div key={i} className="flex flex-col items-center text-center px-2.5 py-3 min-w-[92px] flex-1">
+                                  <div className={`w-12 h-12 rounded-full ${bg} text-white flex items-center justify-center shadow-sm`}>
+                                    <Icon size={22} />
+                                  </div>
+                                  <p className="mt-2 text-sm font-black leading-tight text-slate-800">{item.destacado}</p>
+                                  <p className="text-[11px] leading-tight text-slate-500">{item.detalle}</p>
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
                       );
                     })}
