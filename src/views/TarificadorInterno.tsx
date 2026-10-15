@@ -17,7 +17,9 @@ import {
   CAMPAIGN_AUTONOMOS_IDS,
   getAutonomosDiscountTier,
   getMesesGratisParticulares,
-  getPuntosPorAseguradoCampaign,
+  getPremioSegurisimos,
+  getTarjetaPrepagoEuros,
+  SEGURISIMOS_MIN_ASEGURADOS_X2,
   getTrianualDiscount,
   CAMPAIGN_TRIANUAL_IDS,
   CAMPAIGN_TRIANUAL_MIN_ASEGURADOS,
@@ -102,13 +104,6 @@ const CAMPAIGN_CAT: Record<string, CampaignCat> = {
   "seniors-total":    "seniors_con", // Plena Total Seniors: meses gratis + puntos (propio, sin descuento)
 };
 
-/** ¿El producto ya incluye cobertura dental de serie (a efectos de la fórmula
-    tarjeta prepago 750pts=75€)? Nota: no afecta a los meses gratis de campaña,
-    que son iguales con o sin dental (ver @/data/campanaSalud2026). */
-function tieneDentalDeSerie(productId: string): boolean {
-  return productId === "seniors" || productId === "completa" || productId === "completaPlus" || productId === "seniors-total";
-}
-
 /* ─── Mensaje público de la campaña por producto ───────────────
    Refleja lo que ve el cliente final. Cifras desde @/data/campanaSalud2026.
 ────────────────────────────────────────────────────────────── */
@@ -117,8 +112,6 @@ function getMensajePublico(
   n: number,
   dentalModuloActivo = false,
 ): { text: string; color: string; bg: string } | null {
-  if (productId === "ya") return null;
-
   if (productId === "pymes-total") {
     return {
       text: `🏷️ Tarifa de campaña ya aplicada (${n >= 4 ? "4+ asegurados" : "1-3 asegurados"})`,
@@ -135,26 +128,32 @@ function getMensajePublico(
   const meses = getMesesGratisParticulares(productId, n, dentalModuloActivo);
   if (meses === "descuento25")
     return { text: "🎁 Oferta pública: 25% de descuento (≥3 asegurados)", color: "#9D174D", bg: "#FDF2F8" };
-  if (meses === null) return null;
+  const premio = getPremioSegurisimos(productId, n, dentalModuloActivo);
+  const premioTxt = premio.tipo === "abono"
+    ? `${premio.porAsegurado} € de abono/aseg.`
+    : `${premio.porAsegurado.toLocaleString()} pts/aseg.`;
+  if (meses === null) {
+    return premio.tipo === "ninguno"
+      ? null
+      : { text: `🎁 Oferta pública: ${premioTxt}`, color: "#92400E", bg: "#FFFBEB" };
+  }
   if (meses === 0)
-    return { text: `🎁 Oferta pública: ${getPuntosPorAseguradoCampaign(productId, dentalModuloActivo)} pts/aseg.`, color: "#92400E", bg: "#FFFBEB" };
+    return { text: `🎁 Oferta pública: ${premioTxt}`, color: "#92400E", bg: "#FFFBEB" };
   return {
-    text: `🎁 Oferta pública: ${meses} ${meses === 1 ? "mes gratis" : "meses gratis"} + ${getPuntosPorAseguradoCampaign(productId, dentalModuloActivo)} pts/aseg.`,
+    text: `🎁 Oferta pública: ${meses} ${meses === 1 ? "mes gratis" : "meses gratis"} + ${premioTxt}`,
     color: "#92400E",
     bg: "#FFFBEB",
   };
 }
 
-/* ─── Puntos Segurísimos por asegurado: 250 pts/aseg. en salud sin dental y
-   500 pts/aseg. si la póliza lleva dental (módulo contratado o dental de
-   serie). Autónomos/Pymes: 0. ── */
-function puntosXAsegurado(
-  _cat: CampaignCat,
-  _totalAsegurados: number,
-  productId: string,
-  dentalModuloActivo = false,
-): number {
-  return getPuntosPorAseguradoCampaign(productId, dentalModuloActivo);
+/* ─── Premio Segurísimos (Promoción Salud): ver getPremioSegurisimos en
+   @/data/campanaSalud2026. GO 250/350 · Asistencia Sanitaria 500/750 pts por
+   asegurado (sin/con dental), x2 con 3 o más asegurados. Seniors y Plena Total
+   Seniors: abono en cuenta 50/75 € por asegurado (x2 con 3+). Pymes: sin premio. ── */
+
+/** Nº de asegurados con precio en el producto (los que generan premio). */
+function validCountOf(precios: { precio: number | null }[]): number {
+  return precios.filter((p) => p.precio !== null).length;
 }
 
 /* ─── Catálogo de premios ───────────────────────────────────── */
@@ -169,6 +168,7 @@ const PREMIOS = [
       "⚽ DAZN Fútbol 2 meses",
       "🏎️ DAZN Motor 2 meses",
       "🚨 Baliza emergencia V16",
+      "🌍 Holafly 50 € de datos internacionales",
     ],
   },
   {
@@ -184,7 +184,7 @@ const PREMIOS = [
     items: [
       "📺 Netflix 150 € de saldo",
       "🎬 Disney+ 12 meses",
-      "🏀 DAZN Baloncesto 12 meses",
+      "📡 Movistar+ 12 meses",
       "🎧 Galaxy Buds3",
     ],
   },
@@ -323,11 +323,16 @@ export default function TarificadorInterno() {
         // Campaña (particulares): puntos fijos por asegurado + meses gratis / 25% dto.
         // según producto y nº de asegurados. Cifras únicas en @/data/campanaSalud2026.
         const dentalActivoParaCampana = includeDental && !dentalYaIncluido;
-        const puntosXAseg = puntosXAsegurado(cat, asegurados.length, product.id, dentalActivoParaCampana);
-        const totalPuntos = puntosXAseg * validCount;
+        // Premio Segurísimos: se calcula sobre los asegurados con precio en este producto.
+        const premio = getPremioSegurisimos(product.id, validCount, dentalActivoParaCampana);
+        const puntosXAseg = premio.tipo === "puntos" ? premio.porAsegurado : 0;
+        const totalPuntos = premio.tipo === "puntos" ? premio.total : 0;
+        const abonoXAseg  = premio.tipo === "abono" ? premio.porAsegurado : 0;
+        const abonoTotal  = premio.tipo === "abono" ? premio.total : 0;
+        const multiplicadorPremio = premio.multiplicador;
         const mesesGratis = getMesesGratisParticulares(product.id, asegurados.length, dentalActivoParaCampana);
-        // Fórmula tarjeta 750 pts = 75 €: dental de serie o módulo dental activo; si no, 500 pts = 50 €.
-        const useDentalTarjetaFormula = tieneDentalDeSerie(product.id) || dentalActivoParaCampana;
+        // ¿La póliza cuenta "con dental" a efectos del premio? (dental de serie o módulo activo)
+        const useDentalTarjetaFormula = premio.conDental;
 
         return {
           product, cat, isSeniors,
@@ -335,6 +340,7 @@ export default function TarificadorInterno() {
           descAuto, ratioAuto, descComercial, total,
           preciosPorPersona, hayNulos,
           totalPuntos, puntosXAseg, mesesGratis,
+          abonoXAseg, abonoTotal, multiplicadorPremio,
           useDentalTarjetaFormula,
           pctComercialEfectivo,
         };
@@ -631,6 +637,7 @@ export default function TarificadorInterno() {
               descAuto, ratioAuto, descComercial, total,
               preciosPorPersona, hayNulos,
               totalPuntos, puntosXAseg, mesesGratis,
+              abonoXAseg, abonoTotal, multiplicadorPremio,
               useDentalTarjetaFormula,
               pctComercialEfectivo,
             }) => (
@@ -669,16 +676,23 @@ export default function TarificadorInterno() {
 
                     {/* Incentivo campaña: puntos Segurísimos (particulares) */}
                     <div className="mt-1.5 flex flex-wrap gap-2">
+                      {abonoTotal > 0 && (
+                        <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full">
+                          💶 {abonoTotal.toLocaleString()} € abono en cuenta
+                          <span className="font-normal text-emerald-500">
+                            ({abonoXAseg} € × {validCountOf(preciosPorPersona)} aseg.{multiplicadorPremio === 2 ? " · x2 por 3+ aseg." : ""})
+                          </span>
+                        </span>
+                      )}
                       {totalPuntos > 0 && (() => {
-                        const tarjeta = useDentalTarjetaFormula
-                          ? Math.floor(totalPuntos / 750) * 75
-                          : Math.floor(totalPuntos / 500) * 50;
+                        const tarjeta = getTarjetaPrepagoEuros(totalPuntos);
+                        const nAsegPremio = validCountOf(preciosPorPersona);
                         return (
                           <>
                             <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full">
                               ⭐ {totalPuntos.toLocaleString()} puntos
                               <span className="font-normal text-amber-500">
-                                ({puntosXAseg.toLocaleString()} × {asegurados.length} aseg.)
+                                ({puntosXAseg.toLocaleString()} × {nAsegPremio} aseg.{multiplicadorPremio === 2 ? " · x2 por 3+ aseg." : ""})
                               </span>
                             </span>
                             {tarjeta > 0 && (
@@ -862,17 +876,17 @@ export default function TarificadorInterno() {
                                   ⭐ Campaña Segurísimos · Puntos
                                 </p>
                                 <p className="text-xs text-amber-700 mt-0.5">
-                                  {puntosXAseg.toLocaleString()} puntos × {asegurados.length} asegurado{asegurados.length > 1 ? "s" : ""}
+                                  {puntosXAseg.toLocaleString()} puntos × {validCountOf(preciosPorPersona)} asegurado{validCountOf(preciosPorPersona) > 1 ? "s" : ""}
                                   {" = "}
                                   <span className="font-bold text-lg text-amber-800">
                                     {totalPuntos.toLocaleString()} puntos
                                   </span>
                                 </p>
-                                {(useDentalTarjetaFormula ? Math.floor(totalPuntos / 750) * 75 : Math.floor(totalPuntos / 500) * 50) > 0 && (
+                                {getTarjetaPrepagoEuros(totalPuntos) > 0 && (
                                   <p className="text-xs font-bold text-slate-800 mt-1.5 bg-white border border-slate-300 rounded-lg px-3 py-1.5 inline-block">
                                     🎴 Tarjeta prepago disponible:{" "}
                                     <span className="text-base text-slate-900">
-                                      {useDentalTarjetaFormula ? Math.floor(totalPuntos / 750) * 75 : Math.floor(totalPuntos / 500) * 50} €
+                                      {getTarjetaPrepagoEuros(totalPuntos)} €
                                     </span>
                                     <span className="font-normal text-slate-400 ml-1">
                                       (o canjea por otros premios)
@@ -881,7 +895,9 @@ export default function TarificadorInterno() {
                                 )}
                                 <p className="text-xs text-amber-600 mt-1">
                                   {labelDental(cat)} ·{" "}
-                                  {puntosXAseg.toLocaleString()} pts/asegurado ({useDentalTarjetaFormula ? "con dental" : "sin dental"}) · se acreditan al 4º mes, caducan a los 12 meses
+                                  {(puntosXAseg / multiplicadorPremio).toLocaleString()} pts/asegurado ({useDentalTarjetaFormula ? "con dental" : "sin dental"})
+                                  {multiplicadorPremio === 2 ? ` · x2 por ${SEGURISIMOS_MIN_ASEGURADOS_X2} o más asegurados` : ` · x2 a partir de ${SEGURISIMOS_MIN_ASEGURADOS_X2} asegurados`}
+                                  {" · se acreditan al 4º mes, caducan a los 12 meses · tarjeta prepago: 10 pts = 1 €"}
                                 </p>
                                 {/* Oferta pública campaña — en el desglose expandido */}
                                 {(() => {
@@ -911,6 +927,44 @@ export default function TarificadorInterno() {
                                             : "5% con 1-3 aseg. · 15% con 4+ aseg. (7,5% en 1ª renovación, 0% en la 2ª)"}
                                         </p>
                                       )}
+                                    </div>
+                                  );
+                                })()}
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                        {/* Seniors / Plena Total Seniors: abono en cuenta en lugar de puntos */}
+                        {abonoTotal > 0 && (
+                          <tr>
+                            <td colSpan={4} className="pt-3">
+                              <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
+                                <p className="text-sm font-bold text-emerald-800">
+                                  💶 Campaña Segurísimos · Abono en cuenta
+                                </p>
+                                <p className="text-xs text-emerald-700 mt-0.5">
+                                  {abonoXAseg} € × {validCountOf(preciosPorPersona)} asegurado{validCountOf(preciosPorPersona) > 1 ? "s" : ""}
+                                  {" = "}
+                                  <span className="font-bold text-lg text-emerald-800">
+                                    {abonoTotal.toLocaleString()} €
+                                  </span>
+                                </p>
+                                <p className="text-xs text-emerald-600 mt-1">
+                                  {abonoXAseg / multiplicadorPremio} €/asegurado ({useDentalTarjetaFormula ? "con dental" : "sin dental"})
+                                  {multiplicadorPremio === 2 ? ` · x2 por ${SEGURISIMOS_MIN_ASEGURADOS_X2} o más asegurados` : ` · x2 a partir de ${SEGURISIMOS_MIN_ASEGURADOS_X2} asegurados`}
+                                  {" · Seniors no acumula puntos: el premio se abona en la cuenta bancaria al 4º mes"}
+                                </p>
+                                {(() => {
+                                  const mp = getMensajePublico(product.id, asegurados.length, useDentalTarjetaFormula);
+                                  if (!mp) return null;
+                                  return (
+                                    <div className="mt-2 pt-2 border-t border-emerald-200">
+                                      <p className="text-[10px] font-bold uppercase tracking-wide text-emerald-600 mb-1">
+                                        Lo que ve el cliente
+                                      </p>
+                                      <p className="text-sm font-black" style={{ color: mp.color }}>
+                                        {mp.text.replace("Oferta pública: ", "")}
+                                      </p>
                                     </div>
                                   );
                                 })()}
@@ -975,6 +1029,8 @@ export default function TarificadorInterno() {
                             total,
                             totalPuntos,
                             puntosXAseg,
+                            abonoXAseg,
+                            abonoTotal,
                             mesesGratis,
                             hayNulos,
                           });
@@ -1023,10 +1079,10 @@ export default function TarificadorInterno() {
                 <div className="border-t border-slate-100 px-6 py-5">
                   {/* Tarjeta prepago – siempre visible */}
                   <div className="mb-4 p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-600">
-                    🎴 <strong>Tarjeta prepago MoneyToPay</strong> · Cada 500 puntos = 50 € de saldo
-                    {maxPuntos >= 500 && (
+                    🎴 <strong>Tarjeta prepago MoneyToPay</strong> · A partir de 500 puntos, cada 10 puntos = 1 € de saldo
+                    {getTarjetaPrepagoEuros(maxPuntos) > 0 && (
                       <span className="ml-2 font-bold text-green-600">
-                        → {Math.floor(maxPuntos / 500) * 50} € disponibles
+                        → {getTarjetaPrepagoEuros(maxPuntos)} € disponibles
                       </span>
                     )}
                   </div>

@@ -53,6 +53,9 @@ export interface QuoteData {
   total:                 number;
   totalPuntos:           number;
   puntosXAseg:           number;
+  /** Seniors / Plena Total Seniors: abono en cuenta (€) en lugar de puntos. */
+  abonoXAseg?:           number;
+  abonoTotal?:           number;
   /** Meses gratis de campaña (particulares): número de meses, "descuento25" o null si no aplica. */
   mesesGratis:           number | "descuento25" | null;
   hayNulos:              boolean;
@@ -755,7 +758,12 @@ export async function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): 
           doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...MAGENTA);
           doc.text("25% DE DESCUENTO", ML + 8, y + 13.5);
           doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(160, 10, 80);
-          doc.text("por contratar con 3 o mas asegurados", RX, y + 13.5, { align: "right" });
+          doc.text(
+            (quote.abonoTotal ?? 0) > 0
+              ? `3 o mas aseg. · + ${quote.abonoTotal!.toLocaleString("es-ES")} EUR de abono en cuenta`
+              : "por contratar con 3 o mas asegurados",
+            RX, y + 13.5, { align: "right" },
+          );
         } else {
           const meses = typeof quote.mesesGratis === "number" ? quote.mesesGratis : 0;
           doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...MAGENTA);
@@ -764,10 +772,15 @@ export async function generateQuotePdf(quote: QuoteData, cliente: ClienteInfo): 
             ML + 8, y + 13.5,
           );
           doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(160, 10, 80);
-          doc.text(
-            `+ ${quote.puntosXAseg.toLocaleString("es-ES")} puntos x ${nAsegPub} aseg. = ${quote.totalPuntos.toLocaleString("es-ES")} puntos`,
-            RX, y + 13.5, { align: "right" }
-          );
+          const abonoTotal = quote.abonoTotal ?? 0;
+          if (abonoTotal > 0 || quote.totalPuntos > 0) {
+            doc.text(
+              abonoTotal > 0
+                ? `+ abono ${(quote.abonoXAseg ?? 0).toLocaleString("es-ES")} EUR x ${nAsegPub} aseg. = ${abonoTotal.toLocaleString("es-ES")} EUR en cuenta`
+                : `+ ${quote.puntosXAseg.toLocaleString("es-ES")} puntos x ${nAsegPub} aseg. = ${quote.totalPuntos.toLocaleString("es-ES")} puntos`,
+              RX, y + 13.5, { align: "right" }
+            );
+          }
         }
       }
 

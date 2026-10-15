@@ -142,6 +142,89 @@ export function getPuntosPorAseguradoCampaign(productId: string, dentalModuloAct
     : CAMPAIGN_PUNTOS_POR_ASEGURADO;
 }
 
+/* ── Premio Segurísimos — Promoción Salud (tarificador interno) ──────────
+   Fuente: argumentario "Segurísimos ¡Ampliada!" de SegurCaixa Adeslas
+   (09-10-2026), sección Promoción Salud. Personas físicas.
+
+   PUNTOS POR ASEGURADO                    1-2 aseg.   3 o más aseg. (x2)
+     Adeslas GO sin dental                    250           500
+     Adeslas GO con dental                    350           700
+     Asistencia Sanitaria sin dental          500         1.000
+     Asistencia Sanitaria con dental          750         1.500
+
+   ABONO EN CUENTA POR ASEGURADO (en lugar de puntos)
+     Adeslas Seniors sin dental                50 €         100 €
+     Adeslas Seniors con dental /
+     Adeslas Plena Total Seniors               75 €         150 €
+
+   · El x2 por 3 o más asegurados se aplica a TODOS los asegurados de la póliza.
+   · Pymes Total (persona jurídica): sin premio, solo descuento contra comisión.
+   · Tarjeta prepago: a partir de 500 puntos, cada 10 puntos = 1 € de saldo.
+   · Los puntos se acreditan al 4º mes de vigencia (al corriente de pago) y
+     caducan a los 12 meses.
+   Estas cifras NO sustituyen a getPuntosPorAseguradoCampaign (copys públicos). */
+export const SEGURISIMOS_MIN_ASEGURADOS_X2 = 3;
+export const SEGURISIMOS_GO_ID = "ya";
+export const SEGURISIMOS_PUNTOS_GO = { sinDental: 250, conDental: 350 } as const;
+export const SEGURISIMOS_PUNTOS_SALUD = { sinDental: 500, conDental: 750 } as const;
+export const SEGURISIMOS_ABONO_SENIORS_IDS = new Set(["seniors", "seniors-total"]);
+export const SEGURISIMOS_ABONO_SENIORS = { sinDental: 50, conDental: 75 } as const;
+export const SEGURISIMOS_SIN_PREMIO_IDS = new Set(["pymes-total", "negocios-nif"]);
+export const SEGURISIMOS_TARJETA_MIN_PUNTOS = 500;
+export const SEGURISIMOS_PUNTOS_POR_EURO_TARJETA = 10;
+
+export interface PremioSegurisimos {
+  /** "puntos" (canjeables en el catálogo), "abono" (euros en cuenta, Seniors) o "ninguno". */
+  tipo: "puntos" | "abono" | "ninguno";
+  /** Importe por asegurado YA multiplicado (puntos o euros, según tipo). */
+  porAsegurado: number;
+  /** Importe base por asegurado, antes del x2. */
+  base: number;
+  /** 2 si la póliza tiene 3 o más asegurados; 1 si no. */
+  multiplicador: 1 | 2;
+  /** Total de la póliza: porAsegurado × número de asegurados. */
+  total: number;
+  conDental: boolean;
+}
+
+/**
+ * Premio Segurísimos de la Promoción Salud para una póliza.
+ * @param numAsegurados asegurados de la póliza (decide el x2 y el total).
+ * @param dentalModuloActivo módulo dental contratado (el dental de serie se detecta solo).
+ */
+export function getPremioSegurisimos(
+  productId: string,
+  numAsegurados: number,
+  dentalModuloActivo = false,
+): PremioSegurisimos {
+  const conDental = tieneDentalCampaign(productId, dentalModuloActivo);
+  const multiplicador: 1 | 2 = numAsegurados >= SEGURISIMOS_MIN_ASEGURADOS_X2 ? 2 : 1;
+  const n = Math.max(0, numAsegurados);
+  const build = (tipo: "puntos" | "abono", base: number): PremioSegurisimos => ({
+    tipo, base, multiplicador, conDental,
+    porAsegurado: base * multiplicador,
+    total: base * multiplicador * n,
+  });
+
+  if (SEGURISIMOS_SIN_PREMIO_IDS.has(productId) || n === 0) {
+    return { tipo: "ninguno", porAsegurado: 0, base: 0, multiplicador, total: 0, conDental };
+  }
+  if (SEGURISIMOS_ABONO_SENIORS_IDS.has(productId)) {
+    return build("abono", conDental ? SEGURISIMOS_ABONO_SENIORS.conDental : SEGURISIMOS_ABONO_SENIORS.sinDental);
+  }
+  if (productId === SEGURISIMOS_GO_ID) {
+    return build("puntos", conDental ? SEGURISIMOS_PUNTOS_GO.conDental : SEGURISIMOS_PUNTOS_GO.sinDental);
+  }
+  return build("puntos", conDental ? SEGURISIMOS_PUNTOS_SALUD.conDental : SEGURISIMOS_PUNTOS_SALUD.sinDental);
+}
+
+/** Saldo de tarjeta prepago canjeable con unos puntos (10 pts = 1 €, mínimo 500 pts). */
+export function getTarjetaPrepagoEuros(totalPuntos: number): number {
+  return totalPuntos >= SEGURISIMOS_TARJETA_MIN_PUNTOS
+    ? Math.floor(totalPuntos / SEGURISIMOS_PUNTOS_POR_EURO_TARJETA)
+    : 0;
+}
+
 export interface CampaignBadge {
   text: string;
   bg: string;
