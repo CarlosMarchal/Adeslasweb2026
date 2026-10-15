@@ -43,6 +43,29 @@ export const CAMPAIGN_COMISION_TEXT =
   "El agente-mediador puede cederse hasta un 5% de su comisión (con o sin decimales), a descontar de la prima hasta la 1ª renovación. Sin aportación adicional de la Compañía.";
 export const CAMPAIGN_MAX_COMISION_PCT = 5;
 
+/* Adeslas Pymes Total (persona jurídica): descuento contra comisión de hasta
+   el 5% por parte del agente + una aportación EQUIVALENTE de la Compañía
+   → máximo 10% sobre la prima (argumentario Segurísimos, oct. 2026). */
+export const CAMPAIGN_PYMES_TOTAL_ID = "pymes-total";
+export const CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT = 10;
+
+/** Descuento contra comisión máximo (%) que admite un producto. GO: 0. */
+export function getMaxDescuentoComisionPct(productId: string): number {
+  if (productId === "ya") return 0;
+  if (productId === CAMPAIGN_PYMES_TOTAL_ID) return CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT;
+  return CAMPAIGN_MAX_COMISION_PCT;
+}
+
+/** Reparto del descuento contra comisión entre agente y Compañía (en %). */
+export function getRepartoDescuentoComision(
+  productId: string,
+  pctTotal: number,
+): { agente: number; compania: number } {
+  const pct = Math.min(Math.max(pctTotal, 0), getMaxDescuentoComisionPct(productId));
+  if (productId === CAMPAIGN_PYMES_TOTAL_ID) return { agente: pct / 2, compania: pct / 2 };
+  return { agente: pct, compania: 0 };
+}
+
 /* ── Particulares ──────────────────────────────────────────────
    Productos sin oferta pública en esta campaña. */
 export const CAMPAIGN_NO_PROMO_IDS = new Set(["ya"]);
@@ -158,6 +181,9 @@ export function getPuntosPorAseguradoCampaign(productId: string, dentalModuloAct
      Adeslas Plena Total Seniors               75 €         150 €
 
    · El x2 por 3 o más asegurados se aplica a TODOS los asegurados de la póliza.
+   · Negocios NIF / Extra Negocios NIF (código de campaña 3651, autónomo
+     persona física): puntos como Asistencia Sanitaria, compatibles con su
+     descuento en prima por tramos.
    · Pymes Total (persona jurídica): sin premio, solo descuento contra comisión.
    · Tarjeta prepago: a partir de 500 puntos, cada 10 puntos = 1 € de saldo.
    · Los puntos se acreditan al 4º mes de vigencia (al corriente de pago) y
@@ -169,7 +195,7 @@ export const SEGURISIMOS_PUNTOS_GO = { sinDental: 250, conDental: 350 } as const
 export const SEGURISIMOS_PUNTOS_SALUD = { sinDental: 500, conDental: 750 } as const;
 export const SEGURISIMOS_ABONO_SENIORS_IDS = new Set(["seniors", "seniors-total"]);
 export const SEGURISIMOS_ABONO_SENIORS = { sinDental: 50, conDental: 75 } as const;
-export const SEGURISIMOS_SIN_PREMIO_IDS = new Set(["pymes-total", "negocios-nif"]);
+export const SEGURISIMOS_SIN_PREMIO_IDS = new Set(["pymes-total"]);
 export const SEGURISIMOS_TARJETA_MIN_PUNTOS = 500;
 export const SEGURISIMOS_PUNTOS_POR_EURO_TARJETA = 10;
 

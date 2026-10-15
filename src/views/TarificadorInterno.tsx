@@ -14,6 +14,9 @@ import {
   CAMPAIGN_REEMBOLSO_EXCLUSIONES,
   CAMPAIGN_PYMES_TOTAL_RENOVACION_TEXT,
   CAMPAIGN_MAX_COMISION_PCT,
+  CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT,
+  getMaxDescuentoComisionPct,
+  getRepartoDescuentoComision,
   CAMPAIGN_AUTONOMOS_IDS,
   getAutonomosDiscountTier,
   getMesesGratisParticulares,
@@ -99,7 +102,7 @@ const CAMPAIGN_CAT: Record<string, CampaignCat> = {
   "reembolso":        "salud_sin",
   "plena":            "salud_sin",
   "pymes-total":      "sin_puntos",  // descuento en prima por tramos, sin puntos
-  "negocios-nif":     "sin_puntos",  // descuento en prima por tramos, sin puntos
+  "negocios-nif":     "salud_sin",   // descuento en prima por tramos + puntos Segurísimos (cód. 3651)
   "seniors":          "seniors_sin", // Gama Plena + Adeslas Seniors: meses gratis + puntos
   "seniors-total":    "seniors_con", // Plena Total Seniors: meses gratis + puntos (propio, sin descuento)
 };
@@ -260,7 +263,9 @@ export default function TarificadorInterno() {
   const [includePuntosPdf, setIncludePuntosPdf] = useState(true);
 
   const zona        = getZoneFromProvince(provincia);
-  const pctGeneral  = Math.min(Math.max(descuentoComercial, 0), MAX_COMMERCIAL_DISCOUNT);
+  // Pymes Total admite hasta 10% (5% agente + 5% Compañía); el resto, 5%.
+  const maxDescuentoSlider = grupo === "pymes" ? CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT : MAX_COMMERCIAL_DISCOUNT;
+  const pctGeneral  = Math.min(Math.max(descuentoComercial, 0), maxDescuentoSlider);
 
   /* ── Reglas de elegibilidad por edad ──────────────────────────
      · Productos NO Seniors (maxAge 70):
@@ -314,9 +319,10 @@ export default function TarificadorInterno() {
         // Base dental no está sujeta al descuento de volumen (ya tiene precio escalonado)
         const baseTrasFamiliar = (subtotal - descAuto) + dentalExtra;
 
-        // 2) Descuento comercial: cesión de comisión del agente (máx. 5%, ambos segmentos),
+        // 2) Descuento contra comisión: máx. 5% (agente) en general; Pymes Total hasta 10%
+        //    (5% agente + 5% Compañía). Tope por producto en getMaxDescuentoComisionPct.
         // va sobre el total (base + dental). Adeslas GO no admite descuento comercial.
-        const pctComercialEfectivo = product.id === "ya" ? 0 : pctGeneral;
+        const pctComercialEfectivo = Math.min(pctGeneral, getMaxDescuentoComisionPct(product.id));
         const descComercial = baseTrasFamiliar * (pctComercialEfectivo / 100);
         const total = baseTrasFamiliar - descComercial;
 
@@ -507,16 +513,17 @@ export default function TarificadorInterno() {
                   Descuento comercial (cesión de comisión)
                 </label>
                 <p className="text-xs text-slate-400 mb-3">
-                  Máx. 5% · Va contra tu comisión, sin aportación de la Compañía
-                  {(grupo === "pymes") && " · Se suma al descuento de campaña por tramos"}
+                  {grupo === "pymes"
+                    ? `Máx. ${CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT}% en Adeslas Pymes Total · hasta ${MAX_COMMERCIAL_DISCOUNT}% de tu comisión + la misma aportación de la Compañía`
+                    : `Máx. ${MAX_COMMERCIAL_DISCOUNT}% · Va contra tu comisión, sin aportación de la Compañía`}
                 </p>
                 <div className="flex items-center gap-3">
                   <input
                     type="range"
                     min={0}
-                    max={5}
+                    max={maxDescuentoSlider}
                     step={0.5}
-                    value={descuentoComercial}
+                    value={pctGeneral}
                     onChange={(e) => setDescuentoComercial(parseFloat(e.target.value))}
                     className="flex-1 accent-[#009DD9]"
                   />
@@ -524,21 +531,26 @@ export default function TarificadorInterno() {
                     <input
                       type="number"
                       min={0}
-                      max={5}
+                      max={maxDescuentoSlider}
                       step={0.5}
-                      value={descuentoComercial}
+                      value={pctGeneral}
                       onChange={(e) => {
                         const v = parseFloat(e.target.value);
-                        if (!isNaN(v)) setDescuentoComercial(Math.min(5, Math.max(0, v)));
+                        if (!isNaN(v)) setDescuentoComercial(Math.min(maxDescuentoSlider, Math.max(0, v)));
                       }}
                       className="w-14 px-2 py-2 border border-slate-200 rounded-lg text-center font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#009DD9]"
                     />
                     <span className="font-bold text-slate-600">%</span>
                   </div>
                 </div>
-                {descuentoComercial > 0 && (
+                {pctGeneral > 0 && (
                   <p className="text-xs font-semibold text-[#009DD9] mt-1.5">
-                    ✓ Aplicando {descuentoComercial}% a todos los productos (excepto Adeslas GO)
+                    {grupo === "pymes"
+                      ? (() => {
+                          const r = getRepartoDescuentoComision("pymes-total", pctGeneral);
+                          return `✓ Aplicando ${pctGeneral}% a Pymes Total (${r.agente}% tu comisión + ${r.compania}% Compañía)`;
+                        })()
+                      : `✓ Aplicando ${pctGeneral}% a todos los productos (excepto Adeslas GO)`}
                   </p>
                 )}
               </div>
@@ -853,6 +865,14 @@ export default function TarificadorInterno() {
                           <tr>
                             <td colSpan={3} className="py-1 text-[#009DD9] font-semibold">
                               Descuento comercial {pctComercialEfectivo}%
+                              {getRepartoDescuentoComision(product.id, pctComercialEfectivo).compania > 0 && (() => {
+                                const r = getRepartoDescuentoComision(product.id, pctComercialEfectivo);
+                                return (
+                                  <span className="font-normal text-slate-400 ml-1">
+                                    ({r.agente}% agente + {r.compania}% Compañía)
+                                  </span>
+                                );
+                              })()}
                             </td>
                             <td className="py-1 text-right text-[#009DD9] font-bold">
                               -{descComercial.toFixed(2)} €
@@ -973,7 +993,7 @@ export default function TarificadorInterno() {
                           </tr>
                         )}
                         {/* Oferta pública para productos sin puntos (autónomos/pymes) */}
-                        {totalPuntos === 0 && CAMPAIGN_AUTONOMOS_IDS.has(product.id) && (
+                        {CAMPAIGN_AUTONOMOS_IDS.has(product.id) && (
                           <tr>
                             <td colSpan={4} className="pt-3">
                               <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3">
@@ -987,7 +1007,9 @@ export default function TarificadorInterno() {
                                   {product.id === "negocios-nif"
                                     ? "5% con 1-3 aseg. · 10% con 4+ aseg."
                                     : "Tarifa agosto 2026 · el 15% de 4+ aseg. baja a 7,5% en la 1ª renovación y desaparece en la 2ª"}
-                                  {" · Sin meses gratis ni puntos · Solo pólizas nuevas"}
+                                  {product.id === "negocios-nif"
+                                    ? " · Sin meses gratis · Suma puntos Segurísimos · Solo pólizas nuevas"
+                                    : " · Sin meses gratis ni puntos · Solo pólizas nuevas"}
                                 </p>
                               </div>
                             </td>
@@ -1129,9 +1151,11 @@ export default function TarificadorInterno() {
             <div className="bg-blue-50 border border-blue-200 rounded-2xl px-6 py-4 text-sm text-blue-800">
               <p className="font-bold mb-1">ℹ️ Adeslas PYMES Total y Negocios NIF</p>
               <p className="text-xs text-blue-700">
-                No acumulan puntos ni meses gratis. Descuento en prima: <strong>5%</strong> (1-3 aseg.) ·{" "}
+                Sin meses gratis. Pymes Total no acumula puntos; Negocios NIF sí (500 / 750 pts por asegurado sin / con
+                dental, x2 con 3 o más asegurados). Descuento en prima: <strong>5%</strong> (1-3 aseg.) ·{" "}
                 <strong>10%</strong> Negocios NIF / <strong>15%</strong> Pymes Total (4+ aseg.). Además, el agente
-                puede cederse hasta {CAMPAIGN_MAX_COMISION_PCT}% de su comisión (sin aportación de la Compañía).
+                puede cederse hasta {CAMPAIGN_MAX_COMISION_PCT}% de su comisión: en Negocios NIF sin aportación de la
+                Compañía; en Pymes Total la Compañía aporta lo mismo, hasta un {CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT}% en total.
                 {" "}{CAMPAIGN_PYMES_TOTAL_RENOVACION_TEXT}
               </p>
             </div>
