@@ -506,7 +506,7 @@ export default function TarificadorInterno() {
                 </label>
                 <p className="text-xs text-slate-400 mb-3">
                   {grupo === "pymes"
-                    ? `Máx. ${CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT}% en Adeslas Pymes Total · hasta ${MAX_COMMERCIAL_DISCOUNT}% de tu comisión + la misma aportación de la Compañía`
+                    ? `Máx. ${CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT}% en Adeslas Pymes Total · Va contra tu comisión`
                     : `Máx. ${MAX_COMMERCIAL_DISCOUNT}% · Va contra tu comisión, sin aportación de la Compañía`}
                 </p>
                 <div className="flex items-center gap-3">
@@ -538,10 +538,7 @@ export default function TarificadorInterno() {
                 {pctGeneral > 0 && (
                   <p className="text-xs font-semibold text-[#009DD9] mt-1.5">
                     {grupo === "pymes"
-                      ? (() => {
-                          const r = getRepartoDescuentoComision("pymes-total", pctGeneral);
-                          return `✓ Aplicando ${pctGeneral}% a Pymes Total (${r.agente}% tu comisión + ${r.compania}% Compañía)`;
-                        })()
+                      ? `✓ Aplicando ${pctGeneral}% a Pymes Total`
                       : `✓ Aplicando ${pctGeneral}% a todos los productos (excepto Adeslas GO)`}
                   </p>
                 )}
@@ -1209,8 +1206,7 @@ export default function TarificadorInterno() {
                 Sin meses gratis. Pymes Total no acumula puntos; Negocios NIF sí (500 / 750 pts por asegurado sin / con
                 dental, x2 con 3 o más asegurados). Descuento en prima: <strong>5%</strong> (1-3 aseg.) ·{" "}
                 <strong>10%</strong> Negocios NIF / <strong>15%</strong> Pymes Total (4+ aseg.). Además, el agente
-                puede cederse hasta {CAMPAIGN_MAX_COMISION_PCT}% de su comisión: en Negocios NIF sin aportación de la
-                Compañía; en Pymes Total la Compañía aporta lo mismo, hasta un {CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT}% en total.
+                puede cederse hasta {CAMPAIGN_MAX_COMISION_PCT}% de su comisión (también en Pymes Total).
                 {" "}{CAMPAIGN_PYMES_TOTAL_RENOVACION_TEXT}
               </p>
             </div>

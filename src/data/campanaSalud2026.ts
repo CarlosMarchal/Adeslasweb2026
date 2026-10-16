@@ -43,11 +43,11 @@ export const CAMPAIGN_COMISION_TEXT =
   "El agente-mediador puede cederse hasta un 5% de su comisión (con o sin decimales), a descontar de la prima hasta la 1ª renovación. Sin aportación adicional de la Compañía.";
 export const CAMPAIGN_MAX_COMISION_PCT = 5;
 
-/* Adeslas Pymes Total (persona jurídica): descuento contra comisión de hasta
-   el 5% por parte del agente + una aportación EQUIVALENTE de la Compañía
-   → máximo 10% sobre la prima (argumentario Segurísimos, oct. 2026). */
+/* Adeslas Pymes Total: descuento contra comisión máximo del 5% (decisión
+   comercial de Marchal, 16-10-2026), igual que el resto de productos. No se
+   aplica la aportación adicional de la Compañía que recoge el argumentario. */
 export const CAMPAIGN_PYMES_TOTAL_ID = "pymes-total";
-export const CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT = 10;
+export const CAMPAIGN_PYMES_TOTAL_MAX_COMISION_PCT = 5;
 
 /** Descuento contra comisión máximo (%) que admite un producto. GO: 0. */
 export function getMaxDescuentoComisionPct(productId: string): number {
@@ -62,7 +62,6 @@ export function getRepartoDescuentoComision(
   pctTotal: number,
 ): { agente: number; compania: number } {
   const pct = Math.min(Math.max(pctTotal, 0), getMaxDescuentoComisionPct(productId));
-  if (productId === CAMPAIGN_PYMES_TOTAL_ID) return { agente: pct / 2, compania: pct / 2 };
   return { agente: pct, compania: 0 };
 }
 
