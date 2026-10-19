@@ -16,9 +16,9 @@ const PATHNAME = "/adeslas-adif-renfe/";
 const FAQ_KEY: string | null = "/adeslas-adif-renfe/";
 const PRODUCT = {
   name: "Adeslas Renfe y ADIF",
-  description: "Seguro de salud Adeslas con condiciones especiales para empleados de Renfe y ADIF. Desde 49€/mes.",
+  description: "Seguro de salud Adeslas con condiciones especiales para empleados de Renfe y ADIF. Desde 54,35€/mes.",
   category: "Seguro de Salud",
-  price: "49",
+  price: "54.35",
   pricePeriod: "month",
 };
 

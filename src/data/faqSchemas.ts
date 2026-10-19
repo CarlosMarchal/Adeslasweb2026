@@ -582,6 +582,10 @@ export const FAQ_SCHEMAS: Record<string, FaqItem[]> = {
       q: "¿Cómo se gestiona el alta del seguro Adeslas ADIF/Renfe?",
       a: "El alta puede realizarse online o mediante el formulario de contacto de esta web. Nuestro equipo especializado en seguros de colectivos te guiará en el proceso, verificará tu elegibilidad y gestionará el alta en el menor tiempo posible.",
     },
+    {
+      q: "¿Cuáles son los precios del seguro Adeslas ADIF/Renfe para 2027?",
+      a: "De 0 a 19 años: 54,35€/mes; de 20 a 54 años: 59,06€/mes; de 55 a 64 años: 76,09€/mes. Precios exclusivos de colectivo para empleados y familiares de Renfe y ADIF.",
+    },
   ],
 
   // ── ADESLAS DECESOS PRIMA ÚNICA ──────────────────────────────────────
