@@ -8,9 +8,9 @@ const WA_MESSAGE = "Hola, estoy interesado en el seguro de Adeslas para el colec
 
 export const data: ProductPageData = {
   seoTitle:
-    "Adeslas ADIF Renfe | Seguro Médico para Empleados · Precios 2026",
+    "Adeslas ADIF Renfe | Seguro Médico para Empleados · Precios 2027",
   seoDescription:
-    "Seguro médico Adeslas para empleados y familiares de Renfe y ADIF. Cobertura completa, videoconsultas, rehabilitación sin límite y asistencia en el extranjero. Desde 49,59€/mes. Llama al 615 56 84 86.",
+    "Seguro médico Adeslas para empleados y familiares de Renfe y ADIF. Cobertura completa, videoconsultas, rehabilitación sin límite y asistencia en el extranjero. Desde 54,35€/mes. Llama al 615 56 84 86.",
   seoCanonical:
     "https://adeslas.numero1salud.es/adeslas-adif-renfe/",
   seoOgImage: "https://adeslas.numero1salud.es/og-adif-renfe.jpg",
@@ -19,7 +19,7 @@ export const data: ProductPageData = {
     description:
       "Seguro médico para empleados y familiares de Renfe y ADIF con cobertura completa y precios de colectivo exclusivos.",
     category: "Seguro de Salud",
-    price: "49",
+    price: "54.35",
     pricePeriod: "month",
   },
   seoBreadcrumbs: [
@@ -31,13 +31,13 @@ export const data: ProductPageData = {
     },
   ],
   productSlug: "/adeslas-adif-renfe/",
-  badge: "Empleados Renfe y ADIF · Precios exclusivos 2026",
+  badge: "Empleados Renfe y ADIF · Precios exclusivos 2027",
   heroTitle: "Seguro Médico Adeslas para Renfe y ADIF",
   heroImage: heroImg,
   heroHighlight: "Cobertura Completa · Precios exclusivos para empleados",
   heroSubtitle:
     "Seguro médico Adeslas con cobertura completa para empleados y familiares de Renfe y ADIF. Accede a más de 42.000 especialistas en toda España con precios exclusivos de colectivo.",
-  price: "desde 49",
+  price: "desde 54,35",
   pricePeriod: "/mes",
   customTarificador: (
     <ContactCtaCardWhatsApp
@@ -159,11 +159,11 @@ export const data: ProductPageData = {
       ],
     },
     {
-      label: "Precios 2026",
+      label: "Precios 2027",
       items: [
-        "De 0 a 19 años: 49,59€/mes",
-        "De 20 a 54 años: 53,75€/mes",
-        "De 55 a 64 años: 69,42€/mes",
+        "De 0 a 19 años: 54,35€/mes",
+        "De 20 a 54 años: 59,06€/mes",
+        "De 55 a 64 años: 76,09€/mes",
         "Precios exclusivos de colectivo para empleados y familiares",
         "Extensible a la unidad familiar con precio especial",
       ],
@@ -184,8 +184,8 @@ export const data: ProductPageData = {
       a: "Está disponible para empleados en activo y familiares directos de Renfe y ADIF. Puedes extender la cobertura a tu unidad familiar.",
     },
     {
-      q: "¿Cuáles son los precios para 2026?",
-      a: "De 0 a 19 años: 49,59€/mes; de 20 a 54 años: 53,75€/mes; de 55 a 64 años: 69,42€/mes. Precios exclusivos de colectivo.",
+      q: "¿Cuáles son los precios para 2027?",
+      a: "De 0 a 19 años: 54,35€/mes; de 20 a 54 años: 59,06€/mes; de 55 a 64 años: 76,09€/mes. Precios exclusivos de colectivo.",
     },
     {
       q: "¿Incluye rehabilitación sin límite?",
