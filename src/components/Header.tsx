@@ -241,6 +241,8 @@ const Header = () => {
   const { onCalcClick, calcLabel } = usePageCalc();
   const { openPhonePopup } = usePhonePopup();
   const { pathname } = useLocation();
+  /* Landing ADIF-Renfe: un único teléfono propio en el header y sin banner promo mobile */
+  const isAdifRenfe = pathname.startsWith("/adeslas-adif-renfe");
   const measureHeader = useCallback(() => {
     // Wrap in rAF to avoid forced reflow during scroll handler (PageSpeed fix)
     requestAnimationFrame(() => {
@@ -378,6 +380,20 @@ const Header = () => {
 
             {/* Desktop: teléfonos + CTA */}
             <div className="hidden lg:flex items-center gap-3">
+              {isAdifRenfe ? (
+                <a
+                  href="tel:615568486"
+                  aria-label="Llamar al 615 56 84 86"
+                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border transition-colors hover:border-white group"
+                  style={{ borderColor: "rgba(255,255,255,0.35)" }}
+                >
+                  <div className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#009FE3" }}>
+                    <Phone className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="text-sm font-bold text-white leading-tight">615 56 84 86</div>
+                </a>
+              ) : (
+              <>
               {/* Teléfono 1 */}
               <a
                 href="tel:917105000"
@@ -408,6 +424,8 @@ const Header = () => {
                   <div className="text-sm font-bold text-white">91 91 91 898</div>
                 </div>
               </a>
+              </>
+              )}
               {/* CTA principal — desktop always opens tarificador modal */}
               <button
                 onClick={() => openTarificador()}
@@ -517,7 +535,7 @@ const Header = () => {
       {(() => {
         const fueraDeCampana = pathname.includes("/mascota") || pathname.includes("/decesos") ||
           pathname.includes("/accidentes") || pathname.includes("/seguro-dental") ||
-          pathname.includes("/adeslas-go") || pathname.includes("asistencia");
+          pathname.includes("/adeslas-go") || pathname.includes("asistencia") || isAdifRenfe;
         if (fueraDeCampana) return null;
         const bannerText = pathname.includes("/autonomos")
           ? "\ud83c\udff7\ufe0f Ahora, hasta 10% de descuento en tu seguro de aut\u00f3nomo"
@@ -614,6 +632,13 @@ const Header = () => {
                 <Link to="/contacto/" onClick={() => setMobileOpen(false)} className="flex items-center justify-between px-5 py-4 text-[15px] font-semibold text-gris-texto hover:bg-gris-claro transition-colors">Contacto<ArrowRight className="w-4 h-4 text-gris-medio" /></Link>
               </div>
               <div className="px-5 py-4 flex flex-col gap-3 border-t border-borde/50" style={{ backgroundColor: "#F8FAFC" }}>
+                {isAdifRenfe ? (
+                <a href="tel:615568486" aria-label="Llamar al 615 56 84 86" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-borde text-sm" style={{ color: "#003087" }}>
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#E4097D" }}><Phone className="w-4 h-4 text-white" /></div>
+                  <div className="font-bold">615 56 84 86</div>
+                </a>
+                ) : (
+                <>
                 <a href="tel:917105000" onClick={() => trackClickToCallContratacion("header_mobile")} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-borde text-sm" style={{ color: "#003087" }}>
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#E4097D" }}><Phone className="w-4 h-4 text-white" /></div>
                   <div><div className="text-[10px] text-gris-medio font-normal leading-none mb-0.5">Nuevas contrataciones</div><div className="font-bold">91 710 50 00</div></div>
@@ -622,6 +647,8 @@ const Header = () => {
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#009FE3" }}><Phone className="w-4 h-4 text-white" /></div>
                   <div><div className="text-[10px] text-gris-medio font-normal leading-none mb-0.5">Atención al cliente</div><div className="font-bold">91 91 91 898</div></div>
                 </a>
+                </>
+                )}
               </div>
             </motion.div>
           </>
