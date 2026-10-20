@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { X, Phone } from "lucide-react";
 import { submitToHubSpot } from "@/lib/hubspot";
 import { trackGenerateLead, trackClickToCallContratacion } from "@/lib/tracking";
@@ -22,6 +23,9 @@ const AZUL_ADESLAS    = "#003087";   // Azul oscuro corporativo Adeslas
 const AZUL_INTERNO    = "#002268";   // Tono más oscuro para hover/borde input
 const MAGENTA_CTA     = "#E4097D";   // CTA magenta corporativo Adeslas
 const MAGENTA_HOVER   = "#C40068";   // Hover del CTA
+
+/* Rutas donde NO se muestra el banner (procesos de alta cerrados) */
+const RUTAS_SIN_BANNER = ["/seguro-salud/adeslas-alta-renfe-adif"];
 
 function isPhoneValid(phone: string): boolean {
   const digits = phone.replace(/\D/g, "");
@@ -46,6 +50,8 @@ export default function StickyCtaBanner() {
   const [sent,           setSent]           = useState(false);
   const [ctaHover,       setCtaHover]       = useState(false);
   const [inputFocus,     setInputFocus]     = useState(false);
+  const pathname = usePathname();
+  const ocultoEnRuta = RUTAS_SIN_BANNER.some((r) => pathname?.startsWith(r));
 
   /* Mostrar tras scroll */
   useEffect(() => {
@@ -61,7 +67,7 @@ export default function StickyCtaBanner() {
     const isDesktop = () => window.innerWidth >= 1024;
     const apply = () => {
       document.body.style.paddingBottom =
-        visible && !dismissed && isDesktop() ? "100px" : "";
+        visible && !dismissed && !ocultoEnRuta && isDesktop() ? "100px" : "";
     };
     apply();
     window.addEventListener("resize", apply);
@@ -69,7 +75,7 @@ export default function StickyCtaBanner() {
       window.removeEventListener("resize", apply);
       document.body.style.paddingBottom = "";
     };
-  }, [visible, dismissed]);
+  }, [visible, dismissed, ocultoEnRuta]);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(formatPhoneDisplay(e.target.value));
@@ -97,7 +103,7 @@ export default function StickyCtaBanner() {
     setPrivacyOk(false);
   };
 
-  if (dismissed) return null;
+  if (dismissed || ocultoEnRuta) return null;
 
   return (
     <>
