@@ -2,7 +2,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { submitToHubSpot } from "@/lib/hubspot";
 import { trackGenerateLead, trackClickToCallContratacion, trackClickToCallAsistencia } from "@/lib/tracking";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone, ArrowRight, MessageCircle } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, Phone, ArrowRight } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ContactCtaCardWhatsApp";
 import { AnimatePresence, motion } from "@/lib/motion";
 import logoAzul from "@/assets/Logo-adeslas-Marchal-color.webp";
 import { imgSrc } from "@/lib/imgSrc";
@@ -663,18 +664,19 @@ const Header = () => {
               <button onClick={() => setShowThankYouModal(false)} className="absolute top-3 right-3 text-gris-medio p-1 hover:text-gris-texto transition-colors">
                 <X className="w-5 h-5" />
               </button>
-              <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #E4097D 0%, #003087 100%)" }}>
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <div className="w-16 h-16 rounded-full mx-auto mb-5 flex items-center justify-center" style={{ backgroundColor: "#E8F7EE" }}>
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="#1DAA55" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </div>
-              <h3 className="text-xl font-bold mb-2 leading-snug" style={{ color: "#003087" }}>Te llamaremos desde el teléfono <span className="whitespace-nowrap" style={{ color: "#E4097D" }}><strong className="font-black text-2xl">400</strong> 420 428</span></h3>
-              <p className="text-sm text-gris-medio mb-5 leading-relaxed">Uno de nuestros asesores te llamará lo antes posible para ayudarte a encontrar el seguro que mejor se adapta a ti.</p>
-              <a href="tel:917105000" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm border-2" style={{ borderColor: "#E4097D", color: "#E4097D" }} onClick={() => { trackClickToCallContratacion("thank_you_modal"); setShowThankYouModal(false); }}>
-                <Phone className="w-4 h-4" />O llámanos: 91 710 50 00
+              <h3 className="text-2xl font-extrabold leading-tight" style={{ color: "#0B1F44" }}>Te llamaremos desde<br />el teléfono</h3>
+              <p className="text-[34px] font-black tracking-tight mt-2 whitespace-nowrap" style={{ color: "#0B1F44" }}>400 420 428</p>
+              <hr className="my-5 border-gray-200" />
+              <p className="text-base font-bold mb-3" style={{ color: "#0B1F44" }}>Quiero hablar con alguien ya:</p>
+              <a href={`https://wa.me/34722567198?text=${encodeURIComponent("Hola, me gustaría recibir información de los seguros de Adeslas")}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full py-3.5 rounded-xl font-bold text-base text-white transition-opacity hover:opacity-90" style={{ backgroundColor: "#1DAA55" }} onClick={() => setShowThankYouModal(false)}>
+                <WhatsAppIcon size={24} />WhatsApp<ChevronRight className="w-5 h-5" />
               </a>
-              <a href={`https://wa.me/34722567198?text=${encodeURIComponent("Hola, me gustaría recibir información de los seguros de Adeslas")}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full py-3 mt-3 rounded-xl font-bold text-sm text-white transition-opacity hover:opacity-90" style={{ backgroundColor: "#25D366" }} onClick={() => setShowThankYouModal(false)}>
-                <MessageCircle className="w-4 h-4" />Si lo prefieres, contáctanos por WhatsApp
+              <a href="tel:917105000" aria-label="Llamar al 91 710 50 00" className="flex items-center justify-center gap-3 w-full py-3.5 mt-3 rounded-xl font-bold text-base border-2 transition-colors hover:bg-pink-50" style={{ borderColor: "#E4097D", color: "#E4097D" }} onClick={() => { trackClickToCallContratacion("thank_you_modal"); setShowThankYouModal(false); }}>
+                <Phone className="w-5 h-5" />Llamar<ChevronRight className="w-5 h-5" />
               </a>
-              <p className="text-[10px] text-gris-medio mt-3">Sin compromiso · Datos protegidos · Respuesta en minutos</p>
             </motion.div>
           </motion.div>
         )}
