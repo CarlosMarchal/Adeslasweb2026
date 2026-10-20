@@ -168,20 +168,19 @@ export function getPuntosPorAseguradoCampaign(productId: string, dentalModuloAct
    Fuente: argumentario "Segurísimos ¡Ampliada!" de SegurCaixa Adeslas
    (09-10-2026), sección Promoción Salud. Personas físicas.
 
-   PUNTOS POR ASEGURADO                    1-2 aseg.   3 o más aseg. (x2)
-     Adeslas GO sin dental                    250           500
-     Adeslas GO con dental                    350           700
-     Asistencia Sanitaria sin dental          500         1.000
-     Asistencia Sanitaria con dental          750         1.500
+   PUNTOS POR ASEGURADO (decisión comercial de Marchal, 20-10-2026):
+     250 pts por asegurado en TODOS los seguros de salud con puntos (incluidos
+     GO y Negocios NIF), sin multiplicador por nº de asegurados y sin puntos
+     extra por el módulo dental. (El argumentario daba 250-750 con x2.)
 
    ABONO EN CUENTA POR ASEGURADO (en lugar de puntos)
      Adeslas Seniors sin dental                50 €         100 €
      Adeslas Seniors con dental /
      Adeslas Plena Total Seniors               75 €         150 €
 
-   · El x2 por 3 o más asegurados se aplica a TODOS los asegurados de la póliza.
+   · El x2 por 3 o más asegurados se aplica SOLO al abono en cuenta de Seniors.
    · Negocios NIF / Extra Negocios NIF (código de campaña 3651, autónomo
-     persona física): puntos como Asistencia Sanitaria, compatibles con su
+     persona física): 250 pts por asegurado, compatibles con su
      descuento en prima por tramos.
    · Pymes Total (persona jurídica): sin premio, solo descuento contra comisión.
    · Tarjeta prepago: a partir de 500 puntos, cada 10 puntos = 1 € de saldo.
@@ -190,8 +189,8 @@ export function getPuntosPorAseguradoCampaign(productId: string, dentalModuloAct
    Estas cifras NO sustituyen a getPuntosPorAseguradoCampaign (copys públicos). */
 export const SEGURISIMOS_MIN_ASEGURADOS_X2 = 3;
 export const SEGURISIMOS_GO_ID = "ya";
-export const SEGURISIMOS_PUNTOS_GO = { sinDental: 250, conDental: 350 } as const;
-export const SEGURISIMOS_PUNTOS_SALUD = { sinDental: 500, conDental: 750 } as const;
+/** Puntos por asegurado en cualquier seguro de salud con puntos (sin x2 ni extra por dental). */
+export const SEGURISIMOS_PUNTOS_POR_ASEGURADO = 250;
 export const SEGURISIMOS_ABONO_SENIORS_IDS = new Set(["seniors", "seniors-total"]);
 export const SEGURISIMOS_ABONO_SENIORS = { sinDental: 50, conDental: 75 } as const;
 export const SEGURISIMOS_SIN_PREMIO_IDS = new Set(["pymes-total"]);
@@ -223,24 +222,23 @@ export function getPremioSegurisimos(
   dentalModuloActivo = false,
 ): PremioSegurisimos {
   const conDental = tieneDentalCampaign(productId, dentalModuloActivo);
-  const multiplicador: 1 | 2 = numAsegurados >= SEGURISIMOS_MIN_ASEGURADOS_X2 ? 2 : 1;
+  // El x2 por 3+ asegurados solo se aplica al abono de Seniors; los puntos no multiplican.
+  const multiplicadorAbono: 1 | 2 = numAsegurados >= SEGURISIMOS_MIN_ASEGURADOS_X2 ? 2 : 1;
   const n = Math.max(0, numAsegurados);
-  const build = (tipo: "puntos" | "abono", base: number): PremioSegurisimos => ({
+  const build = (tipo: "puntos" | "abono", base: number, multiplicador: 1 | 2): PremioSegurisimos => ({
     tipo, base, multiplicador, conDental,
     porAsegurado: base * multiplicador,
     total: base * multiplicador * n,
   });
 
   if (SEGURISIMOS_SIN_PREMIO_IDS.has(productId) || n === 0) {
-    return { tipo: "ninguno", porAsegurado: 0, base: 0, multiplicador, total: 0, conDental };
+    return { tipo: "ninguno", porAsegurado: 0, base: 0, multiplicador: 1, total: 0, conDental };
   }
   if (SEGURISIMOS_ABONO_SENIORS_IDS.has(productId)) {
-    return build("abono", conDental ? SEGURISIMOS_ABONO_SENIORS.conDental : SEGURISIMOS_ABONO_SENIORS.sinDental);
+    return build("abono", conDental ? SEGURISIMOS_ABONO_SENIORS.conDental : SEGURISIMOS_ABONO_SENIORS.sinDental, multiplicadorAbono);
   }
-  if (productId === SEGURISIMOS_GO_ID) {
-    return build("puntos", conDental ? SEGURISIMOS_PUNTOS_GO.conDental : SEGURISIMOS_PUNTOS_GO.sinDental);
-  }
-  return build("puntos", conDental ? SEGURISIMOS_PUNTOS_SALUD.conDental : SEGURISIMOS_PUNTOS_SALUD.sinDental);
+  // GO, Asistencia Sanitaria y Negocios NIF: 250 pts por asegurado, con o sin dental.
+  return build("puntos", SEGURISIMOS_PUNTOS_POR_ASEGURADO, 1);
 }
 
 /** Saldo de tarjeta prepago canjeable con unos puntos (10 pts = 1 €, mínimo 500 pts). */

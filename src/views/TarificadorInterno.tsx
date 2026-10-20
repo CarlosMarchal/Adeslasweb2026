@@ -157,8 +157,8 @@ function getMensajePublico(
 }
 
 /* ─── Premio Segurísimos (Promoción Salud): ver getPremioSegurisimos en
-   @/data/campanaSalud2026. GO 250/350 · Asistencia Sanitaria 500/750 pts por
-   asegurado (sin/con dental), x2 con 3 o más asegurados. Seniors y Plena Total
+   @/data/campanaSalud2026. 250 pts por asegurado en todos los seguros de salud
+   con puntos (sin x2 ni extra por dental). Seniors y Plena Total
    Seniors: abono en cuenta 50/75 € por asegurado (x2 con 3+). Pymes: sin premio. ── */
 
 /** Nº de asegurados con precio en el producto (los que generan premio). */
@@ -937,8 +937,7 @@ export default function TarificadorInterno() {
                                 )}
                                 <p className="text-xs text-amber-600 mt-1">
                                   {labelDental(cat)} ·{" "}
-                                  {(puntosXAseg / multiplicadorPremio).toLocaleString()} pts/asegurado ({useDentalTarjetaFormula ? "con dental" : "sin dental"})
-                                  {multiplicadorPremio === 2 ? ` · x2 por ${SEGURISIMOS_MIN_ASEGURADOS_X2} o más asegurados` : ` · x2 a partir de ${SEGURISIMOS_MIN_ASEGURADOS_X2} asegurados`}
+                                  {puntosXAseg.toLocaleString()} pts/asegurado (con o sin dental, sin multiplicador)
                                   {" · se acreditan al 4º mes, caducan a los 12 meses · tarjeta prepago: 10 pts = 1 €"}
                                 </p>
                                 {/* Oferta pública campaña — en el desglose expandido */}
@@ -1203,8 +1202,7 @@ export default function TarificadorInterno() {
             <div className="bg-blue-50 border border-blue-200 rounded-2xl px-6 py-4 text-sm text-blue-800">
               <p className="font-bold mb-1">ℹ️ Adeslas PYMES Total y Negocios NIF</p>
               <p className="text-xs text-blue-700">
-                Sin meses gratis. Pymes Total no acumula puntos; Negocios NIF sí (500 / 750 pts por asegurado sin / con
-                dental, x2 con 3 o más asegurados). Descuento en prima: <strong>5%</strong> (1-3 aseg.) ·{" "}
+                Sin meses gratis. Pymes Total no acumula puntos; Negocios NIF sí (250 pts por asegurado). Descuento en prima: <strong>5%</strong> (1-3 aseg.) ·{" "}
                 <strong>10%</strong> Negocios NIF / <strong>15%</strong> Pymes Total (4+ aseg.). Además, el agente
                 puede cederse hasta {CAMPAIGN_MAX_COMISION_PCT}% de su comisión (también en Pymes Total).
                 {" "}{CAMPAIGN_PYMES_TOTAL_RENOVACION_TEXT}
