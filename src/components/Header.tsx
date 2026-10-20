@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { submitToHubSpot } from "@/lib/hubspot";
 import { trackGenerateLead, trackClickToCallContratacion, trackClickToCallAsistencia } from "@/lib/tracking";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, ArrowRight, MessageCircle } from "lucide-react";
 import { AnimatePresence, motion } from "@/lib/motion";
 import logoAzul from "@/assets/Logo-adeslas-Marchal-color.webp";
 import { imgSrc } from "@/lib/imgSrc";
@@ -666,17 +666,13 @@ const Header = () => {
               <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #E4097D 0%, #003087 100%)" }}>
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </div>
-              <h3 className="text-xl font-black mb-1" style={{ color: "#003087" }}>¡Ya tenemos tu número!</h3>
+              <h3 className="text-xl font-bold mb-2 leading-snug" style={{ color: "#003087" }}>Te llamaremos desde el teléfono <span className="whitespace-nowrap" style={{ color: "#E4097D" }}><strong className="font-black text-2xl">400</strong> 420 428</span></h3>
               <p className="text-sm text-gris-medio mb-5 leading-relaxed">Uno de nuestros asesores te llamará lo antes posible para ayudarte a encontrar el seguro que mejor se adapta a ti.</p>
-              <div className="rounded-xl px-5 py-4 mb-5 text-left" style={{ backgroundColor: "#EEF5FF" }}>
-                <div className="text-[11px] font-bold uppercase tracking-wider mb-2" style={{ color: "#009FE3" }}>Horario de atención</div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between text-sm"><span className="text-gris-texto font-medium">Lunes – Viernes</span><span className="font-bold" style={{ color: "#003087" }}>9:00 – 20:00</span></div>
-                  <div className="flex items-center justify-between text-sm"><span className="text-gris-texto font-medium">Sábados</span><span className="font-bold" style={{ color: "#003087" }}>9:00 – 14:00</span></div>
-                </div>
-              </div>
               <a href="tel:917105000" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm border-2" style={{ borderColor: "#E4097D", color: "#E4097D" }} onClick={() => { trackClickToCallContratacion("thank_you_modal"); setShowThankYouModal(false); }}>
                 <Phone className="w-4 h-4" />O llámanos: 91 710 50 00
+              </a>
+              <a href={`https://wa.me/34722567198?text=${encodeURIComponent("Hola, me gustaría recibir información de los seguros de Adeslas")}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full py-3 mt-3 rounded-xl font-bold text-sm text-white transition-opacity hover:opacity-90" style={{ backgroundColor: "#25D366" }} onClick={() => setShowThankYouModal(false)}>
+                <MessageCircle className="w-4 h-4" />Si lo prefieres, contáctanos por WhatsApp
               </a>
               <p className="text-[10px] text-gris-medio mt-3">Sin compromiso · Datos protegidos · Respuesta en minutos</p>
             </motion.div>
